@@ -1,0 +1,1921 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Methodical: print sheets</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif; color: #1a1a1a; background: #e5e5e5; }
+.sheet { width: 210mm; height: 297mm; padding: 14mm 10.5mm 0; margin: 0 auto 8mm; background: #fff; page-break-after: always; position: relative; }
+.label { position: absolute; top: 5mm; left: 10.5mm; font-size: 7pt; color: #888; }
+.grid { display: grid; grid-template-columns: repeat(3, 63mm); grid-auto-rows: 88mm; }
+.card { width: 63mm; height: 88mm; border: 0.2mm dashed #bbb; padding: 0 3mm 2.5mm; overflow: hidden; font-size: 8.4pt; line-height: 1.3; display: flex; flex-direction: column; gap: 1.5mm; }
+.band { margin: 0 -3mm; padding: 1.6mm 3mm; color: #fff; background: var(--c, #222); font-weight: 700; font-size: 7.4pt; letter-spacing: .04em; display: flex; justify-content: space-between; gap: 2mm; }
+.cid { font-weight: 400; opacity: .8; }
+h3 { margin: .8mm 0 0; font-size: 12.5pt; line-height: 1.12; }
+p { margin: 0; }
+b { font-weight: 700; }
+.dim { opacity: .25; }
+.gist { font-size: 8.8pt; }
+.serves { font-size: 8pt; color: #444; }
+.row { font-size: 8pt; }
+.row b { color: #555; text-transform: uppercase; font-size: 6.6pt; letter-spacing: .05em; margin-right: .8mm; }
+.ex { margin-top: auto; font-style: italic; color: #555; font-size: 7.4pt; border-top: .2mm solid #ddd; padding-top: 1mm; }
+.question .band { background: #111; }
+.question .field { font-size: 7.4pt; text-transform: uppercase; letter-spacing: .06em; color: #777; margin-top: .6mm; }
+.question h3 { margin-top: 0; }
+.qtext { font-size: 10.4pt; line-height: 1.34; }
+.hint { margin-top: auto; font-size: 7.6pt; font-style: italic; color: #666; border-top: .2mm solid #ddd; padding-top: 1.2mm; }
+.chips { display: flex; flex-wrap: wrap; gap: 1.2mm; font-size: 7.6pt; }
+.chip { border: .25mm solid #999; border-radius: 3mm; padding: .2mm 1.6mm; white-space: nowrap; }
+.foot { text-align: center; color: #888; font-size: 6.8pt; letter-spacing: .05em; text-transform: uppercase; }
+.qback { font-size: 7.4pt; }
+.qback .band { background: #444; }
+.tier { font-size: 8pt; }
+.tier.gold b { color: #8a6d00; }
+.tier.silver b { color: #666; }
+.traps { margin: 0; padding-left: 3mm; font-size: 7.1pt; }
+.traps .th { list-style: none; margin-left: -3mm; font-weight: 700; color: #b91c1c; }
+.why { font-size: 7.4pt; }
+.watch { margin-top: auto; font-size: 7.6pt; border-top: .2mm solid #ddd; padding-top: 1mm; }
+.threat .band { background: #7f1d1d; }
+.threat h3 { color: #7f1d1d; }
+.safeguard .band { background: #065f46; }
+.safeguard h3 { color: #065f46; }
+.fams { margin-top: auto; }
+.dot { display: inline-block; width: 2mm; height: 2mm; border-radius: 50%; margin: 0 .6mm 0 1mm; vertical-align: middle; }
+.twist .band { background: #5b21b6; }
+.twist h3 { color: #5b21b6; }
+.twist .chips { margin-top: auto; }
+.program .band { background: #0c4a6e; }
+.program ol { margin: 0; padding-left: 3.5mm; font-size: 7.6pt; display: flex; flex-direction: column; gap: 1.2mm; }
+.brief { font-size: 8pt; font-style: italic; }
+.ref .band { background: #333; }
+.ref ul { margin: 0; padding-left: 0; list-style: none; font-size: 7.3pt; display: flex; flex-direction: column; gap: .9mm; }
+.ref .score { margin-top: 1.5mm; border-top: .2mm solid #ddd; padding-top: 1mm; }
+.blank { border-color: transparent; }
+@media print { body { background: #fff; } .sheet { margin: 0; } .label { display: none; } }
+.cover { width: 210mm; margin: 0 auto 8mm; background: #fff; padding: 14mm; font-size: 10pt; line-height: 1.5; }
+.cover h1 { margin: 0 0 2mm; } .cover table { border-collapse: collapse; } .cover td { padding: 1mm 4mm 1mm 0; }
+@media print { .cover { page-break-after: always; margin: 0; } }
+</style></head>
+<body><div class="cover"><h1>Methodical: print-and-play sheets</h1>
+<p>Every question deserves the right design. Version 0.1 (prototype). 192 cards, standard poker size (63 × 88 mm), 9 per A4 page.</p>
+<table><tr><td>Reference</td><td>4 cards</td><td>single-sided</td></tr><tr><td>Questions</td><td>60 cards</td><td>duplex (answers on back)</td></tr><tr><td>Designs</td><td>46 cards</td><td>single-sided</td></tr><tr><td>Threats</td><td>28 cards</td><td>single-sided</td></tr><tr><td>Safeguards</td><td>32 cards</td><td>single-sided</td></tr><tr><td>Twists</td><td>16 cards</td><td>single-sided</td></tr><tr><td>Programmes</td><td>6 cards</td><td>duplex (answers on back)</td></tr></table>
+<p>Print at <b>100% / actual size</b>. Question and Programme sheets alternate fronts and backs; print those pages duplex,
+flipping on the long edge, so each answer lands behind its question. Everything else can be printed single-sided.
+Cut along the dashed lines. Sleeve the cards with a playing card behind them if you want them to shuffle well.</p></div><section class="sheet"><div class="label">Reference · fronts</div><div class="grid"><div class="card ref"><div class="band">REFERENCE · SUITS</div><ul><li><b>📊 Describe</b>: What is it? How much, how often, where, and is it changing?</li><li><b>🧭 Explore</b>: What is going on here? How and why do people experience or do it?</li><li><b>🔗 Associate</b>: Do X and Y go together, and does X come first?</li><li><b>🎯 Cause</b>: Does changing X change Y? Does the intervention work?</li><li><b>🔮 Predict</b>: What will happen, and to whom?</li><li><b>📏 Measure</b>: Can we measure it accurately, reliably, and validly?</li><li><b>🧮 Explain</b>: What mechanism or law must hold? What follows from the theory?</li><li><b>🛠️ Build</b>: Can we make something that works, and is the plan feasible?</li><li><b>📚 Synthesize</b>: What does all the existing evidence say?</li></ul></div><div class="card ref"><div class="band">REFERENCE · CONSTRAINTS 1/2</div><ul><li>🚫 <b>Can&#x27;t assign</b>: You can&#x27;t (ethically or practically) decide who or what gets the exposure.</li><li>🔎 <b>Rare outcome</b>: The outcome is rare: roughly 1 in 1,000 or rarer.</li><li>☢️ <b>Rare exposure</b>: Only a small, identifiable group is exposed.</li><li>⏳ <b>Long latency</b>: Years or decades pass between cause and effect.</li><li>⚡ <b>Brief trigger</b>: The exposure is brief and its effect is immediate.</li><li>🗄️ <b>Existing data</b>: Records, registries, logs or archives already exist.</li><li>1️⃣ <b>One unit</b>: Only one or a handful of units: one patient, one country, one factory.</li></ul></div><div class="card ref"><div class="band">REFERENCE · CONSTRAINTS 2/2</div><ul><li>👥 <b>Group-level</b>: The exposure acts on whole groups, or would spill over between people.</li><li>✂️ <b>Cutoff rule</b>: A threshold on a score decides who gets the exposure.</li><li>📅 <b>Rollout</b>: Everyone will get the intervention anyway; only the timing is flexible.</li><li>💸 <b>Tight budget</b>: Weeks or months, not years; a small budget.</li><li>❓ <b>Uncharted</b>: Little prior theory; you don&#x27;t yet know which variables matter.</li><li>🗂️ <b>Many studies</b>: A substantial body of primary research already exists.</li></ul></div><div class="card ref"><div class="band">REFERENCE · FAMILIES & SCORING</div><ul><li><span class="dot" style="background:#0F766E"></span>Descriptive observational</li><li><span class="dot" style="background:#1D4ED8"></span>Analytical observational</li><li><span class="dot" style="background:#6D28D9"></span>Quasi-experimental</li><li><span class="dot" style="background:#B91C1C"></span>Experimental</li><li><span class="dot" style="background:#B45309"></span>Qualitative &amp; mixed</li><li><span class="dot" style="background:#15803D"></span>Evidence synthesis</li><li><span class="dot" style="background:#475569"></span>Measurement</li><li><span class="dot" style="background:#BE185D"></span>Theory &amp; computation</li><li><span class="dot" style="background:#78350F"></span>Design &amp; development</li></ul>
+  <ul class="score"><li>🥇 Best <b>+3</b></li><li>🥈 Defensible <b>+1</b></li>
+  <li>⚠️ Trap <b>-2</b></li><li>Unlisted <b>0</b>, or <b>+1</b> if the table upholds your appeal</li></ul></div></div></section><section class="sheet"><div class="label">Questions · fronts</div><div class="grid"><div class="card question">
+  <div class="band"><span>📊 DESCRIBE</span><span class="cid">Q01 · ★</span></div>
+  <div class="field">Public health</div>
+  <h3>City vape count</h3>
+  <p class="qtext">The city council wants to know what share of adults vape right now, by age group, before it votes on a ban next quarter.</p>
+  <div class="chips"><span class="chip">💸 Tight budget</span></div>
+  <div class="hint">📊 What is it? How much, how often, where, and is it changing?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>📊 DESCRIBE</span><span class="cid">Q02 · ★</span></div>
+  <div class="field">Dermatology</div>
+  <h3>Tattoo rash</h3>
+  <p class="qtext">Five patients at one clinic developed an unusual rash weeks after getting tattoos with the same new ink. Nothing like it has been published.</p>
+  <div class="chips"><span class="chip">1️⃣ One unit</span><span class="chip">🔎 Rare outcome</span><span class="chip">❓ Uncharted</span></div>
+  <div class="hint">📊 What is it? How much, how often, where, and is it changing?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>📊 DESCRIBE</span><span class="cid">Q03 · ★</span></div>
+  <div class="field">Ecology</div>
+  <h3>Vanishing butterflies</h3>
+  <p class="qtext">Is a migratory butterfly population declining over the decade, and is the decline steady or sudden?</p>
+  <div class="chips"></div>
+  <div class="hint">📊 What is it? How much, how often, where, and is it changing?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>📊 DESCRIBE</span><span class="cid">Q04 · ★★</span></div>
+  <div class="field">Astronomy</div>
+  <h3>Jupiter census</h3>
+  <p class="qtext">What fraction of nearby Sun-like stars host a Jupiter-mass planet?</p>
+  <div class="chips"></div>
+  <div class="hint">📊 What is it? How much, how often, where, and is it changing?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>📊 DESCRIBE</span><span class="cid">Q05 · ★★</span></div>
+  <div class="field">Pharmacology</div>
+  <h3>After approval</h3>
+  <p class="qtext">A new diabetes drug was approved after trials in 3,000 people. How often does it cause serious liver injury now that millions use it?</p>
+  <div class="chips"><span class="chip">🔎 Rare outcome</span><span class="chip">🗄️ Existing data</span></div>
+  <div class="hint">📊 What is it? How much, how often, where, and is it changing?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🔗 ASSOCIATE</span><span class="cid">Q06 · ★</span></div>
+  <div class="field">Environmental health</div>
+  <h3>Smog atlas</h3>
+  <p class="qtext">Before investing in a big study, you want a quick, cheap first look: do countries with more air pollution have higher asthma rates?</p>
+  <div class="chips"><span class="chip">👥 Group-level</span><span class="chip">🗄️ Existing data</span><span class="chip">💸 Tight budget</span></div>
+  <div class="hint">🔗 Do X and Y go together, and does X come first?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🔗 ASSOCIATE</span><span class="cid">Q07 · ★</span></div>
+  <div class="field">Paediatric oncology</div>
+  <h3>Rare cancer, common spray</h3>
+  <p class="qtext">Is a rare childhood cancer (about 1 in 50,000 children) associated with the mother&#x27;s use of a common pesticide during pregnancy?</p>
+  <div class="chips"><span class="chip">🔎 Rare outcome</span><span class="chip">🚫 Can&#x27;t assign</span></div>
+  <div class="hint">🔗 Do X and Y go together, and does X come first?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🔗 ASSOCIATE</span><span class="cid">Q08 · ★★</span></div>
+  <div class="field">Occupational health</div>
+  <h3>Clean-room workers</h3>
+  <p class="qtext">A few hundred workers handle a novel solvent at a single chip factory. Is the exposure linked to later kidney disease?</p>
+  <div class="chips"><span class="chip">☢️ Rare exposure</span><span class="chip">🗄️ Existing data</span></div>
+  <div class="hint">🔗 Do X and Y go together, and does X come first?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🔗 ASSOCIATE</span><span class="cid">Q09 · ★★</span></div>
+  <div class="field">Cardiology</div>
+  <h3>Snow shovel</h3>
+  <p class="qtext">Does a bout of heavy physical exertion trigger a heart attack within the following hour?</p>
+  <div class="chips"><span class="chip">⚡ Brief trigger</span><span class="chip">🔎 Rare outcome</span></div>
+  <div class="hint">🔗 Do X and Y go together, and does X come first?</div>
+  <div class="foot">Which design answers it?</div>
+</div></div></section><section class="sheet"><div class="label">Questions · backs (print duplex, flip on long edge)</div><div class="grid"><div class="card qback">
+  <div class="band"><span>ANSWER · Vanishing butterflies</span><span class="cid">Q03</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Monitoring / surveillance</div>
+  <div class="tier silver"><b>🥈 Defensible</b> —</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Cross-sectional survey</b>: One snapshot can&#x27;t show a trend.</li><li><b>Field experiment</b>: Nothing is being manipulated. The question is what is happening, not why.</li></ul>
+  <p class="why">Trends need standardized counts repeated over many years, the backbone of conservation science. Changes in observers, sites or methods over time are the main enemy.</p>
+  <div class="watch">Watch out for: <b>Measurement error</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Tattoo rash</span><span class="cid">Q02</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Case report / case series</div>
+  <div class="tier silver"><b>🥈 Defensible</b> —</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: Deliberately exposing people to a suspected harm is unethical, and premature.</li><li><b>Systematic review &amp; meta-analysis</b>: There is nothing yet to synthesize.</li></ul>
+  <p class="why">A careful case series is the fastest way to raise a signal that others can test. Its job is to describe and alert. A case-control study is the logical next step, not the first.</p>
+  <div class="watch">Watch out for: <b>Selection bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · City vape count</span><span class="cid">Q01</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Cross-sectional survey</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Monitoring / surveillance</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Prospective cohort</b>: Follows people for years to measure new cases. The council needs current prevalence next quarter.</li><li><b>Case–control study</b>: Sampling people by whether they vape destroys any estimate of how common vaping is.</li></ul>
+  <p class="why">&#x27;What share, right now?&#x27; is a prevalence question, answered by one well-sampled snapshot. Put the effort into the sampling frame and weighting, not into follow-up.</p>
+  <div class="watch">Watch out for: <b>Selection bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Smog atlas</span><span class="cid">Q06</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Ecological study</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Cross-sectional survey</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Prospective cohort</b>: Years and millions spent on what should be a cheap first look.</li><li><b>Randomized controlled trial</b>: You can&#x27;t assign air pollution.</li></ul>
+  <p class="why">Comparing aggregate data across countries is the cheapest hypothesis generator there is. Just never conclude that polluted individuals get asthma from it: that&#x27;s the ecological fallacy.</p>
+  <div class="watch">Watch out for: <b>Ecological fallacy</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · After approval</span><span class="cid">Q05</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Monitoring / surveillance</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Retrospective cohort</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: Seeing a 1-in-50,000 harm would need an impossibly large trial. That is exactly why the approval trials missed it.</li><li><b>Cross-sectional survey</b>: Liver injury is an event over time, not a state at one moment.</li></ul>
+  <p class="why">Post-marketing pharmacovigilance (spontaneous reports plus active monitoring of health records) exists because rare harms are invisible in trials. Signals are then confirmed with analytical studies.</p>
+  <div class="watch">Watch out for: <b>Measurement error</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Jupiter census</span><span class="cid">Q04</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Cross-sectional survey</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Monitoring / surveillance</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Case report / case series</b>: One spectacular planetary system tells you nothing about the fraction.</li><li><b>Analytical / mathematical theory</b>: Formation theory can suggest a number, but this asks for an observed frequency.</li></ul>
+  <p class="why">It&#x27;s a prevalence question in disguise: a defined sample of stars observed with a known detection completeness. Correcting for what the instrument can&#x27;t see is the whole game.</p>
+  <div class="watch">Watch out for: <b>Selection bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Snow shovel</span><span class="cid">Q09</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Case-crossover</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Case–control study</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Cross-sectional survey</b>: It can&#x27;t capture the hour before an event.</li><li><b>Prospective cohort</b>: You&#x27;d need hour-by-hour exertion logs from huge numbers of people to catch a few events.</li></ul>
+  <p class="why">Brief exposure, acute effect: compare each patient&#x27;s exertion in the hour before their heart attack with their own usual exertion. Every stable personal confounder cancels out.</p>
+  <div class="watch">Watch out for: <b>Recall bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Clean-room workers</span><span class="cid">Q08</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Retrospective cohort</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Prospective cohort</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Case–control study</b>: The exposure is so rare that almost none of the kidney-disease cases in the population will have had it.</li><li><b>Ecological study</b>: One factory gives no groups to compare.</li></ul>
+  <p class="why">Rare exposure: sample on the exposure. Employment records let you assemble the exposed workforce and an unexposed comparison group (e.g. office staff) and trace their outcomes. Comparing with the general public invites the healthy-worker effect.</p>
+  <div class="watch">Watch out for: <b>Selection bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Rare cancer, common spray</span><span class="cid">Q07</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Case–control study</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Retrospective cohort</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Prospective cohort</b>: You&#x27;d need to follow millions of pregnancies to collect a handful of cases.</li><li><b>Cross-sectional survey</b>: It can&#x27;t establish that the exposure came before the cancer.</li></ul>
+  <p class="why">Rare outcome: start from the cases. Draw controls from the population that produced them, and take exposure from records rather than memory, because grieving parents remember differently. A record-linkage cohort works only if registries already capture the pesticide exposure.</p>
+  <div class="watch">Watch out for: <b>Recall bias</b></div>
+</div></div></section><section class="sheet"><div class="label">Questions · fronts</div><div class="grid"><div class="card question">
+  <div class="band"><span>🔗 ASSOCIATE</span><span class="cid">Q10 · ★</span></div>
+  <div class="field">Neurology</div>
+  <h3>Diet and dementia</h3>
+  <p class="qtext">Is a high intake of ultra-processed food in midlife associated with dementia 20 years later?</p>
+  <div class="chips"><span class="chip">⏳ Long latency</span><span class="chip">🚫 Can&#x27;t assign</span></div>
+  <div class="hint">🔗 Do X and Y go together, and does X come first?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q11 · ★</span></div>
+  <div class="field">Cardiology</div>
+  <h3>New pill vs. old</h3>
+  <p class="qtext">Does a new blood-pressure drug prevent more strokes than the current standard drug?</p>
+  <div class="chips"></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q12 · ★</span></div>
+  <div class="field">Education</div>
+  <h3>Peer tutoring</h3>
+  <p class="qtext">Does a new peer-tutoring method raise maths scores? Pupils in the same class share notes and talk constantly.</p>
+  <div class="chips"><span class="chip">👥 Group-level</span></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q13 · ★★</span></div>
+  <div class="field">Public health</div>
+  <h3>Soda tax</h3>
+  <p class="qtext">One state introduced a sugary-drinks tax; its similar neighbour didn&#x27;t. Supermarket sales data exist for both, three years before and after. Did the tax cut consumption?</p>
+  <div class="chips"><span class="chip">🚫 Can&#x27;t assign</span><span class="chip">👥 Group-level</span><span class="chip">🗄️ Existing data</span></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q14 · ★★</span></div>
+  <div class="field">Education policy</div>
+  <h3>Scholarship cutoff</h3>
+  <p class="qtext">Students scoring 70 or more on a national exam receive a scholarship. Does the scholarship make them more likely to graduate from university?</p>
+  <div class="chips"><span class="chip">✂️ Cutoff rule</span><span class="chip">🗄️ Existing data</span><span class="chip">🚫 Can&#x27;t assign</span></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q15 · ★</span></div>
+  <div class="field">Health services</div>
+  <h3>Sepsis alert</h3>
+  <p class="qtext">A hospital switched on an electronic sepsis alert on a known date. Monthly sepsis deaths are available for five years before and two years after. Did the alert help?</p>
+  <div class="chips"><span class="chip">🗄️ Existing data</span><span class="chip">1️⃣ One unit</span></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q16 · ★★</span></div>
+  <div class="field">Economics</div>
+  <h3>Reunification</h3>
+  <p class="qtext">What did German reunification in 1990 do to West Germany&#x27;s GDP per capita?</p>
+  <div class="chips"><span class="chip">1️⃣ One unit</span><span class="chip">🚫 Can&#x27;t assign</span><span class="chip">🗄️ Existing data</span></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q17 · ★★</span></div>
+  <div class="field">Neurology</div>
+  <h3>Her migraine</h3>
+  <p class="qtext">A patient has migraines several times a week. Does a new as-needed migraine drug relieve her attacks better than her usual painkiller?</p>
+  <div class="chips"><span class="chip">1️⃣ One unit</span></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q18 · ★★</span></div>
+  <div class="field">Pharmacology</div>
+  <h3>Two inhalers</h3>
+  <p class="qtext">Do two inhaler formulations produce the same improvement in lung function in people with stable asthma?</p>
+  <div class="chips"><span class="chip">💸 Tight budget</span></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div></div></section><section class="sheet"><div class="label">Questions · backs (print duplex, flip on long edge)</div><div class="grid"><div class="card qback">
+  <div class="band"><span>ANSWER · Peer tutoring</span><span class="cid">Q12</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Cluster randomized trial</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Stepped-wedge trial</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: Randomizing pupils within classes lets the method leak to the controls, diluting the effect.</li></ul>
+  <p class="why">When an intervention spreads between individuals, randomize the group (class or school) instead. Then analyse at the right level, because pupils in the same class aren&#x27;t independent.</p>
+  <div class="watch">Watch out for: <b>Unit-of-analysis error</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · New pill vs. old</span><span class="cid">Q11</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Randomized controlled trial</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Adaptive / platform trial</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Retrospective cohort</b>: Doctors give new drugs to particular kinds of patients. Confounding by indication makes the comparison unreliable.</li><li><b>Case report / case series</b>: Anecdotes can&#x27;t estimate a comparative effect.</li></ul>
+  <p class="why">A clean causal question about an intervention you can assign, with genuine uncertainty about which is better: randomize. Conceal allocation, blind if you can, analyse by intention to treat.</p>
+  <div class="watch">Watch out for: <b>Attrition &amp; missing data</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Diet and dementia</span><span class="cid">Q10</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Prospective cohort</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Retrospective cohort</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: Nobody sticks to an assigned diet for 20 years.</li><li><b>Case–control study</b>: People with dementia can&#x27;t reliably report their diet from two decades ago.</li></ul>
+  <p class="why">Measure diet before anyone has dementia and wait, or (faster) analyse an existing cohort that recorded diet decades ago. Watch for reverse causation: early, pre-clinical dementia changes eating habits.</p>
+  <div class="watch">Watch out for: <b>Reverse causation</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Sepsis alert</span><span class="cid">Q15</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Interrupted time series</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Difference-in-differences</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Cross-sectional survey</b>: A snapshot can&#x27;t see a change.</li><li><b>Case report / case series</b>: One dramatic rescue proves nothing about the death rate.</li></ul>
+  <p class="why">Many time points before and after a sharp date separate the alert&#x27;s effect from the trend that was already under way. Add a control series (another hospital, or a condition the alert can&#x27;t affect) to rule out coincident changes.</p>
+  <div class="watch">Watch out for: <b>History &amp; secular trends</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Scholarship cutoff</span><span class="cid">Q14</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Regression discontinuity</div>
+  <div class="tier silver"><b>🥈 Defensible</b> —</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Retrospective cohort</b>: Comparing all recipients with all non-recipients compares stronger students with weaker ones.</li><li><b>Cross-sectional survey</b>: A one-off comparison of graduates and non-graduates can&#x27;t separate the scholarship from ability.</li></ul>
+  <p class="why">A student who scored 70 and one who scored 69 are nearly identical, except one got the money. The estimate is local to the cutoff. Check that nobody could nudge their score across it.</p>
+  <div class="watch">Watch out for: <b>Selection bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Soda tax</span><span class="cid">Q13</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Difference-in-differences</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Synthetic control, Interrupted time series</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Cross-sectional survey</b>: Comparing the two states once, after the tax, can&#x27;t separate the tax from differences that were already there.</li></ul>
+  <p class="why">Compare the change in the taxed state with the change in the untaxed one. The key assumption, parallel trends, can be checked in the years before the tax.</p>
+  <div class="watch">Watch out for: <b>History &amp; secular trends</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Two inhalers</span><span class="cid">Q18</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Crossover trial</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Randomized controlled trial</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Retrospective cohort</b>: Patients end up on one inhaler or the other for reasons tied to how severe their asthma is.</li></ul>
+  <p class="why">Stable chronic condition, short-acting reversible effect: each person tries both in random order with a washout. Between-person noise vanishes, so far fewer participants are needed.</p>
+  <div class="watch">Watch out for: <b>Carryover</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Her migraine</span><span class="cid">Q17</span></div>
+  <div class="tier gold"><b>🥇 Best</b> N-of-1 trial</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Crossover trial</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: A trial&#x27;s average effect doesn&#x27;t tell you whether this one patient responds.</li><li><b>Case report / case series</b>: An uncontrolled before-and-after story is fooled by regression to the mean: she sought help at her worst.</li></ul>
+  <p class="why">Frequent attacks and a fast-acting drug: randomize which drug she takes for each attack (or block of attacks), blind it with identical capsules, and repeat. The answer is about her.</p>
+  <div class="watch">Watch out for: <b>Expectation effects</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Reunification</span><span class="cid">Q16</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Synthetic control</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Interrupted time series</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: Countries can&#x27;t be randomized to reunify.</li><li><b>Cross-sectional survey</b>: A one-year comparison with other countries ignores differences that existed before 1990.</li></ul>
+  <p class="why">One treated unit, many possible comparisons: build a weighted blend of other OECD countries that tracked West Germany before 1990, then watch where the paths split. Abadie, Diamond &amp; Hainmueller did exactly this.</p>
+  <div class="watch">Watch out for: <b>History &amp; secular trends</b></div>
+</div></div></section><section class="sheet"><div class="label">Questions · fronts</div><div class="grid"><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q19 · ★★</span></div>
+  <div class="field">Agriculture</div>
+  <h3>Three knobs</h3>
+  <p class="qtext">Which combination of fertilizer dose, irrigation schedule and seed variety gives the best yield on real farms?</p>
+  <div class="chips"></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q20 · ★</span></div>
+  <div class="field">Manufacturing</div>
+  <h3>Weld strength</h3>
+  <p class="qtext">Which of six process parameters (current, speed, gas flow…) drive weld strength in the lab, and do any of them interact?</p>
+  <div class="chips"><span class="chip">💸 Tight budget</span></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q21 · ★</span></div>
+  <div class="field">Tech</div>
+  <h3>Checkout button</h3>
+  <p class="qtext">Will a redesigned checkout button increase completed purchases on a site with 2 million visitors a day?</p>
+  <div class="chips"><span class="chip">💸 Tight budget</span></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q22 · ★★</span></div>
+  <div class="field">Conservation</div>
+  <h3>Rat-free islands</h3>
+  <p class="qtext">Does eradicating invasive rats increase seabird nesting success? There are 20 similar islands, and you have permits for 10 eradications.</p>
+  <div class="chips"><span class="chip">👥 Group-level</span></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q23 · ★★</span></div>
+  <div class="field">Health systems</div>
+  <h3>Triage rollout</h3>
+  <p class="qtext">The ministry has decided that a new emergency triage protocol will be introduced in all 12 regional hospitals over the next year. Does it reduce deaths?</p>
+  <div class="chips"><span class="chip">📅 Rollout</span><span class="chip">👥 Group-level</span></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q24 · ★★</span></div>
+  <div class="field">Infectious disease</div>
+  <h3>Ten candidates</h3>
+  <p class="qtext">A new respiratory virus is spreading fast and ten repurposed drugs have been proposed. Which of them, if any, reduce deaths in hospitalized patients? You have months.</p>
+  <div class="chips"></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q25 · ★★★</span></div>
+  <div class="field">Pharmacoepidemiology</div>
+  <h3>Older than the trials</h3>
+  <p class="qtext">Do two classes of diabetes drug differ in their effect on kidney failure in adults over 80, a group excluded from the trials? Insurance claims cover 5 million people.</p>
+  <div class="chips"><span class="chip">🗄️ Existing data</span></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q26 · ★★★</span></div>
+  <div class="field">Economics</div>
+  <h3>Does school pay?</h3>
+  <p class="qtext">Does an extra year of schooling raise later earnings? Compulsory-schooling laws let people born early in the year leave school with slightly less education.</p>
+  <div class="chips"><span class="chip">🚫 Can&#x27;t assign</span><span class="chip">🗄️ Existing data</span></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🎯 CAUSE</span><span class="cid">Q27 · ★★★</span></div>
+  <div class="field">Cardiology</div>
+  <h3>LDL: cause or marker?</h3>
+  <p class="qtext">Is lifelong higher LDL cholesterol a cause of coronary heart disease, or merely a marker of other risk factors?</p>
+  <div class="chips"><span class="chip">🚫 Can&#x27;t assign</span><span class="chip">⏳ Long latency</span><span class="chip">🗄️ Existing data</span></div>
+  <div class="hint">🎯 Does changing X change Y? Does the intervention work?</div>
+  <div class="foot">Which design answers it?</div>
+</div></div></section><section class="sheet"><div class="label">Questions · backs (print duplex, flip on long edge)</div><div class="grid"><div class="card qback">
+  <div class="band"><span>ANSWER · Checkout button</span><span class="cid">Q21</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Online A/B test</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Randomized controlled trial</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Interrupted time series</b>: Even a long time series can&#x27;t separate the redesign from concurrent campaigns, when randomizing visitors costs nothing.</li><li><b>Interviews &amp; thematic analysis</b>: Users can&#x27;t reliably predict their own clicking behaviour.</li></ul>
+  <p class="why">Randomize visitors to the old or new button and compare conversion. Fix the sample size and the metric in advance: peeking until it&#x27;s significant is the classic A/B-test sin.</p>
+  <div class="watch">Watch out for: <b>Forking paths &amp; p-hacking</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Weld strength</span><span class="cid">Q20</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Factorial experiment (DoE)</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Computational simulation</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Retrospective cohort</b>: Past production logs confound settings that operators always changed together.</li><li><b>Case report / case series</b>: One great weld proves nothing.</li></ul>
+  <p class="why">A fractional-factorial screening design tests six factors in a few dozen runs and reveals interactions that one-factor-at-a-time testing misses. Randomize the run order to protect against drift. Simulation helps only if a validated process model exists.</p>
+  <div class="watch">Watch out for: <b>Measurement error</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Three knobs</span><span class="cid">Q19</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Field experiment, Factorial experiment (DoE)</div>
+  <div class="tier silver"><b>🥈 Defensible</b> —</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Cross-sectional survey</b>: Farmers who irrigate more also differ in soil, skill and wealth.</li><li><b>Case study (in-depth)</b>: One farm can&#x27;t separate three factors and their interactions.</li></ul>
+  <p class="why">Cross the three factors in a factorial layout, randomized to plots in blocks across several farms. One season yields main effects and interactions. This is Fisher&#x27;s original idea.</p>
+  <div class="watch">Watch out for: <b>Limited generalizability</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Ten candidates</span><span class="cid">Q24</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Adaptive / platform trial</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Randomized controlled trial</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Case report / case series</b>: Early case series claiming miracle cures were widespread and misleading.</li><li><b>Retrospective cohort</b>: Sicker patients get experimental drugs. Confounding by indication.</li></ul>
+  <p class="why">One master protocol, one shared control arm; arms are dropped for futility and new ones added. RECOVERY found that dexamethasone saves lives within about 100 days of launch.</p>
+  <div class="watch">Watch out for: <b>History &amp; secular trends</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Triage rollout</span><span class="cid">Q23</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Stepped-wedge trial</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Cluster randomized trial, Interrupted time series</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: Triage is a hospital-wide process. You can&#x27;t randomize individual patients within a hospital.</li></ul>
+  <p class="why">Everyone gets it; only the order is open. Randomize the order in which hospitals switch, and every hospital contributes both control and intervention time. Model the background time trend carefully.</p>
+  <div class="watch">Watch out for: <b>History &amp; secular trends</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Rat-free islands</span><span class="cid">Q22</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Field experiment</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Difference-in-differences</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Cross-sectional survey</b>: Islands that never had rats differ from rat islands in many other ways.</li><li><b>Case report / case series</b>: One island&#x27;s success story can&#x27;t be separated from that year&#x27;s weather.</li></ul>
+  <p class="why">Randomly choose which 10 islands get eradication and measure all 20 before and after (a randomized BACI design). Random allocation stops you from picking the &#x27;easy&#x27; islands. Twenty units is few, so plan the power.</p>
+  <div class="watch">Watch out for: <b>Low power</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · LDL: cause or marker?</span><span class="cid">Q27</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Mendelian randomization</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Randomized controlled trial</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Cross-sectional survey</b>: It can&#x27;t separate cause from marker, or tell which came first.</li><li><b>Ecological study</b>: Country-level cholesterol averages say nothing about mechanisms in individuals.</li></ul>
+  <p class="why">People inherit LDL-raising or LDL-lowering variants at conception, essentially at random: a natural lifelong trial. Large genetic consortia make it fast. Pleiotropy (genes acting through other paths) is the threat to check. Trials of LDL-lowering drugs answer a shorter-term version.</p>
+  <div class="watch">Watch out for: <b>Confounding</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Does school pay?</span><span class="cid">Q26</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Instrumental variable analysis</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Regression discontinuity</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Cross-sectional survey</b>: Ability and family background drive both schooling and earnings.</li></ul>
+  <p class="why">Quarter of birth nudges schooling but (arguably) affects earnings only through schooling, which makes it an instrument. Interrogate that &#x27;only through&#x27; assumption hard, and check the instrument isn&#x27;t weak.</p>
+  <div class="watch">Watch out for: <b>Confounding</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Older than the trials</span><span class="cid">Q25</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Target trial emulation</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Retrospective cohort</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Cross-sectional survey</b>: It can&#x27;t capture who started which drug, and when.</li><li><b>Case report / case series</b>: There&#x27;s no comparison.</li></ul>
+  <p class="why">Write the protocol of the trial you&#x27;d like to run (eligibility, treatment strategies, time zero, follow-up) and emulate it in the claims data with new users and an active comparator. This designs out immortal-time and prevalent-user bias; what remains is confounding by indication.</p>
+  <div class="watch">Watch out for: <b>Confounding by indication</b></div>
+</div></div></section><section class="sheet"><div class="label">Questions · fronts</div><div class="grid"><div class="card question">
+  <div class="band"><span>🔮 PREDICT</span><span class="cid">Q28 · ★★</span></div>
+  <div class="field">Critical care</div>
+  <h3>Who crashes next?</h3>
+  <p class="qtext">Using vital signs and lab values from the electronic record, can we flag ICU patients likely to deteriorate in the next six hours?</p>
+  <div class="chips"><span class="chip">🗄️ Existing data</span></div>
+  <div class="hint">🔮 What will happen, and to whom?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🔮 PREDICT</span><span class="cid">Q29 · ★</span></div>
+  <div class="field">Hydrology</div>
+  <h3>Spring flood</h3>
+  <p class="qtext">How much water will flow into a reservoir next spring, given this winter&#x27;s snowpack and 40 years of records?</p>
+  <div class="chips"><span class="chip">🗄️ Existing data</span></div>
+  <div class="hint">🔮 What will happen, and to whom?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🔮 PREDICT</span><span class="cid">Q30 · ★★</span></div>
+  <div class="field">Materials science</div>
+  <h3>Next superconductor</h3>
+  <p class="qtext">Which of 100,000 hypothetical compounds are most likely to superconduct at high temperature, so the lab can synthesize the top 20?</p>
+  <div class="chips"><span class="chip">🗄️ Existing data</span><span class="chip">💸 Tight budget</span></div>
+  <div class="hint">🔮 What will happen, and to whom?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🔮 PREDICT</span><span class="cid">Q31 · ★★★</span></div>
+  <div class="field">Cardiology</div>
+  <h3>Biomarker add-on</h3>
+  <p class="qtext">Does adding a new blood biomarker to an established heart-attack risk score actually improve prediction?</p>
+  <div class="chips"><span class="chip">🗄️ Existing data</span></div>
+  <div class="hint">🔮 What will happen, and to whom?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🔮 PREDICT</span><span class="cid">Q32 · ★★</span></div>
+  <div class="field">Ecology</div>
+  <h3>Range in 2070</h3>
+  <p class="qtext">Where will a mountain plant species be able to live in 2070 under different climate scenarios?</p>
+  <div class="chips"><span class="chip">🚫 Can&#x27;t assign</span></div>
+  <div class="hint">🔮 What will happen, and to whom?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>📏 MEASURE</span><span class="cid">Q33 · ★</span></div>
+  <div class="field">Paediatrics</div>
+  <h3>Rapid strep</h3>
+  <p class="qtext">How accurate is a new 5-minute strep test compared with throat culture, in children who come to clinics with a sore throat?</p>
+  <div class="chips"></div>
+  <div class="hint">📏 Can we measure it accurately, reliably, and validly?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>📏 MEASURE</span><span class="cid">Q34 · ★★</span></div>
+  <div class="field">Occupational psychology</div>
+  <h3>Burnout scale</h3>
+  <p class="qtext">No good questionnaire exists for &#x27;research burnout&#x27; among academics. Build one that others can trust.</p>
+  <div class="chips"><span class="chip">❓ Uncharted</span></div>
+  <div class="hint">📏 Can we measure it accurately, reliably, and validly?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>📏 MEASURE</span><span class="cid">Q35 · ★</span></div>
+  <div class="field">Radiology</div>
+  <h3>Two readers</h3>
+  <p class="qtext">Do two radiologists give the same osteoarthritis grade when they read the same knee X-rays?</p>
+  <div class="chips"></div>
+  <div class="hint">📏 Can we measure it accurately, reliably, and validly?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>📏 MEASURE</span><span class="cid">Q36 · ★★</span></div>
+  <div class="field">Biomedical engineering</div>
+  <h3>Wrist vs. cuff</h3>
+  <p class="qtext">Can a cheap wrist-worn sensor replace the hospital&#x27;s validated blood-pressure monitor?</p>
+  <div class="chips"></div>
+  <div class="hint">📏 Can we measure it accurately, reliably, and validly?</div>
+  <div class="foot">Which design answers it?</div>
+</div></div></section><section class="sheet"><div class="label">Questions · backs (print duplex, flip on long edge)</div><div class="grid"><div class="card qback">
+  <div class="band"><span>ANSWER · Next superconductor</span><span class="cid">Q30</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Prediction model (statistical / ML)</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Computational simulation</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Factorial experiment (DoE)</b>: Synthesizing 100,000 compounds isn&#x27;t a plan.</li><li><b>Systematic review &amp; meta-analysis</b>: The compounds are hypothetical. There&#x27;s no literature on them yet.</li></ul>
+  <p class="why">Train a model on known materials to rank the candidates, optionally refine the shortlist with first-principles simulation, then test the top hits. Report performance on genuinely new chemistries, not near-duplicates of the training set.</p>
+  <div class="watch">Watch out for: <b>Overfitting &amp; leakage</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Spring flood</span><span class="cid">Q29</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Prediction model (statistical / ML)</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Computational simulation</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Field experiment</b>: You can&#x27;t manipulate the snowpack.</li><li><b>Case study (in-depth)</b>: One past flood year can&#x27;t forecast the next one.</li></ul>
+  <p class="why">Decades of snowpack and inflow records support a statistical forecast; a physically based hydrological simulation is a strong alternative or complement. Judge either one by its skill on years it never saw.</p>
+  <div class="watch">Watch out for: <b>Overfitting &amp; leakage</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Who crashes next?</span><span class="cid">Q28</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Prediction model (statistical / ML)</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Benchmark evaluation</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Case–control study</b>: Artificially balancing cases and controls distorts the predicted risks (calibration).</li><li><b>Randomized controlled trial</b>: Trials test interventions. First you need a model; an RCT of using it comes later.</li></ul>
+  <p class="why">Develop on one period, then validate on a later period and at another hospital. Guard ruthlessly against leakage, e.g. a lab test that was ordered because the doctor already suspected deterioration.</p>
+  <div class="watch">Watch out for: <b>Overfitting &amp; leakage</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Rapid strep</span><span class="cid">Q33</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Diagnostic accuracy study</div>
+  <div class="tier silver"><b>🥈 Defensible</b> —</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Case–control study</b>: Testing obvious culture-proven cases against healthy volunteers inflates accuracy (spectrum bias).</li><li><b>Randomized controlled trial</b>: An RCT asks whether using the test improves outcomes. That&#x27;s a different, later question.</li></ul>
+  <p class="why">Recruit consecutive children with sore throats, do both tests on everyone, and read each test blind to the other. Sensitivity and specificity only mean something in the population where the test will be used.</p>
+  <div class="watch">Watch out for: <b>Spectrum bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Range in 2070</span><span class="cid">Q32</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Prediction model (statistical / ML)</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Computational simulation</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Case study (in-depth)</b>: One population&#x27;s story can&#x27;t map a future range.</li><li><b>Randomized controlled trial</b>: You can&#x27;t randomize climates.</li></ul>
+  <p class="why">Species distribution models link today&#x27;s occurrences to climate, then project them onto scenarios. Mechanistic (physiological) simulations are a valuable cross-check when the future climate falls outside anything in the training data.</p>
+  <div class="watch">Watch out for: <b>Limited generalizability</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Biomarker add-on</span><span class="cid">Q31</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Prediction model (statistical / ML)</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Prospective cohort</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Case–control study</b>: Showing that cases have higher levels proves association, not added predictive value.</li><li><b>Randomized controlled trial</b>: No intervention is being tested.</li></ul>
+  <p class="why">Association isn&#x27;t prediction. Compare the model with and without the biomarker on discrimination, calibration and net benefit, in data the model hasn&#x27;t seen.</p>
+  <div class="watch">Watch out for: <b>Overfitting &amp; leakage</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Wrist vs. cuff</span><span class="cid">Q36</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Reliability &amp; agreement study</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Diagnostic accuracy study</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Ecological study</b>: Comparing average readings across clinics hides how far the two devices disagree in each person.</li><li><b>Randomized controlled trial</b>: No one needs to be randomized. The question is whether two instruments agree.</li></ul>
+  <p class="why">This is a method-comparison study: measure the same people with both devices and compute Bland–Altman limits of agreement. Decide in advance what difference is clinically acceptable, and don&#x27;t trust correlation: one device could read 15 mmHg high every time and still correlate perfectly. Include people across the whole blood-pressure range.</p>
+  <div class="watch">Watch out for: <b>Spectrum bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Two readers</span><span class="cid">Q35</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Reliability &amp; agreement study</div>
+  <div class="tier silver"><b>🥈 Defensible</b> —</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Diagnostic accuracy study</b>: Accuracy needs a reference standard. The question is agreement between readers.</li><li><b>Cross-sectional survey</b>: Grades from different patients read by different radiologists can&#x27;t measure agreement.</li></ul>
+  <p class="why">Both read the same representative set of images, independently and blind to each other; quantify agreement with weighted kappa. The images must span the full range of severity.</p>
+  <div class="watch">Watch out for: <b>Spectrum bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Burnout scale</span><span class="cid">Q34</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Instrument development &amp; validation</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Mixed methods (sequential)</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Cross-sectional survey</b>: A big survey with an untested questionnaire measures… something.</li><li><b>Systematic review &amp; meta-analysis</b>: Reviewing studies can&#x27;t validate a tool that doesn&#x27;t exist yet.</li></ul>
+  <p class="why">Generate items from theory and interviews, refine them with experts and cognitive testing, then test factor structure, reliability and validity in fresh samples. An exploratory sequential mixed-methods design is essentially this.</p>
+  <div class="watch">Watch out for: <b>Wrong construct</b></div>
+</div></div></section><section class="sheet"><div class="label">Questions · fronts</div><div class="grid"><div class="card question">
+  <div class="band"><span>📏 MEASURE</span><span class="cid">Q37 · ★</span></div>
+  <div class="field">Analytical chemistry</div>
+  <h3>Lead in the water</h3>
+  <p class="qtext">Fifteen labs measure lead in drinking water using the same standard method. Do they get the same answer from the same sample?</p>
+  <div class="chips"></div>
+  <div class="hint">📏 Can we measure it accurately, reliably, and validly?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🧮 EXPLAIN</span><span class="cid">Q38 · ★</span></div>
+  <div class="field">Physics</div>
+  <h3>Engine limit</h3>
+  <p class="qtext">What is the maximum possible efficiency of ANY heat engine operating between a hot and a cold reservoir?</p>
+  <div class="chips"></div>
+  <div class="hint">🧮 What mechanism or law must hold? What follows from the theory?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🧮 EXPLAIN</span><span class="cid">Q39 · ★</span></div>
+  <div class="field">Civil engineering</div>
+  <h3>Bridge in a storm</h3>
+  <p class="qtext">How will a long, slender bridge deck respond to wind speeds you can&#x27;t safely test on the real structure?</p>
+  <div class="chips"><span class="chip">🚫 Can&#x27;t assign</span></div>
+  <div class="hint">🧮 What mechanism or law must hold? What follows from the theory?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🧮 EXPLAIN</span><span class="cid">Q40 · ★★</span></div>
+  <div class="field">Epidemiology</div>
+  <h3>School closures</h3>
+  <p class="qtext">How might closing schools change the peak of a flu pandemic in a city of two million?</p>
+  <div class="chips"><span class="chip">🚫 Can&#x27;t assign</span><span class="chip">💸 Tight budget</span></div>
+  <div class="hint">🧮 What mechanism or law must hold? What follows from the theory?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🧮 EXPLAIN</span><span class="cid">Q41 · ★★★</span></div>
+  <div class="field">Systems biology</div>
+  <h3>Clock in a cell</h3>
+  <p class="qtext">A three-gene loop in a bacterium seems to oscillate. Is the negative-feedback loop alone enough to cause oscillations, and under what parameter conditions?</p>
+  <div class="chips"></div>
+  <div class="hint">🧮 What mechanism or law must hold? What follows from the theory?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🧮 EXPLAIN</span><span class="cid">Q42 · ★★</span></div>
+  <div class="field">Astrophysics</div>
+  <h3>Neutron-star crash</h3>
+  <p class="qtext">What gravitational-wave signal should detectors expect when two neutron stars merge?</p>
+  <div class="chips"><span class="chip">🚫 Can&#x27;t assign</span></div>
+  <div class="hint">🧮 What mechanism or law must hold? What follows from the theory?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🧮 EXPLAIN</span><span class="cid">Q43 · ★★</span></div>
+  <div class="field">Economics</div>
+  <h3>Price war</h3>
+  <p class="qtext">Two firms compete by setting prices. Under what conditions will they settle at a stable equilibrium instead of an endless price war?</p>
+  <div class="chips"></div>
+  <div class="hint">🧮 What mechanism or law must hold? What follows from the theory?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🛠️ BUILD</span><span class="cid">Q44 · ★</span></div>
+  <div class="field">Robotics</div>
+  <h3>Grasp benchmark</h3>
+  <p class="qtext">Your lab has a new robot-grasping algorithm. Is it actually better than the state of the art?</p>
+  <div class="chips"><span class="chip">🗄️ Existing data</span><span class="chip">💸 Tight budget</span></div>
+  <div class="hint">🛠️ Can we make something that works, and is the plan feasible?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🛠️ BUILD</span><span class="cid">Q45 · ★</span></div>
+  <div class="field">Rehabilitation engineering</div>
+  <h3>A hand for kids</h3>
+  <p class="qtext">Design a low-cost prosthetic hand for children that clinicians and families will actually adopt.</p>
+  <div class="chips"><span class="chip">❓ Uncharted</span></div>
+  <div class="hint">🛠️ Can we make something that works, and is the plan feasible?</div>
+  <div class="foot">Which design answers it?</div>
+</div></div></section><section class="sheet"><div class="label">Questions · backs (print duplex, flip on long edge)</div><div class="grid"><div class="card qback">
+  <div class="band"><span>ANSWER · Bridge in a storm</span><span class="cid">Q39</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Computational simulation</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Factorial experiment (DoE)</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Case report / case series</b>: Tacoma Narrows teaches a lot, but one collapse isn&#x27;t a design check.</li><li><b>Cross-sectional survey</b>: Surveying other bridges doesn&#x27;t tell you how this one will respond.</li></ul>
+  <p class="why">Coupled fluid–structure simulation lets you push the virtual bridge to failure. Validate the model against wind-tunnel tests of scale models (the &#x27;ok&#x27; answer) before trusting the extreme cases.</p>
+  <div class="watch">Watch out for: <b>Unvalidated model</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Engine limit</span><span class="cid">Q38</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Analytical / mathematical theory</div>
+  <div class="tier silver"><b>🥈 Defensible</b> —</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Factorial experiment (DoE)</b>: Testing engines shows what has been achieved, never what is impossible for every engine.</li><li><b>Computational simulation</b>: It simulates particular engines. A universal bound needs a derivation.</li></ul>
+  <p class="why">&#x27;Any engine&#x27; is a universal claim, and only a derivation from the laws of thermodynamics can establish it. Carnot&#x27;s bound came from reasoning, not measurement.</p>
+  <div class="watch">Watch out for: <b>Unvalidated model</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Lead in the water</span><span class="cid">Q37</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Interlaboratory comparison</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Reliability &amp; agreement study</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Systematic review &amp; meta-analysis</b>: Published results come from different samples and can&#x27;t isolate lab-to-lab variation.</li><li><b>Monitoring / surveillance</b>: Monitoring tap water over time tells you about the water, not about the labs.</li></ul>
+  <p class="why">Send identical, homogeneous samples (ideally with a certified reference value) to every lab, and quantify repeatability and reproducibility (ISO 5725).</p>
+  <div class="watch">Watch out for: <b>Measurement error</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Neutron-star crash</span><span class="cid">Q42</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Computational simulation</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Analytical / mathematical theory</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Case report / case series</b>: One observed merger (GW170817) can&#x27;t supply templates across all masses and spins.</li><li><b>Factorial experiment (DoE)</b>: Neutron stars can&#x27;t be collided in a lab.</li></ul>
+  <p class="why">The equations are known but have no closed-form solution in this regime, so numerical-relativity simulations produce the waveform templates that detectors search for. Approximate analytical models cover the early inspiral.</p>
+  <div class="watch">Watch out for: <b>Unvalidated model</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Clock in a cell</span><span class="cid">Q41</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Analytical / mathematical theory</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Computational simulation</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Cross-sectional survey</b>: Snapshots of gene expression can&#x27;t establish sufficiency of a mechanism.</li><li><b>Case–control study</b>: There are no cases and controls in this question.</li></ul>
+  <p class="why">Write the dynamics as differential equations and analyse their stability; the conditions for oscillation fall out of the mathematics. Simulation explores the parameter space, and the lab then builds and tests the circuit.</p>
+  <div class="watch">Watch out for: <b>Unvalidated model</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · School closures</span><span class="cid">Q40</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Computational simulation</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Interrupted time series</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: Randomizing closures in the middle of a pandemic is rarely feasible, and far too slow.</li><li><b>Cross-sectional survey</b>: A snapshot can&#x27;t show the dynamics of an epidemic.</li></ul>
+  <p class="why">An agent-based model with households, schools and workplaces lets you play out scenarios. Present results as ranges under varied assumptions, and check them against data from past epidemics.</p>
+  <div class="watch">Watch out for: <b>Unvalidated model</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · A hand for kids</span><span class="cid">Q45</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Design science (build &amp; evaluate)</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Mixed methods (sequential), Pilot / feasibility study</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: There&#x27;s nothing to test yet.</li><li><b>Systematic review &amp; meta-analysis</b>: Useful background, but it won&#x27;t build the hand.</li></ul>
+  <p class="why">Iterate: understand the needs, prototype, test with users, refine. Evaluation is built into every cycle, and later the finished device can face a trial.</p>
+  <div class="watch">Watch out for: <b>Researcher bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Grasp benchmark</span><span class="cid">Q44</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Benchmark evaluation</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Factorial experiment (DoE)</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Case report / case series</b>: A cherry-picked demo video isn&#x27;t evidence.</li><li><b>Interviews &amp; thematic analysis</b>: Opinions about the algorithm don&#x27;t measure grasp success.</li></ul>
+  <p class="why">Same objects, same robot, same metrics and published baselines, plus ablations and repeated trials with confidence intervals. Report the failures, and test beyond the benchmark: sim-to-real gaps are where claims die.</p>
+  <div class="watch">Watch out for: <b>Forking paths &amp; p-hacking</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Price war</span><span class="cid">Q43</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Analytical / mathematical theory</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Computational simulation</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Case study (in-depth)</b>: One price war&#x27;s story doesn&#x27;t establish general conditions.</li><li><b>Online A/B test</b>: Testing prices on customers doesn&#x27;t reveal the strategic logic between firms.</li></ul>
+  <p class="why">Game theory derives equilibria, and the conditions for them, from stated assumptions. The answer is only as good as those assumptions: state them explicitly and test how robust the result is.</p>
+  <div class="watch">Watch out for: <b>Unvalidated model</b></div>
+</div></div></section><section class="sheet"><div class="label">Questions · fronts</div><div class="grid"><div class="card question">
+  <div class="band"><span>🛠️ BUILD</span><span class="cid">Q46 · ★</span></div>
+  <div class="field">Research software</div>
+  <h3>Review workbench</h3>
+  <p class="qtext">Build a tool that guides researchers through a scoping review, and show that it actually helps them.</p>
+  <div class="chips"><span class="chip">❓ Uncharted</span></div>
+  <div class="hint">🛠️ Can we make something that works, and is the plan feasible?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🛠️ BUILD</span><span class="cid">Q47 · ★</span></div>
+  <div class="field">Geriatrics</div>
+  <h3>Will they come?</h3>
+  <p class="qtext">Before a costly multi-site trial: can you recruit frail 85-year-olds into a home-exercise programme, keep them in it for 6 months, and measure falls reliably?</p>
+  <div class="chips"><span class="chip">💸 Tight budget</span></div>
+  <div class="hint">🛠️ Can we make something that works, and is the plan feasible?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🛠️ BUILD</span><span class="cid">Q48 · ★</span></div>
+  <div class="field">Global health</div>
+  <h3>Therapy over a bad line</h3>
+  <p class="qtext">Can an app-based talking therapy be delivered in rural clinics with unreliable internet? Will staff use it, and will patients finish it?</p>
+  <div class="chips"><span class="chip">💸 Tight budget</span><span class="chip">❓ Uncharted</span></div>
+  <div class="hint">🛠️ Can we make something that works, and is the plan feasible?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>📚 SYNTHESIZE</span><span class="cid">Q49 · ★</span></div>
+  <div class="field">Psychiatry</div>
+  <h3>Run it again?</h3>
+  <p class="qtext">Forty randomized trials of exercise for depression report conflicting results. What is the overall effect?</p>
+  <div class="chips"><span class="chip">🗂️ Many studies</span></div>
+  <div class="hint">📚 What does all the existing evidence say?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>📚 SYNTHESIZE</span><span class="cid">Q50 · ★</span></div>
+  <div class="field">Environmental science</div>
+  <h3>Plastic in the soil</h3>
+  <p class="qtext">What has been studied about microplastics in farm soils (which methods, which regions, which outcomes), and where are the gaps?</p>
+  <div class="chips"><span class="chip">🗂️ Many studies</span><span class="chip">❓ Uncharted</span></div>
+  <div class="hint">📚 What does all the existing evidence say?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>📚 SYNTHESIZE</span><span class="cid">Q51 · ★★</span></div>
+  <div class="field">Psychiatry</div>
+  <h3>Six pills, few duels</h3>
+  <p class="qtext">Six antidepressants exist, but few trials compare them head to head; most compare each with placebo. Which works best?</p>
+  <div class="chips"><span class="chip">🗂️ Many studies</span></div>
+  <div class="hint">📚 What does all the existing evidence say?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>📚 SYNTHESIZE</span><span class="cid">Q52 · ★★</span></div>
+  <div class="field">Health policy</div>
+  <h3>Three weeks</h3>
+  <p class="qtext">A ministry must decide on a school-ventilation policy in three weeks, and asks what the evidence says.</p>
+  <div class="chips"><span class="chip">💸 Tight budget</span><span class="chip">🗂️ Many studies</span></div>
+  <div class="hint">📚 What does all the existing evidence say?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>📚 SYNTHESIZE</span><span class="cid">Q53 · ★★</span></div>
+  <div class="field">Nutrition</div>
+  <h3>Vitamin D for everything</h3>
+  <p class="qtext">Dozens of systematic reviews link vitamin D to outcomes from fractures to cancer to depression. What&#x27;s the overall picture, and how credible is each claim?</p>
+  <div class="chips"><span class="chip">🗂️ Many studies</span></div>
+  <div class="hint">📚 What does all the existing evidence say?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>📚 SYNTHESIZE</span><span class="cid">Q54 · ★★★</span></div>
+  <div class="field">Global health</div>
+  <h3>Works here, fails there</h3>
+  <p class="qtext">Community health-worker programmes succeed brilliantly in some countries and fail in others. Why, for whom, and in what contexts?</p>
+  <div class="chips"><span class="chip">🗂️ Many studies</span></div>
+  <div class="hint">📚 What does all the existing evidence say?</div>
+  <div class="foot">Which design answers it?</div>
+</div></div></section><section class="sheet"><div class="label">Questions · backs (print duplex, flip on long edge)</div><div class="grid"><div class="card qback">
+  <div class="band"><span>ANSWER · Therapy over a bad line</span><span class="cid">Q48</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Pilot / feasibility study</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Design science (build &amp; evaluate), Mixed methods (sequential)</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: Testing effectiveness before you know it can be delivered wastes the trial.</li><li><b>Ecological study</b>: Country-level internet statistics say nothing about your clinics.</li></ul>
+  <p class="why">Feasibility first: run it in a few clinics, measure uptake, completion and technical failures, and interview staff and patients about what got in the way.</p>
+  <div class="watch">Watch out for: <b>Limited generalizability</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Will they come?</span><span class="cid">Q47</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Pilot / feasibility study</div>
+  <div class="tier silver"><b>🥈 Defensible</b> —</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: Launching the full trial blind risks a very expensive failure to recruit.</li><li><b>Systematic review &amp; meta-analysis</b>: Other trials&#x27; recruitment rates help, but they won&#x27;t tell you about your setting.</li></ul>
+  <p class="why">A feasibility study measures recruitment, retention, adherence and data quality against pre-set progression criteria. Resist reporting its effect estimates: it isn&#x27;t powered for them.</p>
+  <div class="watch">Watch out for: <b>Low power</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Review workbench</span><span class="cid">Q46</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Design science (build &amp; evaluate)</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Mixed methods (sequential), Pilot / feasibility study</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: A large trial of a tool that doesn&#x27;t exist yet is premature.</li><li><b>Case report / case series</b>: One happy user isn&#x27;t an evaluation.</li></ul>
+  <p class="why">Build in short cycles with real researchers, and evaluate each version on real tasks: usability, time taken, and completeness of the resulting review. You are not a neutral judge of your own tool, so let others test it.</p>
+  <div class="watch">Watch out for: <b>Researcher bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Six pills, few duels</span><span class="cid">Q51</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Network meta-analysis</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Systematic review &amp; meta-analysis</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: A six-arm head-to-head trial would be enormous, and the indirect evidence already exists.</li><li><b>Retrospective cohort</b>: Prescribing patterns are confounded by indication.</li></ul>
+  <p class="why">Combine direct and indirect comparisons in one network to rank the treatments. Check that the trials are similar enough for indirect comparisons to be fair (transitivity).</p>
+  <div class="watch">Watch out for: <b>Apples &amp; oranges</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Plastic in the soil</span><span class="cid">Q50</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Scoping review</div>
+  <div class="tier silver"><b>🥈 Defensible</b> —</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Field experiment</b>: One more experiment doesn&#x27;t map a field of research.</li><li><b>Network meta-analysis</b>: There&#x27;s no set of competing treatments to rank.</li></ul>
+  <p class="why">This is a mapping question: chart the literature systematically (PRISMA-ScR) without pooling effects. The output is a map of evidence and gaps that tells everyone what to study next.</p>
+  <div class="watch">Watch out for: <b>Publication bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Run it again?</span><span class="cid">Q49</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Systematic review &amp; meta-analysis</div>
+  <div class="tier silver"><b>🥈 Defensible</b> —</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: A 41st trial adds one more data point to a pile nobody has weighed.</li><li><b>Case study (in-depth)</b>: Examining one trial in depth can&#x27;t settle a conflict among forty.</li></ul>
+  <p class="why">Search exhaustively, appraise risk of bias, pool with a random-effects model and explore why the trials disagree. Look for missing small negative trials.</p>
+  <div class="watch">Watch out for: <b>Publication bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Works here, fails there</span><span class="cid">Q54</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Realist review</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Systematic review &amp; meta-analysis, Mixed methods (sequential)</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: One more trial in one more context won&#x27;t explain the variation.</li><li><b>Ecological study</b>: Country-level correlations can&#x27;t reveal the mechanisms.</li></ul>
+  <p class="why">Realist synthesis asks how context triggers mechanisms that produce outcomes, drawing on trials, process evaluations and qualitative studies alike.</p>
+  <div class="watch">Watch out for: <b>Apples &amp; oranges</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Vitamin D for everything</span><span class="cid">Q53</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Umbrella review</div>
+  <div class="tier silver"><b>🥈 Defensible</b> —</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: One trial can&#x27;t test dozens of outcomes at once.</li><li><b>Case report / case series</b>: Individual stories can&#x27;t grade a body of evidence.</li></ul>
+  <p class="why">Review the reviews: grade each claimed association by its size and credibility, and watch for overlapping primary studies being counted twice.</p>
+  <div class="watch">Watch out for: <b>Apples &amp; oranges</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Three weeks</span><span class="cid">Q52</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Rapid review</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Umbrella review</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Systematic review &amp; meta-analysis</b>: A full systematic review typically takes a year or more. The decision will be made without it.</li><li><b>Cluster randomized trial</b>: A school trial would report long after the deadline.</li></ul>
+  <p class="why">Streamline a systematic review transparently: a narrower question, fewer databases, single screening with verification. Report what you cut, so readers can judge.</p>
+  <div class="watch">Watch out for: <b>Selection bias</b></div>
+</div></div></section><section class="sheet"><div class="label">Questions · fronts</div><div class="grid"><div class="card question">
+  <div class="band"><span>🧭 EXPLORE</span><span class="cid">Q55 · ★</span></div>
+  <div class="field">Nursing</div>
+  <h3>The ignored app</h3>
+  <p class="qtext">Night-shift nurses rarely use a new hand-hygiene reminder app, while day-shift nurses do. Nobody knows why.</p>
+  <div class="chips"><span class="chip">❓ Uncharted</span></div>
+  <div class="hint">🧭 What is going on here? How and why do people experience or do it?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🧭 EXPLORE</span><span class="cid">Q56 · ★</span></div>
+  <div class="field">Urban anthropology</div>
+  <h3>Waste pickers</h3>
+  <p class="qtext">How do informal waste pickers in a megacity organize their daily work, routes and trade?</p>
+  <div class="chips"><span class="chip">❓ Uncharted</span></div>
+  <div class="hint">🧭 What is going on here? How and why do people experience or do it?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🧭 EXPLORE</span><span class="cid">Q57 · ★</span></div>
+  <div class="field">Operations management</div>
+  <h3>The turnaround</h3>
+  <p class="qtext">One factory cut its defect rate by 80% in a year while its sister plants didn&#x27;t. What happened, and what can others learn?</p>
+  <div class="chips"><span class="chip">1️⃣ One unit</span></div>
+  <div class="hint">🧭 What is going on here? How and why do people experience or do it?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🧭 EXPLORE</span><span class="cid">Q58 · ★★</span></div>
+  <div class="field">Health sociology</div>
+  <h3>Back to work</h3>
+  <p class="qtext">There is no theory of how people with long COVID decide when (and whether) to return to work.</p>
+  <div class="chips"><span class="chip">❓ Uncharted</span></div>
+  <div class="hint">🧭 What is going on here? How and why do people experience or do it?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🧭 EXPLORE</span><span class="cid">Q59 · ★★</span></div>
+  <div class="field">Clinical trials</div>
+  <h3>What should we measure?</h3>
+  <p class="qtext">Trials of therapies for a rare disease all use different endpoints, so none can be compared. Patients and experts disagree on which outcomes matter most.</p>
+  <div class="chips"><span class="chip">❓ Uncharted</span></div>
+  <div class="hint">🧭 What is going on here? How and why do people experience or do it?</div>
+  <div class="foot">Which design answers it?</div>
+</div><div class="card question">
+  <div class="band"><span>🧭 EXPLORE</span><span class="cid">Q60 · ★★</span></div>
+  <div class="field">Digital health</div>
+  <h3>The rural gap</h3>
+  <p class="qtext">A national survey shows rural clinics adopt telemedicine at half the urban rate. Policymakers ask why.</p>
+  <div class="chips"><span class="chip">🗄️ Existing data</span></div>
+  <div class="hint">🧭 What is going on here? How and why do people experience or do it?</div>
+  <div class="foot">Which design answers it?</div>
+</div></div></section><section class="sheet"><div class="label">Questions · backs (print duplex, flip on long edge)</div><div class="grid"><div class="card qback">
+  <div class="band"><span>ANSWER · The turnaround</span><span class="cid">Q57</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Case study (in-depth)</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Interviews &amp; thematic analysis, Mixed methods (sequential)</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: The change already happened, in one factory.</li><li><b>Cross-sectional survey</b>: A survey of many plants can&#x27;t reconstruct what happened in this one.</li></ul>
+  <p class="why">Study one bounded case in depth, using documents, data, interviews and observation. Compare it with a sister plant that didn&#x27;t improve; otherwise you are only studying the survivor.</p>
+  <div class="watch">Watch out for: <b>Survivorship bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Waste pickers</span><span class="cid">Q56</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Ethnography</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Case study (in-depth), Interviews &amp; thematic analysis</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Cross-sectional survey</b>: Official surveys rarely reach informal workers, and they miss tacit practices.</li><li><b>Prediction model (statistical / ML)</b>: There&#x27;s nothing to predict yet, and no data to train on.</li></ul>
+  <p class="why">Practices people don&#x27;t put into words are best seen by being there: months of participant observation, field notes, trust. Reflect on how your presence changes what you see.</p>
+  <div class="watch">Watch out for: <b>Researcher bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · The ignored app</span><span class="cid">Q55</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Interviews &amp; thematic analysis</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Ethnography, Mixed methods (sequential)</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Cross-sectional survey</b>: A survey needs answer options, and you don&#x27;t know the reasons yet.</li><li><b>Randomized controlled trial</b>: There&#x27;s no intervention to test until you understand the problem.</li></ul>
+  <p class="why">When you don&#x27;t know the variables, ask and listen. Sample night and day nurses purposively and interview them until new themes stop emerging.</p>
+  <div class="watch">Watch out for: <b>Thin data</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · The rural gap</span><span class="cid">Q60</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Mixed methods (sequential)</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Interviews &amp; thematic analysis, Case study (in-depth)</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Cross-sectional survey</b>: You already have the &#x27;what&#x27;. Another survey won&#x27;t give the &#x27;why&#x27;.</li><li><b>Randomized controlled trial</b>: There&#x27;s nothing to randomize until you know the barriers.</li></ul>
+  <p class="why">An explanatory sequential design: use the survey to pick contrasting clinics (high and low adopters), interview staff to explain the numbers, then integrate the two strands.</p>
+  <div class="watch">Watch out for: <b>Selection bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · What should we measure?</span><span class="cid">Q59</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Delphi consensus</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Interviews &amp; thematic analysis, Systematic review &amp; meta-analysis</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Randomized controlled trial</b>: Another trial would just add another endpoint to the pile.</li></ul>
+  <p class="why">A Delphi process with patients, clinicians and researchers rates candidate outcomes over several anonymous rounds. It&#x27;s the standard route to a &#x27;core outcome set&#x27;, usually preceded by a review of the outcomes in use and by patient interviews.</p>
+  <div class="watch">Watch out for: <b>Selection bias</b></div>
+</div><div class="card qback">
+  <div class="band"><span>ANSWER · Back to work</span><span class="cid">Q58</span></div>
+  <div class="tier gold"><b>🥇 Best</b> Grounded theory</div>
+  <div class="tier silver"><b>🥈 Defensible</b> Interviews &amp; thematic analysis</div>
+  <ul class="traps"><li class="th">⚠️ Traps</li><li><b>Prospective cohort</b>: It tells you how many return, not how they decide.</li><li><b>Systematic review &amp; meta-analysis</b>: There&#x27;s too little to synthesize, and the goal is new theory.</li></ul>
+  <p class="why">&#x27;No theory yet&#x27; is the signature of grounded theory: iterative interviewing and coding, and theoretical sampling of new cases to test emerging concepts, until a model of the decision process emerges.</p>
+  <div class="watch">Watch out for: <b>Thin data</b></div>
+</div></div></section><section class="sheet"><div class="label">Designs · fronts</div><div class="grid"><div class="card design" style="--c:#0F766E">
+  <div class="band">Descriptive observational<span class="cid">case-report</span></div>
+  <h3>Case report / case series</h3>
+  <div class="serves">📊&nbsp;Describe</div>
+  <p class="gist">A detailed account of one or a few unusual cases. Raises a signal or a hypothesis; can&#x27;t test it.</p>
+  <div class="row"><b>Fits</b> <span title="One unit">1️⃣</span> <span title="Rare outcome">🔎</span> <span title="Uncharted">❓</span> <span title="Tight budget">💸</span></div>
+  <div class="row"><b>Struggles</b> <span title="Many studies">🗂️</span></div>
+  <div class="row weak"><b>Weak vs</b> Selection bias, Confounding, Researcher bias</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">MMWR, June 1981: Pneumocystis pneumonia in five young men in Los Angeles, the first published description of AIDS.</p>
+</div><div class="card design" style="--c:#0F766E">
+  <div class="band">Descriptive observational<span class="cid">cross-sectional</span></div>
+  <h3>Cross-sectional survey</h3>
+  <div class="serves">📊&nbsp;Describe 🔗&nbsp;Associate</div>
+  <p class="gist">Measure exposure and outcome in a sample at one moment. Estimates prevalence; can&#x27;t show which came first.</p>
+  <div class="row"><b>Fits</b> <span title="Tight budget">💸</span></div>
+  <div class="row"><b>Struggles</b> <span title="Rare outcome">🔎</span> <span title="Long latency">⏳</span> <span title="Brief trigger">⚡</span></div>
+  <div class="row weak"><b>Weak vs</b> Selection bias, Reverse causation, Measurement error, Confounding</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">National health interview surveys estimating smoking prevalence by age and region.</p>
+</div><div class="card design" style="--c:#0F766E">
+  <div class="band">Descriptive observational<span class="cid">ecological</span></div>
+  <h3>Ecological study</h3>
+  <div class="serves">📊&nbsp;Describe 🔗&nbsp;Associate</div>
+  <p class="gist">Compare groups (countries, regions, years) using aggregate data. A cheap hypothesis generator; individual-level conclusions are a trap.</p>
+  <div class="row"><b>Fits</b> <span title="Existing data">🗄️</span> <span title="Group-level">👥</span> <span title="Tight budget">💸</span></div>
+  <div class="row"><b>Struggles</b> <span title="One unit">1️⃣</span></div>
+  <div class="row weak"><b>Weak vs</b> Ecological fallacy, Confounding</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Messerli (2012): national chocolate consumption vs. Nobel laureates per capita.</p>
+</div><div class="card design" style="--c:#0F766E">
+  <div class="band">Descriptive observational<span class="cid">surveillance</span></div>
+  <h3>Monitoring / surveillance</h3>
+  <div class="serves">📊&nbsp;Describe 🔮&nbsp;Predict</div>
+  <p class="gist">Systematic, repeated measurement of the same quantity across time and place to detect trends and signals.</p>
+  <div class="row"><b>Fits</b> <span title="Long latency">⏳</span> <span title="Existing data">🗄️</span> <span title="Rare outcome">🔎</span></div>
+  <div class="row"><b>Struggles</b> <span title="Tight budget">💸</span></div>
+  <div class="row weak"><b>Weak vs</b> Measurement error, Selection bias</div>
+  <div class="row"><b>Cost</b> ●●<span class="dim">●</span> &nbsp; <b>Time</b> ◆◆◆<span class="dim"></span></div>
+  <p class="ex">The Mauna Loa CO₂ record (since 1958); post-marketing drug-safety pharmacovigilance.</p>
+</div><div class="card design" style="--c:#1D4ED8">
+  <div class="band">Analytical observational<span class="cid">cohort-prospective</span></div>
+  <h3>Prospective cohort</h3>
+  <div class="serves">🔗&nbsp;Associate 🎯&nbsp;Cause 🔮&nbsp;Predict 📊&nbsp;Describe</div>
+  <p class="gist">Measure exposures in people before outcomes happen, then follow them forward. Shows temporal order and incidence.</p>
+  <div class="row"><b>Fits</b> <span title="Can&#x27;t assign">🚫</span> <span title="Rare exposure">☢️</span></div>
+  <div class="row"><b>Struggles</b> <span title="Rare outcome">🔎</span> <span title="Long latency">⏳</span> <span title="Tight budget">💸</span></div>
+  <div class="row weak"><b>Weak vs</b> Confounding, Attrition &amp; missing data, Reverse causation</div>
+  <div class="row"><b>Cost</b> ●●●<span class="dim"></span> &nbsp; <b>Time</b> ◆◆◆<span class="dim"></span></div>
+  <p class="ex">The Framingham Heart Study (1948–), which gave us the very idea of &#x27;risk factors&#x27;.</p>
+</div><div class="card design" style="--c:#1D4ED8">
+  <div class="band">Analytical observational<span class="cid">cohort-retrospective</span></div>
+  <h3>Retrospective cohort</h3>
+  <div class="serves">🔗&nbsp;Associate 🎯&nbsp;Cause 📊&nbsp;Describe</div>
+  <p class="gist">Reconstruct a cohort and its outcomes from existing records. Fast and cheap, but limited to what someone happened to record.</p>
+  <div class="row"><b>Fits</b> <span title="Existing data">🗄️</span> <span title="Rare exposure">☢️</span> <span title="Long latency">⏳</span> <span title="Tight budget">💸</span></div>
+  <div class="row"><b>Struggles</b> —</div>
+  <div class="row weak"><b>Weak vs</b> Confounding, Confounding by indication, Selection bias, Measurement error, Immortal time bias</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Occupational cohorts assembled from employment records, e.g. asbestos and shipyard workers.</p>
+</div><div class="card design" style="--c:#1D4ED8">
+  <div class="band">Analytical observational<span class="cid">case-control</span></div>
+  <h3>Case–control study</h3>
+  <div class="serves">🔗&nbsp;Associate 🎯&nbsp;Cause</div>
+  <p class="gist">Start from people with the outcome (cases) and comparable people without it (controls); compare their past exposures.</p>
+  <div class="row"><b>Fits</b> <span title="Rare outcome">🔎</span> <span title="Long latency">⏳</span> <span title="Tight budget">💸</span></div>
+  <div class="row"><b>Struggles</b> <span title="Rare exposure">☢️</span></div>
+  <div class="row weak"><b>Weak vs</b> Recall bias, Selection bias, Confounding, Collider bias</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Doll &amp; Hill (1950): smoking histories of lung-cancer patients vs. other hospital patients.</p>
+</div><div class="card design" style="--c:#1D4ED8">
+  <div class="band">Analytical observational<span class="cid">case-crossover</span></div>
+  <h3>Case-crossover</h3>
+  <div class="serves">🔗&nbsp;Associate 🎯&nbsp;Cause</div>
+  <p class="gist">Each case is their own control: compare exposure just before the event with the same person&#x27;s exposure at other times.</p>
+  <div class="row"><b>Fits</b> <span title="Brief trigger">⚡</span> <span title="Rare outcome">🔎</span> <span title="Tight budget">💸</span></div>
+  <div class="row"><b>Struggles</b> <span title="Long latency">⏳</span></div>
+  <div class="row weak"><b>Weak vs</b> Recall bias, History &amp; secular trends</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Mittleman et al. (1993): heavy exertion as a trigger of heart attack within the hour.</p>
+</div><div class="card design" style="--c:#1D4ED8">
+  <div class="band">Analytical observational<span class="cid">target-trial</span></div>
+  <h3>Target trial emulation</h3>
+  <div class="serves">🎯&nbsp;Cause 🔗&nbsp;Associate</div>
+  <p class="gist">Write the protocol of the trial you wish you could run, then emulate it step by step in observational data.</p>
+  <div class="row"><b>Fits</b> <span title="Existing data">🗄️</span> <span title="Can&#x27;t assign">🚫</span></div>
+  <div class="row"><b>Struggles</b> <span title="Uncharted">❓</span></div>
+  <div class="row weak"><b>Weak vs</b> Confounding, Confounding by indication, Measurement error</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆◆<span class="dim">◆</span></div>
+  <p class="ex">Hernán &amp; Robins&#x27; framework; emulated trials of statins and vaccines using health records.</p>
+</div></div></section><section class="sheet"><div class="label">Designs · fronts</div><div class="grid"><div class="card design" style="--c:#1D4ED8">
+  <div class="band">Analytical observational<span class="cid">iv</span></div>
+  <h3>Instrumental variable analysis</h3>
+  <div class="serves">🎯&nbsp;Cause</div>
+  <p class="gist">Find a factor that nudges the exposure but affects the outcome only through it: a natural coin flip.</p>
+  <div class="row"><b>Fits</b> <span title="Can&#x27;t assign">🚫</span> <span title="Existing data">🗄️</span></div>
+  <div class="row"><b>Struggles</b> <span title="One unit">1️⃣</span></div>
+  <div class="row weak"><b>Weak vs</b> Confounding, Unvalidated model, Low power</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Angrist &amp; Krueger (1991): quarter of birth, compulsory schooling and earnings.</p>
+</div><div class="card design" style="--c:#1D4ED8">
+  <div class="band">Analytical observational<span class="cid">mendelian</span></div>
+  <h3>Mendelian randomization</h3>
+  <div class="serves">🎯&nbsp;Cause</div>
+  <p class="gist">Use genetic variants as instruments. Genes are shuffled at conception, so carriers mimic a lifelong randomized trial.</p>
+  <div class="row"><b>Fits</b> <span title="Can&#x27;t assign">🚫</span> <span title="Long latency">⏳</span> <span title="Existing data">🗄️</span></div>
+  <div class="row"><b>Struggles</b> <span title="One unit">1️⃣</span></div>
+  <div class="row weak"><b>Weak vs</b> Confounding, Low power</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">LDL-lowering gene variants and coronary heart disease across large genetic consortia.</p>
+</div><div class="card design" style="--c:#6D28D9">
+  <div class="band">Quasi-experimental<span class="cid">did</span></div>
+  <h3>Difference-in-differences</h3>
+  <div class="serves">🎯&nbsp;Cause</div>
+  <p class="gist">Compare the change over time in a group that got an intervention with the change in a similar group that didn&#x27;t.</p>
+  <div class="row"><b>Fits</b> <span title="Can&#x27;t assign">🚫</span> <span title="Group-level">👥</span> <span title="Existing data">🗄️</span></div>
+  <div class="row"><b>Struggles</b> <span title="One unit">1️⃣</span></div>
+  <div class="row weak"><b>Weak vs</b> History &amp; secular trends, Confounding, Selection bias</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Card &amp; Krueger (1994): New Jersey&#x27;s minimum-wage rise vs. neighbouring Pennsylvania.</p>
+</div><div class="card design" style="--c:#6D28D9">
+  <div class="band">Quasi-experimental<span class="cid">rdd</span></div>
+  <h3>Regression discontinuity</h3>
+  <div class="serves">🎯&nbsp;Cause</div>
+  <p class="gist">When a rule assigns treatment at a cutoff, compare units just above and just below: nearly identical except for treatment.</p>
+  <div class="row"><b>Fits</b> <span title="Cutoff rule">✂️</span> <span title="Existing data">🗄️</span> <span title="Can&#x27;t assign">🚫</span></div>
+  <div class="row"><b>Struggles</b> —</div>
+  <div class="row weak"><b>Weak vs</b> Limited generalizability, Low power, Selection bias</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Angrist &amp; Lavy (1999): Maimonides&#x27; rule capping class size at 40 pupils.</p>
+</div><div class="card design" style="--c:#6D28D9">
+  <div class="band">Quasi-experimental<span class="cid">its</span></div>
+  <h3>Interrupted time series</h3>
+  <div class="serves">🎯&nbsp;Cause</div>
+  <p class="gist">Many measurements before and after a dated intervention; test for a change in level or slope beyond the existing trend.</p>
+  <div class="row"><b>Fits</b> <span title="Existing data">🗄️</span> <span title="Group-level">👥</span> <span title="One unit">1️⃣</span> <span title="Can&#x27;t assign">🚫</span></div>
+  <div class="row"><b>Struggles</b> —</div>
+  <div class="row weak"><b>Weak vs</b> History &amp; secular trends, Regression to the mean, Measurement error</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Hospital admissions for heart attacks before and after a public smoking ban.</p>
+</div><div class="card design" style="--c:#6D28D9">
+  <div class="band">Quasi-experimental<span class="cid">synthetic-control</span></div>
+  <h3>Synthetic control</h3>
+  <div class="serves">🎯&nbsp;Cause</div>
+  <p class="gist">Build a weighted &#x27;twin&#x27; of one treated unit from untreated units that tracked it before the intervention; compare after.</p>
+  <div class="row"><b>Fits</b> <span title="One unit">1️⃣</span> <span title="Group-level">👥</span> <span title="Can&#x27;t assign">🚫</span> <span title="Existing data">🗄️</span></div>
+  <div class="row"><b>Struggles</b> —</div>
+  <div class="row weak"><b>Weak vs</b> History &amp; secular trends, Forking paths &amp; p-hacking</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Abadie et al.: California&#x27;s 1988 tobacco programme; the economic cost of German reunification.</p>
+</div><div class="card design" style="--c:#B91C1C">
+  <div class="band">Experimental<span class="cid">rct</span></div>
+  <h3>Randomized controlled trial</h3>
+  <div class="serves">🎯&nbsp;Cause</div>
+  <p class="gist">Randomly allocate individuals to intervention or control, follow them up, compare outcomes. The benchmark for &#x27;does it work?&#x27;</p>
+  <div class="row"><b>Fits</b> —</div>
+  <div class="row"><b>Struggles</b> <span title="Can&#x27;t assign">🚫</span> <span title="Rare outcome">🔎</span> <span title="Long latency">⏳</span> <span title="Tight budget">💸</span> <span title="Group-level">👥</span></div>
+  <div class="row weak"><b>Weak vs</b> Attrition &amp; missing data, Expectation effects, Contamination &amp; spillover, Limited generalizability, Low power</div>
+  <div class="row"><b>Cost</b> ●●●<span class="dim"></span> &nbsp; <b>Time</b> ◆◆◆<span class="dim"></span></div>
+  <p class="ex">MRC streptomycin trial for tuberculosis (1948), the first modern randomized trial.</p>
+</div><div class="card design" style="--c:#B91C1C">
+  <div class="band">Experimental<span class="cid">cluster-rct</span></div>
+  <h3>Cluster randomized trial</h3>
+  <div class="serves">🎯&nbsp;Cause</div>
+  <p class="gist">Randomize whole groups (schools, clinics, villages) when the intervention acts at group level or would spill over.</p>
+  <div class="row"><b>Fits</b> <span title="Group-level">👥</span></div>
+  <div class="row"><b>Struggles</b> <span title="Can&#x27;t assign">🚫</span> <span title="Tight budget">💸</span> <span title="One unit">1️⃣</span></div>
+  <div class="row weak"><b>Weak vs</b> Unit-of-analysis error, Selection bias, Low power</div>
+  <div class="row"><b>Cost</b> ●●●<span class="dim"></span> &nbsp; <b>Time</b> ◆◆◆<span class="dim"></span></div>
+  <p class="ex">School-based deworming and hygiene trials randomized by school.</p>
+</div><div class="card design" style="--c:#B91C1C">
+  <div class="band">Experimental<span class="cid">crossover</span></div>
+  <h3>Crossover trial</h3>
+  <div class="serves">🎯&nbsp;Cause</div>
+  <p class="gist">Each participant gets both treatments in random order, separated by a washout. Needs far fewer people.</p>
+  <div class="row"><b>Fits</b> <span title="Tight budget">💸</span></div>
+  <div class="row"><b>Struggles</b> <span title="Long latency">⏳</span> <span title="Can&#x27;t assign">🚫</span></div>
+  <div class="row weak"><b>Weak vs</b> Carryover, Attrition &amp; missing data</div>
+  <div class="row"><b>Cost</b> ●●<span class="dim">●</span> &nbsp; <b>Time</b> ◆◆<span class="dim">◆</span></div>
+  <p class="ex">Bioequivalence studies of generic versus brand-name drugs.</p>
+</div></div></section><section class="sheet"><div class="label">Designs · fronts</div><div class="grid"><div class="card design" style="--c:#B91C1C">
+  <div class="band">Experimental<span class="cid">factorial-doe</span></div>
+  <h3>Factorial experiment (DoE)</h3>
+  <div class="serves">🎯&nbsp;Cause 🛠️&nbsp;Build 🧮&nbsp;Explain</div>
+  <p class="gist">Vary several factors at once in a controlled setting. Estimates each effect and their interactions in few runs.</p>
+  <div class="row"><b>Fits</b> <span title="Tight budget">💸</span></div>
+  <div class="row"><b>Struggles</b> <span title="Can&#x27;t assign">🚫</span></div>
+  <div class="row weak"><b>Weak vs</b> Measurement error, Limited generalizability, Forking paths &amp; p-hacking</div>
+  <div class="row"><b>Cost</b> ●●<span class="dim">●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Fisher&#x27;s agricultural experiments at Rothamsted; screening designs in process engineering.</p>
+</div><div class="card design" style="--c:#B91C1C">
+  <div class="band">Experimental<span class="cid">n-of-1</span></div>
+  <h3>N-of-1 trial</h3>
+  <div class="serves">🎯&nbsp;Cause</div>
+  <p class="gist">Repeated, randomized, ideally blinded treatment periods within a single patient to find out what works for them.</p>
+  <div class="row"><b>Fits</b> <span title="One unit">1️⃣</span> <span title="Tight budget">💸</span></div>
+  <div class="row"><b>Struggles</b> <span title="Long latency">⏳</span> <span title="Can&#x27;t assign">🚫</span></div>
+  <div class="row weak"><b>Weak vs</b> Carryover, Expectation effects</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆◆<span class="dim">◆</span></div>
+  <p class="ex">Personalized trials of pain or ADHD medication in individual patients.</p>
+</div><div class="card design" style="--c:#B91C1C">
+  <div class="band">Experimental<span class="cid">stepped-wedge</span></div>
+  <h3>Stepped-wedge trial</h3>
+  <div class="serves">🎯&nbsp;Cause</div>
+  <p class="gist">All clusters start as controls and switch to the intervention at randomly ordered times until everyone has it.</p>
+  <div class="row"><b>Fits</b> <span title="Rollout">📅</span> <span title="Group-level">👥</span></div>
+  <div class="row"><b>Struggles</b> <span title="Tight budget">💸</span></div>
+  <div class="row weak"><b>Weak vs</b> History &amp; secular trends, Unit-of-analysis error</div>
+  <div class="row"><b>Cost</b> ●●●<span class="dim"></span> &nbsp; <b>Time</b> ◆◆◆<span class="dim"></span></div>
+  <p class="ex">The Gambia Hepatitis Intervention Study (1986), which phased in infant vaccination region by region.</p>
+</div><div class="card design" style="--c:#B91C1C">
+  <div class="band">Experimental<span class="cid">ab-test</span></div>
+  <h3>Online A/B test</h3>
+  <div class="serves">🎯&nbsp;Cause</div>
+  <p class="gist">Randomize users of a digital product to variants. Huge samples detect tiny effects within days.</p>
+  <div class="row"><b>Fits</b> <span title="Tight budget">💸</span></div>
+  <div class="row"><b>Struggles</b> <span title="Long latency">⏳</span> <span title="Can&#x27;t assign">🚫</span></div>
+  <div class="row weak"><b>Weak vs</b> Forking paths &amp; p-hacking, Wrong construct, Contamination &amp; spillover</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Search and e-commerce platforms running thousands of controlled experiments a year.</p>
+</div><div class="card design" style="--c:#B91C1C">
+  <div class="band">Experimental<span class="cid">adaptive-platform</span></div>
+  <h3>Adaptive / platform trial</h3>
+  <div class="serves">🎯&nbsp;Cause</div>
+  <p class="gist">One master protocol tests many treatments against a shared control; arms are dropped or added as data accrue.</p>
+  <div class="row"><b>Fits</b> —</div>
+  <div class="row"><b>Struggles</b> <span title="Can&#x27;t assign">🚫</span> <span title="Tight budget">💸</span></div>
+  <div class="row weak"><b>Weak vs</b> History &amp; secular trends, Forking paths &amp; p-hacking</div>
+  <div class="row"><b>Cost</b> ●●●<span class="dim"></span> &nbsp; <b>Time</b> ◆◆<span class="dim">◆</span></div>
+  <p class="ex">RECOVERY (COVID-19): dexamethasone shown to save lives within about 100 days of launch.</p>
+</div><div class="card design" style="--c:#B91C1C">
+  <div class="band">Experimental<span class="cid">field-experiment</span></div>
+  <h3>Field experiment</h3>
+  <div class="serves">🎯&nbsp;Cause</div>
+  <p class="gist">Manipulate a factor in the real world (plots, islands, villages, markets) with randomized replicates and controls.</p>
+  <div class="row"><b>Fits</b> <span title="Group-level">👥</span></div>
+  <div class="row"><b>Struggles</b> <span title="Can&#x27;t assign">🚫</span> <span title="One unit">1️⃣</span></div>
+  <div class="row weak"><b>Weak vs</b> Contamination &amp; spillover, History &amp; secular trends, Low power, Limited generalizability</div>
+  <div class="row"><b>Cost</b> ●●<span class="dim">●</span> &nbsp; <b>Time</b> ◆◆<span class="dim">◆</span></div>
+  <p class="ex">Paine (1966, 1969): removing Pisaster starfish from a rocky shore collapsed its diversity: the &#x27;keystone species&#x27;.</p>
+</div><div class="card design" style="--c:#B45309">
+  <div class="band">Qualitative &amp; mixed<span class="cid">ethnography</span></div>
+  <h3>Ethnography</h3>
+  <div class="serves">🧭&nbsp;Explore</div>
+  <p class="gist">Immerse yourself in a setting for months, observing and taking part, to understand practices and meanings from the inside.</p>
+  <div class="row"><b>Fits</b> <span title="Uncharted">❓</span></div>
+  <div class="row"><b>Struggles</b> <span title="Tight budget">💸</span></div>
+  <div class="row weak"><b>Weak vs</b> Researcher bias, Limited generalizability, Expectation effects</div>
+  <div class="row"><b>Cost</b> ●●<span class="dim">●</span> &nbsp; <b>Time</b> ◆◆◆<span class="dim"></span></div>
+  <p class="ex">Whyte&#x27;s Street Corner Society (1943); Latour &amp; Woolgar&#x27;s Laboratory Life (1979).</p>
+</div><div class="card design" style="--c:#B45309">
+  <div class="band">Qualitative &amp; mixed<span class="cid">grounded-theory</span></div>
+  <h3>Grounded theory</h3>
+  <div class="serves">🧭&nbsp;Explore 🧮&nbsp;Explain</div>
+  <p class="gist">Collect and analyse data in iterative cycles (coding, comparing, sampling) to build a new theory from the ground up.</p>
+  <div class="row"><b>Fits</b> <span title="Uncharted">❓</span></div>
+  <div class="row"><b>Struggles</b> <span title="Many studies">🗂️</span></div>
+  <div class="row weak"><b>Weak vs</b> Researcher bias, Thin data</div>
+  <div class="row"><b>Cost</b> ●●<span class="dim">●</span> &nbsp; <b>Time</b> ◆◆<span class="dim">◆</span></div>
+  <p class="ex">Glaser &amp; Strauss (1965), Awareness of Dying: how hospital staff and patients manage knowledge of death.</p>
+</div><div class="card design" style="--c:#B45309">
+  <div class="band">Qualitative &amp; mixed<span class="cid">interviews-thematic</span></div>
+  <h3>Interviews &amp; thematic analysis</h3>
+  <div class="serves">🧭&nbsp;Explore</div>
+  <p class="gist">In-depth interviews or focus groups analysed for patterns of meaning. Answers &#x27;how&#x27; and &#x27;why&#x27; from people&#x27;s own view.</p>
+  <div class="row"><b>Fits</b> <span title="Uncharted">❓</span> <span title="Tight budget">💸</span></div>
+  <div class="row"><b>Struggles</b> —</div>
+  <div class="row weak"><b>Weak vs</b> Researcher bias, Thin data, Selection bias</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Exploring why patients stop taking a medication they were prescribed.</p>
+</div></div></section><section class="sheet"><div class="label">Designs · fronts</div><div class="grid"><div class="card design" style="--c:#B45309">
+  <div class="band">Qualitative &amp; mixed<span class="cid">case-study</span></div>
+  <h3>Case study (in-depth)</h3>
+  <div class="serves">🧭&nbsp;Explore 🧮&nbsp;Explain</div>
+  <p class="gist">Study one or a few bounded cases (a company, a project, a policy) in their real context, using many sources of evidence.</p>
+  <div class="row"><b>Fits</b> <span title="One unit">1️⃣</span> <span title="Uncharted">❓</span></div>
+  <div class="row"><b>Struggles</b> —</div>
+  <div class="row weak"><b>Weak vs</b> Limited generalizability, Researcher bias, Survivorship bias</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆◆<span class="dim">◆</span></div>
+  <p class="ex">Allison&#x27;s Essence of Decision (1971) on the Cuban missile crisis; engineering failure investigations.</p>
+</div><div class="card design" style="--c:#B45309">
+  <div class="band">Qualitative &amp; mixed<span class="cid">delphi</span></div>
+  <h3>Delphi consensus</h3>
+  <div class="serves">🧭&nbsp;Explore 📏&nbsp;Measure</div>
+  <p class="gist">Experts rate statements anonymously over repeated rounds, seeing the group&#x27;s feedback, until consensus emerges.</p>
+  <div class="row"><b>Fits</b> <span title="Uncharted">❓</span> <span title="Tight budget">💸</span></div>
+  <div class="row"><b>Struggles</b> —</div>
+  <div class="row weak"><b>Weak vs</b> Selection bias, Researcher bias</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">COMET-initiative &#x27;core outcome sets&#x27; that tell trialists what every trial in a field should measure.</p>
+</div><div class="card design" style="--c:#B45309">
+  <div class="band">Qualitative &amp; mixed<span class="cid">mixed-sequential</span></div>
+  <h3>Mixed methods (sequential)</h3>
+  <div class="serves">🧭&nbsp;Explore 📏&nbsp;Measure 🛠️&nbsp;Build</div>
+  <p class="gist">Combine numbers and narratives in sequence: a survey then interviews to explain it, or interviews then a survey to test them.</p>
+  <div class="row"><b>Fits</b> <span title="Uncharted">❓</span> <span title="Existing data">🗄️</span></div>
+  <div class="row"><b>Struggles</b> <span title="Tight budget">💸</span></div>
+  <div class="row weak"><b>Weak vs</b> Researcher bias, Selection bias</div>
+  <div class="row"><b>Cost</b> ●●<span class="dim">●</span> &nbsp; <b>Time</b> ◆◆<span class="dim">◆</span></div>
+  <p class="ex">Explanatory sequential design: a survey finds a gap, follow-up interviews explain it.</p>
+</div><div class="card design" style="--c:#15803D">
+  <div class="band">Evidence synthesis<span class="cid">systematic-review</span></div>
+  <h3>Systematic review &amp; meta-analysis</h3>
+  <div class="serves">📚&nbsp;Synthesize</div>
+  <p class="gist">A pre-specified, exhaustive search and appraisal of all studies on a focused question; pool results where sensible.</p>
+  <div class="row"><b>Fits</b> <span title="Many studies">🗂️</span></div>
+  <div class="row"><b>Struggles</b> <span title="Tight budget">💸</span> <span title="Uncharted">❓</span></div>
+  <div class="row weak"><b>Weak vs</b> Publication bias, Apples &amp; oranges, Forking paths &amp; p-hacking</div>
+  <div class="row"><b>Cost</b> ●●<span class="dim">●</span> &nbsp; <b>Time</b> ◆◆<span class="dim">◆</span></div>
+  <p class="ex">Cochrane reviews; the antenatal-steroids forest plot in the Cochrane logo.</p>
+</div><div class="card design" style="--c:#15803D">
+  <div class="band">Evidence synthesis<span class="cid">scoping-review</span></div>
+  <h3>Scoping review</h3>
+  <div class="serves">📚&nbsp;Synthesize 🧭&nbsp;Explore</div>
+  <p class="gist">Systematically map what research exists on a broad topic (concepts, methods, gaps) without pooling effects.</p>
+  <div class="row"><b>Fits</b> <span title="Many studies">🗂️</span> <span title="Uncharted">❓</span></div>
+  <div class="row"><b>Struggles</b> —</div>
+  <div class="row weak"><b>Weak vs</b> Publication bias, Researcher bias</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆◆<span class="dim">◆</span></div>
+  <p class="ex">PRISMA-ScR guided maps, e.g. of how AI is used in nursing practice.</p>
+</div><div class="card design" style="--c:#15803D">
+  <div class="band">Evidence synthesis<span class="cid">network-meta</span></div>
+  <h3>Network meta-analysis</h3>
+  <div class="serves">📚&nbsp;Synthesize</div>
+  <p class="gist">Compare many treatments at once by combining direct and indirect evidence across a network of trials.</p>
+  <div class="row"><b>Fits</b> <span title="Many studies">🗂️</span></div>
+  <div class="row"><b>Struggles</b> <span title="Tight budget">💸</span></div>
+  <div class="row weak"><b>Weak vs</b> Apples &amp; oranges, Publication bias</div>
+  <div class="row"><b>Cost</b> ●●<span class="dim">●</span> &nbsp; <b>Time</b> ◆◆<span class="dim">◆</span></div>
+  <p class="ex">Cipriani et al. (2018): 21 antidepressants ranked from 522 trials.</p>
+</div><div class="card design" style="--c:#15803D">
+  <div class="band">Evidence synthesis<span class="cid">umbrella-review</span></div>
+  <h3>Umbrella review</h3>
+  <div class="serves">📚&nbsp;Synthesize</div>
+  <p class="gist">A review of systematic reviews: summarizes and grades the evidence across many reviews on a broad topic.</p>
+  <div class="row"><b>Fits</b> <span title="Many studies">🗂️</span></div>
+  <div class="row"><b>Struggles</b> —</div>
+  <div class="row weak"><b>Weak vs</b> Publication bias, Apples &amp; oranges</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆◆<span class="dim">◆</span></div>
+  <p class="ex">Theodoratou et al. (2014): vitamin D and 137 outcomes across meta-analyses and trials.</p>
+</div><div class="card design" style="--c:#15803D">
+  <div class="band">Evidence synthesis<span class="cid">rapid-review</span></div>
+  <h3>Rapid review</h3>
+  <div class="serves">📚&nbsp;Synthesize</div>
+  <p class="gist">A systematic review with transparently streamlined steps, delivered in weeks to inform an urgent decision.</p>
+  <div class="row"><b>Fits</b> <span title="Tight budget">💸</span> <span title="Many studies">🗂️</span></div>
+  <div class="row"><b>Struggles</b> —</div>
+  <div class="row weak"><b>Weak vs</b> Publication bias, Selection bias</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Cochrane Rapid Reviews informing COVID-19 policy in 2020.</p>
+</div><div class="card design" style="--c:#15803D">
+  <div class="band">Evidence synthesis<span class="cid">realist-review</span></div>
+  <h3>Realist review</h3>
+  <div class="serves">📚&nbsp;Synthesize 🧮&nbsp;Explain</div>
+  <p class="gist">Synthesize mixed evidence to explain how complex programmes work: for whom, in what contexts, and why.</p>
+  <div class="row"><b>Fits</b> <span title="Many studies">🗂️</span></div>
+  <div class="row"><b>Struggles</b> <span title="Tight budget">💸</span></div>
+  <div class="row weak"><b>Weak vs</b> Researcher bias, Apples &amp; oranges</div>
+  <div class="row"><b>Cost</b> ●●<span class="dim">●</span> &nbsp; <b>Time</b> ◆◆<span class="dim">◆</span></div>
+  <p class="ex">Pawson&#x27;s realist syntheses of complex social programmes (context + mechanism → outcome).</p>
+</div></div></section><section class="sheet"><div class="label">Designs · fronts</div><div class="grid"><div class="card design" style="--c:#475569">
+  <div class="band">Measurement<span class="cid">diagnostic-accuracy</span></div>
+  <h3>Diagnostic accuracy study</h3>
+  <div class="serves">📏&nbsp;Measure</div>
+  <p class="gist">Apply a new test and a reference standard to consecutive people suspected of the condition; estimate sensitivity and specificity.</p>
+  <div class="row"><b>Fits</b> —</div>
+  <div class="row"><b>Struggles</b> <span title="Rare outcome">🔎</span></div>
+  <div class="row weak"><b>Weak vs</b> Spectrum bias, Expectation effects, Measurement error</div>
+  <div class="row"><b>Cost</b> ●●<span class="dim">●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">STARD-reported evaluations of rapid antigen tests against PCR.</p>
+</div><div class="card design" style="--c:#475569">
+  <div class="band">Measurement<span class="cid">reliability</span></div>
+  <h3>Reliability &amp; agreement study</h3>
+  <div class="serves">📏&nbsp;Measure</div>
+  <p class="gist">Repeat measurements across raters, occasions or devices; quantify agreement (kappa, ICC, Bland–Altman limits).</p>
+  <div class="row"><b>Fits</b> <span title="Tight budget">💸</span></div>
+  <div class="row"><b>Struggles</b> —</div>
+  <div class="row weak"><b>Weak vs</b> Spectrum bias, Selection bias</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Bland &amp; Altman (1986): why correlation is the wrong way to compare two measurement methods.</p>
+</div><div class="card design" style="--c:#475569">
+  <div class="band">Measurement<span class="cid">validation</span></div>
+  <h3>Instrument development &amp; validation</h3>
+  <div class="serves">📏&nbsp;Measure</div>
+  <p class="gist">Build a questionnaire or scale from theory and input, then test its structure, reliability and validity (psychometrics).</p>
+  <div class="row"><b>Fits</b> <span title="Uncharted">❓</span></div>
+  <div class="row"><b>Struggles</b> <span title="Tight budget">💸</span></div>
+  <div class="row weak"><b>Weak vs</b> Wrong construct, Selection bias</div>
+  <div class="row"><b>Cost</b> ●●<span class="dim">●</span> &nbsp; <b>Time</b> ◆◆<span class="dim">◆</span></div>
+  <p class="ex">Development of the Maslach Burnout Inventory (1981).</p>
+</div><div class="card design" style="--c:#475569">
+  <div class="band">Measurement<span class="cid">interlab</span></div>
+  <h3>Interlaboratory comparison</h3>
+  <div class="serves">📏&nbsp;Measure</div>
+  <p class="gist">Identical samples go to many labs (a &#x27;round robin&#x27;); differences reveal how reproducible a measurement method is.</p>
+  <div class="row"><b>Fits</b> —</div>
+  <div class="row"><b>Struggles</b> <span title="One unit">1️⃣</span></div>
+  <div class="row weak"><b>Weak vs</b> Measurement error</div>
+  <div class="row"><b>Cost</b> ●●<span class="dim">●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Proficiency-testing schemes; BIPM key comparisons between national metrology institutes.</p>
+</div><div class="card design" style="--c:#BE185D">
+  <div class="band">Theory &amp; computation<span class="cid">analytical-model</span></div>
+  <h3>Analytical / mathematical theory</h3>
+  <div class="serves">🧮&nbsp;Explain</div>
+  <p class="gist">Derive results from first principles with mathematics: proofs, closed-form solutions, bounds. &#x27;What must be true if…&#x27;</p>
+  <div class="row"><b>Fits</b> <span title="Can&#x27;t assign">🚫</span> <span title="Tight budget">💸</span></div>
+  <div class="row"><b>Struggles</b> —</div>
+  <div class="row weak"><b>Weak vs</b> Unvalidated model</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Carnot&#x27;s efficiency limit (1824); Nash equilibrium (1950).</p>
+</div><div class="card design" style="--c:#BE185D">
+  <div class="band">Theory &amp; computation<span class="cid">simulation</span></div>
+  <h3>Computational simulation</h3>
+  <div class="serves">🧮&nbsp;Explain 🔮&nbsp;Predict</div>
+  <p class="gist">Encode mechanisms in a model (FEM, CFD, Monte Carlo, agent-based) and run experiments impossible, dangerous or too costly in reality.</p>
+  <div class="row"><b>Fits</b> <span title="Can&#x27;t assign">🚫</span> <span title="One unit">1️⃣</span></div>
+  <div class="row"><b>Struggles</b> <span title="Uncharted">❓</span></div>
+  <div class="row weak"><b>Weak vs</b> Unvalidated model, Forking paths &amp; p-hacking</div>
+  <div class="row"><b>Cost</b> ●●<span class="dim">●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">Numerical-relativity waveforms of black-hole mergers, computed years before LIGO&#x27;s first detection.</p>
+</div><div class="card design" style="--c:#BE185D">
+  <div class="band">Theory &amp; computation<span class="cid">prediction-model</span></div>
+  <h3>Prediction model (statistical / ML)</h3>
+  <div class="serves">🔮&nbsp;Predict</div>
+  <p class="gist">Develop a model that forecasts an outcome from predictors, then test its discrimination and calibration on new data.</p>
+  <div class="row"><b>Fits</b> <span title="Existing data">🗄️</span></div>
+  <div class="row"><b>Struggles</b> <span title="Uncharted">❓</span></div>
+  <div class="row weak"><b>Weak vs</b> Overfitting &amp; leakage, Limited generalizability, Selection bias</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">The Framingham risk score; TRIPOD-reported clinical prediction models.</p>
+</div><div class="card design" style="--c:#78350F">
+  <div class="band">Design &amp; development<span class="cid">design-science</span></div>
+  <h3>Design science (build &amp; evaluate)</h3>
+  <div class="serves">🛠️&nbsp;Build</div>
+  <p class="gist">Iteratively design an artifact (device, software, method) that solves a real problem, and evaluate it with users in context.</p>
+  <div class="row"><b>Fits</b> <span title="Uncharted">❓</span></div>
+  <div class="row"><b>Struggles</b> —</div>
+  <div class="row weak"><b>Weak vs</b> Researcher bias, Limited generalizability</div>
+  <div class="row"><b>Cost</b> ●●<span class="dim">●</span> &nbsp; <b>Time</b> ◆◆<span class="dim">◆</span></div>
+  <p class="ex">Usability-engineered medical devices (IEC 62366); research software built with its users.</p>
+</div><div class="card design" style="--c:#78350F">
+  <div class="band">Design &amp; development<span class="cid">pilot</span></div>
+  <h3>Pilot / feasibility study</h3>
+  <div class="serves">🛠️&nbsp;Build</div>
+  <p class="gist">A small rehearsal of a future study. Can we recruit, retain, deliver and measure? Not for estimating effects.</p>
+  <div class="row"><b>Fits</b> <span title="Tight budget">💸</span></div>
+  <div class="row"><b>Struggles</b> —</div>
+  <div class="row weak"><b>Weak vs</b> Low power, Limited generalizability</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">CONSORT extension for randomized pilot and feasibility trials (2016).</p>
+</div></div></section><section class="sheet"><div class="label">Designs · fronts</div><div class="grid"><div class="card design" style="--c:#78350F">
+  <div class="band">Design &amp; development<span class="cid">benchmark</span></div>
+  <h3>Benchmark evaluation</h3>
+  <div class="serves">🛠️&nbsp;Build 🔮&nbsp;Predict</div>
+  <p class="gist">Compare methods on shared tasks, datasets and metrics under identical conditions, with baselines, ablations and repeated runs.</p>
+  <div class="row"><b>Fits</b> <span title="Tight budget">💸</span> <span title="Existing data">🗄️</span></div>
+  <div class="row"><b>Struggles</b> —</div>
+  <div class="row weak"><b>Weak vs</b> Overfitting &amp; leakage, Forking paths &amp; p-hacking, Wrong construct, Limited generalizability</div>
+  <div class="row"><b>Cost</b> ●<span class="dim">●●</span> &nbsp; <b>Time</b> ◆<span class="dim">◆◆</span></div>
+  <p class="ex">ImageNet; robot-grasping benchmarks built on the YCB object set.</p>
+</div></div></section><section class="sheet"><div class="label">Threats · fronts</div><div class="grid"><div class="card threat">
+  <div class="band">THREAT<span class="cid">confounding</span></div>
+  <h3>Confounding</h3>
+  <p class="gist">A third factor causes both the exposure and the outcome, faking or hiding an effect.</p>
+  <p class="ex">Coffee drinkers seemed to get more lung cancer, because coffee drinkers smoked more.</p>
+  <div class="row"><b>Countered by</b> Randomization, Causal diagram (DAG), Matching / propensity scores, Negative controls, Self or sibling comparison, Sensitivity analysis</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">confounding-indication</span></div>
+  <h3>Confounding by indication</h3>
+  <p class="gist">The reason someone is treated is itself linked to the outcome, so treatment looks harmful (or helpful) when it isn&#x27;t.</p>
+  <p class="ex">In routine records, a heart drug looked deadly because doctors reserved it for the sickest patients.</p>
+  <div class="row"><b>Countered by</b> Randomization, Active comparator, new users, Matching / propensity scores, Sensitivity analysis, Negative controls</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">selection-bias</span></div>
+  <h3>Selection bias</h3>
+  <p class="gist">Who gets into (or stays in) the sample depends on the exposure, the outcome, or both.</p>
+  <p class="ex">Literary Digest (1936) mailed 10 million ballots, largely to phone and car owners; the 2.4 million returned predicted Landon. Roosevelt won in a landslide.</p>
+  <div class="row"><b>Countered by</b> Representative sampling, Allocation concealment, Causal diagram (DAG), Comprehensive search, Intention-to-treat, Time-zero alignment</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">attrition</span></div>
+  <h3>Attrition &amp; missing data</h3>
+  <p class="gist">Participants drop out, or data go missing, for reasons related to the treatment or the outcome.</p>
+  <p class="ex">In a weight-loss trial, the people who weren&#x27;t losing weight quietly stopped coming. The remaining group looked great.</p>
+  <div class="row"><b>Countered by</b> Intention-to-treat, Sensitivity analysis</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">recall-bias</span></div>
+  <h3>Recall bias</h3>
+  <p class="gist">People with the outcome remember or report past exposures differently from people without it.</p>
+  <p class="ex">Mothers of babies with birth defects search their memory harder for medicines taken in pregnancy.</p>
+  <div class="row"><b>Countered by</b> Validated, objective measures, Blinding</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">measurement-error</span></div>
+  <h3>Measurement error</h3>
+  <p class="gist">The instrument is noisy, biased, drifting, or used differently across groups or over time.</p>
+  <p class="ex">Self-reported diets underestimate energy intake, and more so in some groups than in others.</p>
+  <div class="row"><b>Countered by</b> Validated, objective measures, Blinding, Triangulation</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">reverse-causation</span></div>
+  <h3>Reverse causation</h3>
+  <p class="gist">The outcome (or its early stages) causes the exposure, not the other way round.</p>
+  <p class="ex">Thin older adults die sooner, partly because illness causes weight loss years before death.</p>
+  <div class="row"><b>Countered by</b> Lag &amp; early-event exclusion, Randomization</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">regression-mean</span></div>
+  <h3>Regression to the mean</h3>
+  <p class="gist">Units picked for extreme values drift back toward average on re-measurement, with or without any intervention.</p>
+  <p class="ex">Pupils chosen for tutoring after their worst-ever test score improve next time, tutoring or not.</p>
+  <div class="row"><b>Countered by</b> Concurrent control group, Randomization</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">expectation</span></div>
+  <h3>Expectation effects</h3>
+  <p class="gist">Placebo, Hawthorne and observer effects: knowing who got what changes behaviour, symptoms or readings.</p>
+  <p class="ex">Moseley et al. (2002): sham knee arthroscopy relieved pain as much as the real operation.</p>
+  <div class="row"><b>Countered by</b> Blinding, Placebo or sham control, Reflexivity &amp; double coding, Triangulation</div>
+</div></div></section><section class="sheet"><div class="label">Threats · fronts</div><div class="grid"><div class="card threat">
+  <div class="band">THREAT<span class="cid">contamination</span></div>
+  <h3>Contamination &amp; spillover</h3>
+  <p class="gist">The control group gets exposed to the intervention, or effects spill over between units, diluting the difference.</p>
+  <p class="ex">Control-group teachers borrowed the new curriculum from their colleagues down the hall.</p>
+  <div class="row"><b>Countered by</b> Allocate by cluster</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">immortal-time</span></div>
+  <h3>Immortal time bias</h3>
+  <p class="gist">The treated group is credited with follow-up time during which, by definition, the outcome couldn&#x27;t happen.</p>
+  <p class="ex">Oscar winners seemed to live ~4 years longer than nominees, partly because you must survive long enough to win.</p>
+  <div class="row"><b>Countered by</b> Time-zero alignment</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">collider</span></div>
+  <h3>Collider bias</h3>
+  <p class="gist">Selecting or adjusting on a common effect of exposure and outcome creates a spurious association (Berkson&#x27;s bias).</p>
+  <p class="ex">Among hospital patients, two unrelated diseases look linked, because having either one gets you admitted.</p>
+  <div class="row"><b>Countered by</b> Causal diagram (DAG), Representative sampling</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">ecological-fallacy</span></div>
+  <h3>Ecological fallacy</h3>
+  <p class="gist">Concluding something about individuals from an association seen only between groups.</p>
+  <p class="ex">Robinson (1950): US states with more immigrants had higher literacy, though immigrants themselves were less often literate.</p>
+  <div class="row"><b>Countered by</b> Multilevel analysis</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">unit-of-analysis</span></div>
+  <h3>Unit-of-analysis error</h3>
+  <p class="gist">Groups are randomized or sampled, but individuals are analysed as if independent. False precision follows.</p>
+  <p class="ex">A trial randomizing 10 schools analysed 3,000 pupils as independent and reported impossibly narrow confidence intervals.</p>
+  <div class="row"><b>Countered by</b> Multilevel analysis</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">survivorship</span></div>
+  <h3>Survivorship bias</h3>
+  <p class="gist">Only the survivors, successes or still-present units are observed; the failures are invisible.</p>
+  <p class="ex">Wald, WWII: armour belongs where returning bombers had no bullet holes, because the planes hit there never came back.</p>
+  <div class="row"><b>Countered by</b> Representative sampling, Time-zero alignment</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">publication-bias</span></div>
+  <h3>Publication bias</h3>
+  <p class="gist">Positive results get published, null results stay in the drawer, and the literature lies by omission.</p>
+  <p class="ex">Turner et al. (2008): almost all positive antidepressant trials were published; most negative ones were not, or were spun.</p>
+  <div class="row"><b>Countered by</b> Comprehensive search, Preregistration</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">forking-paths</span></div>
+  <h3>Forking paths &amp; p-hacking</h3>
+  <p class="gist">Flexible choices of outcomes, subgroups and analyses, or peeking at the data, until something is &#x27;significant&#x27;.</p>
+  <p class="ex">Simmons et al. (2011) used flexible analyses to &#x27;show&#x27; that listening to a Beatles song made people younger.</p>
+  <div class="row"><b>Countered by</b> Preregistration, Multiplicity correction, Independent replication</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">low-power</span></div>
+  <h3>Low power</h3>
+  <p class="gist">Too few units to detect a realistic effect; the &#x27;significant&#x27; findings that do emerge are exaggerated.</p>
+  <p class="ex">Button et al. (2013): median statistical power in neuroscience studies was about 21%.</p>
+  <div class="row"><b>Countered by</b> Sample-size planning, Independent replication</div>
+</div></div></section><section class="sheet"><div class="label">Threats · fronts</div><div class="grid"><div class="card threat">
+  <div class="band">THREAT<span class="cid">overfitting-leakage</span></div>
+  <h3>Overfitting &amp; leakage</h3>
+  <p class="gist">The model memorizes noise, or sees information from the test data or the future, and fails in the real world.</p>
+  <p class="ex">Chest X-ray AI learned to recognize which hospital (and scanner) an image came from, not the disease (Zech et al., 2018).</p>
+  <div class="row"><b>Countered by</b> External validation, Preregistration</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">spectrum-bias</span></div>
+  <h3>Spectrum bias</h3>
+  <p class="gist">A test or rater is evaluated on clear-cut cases and obvious non-cases rather than on the realistic mix of patients or samples.</p>
+  <p class="ex">Tests that look near-perfect on severe cases vs. healthy volunteers falter on the mild, ambiguous patients in real clinics.</p>
+  <div class="row"><b>Countered by</b> Representative sampling</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">history-trend</span></div>
+  <h3>History &amp; secular trends</h3>
+  <p class="gist">Something else changed at the same time (a trend, the season, another policy) and takes the credit or the blame.</p>
+  <p class="ex">A hospital&#x27;s hygiene campaign coincided with a nationwide fall in infections and got credit for both.</p>
+  <div class="row"><b>Countered by</b> Concurrent control group, Pre-trend check &amp; control series</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">carryover</span></div>
+  <h3>Carryover</h3>
+  <p class="gist">The effect of an earlier treatment period bleeds into the next one.</p>
+  <p class="ex">A drug&#x27;s effect lingered into the placebo period of a crossover trial, making placebo look effective.</p>
+  <div class="row"><b>Countered by</b> Washout period</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">researcher-lens</span></div>
+  <h3>Researcher bias</h3>
+  <p class="gist">The analyst&#x27;s expectations, attachments or position shape what is seen, coded and reported.</p>
+  <p class="ex">Analysts who knew the hypothesis read ambiguous interview passages as supporting it.</p>
+  <div class="row"><b>Countered by</b> Reflexivity &amp; double coding, Blinding, Triangulation</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">external-validity</span></div>
+  <h3>Limited generalizability</h3>
+  <p class="gist">The sample, setting or conditions differ from where the results will be used.</p>
+  <p class="ex">Henrich et al. (2010): most psychology findings came from WEIRD samples (Western, Educated, Industrialized, Rich, Democratic).</p>
+  <div class="row"><b>Countered by</b> Multi-site, diverse sample, Representative sampling, Independent replication</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">heterogeneity</span></div>
+  <h3>Apples &amp; oranges</h3>
+  <p class="gist">Studies, populations or interventions pooled together differ so much that the average means little.</p>
+  <p class="ex">Pooling trials of different drugs, doses and patients gives a precise average of nothing in particular.</p>
+  <div class="row"><b>Countered by</b> Pre-planned heterogeneity analysis, Sensitivity analysis</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">model-assumptions</span></div>
+  <h3>Unvalidated model</h3>
+  <p class="gist">A model, derivation or simulation rests on unchecked assumptions, wrong inputs or numerical artifacts.</p>
+  <p class="ex">The Mars Climate Orbiter was lost in 1999: one team&#x27;s software used imperial units, the other expected metric.</p>
+  <div class="row"><b>Countered by</b> Verification &amp; validation, Sensitivity analysis</div>
+</div><div class="card threat">
+  <div class="band">THREAT<span class="cid">construct-validity</span></div>
+  <h3>Wrong construct</h3>
+  <p class="gist">You measure a proxy or surrogate that doesn&#x27;t capture what you actually care about.</p>
+  <p class="ex">CAST (1989): drugs that suppressed irregular heartbeats on monitors increased deaths.</p>
+  <div class="row"><b>Countered by</b> Validated, objective measures, Triangulation</div>
+</div></div></section><section class="sheet"><div class="label">Threats · fronts</div><div class="grid"><div class="card threat">
+  <div class="band">THREAT<span class="cid">thin-data</span></div>
+  <h3>Thin data</h3>
+  <p class="gist">Too few or too similar cases and voices; conclusions are drawn before the data are rich enough.</p>
+  <p class="ex">Six interviews with enthusiastic early adopters produced a &#x27;theory&#x27; that collapsed when sceptics were interviewed.</p>
+  <div class="row"><b>Countered by</b> Theoretical sampling to saturation, Triangulation</div>
+</div></div></section><section class="sheet"><div class="label">Safeguards · fronts</div><div class="grid"><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">randomization</span></div>
+  <h3>Randomization</h3>
+  <p class="gist">Let chance decide who gets what. Balances known and unknown confounders, on average.</p>
+  <div class="row"><b>Counters</b> Confounding, Confounding by indication, Reverse causation, Regression to the mean</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#B91C1C"></span>Experimental</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">allocation-concealment</span></div>
+  <h3>Allocation concealment</h3>
+  <p class="gist">Nobody enrolling participants can know or influence the next assignment.</p>
+  <div class="row"><b>Counters</b> Selection bias</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#B91C1C"></span>Experimental</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">blinding</span></div>
+  <h3>Blinding</h3>
+  <p class="gist">Participants, clinicians, outcome assessors or analysts don&#x27;t know who got what, or what the hypothesis is.</p>
+  <div class="row"><b>Counters</b> Recall bias, Measurement error, Expectation effects, Researcher bias</div>
+  <div class="row fams"><b>Usable with</b> any design</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">placebo-sham</span></div>
+  <h3>Placebo or sham control</h3>
+  <p class="gist">The control group gets an indistinguishable dummy, so expectations are equal in both arms.</p>
+  <div class="row"><b>Counters</b> Expectation effects</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#B91C1C"></span>Experimental</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">itt</span></div>
+  <h3>Intention-to-treat</h3>
+  <p class="gist">Analyse everyone in the group they were randomized to, whatever happened next; handle missing data explicitly.</p>
+  <div class="row"><b>Counters</b> Selection bias, Attrition &amp; missing data</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#B91C1C"></span>Experimental</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">preregistration</span></div>
+  <h3>Preregistration</h3>
+  <p class="gist">Publish hypotheses, primary outcome and analysis plan (or review protocol) before seeing the data.</p>
+  <div class="row"><b>Counters</b> Publication bias, Forking paths &amp; p-hacking, Overfitting &amp; leakage</div>
+  <div class="row fams"><b>Usable with</b> any design</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">power-analysis</span></div>
+  <h3>Sample-size planning</h3>
+  <p class="gist">Work out in advance how many units you need to detect the smallest effect that matters.</p>
+  <div class="row"><b>Counters</b> Low power</div>
+  <div class="row fams"><b>Usable with</b> any design</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">dag-adjustment</span></div>
+  <h3>Causal diagram (DAG)</h3>
+  <p class="gist">Draw your causal assumptions; adjust for confounders, and deliberately not for colliders or mediators.</p>
+  <div class="row"><b>Counters</b> Confounding, Selection bias, Collider bias</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#0F766E"></span>Descriptive observational <span class="dot" style="background:#1D4ED8"></span>Analytical observational <span class="dot" style="background:#6D28D9"></span>Quasi-experimental</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">matching-ps</span></div>
+  <h3>Matching / propensity scores</h3>
+  <p class="gist">Compare treated and untreated units that are similar on measured characteristics.</p>
+  <div class="row"><b>Counters</b> Confounding, Confounding by indication</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#1D4ED8"></span>Analytical observational <span class="dot" style="background:#6D28D9"></span>Quasi-experimental</div>
+</div></div></section><section class="sheet"><div class="label">Safeguards · fronts</div><div class="grid"><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">negative-control</span></div>
+  <h3>Negative controls</h3>
+  <p class="gist">Test an exposure or outcome that can&#x27;t plausibly be linked; any &#x27;effect&#x27; there exposes hidden bias.</p>
+  <div class="row"><b>Counters</b> Confounding, Confounding by indication</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#0F766E"></span>Descriptive observational <span class="dot" style="background:#1D4ED8"></span>Analytical observational <span class="dot" style="background:#6D28D9"></span>Quasi-experimental</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">sensitivity-analysis</span></div>
+  <h3>Sensitivity analysis</h3>
+  <p class="gist">Re-run under different assumptions (missing data, unmeasured confounding, E-values, model choices). Do conclusions survive?</p>
+  <div class="row"><b>Counters</b> Confounding, Confounding by indication, Attrition &amp; missing data, Apples &amp; oranges, Unvalidated model</div>
+  <div class="row fams"><b>Usable with</b> any design</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">active-comparator</span></div>
+  <h3>Active comparator, new users</h3>
+  <p class="gist">Compare new users of a treatment with new users of an alternative for the same indication.</p>
+  <div class="row"><b>Counters</b> Confounding by indication</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#1D4ED8"></span>Analytical observational</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">time-zero</span></div>
+  <h3>Time-zero alignment</h3>
+  <p class="gist">Start follow-up when eligibility is met and the treatment strategy is assigned, the same moment for everyone.</p>
+  <div class="row"><b>Counters</b> Selection bias, Immortal time bias, Survivorship bias</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#1D4ED8"></span>Analytical observational <span class="dot" style="background:#6D28D9"></span>Quasi-experimental <span class="dot" style="background:#0F766E"></span>Descriptive observational</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">lag-analysis</span></div>
+  <h3>Lag &amp; early-event exclusion</h3>
+  <p class="gist">Measure exposure long before the outcome, or set aside early events, to blunt reverse causation.</p>
+  <div class="row"><b>Counters</b> Reverse causation</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#1D4ED8"></span>Analytical observational <span class="dot" style="background:#0F766E"></span>Descriptive observational</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">concurrent-control</span></div>
+  <h3>Concurrent control group</h3>
+  <p class="gist">Compare against a group measured over the same period, so trends and regression to the mean hit both equally.</p>
+  <div class="row"><b>Counters</b> Regression to the mean, History &amp; secular trends</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#B91C1C"></span>Experimental <span class="dot" style="background:#6D28D9"></span>Quasi-experimental <span class="dot" style="background:#1D4ED8"></span>Analytical observational</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">parallel-trends</span></div>
+  <h3>Pre-trend check &amp; control series</h3>
+  <p class="gist">Show the groups moved in parallel before the intervention, or add a comparison series it couldn&#x27;t have affected.</p>
+  <div class="row"><b>Counters</b> History &amp; secular trends</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#6D28D9"></span>Quasi-experimental</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">cluster-allocation</span></div>
+  <h3>Allocate by cluster</h3>
+  <p class="gist">Assign whole groups (classes, wards, villages) so the intervention can&#x27;t leak into the control group.</p>
+  <div class="row"><b>Counters</b> Contamination &amp; spillover</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#B91C1C"></span>Experimental <span class="dot" style="background:#6D28D9"></span>Quasi-experimental</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">washout</span></div>
+  <h3>Washout period</h3>
+  <p class="gist">Leave enough time between treatment periods for the previous effect to disappear.</p>
+  <div class="row"><b>Counters</b> Carryover</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#B91C1C"></span>Experimental</div>
+</div></div></section><section class="sheet"><div class="label">Safeguards · fronts</div><div class="grid"><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">external-validation</span></div>
+  <h3>External validation</h3>
+  <p class="gist">Test the model or method on data from another time or place that it has never seen.</p>
+  <div class="row"><b>Counters</b> Overfitting &amp; leakage</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#BE185D"></span>Theory &amp; computation <span class="dot" style="background:#78350F"></span>Design &amp; development <span class="dot" style="background:#475569"></span>Measurement</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">multiplicity</span></div>
+  <h3>Multiplicity correction</h3>
+  <p class="gist">Name one primary outcome, or adjust for the number of tests you run.</p>
+  <div class="row"><b>Counters</b> Forking paths &amp; p-hacking</div>
+  <div class="row fams"><b>Usable with</b> any design</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">replication</span></div>
+  <h3>Independent replication</h3>
+  <p class="gist">Another team, sample or site repeats the study, ideally with the same pre-registered plan.</p>
+  <div class="row"><b>Counters</b> Forking paths &amp; p-hacking, Low power, Limited generalizability</div>
+  <div class="row fams"><b>Usable with</b> any design</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">comprehensive-search</span></div>
+  <h3>Comprehensive search</h3>
+  <p class="gist">Search multiple databases, trial registries, preprints and grey literature, and contact authors.</p>
+  <div class="row"><b>Counters</b> Selection bias, Publication bias</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#15803D"></span>Evidence synthesis</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">heterogeneity-plan</span></div>
+  <h3>Pre-planned heterogeneity analysis</h3>
+  <p class="gist">Random-effects models plus pre-specified subgroups and meta-regression to explore why studies differ.</p>
+  <div class="row"><b>Counters</b> Apples &amp; oranges</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#15803D"></span>Evidence synthesis</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">sampling-frame</span></div>
+  <h3>Representative sampling</h3>
+  <p class="gist">Recruit from a defined population (all consecutive patients, a random sample), not whoever is convenient.</p>
+  <div class="row"><b>Counters</b> Selection bias, Collider bias, Survivorship bias, Spectrum bias, Limited generalizability</div>
+  <div class="row fams"><b>Usable with</b> any design</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">validated-measures</span></div>
+  <h3>Validated, objective measures</h3>
+  <p class="gist">Use calibrated instruments, records or validated scales instead of memory or ad-hoc questions, and outcomes that matter rather than unvalidated surrogates.</p>
+  <div class="row"><b>Counters</b> Recall bias, Measurement error, Wrong construct</div>
+  <div class="row fams"><b>Usable with</b> any design</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">reflexivity</span></div>
+  <h3>Reflexivity &amp; double coding</h3>
+  <p class="gist">Keep an audit trail and reflexive notes, have a second analyst code independently, check interpretations with participants.</p>
+  <div class="row"><b>Counters</b> Expectation effects, Researcher bias</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#B45309"></span>Qualitative &amp; mixed <span class="dot" style="background:#15803D"></span>Evidence synthesis <span class="dot" style="background:#78350F"></span>Design &amp; development</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">triangulation</span></div>
+  <h3>Triangulation</h3>
+  <p class="gist">Combine sources, methods or designs with different weaknesses. Trust the conclusions they agree on.</p>
+  <div class="row"><b>Counters</b> Measurement error, Expectation effects, Researcher bias, Wrong construct, Thin data</div>
+  <div class="row fams"><b>Usable with</b> any design</div>
+</div></div></section><section class="sheet"><div class="label">Safeguards · fronts</div><div class="grid"><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">saturation-sampling</span></div>
+  <h3>Theoretical sampling to saturation</h3>
+  <p class="gist">Keep adding cases chosen to challenge emerging ideas, until new data add nothing new.</p>
+  <div class="row"><b>Counters</b> Thin data</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#B45309"></span>Qualitative &amp; mixed</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">multilevel-analysis</span></div>
+  <h3>Multilevel analysis</h3>
+  <p class="gist">Model individuals nested in groups, using individual-level data wherever possible.</p>
+  <div class="row"><b>Counters</b> Ecological fallacy, Unit-of-analysis error</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#0F766E"></span>Descriptive observational <span class="dot" style="background:#1D4ED8"></span>Analytical observational <span class="dot" style="background:#6D28D9"></span>Quasi-experimental <span class="dot" style="background:#B91C1C"></span>Experimental</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">verification-validation</span></div>
+  <h3>Verification &amp; validation</h3>
+  <p class="gist">Verify that the code solves the equations correctly (convergence tests, unit checks); validate the model against real experiments.</p>
+  <div class="row"><b>Counters</b> Unvalidated model</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#BE185D"></span>Theory &amp; computation <span class="dot" style="background:#78350F"></span>Design &amp; development</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">multi-site</span></div>
+  <h3>Multi-site, diverse sample</h3>
+  <p class="gist">Run the study across the settings and populations where the results will actually be used.</p>
+  <div class="row"><b>Counters</b> Limited generalizability</div>
+  <div class="row fams"><b>Usable with</b> any design</div>
+</div><div class="card safeguard">
+  <div class="band">SAFEGUARD<span class="cid">within-comparison</span></div>
+  <h3>Self or sibling comparison</h3>
+  <p class="gist">Compare units with themselves, or siblings with each other, so stable background factors cancel out.</p>
+  <div class="row"><b>Counters</b> Confounding</div>
+  <div class="row fams"><b>Usable with</b> <span class="dot" style="background:#1D4ED8"></span>Analytical observational <span class="dot" style="background:#B91C1C"></span>Experimental</div>
+</div></div></section><section class="sheet"><div class="label">Twists · fronts</div><div class="grid"><div class="card twist">
+  <div class="band">TWIST<span class="cid">T01</span></div>
+  <h3>The ethics board says no</h3>
+  <p class="gist">Withholding or assigning the exposure is judged unethical. No one may be allocated to it.</p>
+  <div class="chips">Adds: <span class="chip">🚫 Can&#x27;t assign</span></div>
+</div><div class="card twist">
+  <div class="band">TWIST<span class="cid">T02</span></div>
+  <h3>Funding cut</h3>
+  <p class="gist">You now have six months and a tenth of the budget.</p>
+  <div class="chips">Adds: <span class="chip">💸 Tight budget</span></div>
+</div><div class="card twist">
+  <div class="band">TWIST<span class="cid">T03</span></div>
+  <h3>Rarer than you thought</h3>
+  <p class="gist">New data: the outcome affects about 1 in 20,000, not 1 in 200.</p>
+  <div class="chips">Adds: <span class="chip">🔎 Rare outcome</span></div>
+</div><div class="card twist">
+  <div class="band">TWIST<span class="cid">T04</span></div>
+  <h3>The registry door opens</h3>
+  <p class="gist">A national registry with 20 years of linked records becomes available to you.</p>
+  <div class="chips">Adds: <span class="chip">🗄️ Existing data</span></div>
+</div><div class="card twist">
+  <div class="band">TWIST<span class="cid">T05</span></div>
+  <h3>The ministry sets a threshold</h3>
+  <p class="gist">Eligibility will be decided by a score: everyone above 60 gets it, everyone below doesn&#x27;t.</p>
+  <div class="chips">Adds: <span class="chip">✂️ Cutoff rule</span></div>
+</div><div class="card twist">
+  <div class="band">TWIST<span class="cid">T06</span></div>
+  <h3>It&#x27;s happening anyway</h3>
+  <p class="gist">The decision is made: everyone gets the intervention within a year. Only the order is open.</p>
+  <div class="chips">Adds: <span class="chip">📅 Rollout</span></div>
+</div><div class="card twist">
+  <div class="band">TWIST<span class="cid">T07</span></div>
+  <h3>They talk to each other</h3>
+  <p class="gist">Participants share tips, materials and gossip. Anything you give one of them, the others get too.</p>
+  <div class="chips">Adds: <span class="chip">👥 Group-level</span></div>
+</div><div class="card twist">
+  <div class="band">TWIST<span class="cid">T08</span></div>
+  <h3>Only one</h3>
+  <p class="gist">It turns out there is only one eligible unit: one patient, one plant, one country.</p>
+  <div class="chips">Adds: <span class="chip">1️⃣ One unit</span></div>
+</div><div class="card twist">
+  <div class="band">TWIST<span class="cid">T09</span></div>
+  <h3>Thirty studies just dropped</h3>
+  <p class="gist">A literature search reveals dozens of primary studies on this exact question.</p>
+  <div class="chips">Adds: <span class="chip">🗂️ Many studies</span></div>
+</div></div></section><section class="sheet"><div class="label">Twists · fronts</div><div class="grid"><div class="card twist">
+  <div class="band">TWIST<span class="cid">T10</span></div>
+  <h3>Into the fog</h3>
+  <p class="gist">Experts can&#x27;t agree what the key variables even are.</p>
+  <div class="chips">Adds: <span class="chip">❓ Uncharted</span></div>
+</div><div class="card twist">
+  <div class="band">TWIST<span class="cid">T11</span></div>
+  <h3>Slow burn</h3>
+  <p class="gist">The effect, if any, would take 15 years to show.</p>
+  <div class="chips">Adds: <span class="chip">⏳ Long latency</span></div>
+</div><div class="card twist">
+  <div class="band">TWIST<span class="cid">T12</span></div>
+  <h3>A brief trigger</h3>
+  <p class="gist">The suspected cause lasts minutes, and the effect comes within hours.</p>
+  <div class="chips">Adds: <span class="chip">⚡ Brief trigger</span></div>
+</div><div class="card twist">
+  <div class="band">TWIST<span class="cid">T13</span></div>
+  <h3>Only a few are exposed</h3>
+  <p class="gist">The exposure is confined to a few hundred people at one site.</p>
+  <div class="chips">Adds: <span class="chip">☢️ Rare exposure</span></div>
+</div><div class="card twist">
+  <div class="band">TWIST<span class="cid">T14</span></div>
+  <h3>Reviewer 2</h3>
+  <p class="gist">Event: the Reviewer may play one extra Threat against every design this round.</p>
+  <div class="chips"><span class="chip">Event</span></div>
+</div><div class="card twist">
+  <div class="band">TWIST<span class="cid">T15</span></div>
+  <h3>Replication crisis</h3>
+  <p class="gist">Event: any design not defended with Preregistration or Independent replication loses 1 point this round.</p>
+  <div class="chips"><span class="chip">Event</span></div>
+</div><div class="card twist">
+  <div class="band">TWIST<span class="cid">T16</span></div>
+  <h3>Open science prize</h3>
+  <p class="gist">Event: +1 point to every player who plays Preregistration, Triangulation or Independent replication this round.</p>
+  <div class="chips"><span class="chip">Event</span></div>
+</div></div></section><section class="sheet"><div class="label">Programmes · fronts</div><div class="grid"><div class="card program">
+  <div class="band">RESEARCH PROGRAMME<span class="cid">P1</span></div>
+  <h3>Screens &amp; teen mental health</h3>
+  <p class="brief">Is social media harming adolescents&#x27; mental health? Parents, platforms and governments want an answer.</p>
+  <ol><li>🧭 How do teenagers themselves describe their social-media use and its effects?</li><li>📊 How common are heavy use and depressive symptoms, and do they co-occur?</li><li>🔗 Does heavy use come before rising symptoms, or the other way round?</li><li>🎯 Does cutting use for four weeks improve mood?</li><li>📚 What do all the trials and cohorts add up to?</li></ol>
+</div><div class="card program">
+  <div class="band">RESEARCH PROGRAMME<span class="cid">P2</span></div>
+  <h3>Microplastics in our bodies</h3>
+  <p class="brief">Microplastics turn up in blood, placentas and arteries. Are they a health problem?</p>
+  <ol><li>📚 What has been studied so far, with which methods, and where are the gaps?</li><li>📏 Do different labs measuring the same tissue sample find the same particle counts?</li><li>📊 How much do people carry, and does it vary by region and age?</li><li>🔗 Do people with more microplastics in arterial plaque have more heart attacks later?</li><li>🧮 Through what cellular mechanism could particles cause inflammation, and at what dose?</li></ol>
+</div><div class="card program">
+  <div class="band">RESEARCH PROGRAMME<span class="cid">P3</span></div>
+  <h3>A soft gripper for fruit picking</h3>
+  <p class="brief">Growers can&#x27;t find seasonal workers. Can a soft robotic gripper pick strawberries without bruising them?</p>
+  <ol><li>📚 What gripper designs exist, and how have they been evaluated?</li><li>🛠️ Design a gripper that growers and pickers find usable.</li><li>🎯 Which combination of finger material, pressure and approach speed minimizes bruising?</li><li>🛠️ Does it beat existing grippers on a shared set of fruits and metrics?</li><li>🛠️ Can it run a full shift in a real greenhouse? Will staff keep using it?</li></ol>
+</div><div class="card program">
+  <div class="band">RESEARCH PROGRAMME<span class="cid">P4</span></div>
+  <h3>The four-day week</h3>
+  <p class="brief">A government wants to know if a 32-hour week at full pay is good for workers and firms.</p>
+  <ol><li>🧭 How did the first companies that tried it make it work, or fail?</li><li>🛠️ Can firms be recruited, and can productivity and well-being be measured consistently?</li><li>🎯 Sixty firms volunteered and all will switch eventually. Does it affect burnout and output?</li><li>🎯 A whole country adopted it by law in one year. What happened to national productivity?</li><li>📚 Why does it work in some sectors and not in others?</li></ol>
+</div><div class="card program">
+  <div class="band">RESEARCH PROGRAMME<span class="cid">P5</span></div>
+  <h3>A new post-viral syndrome</h3>
+  <p class="brief">Months after a new infection, some people report exhaustion and brain fog. What is it, and what helps?</p>
+  <ol><li>📊 What do the first patients look like?</li><li>📊 How common is it among people who were infected?</li><li>🔗 Who is at risk? Does vaccination before infection change the odds?</li><li>🎯 Twelve candidate treatments are proposed. Which work?</li><li>📚 Ranking the treatments when few were compared head-to-head.</li></ol>
+</div><div class="card program">
+  <div class="band">RESEARCH PROGRAMME<span class="cid">P6</span></div>
+  <h3>AI triage in the emergency department</h3>
+  <p class="brief">A hospital group wants an AI tool that flags patients who will need intensive care.</p>
+  <ol><li>🔮 Can routine data predict ICU admission within 24 hours?</li><li>🔮 Does it still work at another hospital, a year later?</li><li>📏 Do nurses agree with each other, and with the tool, on the triage level?</li><li>🎯 The tool will be switched on in all 8 hospitals this year. Does it save lives?</li><li>🧭 Why do some clinicians override it so often?</li></ol>
+</div></div></section><section class="sheet"><div class="label">Programmes · backs (print duplex, flip on long edge)</div><div class="grid"><div class="card program qback">
+  <div class="band">PROGRAMME KEY<span class="cid">P3</span></div>
+  <h3>A soft gripper for fruit picking</h3>
+  <ol><li>Scoping review, Systematic review &amp; meta-analysis</li><li>Design science (build &amp; evaluate)</li><li>Factorial experiment (DoE)</li><li>Benchmark evaluation</li><li>Pilot / feasibility study, Field experiment, Mixed methods (sequential)</li></ol>
+</div><div class="card program qback">
+  <div class="band">PROGRAMME KEY<span class="cid">P2</span></div>
+  <h3>Microplastics in our bodies</h3>
+  <ol><li>Scoping review</li><li>Interlaboratory comparison, Reliability &amp; agreement study</li><li>Cross-sectional survey, Monitoring / surveillance</li><li>Prospective cohort, Retrospective cohort</li><li>Factorial experiment (DoE), Computational simulation, Analytical / mathematical theory</li></ol>
+</div><div class="card program qback">
+  <div class="band">PROGRAMME KEY<span class="cid">P1</span></div>
+  <h3>Screens &amp; teen mental health</h3>
+  <ol><li>Interviews &amp; thematic analysis, Ethnography, Grounded theory</li><li>Cross-sectional survey</li><li>Prospective cohort, Retrospective cohort</li><li>Randomized controlled trial, Cluster randomized trial</li><li>Systematic review &amp; meta-analysis</li></ol>
+</div><div class="card program qback">
+  <div class="band">PROGRAMME KEY<span class="cid">P6</span></div>
+  <h3>AI triage in the emergency department</h3>
+  <ol><li>Prediction model (statistical / ML)</li><li>Prediction model (statistical / ML), Benchmark evaluation</li><li>Reliability &amp; agreement study</li><li>Stepped-wedge trial, Cluster randomized trial, Interrupted time series</li><li>Interviews &amp; thematic analysis, Ethnography, Mixed methods (sequential)</li></ol>
+</div><div class="card program qback">
+  <div class="band">PROGRAMME KEY<span class="cid">P5</span></div>
+  <h3>A new post-viral syndrome</h3>
+  <ol><li>Case report / case series</li><li>Cross-sectional survey, Prospective cohort</li><li>Retrospective cohort, Prospective cohort, Target trial emulation</li><li>Adaptive / platform trial, Randomized controlled trial</li><li>Network meta-analysis</li></ol>
+</div><div class="card program qback">
+  <div class="band">PROGRAMME KEY<span class="cid">P4</span></div>
+  <h3>The four-day week</h3>
+  <ol><li>Case study (in-depth), Interviews &amp; thematic analysis</li><li>Pilot / feasibility study</li><li>Stepped-wedge trial, Cluster randomized trial</li><li>Synthetic control, Interrupted time series, Difference-in-differences</li><li>Realist review</li></ol>
+</div></div></section></body></html>

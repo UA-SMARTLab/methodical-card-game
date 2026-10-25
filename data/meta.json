@@ -1,0 +1,43 @@
+{
+  "title": "Methodical",
+  "tagline": "Every question deserves the right design.",
+  "version": "0.1 (prototype)",
+  "suits": [
+    {"id": "DESCRIBE",   "icon": "📊", "name": "Describe",   "ask": "What is it? How much, how often, where, and is it changing?"},
+    {"id": "EXPLORE",    "icon": "🧭", "name": "Explore",    "ask": "What is going on here? How and why do people experience or do it?"},
+    {"id": "ASSOCIATE",  "icon": "🔗", "name": "Associate",  "ask": "Do X and Y go together, and does X come first?"},
+    {"id": "CAUSE",      "icon": "🎯", "name": "Cause",      "ask": "Does changing X change Y? Does the intervention work?"},
+    {"id": "PREDICT",    "icon": "🔮", "name": "Predict",    "ask": "What will happen, and to whom?"},
+    {"id": "MEASURE",    "icon": "📏", "name": "Measure",    "ask": "Can we measure it accurately, reliably, and validly?"},
+    {"id": "EXPLAIN",    "icon": "🧮", "name": "Explain",    "ask": "What mechanism or law must hold? What follows from the theory?"},
+    {"id": "BUILD",      "icon": "🛠️", "name": "Build",      "ask": "Can we make something that works, and is the plan feasible?"},
+    {"id": "SYNTHESIZE", "icon": "📚", "name": "Synthesize", "ask": "What does all the existing evidence say?"}
+  ],
+  "families": [
+    {"id": "descriptive",   "name": "Descriptive observational", "color": "#0F766E"},
+    {"id": "analytical",    "name": "Analytical observational",  "color": "#1D4ED8"},
+    {"id": "quasi",         "name": "Quasi-experimental",        "color": "#6D28D9"},
+    {"id": "experimental",  "name": "Experimental",              "color": "#B91C1C"},
+    {"id": "qualitative",   "name": "Qualitative & mixed",       "color": "#B45309"},
+    {"id": "synthesis",     "name": "Evidence synthesis",        "color": "#15803D"},
+    {"id": "measurement",   "name": "Measurement",               "color": "#475569"},
+    {"id": "computational", "name": "Theory & computation",      "color": "#BE185D"},
+    {"id": "engineering",   "name": "Design & development",      "color": "#78350F"}
+  ],
+  "constraints": [
+    {"id": "no-assign",         "icon": "🚫", "name": "Can't assign",   "text": "You can't (ethically or practically) decide who or what gets the exposure."},
+    {"id": "rare-outcome",      "icon": "🔎", "name": "Rare outcome",   "text": "The outcome is rare: roughly 1 in 1,000 or rarer."},
+    {"id": "rare-exposure",     "icon": "☢️", "name": "Rare exposure",  "text": "Only a small, identifiable group is exposed."},
+    {"id": "long-latency",      "icon": "⏳", "name": "Long latency",   "text": "Years or decades pass between cause and effect."},
+    {"id": "transient",         "icon": "⚡", "name": "Brief trigger",  "text": "The exposure is brief and its effect is immediate."},
+    {"id": "existing-data",     "icon": "🗄️", "name": "Existing data",  "text": "Records, registries, logs or archives already exist."},
+    {"id": "single-unit",       "icon": "1️⃣", "name": "One unit",       "text": "Only one or a handful of units: one patient, one country, one factory."},
+    {"id": "group-level",       "icon": "👥", "name": "Group-level",    "text": "The exposure acts on whole groups, or would spill over between people."},
+    {"id": "cutoff",            "icon": "✂️", "name": "Cutoff rule",    "text": "A threshold on a score decides who gets the exposure."},
+    {"id": "rollout",           "icon": "📅", "name": "Rollout",        "text": "Everyone will get the intervention anyway; only the timing is flexible."},
+    {"id": "fast-cheap",        "icon": "💸", "name": "Tight budget",   "text": "Weeks or months, not years; a small budget."},
+    {"id": "unknown-territory", "icon": "❓", "name": "Uncharted",      "text": "Little prior theory; you don't yet know which variables matter."},
+    {"id": "many-studies",      "icon": "🗂️", "name": "Many studies",   "text": "A substantial body of primary research already exists."}
+  ],
+  "scoring": {"best": 3, "ok": 1, "trap": -2, "unlisted": 0, "appeal_win": 1}
+}

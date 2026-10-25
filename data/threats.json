@@ -1,0 +1,141 @@
+[
+  {"id": "confounding", "name": "Confounding",
+   "text": "A third factor causes both the exposure and the outcome, faking or hiding an effect.",
+   "example": "Coffee drinkers seemed to get more lung cancer, because coffee drinkers smoked more.",
+   "countered_by": ["randomization", "dag-adjustment", "matching-ps", "negative-control", "within-comparison", "sensitivity-analysis"]},
+
+  {"id": "confounding-indication", "name": "Confounding by indication",
+   "text": "The reason someone is treated is itself linked to the outcome, so treatment looks harmful (or helpful) when it isn't.",
+   "example": "In routine records, a heart drug looked deadly because doctors reserved it for the sickest patients.",
+   "countered_by": ["randomization", "active-comparator", "matching-ps", "sensitivity-analysis", "negative-control"]},
+
+  {"id": "selection-bias", "name": "Selection bias",
+   "text": "Who gets into (or stays in) the sample depends on the exposure, the outcome, or both.",
+   "example": "Literary Digest (1936) mailed 10 million ballots, largely to phone and car owners; the 2.4 million returned predicted Landon. Roosevelt won in a landslide.",
+   "countered_by": ["sampling-frame", "allocation-concealment", "dag-adjustment", "comprehensive-search", "itt", "time-zero"]},
+
+  {"id": "attrition", "name": "Attrition & missing data",
+   "text": "Participants drop out, or data go missing, for reasons related to the treatment or the outcome.",
+   "example": "In a weight-loss trial, the people who weren't losing weight quietly stopped coming. The remaining group looked great.",
+   "countered_by": ["itt", "sensitivity-analysis"]},
+
+  {"id": "recall-bias", "name": "Recall bias",
+   "text": "People with the outcome remember or report past exposures differently from people without it.",
+   "example": "Mothers of babies with birth defects search their memory harder for medicines taken in pregnancy.",
+   "countered_by": ["validated-measures", "blinding"]},
+
+  {"id": "measurement-error", "name": "Measurement error",
+   "text": "The instrument is noisy, biased, drifting, or used differently across groups or over time.",
+   "example": "Self-reported diets underestimate energy intake, and more so in some groups than in others.",
+   "countered_by": ["validated-measures", "blinding", "triangulation"]},
+
+  {"id": "reverse-causation", "name": "Reverse causation",
+   "text": "The outcome (or its early stages) causes the exposure, not the other way round.",
+   "example": "Thin older adults die sooner, partly because illness causes weight loss years before death.",
+   "countered_by": ["lag-analysis", "randomization"]},
+
+  {"id": "regression-mean", "name": "Regression to the mean",
+   "text": "Units picked for extreme values drift back toward average on re-measurement, with or without any intervention.",
+   "example": "Pupils chosen for tutoring after their worst-ever test score improve next time, tutoring or not.",
+   "countered_by": ["concurrent-control", "randomization"]},
+
+  {"id": "expectation", "name": "Expectation effects",
+   "text": "Placebo, Hawthorne and observer effects: knowing who got what changes behaviour, symptoms or readings.",
+   "example": "Moseley et al. (2002): sham knee arthroscopy relieved pain as much as the real operation.",
+   "countered_by": ["blinding", "placebo-sham", "reflexivity", "triangulation"]},
+
+  {"id": "contamination", "name": "Contamination & spillover",
+   "text": "The control group gets exposed to the intervention, or effects spill over between units, diluting the difference.",
+   "example": "Control-group teachers borrowed the new curriculum from their colleagues down the hall.",
+   "countered_by": ["cluster-allocation"]},
+
+  {"id": "immortal-time", "name": "Immortal time bias",
+   "text": "The treated group is credited with follow-up time during which, by definition, the outcome couldn't happen.",
+   "example": "Oscar winners seemed to live ~4 years longer than nominees, partly because you must survive long enough to win.",
+   "countered_by": ["time-zero"]},
+
+  {"id": "collider", "name": "Collider bias",
+   "text": "Selecting or adjusting on a common effect of exposure and outcome creates a spurious association (Berkson's bias).",
+   "example": "Among hospital patients, two unrelated diseases look linked, because having either one gets you admitted.",
+   "countered_by": ["dag-adjustment", "sampling-frame"]},
+
+  {"id": "ecological-fallacy", "name": "Ecological fallacy",
+   "text": "Concluding something about individuals from an association seen only between groups.",
+   "example": "Robinson (1950): US states with more immigrants had higher literacy, though immigrants themselves were less often literate.",
+   "countered_by": ["multilevel-analysis"]},
+
+  {"id": "unit-of-analysis", "name": "Unit-of-analysis error",
+   "text": "Groups are randomized or sampled, but individuals are analysed as if independent. False precision follows.",
+   "example": "A trial randomizing 10 schools analysed 3,000 pupils as independent and reported impossibly narrow confidence intervals.",
+   "countered_by": ["multilevel-analysis"]},
+
+  {"id": "survivorship", "name": "Survivorship bias",
+   "text": "Only the survivors, successes or still-present units are observed; the failures are invisible.",
+   "example": "Wald, WWII: armour belongs where returning bombers had no bullet holes, because the planes hit there never came back.",
+   "countered_by": ["sampling-frame", "time-zero"]},
+
+  {"id": "publication-bias", "name": "Publication bias",
+   "text": "Positive results get published, null results stay in the drawer, and the literature lies by omission.",
+   "example": "Turner et al. (2008): almost all positive antidepressant trials were published; most negative ones were not, or were spun.",
+   "countered_by": ["comprehensive-search", "preregistration"]},
+
+  {"id": "forking-paths", "name": "Forking paths & p-hacking",
+   "text": "Flexible choices of outcomes, subgroups and analyses, or peeking at the data, until something is 'significant'.",
+   "example": "Simmons et al. (2011) used flexible analyses to 'show' that listening to a Beatles song made people younger.",
+   "countered_by": ["preregistration", "multiplicity", "replication"]},
+
+  {"id": "low-power", "name": "Low power",
+   "text": "Too few units to detect a realistic effect; the 'significant' findings that do emerge are exaggerated.",
+   "example": "Button et al. (2013): median statistical power in neuroscience studies was about 21%.",
+   "countered_by": ["power-analysis", "replication"]},
+
+  {"id": "overfitting-leakage", "name": "Overfitting & leakage",
+   "text": "The model memorizes noise, or sees information from the test data or the future, and fails in the real world.",
+   "example": "Chest X-ray AI learned to recognize which hospital (and scanner) an image came from, not the disease (Zech et al., 2018).",
+   "countered_by": ["external-validation", "preregistration"]},
+
+  {"id": "spectrum-bias", "name": "Spectrum bias",
+   "text": "A test or rater is evaluated on clear-cut cases and obvious non-cases rather than on the realistic mix of patients or samples.",
+   "example": "Tests that look near-perfect on severe cases vs. healthy volunteers falter on the mild, ambiguous patients in real clinics.",
+   "countered_by": ["sampling-frame"]},
+
+  {"id": "history-trend", "name": "History & secular trends",
+   "text": "Something else changed at the same time (a trend, the season, another policy) and takes the credit or the blame.",
+   "example": "A hospital's hygiene campaign coincided with a nationwide fall in infections and got credit for both.",
+   "countered_by": ["concurrent-control", "parallel-trends"]},
+
+  {"id": "carryover", "name": "Carryover",
+   "text": "The effect of an earlier treatment period bleeds into the next one.",
+   "example": "A drug's effect lingered into the placebo period of a crossover trial, making placebo look effective.",
+   "countered_by": ["washout"]},
+
+  {"id": "researcher-lens", "name": "Researcher bias",
+   "text": "The analyst's expectations, attachments or position shape what is seen, coded and reported.",
+   "example": "Analysts who knew the hypothesis read ambiguous interview passages as supporting it.",
+   "countered_by": ["reflexivity", "blinding", "triangulation"]},
+
+  {"id": "external-validity", "name": "Limited generalizability",
+   "text": "The sample, setting or conditions differ from where the results will be used.",
+   "example": "Henrich et al. (2010): most psychology findings came from WEIRD samples (Western, Educated, Industrialized, Rich, Democratic).",
+   "countered_by": ["multi-site", "sampling-frame", "replication"]},
+
+  {"id": "heterogeneity", "name": "Apples & oranges",
+   "text": "Studies, populations or interventions pooled together differ so much that the average means little.",
+   "example": "Pooling trials of different drugs, doses and patients gives a precise average of nothing in particular.",
+   "countered_by": ["heterogeneity-plan", "sensitivity-analysis"]},
+
+  {"id": "model-assumptions", "name": "Unvalidated model",
+   "text": "A model, derivation or simulation rests on unchecked assumptions, wrong inputs or numerical artifacts.",
+   "example": "The Mars Climate Orbiter was lost in 1999: one team's software used imperial units, the other expected metric.",
+   "countered_by": ["verification-validation", "sensitivity-analysis"]},
+
+  {"id": "construct-validity", "name": "Wrong construct",
+   "text": "You measure a proxy or surrogate that doesn't capture what you actually care about.",
+   "example": "CAST (1989): drugs that suppressed irregular heartbeats on monitors increased deaths.",
+   "countered_by": ["validated-measures", "triangulation"]},
+
+  {"id": "thin-data", "name": "Thin data",
+   "text": "Too few or too similar cases and voices; conclusions are drawn before the data are rich enough.",
+   "example": "Six interviews with enthusiastic early adopters produced a 'theory' that collapsed when sceptics were interviewed.",
+   "countered_by": ["saturation-sampling", "triangulation"]}
+]

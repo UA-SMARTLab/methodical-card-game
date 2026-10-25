@@ -1,0 +1,56 @@
+[
+  {"id": "P1", "name": "Screens & teen mental health",
+   "brief": "Is social media harming adolescents' mental health? Parents, platforms and governments want an answer.",
+   "stages": [
+     {"suit": "EXPLORE",    "ask": "How do teenagers themselves describe their social-media use and its effects?", "accept": ["interviews-thematic", "ethnography", "grounded-theory"]},
+     {"suit": "DESCRIBE",   "ask": "How common are heavy use and depressive symptoms, and do they co-occur?", "accept": ["cross-sectional"]},
+     {"suit": "ASSOCIATE",  "ask": "Does heavy use come before rising symptoms, or the other way round?", "accept": ["cohort-prospective", "cohort-retrospective"]},
+     {"suit": "CAUSE",      "ask": "Does cutting use for four weeks improve mood?", "accept": ["rct", "cluster-rct"]},
+     {"suit": "SYNTHESIZE", "ask": "What do all the trials and cohorts add up to?", "accept": ["systematic-review"]}
+   ]},
+  {"id": "P2", "name": "Microplastics in our bodies",
+   "brief": "Microplastics turn up in blood, placentas and arteries. Are they a health problem?",
+   "stages": [
+     {"suit": "SYNTHESIZE", "ask": "What has been studied so far, with which methods, and where are the gaps?", "accept": ["scoping-review"]},
+     {"suit": "MEASURE",    "ask": "Do different labs measuring the same tissue sample find the same particle counts?", "accept": ["interlab", "reliability"]},
+     {"suit": "DESCRIBE",   "ask": "How much do people carry, and does it vary by region and age?", "accept": ["cross-sectional", "surveillance"]},
+     {"suit": "ASSOCIATE",  "ask": "Do people with more microplastics in arterial plaque have more heart attacks later?", "accept": ["cohort-prospective", "cohort-retrospective"]},
+     {"suit": "EXPLAIN",    "ask": "Through what cellular mechanism could particles cause inflammation, and at what dose?", "accept": ["factorial-doe", "simulation", "analytical-model"]}
+   ]},
+  {"id": "P3", "name": "A soft gripper for fruit picking",
+   "brief": "Growers can't find seasonal workers. Can a soft robotic gripper pick strawberries without bruising them?",
+   "stages": [
+     {"suit": "SYNTHESIZE", "ask": "What gripper designs exist, and how have they been evaluated?", "accept": ["scoping-review", "systematic-review"]},
+     {"suit": "BUILD",      "ask": "Design a gripper that growers and pickers find usable.", "accept": ["design-science"]},
+     {"suit": "CAUSE",      "ask": "Which combination of finger material, pressure and approach speed minimizes bruising?", "accept": ["factorial-doe"]},
+     {"suit": "BUILD",      "ask": "Does it beat existing grippers on a shared set of fruits and metrics?", "accept": ["benchmark"]},
+     {"suit": "BUILD",      "ask": "Can it run a full shift in a real greenhouse? Will staff keep using it?", "accept": ["pilot", "field-experiment", "mixed-sequential"]}
+   ]},
+  {"id": "P4", "name": "The four-day week",
+   "brief": "A government wants to know if a 32-hour week at full pay is good for workers and firms.",
+   "stages": [
+     {"suit": "EXPLORE",    "ask": "How did the first companies that tried it make it work, or fail?", "accept": ["case-study", "interviews-thematic"]},
+     {"suit": "BUILD",      "ask": "Can firms be recruited, and can productivity and well-being be measured consistently?", "accept": ["pilot"]},
+     {"suit": "CAUSE",      "ask": "Sixty firms volunteered and all will switch eventually. Does it affect burnout and output?", "accept": ["stepped-wedge", "cluster-rct"]},
+     {"suit": "CAUSE",      "ask": "A whole country adopted it by law in one year. What happened to national productivity?", "accept": ["synthetic-control", "its", "did"]},
+     {"suit": "SYNTHESIZE", "ask": "Why does it work in some sectors and not in others?", "accept": ["realist-review"]}
+   ]},
+  {"id": "P5", "name": "A new post-viral syndrome",
+   "brief": "Months after a new infection, some people report exhaustion and brain fog. What is it, and what helps?",
+   "stages": [
+     {"suit": "DESCRIBE",   "ask": "What do the first patients look like?", "accept": ["case-report"]},
+     {"suit": "DESCRIBE",   "ask": "How common is it among people who were infected?", "accept": ["cross-sectional", "cohort-prospective"]},
+     {"suit": "ASSOCIATE",  "ask": "Who is at risk? Does vaccination before infection change the odds?", "accept": ["cohort-retrospective", "cohort-prospective", "target-trial"]},
+     {"suit": "CAUSE",      "ask": "Twelve candidate treatments are proposed. Which work?", "accept": ["adaptive-platform", "rct"]},
+     {"suit": "SYNTHESIZE", "ask": "Ranking the treatments when few were compared head-to-head.", "accept": ["network-meta"]}
+   ]},
+  {"id": "P6", "name": "AI triage in the emergency department",
+   "brief": "A hospital group wants an AI tool that flags patients who will need intensive care.",
+   "stages": [
+     {"suit": "PREDICT",    "ask": "Can routine data predict ICU admission within 24 hours?", "accept": ["prediction-model"]},
+     {"suit": "PREDICT",    "ask": "Does it still work at another hospital, a year later?", "accept": ["prediction-model", "benchmark"]},
+     {"suit": "MEASURE",    "ask": "Do nurses agree with each other, and with the tool, on the triage level?", "accept": ["reliability"]},
+     {"suit": "CAUSE",      "ask": "The tool will be switched on in all 8 hospitals this year. Does it save lives?", "accept": ["stepped-wedge", "cluster-rct", "its"]},
+     {"suit": "EXPLORE",    "ask": "Why do some clinicians override it so often?", "accept": ["interviews-thematic", "ethnography", "mixed-sequential"]}
+   ]}
+]
