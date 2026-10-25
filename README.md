@@ -1,0 +1,56 @@
+# Methodical
+
+**A card game for scientists that teaches research design.** Read a research problem, pick the study design that can
+actually answer it, then defend that design when a reviewer attacks it with a bias.
+
+![A Question card, its answer on the back, the matching Design card, its typical Threat and the Safeguard that counters it](print/preview.png)
+
+*One full chain:* a 🔗 **Associate** question with a 🔎 rare outcome → **case–control study** (best) → its typical threat, **recall bias** →
+countered by **validated, objective measures**.
+
+## What's in the box
+
+| Deck | Cards | Role |
+|---|---:|---|
+| Question | 60 | Research problems from medicine, ecology, astronomy, economics, engineering, robotics, chemistry, education… with a three-tier answer key on the back |
+| Design | 46 | Study types in 9 colour-coded families, from case reports to Mendelian randomization, realist reviews and design science |
+| Threat | 28 | Biases and validity threats, each with a real historical example (the "fallacy" deck) |
+| Safeguard | 32 | Design and analysis features that counter specific threats (the "refutation" deck) |
+| Twist | 16 | Mid-round changes: "The ethics board says no", "Funding cut", "Thirty studies just dropped" |
+| Research Programme | 6 | Five-stage cooperative challenges, e.g. *Screens & teen mental health*, *A soft gripper for fruit picking* |
+| Reference | 4 | Suits, constraints, families, scoring |
+
+## Start here
+
+- **Play solo now:** open [`app/index.html`](app/index.html) in any browser. It works offline.
+- **Print a prototype:** open [`print/cards.html`](print/cards.html) in Chrome, print at 100% on A4, duplex for the Question pages, and cut. That gives 192 poker-size cards.
+- **Rules:** [`RULES.md`](RULES.md) has four modes: *Methods Map* (classroom), *Peer Review* (competitive), *Research Programme* (cooperative) and *Reviewer 2* (drill).
+- **Why it's built this way:** [`DESIGN.md`](DESIGN.md) covers the taxonomy, the learning goals, the answer-key philosophy and open questions.
+- **Answer key:** [`ANSWER_KEY.md`](ANSWER_KEY.md) lists every question with its tiers and rationale.
+
+## How it works in one paragraph
+
+Every question has a **suit**, the kind of knowledge wanted (Describe, Explore, Associate, Cause, Predict, Measure,
+Explain, Build, Synthesize), and **constraint** icons such as *can't assign*, *rare outcome*, *cutoff rule*, *one unit*
+or *many studies*. Every design card says which suits it serves and which constraints it fits or struggles with.
+Constraints, not topics, decide between otherwise good designs, and learning to see that is the point of the game.
+Answers are scored **best +3 / defensible +1 / trap −2**, and an unlisted answer can be **appealed** to the table,
+because methodologists disagree.
+
+## Editing the cards
+
+All content lives in [`data/`](data) as JSON, one file per deck. After editing, run:
+
+```sh
+python3 tools/build.py
+```
+
+The script (standard library only) validates every cross-reference and regenerates the print sheets, the answer key
+and the app. It checks that every design is the best answer somewhere, that every design weakness has a usable
+safeguard, and that each question's key threat is one its best design is actually weak to.
+
+## Status
+
+Prototype v0.1: complete content, printable, playable solo. The answer key has had one independent methodological
+review pass, and its corrections are applied. Next steps are in [`DESIGN.md` §7](DESIGN.md#7-open-questions-and-next-steps),
+starting with playtesting the Peer Review scoring and expert review per field.

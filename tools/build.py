@@ -418,8 +418,15 @@ def build_app():
     bundle = {"meta": meta, "designs": designs, "questions": questions, "threats": threats,
               "safeguards": safeguards, "twists": twists, "programs": programs}
     data = json.dumps(bundle, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    page = tpl.replace("/*__DATA__*/null", data)
+    # The template is page content only (the hosted version wraps it); the local copy gets its own skeleton.
     out = ROOT / "app" / "index.html"
-    out.write_text(tpl.replace("/*__DATA__*/null", data), encoding="utf-8")
+    out.write_text('<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
+                   '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">'
+                   '<style>[hidden]{display:none!important}body{margin:0}</style></head><body>\n'
+                   + page + "\n</body></html>\n", encoding="utf-8")
+    if "--artifact" in sys.argv:
+        Path(sys.argv[sys.argv.index("--artifact") + 1]).write_text(page, encoding="utf-8")
     return out
 
 

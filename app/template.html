@@ -1,0 +1,485 @@
+<title>Methodical</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap" media="print" onload="this.media='all'">
+<style>
+/* Layout: a lab bench. The dealt question card and its verdict sit on top; below, a periodic table of the 46 designs in family columns. A sticky tray holds the chosen design. */
+:root {
+  --bg: #EEF1F4; --grid: rgba(35, 64, 168, .07); --surface: #FFFFFF; --ink: #141922; --muted: #596273;
+  --line: #D5DBE3; --accent: #2340A8; --accent-ink: #FFFFFF;
+  --gold: #946F00; --gold-bg: #FFF4CC; --silver: #5F6875; --silver-bg: #ECEEF1; --trap: #B42318; --trap-bg: #FDE7E4;
+  --good: #137A3C; --band: #141922; --shadow: 0 1px 2px rgba(20,25,34,.08), 0 8px 24px rgba(20,25,34,.08);
+  --f-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0E131A; --grid: rgba(148, 163, 184, .06); --surface: #161D27; --ink: #E5E9EF; --muted: #98A2B1;
+  --line: #2A3441; --accent: #8AA6FF; --accent-ink: #0E131A;
+  --gold: #E8BC4A; --gold-bg: #3A3016; --silver: #B3BAC5; --silver-bg: #252D38; --trap: #FF7A6B; --trap-bg: #3D1C19;
+  --good: #57D987; --band: #2A3546; --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3); color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0E131A; --grid: rgba(148, 163, 184, .06); --surface: #161D27; --ink: #E5E9EF; --muted: #98A2B1;
+  --line: #2A3441; --accent: #8AA6FF; --accent-ink: #0E131A;
+  --gold: #E8BC4A; --gold-bg: #3A3016; --silver: #B3BAC5; --silver-bg: #252D38; --trap: #FF7A6B; --trap-bg: #3D1C19;
+  --good: #57D987; --band: #2A3546; --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3); color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  background-color: var(--bg); color: var(--ink); font: 15px/1.5 var(--f-body);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.wrap { max-width: 1240px; margin: 0 auto; padding-block: 20px 120px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
+.mono { font-family: var(--f-mono); font-size: 12px; letter-spacing: .04em; }
+.label { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* header */
+header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.brand h1 { font-size: clamp(32px, 6vw, 52px); font-weight: 800; letter-spacing: -.02em; line-height: .95; }
+.brand p { margin: 6px 0 0; color: var(--muted); max-width: 52ch; }
+.stats { display: flex; gap: 20px; font-variant-numeric: tabular-nums; }
+.stat b { display: block; font-family: var(--f-display); font-size: 26px; line-height: 1; }
+nav { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 20px; overflow-x: auto; }
+nav button { background: none; border: 0; padding: 10px 14px; border-bottom: 3px solid transparent; color: var(--muted); font-weight: 600; white-space: nowrap; }
+nav button[aria-selected="true"] { color: var(--ink); border-color: var(--accent); }
+
+/* bench */
+.bench { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 24px; align-items: start; margin-bottom: 28px; }
+@media (max-width: 760px) { .bench { grid-template-columns: minmax(0, 1fr); } }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+select, .btn { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; font: inherit; font-size: 14px; color: var(--ink); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); }
+
+/* the dealt card */
+.qcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; aspect-ratio: 63 / 88; display: flex; flex-direction: column; max-width: 100%; }
+.qcard .band { background: var(--band); color: #fff; padding: 9px 14px; display: flex; justify-content: space-between; font: 600 12px var(--f-mono); letter-spacing: .08em; }
+.qcard .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; min-height: 0; }
+.qcard h2 { font-size: 24px; font-weight: 800; line-height: 1.05; }
+.qcard .text { font-size: 16px; line-height: 1.45; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--line); border-radius: 99px; padding: 2px 9px; font-size: 13px; white-space: nowrap; background: var(--bg); }
+@media (max-width: 760px) { .qcard { aspect-ratio: auto; } }
+.qcard .hint { margin-top: auto; font-size: 13px; color: var(--muted); font-style: italic; border-top: 1px solid var(--line); padding-top: 8px; }
+.deal { animation: deal .45s cubic-bezier(.2,.8,.2,1); }
+@keyframes deal { from { transform: translateY(-14px) rotate(-3deg); opacity: .3; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .deal { animation: none; } }
+
+/* verdict panel */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; min-width: 0; }
+.panel h3 { font-size: 22px; margin-bottom: 6px; }
+.panel p { margin: 0 0 10px; max-width: 70ch; }
+.steps { margin: 8px 0 0; padding-left: 20px; color: var(--muted); }
+.steps li { margin-bottom: 4px; }
+.verdict { display: inline-flex; align-items: center; gap: 10px; border-radius: 10px; padding: 8px 14px; font-weight: 600; margin-bottom: 12px; }
+.verdict .pts { font-family: var(--f-display); font-size: 24px; font-weight: 800; }
+.v-best { background: var(--gold-bg); color: var(--gold); }
+.v-ok { background: var(--silver-bg); color: var(--silver); }
+.v-trap { background: var(--trap-bg); color: var(--trap); }
+.v-unlisted { background: var(--silver-bg); color: var(--muted); }
+.key { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; margin: 10px 0 14px; font-size: 14px; }
+.key dt { font-weight: 600; }
+.key dd { margin: 0; }
+.trapline { color: var(--trap); }
+.review { border-top: 1px dashed var(--line); margin-top: 16px; padding-top: 16px; }
+.threat-tag { display: inline-block; background: var(--trap-bg); color: var(--trap); border-radius: 6px; padding: 1px 8px; font-weight: 600; }
+.opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; margin-top: 10px; }
+.opt { text-align: left; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.opt b { display: block; }
+.opt span { font-size: 13px; color: var(--muted); }
+.opt.right { border-color: var(--good); box-shadow: inset 0 0 0 1px var(--good); }
+.opt.wrong { border-color: var(--trap); opacity: .8; }
+.row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+
+/* periodic table of methods */
+.table-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 8px; margin-bottom: 10px; }
+.table-head h2 { font-size: 22px; }
+.ptable { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 8px; }
+@media (max-width: 1000px) { .ptable { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .ptable { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.fam { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.fam h4 { margin: 0; font: 600 11px/1.25 var(--f-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); min-height: 2.5em; display: flex; align-items: end; gap: 6px; }
+.fam h4 i { flex: none; width: 10px; height: 10px; border-radius: 2px; background: var(--c); }
+.el { position: relative; text-align: left; background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--c); border-radius: 6px; padding: 5px 7px 7px; min-height: 76px; display: flex; flex-direction: column; transition: transform .12s, box-shadow .12s, opacity .2s; }
+.el:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.el .num { font: 500 10px var(--f-mono); color: var(--muted); }
+.el .sym { font: 800 22px/1 var(--f-display); letter-spacing: -.01em; }
+.el .nm { font-size: 11.5px; line-height: 1.25; margin-top: 3px; }
+.el .warn { position: absolute; top: 4px; right: 6px; font-size: 11px; }
+.el[aria-pressed="true"] { outline: 3px solid var(--accent); outline-offset: 1px; }
+.el.dim { opacity: .35; }
+.el.mark-best { background: var(--gold-bg); }
+.el.mark-ok { background: var(--silver-bg); }
+.el.mark-trap { background: var(--trap-bg); }
+@media (prefers-reduced-motion: reduce) { .el { transition: none; } .el:hover { transform: none; } }
+
+/* tray */
+.tray { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; background: var(--surface); border-top: 1px solid var(--line); box-shadow: 0 -6px 20px rgba(0,0,0,.08);
+  padding-block: 12px calc(12px + env(safe-area-inset-bottom, 0px));
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.tray .in { max-width: 1240px; margin: 0 auto; display: flex; gap: 16px; align-items: center; }
+.tray .info { flex: 1; min-width: 0; }
+.tray .info b { font-family: var(--f-display); font-size: 18px; }
+.tray .info p { margin: 2px 0 0; font-size: 13px; color: var(--muted); }
+.tray .meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+@media (max-width: 600px) { .tray .info p { display: none; } }
+
+/* decks */
+.deck-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.deck-tabs button { background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: 5px 12px; font-size: 14px; }
+.deck-tabs button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+#deck-search { width: min(100%, 320px); }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; margin-top: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.card .cb { background: var(--c, #141922); color: #fff; padding: 6px 12px; display: flex; justify-content: space-between; gap: 8px; font: 600 11px var(--f-mono); letter-spacing: .06em; text-transform: uppercase; }
+.card .cc { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 7px; font-size: 14px; flex: 1; }
+.card h3 { font-size: 19px; line-height: 1.1; }
+.card .ex { margin-top: auto; font-size: 12.5px; font-style: italic; color: var(--muted); border-top: 1px solid var(--line); padding-top: 7px; }
+.card .r { font-size: 13px; }
+.card .r b { font: 600 10.5px var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+
+/* guide */
+.guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.guide .panel h3 { font-size: 20px; }
+.guide .panel p, .guide .panel li { font-size: 14.5px; }
+.guide ul { padding-left: 18px; margin: 0; }
+.legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 6px 16px; font-size: 14px; margin-top: 8px; }
+footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <h1>Methodical</h1>
+      <p>A card game for scientists. Read the research problem, then pick the study design that can actually answer it.</p>
+    </div>
+    <div class="stats" aria-live="polite">
+      <div class="stat"><b id="s-score">0</b><span class="label">Points</span></div>
+      <div class="stat"><b id="s-acc">–</b><span class="label">Best picks</span></div>
+      <div class="stat"><b id="s-streak">0</b><span class="label">Streak</span></div>
+      <div class="stat"><b id="s-seen">0/60</b><span class="label">Seen</span></div>
+    </div>
+  </header>
+
+  <nav role="tablist">
+    <button role="tab" id="tab-play" aria-selected="true" data-view="play">Play</button>
+    <button role="tab" id="tab-decks" aria-selected="false" data-view="decks">Browse the decks</button>
+    <button role="tab" id="tab-guide" aria-selected="false" data-view="guide">How it works</button>
+  </nav>
+
+  <section id="view-play">
+    <div class="filters">
+      <select id="f-suit" aria-label="Question suit"></select>
+      <select id="f-diff" aria-label="Difficulty">
+        <option value="0">Any difficulty</option><option value="1">★ Intro</option><option value="2">★★ Intermediate</option><option value="3">★★★ Advanced</option>
+      </select>
+      <button class="btn" id="b-new">Deal another question</button>
+      <label class="toggle"><input type="checkbox" id="f-hints"> Icon hints</label>
+    </div>
+    <div class="bench">
+      <div id="qslot"></div>
+      <div class="panel" id="panel"></div>
+    </div>
+    <div class="table-head">
+      <h2>The periodic table of methods</h2>
+      <span class="label">46 designs · 9 families · tap one to choose it</span>
+    </div>
+    <div class="ptable" id="ptable"></div>
+  </section>
+
+  <section id="view-decks" hidden>
+    <div class="deck-tabs" id="deck-tabs"></div>
+    <input class="btn" id="deck-search" type="search" placeholder="Search cards" aria-label="Search cards">
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="view-guide" hidden>
+    <div class="guide" id="guide"></div>
+  </section>
+
+  <footer>Methodical v<span id="ver"></span>. Content is generated from the card data in <span class="mono">methodical/data</span>. The answer key has three tiers because methodologists disagree. Argue with it, and improve it.</footer>
+</div>
+
+<div class="tray" id="tray" hidden>
+  <div class="in">
+    <div class="info" id="tray-info"></div>
+    <button class="btn primary" id="b-submit">Submit design</button>
+  </div>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+const { meta, designs, questions, threats, safeguards, twists, programs } = DATA;
+const D = Object.fromEntries(designs.map(d => [d.id, d]));
+const T = Object.fromEntries(threats.map(t => [t.id, t]));
+const S = Object.fromEntries(safeguards.map(s => [s.id, s]));
+const SUIT = Object.fromEntries(meta.suits.map(s => [s.id, s]));
+const FAM = Object.fromEntries(meta.families.map(f => [f.id, f]));
+const CON = Object.fromEntries(meta.constraints.map(c => [c.id, c]));
+const SC = meta.scoring;
+for (const s of safeguards) s.counters = threats.filter(t => t.countered_by.includes(s.id)).map(t => t.id);
+
+// "Element symbols" for the periodic table.
+const SYM = { "case-report": "Cr", "cross-sectional": "Xs", "ecological": "Ec", "surveillance": "Sv", "cohort-prospective": "Pc",
+  "cohort-retrospective": "Rc", "case-control": "Cc", "case-crossover": "Cx", "target-trial": "Tt", "iv": "Iv", "mendelian": "Mr",
+  "did": "Dd", "rdd": "Rd", "its": "It", "synthetic-control": "Sc", "rct": "Rt", "cluster-rct": "Cl", "crossover": "Co",
+  "factorial-doe": "Fd", "n-of-1": "N1", "stepped-wedge": "Sw", "ab-test": "Ab", "adaptive-platform": "Ap", "field-experiment": "Fx",
+  "ethnography": "Et", "grounded-theory": "Gt", "interviews-thematic": "In", "case-study": "Cs", "delphi": "Dp", "mixed-sequential": "Mx",
+  "systematic-review": "Sr", "scoping-review": "Sp", "network-meta": "Nm", "umbrella-review": "Ub", "rapid-review": "Rr", "realist-review": "Rl",
+  "diagnostic-accuracy": "Dx", "reliability": "Ag", "validation": "Va", "interlab": "Il", "analytical-model": "An", "simulation": "Si",
+  "prediction-model": "Pm", "design-science": "Ds", "pilot": "Pi", "benchmark": "Bm" };
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// ---------- persistent per-viewer stats (optional convenience)
+const KEY = "methodical-v1";
+let stats = { score: 0, answered: 0, bestHits: 0, streak: 0, seen: {} };
+try { const raw = localStorage.getItem(KEY); if (raw) stats = Object.assign(stats, JSON.parse(raw)); } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(stats)); } catch (e) {} };
+function renderStats() {
+  $("s-score").textContent = stats.score;
+  $("s-acc").textContent = stats.answered ? Math.round(100 * stats.bestHits / stats.answered) + "%" : "–";
+  $("s-streak").textContent = stats.streak;
+  $("s-seen").textContent = Object.keys(stats.seen).length + "/" + questions.length;
+}
+
+// ---------- state
+let q = null, picked = null, phase = "choose", queue = [];
+
+function filtered() {
+  const suit = $("f-suit").value, diff = +$("f-diff").value;
+  return questions.filter(x => (!suit || x.suit === suit) && (!diff || x.difficulty === diff));
+}
+function nextQuestion() {
+  const pool = filtered();
+  if (!pool.length) return;
+  queue = queue.filter(id => pool.some(p => p.id === id));
+  if (!queue.length) {
+    const unseen = pool.filter(p => !stats.seen[p.id]);
+    queue = shuffle(unseen.length ? unseen : pool).map(p => p.id);
+  }
+  const id = queue.shift();
+  q = questions.find(x => x.id === id);
+  picked = null; phase = "choose";
+  renderQuestion(); renderPanel(); renderTable(); renderTray();
+}
+
+function chip(cid) { const c = CON[cid]; return `<span class="chip" title="${esc(c.text)}">${c.icon} ${esc(c.name)}</span>`; }
+
+function renderQuestion() {
+  const s = SUIT[q.suit];
+  $("qslot").innerHTML = `<article class="qcard deal" aria-label="Question card">
+    <div class="band"><span>${s.icon} ${esc(s.name.toUpperCase())}</span><span>${q.id} · ${"★".repeat(q.difficulty)}</span></div>
+    <div class="body">
+      <span class="label">${esc(q.field)}</span>
+      <h2>${esc(q.title)}</h2>
+      <div class="text">${esc(q.text)}</div>
+      <div class="chips">${q.constraints.map(chip).join("")}</div>
+      <div class="hint">${s.icon} ${esc(s.ask)}</div>
+    </div></article>`;
+}
+
+function tierOf(id) {
+  if (q.best.includes(id)) return "best";
+  if (q.ok.includes(id)) return "ok";
+  if (id in q.traps) return "trap";
+  return "unlisted";
+}
+
+function renderPanel() {
+  const p = $("panel");
+  if (phase === "choose") {
+    p.innerHTML = `<span class="label">Your move</span><h3>Which design answers this question?</h3>
+      <p>Pick one from the periodic table below, then submit it from the tray.</p>
+      <ol class="steps">
+        <li><b>Name the suit.</b> What kind of knowledge is wanted?</li>
+        <li><b>Read the constraints.</b> They usually decide between otherwise good designs.</li>
+        <li><b>Expect review.</b> You'll have to defend your choice against the problem's biggest threat.</li>
+      </ol>
+      <p class="label" style="margin-top:14px">Scoring: best +${SC.best} · defensible +${SC.ok} · trap ${SC.trap} · unlisted ${SC.unlisted}</p>`;
+    return;
+  }
+  const tier = tierOf(picked);
+  const pts = SC[tier];
+  const names = ids => ids.map(i => esc(D[i].name)).join(", ") || "none";
+  const vtext = { best: "🥇 Best design", ok: "🥈 Defensible", trap: "⚠️ Trap", unlisted: "Unlisted. At a table you could appeal" }[tier];
+  let html = `<span class="label">Verdict on ${esc(D[picked].name)}</span><br>
+    <div class="verdict v-${tier}"><span class="pts">${pts > 0 ? "+" : ""}${pts}</span>${vtext}</div>`;
+  if (tier === "trap") html += `<p class="trapline"><b>Why it fails:</b> ${esc(q.traps[picked])}</p>`;
+  html += `<dl class="key"><dt>🥇 Best</dt><dd>${names(q.best)}</dd><dt>🥈 Defensible</dt><dd>${names(q.ok)}</dd>`;
+  for (const [id, r] of Object.entries(q.traps)) if (id !== picked) html += `<dt>⚠️ Trap</dt><dd><b>${esc(D[id].name)}</b>: ${esc(r)}</dd>`;
+  html += `</dl><p>${esc(q.why)}</p>`;
+  html += `<div class="review" id="review"></div>`;
+  p.innerHTML = html;
+  renderReview();
+}
+
+// ---------- peer review round: defend the best design against the key threat
+let review = null;
+function buildReview() {
+  const t = T[q.key_threat];
+  const design = D[q.best[0]];
+  const usable = s => s.applies_to.includes("any") || s.applies_to.includes(design.family);
+  const right = shuffle(t.countered_by.map(id => S[id]).filter(usable));
+  const wrong = shuffle(safeguards.filter(s => !t.countered_by.includes(s.id) && usable(s)));
+  const wrongOther = shuffle(safeguards.filter(s => !t.countered_by.includes(s.id) && !usable(s)));
+  const opts = shuffle([right[0], ...wrong.concat(wrongOther).slice(0, 3)]);
+  return { t, design, opts, answer: null };
+}
+function renderReview() {
+  if (!review) review = buildReview();
+  const { t, design, opts, answer } = review;
+  let html = `<span class="label">Peer review</span>
+    <p style="margin-top:4px">Reviewer 2 attacks the ${esc(design.name.toLowerCase())} with <span class="threat-tag">${esc(t.name)}</span>.
+    <br><span style="color:var(--muted)">${esc(t.text)}</span></p>
+    <p><b>Which safeguard defends it?</b> <span style="color:var(--muted)">+1 for a successful rebuttal.</span></p>
+    <div class="opts">`;
+  for (const s of opts) {
+    let cls = "";
+    if (answer) cls = t.countered_by.includes(s.id) ? "right" : (answer === s.id ? "wrong" : "");
+    html += `<button class="opt ${cls}" data-sg="${s.id}" ${answer ? "disabled" : ""}><b>${esc(s.name)}</b><span>${esc(s.text)}</span></button>`;
+  }
+  html += `</div>`;
+  if (answer) {
+    const ok = t.countered_by.includes(answer);
+    html += `<p style="margin-top:12px">${ok ? "✅ Rebuttal accepted. +1." : "❌ That doesn't answer this threat."}
+      ${esc(t.name)} is countered by ${t.countered_by.map(i => esc(S[i].name)).join(", ")}.</p>
+      <p style="color:var(--muted);font-size:14px"><i>${esc(t.example)}</i></p>`;
+    html += `<div class="row-actions"><button class="btn primary" id="b-next">Next question</button></div>`;
+  }
+  $("review").innerHTML = html;
+  $("review").querySelectorAll(".opt").forEach(b => b.onclick = () => answerReview(b.dataset.sg));
+  const n = $("b-next"); if (n) n.onclick = () => { nextQuestion(); scrollToTop(); };
+}
+function answerReview(id) {
+  review.answer = id;
+  if (review.t.countered_by.includes(id)) { stats.score += 1; save(); renderStats(); }
+  renderReview();
+}
+
+function submit() {
+  if (!picked || phase !== "choose") return;
+  phase = "result"; review = null;
+  const tier = tierOf(picked);
+  stats.score += SC[tier]; stats.answered += 1;
+  if (tier === "best") { stats.bestHits += 1; stats.streak += 1; } else stats.streak = 0;
+  stats.seen[q.id] = tier; save(); renderStats();
+  renderPanel(); renderTable(); renderTray();
+  $("panel").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+}
+function scrollToTop() { $("qslot").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); }
+
+// ---------- periodic table
+function renderTable() {
+  const hints = $("f-hints").checked;
+  let n = 0, html = "";
+  for (const f of meta.families) {
+    html += `<div class="fam" style="--c:${f.color}"><h4><i></i>${esc(f.name)}</h4>`;
+    for (const d of designs.filter(x => x.family === f.id)) {
+      n += 1;
+      let cls = "";
+      if (phase === "result") { const t = tierOf(d.id); if (t !== "unlisted") cls = "mark-" + t; }
+      else if (hints && q && !d.serves.includes(q.suit)) cls = "dim";
+      const clash = hints && q && phase === "choose" && d.struggles.some(c => q.constraints.includes(c));
+      html += `<button class="el ${cls}" style="--c:${f.color}" data-id="${d.id}" aria-pressed="${picked === d.id}" ${phase !== "choose" ? "disabled" : ""} title="${esc(d.gist)}">
+        <span class="num">${n}</span><span class="sym">${SYM[d.id]}</span><span class="nm">${esc(d.name)}</span>${clash ? '<span class="warn" title="Struggles with a constraint on this card">⚠️</span>' : ""}</button>`;
+    }
+    html += `</div>`;
+  }
+  $("ptable").innerHTML = html;
+  $("ptable").querySelectorAll(".el").forEach(b => b.onclick = () => { picked = b.dataset.id; renderTable(); renderTray(); });
+}
+
+function renderTray() {
+  const tray = $("tray");
+  if (!picked || phase !== "choose") { tray.hidden = true; return; }
+  const d = D[picked];
+  tray.hidden = false;
+  $("tray-info").innerHTML = `<b>${esc(d.name)}</b><p>${esc(d.gist)}</p>
+    <div class="meta">Fits ${d.fits.map(c => CON[c].icon).join(" ") || "–"} · Struggles ${d.struggles.map(c => CON[c].icon).join(" ") || "–"} · Weak vs ${d.weak_vs.map(t => esc(T[t].name)).join(", ")}</div>`;
+}
+
+// ---------- decks browser
+let deck = "designs";
+const DECKS = { designs: "Designs", questions: "Questions", threats: "Threats", safeguards: "Safeguards", twists: "Twists", programs: "Programmes" };
+function cardHTML(kind, x) {
+  if (kind === "designs") {
+    const f = FAM[x.family];
+    return `<article class="card" style="--c:${f.color}"><div class="cb"><span>${esc(f.name)}</span><span>${SYM[x.id]}</span></div><div class="cc">
+      <h3>${esc(x.name)}</h3><div class="r">${x.serves.map(s => SUIT[s].icon + " " + SUIT[s].name).join(" · ")}</div><div>${esc(x.gist)}</div>
+      <div class="r"><b>Fits</b>${x.fits.map(chip).join(" ") || "–"}</div><div class="r"><b>Struggles</b>${x.struggles.map(chip).join(" ") || "–"}</div>
+      <div class="r"><b>Weak vs</b>${x.weak_vs.map(t => esc(T[t].name)).join(", ")}</div>
+      <div class="r"><b>Cost</b>${"●".repeat(x.cost)}${"○".repeat(3 - x.cost)} <b>Time</b>${"◆".repeat(x.time)}${"◇".repeat(3 - x.time)}</div>
+      <div class="ex">${esc(x.example)}</div></div></article>`;
+  }
+  if (kind === "questions") {
+    const s = SUIT[x.suit];
+    return `<article class="card"><div class="cb"><span>${s.icon} ${esc(s.name)}</span><span>${x.id} ${"★".repeat(x.difficulty)}</span></div><div class="cc">
+      <span class="label">${esc(x.field)}</span><h3>${esc(x.title)}</h3><div>${esc(x.text)}</div><div class="chips">${x.constraints.map(chip).join("")}</div>
+      <details class="ex"><summary>Answer</summary><p>🥇 ${x.best.map(i => esc(D[i].name)).join(", ")}<br>🥈 ${x.ok.map(i => esc(D[i].name)).join(", ") || "–"}</p><p>${esc(x.why)}</p></details></div></article>`;
+  }
+  if (kind === "threats") return `<article class="card" style="--c:#7F1D1D"><div class="cb"><span>Threat</span></div><div class="cc">
+      <h3>${esc(x.name)}</h3><div>${esc(x.text)}</div><div class="r"><b>Countered by</b>${x.countered_by.map(i => esc(S[i].name)).join(", ")}</div>
+      <div class="ex">${esc(x.example)}</div></div></article>`;
+  if (kind === "safeguards") return `<article class="card" style="--c:#065F46"><div class="cb"><span>Safeguard</span></div><div class="cc">
+      <h3>${esc(x.name)}</h3><div>${esc(x.text)}</div><div class="r"><b>Counters</b>${x.counters.map(i => esc(T[i].name)).join(", ")}</div>
+      <div class="r"><b>Usable with</b>${x.applies_to.includes("any") ? "any design" : x.applies_to.map(f => esc(FAM[f].name)).join(", ")}</div></div></article>`;
+  if (kind === "twists") return `<article class="card" style="--c:#5B21B6"><div class="cb"><span>Twist</span><span>${x.id}</span></div><div class="cc">
+      <h3>${esc(x.name)}</h3><div>${esc(x.text)}</div><div class="chips">${x.adds ? "Adds " + chip(x.adds) : '<span class="chip">Event</span>'}</div></div></article>`;
+  return `<article class="card" style="--c:#0C4A6E"><div class="cb"><span>Research programme</span><span>${x.id}</span></div><div class="cc">
+      <h3>${esc(x.name)}</h3><div><i>${esc(x.brief)}</i></div><ol style="margin:0;padding-left:18px">${x.stages.map(s => `<li>${SUIT[s.suit].icon} ${esc(s.ask)}</li>`).join("")}</ol>
+      <details class="ex"><summary>Key</summary><ol style="padding-left:18px">${x.stages.map(s => `<li>${s.accept.map(a => esc(D[a].name)).join(", ")}</li>`).join("")}</ol></details></div></article>`;
+}
+function renderDecks() {
+  $("deck-tabs").innerHTML = Object.entries(DECKS).map(([k, v]) => `<button data-deck="${k}" aria-pressed="${deck === k}">${v} · ${DATA[k].length}</button>`).join("");
+  $("deck-tabs").querySelectorAll("button").forEach(b => b.onclick = () => { deck = b.dataset.deck; renderDecks(); });
+  const term = $("deck-search").value.trim().toLowerCase();
+  const items = DATA[deck].filter(x => !term || JSON.stringify(x).toLowerCase().includes(term));
+  $("cards").innerHTML = items.map(x => cardHTML(deck, x)).join("") || `<p>No cards match "${esc(term)}".</p>`;
+}
+
+// ---------- guide
+function renderGuide() {
+  $("guide").innerHTML = `
+  <div class="panel"><h3>The idea</h3><p>Logic card games pair fallacies with refutations. Methodical does the same for research design, in two layers:</p>
+    <ul><li><b>Question → Design.</b> Read a research problem and pick the study type that can answer it under its constraints.</li>
+    <li><b>Threat → Safeguard.</b> Every design has typical biases. Reviewers attack with Threat cards; authors defend with Safeguards.</li></ul></div>
+  <div class="panel"><h3>Four ways to play</h3><ul>
+    <li><b>Methods Map.</b> Everyone picks a design for the same question. For classes, 10 min.</li>
+    <li><b>Peer Review.</b> Propose, attack, rebut. Competitive, 3–6 players.</li>
+    <li><b>Research Programme.</b> A cooperative 5-stage project against rising doubt.</li>
+    <li><b>Reviewer 2.</b> A fast critique drill with mismatched cards.</li></ul>
+    <p style="margin-top:10px">This page is the solo trainer. The full rules and print-and-play sheets are in the <span class="mono">methodical/</span> folder.</p></div>
+  <div class="panel"><h3>Suits: the kind of question</h3><div class="legend">${meta.suits.map(s => `<div>${s.icon} <b>${esc(s.name)}</b>: ${esc(s.ask)}</div>`).join("")}</div></div>
+  <div class="panel"><h3>Constraints: the situation</h3><div class="legend">${meta.constraints.map(c => `<div>${c.icon} <b>${esc(c.name)}</b>: ${esc(c.text)}</div>`).join("")}</div></div>
+  <div class="panel"><h3>Why three tiers?</h3><p>Methodologists disagree, so each question has a <b>best</b> design, <b>defensible</b> alternatives, and <b>traps</b> that look right but fail for a reason printed on the card. In table play, unlisted designs can be <b>appealed</b>: argue for 60 seconds and the table votes.</p>
+    <p><button class="btn" id="b-reset">Reset my stats</button></p></div>`;
+  $("b-reset").onclick = () => { stats = { score: 0, answered: 0, bestHits: 0, streak: 0, seen: {} }; save(); renderStats(); $("b-reset").textContent = "Stats reset"; };
+}
+
+// ---------- wiring
+function show(view) {
+  for (const v of ["play", "decks", "guide"]) { $("view-" + v).hidden = v !== view; $("tab-" + v).setAttribute("aria-selected", v === view); }
+  if (view === "play") renderTray(); else $("tray").hidden = true;
+  if (view === "decks") renderDecks();
+}
+document.querySelectorAll("nav button").forEach(b => b.onclick = () => show(b.dataset.view));
+$("f-suit").innerHTML = `<option value="">All suits</option>` + meta.suits.map(s => `<option value="${s.id}">${s.icon} ${esc(s.name)} (${questions.filter(x => x.suit === s.id).length})</option>`).join("");
+$("f-suit").onchange = $("f-diff").onchange = () => { queue = []; nextQuestion(); };
+$("f-hints").onchange = renderTable;
+$("b-new").onclick = nextQuestion;
+$("b-submit").onclick = submit;
+$("deck-search").oninput = renderDecks;
+$("ver").textContent = meta.version;
+renderStats(); renderGuide(); nextQuestion();
+</script>
