@@ -27,6 +27,15 @@ On the 46 Design cards the illustration is the study's own diagram, so the pictu
 ## Start here
 
 - **Play solo now:** open [`app/index.html`](app/index.html) in any browser. It works offline.
+  Or double-click the launcher for your system, which opens it in your default browser:
+
+  | System | Launcher | Notes |
+  |---|---|---|
+  | Windows | [`play-windows.bat`](play-windows.bat) | Double-click in File Explorer. |
+  | Mac | [`play-mac.command`](play-mac.command) | Double-click in Finder. If macOS blocks it, right-click it and choose **Open**. |
+  | Ubuntu | [`play-ubuntu.sh`](play-ubuntu.sh) | In Files, right-click it and choose **Run as a Program**, or run `./play-ubuntu.sh`. |
+
+  If a launcher won't run because its executable bit was lost (for example when it was unzipped), run `sh play-mac.command` or `sh play-ubuntu.sh`.
 - **Print a prototype:** open [`print/cards.html`](print/cards.html) in Chrome and print at 100% on A4 with background graphics on, then cut. That gives 186 poker-size cards and 6 programme mats.
   All cards share one back ([`print/backs.html`](print/backs.html)); opaque card sleeves are the easiest alternative. The answers are in [`print/answer-key.html`](print/answer-key.html).
 - **Rules:** [`RULES.md`](RULES.md) has four modes: *Methods Map* (classroom), *Peer Review* (competitive), *Research Programme* (cooperative) and *Reviewer 2* (drill).
