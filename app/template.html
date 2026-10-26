@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@500&family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans+Condensed:ital,wght@0,400;0,600;1,400&display=swap" media="print" onload="this.media='all'">
 <style>
 /* Layout: a lab bench. The dealt question card and its verdict sit on top; below, a periodic table of the 46 designs in family columns. A sticky tray holds the chosen design. */
 :root {
@@ -58,16 +58,11 @@ select, .btn { background: var(--surface); border: 1px solid var(--line); border
 .btn:disabled { opacity: .45; cursor: not-allowed; }
 .toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); }
 
+/*__CARD_CSS__*/
 /* the dealt card */
-.qcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; aspect-ratio: 63 / 88; display: flex; flex-direction: column; max-width: 100%; }
-.qcard .band { background: var(--band); color: #fff; padding: 9px 14px; display: flex; justify-content: space-between; font: 600 12px var(--f-mono); letter-spacing: .08em; }
-.qcard .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; min-height: 0; }
-.qcard h2 { font-size: 24px; font-weight: 800; line-height: 1.05; }
-.qcard .text { font-size: 16px; line-height: 1.45; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip { border: 1px solid var(--line); border-radius: 99px; padding: 2px 9px; font-size: 13px; white-space: nowrap; background: var(--bg); }
-@media (max-width: 760px) { .qcard { aspect-ratio: auto; } }
-.qcard .hint { margin-top: auto; font-size: 13px; color: var(--muted); font-style: italic; border-top: 1px solid var(--line); padding-top: 8px; }
+.qwrap { --card-u: 5.2px; display: flex; justify-content: center; }
+@media (max-width: 400px) { .qwrap { --card-u: 5px; } }
+.qwrap .tcg { box-shadow: 0 18px 40px rgba(0,0,0,.28); }
 .deal { animation: deal .45s cubic-bezier(.2,.8,.2,1); }
 @keyframes deal { from { transform: translateY(-14px) rotate(-3deg); opacity: .3; } to { transform: none; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .deal { animation: none; } }
@@ -136,14 +131,11 @@ select, .btn { background: var(--surface); border: 1px solid var(--line); border
 .deck-tabs button { background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: 5px 12px; font-size: 14px; }
 .deck-tabs button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 #deck-search { width: min(100%, 320px); }
-.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; margin-top: 14px; }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
-.card .cb { background: var(--c, #141922); color: #fff; padding: 6px 12px; display: flex; justify-content: space-between; gap: 8px; font: 600 11px var(--f-mono); letter-spacing: .06em; text-transform: uppercase; }
-.card .cc { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 7px; font-size: 14px; flex: 1; }
-.card h3 { font-size: 19px; line-height: 1.1; }
-.card .ex { margin-top: auto; font-size: 12.5px; font-style: italic; color: var(--muted); border-top: 1px solid var(--line); padding-top: 7px; }
-.card .r { font-size: 13px; }
-.card .r b { font: 600 10.5px var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+.cards { --card-u: 3.9px; display: grid; grid-template-columns: repeat(auto-fill, minmax(calc(var(--card-u) * 63), 1fr)); gap: 18px 14px; margin-top: 14px; justify-items: center; }
+.cards.wide { --card-u: 2.9px; grid-template-columns: repeat(auto-fill, minmax(calc(var(--card-u) * 148), 1fr)); }
+.cards figure { margin: 0; display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.cards details { width: calc(var(--card-u) * 63); font-size: 13px; color: var(--muted); }
+.cards details p { margin: 4px 0 0; }
 
 /* guide */
 .guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
@@ -277,16 +269,7 @@ function nextQuestion() {
 function chip(cid) { const c = CON[cid]; return `<span class="chip" title="${esc(c.text)}">${c.icon} ${esc(c.name)}</span>`; }
 
 function renderQuestion() {
-  const s = SUIT[q.suit];
-  $("qslot").innerHTML = `<article class="qcard deal" aria-label="Question card">
-    <div class="band"><span>${s.icon} ${esc(s.name.toUpperCase())}</span><span>${q.id} · ${"★".repeat(q.difficulty)}</span></div>
-    <div class="body">
-      <span class="label">${esc(q.field)}</span>
-      <h2>${esc(q.title)}</h2>
-      <div class="text">${esc(q.text)}</div>
-      <div class="chips">${q.constraints.map(chip).join("")}</div>
-      <div class="hint">${s.icon} ${esc(s.ask)}</div>
-    </div></article>`;
+  $("qslot").innerHTML = `<div class="qwrap deal" aria-label="Question card">${DATA.cards.questions[q.id]}</div>`;
 }
 
 function tierOf(id) {
@@ -413,38 +396,18 @@ function renderTray() {
 let deck = "designs";
 const DECKS = { designs: "Designs", questions: "Questions", threats: "Threats", safeguards: "Safeguards", twists: "Twists", programs: "Programmes" };
 function cardHTML(kind, x) {
-  if (kind === "designs") {
-    const f = FAM[x.family];
-    return `<article class="card" style="--c:${f.color}"><div class="cb"><span>${esc(f.name)}</span><span>${SYM[x.id]}</span></div><div class="cc">
-      <h3>${esc(x.name)}</h3><div class="r">${x.serves.map(s => SUIT[s].icon + " " + SUIT[s].name).join(" · ")}</div><div>${esc(x.gist)}</div>
-      <div class="r"><b>Fits</b>${x.fits.map(chip).join(" ") || "–"}</div><div class="r"><b>Struggles</b>${x.struggles.map(chip).join(" ") || "–"}</div>
-      <div class="r"><b>Weak vs</b>${x.weak_vs.map(t => esc(T[t].name)).join(", ")}</div>
-      <div class="r"><b>Cost</b>${"●".repeat(x.cost)}${"○".repeat(3 - x.cost)} <b>Time</b>${"◆".repeat(x.time)}${"◇".repeat(3 - x.time)}</div>
-      <div class="ex">${esc(x.example)}</div></div></article>`;
-  }
-  if (kind === "questions") {
-    const s = SUIT[x.suit];
-    return `<article class="card"><div class="cb"><span>${s.icon} ${esc(s.name)}</span><span>${x.id} ${"★".repeat(x.difficulty)}</span></div><div class="cc">
-      <span class="label">${esc(x.field)}</span><h3>${esc(x.title)}</h3><div>${esc(x.text)}</div><div class="chips">${x.constraints.map(chip).join("")}</div>
-      <details class="ex"><summary>Answer</summary><p>🥇 ${x.best.map(i => esc(D[i].name)).join(", ")}<br>🥈 ${x.ok.map(i => esc(D[i].name)).join(", ") || "–"}</p><p>${esc(x.why)}</p></details></div></article>`;
-  }
-  if (kind === "threats") return `<article class="card" style="--c:#7F1D1D"><div class="cb"><span>Threat</span></div><div class="cc">
-      <h3>${esc(x.name)}</h3><div>${esc(x.text)}</div><div class="r"><b>Countered by</b>${x.countered_by.map(i => esc(S[i].name)).join(", ")}</div>
-      <div class="ex">${esc(x.example)}</div></div></article>`;
-  if (kind === "safeguards") return `<article class="card" style="--c:#065F46"><div class="cb"><span>Safeguard</span></div><div class="cc">
-      <h3>${esc(x.name)}</h3><div>${esc(x.text)}</div><div class="r"><b>Counters</b>${x.counters.map(i => esc(T[i].name)).join(", ")}</div>
-      <div class="r"><b>Usable with</b>${x.applies_to.includes("any") ? "any design" : x.applies_to.map(f => esc(FAM[f].name)).join(", ")}</div></div></article>`;
-  if (kind === "twists") return `<article class="card" style="--c:#5B21B6"><div class="cb"><span>Twist</span><span>${x.id}</span></div><div class="cc">
-      <h3>${esc(x.name)}</h3><div>${esc(x.text)}</div><div class="chips">${x.adds ? "Adds " + chip(x.adds) : '<span class="chip">Event</span>'}</div></div></article>`;
-  return `<article class="card" style="--c:#0C4A6E"><div class="cb"><span>Research programme</span><span>${x.id}</span></div><div class="cc">
-      <h3>${esc(x.name)}</h3><div><i>${esc(x.brief)}</i></div><ol style="margin:0;padding-left:18px">${x.stages.map(s => `<li>${SUIT[s.suit].icon} ${esc(s.ask)}</li>`).join("")}</ol>
-      <details class="ex"><summary>Key</summary><ol style="padding-left:18px">${x.stages.map(s => `<li>${s.accept.map(a => esc(D[a].name)).join(", ")}</li>`).join("")}</ol></details></div></article>`;
+  const card = DATA.cards[kind][x.id];
+  if (kind === "questions") return `<figure>${card}<details><summary>Answer</summary><p>🥇 ${x.best.map(i => esc(D[i].name)).join(", ")}<br>🥈 ${x.ok.map(i => esc(D[i].name)).join(", ") || "–"}</p><p>${esc(x.why)}</p></details></figure>`;
+  if (kind === "designs") return `<figure>${card}<details><summary>More</summary><p>${esc(x.gist)}</p><p><i>${esc(x.example)}</i></p></details></figure>`;
+  if (kind === "threats") return `<figure>${card}<details><summary>Example</summary><p>${esc(x.text)}</p><p><i>${esc(x.example)}</i></p></details></figure>`;
+  return `<figure>${card}</figure>`;
 }
 function renderDecks() {
   $("deck-tabs").innerHTML = Object.entries(DECKS).map(([k, v]) => `<button data-deck="${k}" aria-pressed="${deck === k}">${v} · ${DATA[k].length}</button>`).join("");
   $("deck-tabs").querySelectorAll("button").forEach(b => b.onclick = () => { deck = b.dataset.deck; renderDecks(); });
   const term = $("deck-search").value.trim().toLowerCase();
   const items = DATA[deck].filter(x => !term || JSON.stringify(x).toLowerCase().includes(term));
+  $("cards").classList.toggle("wide", deck === "programs");
   $("cards").innerHTML = items.map(x => cardHTML(deck, x)).join("") || `<p>No cards match "${esc(term)}".</p>`;
 }
 

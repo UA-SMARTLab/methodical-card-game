@@ -3,27 +3,32 @@
 **A card game for scientists that teaches research design.** Read a research problem, pick the study design that can
 actually answer it, then defend that design when a reviewer attacks it with a bias.
 
-![A Question card, its answer on the back, the matching Design card, its typical Threat and the Safeguard that counters it](print/preview.png)
+![A Question card, the matching Design card, its typical Threat, the Safeguard that counters it, and a Twist](print/preview.png)
 
-*One full chain:* a 🔗 **Associate** question with a 🔎 rare outcome → **case–control study** (best) → its typical threat, **recall bias** →
-countered by **validated, objective measures**.
+*One full chain:* a 🔗 **Associate** question with a rare outcome → **case–control study** (best) → its typical threat, **recall bias** →
+countered by **validated, objective measures**, until a **Twist** changes the situation.
+
+The cards are laid out like a trading-card game: name bar, attribute, level pips, one illustration, a type line and one sentence of effect text.
+On the 46 Design cards the illustration is the study's own diagram, so the picture teaches the method.
 
 ## What's in the box
 
 | Deck | Cards | Role |
 |---|---:|---|
-| Question | 60 | Research problems from medicine, ecology, astronomy, economics, engineering, robotics, chemistry, education… with a three-tier answer key on the back |
+| Question | 60 | Research problems from medicine, ecology, astronomy, economics, engineering, robotics, chemistry, education… each with its own illustration |
 | Design | 46 | Study types in 9 colour-coded families, from case reports to Mendelian randomization, realist reviews and design science |
-| Threat | 28 | Biases and validity threats, each with a real historical example (the "fallacy" deck) |
+| Threat | 28 | Biases and validity threats (the "fallacy" deck); the app adds a real historical example for each |
 | Safeguard | 32 | Design and analysis features that counter specific threats (the "refutation" deck) |
 | Twist | 16 | Mid-round changes: "The ethics board says no", "Funding cut", "Thirty studies just dropped" |
-| Research Programme | 6 | Five-stage cooperative challenges, e.g. *Screens & teen mental health*, *A soft gripper for fruit picking* |
+| Research Programme | 6 | Five-stage cooperative challenges on A6 mats, e.g. *Screens & teen mental health*, *A soft gripper for fruit picking* |
+| Answer key | booklet | Three-tier answers and reasoning for every question and programme |
 | Reference | 4 | Suits, constraints, families, scoring |
 
 ## Start here
 
 - **Play solo now:** open [`app/index.html`](app/index.html) in any browser. It works offline.
-- **Print a prototype:** open [`print/cards.html`](print/cards.html) in Chrome, print at 100% on A4, duplex for the Question pages, and cut. That gives 192 poker-size cards.
+- **Print a prototype:** open [`print/cards.html`](print/cards.html) in Chrome and print at 100% on A4 with background graphics on, then cut. That gives 186 poker-size cards and 6 programme mats.
+  All cards share one back ([`print/backs.html`](print/backs.html)); opaque card sleeves are the easiest alternative. The answers are in [`print/answer-key.html`](print/answer-key.html).
 - **Rules:** [`RULES.md`](RULES.md) has four modes: *Methods Map* (classroom), *Peer Review* (competitive), *Research Programme* (cooperative) and *Reviewer 2* (drill).
 - **Why it's built this way:** [`DESIGN.md`](DESIGN.md) covers the taxonomy, the learning goals, the answer-key philosophy and open questions.
 - **Answer key:** [`ANSWER_KEY.md`](ANSWER_KEY.md) lists every question with its tiers and rationale.
@@ -46,11 +51,12 @@ python3 tools/build.py
 ```
 
 The script (standard library only) validates every cross-reference and regenerates the print sheets, the answer key
-and the app. It checks that every design is the best answer somewhere, that every design weakness has a usable
+and the app. Card layout lives in `tools/cards.py`; the art is hand-built SVG in `tools/art*.py` (`art.py` holds the drawing kit
+and the design diagrams). The build also checks that every design is the best answer somewhere, that every design weakness has a usable
 safeguard, and that each question's key threat is one its best design is actually weak to.
 
 ## Status
 
-Prototype v0.1: complete content, printable, playable solo. The answer key has had one independent methodological
+Prototype v0.2: complete content in trading-card format, fully illustrated, printable, playable solo. The answer key has had one independent methodological
 review pass, and its corrections are applied. Next steps are in [`DESIGN.md` §7](DESIGN.md#7-open-questions-and-next-steps),
 starting with playtesting the Peer Review scoring and expert review per field.

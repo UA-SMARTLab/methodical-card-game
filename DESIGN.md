@@ -142,10 +142,27 @@ Rules the validator enforces (see `tools/build.py`):
    as well as the designer's.
 5. **Reporting-guideline layer.** Each design could carry its reporting guideline (CONSORT, STROBE, PRISMA, STARD, TRIPOD,
    SRQR…) as a collectible bonus.
-6. **Art and print.** Family icons instead of emoji; a proper card back; a print-on-demand run (192 poker cards fit a standard 2-deck box).
+6. **Art and print.** v0.2 uses hand-built vector art (see section 9). A print-on-demand run would fit a standard two-deck box.
+   Painted art could later replace the illustrations on Question cards, but the Design diagrams should stay diagrams.
 7. **Name.** "Methodical" is a working title. Alternatives: *Fit for Purpose*, *Design Space*, *Reviewer 2*, *Study Hall*.
 
-## 8. Key sources the design leans on
+## 8. Trading-card format (v0.2)
+
+Version 0.1 printed paragraphs on cards. They were accurate but read like flashcards. v0.2 follows trading-card conventions,
+so the cards feel like a game and the table can read them at a glance:
+
+- **One picture, one sentence.** Each card has an illustration and a single sentence of effect text. The long explanations,
+  examples and citations moved to the app and the answer-key booklet.
+- **The picture is the content.** On Design cards the art is the study's own diagram: arms splitting after a die, arrows pointing
+  backwards from cases, a jump at a cutoff, a staircase of clusters switching over. Players learn the shape of each design.
+  Question art shows the *subject* of the problem, never the design, so it can't give the answer away.
+- **Trading-card colour language.** Design cards take their family's colour (like monster types). Threats are crimson
+  (like trap cards), Safeguards emerald (like spell cards), Twists violet.
+- **Icons instead of words** for suits and constraints, decoded by the four reference cards.
+- **Uniform backs, answers in a booklet.** In v0.1 the answers were printed on the backs of the question cards, so the top card
+  of a face-down deck showed its own answer. v0.2 gives every card the same back.
+
+## 9. Key sources the design leans on
 
 - Shadish, Cook & Campbell (2002), *Experimental and Quasi-Experimental Designs*: validity typology, threats.
 - Hernán & Robins (2020), *Causal Inference: What If*: target trials, DAGs, immortal time.
