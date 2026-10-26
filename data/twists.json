@@ -26,9 +26,9 @@
   {"id": "T13", "name": "Only a few are exposed", "adds": "rare-exposure",
    "text": "The exposure is confined to a few hundred people at one site."},
   {"id": "T14", "name": "Reviewer 2", "adds": null,
-   "text": "Event: the Reviewer may play one extra Threat against every design this round."},
+   "text": "The Reviewer may play one extra Threat against every design this round."},
   {"id": "T15", "name": "Replication crisis", "adds": null,
-   "text": "Event: any design not defended with Preregistration or Independent replication loses 1 point this round."},
+   "text": "Any design not defended with Preregistration or Independent replication loses 1 point this round."},
   {"id": "T16", "name": "Open science prize", "adds": null,
-   "text": "Event: +1 point to every player who plays Preregistration, Triangulation or Independent replication this round."}
+   "text": "+1 point to every player who plays Preregistration, Triangulation or Independent replication this round."}
 ]

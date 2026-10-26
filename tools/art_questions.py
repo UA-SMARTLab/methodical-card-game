@@ -582,7 +582,7 @@ def q42():  # Neutron-star crash
         rr = 46 - k * .5
         pts1.append((100 + rr * math.cos(t), 75 + rr * .6 * math.sin(t)))
         pts2.append((100 - rr * math.cos(t), 75 - rr * .6 * math.sin(t)))
-    out += line(pts1, DIM, 2) + line(pts2, DIM, 2)
+    out += line(pts1, ACC, 2.5, o=.7) + line(pts2, INK, 2.5, o=.7)
     return out + circle(pts1[-1][0], pts1[-1][1], 9, ACC) + circle(pts2[-1][0], pts2[-1][1], 9, INK)
 
 

@@ -69,6 +69,9 @@ CARD_CSS = """
   box-shadow: 0 0 0 calc(var(--u) * .55) rgba(255,255,255,.9), 0 0 0 calc(var(--u) * .9) rgba(0,0,0,.45); margin: calc(var(--u) * .5) calc(var(--u) * .9); }
 .tcg .art svg { width: 100%; height: 100%; display: block; }
 .tcg.tcg-q .art { height: calc(var(--u) * 31); }
+.tcg.tcg-t .art { height: calc(var(--u) * 43); }
+.tcg.tcg-s .art { height: calc(var(--u) * 40.5); }
+.tcg.tcg-x .art { height: calc(var(--u) * 41); }
 .tcg .tb { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: calc(var(--u) * .7); padding: calc(var(--u) * 1.1) calc(var(--u) * 1.7) calc(var(--u) * 1);
   border-radius: calc(var(--u) * 1); background: linear-gradient(#f8f9f6, #eceee8); box-shadow: inset 0 0 0 calc(var(--u) * .3) rgba(0,0,0,.28); }
 .tcg .ty { font: 700 calc(var(--u) * 2.45)/1.1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .05em; text-transform: uppercase; color: #3b3f47; }
