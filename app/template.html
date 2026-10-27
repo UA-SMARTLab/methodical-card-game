@@ -264,7 +264,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
         Every round you both play one design, face down, onto any open question. Then the cards flip.</p>
       <ul class="steps">
         <li><b>Score it:</b> best +3, defensible +1, unlisted 0, trap −2. Answer the same question as your rival with a better design and you <b>scoop</b> them: +1 more.</li>
-        <li><b>Review it:</b> play a Threat your rival's design is weak against. They lose 1, unless they block it with a Safeguard that counters it (then they gain 1).</li>
+        <li><b>Review it:</b> challenge your rival's design by naming one of its weaknesses: +1 to you and −1 to them if it lands, −1 to you if it isn't a real weakness. They can rebut by naming a Safeguard that counters it and suits their design, and then they gain 1 instead. A challenge is worth it against weak defenders and costly against strong ones. A matching Threat or Safeguard card in hand makes it automatic.</li>
         <li><b>Draft:</b> after each round, take one of four face-up designs into your hand. Pick the one that answers a question still on the table.</li>
         <li><b>Plan ahead:</b> once per round you may swap a design for a random new one (−1). Highest score after 8 rounds wins.</li>
       </ul>
@@ -803,53 +803,90 @@ async function scoreRound() {
   }
 }
 
-async function reviewRound() {
-  // The computer reviews you first.
-  const myD = duel.play.me.d, botD = duel.play.bot.d;
-  const ti = duel.bot.tac.findIndex(x => x.kind === "threat" && D[myD].weak_vs.includes(x.id));
-  if (ti >= 0 && Math.random() < duel.bot.sharp) {
-    const threat = duel.bot.tac.splice(ti, 1)[0];
-    renderHands();
-    await throwCard(tacHTML(threat), $("d-bot-hand"), $("d-slot-me"));
-    log(`${esc(duel.bot.name)} attacks your design with <span class="threat-tag">${esc(T[threat.id].name)}</span>. ${esc(T[threat.id].short)}`);
-    renderTactics("safeguard", x => blocks(x.id, threat.id, myD));
-    const ans = await ask(`<span class="hint">Block it with a Safeguard from your tactics cards, or</span> <button class="btn" data-act="concede">Take the hit (−1)</button>`);
-    if (ans === "concede") {
-      addPoints("me", -1, $("d-slot-me"));
-      log(`You take the hit (−1). It's countered by ${T[threat.id].countered_by.map(i => esc(S[i].name)).join(", ")}.`);
-    } else {
-      const sg = duel.me.tac.splice(ans, 1)[0];
-      renderTactics();
-      await throwCard(tacHTML(sg), $("d-me-tac"), $("d-slot-me"));
-      if (blocks(sg.id, threat.id, myD)) { addPoints("me", 1, $("d-slot-me")); log(`🛡️ <b>${esc(S[sg.id].name)}</b> blocks it. Rebuttal accepted (+1).`); }
-      else {
-        addPoints("me", -1, $("d-slot-me"));
-        const why = T[threat.id].countered_by.includes(sg.id) ? `it can't be used with a ${esc(FAM[D[myD].family].name.toLowerCase())} design` : `it doesn't counter ${esc(T[threat.id].name.toLowerCase())}`;
-        log(`❌ ${esc(S[sg.id].name)} fails: ${why} (−1).`);
-      }
-    }
-  }
-  // Your turn to review.
-  const mine = duel.me.tac.filter(x => x.kind === "threat");
-  if (!mine.length) return;
+// Review: either side may challenge the other's design by naming one of its weaknesses.
+// Landing a challenge swings +2; a rebuttal swings it back, so challenge weak defenders, not strong ones.
+const pickN = (arr, n) => shuffle(arr).slice(0, n);
+function threatOptions(did) {
+  const right = pickN(D[did].weak_vs, 1);
+  return shuffle([...right, ...pickN(threats.map(t => t.id).filter(t => !D[did].weak_vs.includes(t)), 3)]);
+}
+function safeguardOptions(tid, did) {
+  const right = pickN(safeguards.map(x => x.id).filter(x => blocks(x, tid, did)), 1);
+  return shuffle([...right, ...pickN(safeguards.map(x => x.id).filter(x => !blocks(x, tid, did)), 3)]);
+}
+const optBtn = (act, name, text) => `<button class="opt" data-act="${act}"><b>${esc(name)}</b><span>${esc(text)}</span></button>`;
+
+async function challengeBot() {
+  const botD = duel.play.bot.d;
+  const opts = threatOptions(botD);
   renderTactics("threat", x => D[botD].weak_vs.includes(x.id));
-  const ans = await ask(`<span class="hint">Review ${esc(duel.bot.name)}'s ${esc(D[botD].name)}: attack with a Threat from your tactics cards, or</span> <button class="btn" data-act="pass">Don't attack</button>`);
+  const ans = await ask(`<div style="width:100%"><span class="hint">Challenge ${esc(duel.bot.name)}'s <b>${esc(D[botD].name)}</b>? Name its weakness (right: +1 to you, −1 to them; wrong: −1 to you), or play a Threat card.</span>
+    <div class="opts">${opts.map(t => optBtn("t:" + t, T[t].name, T[t].short)).join("")}</div></div>
+    <button class="btn" data-act="pass">Don't challenge</button>`);
   if (ans === "pass") { renderTactics(); return; }
-  const threat = duel.me.tac.splice(ans, 1)[0];
-  renderTactics();
-  await throwCard(tacHTML(threat), $("d-me-tac"), $("d-slot-bot"));
-  if (!D[botD].weak_vs.includes(threat.id)) { log(`Your <b>${esc(T[threat.id].name)}</b> attack fizzles: it isn't a typical weakness of ${esc(D[botD].name)}.`); return; }
-  const si = duel.bot.tac.findIndex(x => x.kind === "safeguard" && blocks(x.id, threat.id, botD));
-  if (si >= 0) {
-    const sg = duel.bot.tac.splice(si, 1)[0];
-    renderHands();
-    await throwCard(tacHTML(sg), $("d-bot-hand"), $("d-slot-bot"));
-    addPoints("bot", 1, $("d-slot-bot"));
-    log(`${esc(duel.bot.name)} blocks your <b>${esc(T[threat.id].name)}</b> with <b>${esc(S[sg.id].name)}</b> (+1 to them).`);
-  } else {
-    addPoints("bot", -1, $("d-slot-bot"));
-    log(`💥 Your <b>${esc(T[threat.id].name)}</b> lands. ${esc(duel.bot.name)} has no defence (−1 to them).`);
+  let tid;
+  if (typeof ans === "number") {
+    const c = duel.me.tac.splice(ans, 1)[0]; tid = c.id;
+    renderTactics();
+    await throwCard(tacHTML(c), $("d-me-tac"), $("d-slot-bot"));
+  } else tid = ans.slice(2);
+  if (!D[botD].weak_vs.includes(tid)) {
+    addPoints("me", -1, $("d-slot-me"));
+    log(`Frivolous review: ${esc(T[tid].name)} isn't a typical weakness of ${esc(D[botD].name)} (−1). Its weak spots: ${D[botD].weak_vs.map(t => esc(T[t].name)).join(", ")}.`);
+    return;
   }
+  log(`You challenge ${esc(D[botD].name)} with <span class="threat-tag">${esc(T[tid].name)}</span>.`);
+  await wait(500);
+  const si = duel.bot.tac.findIndex(x => x.kind === "safeguard" && blocks(x.id, tid, botD));
+  let sg = null;
+  if (si >= 0) { sg = duel.bot.tac.splice(si, 1)[0].id; renderHands(); await throwCard(DATA.cards.safeguards[sg], $("d-bot-hand"), $("d-slot-bot")); }
+  else if (Math.random() < duel.bot.skill) sg = pickN(safeguards.map(x => x.id).filter(x => blocks(x, tid, botD)), 1)[0];
+  if (sg) { addPoints("bot", 1, $("d-slot-bot")); log(`🛡️ ${esc(duel.bot.name)} rebuts with <b>${esc(S[sg].name)}</b> (+1 to them).`); }
+  else {
+    addPoints("me", 1, $("d-slot-me")); addPoints("bot", -1, $("d-slot-bot"));
+    log(`💥 It lands. ${esc(duel.bot.name)} has no rebuttal (+1 to you, −1 to them). It's countered by ${T[tid].countered_by.map(i => esc(S[i].name)).join(", ")}.`);
+  }
+}
+
+async function challengeMe() {
+  const myD = duel.play.me.d;
+  const card = duel.bot.tac.findIndex(x => x.kind === "threat" && D[myD].weak_vs.includes(x.id));
+  // The computer challenges more often when it is better informed or holds a matching card.
+  if (card < 0 && Math.random() > duel.bot.sharp * .75) return;
+  let tid;
+  if (card >= 0) {
+    const c = duel.bot.tac.splice(card, 1)[0]; tid = c.id;
+    renderHands();
+    await throwCard(tacHTML(c), $("d-bot-hand"), $("d-slot-me"));
+  } else tid = Math.random() < duel.bot.skill ? pickN(D[myD].weak_vs, 1)[0] : pickN(threats.map(t => t.id).filter(t => !D[myD].weak_vs.includes(t)), 1)[0];
+  if (!D[myD].weak_vs.includes(tid)) {
+    addPoints("bot", -1, $("d-slot-bot"));
+    log(`${esc(duel.bot.name)} challenges with ${esc(T[tid].name)}, but that isn't a weakness of ${esc(D[myD].name)}. Frivolous review (−1 to them).`);
+    return;
+  }
+  log(`${esc(duel.bot.name)} challenges your ${esc(D[myD].name)} with <span class="threat-tag">${esc(T[tid].name)}</span>. ${esc(T[tid].short)}`);
+  const opts = safeguardOptions(tid, myD);
+  renderTactics("safeguard", x => blocks(x.id, tid, myD));
+  const ans = await ask(`<div style="width:100%"><span class="hint">Rebut it: which safeguard counters ${esc(T[tid].name.toLowerCase())} and works for your design? (right: +1; wrong: −1 to you, +1 to them). Or play a Safeguard card.</span>
+    <div class="opts">${opts.map(x => optBtn("s:" + x, S[x].name, S[x].short)).join("")}</div></div>`);
+  let sid;
+  if (typeof ans === "number") {
+    const c = duel.me.tac.splice(ans, 1)[0]; sid = c.id;
+    renderTactics();
+    await throwCard(tacHTML(c), $("d-me-tac"), $("d-slot-me"));
+  } else { sid = ans.slice(2); renderTactics(); }
+  if (blocks(sid, tid, myD)) { addPoints("me", 1, $("d-slot-me")); log(`🛡️ <b>${esc(S[sid].name)}</b> rebuts it (+1).`); }
+  else {
+    addPoints("me", -1, $("d-slot-me")); addPoints("bot", 1, $("d-slot-bot"));
+    const why = T[tid].countered_by.includes(sid) ? `it can't be used with a ${esc(FAM[D[myD].family].name.toLowerCase())} design` : `it doesn't counter ${esc(T[tid].name.toLowerCase())}`;
+    log(`❌ ${esc(S[sid].name)} fails: ${why} (−1 to you, +1 to them). Counters: ${T[tid].countered_by.map(i => esc(S[i].name)).join(", ")}.`);
+  }
+}
+
+async function reviewRound() {
+  await challengeMe();
+  await challengeBot();
+  renderTactics();
 }
 
 function offer() {
