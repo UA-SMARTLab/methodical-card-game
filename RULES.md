@@ -7,8 +7,8 @@ All of them use the same cards.
 
 | Deck | Cards | What it is |
 |---|---|---|
-| **Question** | 60 | A research problem with a field, a **suit** (the kind of question) and **constraint** icons. |
-| **Design** | 46 | A study type, colour-coded by **family**. It shows which suits it serves, which constraints it fits or struggles with, and which threats it is weak against. |
+| **Question** | 64 | A research problem with a field, a **suit** (the kind of question) and **constraint** icons. |
+| **Design** | 50 | A study type, colour-coded by **family**. It shows which suits it serves, which constraints it fits or struggles with, and which threats it is weak against. |
 | **Threat** | 28 | A bias or validity threat, with a real example. This is the "fallacy" deck. |
 | **Safeguard** | 32 | A design or analysis feature that counters specific threats, usable only with certain design families. This is the "refutation" deck. |
 | **Twist** | 16 | A mid-round surprise that adds a constraint ("The ethics board says no") or triggers an event. |
@@ -61,7 +61,7 @@ Good appeals are the whole point of the game, so write the strong ones down and 
 
 Good for classes, journal clubs and first games.
 
-1. **Lay out the Methods Map.** Place all 46 Design cards face up, grouped by family colour.
+1. **Lay out the Methods Map.** Place all 50 Design cards face up, grouped by family colour.
 2. A reader draws a **Question** card and reads it aloud, including its constraints.
 3. Everyone silently writes down the design they'd choose. Advanced players also write the **one threat** they'd worry about most.
 4. Reveal together. The reader looks the card up in the answer-key booklet and reads the answer and the *why* aloud.

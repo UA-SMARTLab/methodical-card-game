@@ -20,7 +20,7 @@
   {"id": "P3", "name": "A soft gripper for fruit picking",
    "brief": "Growers can't find seasonal workers. Can a soft robotic gripper pick strawberries without bruising them?",
    "stages": [
-     {"suit": "SYNTHESIZE", "ask": "What gripper designs exist, and how have they been evaluated?", "accept": ["scoping-review", "systematic-review"]},
+     {"suit": "SYNTHESIZE", "ask": "What gripper designs exist, and how have they been evaluated?", "accept": ["scoping-review", "systematic-review", "prior-art"]},
      {"suit": "BUILD",      "ask": "Design a gripper that growers and pickers find usable.", "accept": ["design-science"]},
      {"suit": "CAUSE",      "ask": "Which combination of finger material, pressure and approach speed minimizes bruising?", "accept": ["factorial-doe"]},
      {"suit": "BUILD",      "ask": "Does it beat existing grippers on a shared set of fruits and metrics?", "accept": ["benchmark"]},

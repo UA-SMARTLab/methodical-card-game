@@ -9,14 +9,14 @@ actually answer it, then defend that design when a reviewer attacks it with a bi
 countered by **validated, objective measures**, until a **Twist** changes the situation.
 
 The cards are laid out like a trading-card game: name bar, attribute, level pips, one illustration, a type line and one sentence of effect text.
-On the 46 Design cards the illustration is the study's own diagram, so the picture teaches the method.
+On the 50 Design cards the illustration is the study's own diagram, so the picture teaches the method.
 
 ## What's in the box
 
 | Deck | Cards | Role |
 |---|---:|---|
-| Question | 60 | Research problems from medicine, ecology, astronomy, economics, engineering, robotics, chemistry, education… each with its own illustration |
-| Design | 46 | Study types in 9 colour-coded families, from case reports to Mendelian randomization, realist reviews and design science |
+| Question | 64 | Research problems from medicine, ecology, astronomy, economics, engineering, robotics, chemistry, education… each with its own illustration |
+| Design | 50 | Study types in 9 colour-coded families, from case reports to Mendelian randomization, citation maps and design science |
 | Threat | 28 | Biases and validity threats (the "fallacy" deck); the app adds a real historical example for each |
 | Safeguard | 32 | Design and analysis features that counter specific threats (the "refutation" deck) |
 | Twist | 16 | Mid-round changes: "The ethics board says no", "Funding cut", "Thirty studies just dropped" |
@@ -36,7 +36,7 @@ On the 46 Design cards the illustration is the study's own diagram, so the pictu
   | Ubuntu | [`play-ubuntu.sh`](play-ubuntu.sh) | In Files, right-click it and choose **Run as a Program**, or run `./play-ubuntu.sh`. |
 
   If a launcher won't run because its executable bit was lost (for example when it was unzipped), run `sh play-mac.command` or `sh play-ubuntu.sh`.
-- **Print a prototype:** open [`print/cards.html`](print/cards.html) in Chrome and print at 100% on A4 with background graphics on, then cut. That gives 186 poker-size cards and 6 programme mats.
+- **Print a prototype:** open [`print/cards.html`](print/cards.html) in Chrome and print at 100% on A4 with background graphics on, then cut. That gives 194 poker-size cards and 6 programme mats.
   All cards share one back ([`print/backs.html`](print/backs.html)); opaque card sleeves are the easiest alternative. The answers are in [`print/answer-key.html`](print/answer-key.html).
 - **Rules:** [`RULES.md`](RULES.md) has four modes: *Methods Map* (classroom), *Peer Review* (competitive), *Research Programme* (cooperative) and *Reviewer 2* (drill).
 - **Why it's built this way:** [`DESIGN.md`](DESIGN.md) covers the taxonomy, the learning goals, the answer-key philosophy and open questions.

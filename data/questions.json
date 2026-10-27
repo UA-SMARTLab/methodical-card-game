@@ -531,5 +531,41 @@
    "traps": {"cross-sectional": "You already have the 'what'. Another survey won't give the 'why'.",
              "rct": "There's nothing to randomize until you know the barriers."},
    "why": "An explanatory sequential design: use the survey to pick contrasting clinics (high and low adopters), interview staff to explain the numbers, then integrate the two strands.",
-   "key_threat": "selection-bias"}
+   "key_threat": "selection-bias"},
+
+  {"id": "Q61", "suit": "BUILD", "field": "Medical devices", "title": "The tangle clip", "difficulty": 1,
+   "text": "A nurse has invented a clip that stops IV lines from tangling. Before the hospital pays for prototypes and a patent filing: is it actually new?",
+   "constraints": ["existing-data", "fast-cheap"],
+   "best": ["prior-art"], "ok": ["scoping-review"],
+   "traps": {"design-science": "Building and testing first risks a year spent reinventing, or infringing, someone else's patent.",
+             "systematic-review": "There's no effect to pool, and most prior art for a gadget like this sits in patents and product catalogues, not journals."},
+   "why": "Novelty is judged against everything made public anywhere, in any language: patents, products, catalogues, theses and papers. Search patent databases by classification code as well as by keyword, because patents rarely use everyday words like 'clip'.",
+   "key_threat": "selection-bias"},
+
+  {"id": "Q62", "suit": "SYNTHESIZE", "field": "Sustainability science", "title": "Roots of a field", "difficulty": 2,
+   "text": "Research on 'ecosystem services' has grown for thirty years across ecology and economics. Which classic works form its foundations, and which schools of thought do they fall into?",
+   "constraints": ["many-studies", "existing-data"],
+   "best": ["co-citation"], "ok": ["bibliographic-coupling"],
+   "traps": {"systematic-review": "There's no single effect to pool. The question is how the field is structured.",
+             "delphi": "Experts tend to nominate the classics of their own school. The citation record shows what the whole field builds on."},
+   "why": "Two works are linked each time a later paper cites both, so clusters of co-cited works are the field's schools of thought, and the works that bridge clusters show where ecology and economics meet. Normalize for how often each work is cited, and remember that a citation isn't an endorsement.",
+   "key_threat": "construct-validity"},
+
+  {"id": "Q63", "suit": "SYNTHESIZE", "field": "Science of science", "title": "Paper flood", "difficulty": 2,
+   "text": "Thousands of papers on AI for drug discovery appeared in the last two years. What are the active research fronts right now, and how do they group?",
+   "constraints": ["many-studies", "existing-data", "fast-cheap"],
+   "best": ["bibliographic-coupling"], "ok": ["scoping-review"],
+   "traps": {"co-citation": "Papers this new have barely been cited, so almost nothing links them yet. Co-citation would map their foundations, not today's fronts.",
+             "systematic-review": "There's no focused question or effect to pool, and thousands of papers is far beyond manual appraisal."},
+   "why": "Papers that cite the same sources are probably working on the same problem, and that link exists the day a paper is published. Down-weight references that nearly everyone cites (here, the classic deep-learning papers), or they glue every paper into one blob. Then name each cluster by reading its core papers.",
+   "key_threat": "construct-validity"},
+
+  {"id": "Q64", "suit": "MEASURE", "field": "Educational psychology", "title": "Grit or not?", "difficulty": 2,
+   "text": "A popular 'grit' scale predicts which students finish their degrees. Critics say it's just conscientiousness under a new name. Does it measure something distinct?",
+   "constraints": [],
+   "best": ["nomological"], "ok": ["validation"],
+   "traps": {"cohort-prospective": "Showing that grit predicts graduation proves nothing new: conscientiousness predicts it too.",
+             "reliability": "A highly reliable scale can reliably measure the wrong thing."},
+   "why": "Write down the predicted pattern before collecting data: grit should correlate with conscientiousness, but not so highly that they are the same thing, and it should predict outcomes beyond it. Measure both traits by more than one method (self-report, teacher ratings, behaviour), so shared questionnaire habits don't fake the overlap.",
+   "key_threat": "measurement-error"}
 ]

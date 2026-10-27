@@ -1,4 +1,4 @@
-"""Art for the 60 Question cards (Q01-Q60).
+"""Art for the 64 Question cards (Q01-Q64).
 
 Each picture shows the SUBJECT of the research scenario (a vape, a butterfly, a bridge in a storm...), never the study
 design, so the art cannot give the answer away. Built from the primitives in art.py.
@@ -764,4 +764,46 @@ def q60():  # The rural gap
     return barn + silo + road + screen + line([(6, 128), (100, 128)], DIM, 2)
 
 
-QUESTION_ART = {f"Q{k:02d}": globals()[f"q{k:02d}"] for k in range(1, 61)}
+def q61():  # The tangle clip
+    pole = line([(54, 14), (54, 136)], INK, 4) + line([(34, 136), (74, 136)], INK, 4) + path("M38,14 H70", INK, 3)
+    bag = rect(36, 22, 36, 46, "#7DD3FC44", INK, 2.5, 8) + line([(42, 36), (66, 36)], DIM, 2) + line([(42, 44), (60, 44)], DIM, 2) + rect(50, 68, 8, 8, INK, INK, 0, 1)
+    tubes = path("M54,76 C54,104 112,82 120,106 S86,138 126,130 S174,94 150,74 S108,98 136,118 S180,132 188,112", COOL, 3)
+    tubes += path("M58,76 C70,96 92,70 128,82 S170,118 138,100 S116,60 160,52 S190,78 172,96", INK, 2.5)
+    clip = _rot(-20, 140, 92, rect(127, 85, 28, 14, ACC, DARK, 2, 4) + line([(132, 92), (150, 92)], DARK, 2))
+    return tubes + pole + bag + clip + star(176, 26, 7)
+
+
+def q62():  # Roots of a field
+    roots = path("M100,86 Q96,104 70,118 M100,86 Q104,110 128,130 M100,86 Q100,112 96,140 M90,96 Q72,96 52,108 M110,96 Q134,98 156,112", "#D6B98C", 3)
+    trunk = rect(92, 46, 16, 40, "#78350f", "none", 0, 0)
+    canopy = circle(76, 46, 17, "#2f7d4f", GREEN, 2.5) + circle(124, 46, 17, "#2f7d4f", GREEN, 2.5) + circle(100, 32, 25, "#3a9160", GREEN, 2.5)
+    coin = circle(162, 50, 14, ACC, DARK, 2) + text(162, 56, "$", 16, DARK)
+    bee = _ellipse(38, 50, 10, 6.5, ACC, DARK, 1.5) + line([(35, 44), (35, 56)], DARK, 2) + line([(41, 44), (41, 56)], DARK, 2)
+    bee += _ellipse(34, 41, 6, 3.5, "#ffffffaa", INK, 1) + _ellipse(42, 41, 6, 3.5, "#ffffffaa", INK, 1)
+    return roots + trunk + canopy + line([(10, 86), (190, 86)], INK, 3) + coin + bee
+
+
+def q63():  # Paper flood
+    wave = path("M8,142 V98 Q40,72 66,94 Q86,110 104,88 Q124,64 150,82 Q170,96 192,78 V142 Z", COOL, 2.5, fill="#7DD3FC44")
+    r = lcg(63)
+    papers = ""
+    for k in range(16):
+        x, y = 16 + r() * 168, 100 + r() * 26
+        papers += _rot(r() * 50 - 25, x, y, doc(x - 7, y - 9, 14, 18, INK, 2, DARK, 1.5))
+    ring = line([(150 + 17 * math.cos(math.radians(60 * k + 30)), 36 + 17 * math.sin(math.radians(60 * k + 30))) for k in range(6)], INK, 3, close=True)
+    ring += circle(150, 36, 8, "none", ACC, 2.5) + line([(165, 27), (180, 18)], INK, 3) + circle(183, 16, 4.5, HOT)
+    chip = rect(30, 20, 34, 34, DARK, INK, 2.5, 3) + rect(39, 29, 16, 16, ACC, "none", 0, 2)
+    chip += "".join(line([(35 + k * 8, 14), (35 + k * 8, 20)], INK, 2) + line([(35 + k * 8, 54), (35 + k * 8, 60)], INK, 2) for k in range(4))
+    return wave + papers + ring + chip + text(100, 46, "+", 24, DIM)
+
+
+def q64():  # Grit or not?
+    mountain = path("M6,142 L70,58 L96,88 L124,44 L194,142 Z", INK, 3, fill=SHADOW) + path("M111,64 L124,44 L137,64 L130,60 L124,66 L117,60 Z", INK, 2, fill="#F8FAFCcc")
+    trail = path("M30,140 Q60,124 52,112 Q48,100 74,96 Q100,92 96,80", ACC, 2.5, dash="4 5")
+    flag = line([(124, 44), (124, 24)], INK, 2.5) + path("M124,24 L142,29 L124,34 Z", HOT, 2, fill=HOT)
+    climber = person(96, 72, 1.0, INK) + line([(102, 67), (110, 56)], INK, 2.5)
+    cap = path("M14,30 L38,22 L62,30 L38,38 Z", INK, 2, fill=DARK) + path("M24,34 V44 Q38,50 52,44 V34", INK, 2) + line([(58, 31), (58, 44)], ACC, 2.5)
+    return mountain + trail + flag + climber + cap
+
+
+QUESTION_ART = {f"Q{k:02d}": globals()[f"q{k:02d}"] for k in range(1, 65)}

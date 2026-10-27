@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@500&family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans+Condensed:ital,wght@0,400;0,600;1,400&display=swap" media="print" onload="this.media='all'">
 <style>
-/* Layout: a lab bench. The dealt question card and its verdict sit on top; below, a periodic table of the 46 designs in family columns. A sticky tray holds the chosen design. */
+/* Layout: a lab bench. The dealt question card and its verdict sit on top; below, a periodic table of all designs in family columns. A sticky tray holds the chosen design. */
 :root {
   --bg: #EEF1F4; --grid: rgba(35, 64, 168, .07); --surface: #FFFFFF; --ink: #141922; --muted: #596273;
   --line: #D5DBE3; --accent: #2340A8; --accent-ink: #FFFFFF;
@@ -156,7 +156,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
       <div class="stat"><b id="s-score">0</b><span class="label">Points</span></div>
       <div class="stat"><b id="s-acc">–</b><span class="label">Best picks</span></div>
       <div class="stat"><b id="s-streak">0</b><span class="label">Streak</span></div>
-      <div class="stat"><b id="s-seen">0/60</b><span class="label">Seen</span></div>
+      <div class="stat"><b id="s-seen">0</b><span class="label">Seen</span></div>
     </div>
   </header>
 
@@ -181,7 +181,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
     </div>
     <div class="table-head">
       <h2>The periodic table of methods</h2>
-      <span class="label">46 designs · 9 families · tap one to choose it</span>
+      <span class="label" id="ptable-label"></span>
     </div>
     <div class="ptable" id="ptable"></div>
   </section>
@@ -225,7 +225,8 @@ const SYM = { "case-report": "Cr", "cross-sectional": "Xs", "ecological": "Ec", 
   "factorial-doe": "Fd", "n-of-1": "N1", "stepped-wedge": "Sw", "ab-test": "Ab", "adaptive-platform": "Ap", "field-experiment": "Fx",
   "ethnography": "Et", "grounded-theory": "Gt", "interviews-thematic": "In", "case-study": "Cs", "delphi": "Dp", "mixed-sequential": "Mx",
   "systematic-review": "Sr", "scoping-review": "Sp", "network-meta": "Nm", "umbrella-review": "Ub", "rapid-review": "Rr", "realist-review": "Rl",
-  "diagnostic-accuracy": "Dx", "reliability": "Ag", "validation": "Va", "interlab": "Il", "analytical-model": "An", "simulation": "Si",
+  "prior-art": "Pa", "co-citation": "Ci", "bibliographic-coupling": "Bc",
+  "diagnostic-accuracy": "Dx", "reliability": "Ag", "validation": "Va", "nomological": "Nn", "interlab": "Il", "analytical-model": "An", "simulation": "Si",
   "prediction-model": "Pm", "design-science": "Ds", "pilot": "Pi", "benchmark": "Bm" };
 
 const $ = id => document.getElementById(id);
@@ -444,5 +445,6 @@ $("b-new").onclick = nextQuestion;
 $("b-submit").onclick = submit;
 $("deck-search").oninput = renderDecks;
 $("ver").textContent = meta.version;
+$("ptable-label").textContent = `${designs.length} designs · ${meta.families.length} families · tap one to choose it`;
 renderStats(); renderGuide(); nextQuestion();
 </script>

@@ -68,7 +68,7 @@ widened to cover research that isn't health research:
 
 - **Predict** is separate from **Associate** and **Cause** because prediction and causation need different designs
   and different validation, and confusing them is one of the most common modern errors.
-- **Measure** is separate because measurement studies (diagnostic accuracy, reliability, psychometrics,
+- **Measure** is separate because measurement studies (diagnostic accuracy, reliability, psychometrics, nomological networks,
   interlaboratory trials) are a big, under-taught part of science with their own designs.
 - **Explain** covers theory: analytical derivation and simulation. Physicists and engineers spend most of their time here.
 - **Build** covers design science, engineering research and feasibility work, where the output is an artifact or a plan.
@@ -94,6 +94,19 @@ Each of the 13 constraint icons stands for a classic *reason a design is chosen*
 
 **Twist** cards add constraints mid-round, which trains the most useful habit of all: re-deciding when the situation changes.
 
+### 3.4 Mapping and searching the literature, not just pooling it
+
+Not every question about existing work asks for a pooled effect, so the synthesis family also holds designs that map or search:
+
+- **Co-citation analysis** and **bibliographic coupling** are mirror images. Co-citation links two works each time a later paper
+  cites both, so it maps a field's intellectual base, but only once citations have had time to pile up. Bibliographic coupling links
+  two papers that cite the same sources, so the link exists the day a paper appears and it maps today's research fronts.
+  That timing is the teaching point: on brand-new literature (Q63), co-citation is the trap.
+- **Prior art review** is the engineer's literature search. Novelty is judged against patents, products, catalogues and theses as
+  well as papers, so it answers a 🛠️ Build question (Q61) even though it sits in the synthesis family.
+- A **nomological network study** (measurement family) tests a measure against the pattern of relations that theory predicts for it.
+  It struggles with ❓ Uncharted, because without a theory there is no network to test (Q64).
+
 ## 4. The answer key: three tiers, not one right answer
 
 Scientists will (rightly) argue with any single "correct" answer. So every question has:
@@ -111,10 +124,10 @@ and the best ones should be fed back into the deck.
 
 ## 5. Balance and coverage
 
-- 60 questions over 9 suits. 🎯 Cause has 17 because causal inference has the most designs. The other suits have 5–6 each.
+- 64 questions over 9 suits. 🎯 Cause has 17 because causal inference has the most designs, and 📚 Synthesize has 8 because each review and citation-mapping design needs a question of its own. The other suits have 5–6 each.
 - Fields include medicine, public health, ecology, astronomy, economics, education, engineering, robotics, materials,
   chemistry, physics, HCI and anthropology, so that the deck is not secretly a medical-school exam.
-- The build script **checks** that every one of the 46 designs is the best answer to at least one question,
+- The build script **checks** that every one of the 50 designs is the best answer to at least one question,
   that every threat appears on at least one design, and that every design weakness has at least one usable safeguard.
   Mode 2 can't deal a threat that has no possible counter.
 - Difficulty ★ to ★★★: ★ is a first-year methods course; ★★★ (target trials, Mendelian randomization,
@@ -169,5 +182,7 @@ so the cards feel like a game and the table can read them at a glance:
 - Rothman, Greenland & Lash, *Modern Epidemiology*: observational designs and biases.
 - Creswell & Plano Clark, *Designing and Conducting Mixed Methods Research*.
 - Higgins et al., *Cochrane Handbook*; Tricco et al. (2018) PRISMA-ScR; Pawson (2006) on realist synthesis.
+- Kessler (1963) on bibliographic coupling; Small (1973) and White & Griffith (1981) on co-citation; Boyack & Klavans (2010) comparing them.
+- Cronbach & Meehl (1955) on construct validity and the nomological network; Campbell & Fiske (1959) on the multitrait–multimethod matrix.
 - Hevner et al. (2004) on design science in information systems; Montgomery, *Design and Analysis of Experiments*.
 - The EQUATOR reporting guidelines (CONSORT, STROBE, STARD, TRIPOD, PRISMA).

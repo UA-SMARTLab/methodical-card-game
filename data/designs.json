@@ -251,6 +251,27 @@
    "weak_vs": ["researcher-lens", "heterogeneity"], "cost": 2, "time": 2,
    "example": "Pawson's realist syntheses of complex social programmes (context + mechanism → outcome)."},
 
+  {"id": "prior-art", "name": "Prior art review", "short": "Before you build it or call it new, search patents, products and papers for what already exists.", "family": "synthesis",
+   "serves": ["BUILD", "SYNTHESIZE"],
+   "gist": "Search patents, standards, products, theses and papers for what already exists, before you build, publish or claim novelty.",
+   "fits": ["existing-data", "fast-cheap"], "struggles": [],
+   "weak_vs": ["selection-bias", "researcher-lens", "publication-bias"], "cost": 1, "time": 1,
+   "example": "In re Hall (1986): one German thesis, shelved in a university library, counted as prior art against a US patent."},
+
+  {"id": "co-citation", "name": "Co-citation analysis", "short": "Two works are linked whenever a later paper cites both. Clusters reveal a field's foundations.", "family": "synthesis",
+   "serves": ["SYNTHESIZE", "DESCRIBE"],
+   "gist": "Link works (or authors) each time later papers cite them together; clusters map a field's intellectual base. New papers are invisible.",
+   "fits": ["many-studies", "existing-data", "fast-cheap"], "struggles": ["unknown-territory"],
+   "weak_vs": ["survivorship", "construct-validity", "forking-paths"], "cost": 1, "time": 1,
+   "example": "Small (1973) defined it; White & Griffith (1981) mapped information science's schools by author co-citation."},
+
+  {"id": "bibliographic-coupling", "name": "Bibliographic coupling", "short": "Two papers are linked when they cite the same sources. Clusters reveal today's research fronts.", "family": "synthesis",
+   "serves": ["SYNTHESIZE", "DESCRIBE"],
+   "gist": "Link papers that share references; clusters map current research fronts. Works the day a paper appears, but generic references blur it.",
+   "fits": ["many-studies", "existing-data", "fast-cheap"], "struggles": [],
+   "weak_vs": ["construct-validity", "selection-bias", "forking-paths"], "cost": 1, "time": 1,
+   "example": "Kessler (1963) grouped physics papers by the references they share; still a standard way to find research fronts."},
+
   {"id": "diagnostic-accuracy", "name": "Diagnostic accuracy study", "short": "The new test and the reference standard, on the same real patients.", "family": "measurement",
    "serves": ["MEASURE"],
    "gist": "Apply a new test and a reference standard to consecutive people suspected of the condition; estimate sensitivity and specificity.",
@@ -271,6 +292,13 @@
    "fits": ["unknown-territory"], "struggles": ["fast-cheap"],
    "weak_vs": ["construct-validity", "selection-bias"], "cost": 2, "time": 2,
    "example": "Development of the Maslach Burnout Inventory (1981)."},
+
+  {"id": "nomological", "name": "Nomological network study", "short": "Predict how your measure should relate to other measures, then test the whole pattern.", "family": "measurement",
+   "serves": ["MEASURE", "EXPLAIN"],
+   "gist": "From theory, predict which measures yours should track, which it shouldn't, and which groups should differ; then test the whole pattern.",
+   "fits": [], "struggles": ["unknown-territory"],
+   "weak_vs": ["measurement-error", "forking-paths", "selection-bias"], "cost": 2, "time": 1,
+   "example": "Cronbach & Meehl (1955) coined the idea; Campbell & Fiske's (1959) multitrait–multimethod matrix put it to work."},
 
   {"id": "interlab", "name": "Interlaboratory comparison", "short": "Same sample, many labs: how reproducible is the method?", "family": "measurement",
    "serves": ["MEASURE"],

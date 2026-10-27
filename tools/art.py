@@ -296,7 +296,7 @@ CONSTRAINT_ICONS = {
 }
 
 
-# --------------------------------------------------------------------------- design art (46)
+# --------------------------------------------------------------------------- design art (50)
 def _arms(x, y, n, dx, c):
     return "".join(person(x + i * dx, y, 0.75, c) for i in range(n))
 
@@ -612,6 +612,38 @@ def art_realist_review():
     return out + text(62, 26, "MECHANISM", 10, ACC) + text(168, 108, "OUTCOME", 10, INK)
 
 
+def art_prior_art():
+    patent = doc(14, 16, 34, 44, INK, 3, "#0f172a55") + line([(37, 60), (34, 72)], ACC, 3) + line([(43, 60), (46, 72)], ACC, 3) + circle(40, 56, 7, ACC)
+    books = "".join(rect(x, y, w, 11, "#0f172a55", INK, 2.5, 2) for x, y, w in ((16, 86, 42), (20, 99, 42), (12, 112, 50)))
+    box = path("M72,108 L94,100 L116,108 L94,116 Z", INK, 2.5, fill="#0f172a33") + path("M72,108 V128 L94,136 L116,128 V108 M94,116 V136", INK, 2.5)
+    bulb = circle(162, 56, 22, "#FCD34D33", ACC, 3) + rect(152, 77, 20, 11, "#0f172a", INK, 2.5, 2) + line([(155, 92), (169, 92)], INK, 2.5)
+    return (patent + books + box + magnifier(84, 50, 18, INK) + carrow(108, 34, 122, 22, 136, 40, DIM, 2, "4 4", 6)
+            + bulb + text(162, 65, "?", 24, ACC) + text(162, 120, "NEW?", 13, ACC))
+
+
+def art_co_citation():
+    out = ""
+    for x in (24, 84, 144):
+        out += doc(x, 98, 30, 36, DIM, 2, "#0f172a44", 2)
+        out += arrow(x + 12, 96, 58, 58, DIM, 2, head=6) + arrow(x + 18, 96, 142, 58, DIM, 2, head=6)
+    out += doc(40, 14, 32, 40, INK, 0, "#0f172a") + doc(128, 14, 32, 40, INK, 0, "#0f172a")
+    out += text(56, 43, "A", 18, INK) + text(144, 43, "B", 18, INK)
+    return out + line([(76, 34), (124, 34)], ACC, 6) + text(100, 26, "×3", 12, ACC)
+
+
+def art_bibliographic_coupling():
+    out = ""
+    for k, x in enumerate((14, 60, 106, 152)):
+        shared = k in (1, 2)
+        out += doc(x, 12, 30, 34, ACC if shared else DIM, 2, "#FCD34D33" if shared else "#0f172a44", 2)
+    for cx, refs in ((56, (0, 1, 2)), (144, (1, 2, 3))):
+        for k in refs:
+            out += arrow(cx + (k - 1.5) * 5, 94, 29 + k * 46, 50, DIM, 2, head=6)
+    out += doc(40, 96, 32, 40, INK, 0, "#0f172a") + doc(128, 96, 32, 40, INK, 0, "#0f172a")
+    out += text(56, 125, "A", 18, INK) + text(144, 125, "B", 18, INK)
+    return out + line([(76, 116), (124, 116)], ACC, 6) + text(100, 138, "×2", 12, ACC)
+
+
 def art_diagnostic_accuracy():
     out = rect(14, 40, 30, 80, "#0f172a55", INK, 2.5, 8) + rect(22, 54, 14, 30, "#ffffff22", INK, 2, 3)
     out += line([(22, 64), (36, 64)], HOT, 3) + line([(22, 74), (36, 74)], HOT, 3)
@@ -636,6 +668,18 @@ def art_validation():
             out += check(33.5, y + 5, 6, ACC, 2.5)
     out += circle(144, 78, 40, "none", INK, 3) + circle(144, 78, 26, "none", INK, 3) + circle(144, 78, 11, ACC)
     return out + arrow(186, 36, 150, 74, INK, 3)
+
+
+def art_nomological():
+    hub = (100, 76)
+    spokes = [((34, 30), INK, 5, None, "+"), ((166, 30), INK, 3, None, "+"), ((32, 122), DIM, 2.5, "5 5", "0"), ((168, 122), HOT, 3, None, "−")]
+    out = ""
+    for (x, y), c, w, dash, lab in spokes:
+        mx, my = (hub[0] + x) / 2, (hub[1] + y) / 2
+        out += line([hub, (x, y)], c, w, dash) + circle(mx, my, 9, "#0f172a", c, 2) + text(mx, my + 5, lab, 14, c)
+    for k, ((x, y), *_) in enumerate(spokes):
+        out += node(x, y, "BCDE"[k], 13, "#0f172a", INK, size=13)
+    return out + circle(*hub, 20, ACC, INK, 3) + text(100, 83, "M", 20, "#0f172a")
 
 
 def art_interlab():

@@ -655,6 +655,21 @@ Send identical, homogeneous samples (ideally with a certified reference value) t
 
 *Watch out for:* **Measurement error**, countered by Validated, objective measures, Blinding, Triangulation.
 
+### Q64 · Grit or not? (Educational psychology, ★★)
+
+> A popular 'grit' scale predicts which students finish their degrees. Critics say it's just conscientiousness under a new name. Does it measure something distinct?
+
+Constraints: none
+
+- 🥇 **Best:** Nomological network study
+- 🥈 **Defensible:** Instrument development & validation
+- ⚠️ **Trap, Prospective cohort:** Showing that grit predicts graduation proves nothing new: conscientiousness predicts it too.
+- ⚠️ **Trap, Reliability & agreement study:** A highly reliable scale can reliably measure the wrong thing.
+
+Write down the predicted pattern before collecting data: grit should correlate with conscientiousness, but not so highly that they are the same thing, and it should predict outcomes beyond it. Measure both traits by more than one method (self-report, teacher ratings, behaviour), so shared questionnaire habits don't fake the overlap.
+
+*Watch out for:* **Measurement error**, countered by Validated, objective measures, Blinding, Triangulation.
+
 ## 🧮 Explain: What mechanism or law must hold? What follows from the theory?
 
 ### Q38 · Engine limit (Physics, ★)
@@ -824,6 +839,21 @@ Feasibility first: run it in a few clinics, measure uptake, completion and techn
 
 *Watch out for:* **Limited generalizability**, countered by Multi-site, diverse sample, Representative sampling, Independent replication.
 
+### Q61 · The tangle clip (Medical devices, ★)
+
+> A nurse has invented a clip that stops IV lines from tangling. Before the hospital pays for prototypes and a patent filing: is it actually new?
+
+Constraints: 🗄️ Existing data, 💸 Tight budget
+
+- 🥇 **Best:** Prior art review
+- 🥈 **Defensible:** Scoping review
+- ⚠️ **Trap, Design science (build & evaluate):** Building and testing first risks a year spent reinventing, or infringing, someone else's patent.
+- ⚠️ **Trap, Systematic review & meta-analysis:** There's no effect to pool, and most prior art for a gadget like this sits in patents and product catalogues, not journals.
+
+Novelty is judged against everything made public anywhere, in any language: patents, products, catalogues, theses and papers. Search patent databases by classification code as well as by keyword, because patents rarely use everyday words like 'clip'.
+
+*Watch out for:* **Selection bias**, countered by Representative sampling, Allocation concealment, Causal diagram (DAG), Comprehensive search, Intention-to-treat, Time-zero alignment.
+
 ## 📚 Synthesize: What does all the existing evidence say?
 
 ### Q49 · Run it again? (Psychiatry, ★)
@@ -916,6 +946,36 @@ Realist synthesis asks how context triggers mechanisms that produce outcomes, dr
 
 *Watch out for:* **Apples & oranges**, countered by Pre-planned heterogeneity analysis, Sensitivity analysis.
 
+### Q62 · Roots of a field (Sustainability science, ★★)
+
+> Research on 'ecosystem services' has grown for thirty years across ecology and economics. Which classic works form its foundations, and which schools of thought do they fall into?
+
+Constraints: 🗂️ Many studies, 🗄️ Existing data
+
+- 🥇 **Best:** Co-citation analysis
+- 🥈 **Defensible:** Bibliographic coupling
+- ⚠️ **Trap, Systematic review & meta-analysis:** There's no single effect to pool. The question is how the field is structured.
+- ⚠️ **Trap, Delphi consensus:** Experts tend to nominate the classics of their own school. The citation record shows what the whole field builds on.
+
+Two works are linked each time a later paper cites both, so clusters of co-cited works are the field's schools of thought, and the works that bridge clusters show where ecology and economics meet. Normalize for how often each work is cited, and remember that a citation isn't an endorsement.
+
+*Watch out for:* **Wrong construct**, countered by Validated, objective measures, Triangulation.
+
+### Q63 · Paper flood (Science of science, ★★)
+
+> Thousands of papers on AI for drug discovery appeared in the last two years. What are the active research fronts right now, and how do they group?
+
+Constraints: 🗂️ Many studies, 🗄️ Existing data, 💸 Tight budget
+
+- 🥇 **Best:** Bibliographic coupling
+- 🥈 **Defensible:** Scoping review
+- ⚠️ **Trap, Co-citation analysis:** Papers this new have barely been cited, so almost nothing links them yet. Co-citation would map their foundations, not today's fronts.
+- ⚠️ **Trap, Systematic review & meta-analysis:** There's no focused question or effect to pool, and thousands of papers is far beyond manual appraisal.
+
+Papers that cite the same sources are probably working on the same problem, and that link exists the day a paper is published. Down-weight references that nearly everyone cites (here, the classic deep-learning papers), or they glue every paper into one blob. Then name each cluster by reading its core papers.
+
+*Watch out for:* **Wrong construct**, countered by Validated, objective measures, Triangulation.
+
 ## Research programmes (cooperative mode)
 
 ### P1 · Screens & teen mental health
@@ -942,7 +1002,7 @@ Microplastics turn up in blood, placentas and arteries. Are they a health proble
 
 Growers can't find seasonal workers. Can a soft robotic gripper pick strawberries without bruising them?
 
-1. 📚 What gripper designs exist, and how have they been evaluated? → **Scoping review, Systematic review & meta-analysis**
+1. 📚 What gripper designs exist, and how have they been evaluated? → **Scoping review, Systematic review & meta-analysis, Prior art review**
 2. 🛠️ Design a gripper that growers and pickers find usable. → **Design science (build & evaluate)**
 3. 🎯 Which combination of finger material, pressure and approach speed minimizes bruising? → **Factorial experiment (DoE)**
 4. 🛠️ Does it beat existing grippers on a shared set of fruits and metrics? → **Benchmark evaluation**
@@ -1018,9 +1078,13 @@ A hospital group wants an AI tool that flags patients who will need intensive ca
 | Umbrella review | Evidence synthesis | Q53 |
 | Rapid review | Evidence synthesis | Q52 |
 | Realist review | Evidence synthesis | Q54 |
+| Prior art review | Evidence synthesis | Q61 |
+| Co-citation analysis | Evidence synthesis | Q62 |
+| Bibliographic coupling | Evidence synthesis | Q63 |
 | Diagnostic accuracy study | Measurement | Q33 |
 | Reliability & agreement study | Measurement | Q35, Q36 |
 | Instrument development & validation | Measurement | Q34 |
+| Nomological network study | Measurement | Q64 |
 | Interlaboratory comparison | Measurement | Q37 |
 | Analytical / mathematical theory | Theory & computation | Q38, Q41, Q43 |
 | Computational simulation | Theory & computation | Q39, Q40, Q42 |
