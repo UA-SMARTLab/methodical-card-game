@@ -227,6 +227,72 @@ select, .btn { background: var(--surface); border: 1px solid var(--line); border
 .guide ul { padding-left: 18px; margin: 0; }
 .legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 6px 16px; font-size: 14px; margin-top: 8px; }
 footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
+
+/* duel: you versus the computer */
+.d-start { max-width: 780px; }
+.d-skill { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; }
+.d-skill .btn { text-align: left; }
+.d-skill .btn small { display: block; color: var(--muted); font-size: 12px; }
+.d-game { display: flex; flex-direction: column; gap: 16px; }
+.d-who { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+.d-who b { font-family: var(--f-display); font-size: 18px; }
+.d-score { font: 800 28px/1 var(--f-display); font-variant-numeric: tabular-nums; min-width: 2ch; }
+.d-hand { --card-u: 3.1px; display: flex; padding: 26px 8px 8px 96px; overflow-x: auto; scrollbar-width: thin; }
+.d-hand > * { flex: none; margin-left: -96px; }
+.d-hand.backs { --card-u: 1.15px; padding: 2px 0 2px 34px; min-height: calc(1.15px * 88 + 4px); }
+.d-hand.backs > * { margin-left: -34px; }
+.d-card, .d-qbtn, .d-tac button { background: none; border: 0; padding: 0; color: inherit; border-radius: calc(var(--card-u) * 3.2); position: relative;
+  transition: transform .18s, box-shadow .18s, opacity .3s; }
+.d-card:not(:disabled):hover, .d-card:not(:disabled):focus-visible { transform: translateY(-16px); z-index: 2; }
+.d-card.sel { transform: translateY(-24px); box-shadow: 0 0 0 3px var(--accent), 0 14px 30px rgba(0,0,0,.35); z-index: 3; }
+.d-card:disabled, .d-qbtn:disabled, .d-tac button:disabled { cursor: default; }
+.cb { width: calc(var(--card-u) * 63); height: calc(var(--card-u) * 88); border-radius: calc(var(--card-u) * 3.2); color: #F8FAFC; text-align: center;
+  background: radial-gradient(circle at 50% 42%, #24345a, #0f172a 70%); display: grid; place-content: center;
+  box-shadow: inset 0 0 0 calc(var(--card-u) * 2) #0f172a, inset 0 0 0 calc(var(--card-u) * 2.6) rgba(252,211,77,.75), 0 2px 6px rgba(0,0,0,.25); }
+.cb b { font: 800 calc(var(--card-u) * 15)/1 var(--f-display); }
+.cb span { font: 700 calc(var(--card-u) * 3.6)/1.5 "Barlow Condensed", sans-serif; letter-spacing: .14em; color: #FCD34D; }
+.d-board { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 18px; align-items: start; }
+.d-pilewrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.d-pile { --card-u: 1.7px; position: relative; width: calc(1.7px * 63 + 12px); height: calc(1.7px * 88 + 12px); }
+.d-pile > div { position: absolute; }
+.d-pile.shuffling > div:nth-child(odd) { animation: riffleA .32s 3 ease-in-out; }
+.d-pile.shuffling > div:nth-child(even) { animation: riffleB .32s 3 ease-in-out; }
+@keyframes riffleA { 50% { transform: translate(-46px, -4px) rotate(-9deg); } }
+@keyframes riffleB { 50% { transform: translate(46px, 4px) rotate(9deg); } }
+.d-market { --card-u: 3.7px; display: flex; gap: 14px; overflow-x: auto; padding: 6px 4px 10px; }
+.d-qbtn { flex: none; }
+.d-qbtn:not(:disabled):hover { transform: translateY(-4px); }
+.d-qbtn.sel { box-shadow: 0 0 0 4px var(--accent), 0 12px 28px rgba(0,0,0,.3); }
+.d-qbtn .tag { position: absolute; z-index: 2; left: 50%; transform: translateX(-50%); top: -10px; white-space: nowrap; border-radius: 99px; padding: 2px 10px;
+  font: 700 12px/1.4 var(--f-mono); background: var(--accent); color: var(--accent-ink); }
+.d-qbtn .tag.bot { background: var(--trap); color: #fff; top: auto; bottom: -10px; }
+.d-arena { --card-u: 3.1px; display: grid; grid-template-columns: max-content max-content minmax(0, 1fr); gap: 18px; align-items: start; }
+.d-slot { position: relative; width: calc(var(--card-u) * 63); }
+.d-slot .label { display: block; margin-bottom: 6px; min-height: 2.6em; }
+.d-slot .ph { width: calc(var(--card-u) * 63); height: calc(var(--card-u) * 88); border: 2px dashed var(--line); border-radius: calc(var(--card-u) * 3.2); }
+.flip { position: relative; width: calc(var(--card-u) * 63); height: calc(var(--card-u) * 88); transform-style: preserve-3d; transition: transform .6s cubic-bezier(.3,.7,.2,1); }
+.flip.up { transform: rotateY(180deg); }
+.flip .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.flip .front { transform: rotateY(180deg); }
+.d-log { font-size: 14px; min-height: 120px; }
+.d-log p { margin: 0 0 8px; }
+.d-log .old { color: var(--muted); }
+.d-tac { --card-u: 2.25px; display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
+.d-tac button.live { box-shadow: 0 0 0 3px var(--gold), 0 8px 18px rgba(0,0,0,.25); }
+.d-tac button:not(:disabled):hover { transform: translateY(-6px); }
+.d-tac button:disabled { opacity: .6; }
+.d-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; min-height: 38px; }
+.d-actions .hint { color: var(--muted); font-size: 14px; }
+.pop { position: absolute; left: 50%; top: 40%; z-index: 5; pointer-events: none; transform: translateX(-50%);
+  font: 800 40px/1 var(--f-display); color: var(--muted); text-shadow: 0 2px 10px rgba(0,0,0,.35); }
+.pop.up { color: var(--good); } .pop.down { color: var(--trap); }
+.fly { position: fixed; z-index: 30; pointer-events: none; --card-u: 2.6px; }
+@media (max-width: 760px) {
+  .d-board, .d-arena { grid-template-columns: max-content max-content; }
+  .d-board .d-market, .d-arena .d-log { grid-column: 1 / -1; }
+  .d-market { --card-u: 3.3px; }
+  .d-arena { --card-u: 2.4px; }
+}
 </style>
 
 <div class="wrap">
@@ -245,6 +311,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 
   <nav role="tablist">
     <button role="tab" id="tab-play" aria-selected="true" data-view="play">Play</button>
+    <button role="tab" id="tab-duel" aria-selected="false" data-view="duel">Duel</button>
     <button role="tab" id="tab-decks" aria-selected="false" data-view="decks">Browse the decks</button>
     <button role="tab" id="tab-guide" aria-selected="false" data-view="guide">How it works</button>
   </nav>
@@ -267,6 +334,44 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
       <span class="label" id="ptable-label"></span>
     </div>
     <div class="ptable" id="ptable"></div>
+  </section>
+
+  <section id="view-duel" hidden>
+    <div class="d-start panel" id="d-start">
+      <span class="label">You versus the computer</span>
+      <h3>Duel</h3>
+      <p>Each of you is dealt <b>7 Design cards</b> and <b>3 tactics cards</b> (Threats and Safeguards). Three research questions lie face up.
+        Every round you both play one design, face down, onto any open question. Then the cards flip.</p>
+      <ul class="steps">
+        <li><b>Score it:</b> best +3, defensible +1, unlisted 0, trap −2. Answer the same question as your rival with a better design and you <b>scoop</b> them: +1 more.</li>
+        <li><b>Review it:</b> play a Threat your rival's design is weak against. They lose 1, unless they block it with a Safeguard that counters it (then they gain 1).</li>
+        <li><b>Plan ahead:</b> once per round you may swap a design for a new one (−1). Hands refill after every round. Highest score after 8 rounds wins.</li>
+      </ul>
+      <p style="margin-top:12px"><b>Choose your opponent</b></p>
+      <div class="d-skill" id="d-skill"></div>
+      <p class="label" id="d-record"></p>
+    </div>
+    <div class="d-game" id="d-game" hidden>
+      <div class="d-bar">
+        <div class="d-who"><b id="d-bot-name">Opponent</b><span class="d-score" id="d-bot-score">0</span><span class="label" id="d-bot-tac"></span></div>
+        <div class="d-hand backs" id="d-bot-hand"></div>
+      </div>
+      <div class="d-board">
+        <div class="d-pilewrap"><div class="d-pile" id="d-pile"></div><span class="label" id="d-pile-n"></span></div>
+        <div class="d-market" id="d-market"></div>
+      </div>
+      <div class="d-arena">
+        <div class="d-slot" id="d-slot-bot"></div>
+        <div class="d-slot" id="d-slot-me"></div>
+        <div class="panel d-log" id="d-log" aria-live="polite"></div>
+      </div>
+      <div class="d-bar">
+        <div class="d-who"><b>You</b><span class="d-score" id="d-me-score">0</span><span class="label" id="d-round"></span></div>
+        <div class="d-tac" id="d-me-tac"></div>
+        <div class="d-actions" id="d-actions"></div>
+        <div class="d-hand" id="d-me-hand"></div>
+      </div>
+    </div>
   </section>
 
   <section id="view-decks" hidden>
@@ -506,6 +611,7 @@ function renderGuide() {
     <li><b>Peer Review.</b> Propose, attack, rebut. Competitive, 3–6 players.</li>
     <li><b>Research Programme.</b> A cooperative 5-stage project against rising doubt.</li>
     <li><b>Reviewer 2.</b> A fast critique drill with mismatched cards.</li></ul>
+    <p style="margin-top:10px"><b>Duel</b> (this page only): you against the computer, with dealt hands, open questions, attacks and blocks.</p>
     <p style="margin-top:10px">This page is the solo trainer. The full rules and print-and-play sheets are in the <span class="mono">methodical/</span> folder.</p></div>
   <div class="panel"><h3>Suits: the kind of question</h3><div class="legend">${meta.suits.map(s => `<div>${s.icon} <b>${esc(s.name)}</b>: ${esc(s.ask)}</div>`).join("")}</div></div>
   <div class="panel"><h3>Constraints: the situation</h3><div class="legend">${meta.constraints.map(c => `<div>${c.icon} <b>${esc(c.name)}</b>: ${esc(c.text)}</div>`).join("")}</div></div>
@@ -514,9 +620,344 @@ function renderGuide() {
   $("b-reset").onclick = () => { stats = { score: 0, answered: 0, bestHits: 0, streak: 0, seen: {} }; save(); renderStats(); $("b-reset").textContent = "Stats reset"; };
 }
 
+// ---------- duel: you versus the computer
+const DUEL = { rounds: 8, hand: 7, tactics: 3, maxTactics: 5, market: 3 };
+const BOTS = [
+  { name: "Student", skill: .4, sharp: .5, note: "Knows the key 40% of the time" },
+  { name: "Postdoc", skill: .7, sharp: .8, note: "Knows the key 70% of the time" },
+  { name: "Reviewer 2", skill: .92, sharp: 1, note: "Rarely wrong, always attacks" }];
+const TACTICS = [...threats.map(t => ({ kind: "threat", id: t.id })), ...safeguards.map(s => ({ kind: "safeguard", id: s.id }))];
+const QX = Object.fromEntries(questions.map(x => [x.id, x]));
+const tierFor = (qq, id) => qq.best.includes(id) ? "best" : qq.ok.includes(id) ? "ok" : id in qq.traps ? "trap" : "unlisted";
+const blocks = (sid, tid, did) => T[tid].countered_by.includes(sid) && (S[sid].applies_to.includes("any") || S[sid].applies_to.includes(D[did].family));
+const wait = ms => new Promise(r => setTimeout(r, reduceMotion ? 0 : ms));
+// Animation promises can stall in background tabs, so never wait on one longer than its duration.
+const settle = (anim, ms) => Promise.race([anim.finished.catch(() => {}), new Promise(r => setTimeout(r, ms + 60))]);
+const backHTML = () => `<div class="cb"><b>Me</b><span>METHODICAL</span></div>`;
+const tacHTML = x => DATA.cards[x.kind === "threat" ? "threats" : "safeguards"][x.id];
+const tacName = x => (x.kind === "threat" ? T : S)[x.id].name;
+let duel = null;
+let record = { won: 0, lost: 0, drawn: 0 };
+try { const raw = localStorage.getItem(KEY + "-duel"); if (raw) record = Object.assign(record, JSON.parse(raw)); } catch (e) {}
+
+function renderDuelStart() {
+  $("d-skill").innerHTML = BOTS.map((b, i) => `<button class="btn${i === 1 ? " primary" : ""}" data-bot="${i}"><b>${esc(b.name)}</b><small>${esc(b.note)}</small></button>`).join("");
+  $("d-skill").querySelectorAll("button").forEach(b => b.onclick = () => startDuel(BOTS[+b.dataset.bot]));
+  const n = record.won + record.lost + record.drawn;
+  $("d-record").textContent = n ? `Your record: ${record.won} won · ${record.lost} lost · ${record.drawn} drawn` : "";
+}
+
+function draw(p, n) {
+  const got = [];
+  for (let i = 0; i < n && duel.ddeck.length; i++) { const id = duel.ddeck.pop(); p.hand.push(id); got.push(id); }
+  return got;
+}
+function drawTactics(p, n) { for (let i = 0; i < n && duel.xdeck.length && p.tac.length < DUEL.maxTactics; i++) p.tac.push(duel.xdeck.pop()); }
+function refillMarket() {
+  const got = [];
+  while (duel.market.length < DUEL.market && duel.qdeck.length) { const id = duel.qdeck.pop(); duel.market.push(id); got.push(id); }
+  return got;
+}
+
+// Animation helpers: cards fly from where they were to where they now are.
+function flyIn(els, fromEl, stagger = 85) {
+  if (reduceMotion || !fromEl) return;
+  const f = fromEl.getBoundingClientRect();
+  els.forEach((el, i) => {
+    const r = el.getBoundingClientRect();
+    el.animate([{ transform: `translate(${f.left - r.left}px, ${f.top - r.top}px) rotate(-14deg) scale(.6)`, opacity: 0 }, { transform: "none", opacity: 1 }],
+      { duration: 520, delay: i * stagger, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
+  });
+}
+function flyFrom(el, rect) {
+  if (reduceMotion || !rect) return;
+  const r = el.getBoundingClientRect();
+  el.style.transformOrigin = "0 0";
+  el.animate([{ transform: `translate(${rect.left - r.left}px, ${rect.top - r.top}px) scale(${rect.width / r.width}) rotate(6deg)` }, { transform: "none" }],
+    { duration: 480, easing: "cubic-bezier(.2,.8,.2,1)" });
+}
+async function throwCard(html, fromEl, toEl) {
+  const t = toEl.getBoundingClientRect(), f = fromEl.getBoundingClientRect();
+  const fx = document.createElement("div");
+  fx.className = "fly"; fx.innerHTML = html;
+  fx.style.left = t.left + t.width * .18 + "px"; fx.style.top = t.top + t.height * .12 + "px";
+  document.body.appendChild(fx);
+  if (!reduceMotion) {
+    await settle(fx.animate([{ transform: `translate(${f.left - t.left - t.width * .18}px, ${f.top - t.top - t.height * .12}px) rotate(-20deg) scale(.5)`, opacity: .2 },
+      { transform: "rotate(-6deg) scale(1.08)", opacity: 1, offset: .7 }, { transform: "rotate(-4deg)", opacity: 1 }], { duration: 560, easing: "cubic-bezier(.2,.8,.2,1)" }), 560);
+    await wait(900);
+    await settle(fx.animate([{ opacity: 1 }, { opacity: 0, transform: "rotate(-4deg) translateY(-20px)" }], { duration: 350, fill: "forwards" }), 350);
+  }
+  fx.remove();
+}
+function pop(el, pts) {
+  const s = document.createElement("span");
+  s.className = "pop " + (pts > 0 ? "up" : pts < 0 ? "down" : "");
+  s.textContent = (pts > 0 ? "+" : "") + pts;
+  el.appendChild(s);
+  s.animate([{ transform: "translate(-50%, 10px) scale(.6)", opacity: 0 }, { transform: "translate(-50%, 0) scale(1.15)", opacity: 1, offset: .25 },
+    { transform: "translate(-50%, -70px) scale(1)", opacity: 0 }], { duration: reduceMotion ? 1 : 1500, easing: "ease-out", fill: "forwards" }).onfinish = () => s.remove();
+}
+function addPoints(who, pts, anchor) {
+  if (!pts) return;
+  duel[who].score += pts;
+  if (anchor) pop(anchor, pts);
+  const el = $(who === "me" ? "d-me-score" : "d-bot-score");
+  el.textContent = duel[who].score;
+  if (!reduceMotion) el.animate([{ transform: "scale(1.5)" }, { transform: "none" }], { duration: 400 });
+}
+function log(html, fresh = false) {
+  if (fresh) duel.log = duel.log.map(l => l.replace("<p>", '<p class="old">'));
+  duel.log.push(`<p>${html}</p>`);
+  duel.log = duel.log.slice(-7);
+  $("d-log").innerHTML = duel.log.slice().reverse().join("");
+}
+
+function renderPile() {
+  const n = Math.min(6, Math.ceil(duel.ddeck.length / 6));
+  $("d-pile").innerHTML = Array.from({ length: n }, (_, i) => `<div style="left:${i * 1.6}px;top:${-i * 1.6}px">${backHTML()}</div>`).join("");
+  $("d-pile-n").textContent = `${duel.ddeck.length} designs`;
+}
+function renderHands(dealt = []) {
+  const live = duel.phase === "choose";
+  $("d-me-hand").innerHTML = duel.me.hand.map(id => `<button class="d-card${duel.sel === id ? " sel" : ""}" data-id="${id}" ${live ? "" : "disabled"} title="${esc(D[id].gist)}">${DATA.cards.designs[id]}</button>`).join("");
+  $("d-me-hand").querySelectorAll(".d-card").forEach(b => b.onclick = () => { duel.sel = duel.sel === b.dataset.id ? null : b.dataset.id; renderHands(); renderMarket(); renderActions(); });
+  $("d-bot-hand").innerHTML = duel.bot.hand.map(id => `<div data-id="${id}">${backHTML()}</div>`).join("");
+  $("d-bot-tac").textContent = `${duel.bot.tac.length} tactics card${duel.bot.tac.length === 1 ? "" : "s"}`;
+  renderPile();
+  flyIn([...$("d-me-hand").children, ...$("d-bot-hand").children].filter(el => dealt.includes(el.dataset.id)), $("d-pile"));
+}
+function renderMarket(fresh = []) {
+  const live = duel.phase === "choose";
+  const p = duel.play;
+  $("d-market").innerHTML = duel.market.map(id => {
+    const tags = (duel.revealed && p.me.q === id ? `<span class="tag">YOU</span>` : "") + (duel.revealed && p.bot.q === id ? `<span class="tag bot">${esc(duel.bot.name.toUpperCase())}</span>` : "");
+    return `<button class="d-qbtn${duel.qsel === id ? " sel" : ""}" data-q="${id}" ${live ? "" : "disabled"} aria-label="${esc(QX[id].title)}">${DATA.cards.questions[id]}${tags}</button>`;
+  }).join("");
+  $("d-market").querySelectorAll(".d-qbtn").forEach(b => b.onclick = () => { duel.qsel = duel.qsel === b.dataset.q ? null : b.dataset.q; renderMarket(); renderActions(); });
+  flyIn([...$("d-market").children].filter(el => fresh.includes(el.dataset.q)), $("d-pile"), 140);
+}
+function renderTactics(mode = null, ok = () => true) {
+  $("d-me-tac").innerHTML = duel.me.tac.map((x, i) => {
+    const can = mode && x.kind === mode;
+    return `<button data-i="${i}" class="${can && ok(x) ? "live" : ""}" ${can ? "" : "disabled"} title="${esc(tacName(x))}">${tacHTML(x)}</button>`;
+  }).join("") || `<span class="label">No tactics cards in hand</span>`;
+  $("d-me-tac").querySelectorAll("button").forEach(b => b.onclick = () => duel.resolve && duel.resolve(+b.dataset.i));
+}
+function slotHTML(who, id, up) {
+  const lbl = who === "me" ? "Your design" : `${esc(duel.bot.name)}'s design`;
+  if (!id) return `<span class="label">${lbl}</span><div class="ph"></div>`;
+  return `<span class="label">${lbl}${up ? ` · on “${esc(QX[duel.play[who].q].title)}”` : ""}</span>
+    <div class="flip${up ? " up" : ""}"><div class="face front">${DATA.cards.designs[id]}</div><div class="face back">${backHTML()}</div></div>`;
+}
+function renderActions() {
+  const a = $("d-actions");
+  if (duel.phase === "choose") {
+    const d = duel.sel && D[duel.sel];
+    const where = duel.qsel ? `on “${esc(QX[duel.qsel].title)}”` : "";
+    a.innerHTML = `<button class="btn primary" id="d-play" ${duel.sel && duel.qsel ? "" : "disabled"}>Play ${d ? esc(d.name) : "a design"} ${where}</button>
+      <button class="btn" id="d-swap" ${duel.sel && !duel.swapped && duel.ddeck.length ? "" : "disabled"}>Swap it for a new card (−1)</button>
+      <span class="hint">${!duel.sel ? "Pick a design from your hand" : !duel.qsel ? "Now pick the question it answers" : esc(d.gist)}</span>`;
+    $("d-play").onclick = playMine;
+    $("d-swap").onclick = swapMine;
+    return;
+  }
+  a.innerHTML = duel.actions || "";
+  a.querySelectorAll("[data-act]").forEach(b => b.onclick = () => duel.resolve && duel.resolve(b.dataset.act));
+}
+const ask = (html) => new Promise(r => { duel.actions = html; renderActions(); duel.resolve = v => { duel.resolve = null; duel.actions = ""; renderActions(); r(v); }; });
+
+function botChoose() {
+  const know = Math.random() < duel.bot.skill;
+  let best = null, top = -Infinity;
+  for (const qid of duel.market) for (const id of duel.bot.hand) {
+    const qq = QX[qid], d = D[id];
+    const v = know ? SC[tierFor(qq, id)] + Math.random() * .2
+      : (d.serves.includes(qq.suit) ? 2 : 0) + .5 * d.fits.filter(c => qq.constraints.includes(c)).length - d.struggles.filter(c => qq.constraints.includes(c)).length + Math.random() * 1.6;
+    if (v > top) { top = v; best = { d: id, q: qid }; }
+  }
+  return best;
+}
+
+async function startDuel(bot) {
+  duel = { qdeck: shuffle(questions.map(x => x.id)), ddeck: shuffle(designs.map(d => d.id)), xdeck: shuffle(TACTICS), market: [],
+    me: { hand: [], tac: [], score: 0 }, bot: { hand: [], tac: [], score: 0, ...bot }, round: 0, phase: "deal", log: [], play: {}, sel: null, qsel: null };
+  $("d-start").hidden = true; $("d-game").hidden = false;
+  $("d-bot-name").textContent = bot.name; $("d-me-score").textContent = 0; $("d-bot-score").textContent = 0;
+  $("d-market").innerHTML = ""; $("d-me-hand").innerHTML = ""; $("d-bot-hand").innerHTML = ""; renderTactics();
+  $("d-slot-me").innerHTML = slotHTML("me"); $("d-slot-bot").innerHTML = slotHTML("bot");
+  renderActions(); log("Shuffling the decks…");
+  renderPile();
+  $("d-pile").classList.add("shuffling"); await wait(1000); $("d-pile").classList.remove("shuffling");
+  const dealt = [];
+  for (let i = 0; i < DUEL.hand; i++) { dealt.push(...draw(duel.me, 1), ...draw(duel.bot, 1)); }
+  drawTactics(duel.me, DUEL.tactics); drawTactics(duel.bot, DUEL.tactics);
+  renderHands(dealt); renderTactics();
+  log(`Dealt you ${DUEL.hand} designs and ${DUEL.tactics} tactics cards. ${esc(bot.name)} got the same.`);
+  await wait(DUEL.hand * 2 * 85 + 450);
+  nextRound();
+}
+
+async function nextRound() {
+  duel.round += 1;
+  const fresh = refillMarket();
+  if (duel.round > DUEL.rounds || !duel.market.length) return endDuel();
+  Object.assign(duel, { phase: "choose", sel: null, qsel: null, swapped: false, revealed: false, play: {} });
+  $("d-round").textContent = `Round ${duel.round} of ${DUEL.rounds}`;
+  $("d-slot-me").innerHTML = slotHTML("me"); $("d-slot-bot").innerHTML = slotHTML("bot");
+  renderMarket(fresh); renderHands(); renderTactics(); renderActions();
+  log(`<b>Round ${duel.round}.</b> Choose a design from your hand and the open question it answers.`, true);
+  await wait(700);
+  // The computer commits first, face down, so its choice can't depend on yours.
+  const choice = botChoose();
+  const from = $("d-bot-hand").querySelector(`[data-id="${choice.d}"]`)?.getBoundingClientRect();
+  duel.bot.hand = duel.bot.hand.filter(x => x !== choice.d);
+  duel.play.bot = choice;
+  $("d-slot-bot").innerHTML = slotHTML("bot", choice.d, false);
+  flyFrom($("d-slot-bot").querySelector(".flip"), from);
+  renderHands();
+  log(`${esc(duel.bot.name)} has played a design face down.`);
+}
+
+async function swapMine() {
+  const id = duel.sel;
+  duel.me.hand = duel.me.hand.filter(x => x !== id);
+  duel.ddeck.unshift(id);
+  duel.swapped = true; duel.sel = null;
+  addPoints("me", -1, $("d-slot-me"));
+  const got = draw(duel.me, 1);
+  renderHands(got); renderActions();
+  log(`You swapped <b>${esc(D[id].name)}</b> for <b>${esc(D[got[0]].name)}</b> (−1).`);
+}
+
+async function playMine() {
+  const id = duel.sel, qid = duel.qsel;
+  const from = $("d-me-hand").querySelector(`[data-id="${id}"]`).getBoundingClientRect();
+  duel.me.hand = duel.me.hand.filter(x => x !== id);
+  duel.play.me = { d: id, q: qid };
+  duel.phase = "reveal";
+  $("d-slot-me").innerHTML = slotHTML("me", id, false);
+  flyFrom($("d-slot-me").querySelector(".flip"), from);
+  renderHands(); renderMarket(); renderActions();
+  await wait(650);
+  // Flip both cards.
+  duel.revealed = true;
+  for (const who of ["bot", "me"]) {
+    $(`d-slot-${who}`).innerHTML = slotHTML(who, duel.play[who].d, false);
+    const f = $(`d-slot-${who}`).querySelector(".flip");
+    f.getBoundingClientRect();
+    f.classList.add("up");
+    $(`d-slot-${who}`).querySelector(".label").innerHTML = slotHTML(who, duel.play[who].d, true).match(/<span class="label">(.*?)<\/span>/s)[1];
+    await wait(280);
+  }
+  renderMarket();
+  await wait(500);
+  await scoreRound();
+  await reviewRound();
+  await endRound();
+}
+
+async function scoreRound() {
+  const t = {};
+  for (const who of ["me", "bot"]) {
+    const { d, q: qid } = duel.play[who], qq = QX[qid], tier = tierFor(qq, d);
+    t[who] = tier;
+    addPoints(who, SC[tier], $(`d-slot-${who}`));
+    const name = who === "me" ? "Your" : esc(duel.bot.name) + "'s";
+    const verdict = { best: "🥇 best (+3)", ok: "🥈 defensible (+1)", trap: "⚠️ a trap (−2)", unlisted: "unlisted (0)" }[tier];
+    let line = `${name} <b>${esc(D[d].name)}</b> on “${esc(qq.title)}” is ${verdict}.`;
+    if (tier === "trap") line += ` <span class="trapline">${esc(qq.traps[d])}</span>`;
+    if (tier !== "best") line += ` Best: ${qq.best.map(i => esc(D[i].name)).join(", ")}.`;
+    log(line);
+    await wait(500);
+  }
+  const rank = { best: 3, ok: 2, unlisted: 1, trap: 0 };
+  if (duel.play.me.q === duel.play.bot.q && rank[t.me] !== rank[t.bot]) {
+    const w = rank[t.me] > rank[t.bot] ? "me" : "bot";
+    if (SC[t[w]] > 0) {
+      addPoints(w, 1, $(`d-slot-${w}`));
+      log(w === "me" ? `📰 You scooped ${esc(duel.bot.name)} on the same question (+1).` : `📰 ${esc(duel.bot.name)} scooped you on the same question (+1).`);
+      await wait(500);
+    }
+  }
+}
+
+async function reviewRound() {
+  // The computer reviews you first.
+  const myD = duel.play.me.d, botD = duel.play.bot.d;
+  const ti = duel.bot.tac.findIndex(x => x.kind === "threat" && D[myD].weak_vs.includes(x.id));
+  if (ti >= 0 && Math.random() < duel.bot.sharp) {
+    const threat = duel.bot.tac.splice(ti, 1)[0];
+    renderHands();
+    await throwCard(tacHTML(threat), $("d-bot-hand"), $("d-slot-me"));
+    log(`${esc(duel.bot.name)} attacks your design with <span class="threat-tag">${esc(T[threat.id].name)}</span>. ${esc(T[threat.id].short)}`);
+    renderTactics("safeguard", x => blocks(x.id, threat.id, myD));
+    const ans = await ask(`<span class="hint">Block it with a Safeguard from your tactics cards, or</span> <button class="btn" data-act="concede">Take the hit (−1)</button>`);
+    if (ans === "concede") {
+      addPoints("me", -1, $("d-slot-me"));
+      log(`You take the hit (−1). It's countered by ${T[threat.id].countered_by.map(i => esc(S[i].name)).join(", ")}.`);
+    } else {
+      const sg = duel.me.tac.splice(ans, 1)[0];
+      renderTactics();
+      await throwCard(tacHTML(sg), $("d-me-tac"), $("d-slot-me"));
+      if (blocks(sg.id, threat.id, myD)) { addPoints("me", 1, $("d-slot-me")); log(`🛡️ <b>${esc(S[sg.id].name)}</b> blocks it. Rebuttal accepted (+1).`); }
+      else {
+        addPoints("me", -1, $("d-slot-me"));
+        const why = T[threat.id].countered_by.includes(sg.id) ? `it can't be used with a ${esc(FAM[D[myD].family].name.toLowerCase())} design` : `it doesn't counter ${esc(T[threat.id].name.toLowerCase())}`;
+        log(`❌ ${esc(S[sg.id].name)} fails: ${why} (−1).`);
+      }
+    }
+  }
+  // Your turn to review.
+  const mine = duel.me.tac.filter(x => x.kind === "threat");
+  if (!mine.length) return;
+  renderTactics("threat", x => D[botD].weak_vs.includes(x.id));
+  const ans = await ask(`<span class="hint">Review ${esc(duel.bot.name)}'s ${esc(D[botD].name)}: attack with a Threat from your tactics cards, or</span> <button class="btn" data-act="pass">Don't attack</button>`);
+  if (ans === "pass") { renderTactics(); return; }
+  const threat = duel.me.tac.splice(ans, 1)[0];
+  renderTactics();
+  await throwCard(tacHTML(threat), $("d-me-tac"), $("d-slot-bot"));
+  if (!D[botD].weak_vs.includes(threat.id)) { log(`Your <b>${esc(T[threat.id].name)}</b> attack fizzles: it isn't a typical weakness of ${esc(D[botD].name)}.`); return; }
+  const si = duel.bot.tac.findIndex(x => x.kind === "safeguard" && blocks(x.id, threat.id, botD));
+  if (si >= 0) {
+    const sg = duel.bot.tac.splice(si, 1)[0];
+    renderHands();
+    await throwCard(tacHTML(sg), $("d-bot-hand"), $("d-slot-bot"));
+    addPoints("bot", 1, $("d-slot-bot"));
+    log(`${esc(duel.bot.name)} blocks your <b>${esc(T[threat.id].name)}</b> with <b>${esc(S[sg.id].name)}</b> (+1 to them).`);
+  } else {
+    addPoints("bot", -1, $("d-slot-bot"));
+    log(`💥 Your <b>${esc(T[threat.id].name)}</b> lands. ${esc(duel.bot.name)} has no defence (−1 to them).`);
+  }
+}
+
+async function endRound() {
+  renderTactics();
+  const last = duel.round >= DUEL.rounds;
+  await ask(`<button class="btn primary" data-act="next">${last ? "See the final score" : "Next round"}</button>`);
+  duel.market = duel.market.filter(id => id !== duel.play.me.q && id !== duel.play.bot.q);
+  const dealt = [...draw(duel.me, DUEL.hand - duel.me.hand.length), ...draw(duel.bot, DUEL.hand - duel.bot.hand.length)];
+  drawTactics(duel.me, 1); drawTactics(duel.bot, 1);
+  duel.phase = "deal";
+  renderHands(dealt);
+  nextRound();
+}
+
+function endDuel() {
+  duel.phase = "end";
+  const m = duel.me.score, b = duel.bot.score;
+  const res = m > b ? "won" : m < b ? "lost" : "drawn";
+  record[res] += 1;
+  try { localStorage.setItem(KEY + "-duel", JSON.stringify(record)); } catch (e) {}
+  log(`<b>${res === "won" ? "🏆 You win" : res === "lost" ? `${esc(duel.bot.name)} wins` : "A draw"}, ${m}–${b}.</b>`, true);
+  duel.actions = `<button class="btn primary" data-act="again">Play again</button>`;
+  duel.resolve = () => { $("d-game").hidden = true; $("d-start").hidden = false; renderDuelStart(); };
+  renderActions(); renderHands(); renderMarket();
+}
+
 // ---------- wiring
 function show(view) {
-  for (const v of ["play", "decks", "guide"]) { $("view-" + v).hidden = v !== view; $("tab-" + v).setAttribute("aria-selected", v === view); }
+  for (const v of ["play", "duel", "decks", "guide"]) { $("view-" + v).hidden = v !== view; $("tab-" + v).setAttribute("aria-selected", v === view); }
   if (view === "play") renderTray(); else $("tray").hidden = true;
   if (view === "decks") renderDecks();
 }
@@ -529,7 +970,7 @@ $("b-submit").onclick = submit;
 $("deck-search").oninput = renderDecks;
 $("ver").textContent = meta.version;
 $("ptable-label").textContent = `${designs.length} designs · ${meta.families.length} families · tap one to choose it`;
-renderStats(); renderGuide(); nextQuestion();
+renderStats(); renderGuide(); renderDuelStart(); nextQuestion();
 </script>
 
 </body></html>

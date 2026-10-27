@@ -27,6 +27,8 @@ On the 50 Design cards the illustration is the study's own diagram, so the pictu
 ## Start here
 
 - **Play solo now:** open [`app/index.html`](app/index.html) in any browser. It works offline.
+  Its **Duel** tab pits you against a computer opponent (Student, Postdoc or Reviewer 2): both of you are dealt hands of Design and tactics cards,
+  play designs face down onto three open questions, then attack each other's designs with Threats and block with Safeguards over 8 rounds.
   Or double-click the launcher for your system, which opens it in your default browser:
 
   | System | Launcher | Notes |
