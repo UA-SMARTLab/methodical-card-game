@@ -283,6 +283,9 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 .d-tac button:disabled { opacity: .6; }
 .d-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; min-height: 38px; }
 .d-actions .hint { color: var(--muted); font-size: 14px; }
+.d-draft { --card-u: 2.7px; display: flex; flex-wrap: wrap; gap: 12px; width: 100%; }
+.d-draft button { flex: none; }
+.d-draft button:hover { transform: translateY(-8px); }
 .pop { position: absolute; left: 50%; top: 40%; z-index: 5; pointer-events: none; transform: translateX(-50%);
   font: 800 40px/1 var(--f-display); color: var(--muted); text-shadow: 0 2px 10px rgba(0,0,0,.35); }
 .pop.up { color: var(--good); } .pop.down { color: var(--trap); }
@@ -340,12 +343,13 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
     <div class="d-start panel" id="d-start">
       <span class="label">You versus the computer</span>
       <h3>Duel</h3>
-      <p>Each of you is dealt <b>7 Design cards</b> and <b>3 tactics cards</b> (Threats and Safeguards). Three research questions lie face up.
+      <p>Each of you is dealt <b>7 Design cards</b> and <b>3 tactics cards</b> (Threats and Safeguards). Four research questions lie face up.
         Every round you both play one design, face down, onto any open question. Then the cards flip.</p>
       <ul class="steps">
         <li><b>Score it:</b> best +3, defensible +1, unlisted 0, trap −2. Answer the same question as your rival with a better design and you <b>scoop</b> them: +1 more.</li>
         <li><b>Review it:</b> play a Threat your rival's design is weak against. They lose 1, unless they block it with a Safeguard that counters it (then they gain 1).</li>
-        <li><b>Plan ahead:</b> once per round you may swap a design for a new one (−1). Hands refill after every round. Highest score after 8 rounds wins.</li>
+        <li><b>Draft:</b> after each round, take one of four face-up designs into your hand. Pick the one that answers a question still on the table.</li>
+        <li><b>Plan ahead:</b> once per round you may swap a design for a random new one (−1). Highest score after 8 rounds wins.</li>
       </ul>
       <p style="margin-top:12px"><b>Choose your opponent</b></p>
       <div class="d-skill" id="d-skill"></div>
@@ -621,7 +625,7 @@ function renderGuide() {
 }
 
 // ---------- duel: you versus the computer
-const DUEL = { rounds: 8, hand: 7, tactics: 3, maxTactics: 5, market: 3 };
+const DUEL = { rounds: 8, hand: 7, tactics: 3, maxTactics: 5, market: 4, draft: 4 };
 const BOTS = [
   { name: "Student", skill: .4, sharp: .5, note: "Knows the key 40% of the time" },
   { name: "Postdoc", skill: .7, sharp: .8, note: "Knows the key 70% of the time" },
@@ -931,15 +935,45 @@ async function reviewRound() {
   }
 }
 
+function offer() {
+  if (duel.ddeck.length < DUEL.draft) {
+    const held = new Set([...duel.me.hand, ...duel.bot.hand]);
+    duel.ddeck = shuffle(designs.map(d => d.id).filter(id => !held.has(id) && !duel.ddeck.includes(id))).concat(duel.ddeck);
+  }
+  return duel.ddeck.splice(-DUEL.draft, DUEL.draft);
+}
+function botDraft(cards) {
+  const know = Math.random() < duel.bot.skill;
+  const worth = id => Math.max(...duel.market.map(q => know ? SC[tierFor(QX[q], id)]
+    : ((D[id].serves.includes(QX[q].suit) ? 2 : 0) - D[id].struggles.filter(c => QX[q].constraints.includes(c)).length) / 1.5)) + Math.random() * (know ? .1 : 1.2);
+  let best = cards[0], top = -Infinity;
+  for (const id of cards) { const w = worth(id); if (w > top) { top = w; best = id; } }
+  return best;
+}
+
 async function endRound() {
   renderTactics();
   const last = duel.round >= DUEL.rounds;
   await ask(`<button class="btn primary" data-act="next">${last ? "See the final score" : "Next round"}</button>`);
   duel.market = duel.market.filter(id => id !== duel.play.me.q && id !== duel.play.bot.q);
-  const dealt = [...draw(duel.me, DUEL.hand - duel.me.hand.length), ...draw(duel.bot, DUEL.hand - duel.bot.hand.length)];
   drawTactics(duel.me, 1); drawTactics(duel.bot, 1);
+  if (last) return nextRound();
+  // Refill the open questions first, so both players draft with them in view.
+  duel.phase = "draft"; duel.revealed = false;
+  renderMarket(refillMarket()); renderHands(); renderTactics();
+  const mine = offer();
+  log("Draft: take one of these designs into your hand.", true);
+  const pick = await ask(`<div class="d-draft">${mine.map(id => `<button data-act="${id}" title="${esc(D[id].gist)}">${DATA.cards.designs[id]}</button>`).join("")}</div>`);
+  duel.me.hand.push(pick);
+  duel.ddeck.unshift(...mine.filter(id => id !== pick));
+  const theirs = offer(), took = botDraft(theirs);
+  duel.bot.hand.push(took);
+  duel.ddeck.unshift(...theirs.filter(id => id !== took));
+  const dealt = [pick, took, ...draw(duel.me, DUEL.hand - duel.me.hand.length), ...draw(duel.bot, DUEL.hand - duel.bot.hand.length)];
+  log(`You drafted <b>${esc(D[pick].name)}</b>. ${esc(duel.bot.name)} drafted a design too.`);
   duel.phase = "deal";
   renderHands(dealt);
+  await wait(500);
   nextRound();
 }
 
