@@ -43,6 +43,7 @@ h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
 
 /* header */
 header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.brand h1 a { color: inherit; text-decoration: none; }
 .brand h1 { font-size: clamp(32px, 6vw, 52px); font-weight: 800; letter-spacing: -.02em; line-height: .95; }
 .brand p { margin: 6px 0 0; color: var(--muted); max-width: 52ch; }
 .stats { display: flex; gap: 20px; font-variant-numeric: tabular-nums; }
@@ -347,7 +348,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 <div class="wrap">
   <header>
     <div class="brand">
-      <h1>Methodical</h1>
+      <h1><a href="#" id="go-home" title="Home">Methodical</a></h1>
       <p>A card game for scientists. Read the research problem, then pick the study design that can actually answer it.</p>
     </div>
     <div class="stats" aria-live="polite">
@@ -372,10 +373,6 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
         <span class="label">The research design card game</span>
         <h2 class="hero-title">Every question deserves the <em>right design</em>.</h2>
         <p>Read the research problem, play the study design that can answer it, then defend it when Reviewer 2 attacks.</p>
-        <div class="hero-cta">
-          <button class="btn primary big" data-go="duel">⚔️ Start a duel</button>
-          <button class="btn big" data-go="play">🎯 Practice solo</button>
-        </div>
         <div class="counts" id="home-counts"></div>
       </div>
       <div class="hero-fan" id="hero-fan" aria-hidden="true"></div>
@@ -1226,12 +1223,14 @@ function renderHome() {
 function show(view) {
   document.querySelector("header .stats").hidden = view !== "play";
   document.querySelector(".brand p").hidden = view === "home";
+  document.querySelector("nav").hidden = view === "home";
   if (view === "home" && $("view-home").hidden) { renderFan(); countUp(); }
   for (const v of ["home", "play", "duel", "decks", "guide"]) { $("view-" + v).hidden = v !== view; $("tab-" + v).setAttribute("aria-selected", v === view); }
   if (view === "play") renderTray(); else $("tray").hidden = true;
   if (view === "decks") renderDecks();
 }
 document.querySelectorAll("nav button").forEach(b => b.onclick = () => show(b.dataset.view));
+$("go-home").onclick = e => { e.preventDefault(); show("home"); };
 $("f-suit").innerHTML = `<option value="">All suits</option>` + meta.suits.map(s => `<option value="${s.id}">${s.icon} ${esc(s.name)} (${questions.filter(x => x.suit === s.id).length})</option>`).join("");
 $("f-suit").onchange = $("f-diff").onchange = () => { queue = []; nextQuestion(); };
 $("f-hints").onchange = renderTable;
