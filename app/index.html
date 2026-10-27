@@ -228,6 +228,52 @@ select, .btn { background: var(--surface); border: 1px solid var(--line); border
 .legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 6px 16px; font-size: 14px; margin-top: 8px; }
 footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 
+/* home */
+.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 24px; align-items: center; min-height: 430px; margin-bottom: 26px; }
+@media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; } }
+.hero-title { font-size: clamp(34px, 5.4vw, 60px); font-weight: 800; letter-spacing: -.03em; line-height: 1; margin: 8px 0 14px; }
+.hero-title em { font-style: normal; background: linear-gradient(90deg, var(--accent), #B91C1C, #15803D, #7E22CE, var(--accent)); background-size: 300% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent; animation: sheen 9s linear infinite; }
+@keyframes sheen { to { background-position: 300% 0; } }
+.hero-text p { color: var(--muted); font-size: 17px; max-width: 46ch; margin: 0 0 20px; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn.big { padding: 12px 20px; font-size: 16px; font-weight: 700; border-radius: 12px; transition: transform .15s, box-shadow .15s; }
+.btn.big:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn.primary.big { animation: glow 2.6s ease-in-out infinite; }
+@keyframes glow { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 25%, transparent); } }
+.counts { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 26px; }
+.counts div b { display: block; font: 800 30px/1 var(--f-display); font-variant-numeric: tabular-nums; }
+.hero-fan { --card-u: 3.3px; position: relative; height: 400px; }
+@media (max-width: 860px) { .hero-fan { --card-u: 2.5px; height: 300px; } }
+.hero-fan .fc { position: absolute; left: 50%; top: 50%; }
+.hero-fan .fc > .bob { animation: bob 4.5s ease-in-out infinite; animation-delay: var(--d); }
+.hero-fan .fc .tcg { box-shadow: 0 18px 40px rgba(0,0,0,.35); }
+@keyframes bob { 50% { translate: 0 -12px; } }
+.home-h { font-size: 24px; margin: 8px 0 12px; }
+.modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-bottom: 30px; perspective: 900px; }
+.mode { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 8px;
+  transition: transform .15s ease-out, box-shadow .2s; }
+.mode::before { content: ""; position: absolute; inset: 0 0 auto; height: 5px; background: var(--c); }
+.mode::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .2s;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--c) 22%, transparent), transparent 60%); }
+.mode:hover { box-shadow: var(--shadow); } .mode:hover::after { opacity: 1; }
+.mode-ic { font-size: 30px; transition: transform .3s; } .mode:hover .mode-ic { transform: scale(1.2) rotate(-8deg); }
+.mode h3 { font-size: 21px; } .mode p { margin: 0; color: var(--muted); font-size: 14.5px; flex: 1; }
+.mode-go { display: flex; flex-wrap: wrap; gap: 6px; position: relative; z-index: 1; }
+.quick { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 22px; align-items: start; --card-u: 4.4px; }
+@media (max-width: 700px) { .quick { grid-template-columns: minmax(0, 1fr); justify-items: center; --card-u: 4.6px; } }
+.quick .flip { cursor: pointer; }
+.quick .flip:not(.up):hover { transform: rotateY(14deg) translateY(-4px); }
+.quick .tap { position: absolute; inset: auto 0 18% 0; text-align: center; z-index: 2; font: 700 14px var(--f-mono); color: #FCD34D; letter-spacing: .1em; pointer-events: none;
+  animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .35; } }
+.quick .qopts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; margin-top: 10px; }
+.quick .opt { transition: transform .15s, border-color .2s; } .quick .opt:not(:disabled):hover { transform: translateY(-2px); border-color: var(--accent); }
+.quick .opt.best { border-color: var(--good); box-shadow: inset 0 0 0 2px var(--good); }
+.quick .opt.trap { border-color: var(--trap); }
+.confetti { position: fixed; z-index: 40; width: 8px; height: 12px; pointer-events: none; border-radius: 2px; }
+@media (prefers-reduced-motion: reduce) { .hero-title em, .btn.primary.big, .hero-fan .fc > .bob, .quick .tap { animation: none; } .mode { transition: none; } }
+
 /* duel: you versus the computer */
 .d-start { max-width: 780px; }
 .d-skill { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; }
@@ -313,13 +359,58 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
   </header>
 
   <nav role="tablist">
-    <button role="tab" id="tab-play" aria-selected="true" data-view="play">Play</button>
+    <button role="tab" id="tab-home" aria-selected="true" data-view="home">Home</button>
+    <button role="tab" id="tab-play" aria-selected="false" data-view="play">Practice</button>
     <button role="tab" id="tab-duel" aria-selected="false" data-view="duel">Duel</button>
     <button role="tab" id="tab-decks" aria-selected="false" data-view="decks">Browse the decks</button>
     <button role="tab" id="tab-guide" aria-selected="false" data-view="guide">How it works</button>
   </nav>
 
-  <section id="view-play">
+  <section id="view-home">
+    <div class="hero">
+      <div class="hero-text">
+        <span class="label">The research design card game</span>
+        <h2 class="hero-title">Every question deserves the <em>right design</em>.</h2>
+        <p>Read the research problem, play the study design that can answer it, then defend it when Reviewer 2 attacks.</p>
+        <div class="hero-cta">
+          <button class="btn primary big" data-go="duel">⚔️ Start a duel</button>
+          <button class="btn big" data-go="play">🎯 Practice solo</button>
+        </div>
+        <div class="counts" id="home-counts"></div>
+      </div>
+      <div class="hero-fan" id="hero-fan" aria-hidden="true"></div>
+    </div>
+
+    <h2 class="home-h">Choose your game</h2>
+    <div class="modes" id="home-modes">
+      <div class="mode tilt" style="--c:#B91C1C">
+        <div class="mode-ic">⚔️</div><h3>Duel</h3>
+        <p>You against the computer. Draft designs, play them face down onto open questions, challenge and rebut. 8 rounds.</p>
+        <div class="mode-go" id="home-bots"></div>
+        <span class="label" id="home-record"></span>
+      </div>
+      <div class="mode tilt" style="--c:#2340A8">
+        <div class="mode-ic">🎯</div><h3>Practice</h3>
+        <p>One question at a time, scored against the answer key, then a peer-review round. Filter by suit and difficulty.</p>
+        <div class="mode-go"><button class="btn primary" data-go="play">Deal me a question</button></div>
+      </div>
+      <div class="mode tilt" style="--c:#15803D">
+        <div class="mode-ic">🃏</div><h3>Browse the decks</h3>
+        <p>Every Question, Design, Threat, Safeguard, Twist and Programme card, with answers and real historical examples.</p>
+        <div class="mode-go"><button class="btn" data-go="decks">Open the decks</button></div>
+      </div>
+      <div class="mode tilt" style="--c:#7E22CE">
+        <div class="mode-ic">📖</div><h3>How to play</h3>
+        <p>Suits, constraints, three-tier scoring and the four table-top modes for print-and-play.</p>
+        <div class="mode-go"><button class="btn" data-go="guide">Read the rules</button></div>
+      </div>
+    </div>
+
+    <h2 class="home-h">Quick question</h2>
+    <div class="quick" id="quick"></div>
+  </section>
+
+  <section id="view-play" hidden>
     <div class="filters">
       <select id="f-suit" aria-label="Question suit"></select>
       <select id="f-diff" aria-label="Difficulty">
@@ -1027,8 +1118,116 @@ function endDuel() {
 }
 
 // ---------- wiring
+// ---------- home
+let fanTimer = null;
+function fanCard(id, k, n) {
+  const spread = n > 1 ? (k - (n - 1) / 2) / ((n - 1) / 2) : 0;
+  return `<div class="fc" style="transform: translate(calc(-50% + ${spread * 34}%), calc(-50% + ${Math.abs(spread) * 7}%)) rotate(${spread * 16}deg); z-index:${k}">
+    <div class="bob" data-id="${id}" style="--d:${-k * .7}s">${DATA.cards.designs[id]}</div></div>`;
+}
+function renderFan() {
+  const ids = shuffle(designs.map(d => d.id)).slice(0, 5);
+  $("hero-fan").innerHTML = ids.map((id, k) => fanCard(id, k, ids.length)).join("");
+  if (reduceMotion) return;
+  [...$("hero-fan").querySelectorAll(".bob")].forEach((el, k) => el.animate(
+    [{ transform: "translateY(160px) rotate(-25deg) scale(.6)", opacity: 0 }, { transform: "none", opacity: 1 }],
+    { duration: 750, delay: k * 120, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" }));
+}
+function cycleFan() {
+  // Flip one card in the fan over to a new design every few seconds.
+  if ($("view-home").hidden || document.hidden) return;
+  const bobs = [...$("hero-fan").querySelectorAll(".bob")];
+  const el = bobs[Math.floor(Math.random() * bobs.length)];
+  const shown = new Set(bobs.map(b => b.dataset.id));
+  const id = shuffle(designs.map(d => d.id)).find(x => !shown.has(x));
+  el.animate([{ transform: "rotateY(0)" }, { transform: "rotateY(90deg)" }], { duration: 260, easing: "ease-in" }).onfinish = () => {
+    el.dataset.id = id; el.innerHTML = DATA.cards.designs[id];
+    el.animate([{ transform: "rotateY(-90deg)" }, { transform: "rotateY(0)" }], { duration: 300, easing: "ease-out" });
+  };
+}
+function countUp() {
+  const items = [["Questions", questions.length], ["Designs", designs.length], ["Threats", threats.length], ["Safeguards", safeguards.length]];
+  $("home-counts").innerHTML = items.map(([k]) => `<div><b>0</b><span class="label">${k}</span></div>`).join("");
+  const bs = $("home-counts").querySelectorAll("b"), t0 = performance.now(), dur = reduceMotion ? 1 : 1200;
+  const step = t => {
+    const f = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - f, 3);
+    bs.forEach((b, i) => b.textContent = Math.round(items[i][1] * e));
+    if (f < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+  setTimeout(() => bs.forEach((b, i) => b.textContent = items[i][1]), dur + 100);
+}
+function tilt(el) {
+  if (reduceMotion || !matchMedia("(hover: hover)").matches) return;
+  el.onpointermove = e => {
+    const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    el.style.transform = `rotateX(${(.5 - y) * 8}deg) rotateY(${(x - .5) * 10}deg) translateY(-4px)`;
+    el.style.setProperty("--mx", x * 100 + "%"); el.style.setProperty("--my", y * 100 + "%");
+  };
+  el.onpointerleave = () => { el.style.transform = ""; };
+}
+function confetti(fromEl) {
+  if (reduceMotion) return;
+  const r = fromEl.getBoundingClientRect(), colors = ["#FCD34D", "#86EFAC", "#7DD3FC", "#FB7185", "#C4B5FD"];
+  for (let i = 0; i < 28; i++) {
+    const c = document.createElement("i");
+    c.className = "confetti"; c.style.background = colors[i % colors.length];
+    c.style.left = r.left + r.width / 2 + "px"; c.style.top = r.top + r.height / 2 + "px";
+    document.body.appendChild(c);
+    const a = Math.random() * Math.PI * 2, d = 80 + Math.random() * 140;
+    c.animate([{ transform: "translate(0,0) rotate(0)", opacity: 1 },
+      { transform: `translate(${Math.cos(a) * d}px, ${Math.sin(a) * d + 120}px) rotate(${Math.random() * 720}deg)`, opacity: 0 }],
+      { duration: 1100 + Math.random() * 500, easing: "cubic-bezier(.2,.7,.4,1)" }).onfinish = () => c.remove();
+  }
+}
+function renderQuick() {
+  const qq = questions[Math.floor(Math.random() * questions.length)];
+  const traps = Object.keys(qq.traps), taken = new Set([...qq.best, ...qq.ok, ...traps]);
+  const opts = shuffle([qq.best[0], ...(traps.length ? [traps[0]] : []), ...shuffle(designs.map(d => d.id).filter(i => !taken.has(i)))].slice(0, 4));
+  $("quick").innerHTML = `<div style="position:relative"><div class="flip" id="quick-card" role="button" tabindex="0" aria-label="Flip the question card">
+      <div class="face front">${DATA.cards.questions[qq.id]}</div><div class="face back">${backHTML()}</div></div><span class="tap" id="quick-tap">TAP TO FLIP</span></div>
+    <div class="panel" id="quick-panel"><span class="label">One card, one decision</span><h3>Can you pick the right design?</h3>
+      <p>Flip the card, read the problem and its constraints, then choose. A quick warm-up before a duel.</p></div>`;
+  const flip = () => {
+    const card = $("quick-card");
+    if (card.classList.contains("up")) return;
+    card.classList.add("up"); $("quick-tap").remove();
+    $("quick-panel").innerHTML = `<span class="label">${esc(SUIT[qq.suit].name)} question · ${"★".repeat(qq.difficulty)}</span><h3>Which design answers it?</h3>
+      <div class="qopts">${opts.map(id => `<button class="opt" data-id="${id}"><b>${esc(D[id].name)}</b><span>${esc(D[id].short)}</span></button>`).join("")}</div><div id="quick-verdict"></div>`;
+    $("quick-panel").querySelectorAll(".opt").forEach(b => b.onclick = () => {
+      const id = b.dataset.id, tier = qq.best.includes(id) ? "best" : qq.ok.includes(id) ? "ok" : id in qq.traps ? "trap" : "unlisted";
+      $("quick-panel").querySelectorAll(".opt").forEach(o => {
+        o.disabled = true;
+        if (qq.best.includes(o.dataset.id)) o.classList.add("best"); else if (o.dataset.id in qq.traps) o.classList.add("trap");
+      });
+      const text = { best: "🥇 Spot on.", ok: "🥈 Defensible.", trap: "⚠️ That's the trap.", unlisted: "Not quite." }[tier];
+      $("quick-verdict").innerHTML = `<p style="margin-top:12px"><b>${text}</b> ${tier === "trap" ? esc(qq.traps[id]) + " " : ""}${esc(qq.why)}</p>
+        <div class="row-actions"><button class="btn primary" id="quick-next">Another one</button><button class="btn" id="quick-duel">Try a duel</button></div>`;
+      $("quick-next").onclick = renderQuick;
+      $("quick-duel").onclick = () => show("duel");
+      if (tier === "best") confetti(b);
+    });
+  };
+  $("quick-card").onclick = flip;
+  $("quick-card").onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip(); } };
+}
+function renderHome() {
+  renderFan(); countUp(); renderQuick();
+  $("home-bots").innerHTML = BOTS.map((b, i) => `<button class="btn${i === 1 ? " primary" : ""}" data-bot="${i}" title="${esc(b.note)}">vs ${esc(b.name)}</button>`).join("");
+  $("home-bots").querySelectorAll("button").forEach(b => b.onclick = () => { show("duel"); startDuel(BOTS[+b.dataset.bot]); });
+  const n = record.won + record.lost + record.drawn;
+  $("home-record").textContent = n ? `Your record: ${record.won} won · ${record.lost} lost · ${record.drawn} drawn` : "";
+  document.querySelectorAll("#view-home [data-go]").forEach(b => b.onclick = () => show(b.dataset.go));
+  document.querySelectorAll("#home-modes .tilt").forEach(tilt);
+  clearInterval(fanTimer);
+  if (!reduceMotion) fanTimer = setInterval(cycleFan, 3200);
+}
+
 function show(view) {
-  for (const v of ["play", "duel", "decks", "guide"]) { $("view-" + v).hidden = v !== view; $("tab-" + v).setAttribute("aria-selected", v === view); }
+  document.querySelector("header .stats").hidden = view !== "play";
+  document.querySelector(".brand p").hidden = view === "home";
+  if (view === "home" && $("view-home").hidden) { renderFan(); countUp(); }
+  for (const v of ["home", "play", "duel", "decks", "guide"]) { $("view-" + v).hidden = v !== view; $("tab-" + v).setAttribute("aria-selected", v === view); }
   if (view === "play") renderTray(); else $("tray").hidden = true;
   if (view === "decks") renderDecks();
 }
@@ -1041,7 +1240,7 @@ $("b-submit").onclick = submit;
 $("deck-search").oninput = renderDecks;
 $("ver").textContent = meta.version;
 $("ptable-label").textContent = `${designs.length} designs · ${meta.families.length} families · tap one to choose it`;
-renderStats(); renderGuide(); renderDuelStart(); nextQuestion();
+renderStats(); renderGuide(); renderDuelStart(); nextQuestion(); renderHome(); show("home");
 </script>
 
 </body></html>
