@@ -1,4 +1,4 @@
-"""Art for the 64 Question cards (Q01-Q64).
+"""Art for the 65 Question cards (Q01-Q65).
 
 Each picture shows the SUBJECT of the research scenario (a vape, a butterfly, a bridge in a storm...), never the study
 design, so the art cannot give the answer away. Built from the primitives in art.py.
@@ -806,4 +806,17 @@ def q64():  # Grit or not?
     return mountain + trail + flag + climber + cap
 
 
-QUESTION_ART = {f"Q{k:02d}": globals()[f"q{k:02d}"] for k in range(1, 65)}
+
+def q65():  # The blogs know more
+    journals = "".join(doc(14 + k * 18, 104, 16, 22, INK, 2, DARK, 1.5) for k in range(3))
+    shelf = line([(10, 128), (74, 128)], INK, 3) + text(42, 144, "5", 14, INK)
+    r = lcg(65)
+    posts = ""
+    for k in range(14):
+        x, y = 96 + r() * 86, 30 + r() * 90
+        posts += (bubble(x - 12, y - 8, 24, 16, COOL, DARK, "left", 1.5) if k % 3 else
+                  rect(x - 12, y - 8, 24, 16, DARK, ACC, 1.5, 2) + path(f"M{x - 3},{y - 4} L{x + 5},{y} L{x - 3},{y + 4} Z", ACC, 0, fill=ACC))
+    gear_ = gear(42, 50, 20, INK, 8, DARK) + check(42, 50, 8)
+    return journals + shelf + posts + gear_ + text(140, 144, "500", 14, COOL)
+
+QUESTION_ART = {f"Q{k:02d}": globals()[f"q{k:02d}"] for k in range(1, 66)}

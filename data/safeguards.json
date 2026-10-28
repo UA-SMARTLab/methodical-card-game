@@ -43,6 +43,8 @@
    "text": "Another team, sample or site repeats the study, ideally with the same pre-registered plan."},
   {"id": "comprehensive-search", "name": "Comprehensive search", "short": "Search everywhere, including the drawers.", "applies_to": ["synthesis"],
    "text": "Search multiple databases, trial registries, preprints and grey literature, and contact authors."},
+  {"id": "grey-appraisal", "name": "Grey-literature appraisal", "short": "Grade every grey source before you trust it.", "applies_to": ["synthesis"],
+   "text": "Score each grey source for its producer's authority, stated method, objectivity, date and outlet tier, and set stopping rules for the search in advance."},
   {"id": "heterogeneity-plan", "name": "Pre-planned heterogeneity analysis", "short": "Plan in advance how you'll explain why studies differ.", "applies_to": ["synthesis"],
    "text": "Random-effects models plus pre-specified subgroups and meta-regression to explore why studies differ."},
   {"id": "sampling-frame", "name": "Representative sampling", "short": "Sample from the whole population, not the convenient part.", "applies_to": ["any"],

@@ -276,6 +276,18 @@ def art_comprehensive_search():
     return out + doc(82, 52, 18, 22, INK, 2, fill="#0f172a55", sw=2)
 
 
+def art_grey_appraisal():
+    out = rect(18, 18, 30, 38, "#0f172a44", DIM, 2.5, 3) + bubble(16, 70, 34, 22, DIM, "#0f172a44", "left", 2)
+    out += rect(18, 104, 30, 30, "#0f172a44", DIM, 2.5, 3) + path("M28,111 L40,119 L28,127 Z", DIM, 0, fill=DIM)
+    out += rect(76, 14, 108, 124, "#0f172a66", INK, 3, 4) + rect(112, 8, 36, 12, INK, INK, 0, 3)
+    rows = (("AUTHORITY", True), ("METHOD", True), ("OBJECTIVE", False), ("DATE", True))
+    for k, (label, ok) in enumerate(rows):
+        y = 40 + k * 24
+        out += text(88, y + 5, label, 11, INK, "start") + (check(166, y, 7) if ok else cross(166, y, 6))
+    out += arrow(52, 37, 72, 50, ACC, 2.5, head=6) + arrow(54, 81, 72, 80, ACC, 2.5, head=6) + arrow(52, 119, 72, 110, ACC, 2.5, head=6)
+    return out
+
+
 def art_heterogeneity_plan():
     out = line([(104, 12), (104, 140)], DIM, 2, "3 3")
     rows = [(INK, 18, 96, 128), (INK, 32, 88, 120), (INK, 46, 100, 140), (None, 0, 0, 0),
@@ -401,6 +413,7 @@ SAFEGUARD_ART = {
     "multiplicity": art_multiplicity,
     "replication": art_replication,
     "comprehensive-search": art_comprehensive_search,
+    "grey-appraisal": art_grey_appraisal,
     "heterogeneity-plan": art_heterogeneity_plan,
     "sampling-frame": art_sampling_frame,
     "validated-measures": art_validated_measures,

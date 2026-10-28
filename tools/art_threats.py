@@ -202,6 +202,16 @@ def art_publication_bias():
     return out
 
 
+def art_source_credibility():
+    out = rect(22, 24, 112, 84, "#0f172a55", INK, 3, 4) + line([(22, 40), (134, 40)], INK, 2.5)
+    out += circle(32, 32, 3, HOT) + circle(42, 32, 3, ACC) + circle(52, 32, 3, "#86EFAC")
+    out += text(78, 70, "10×", 30, ACC) + text(78, 94, "FASTER!", 14, INK)
+    out += rect(140, 40, 46, 26, "none", HOT, 3, 3, dash="5 3") + text(163, 58, "$$", 14, HOT)
+    out += path("M140,60 L120,72", HOT, 2.5, dash="4 3")
+    out += magnifier(150, 110, 16, INK) + text(150, 116, "?", 18, HOT)
+    return out + line([(14, 136), (120, 136)], DIM, 2)
+
+
 def art_forking_paths():
     root = (100, 140)
     xs3 = [16 + k * 24 for k in range(8)]
@@ -359,6 +369,7 @@ THREAT_ART = {
     "unit-of-analysis": art_unit_of_analysis,
     "survivorship": art_survivorship,
     "publication-bias": art_publication_bias,
+    "source-credibility": art_source_credibility,
     "forking-paths": art_forking_paths,
     "low-power": art_low_power,
     "overfitting-leakage": art_overfitting_leakage,

@@ -1,4 +1,4 @@
-"""Vector art for Twist cards (T01-T16) and Research Programme cards (P1-P6).
+"""Vector art for Twist cards (T01-T17) and Research Programme cards (P1-P6).
 
 Same style as art.py's DESIGN_ART: 200 x 150 art box, INK line art with ACC / HOT / COOL accents.
 """
@@ -296,11 +296,21 @@ def tw_open_prize():
     return out + line([(20, 134), (180, 134)], DIM, 2)
 
 
+
+def tw_all_on_blogs():
+    out = rect(18, 86, 46, 44, "#0f172a55", INK, 3, 3) + text(41, 114, "5", 20, INK)
+    r = lcg(17)
+    for k in range(18):
+        x, y = 80 + r() * 100, 14 + r() * 110
+        out += bubble(x - 10, y - 7, 20, 14, COOL if k % 2 else ACC, DARK, "left", 1.5)
+    return out + line([(20, 134), (180, 134)], DIM, 2)
+
 TWIST_ART = {
     "T01": tw_ethics_no, "T02": tw_funding_cut, "T03": tw_rarer, "T04": tw_registry,
     "T05": tw_threshold, "T06": tw_rollout, "T07": tw_talk, "T08": tw_only_one,
     "T09": tw_thirty, "T10": tw_fog, "T11": tw_slow_burn, "T12": tw_brief_trigger,
     "T13": tw_few_exposed, "T14": tw_reviewer2, "T15": tw_replication, "T16": tw_open_prize,
+    "T17": tw_all_on_blogs,
 }
 
 

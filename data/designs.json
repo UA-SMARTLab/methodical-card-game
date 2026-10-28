@@ -272,6 +272,13 @@
    "weak_vs": ["construct-validity", "selection-bias", "forking-paths"], "cost": 1, "time": 1,
    "example": "Kessler (1963) grouped physics papers by the references they share; still a standard way to find research fronts."},
 
+  {"id": "multivocal-review", "name": "Multivocal literature review", "short": "Review papers and practitioners' blogs, talks and white papers, grading each source.", "family": "synthesis",
+   "serves": ["SYNTHESIZE", "EXPLORE"],
+   "gist": "A systematic review that adds grey literature (blogs, white papers, talks) when practice outruns research, and grades each source.",
+   "fits": ["practice-led", "unknown-territory"], "struggles": [],
+   "weak_vs": ["source-credibility", "selection-bias", "researcher-lens"], "cost": 1, "time": 2,
+   "example": "Garousi, Felderer & Mäntylä (2019) set the guidelines, after an MLR on when to automate software tests."},
+
   {"id": "diagnostic-accuracy", "name": "Diagnostic accuracy study", "short": "The new test and the reference standard, on the same real patients.", "family": "measurement",
    "serves": ["MEASURE"],
    "gist": "Apply a new test and a reference standard to consecutive people suspected of the condition; estimate sensitivity and specificity.",

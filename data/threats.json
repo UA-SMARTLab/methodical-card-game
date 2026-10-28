@@ -79,6 +79,11 @@
    "example": "Turner et al. (2008): almost all positive antidepressant trials were published; most negative ones were not, or were spun.",
    "countered_by": ["comprehensive-search", "preregistration"]},
 
+  {"id": "source-credibility", "name": "Unvetted sources", "short": "Nobody checked it, and the author may be selling something.",
+   "text": "Grey sources skip peer review: vendors, consultants and enthusiasts can publish striking claims with no visible method or data.",
+   "example": "The Standish CHAOS reports' famous IT-project failure rates were cited for years; Eveleens & Verhoef (2010) showed their definitions skewed the figures.",
+   "countered_by": ["grey-appraisal", "triangulation"]},
+
   {"id": "forking-paths", "name": "Forking paths & p-hacking", "short": "Try enough analyses and one of them will be 'significant'.",
    "text": "Flexible choices of outcomes, subgroups and analyses, or peeking at the data, until something is 'significant'.",
    "example": "Simmons et al. (2011) used flexible analyses to 'show' that listening to a Beatles song made people younger.",

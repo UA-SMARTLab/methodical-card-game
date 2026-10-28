@@ -292,6 +292,7 @@ CONSTRAINT_ICONS = {
     "rollout": _icon('<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M7 18h3v-3h3v-3h4" />'),
     "fast-cheap": _icon('<circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/>'),
     "unknown-territory": _icon('<path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/>'),
+    "practice-led": _icon('<path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><path d="M7 8h7M7 12h7M7 16h4"/>'),
     "many-studies": _icon('<rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" />'),
 }
 
@@ -642,6 +643,18 @@ def art_bibliographic_coupling():
     out += doc(40, 96, 32, 40, INK, 0, "#0f172a") + doc(128, 96, 32, 40, INK, 0, "#0f172a")
     out += text(56, 125, "A", 18, INK) + text(144, 125, "B", 18, INK)
     return out + line([(76, 116), (124, 116)], ACC, 6) + text(100, 138, "×2", 12, ACC)
+
+
+def art_multivocal_review():
+    out = text(32, 16, "WHITE", 10, INK) + text(32, 84, "GREY", 10, DIM)
+    out += doc(10, 22, 20, 26, INK, 2, "#0f172a", 2) + doc(36, 24, 20, 26, INK, 2, "#0f172a", 2)
+    out += bubble(8, 92, 26, 18, DIM, "#0f172a44", "left", 2) + rect(38, 92, 26, 18, "#0f172a44", DIM, 2, 2)
+    out += path("M44,96 L56,101 L44,106 Z", DIM, 0, fill=DIM) + doc(20, 116, 20, 24, DIM, 2, "#0f172a44", 2)
+    out += arrow(62, 38, 98, 66, INK, 2.5, head=6) + arrow(68, 104, 98, 84, DIM, 2.5, head=6)
+    out += path("M100,48 H136 L124,74 V100 L112,108 V74 Z", ACC, 3, fill="#FCD34D22")
+    out += cross(80, 124, 6) + arrow(112, 108, 86, 122, HOT, 2, head=5, dash="3 3")
+    out += arrow(130, 76, 152, 76, INK, 3, head=7) + doc(156, 54, 32, 42, INK, 0, "#0f172a")
+    return out + check(164, 70, 7) + check(178, 84, 7, COOL)
 
 
 def art_diagnostic_accuracy():

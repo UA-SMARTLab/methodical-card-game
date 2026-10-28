@@ -30,5 +30,7 @@
   {"id": "T15", "name": "Replication crisis", "adds": null,
    "text": "Any design not defended with Preregistration or Independent replication loses 1 point this round."},
   {"id": "T16", "name": "Open science prize", "adds": null,
-   "text": "+1 point to every player who plays Preregistration, Triangulation or Independent replication this round."}
+   "text": "+1 point to every player who plays Preregistration, Triangulation or Independent replication this round."},
+  {"id": "T17", "name": "It's all on the blogs", "adds": "practice-led",
+   "text": "The journals turn up five papers. The practitioners have written five hundred posts, talks and white papers."}
 ]

@@ -76,7 +76,7 @@ widened to cover research that isn't health research:
 ### 3.3 Why constraints are the engine
 
 Constraints are what make this a game for scientists rather than a vocabulary quiz.
-Each of the 13 constraint icons stands for a classic *reason a design is chosen*:
+Each of the 14 constraint icons stands for a classic *reason a design is chosen*:
 
 | Constraint | Classic consequence |
 |---|---|
@@ -89,6 +89,7 @@ Each of the 13 constraint icons stands for a classic *reason a design is chosen*
 | 👥 Group-level | Cluster randomization, difference-in-differences |
 | 📅 Rollout | Stepped wedge |
 | 🗂️ Many studies | Synthesis instead of yet another primary study |
+| 📰 Practice-led | Multivocal review: add the grey literature and grade it |
 | 💸 Tight budget | Rapid review, pilot, retrospective designs |
 | ❓ Uncharted | Qualitative, grounded theory, scoping review |
 
@@ -106,6 +107,12 @@ Not every question about existing work asks for a pooled effect, so the synthesi
   well as papers, so it answers a 🛠️ Build question (Q61) even though it sits in the synthesis family.
 - A **nomological network study** (measurement family) tests a measure against the pattern of relations that theory predicts for it.
   It struggles with ❓ Uncharted, because without a theory there is no network to test (Q64).
+- A **multivocal literature review** (MLR) follows Garousi, Felderer & Mäntylä's (2019) guidelines for including grey literature.
+  When 📰 practice runs ahead of research, most of what is known sits in blogs, white papers, talks and manuals, and a review
+  restricted to peer-reviewed papers throws it away (the trap in Q65). The price is the **Unvetted sources** threat: grey sources
+  skip peer review and are often written to sell. Its answer is the **Grey-literature appraisal** safeguard: grade each source's
+  authority, method, objectivity, date and outlet tier, and fix stopping rules for the search in advance. The **It's all on the
+  blogs** twist (T17) adds the constraint mid-round.
 
 ## 4. The answer key: three tiers, not one right answer
 
@@ -124,10 +131,10 @@ and the best ones should be fed back into the deck.
 
 ## 5. Balance and coverage
 
-- 64 questions over 9 suits. 🎯 Cause has 17 because causal inference has the most designs, and 📚 Synthesize has 8 because each review and citation-mapping design needs a question of its own. The other suits have 5–6 each.
+- 65 questions over 9 suits. 🎯 Cause has 17 because causal inference has the most designs, and 📚 Synthesize has 9 because each review and citation-mapping design needs a question of its own. The other suits have 5–6 each.
 - Fields include medicine, public health, ecology, astronomy, economics, education, engineering, robotics, materials,
   chemistry, physics, HCI and anthropology, so that the deck is not secretly a medical-school exam.
-- The build script **checks** that every one of the 50 designs is the best answer to at least one question,
+- The build script **checks** that every one of the 51 designs is the best answer to at least one question,
   that every threat appears on at least one design, and that every design weakness has at least one usable safeguard.
   Mode 2 can't deal a threat that has no possible counter.
 - Difficulty ★ to ★★★: ★ is a first-year methods course; ★★★ (target trials, Mendelian randomization,
@@ -183,6 +190,7 @@ so the cards feel like a game and the table can read them at a glance:
 - Creswell & Plano Clark, *Designing and Conducting Mixed Methods Research*.
 - Higgins et al., *Cochrane Handbook*; Tricco et al. (2018) PRISMA-ScR; Pawson (2006) on realist synthesis.
 - Kessler (1963) on bibliographic coupling; Small (1973) and White & Griffith (1981) on co-citation; Boyack & Klavans (2010) comparing them.
+- Garousi, Felderer & Mäntylä (2019), *Guidelines for including grey literature and conducting multivocal literature reviews in software engineering*, Information and Software Technology 106: 101–121.
 - Cronbach & Meehl (1955) on construct validity and the nomological network; Campbell & Fiske (1959) on the multitrait–multimethod matrix.
 - Hevner et al. (2004) on design science in information systems; Montgomery, *Design and Analysis of Experiments*.
 - The EQUATOR reporting guidelines (CONSORT, STROBE, STARD, TRIPOD, PRISMA).
