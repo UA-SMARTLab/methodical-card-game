@@ -146,6 +146,15 @@ select, .btn { background: var(--surface); border: 1px solid var(--line); border
 .legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 6px 16px; font-size: 14px; margin-top: 8px; }
 footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 
+/* play: the four choices are whole Design cards */
+/* Four across when the panel is wide, two by two when it isn't; either way the cards grow to fill it. */
+.pick-wrap { container-type: inline-size; margin-top: 8px; }
+.pick-cards { --card-u: min(4.4px, calc((100cqw - 42px) / 252)); display: grid; grid-template-columns: repeat(4, max-content); gap: 14px; }
+@container (max-width: 700px) { .pick-cards { --card-u: min(4.4px, calc((100cqw - 14px) / 126)); grid-template-columns: repeat(2, max-content); } }
+.pick { background: none; border: 0; padding: 0; border-radius: calc(var(--card-u) * 3.2); transition: transform .18s, box-shadow .18s; }
+.pick:hover, .pick:focus-visible { transform: translateY(-8px) rotate(-1deg); box-shadow: 0 16px 30px rgba(0,0,0,.35); }
+@media (prefers-reduced-motion: reduce) { .pick { transition: none; } .pick:hover { transform: none; } }
+
 /* home */
 .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 24px; align-items: center; min-height: 430px; margin-bottom: 26px; }
 @media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; } }
@@ -488,8 +497,8 @@ function renderPanel() {
   const p = $("panel");
   if (phase === "choose") {
     p.innerHTML = `<span class="label">Your move</span><h3>Which design answers this question?</h3>
-      ${FEATURES.table ? "<p>Pick one from the periodic table below, then submit it from the tray.</p>" : `<div class="opts">${choices.map(id =>
-        `<button class="opt" data-pick="${id}"><b>${esc(D[id].name)}</b><span>${esc(D[id].short)}</span></button>`).join("")}</div>`}
+      ${FEATURES.table ? "<p>Pick one from the periodic table below, then submit it from the tray.</p>" : `<div class="pick-wrap"><div class="pick-cards">${choices.map(id =>
+        `<button class="pick" data-pick="${id}" aria-label="${esc(D[id].name)}" title="${esc(D[id].gist)}">${DATA.cards.designs[id]}</button>`).join("")}</div></div>`}
       <ol class="steps" style="margin-top:14px">
         <li><b>Name the suit.</b> What kind of knowledge is wanted?</li>
         <li><b>Read the constraints.</b> They usually decide between otherwise good designs.</li>
