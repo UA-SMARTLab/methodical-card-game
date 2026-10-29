@@ -450,8 +450,10 @@ const SYM = { "case-report": "Cr", "cross-sectional": "Xs", "ecological": "Ec", 
 const FEATURES = { duel: false, guide: false, table: false };
 
 // Every design carries the paper that defines it (or made it standard). The "?" opens it in a new tab.
-const refLink = id => `<a class="ref" href="${esc(D[id].ref.url)}" target="_blank" rel="noopener" title="Key reference: ${esc(D[id].ref.cite)}" aria-label="Key reference for ${esc(D[id].name)}">?</a>`;
-const refLine = id => `<a href="${esc(D[id].ref.url)}" target="_blank" rel="noopener">${esc(D[id].ref.cite)}</a>`;
+// Threats and Safeguards carry one too. Pass a card object, or a design id.
+const refOf = x => typeof x === "string" ? D[x] : x;
+const refLink = x => { x = refOf(x); return `<a class="ref" href="${esc(x.ref.url)}" target="_blank" rel="noopener" title="Key reference: ${esc(x.ref.cite)}" aria-label="Key reference for ${esc(x.name)}">?</a>`; };
+const refLine = x => { x = refOf(x); return `<a href="${esc(x.ref.url)}" target="_blank" rel="noopener">${esc(x.ref.cite)}</a>`; };
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -568,6 +570,7 @@ function renderReview() {
     const ok = t.countered_by.includes(answer);
     html += `<p style="margin-top:12px">${ok ? "✅ Rebuttal accepted. +1." : "❌ That doesn't answer this threat."}
       ${esc(t.name)} is countered by ${t.countered_by.map(i => esc(S[i].name)).join(", ")}.</p>
+      <p class="cite">📄 On ${esc(t.name.toLowerCase())}: ${refLine(t)}</p>
       <p style="color:var(--muted);font-size:14px"><i>${esc(t.example)}</i></p>`;
     html += `<div class="row-actions"><button class="btn primary" id="b-next">Next question</button></div>`;
   }
@@ -631,7 +634,8 @@ function cardHTML(kind, x) {
   const card = DATA.cards[kind][x.id];
   if (kind === "questions") return `<figure>${card}<details><summary>Answer</summary><p>🥇 ${x.best.map(i => esc(D[i].name)).join(", ")}<br>🥈 ${x.ok.map(i => esc(D[i].name)).join(", ") || "–"}</p><p>${esc(x.why)}</p></details></figure>`;
   if (kind === "designs") return `<figure><div class="pick-slot">${card}${refLink(x.id)}</div><details><summary>More</summary><p>${esc(x.gist)}</p><p><i>${esc(x.example)}</i></p><p>📄 ${refLine(x.id)}</p></details></figure>`;
-  if (kind === "threats") return `<figure>${card}<details><summary>Example</summary><p>${esc(x.text)}</p><p><i>${esc(x.example)}</i></p></details></figure>`;
+  if (kind === "threats") return `<figure><div class="pick-slot">${card}${refLink(x)}</div><details><summary>Example</summary><p>${esc(x.text)}</p><p><i>${esc(x.example)}</i></p><p>📄 ${refLine(x)}</p></details></figure>`;
+  if (kind === "safeguards") return `<figure><div class="pick-slot">${card}${refLink(x)}</div><details><summary>More</summary><p>${esc(x.text)}</p><p>📄 ${refLine(x)}</p></details></figure>`;
   return `<figure>${card}</figure>`;
 }
 function renderDecks() {

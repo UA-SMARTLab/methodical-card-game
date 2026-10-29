@@ -103,6 +103,9 @@ for d in designs:
 
 for t in threats:
     check_ids(t["countered_by"], S, f"threat {t['id']}", "safeguard")
+for x in threats + safeguards:
+    if not (x.get("ref") or {}).get("url", "").startswith("https://"):
+        errors.append(f"{x['id']}: no key reference (ref.url)")
 for s in safeguards:
     for f in s["applies_to"]:
         if f != "any" and f not in FAM:

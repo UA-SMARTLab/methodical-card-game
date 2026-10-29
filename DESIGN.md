@@ -177,7 +177,7 @@ so the cards feel like a game and the table can read them at a glance:
 
 ## 9. Key sources the design leans on
 
-Every design also carries its own key reference in `data/designs.json` (`ref`): the paper that defined the method, or the guideline or review that made it standard. Each DOI was checked against Crossref, and the citation text is generated from the Crossref record. Prior art review links the US statute that defines prior art. The build refuses a design without a reference.
+Every Design, Threat and Safeguard card carries its own key reference (`ref` in `data/designs.json`, `threats.json` and `safeguards.json`): the paper that defined it, or the guideline or review that made it standard. Each DOI was checked against Crossref, and the citation text is generated from the Crossref record. Prior art review links the US statute that defines prior art. The build refuses any of these cards without a reference.
 
 
 - Shadish, Cook & Campbell (2002), *Experimental and Quasi-Experimental Designs*: validity typology, threats.

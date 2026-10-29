@@ -9,7 +9,7 @@ actually answer it, then defend that design when a reviewer attacks it with a bi
 countered by **validated, objective measures**, until a **Twist** changes the situation.
 
 The cards are laid out like a trading-card game: name bar, attribute, level pips, one illustration, a type line and one sentence of effect text.
-On the 59 Design cards the illustration is the study's own diagram, so the picture teaches the method. In the app, the **?** on every Design card opens the paper that defines the method or made it standard.
+On the 59 Design cards the illustration is the study's own diagram, so the picture teaches the method. In the app, the **?** on every Design, Threat and Safeguard card opens the paper that defines it or made it standard.
 
 ## What's in the box
 
