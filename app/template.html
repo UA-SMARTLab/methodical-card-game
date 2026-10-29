@@ -278,7 +278,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 
   <nav role="tablist">
     <button role="tab" id="tab-home" aria-selected="true" data-view="home">Home</button>
-    <button role="tab" id="tab-play" aria-selected="false" data-view="play">Practice</button>
+    <button role="tab" id="tab-play" aria-selected="false" data-view="play">Play</button>
     <button role="tab" id="tab-duel" aria-selected="false" data-view="duel">Duel</button>
     <button role="tab" id="tab-decks" aria-selected="false" data-view="decks">Browse the decks</button>
     <button role="tab" id="tab-guide" aria-selected="false" data-view="guide">How it works</button>
@@ -297,15 +297,15 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 
     <h2 class="home-h">Choose your game</h2>
     <div class="modes" id="home-modes">
-      <div class="mode tilt" style="--c:#B91C1C">
+      <div class="mode tilt" style="--c:#B91C1C" data-feature="duel">
         <div class="mode-ic">⚔️</div><h3>Duel</h3>
         <p>You against the computer. Draft designs, play them face down onto open questions, challenge and rebut. 8 rounds.</p>
         <div class="mode-go" id="home-bots"></div>
         <span class="label" id="home-record"></span>
       </div>
       <div class="mode tilt" style="--c:#2340A8">
-        <div class="mode-ic">🎯</div><h3>Practice</h3>
-        <p>One question at a time, scored against the answer key, then a peer-review round. Filter by suit and difficulty.</p>
+        <div class="mode-ic">🎯</div><h3>Play</h3>
+        <p>One question at a time: pick the right design from four choices, then defend it in a peer-review round. Filter by suit and difficulty.</p>
         <div class="mode-go"><button class="btn primary" data-go="play">Deal me a question</button></div>
       </div>
       <div class="mode tilt" style="--c:#15803D">
@@ -313,7 +313,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
         <p>Every Question, Design, Threat, Safeguard, Twist and Programme card, with answers and real historical examples.</p>
         <div class="mode-go"><button class="btn" data-go="decks">Open the decks</button></div>
       </div>
-      <div class="mode tilt" style="--c:#7E22CE">
+      <div class="mode tilt" style="--c:#7E22CE" data-feature="guide">
         <div class="mode-ic">📖</div><h3>How to play</h3>
         <p>Suits, constraints, three-tier scoring and the four table-top modes for print-and-play.</p>
         <div class="mode-go"><button class="btn" data-go="guide">Read the rules</button></div>
@@ -331,17 +331,17 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
         <option value="0">Any difficulty</option><option value="1">★ Intro</option><option value="2">★★ Intermediate</option><option value="3">★★★ Advanced</option>
       </select>
       <button class="btn" id="b-new">Deal another question</button>
-      <label class="toggle"><input type="checkbox" id="f-hints"> Icon hints</label>
+      <label class="toggle" data-feature="table"><input type="checkbox" id="f-hints"> Icon hints</label>
     </div>
     <div class="bench">
       <div id="qslot"></div>
       <div class="panel" id="panel"></div>
     </div>
-    <div class="table-head">
+    <div class="table-head" data-feature="table">
       <h2>The periodic table of methods</h2>
       <span class="label" id="ptable-label"></span>
     </div>
-    <div class="ptable" id="ptable"></div>
+    <div class="ptable" id="ptable" data-feature="table"></div>
   </section>
 
   <section id="view-duel" hidden>
@@ -426,6 +426,9 @@ const SYM = { "case-report": "Cr", "cross-sectional": "Xs", "ecological": "Ec", 
   "diagnostic-accuracy": "Dx", "reliability": "Ag", "validation": "Va", "nomological": "Nn", "interlab": "Il", "analytical-model": "An", "simulation": "Si",
   "prediction-model": "Pm", "design-science": "Ds", "pilot": "Pi", "benchmark": "Bm" };
 
+// Parts of the app that are switched off for now. Their code stays, so switching one back on is a one-word change.
+const FEATURES = { duel: false, guide: false, table: false };
+
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -444,7 +447,7 @@ function renderStats() {
 }
 
 // ---------- state
-let q = null, picked = null, phase = "choose", queue = [];
+let q = null, picked = null, phase = "choose", queue = [], choices = [];
 
 function filtered() {
   const suit = $("f-suit").value, diff = +$("f-diff").value;
@@ -461,6 +464,10 @@ function nextQuestion() {
   const id = queue.shift();
   q = questions.find(x => x.id === id);
   picked = null; phase = "choose";
+  // Four choices: the best design, a defensible one and a trap where the key has them, the rest drawn at random.
+  const keyed = new Set([...q.best, ...q.ok, ...Object.keys(q.traps)]);
+  choices = shuffle([q.best[0], ...shuffle(q.ok).slice(0, 1), ...shuffle(Object.keys(q.traps)).slice(0, 1),
+    ...shuffle(designs.map(d => d.id).filter(id => !keyed.has(id)))].slice(0, 4));
   renderQuestion(); renderPanel(); renderTable(); renderTray();
 }
 
@@ -481,13 +488,15 @@ function renderPanel() {
   const p = $("panel");
   if (phase === "choose") {
     p.innerHTML = `<span class="label">Your move</span><h3>Which design answers this question?</h3>
-      <p>Pick one from the periodic table below, then submit it from the tray.</p>
-      <ol class="steps">
+      ${FEATURES.table ? "<p>Pick one from the periodic table below, then submit it from the tray.</p>" : `<div class="opts">${choices.map(id =>
+        `<button class="opt" data-pick="${id}"><b>${esc(D[id].name)}</b><span>${esc(D[id].short)}</span></button>`).join("")}</div>`}
+      <ol class="steps" style="margin-top:14px">
         <li><b>Name the suit.</b> What kind of knowledge is wanted?</li>
         <li><b>Read the constraints.</b> They usually decide between otherwise good designs.</li>
         <li><b>Expect review.</b> You'll have to defend your choice against the problem's biggest threat.</li>
       </ol>
       <p class="label" style="margin-top:14px">Scoring: best +${SC.best} · defensible +${SC.ok} · trap ${SC.trap} · unlisted ${SC.unlisted}</p>`;
+    p.querySelectorAll("[data-pick]").forEach(b => b.onclick = () => { picked = b.dataset.pick; submit(); });
     return;
   }
   const tier = tierOf(picked);
@@ -582,6 +591,7 @@ function renderTable() {
 }
 
 function renderTray() {
+  if (!FEATURES.table) { $("tray").hidden = true; return; }
   const tray = $("tray");
   if (!picked || phase !== "choose") { tray.hidden = true; return; }
   const d = D[picked];
@@ -1148,6 +1158,7 @@ function show(view) {
 }
 document.querySelectorAll("nav button").forEach(b => b.onclick = () => show(b.dataset.view));
 $("go-home").onclick = e => { e.preventDefault(); show("home"); };
+for (const [k, on] of Object.entries(FEATURES)) if (!on) document.querySelectorAll(`[data-feature="${k}"], #tab-${k}`).forEach(el => el.hidden = true);
 $("f-suit").innerHTML = `<option value="">All suits</option>` + meta.suits.map(s => `<option value="${s.id}">${s.icon} ${esc(s.name)} (${questions.filter(x => x.suit === s.id).length})</option>`).join("");
 $("f-suit").onchange = $("f-diff").onchange = () => { queue = []; nextQuestion(); };
 $("f-hints").onchange = renderTable;
