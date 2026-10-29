@@ -37,7 +37,7 @@
   {"id": "regression-mean", "name": "Regression to the mean", "short": "Extreme values drift back toward average on their own.",
    "text": "Units picked for extreme values drift back toward average on re-measurement, with or without any intervention.",
    "example": "Pupils chosen for tutoring after their worst-ever test score improve next time, tutoring or not.",
-   "countered_by": ["concurrent-control", "randomization"]},
+   "countered_by": ["concurrent-control", "randomization", "spc"]},
 
   {"id": "expectation", "name": "Expectation effects", "short": "Knowing who got what changes the result.",
    "text": "Placebo, Hawthorne and observer effects: knowing who got what changes behaviour, symptoms or readings.",
@@ -102,7 +102,7 @@
   {"id": "history-trend", "name": "History & secular trends", "short": "Something else changed at the same time.",
    "text": "Something else changed at the same time (a trend, the season, another policy) and takes the credit or the blame.",
    "example": "A hospital's hygiene campaign coincided with a nationwide fall in infections and got credit for both.",
-   "countered_by": ["concurrent-control", "parallel-trends"]},
+   "countered_by": ["concurrent-control", "parallel-trends", "spc"]},
 
   {"id": "carryover", "name": "Carryover", "short": "The first treatment lingers into the second period.",
    "text": "The effect of an earlier treatment period bleeds into the next one.",

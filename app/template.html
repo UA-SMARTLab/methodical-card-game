@@ -155,6 +155,15 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 .pick:hover, .pick:focus-visible { transform: translateY(-8px) rotate(-1deg); box-shadow: 0 16px 30px rgba(0,0,0,.35); }
 @media (prefers-reduced-motion: reduce) { .pick { transition: none; } .pick:hover { transform: none; } }
 
+/* "?" link to each design's key reference */
+.pick-slot { position: relative; }
+.ref { position: absolute; z-index: 3; top: -9px; right: -9px; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--surface); color: var(--accent); border: 2px solid var(--accent); font: 800 15px/1 var(--f-display); text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,.3); transition: transform .15s, background .15s; }
+.ref:hover, .ref:focus-visible { transform: scale(1.15); background: var(--accent); color: var(--accent-ink); }
+.cite { font-size: 13.5px; color: var(--muted); }
+.cite a, .cards details a { color: var(--accent); }
+
 /* home */
 .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 24px; align-items: center; min-height: 430px; margin-bottom: 26px; }
 @media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; } }
@@ -433,10 +442,16 @@ const SYM = { "case-report": "Cr", "cross-sectional": "Xs", "ecological": "Ec", 
   "systematic-review": "Sr", "scoping-review": "Sp", "network-meta": "Nm", "umbrella-review": "Ub", "rapid-review": "Rr", "realist-review": "Rl",
   "prior-art": "Pa", "co-citation": "Ci", "bibliographic-coupling": "Bc",
   "diagnostic-accuracy": "Dx", "reliability": "Ag", "validation": "Va", "nomological": "Nn", "interlab": "Il", "analytical-model": "An", "simulation": "Si",
-  "prediction-model": "Pm", "design-science": "Ds", "pilot": "Pi", "benchmark": "Bm" };
+  "prediction-model": "Pm", "design-science": "Ds", "pilot": "Pi", "benchmark": "Bm",
+  "capture-recapture": "Cp", "gwas": "Gw", "case-cohort": "Ch", "process-tracing": "Pt", "ipd-meta": "Id", "discrete-choice": "Dc",
+  "economic-evaluation": "Ce", "think-aloud": "Ta", "pdsa": "Pd" };
 
 // Parts of the app that are switched off for now. Their code stays, so switching one back on is a one-word change.
 const FEATURES = { duel: false, guide: false, table: false };
+
+// Every design carries the paper that defines it (or made it standard). The "?" opens it in a new tab.
+const refLink = id => `<a class="ref" href="${esc(D[id].ref.url)}" target="_blank" rel="noopener" title="Key reference: ${esc(D[id].ref.cite)}" aria-label="Key reference for ${esc(D[id].name)}">?</a>`;
+const refLine = id => `<a href="${esc(D[id].ref.url)}" target="_blank" rel="noopener">${esc(D[id].ref.cite)}</a>`;
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -498,7 +513,7 @@ function renderPanel() {
   if (phase === "choose") {
     p.innerHTML = `<span class="label">Your move</span><h3>Which design answers this question?</h3>
       ${FEATURES.table ? "<p>Pick one from the periodic table below, then submit it from the tray.</p>" : `<div class="pick-wrap"><div class="pick-cards">${choices.map(id =>
-        `<button class="pick" data-pick="${id}" aria-label="${esc(D[id].name)}" title="${esc(D[id].gist)}">${DATA.cards.designs[id]}</button>`).join("")}</div></div>`}
+        `<div class="pick-slot"><button class="pick" data-pick="${id}" aria-label="${esc(D[id].name)}" title="${esc(D[id].gist)}">${DATA.cards.designs[id]}</button>${refLink(id)}</div>`).join("")}</div></div>`}
       <ol class="steps" style="margin-top:14px">
         <li><b>Name the suit.</b> What kind of knowledge is wanted?</li>
         <li><b>Read the constraints.</b> They usually decide between otherwise good designs.</li>
@@ -517,7 +532,7 @@ function renderPanel() {
   if (tier === "trap") html += `<p class="trapline"><b>Why it fails:</b> ${esc(q.traps[picked])}</p>`;
   html += `<dl class="key"><dt>🥇 Best</dt><dd>${names(q.best)}</dd><dt>🥈 Defensible</dt><dd>${names(q.ok)}</dd>`;
   for (const [id, r] of Object.entries(q.traps)) if (id !== picked) html += `<dt>⚠️ Trap</dt><dd><b>${esc(D[id].name)}</b>: ${esc(r)}</dd>`;
-  html += `</dl><p>${esc(q.why)}</p>`;
+  html += `</dl><p>${esc(q.why)}</p><p class="cite">📄 Key reference for ${esc(D[q.best[0]].name)}: ${refLine(q.best[0])}</p>`;
   html += `<div class="review" id="review"></div>`;
   p.innerHTML = html;
   renderReview();
@@ -615,7 +630,7 @@ const DECKS = { designs: "Designs", questions: "Questions", threats: "Threats", 
 function cardHTML(kind, x) {
   const card = DATA.cards[kind][x.id];
   if (kind === "questions") return `<figure>${card}<details><summary>Answer</summary><p>🥇 ${x.best.map(i => esc(D[i].name)).join(", ")}<br>🥈 ${x.ok.map(i => esc(D[i].name)).join(", ") || "–"}</p><p>${esc(x.why)}</p></details></figure>`;
-  if (kind === "designs") return `<figure>${card}<details><summary>More</summary><p>${esc(x.gist)}</p><p><i>${esc(x.example)}</i></p></details></figure>`;
+  if (kind === "designs") return `<figure><div class="pick-slot">${card}${refLink(x.id)}</div><details><summary>More</summary><p>${esc(x.gist)}</p><p><i>${esc(x.example)}</i></p><p>📄 ${refLine(x.id)}</p></details></figure>`;
   if (kind === "threats") return `<figure>${card}<details><summary>Example</summary><p>${esc(x.text)}</p><p><i>${esc(x.example)}</i></p></details></figure>`;
   return `<figure>${card}</figure>`;
 }

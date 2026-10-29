@@ -378,6 +378,15 @@ def art_within_comparison():
     return out
 
 
+def art_spc():
+    ys = [70, 64, 74, 68, 72, 66, 71, 69, 50, 46, 52, 44, 48, 42]
+    pts = [(22 + i * 12, y) for i, y in enumerate(ys)]
+    out = line([(16, 52), (184, 52)], HOT, 2, "6 5") + line([(16, 88), (184, 88)], HOT, 2, "6 5") + line([(16, 70), (112, 70)], DIM, 2)
+    out += line([(118, 47), (184, 47)], ACC, 2.5) + line([(115, 26), (115, 120)], INK, 2, "3 4")
+    out += line(pts, INK, 3) + scatter(pts[:8], 3.2, INK) + scatter(pts[8:], 3.6, ACC)
+    return out + text(18, 46, "UCL", 10, HOT, "start") + text(18, 102, "LCL", 10, HOT, "start") + text(120, 136, "CHANGE", 10, INK, "start")
+
+
 SAFEGUARD_ART = {
     "randomization": art_randomization,
     "allocation-concealment": art_allocation_concealment,
@@ -411,4 +420,5 @@ SAFEGUARD_ART = {
     "verification-validation": art_verification_validation,
     "multi-site": art_multi_site,
     "within-comparison": art_within_comparison,
+    "spc": art_spc,
 }

@@ -62,5 +62,7 @@
   {"id": "multi-site", "name": "Multi-site, diverse sample", "short": "Run it where the results will be used.", "applies_to": ["any"],
    "text": "Run the study across the settings and populations where the results will actually be used."},
   {"id": "within-comparison", "name": "Self or sibling comparison", "short": "Compare people with themselves, or siblings with siblings.", "applies_to": ["analytical", "experimental"],
-   "text": "Compare units with themselves, or siblings with each other, so stable background factors cancel out."}
+   "text": "Compare units with themselves, or siblings with each other, so stable background factors cancel out."},
+  {"id": "spc", "name": "Run charts & control limits", "short": "Judge a change against the process's own baseline variation.", "applies_to": ["engineering", "quasi", "descriptive"],
+   "text": "Plot the measure over time from a stable baseline and apply pre-set rules (shifts, trends, control limits), so real change stands out from noise and drift."}
 ]

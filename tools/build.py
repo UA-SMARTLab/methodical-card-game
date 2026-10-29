@@ -69,6 +69,8 @@ for d in designs:
         errors.append(f"{w}: constraint both fits and struggles: {set(d['fits']) & set(d['struggles'])}")
     if len(d["gist"]) > 150:
         warnings.append(f"{w}: gist is {len(d['gist'])} chars (may overflow card)")
+    if not (d.get("ref") or {}).get("url", "").startswith("https://"):
+        errors.append(f"{w}: no key reference (ref.url)")
     if len(d["example"]) > 125:
         warnings.append(f"{w}: example is {len(d['example'])} chars (may overflow card)")
 

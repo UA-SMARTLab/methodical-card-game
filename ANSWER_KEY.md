@@ -81,6 +81,21 @@ Post-marketing pharmacovigilance (spontaneous reports plus active monitoring of 
 
 *Watch out for:* **Measurement error**, countered by Validated, objective measures, Blinding, Triangulation.
 
+### Q65 · Newts in the pond (Ecology, ★)
+
+> How many great crested newts live in a large, murky pond? You can net some on every visit, but never all of them.
+
+Constraints: 💸 Tight budget
+
+- 🥇 **Best:** Capture–recapture
+- 🥈 **Defensible:** none
+- ⚠️ **Trap, Cross-sectional survey:** One netting counts the newts you caught, not the ones you missed.
+- ⚠️ **Trap, Monitoring / surveillance:** Repeated counts track a trend in catches, not how many newts there really are.
+
+Photograph each newt's unique belly pattern, then net again: the share of already-seen newts in the second catch estimates the total (Lincoln–Petersen). It assumes no newts arrive or leave between visits and that every newt is equally likely to be caught.
+
+*Watch out for:* **Selection bias**, countered by Representative sampling, Allocation concealment, Causal diagram (DAG), Comprehensive search, Intention-to-treat, Time-zero alignment.
+
 ## 🧭 Explore: What is going on here? How and why do people experience or do it?
 
 ### Q55 · The ignored app (Nursing, ★)
@@ -249,6 +264,36 @@ Measure diet before anyone has dementia and wait, or (faster) analyse an existin
 
 *Watch out for:* **Reverse causation**, countered by Lag & early-event exclusion, Randomization.
 
+### Q66 · Migraine genes (Genetics, ★★)
+
+> Which genetic variants are linked to migraine? A biobank holds genotypes and health records for half a million people, but nobody knows which genes to look at.
+
+Constraints: 🗄️ Existing data, ❓ Uncharted
+
+- 🥇 **Best:** Genome-wide association study
+- 🥈 **Defensible:** Case–control study
+- ⚠️ **Trap, Mendelian randomization:** Mendelian randomization uses variants you already know to test a cause. Here you are looking for the variants in the first place.
+- ⚠️ **Trap, Case report / case series:** One family with migraine can hint at a gene, but it can't scan the genome across a population.
+
+Test every variant across the genome against a threshold of about 5 × 10⁻⁸, so that millions of tests don't produce false hits. Adjust for ancestry so population structure doesn't fake associations, and replicate the hits in an independent cohort.
+
+*Watch out for:* **Forking paths & p-hacking**, countered by Preregistration, Multiplicity correction, Independent replication.
+
+### Q67 · The freezer (Cardiology, ★★)
+
+> A biobank froze blood from 60,000 people 15 years ago; 900 have since had a heart attack. Does a new inflammation marker predict who? Each test costs €300.
+
+Constraints: 🗄️ Existing data, 🔎 Rare outcome, 💸 Tight budget
+
+- 🥇 **Best:** Case-cohort / nested case–control
+- 🥈 **Defensible:** Case–control study
+- ⚠️ **Trap, Prospective cohort:** Starting a new cohort means waiting 15 years for what is already in the freezer.
+- ⚠️ **Trap, Retrospective cohort:** Testing all 60,000 samples would cost €18 million. You only need the cases and a sample of everyone else.
+
+Test all 900 cases plus a random subcohort drawn from the whole cohort, blind to who is a case and in random order, so lab batches can't line up with the outcome. The same subcohort can later be reused for other outcomes.
+
+*Watch out for:* **Measurement error**, countered by Validated, objective measures, Blinding, Triangulation.
+
 ## 🎯 Cause: Does changing X change Y? Does the intervention work?
 
 ### Q11 · New pill vs. old (Cardiology, ★)
@@ -292,7 +337,7 @@ Constraints: 🚫 Can't assign, 👥 Group-level, 🗄️ Existing data
 
 Compare the change in the taxed state with the change in the untaxed one. The key assumption, parallel trends, can be checked in the years before the tax.
 
-*Watch out for:* **History & secular trends**, countered by Concurrent control group, Pre-trend check & control series.
+*Watch out for:* **History & secular trends**, countered by Concurrent control group, Pre-trend check & control series, Run charts & control limits.
 
 ### Q14 · Scholarship cutoff (Education policy, ★★)
 
@@ -322,7 +367,7 @@ Constraints: 🗄️ Existing data, 1️⃣ One unit
 
 Many time points before and after a sharp date separate the alert's effect from the trend that was already under way. Add a control series (another hospital, or a condition the alert can't affect) to rule out coincident changes.
 
-*Watch out for:* **History & secular trends**, countered by Concurrent control group, Pre-trend check & control series.
+*Watch out for:* **History & secular trends**, countered by Concurrent control group, Pre-trend check & control series, Run charts & control limits.
 
 ### Q16 · Reunification (Economics, ★★)
 
@@ -337,7 +382,7 @@ Constraints: 1️⃣ One unit, 🚫 Can't assign, 🗄️ Existing data
 
 One treated unit, many possible comparisons: build a weighted blend of other OECD countries that tracked West Germany before 1990, then watch where the paths split. Abadie, Diamond & Hainmueller did exactly this.
 
-*Watch out for:* **History & secular trends**, countered by Concurrent control group, Pre-trend check & control series.
+*Watch out for:* **History & secular trends**, countered by Concurrent control group, Pre-trend check & control series, Run charts & control limits.
 
 ### Q17 · Her migraine (Neurology, ★★)
 
@@ -440,7 +485,7 @@ Constraints: 📅 Rollout, 👥 Group-level
 
 Everyone gets it; only the order is open. Randomize the order in which hospitals switch, and every hospital contributes both control and intervention time. Model the background time trend carefully.
 
-*Watch out for:* **History & secular trends**, countered by Concurrent control group, Pre-trend check & control series.
+*Watch out for:* **History & secular trends**, countered by Concurrent control group, Pre-trend check & control series, Run charts & control limits.
 
 ### Q24 · Ten candidates (Infectious disease, ★★)
 
@@ -455,7 +500,7 @@ Constraints: none
 
 One master protocol, one shared control arm; arms are dropped for futility and new ones added. RECOVERY found that dexamethasone saves lives within about 100 days of launch.
 
-*Watch out for:* **History & secular trends**, countered by Concurrent control group, Pre-trend check & control series.
+*Watch out for:* **History & secular trends**, countered by Concurrent control group, Pre-trend check & control series, Run charts & control limits.
 
 ### Q25 · Older than the trials (Pharmacoepidemiology, ★★★)
 
@@ -578,6 +623,21 @@ Species distribution models link today's occurrences to climate, then project th
 
 *Watch out for:* **Limited generalizability**, countered by Multi-site, diverse sample, Representative sampling, Independent replication.
 
+### Q69 · Worth the price? (Health economics, ★★)
+
+> Trials show a new RSV vaccine protects older adults. Is it worth what the manufacturer is asking the national health service to pay?
+
+Constraints: 🗄️ Existing data
+
+- 🥇 **Best:** Cost-effectiveness analysis
+- 🥈 **Defensible:** Computational simulation
+- ⚠️ **Trap, Randomized controlled trial:** The trials already show that it works. Another trial won't tell you whether it's worth the money.
+- ⚠️ **Trap, Systematic review & meta-analysis:** Pooling the efficacy evidence is one input, but it doesn't weigh the costs.
+
+Build a decision model of who catches RSV, who is admitted to hospital and who dies, with and without vaccination. Feed it trial efficacy, costs and quality of life, and report the extra cost per QALY gained, with a probabilistic sensitivity analysis to show how certain that answer is.
+
+*Watch out for:* **Unvalidated model**, countered by Verification & validation, Sensitivity analysis.
+
 ## 📏 Measure: Can we measure it accurately, reliably, and validly?
 
 ### Q33 · Rapid strep (Paediatrics, ★)
@@ -669,6 +729,21 @@ Constraints: none
 Write down the predicted pattern before collecting data: grit should correlate with conscientiousness, but not so highly that they are the same thing, and it should predict outcomes beyond it. Measure both traits by more than one method (self-report, teacher ratings, behaviour), so shared questionnaire habits don't fake the overlap.
 
 *Watch out for:* **Measurement error**, countered by Validated, objective measures, Blinding, Triangulation.
+
+### Q68 · Seeds of choice (Agricultural economics, ★★)
+
+> Would smallholder farmers pay for drought-tolerant maize seed? And what matters most to them: yield, price, taste, or seed they can save for next year?
+
+Constraints: 💸 Tight budget
+
+- 🥇 **Best:** Discrete choice experiment
+- 🥈 **Defensible:** Mixed methods (sequential)
+- ⚠️ **Trap, Cross-sectional survey:** Asking farmers to rate each feature from 1 to 5 makes everything important and hides the trade-offs.
+- ⚠️ **Trap, Randomized controlled trial:** Handing out seed at random tests whether it raises yields, not what farmers value or would pay.
+
+Offer choices between seed packages whose yield, price, taste and saveability vary by an experimental design; choice models turn the answers into the weight of each feature and a willingness to pay. Pick the attributes with farmers first, and remember that stated choices overstate real purchases.
+
+*Watch out for:* **Limited generalizability**, countered by Multi-site, diverse sample, Representative sampling, Independent replication.
 
 ## 🧮 Explain: What mechanism or law must hold? What follows from the theory?
 
@@ -762,6 +837,21 @@ Game theory derives equilibria, and the conditions for them, from stated assumpt
 
 *Watch out for:* **Unvalidated model**, countered by Verification & validation, Sensitivity analysis.
 
+### Q70 · Why this deal? (Political science, ★★★)
+
+> Colombia's 2016 peace agreement led most FARC fighters to disarm, where earlier talks had failed. Three rival explanations are on the table. Which one holds?
+
+Constraints: 1️⃣ One unit, 🗄️ Existing data
+
+- 🥇 **Best:** Process tracing
+- 🥈 **Defensible:** Case study (in-depth)
+- ⚠️ **Trap, Ecological study:** Cross-country correlations about peace deals can't test which mechanism worked in Colombia.
+- ⚠️ **Trap, Cross-sectional survey:** A survey of today's opinions can't reconstruct the sequence of decisions that led to the deal.
+
+Write down what each explanation predicts you should find (who met when, what was offered, what the leadership said in private), then look for hoop tests that can eliminate an explanation and smoking guns that strongly confirm one. Weigh evidence against your favourite account as hard as evidence for it.
+
+*Watch out for:* **Researcher bias**, countered by Reflexivity & double coding, Blinding, Triangulation.
+
 ## 🛠️ Build: Can we make something that works, and is the plan feasible?
 
 ### Q44 · Grasp benchmark (Robotics, ★)
@@ -853,6 +943,36 @@ Constraints: 🗄️ Existing data, 💸 Tight budget
 Novelty is judged against everything made public anywhere, in any language: patents, products, catalogues, theses and papers. Search patent databases by classification code as well as by keyword, because patents rarely use everyday words like 'clip'.
 
 *Watch out for:* **Selection bias**, countered by Representative sampling, Allocation concealment, Causal diagram (DAG), Comprehensive search, Intention-to-treat, Time-zero alignment.
+
+### Q72 · The abandoned form (Human–computer interaction, ★)
+
+> Older patients keep abandoning a hospital's online booking form halfway through. The redesign is frozen in a week.
+
+Constraints: 💸 Tight budget
+
+- 🥇 **Best:** Usability test (think-aloud)
+- 🥈 **Defensible:** Design science (build & evaluate), Interviews & thematic analysis
+- ⚠️ **Trap, Online A/B test:** An A/B test tells you which version wins, not where and why people get stuck, and there is no new version yet.
+- ⚠️ **Trap, Cross-sectional survey:** A satisfaction survey misses exactly the people who gave up.
+
+Ask five or so representative older users to book an appointment while thinking aloud; watch without helping and log every hesitation and error. Fix the worst problems and test again: several small rounds find more than one big one.
+
+*Watch out for:* **Selection bias**, countered by Representative sampling, Allocation concealment, Causal diagram (DAG), Comprehensive search, Intention-to-treat, Time-zero alignment.
+
+### Q73 · No-shows (Primary care, ★)
+
+> A quarter of a clinic's appointments are missed. The team wants to start text reminders this month, then adjust the wording and timing until the rate falls.
+
+Constraints: 💸 Tight budget, 1️⃣ One unit
+
+- 🥇 **Best:** Plan–Do–Study–Act cycles
+- 🥈 **Defensible:** Interrupted time series
+- ⚠️ **Trap, Cluster randomized trial:** One clinic can't be a cluster trial, and the team wants to learn and adapt month by month.
+- ⚠️ **Trap, Systematic review & meta-analysis:** Reviews say reminders help on average. The question is what works in this clinic.
+
+Run small cycles: plan a change, try it for a week or two, study the run chart, act on what you learn. Mark every change on the chart, and keep measuring long enough to tell real improvement from seasonal swings.
+
+*Watch out for:* **History & secular trends**, countered by Concurrent control group, Pre-trend check & control series, Run charts & control limits.
 
 ## 📚 Synthesize: What does all the existing evidence say?
 
@@ -976,6 +1096,21 @@ Papers that cite the same sources are probably working on the same problem, and 
 
 *Watch out for:* **Wrong construct**, countered by Validated, objective measures, Triangulation.
 
+### Q71 · Under fifty (Oncology, ★★★)
+
+> Twelve trials of a breast-cancer drug show an overall benefit. Do women under 50 benefit too? Most papers don't report results by age, or use different age cut-offs.
+
+Constraints: 🗂️ Many studies
+
+- 🥇 **Best:** Individual participant data meta-analysis
+- 🥈 **Defensible:** Systematic review & meta-analysis
+- ⚠️ **Trap, Network meta-analysis:** There is one treatment against control. Nothing needs ranking.
+- ⚠️ **Trap, Retrospective cohort:** Who gets the drug in routine care is confounded by indication.
+
+Ask every trial team for its patient-level data, check it, and analyse age the same way in every trial: ideally as a continuous variable, with the treatment-by-age interaction estimated within each trial. Report which trials couldn't share data and whether their results differ.
+
+*Watch out for:* **Selection bias**, countered by Representative sampling, Allocation concealment, Causal diagram (DAG), Comprehensive search, Intention-to-treat, Time-zero alignment.
+
 ## Research programmes (cooperative mode)
 
 ### P1 · Screens & teen mental health
@@ -1046,6 +1181,7 @@ A hospital group wants an AI tool that flags patients who will need intensive ca
 | Cross-sectional survey | Descriptive observational | Q01, Q04 |
 | Ecological study | Descriptive observational | Q06 |
 | Monitoring / surveillance | Descriptive observational | Q03, Q05 |
+| Capture–recapture | Descriptive observational | Q65 |
 | Prospective cohort | Analytical observational | Q10 |
 | Retrospective cohort | Analytical observational | Q08 |
 | Case–control study | Analytical observational | Q07 |
@@ -1053,6 +1189,8 @@ A hospital group wants an AI tool that flags patients who will need intensive ca
 | Target trial emulation | Analytical observational | Q25 |
 | Instrumental variable analysis | Analytical observational | Q26 |
 | Mendelian randomization | Analytical observational | Q27 |
+| Genome-wide association study | Analytical observational | Q66 |
+| Case-cohort / nested case–control | Analytical observational | Q67 |
 | Difference-in-differences | Quasi-experimental | Q13 |
 | Regression discontinuity | Quasi-experimental | Q14 |
 | Interrupted time series | Quasi-experimental | Q15 |
@@ -1070,11 +1208,13 @@ A hospital group wants an AI tool that flags patients who will need intensive ca
 | Grounded theory | Qualitative & mixed | Q58 |
 | Interviews & thematic analysis | Qualitative & mixed | Q55 |
 | Case study (in-depth) | Qualitative & mixed | Q57 |
+| Process tracing | Qualitative & mixed | Q70 |
 | Delphi consensus | Qualitative & mixed | Q59 |
 | Mixed methods (sequential) | Qualitative & mixed | Q60 |
 | Systematic review & meta-analysis | Evidence synthesis | Q49 |
 | Scoping review | Evidence synthesis | Q50 |
 | Network meta-analysis | Evidence synthesis | Q51 |
+| Individual participant data meta-analysis | Evidence synthesis | Q71 |
 | Umbrella review | Evidence synthesis | Q53 |
 | Rapid review | Evidence synthesis | Q52 |
 | Realist review | Evidence synthesis | Q54 |
@@ -1085,10 +1225,14 @@ A hospital group wants an AI tool that flags patients who will need intensive ca
 | Reliability & agreement study | Measurement | Q35, Q36 |
 | Instrument development & validation | Measurement | Q34 |
 | Nomological network study | Measurement | Q64 |
+| Discrete choice experiment | Measurement | Q68 |
 | Interlaboratory comparison | Measurement | Q37 |
 | Analytical / mathematical theory | Theory & computation | Q38, Q41, Q43 |
 | Computational simulation | Theory & computation | Q39, Q40, Q42 |
 | Prediction model (statistical / ML) | Theory & computation | Q28, Q29, Q30, Q31, Q32 |
+| Cost-effectiveness analysis | Theory & computation | Q69 |
 | Design science (build & evaluate) | Design & development | Q45, Q46 |
 | Pilot / feasibility study | Design & development | Q47, Q48 |
+| Usability test (think-aloud) | Design & development | Q72 |
+| Plan–Do–Study–Act cycles | Design & development | Q73 |
 | Benchmark evaluation | Design & development | Q44 |

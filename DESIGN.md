@@ -124,10 +124,10 @@ and the best ones should be fed back into the deck.
 
 ## 5. Balance and coverage
 
-- 64 questions over 9 suits. 🎯 Cause has 17 because causal inference has the most designs, and 📚 Synthesize has 8 because each review and citation-mapping design needs a question of its own. The other suits have 5–6 each.
+- 73 questions over 9 suits. 🎯 Cause has 17 because causal inference has the most designs; 📚 Synthesize has 9 and 🛠️ Build 8, because each review and improvement design needs a question of its own. The other suits have 6–7 each.
 - Fields include medicine, public health, ecology, astronomy, economics, education, engineering, robotics, materials,
   chemistry, physics, HCI and anthropology, so that the deck is not secretly a medical-school exam.
-- The build script **checks** that every one of the 50 designs is the best answer to at least one question,
+- The build script **checks** that every one of the 59 designs is the best answer to at least one question,
   that every threat appears on at least one design, and that every design weakness has at least one usable safeguard.
   Mode 2 can't deal a threat that has no possible counter.
 - Difficulty ★ to ★★★: ★ is a first-year methods course; ★★★ (target trials, Mendelian randomization,
@@ -176,6 +176,9 @@ so the cards feel like a game and the table can read them at a glance:
   of a face-down deck showed its own answer. v0.2 gives every card the same back.
 
 ## 9. Key sources the design leans on
+
+Every design also carries its own key reference in `data/designs.json` (`ref`): the paper that defined the method, or the guideline or review that made it standard. Each DOI was checked against Crossref, and the citation text is generated from the Crossref record. Prior art review links the US statute that defines prior art. The build refuses a design without a reference.
+
 
 - Shadish, Cook & Campbell (2002), *Experimental and Quasi-Experimental Designs*: validity typology, threats.
 - Hernán & Robins (2020), *Causal Inference: What If*: target trials, DAGs, immortal time.

@@ -296,7 +296,7 @@ CONSTRAINT_ICONS = {
 }
 
 
-# --------------------------------------------------------------------------- design art (50)
+# --------------------------------------------------------------------------- design art (59)
 def _arms(x, y, n, dx, c):
     return "".join(person(x + i * dx, y, 0.75, c) for i in range(n))
 
@@ -738,6 +738,98 @@ def art_benchmark():
     out = rect(76, 56, 48, 80, ACC, ACC, 0, 2) + rect(28, 80, 48, 56, INK, INK, 0, 2) + rect(124, 96, 48, 40, DIM, DIM, 0, 2)
     out += text(100, 104, "1", 32, "#0f172a") + text(52, 118, "2", 26, "#0f172a") + text(148, 124, "3", 22, "#0f172a")
     return out + star(100, 34, 14, ACC) + line([(14, 136), (186, 136)], INK, 3)
+
+
+def art_capture_recapture():
+    r = lcg(21)
+    out = circle(78, 70, 46, "#0f172a44", INK, 3) + circle(124, 70, 46, "#0f172a44", INK, 3)
+    for k in range(26):
+        x, y = 34 + r() * 134, 30 + r() * 80
+        inside_a, inside_b = (x - 78) ** 2 + (y - 70) ** 2 < 40 ** 2, (x - 124) ** 2 + (y - 70) ** 2 < 40 ** 2
+        if inside_a or inside_b:
+            out += circle(x, y, 4, ACC if inside_a and inside_b else DIM)
+    return out + text(52, 22, "1ST", 11, INK) + text(150, 22, "2ND", 11, INK) + text(101, 134, "N ≈ n₁·n₂ / m", 13, ACC)
+
+
+def art_gwas():
+    r = lcg(5)
+    out = axes(14, 14, 176, 118) + line([(16, 40), (186, 40)], HOT, 2, "6 5")
+    peaks = {38: 24, 96: 30, 150: 18}
+    for k in range(150):
+        x = 20 + k * 1.1
+        h = r() * 26 + r() * r() * 26
+        for px, ph in peaks.items():
+            if abs(x - px) < 5:
+                h += ph * (1 - abs(x - px) / 5) * (1 + r())
+        out += circle(x, 128 - h * 1.15, 1.8, ACC if 128 - h * 1.15 < 40 else (INK if (k // 15) % 2 else COOL))
+    return out + text(186, 34, "5×10⁻⁸", 10, HOT, "end")
+
+
+def art_case_cohort():
+    r = lcg(9)
+    out = circle(100, 76, 62, "#0f172a44", DIM, 2.5)
+    for k in range(70):
+        a, d = r() * 6.283, 56 * r() ** .5
+        x, y = 100 + d * math.cos(a), 76 + d * math.sin(a)
+        c = HOT if k % 11 == 0 else (ACC if k % 4 == 0 else FAINT)
+        out += circle(x, y, 3.4 if c != FAINT else 2.6, c)
+    return out + flask(172, 110, .7) + text(18, 24, "CASES", 11, HOT, "start") + text(182, 24, "SUBCOHORT", 11, ACC, "end")
+
+
+def art_process_tracing():
+    pts = [(28, 104), (72, 64), (118, 92), (166, 46)]
+    out = "".join(arrow(a[0] + 12, a[1] - (a[1] - b[1]) * .25, b[0] - 12, b[1] + (a[1] - b[1]) * .25, DIM, 2.5, head=7) for a, b in zip(pts, pts[1:]))
+    for k, (x, y) in enumerate(pts):
+        out += node(x, y, "ABCD"[k], 12, "#0f172a", INK, size=12)
+    out += magnifier(118, 92, 20, ACC, 3.5) + check(166, 24, 9) + cross(72, 40, 7)
+    return out + text(166, 131, "SMOKING GUN", 10, ACC) + text(72, 92, "HOOP", 10, INK)
+
+
+def art_ipd_meta():
+    out = ""
+    for k, y in enumerate((18, 58, 98)):
+        out += doc(14, y, 26, 32, INK, 2, "#0f172a55") + "".join(person(52 + i * 11, y + 20, .55, DIM) for i in range(3))
+        out += arrow(90, y + 16, 112, 70, DIM, 2, head=6)
+    out += rect(116, 34, 74, 74, "#0f172a66", INK, 2.5, 4)
+    for i in range(4):
+        for j in range(4):
+            out += person(127 + i * 17, 52 + j * 17, .55, ACC if (i + j) % 3 == 0 else INK)
+    return out + text(153, 124, "EVERY PATIENT", 10, ACC)
+
+
+def art_discrete_choice():
+    out = ""
+    for k, (x, sel) in enumerate(((22, False), (110, True))):
+        out += rect(x, 22, 70, 98, "#0f172a66", ACC if sel else INK, 3 if sel else 2.5, 6) + text(x + 35, 40, "AB"[k], 16, ACC if sel else INK)
+        for i, w in enumerate((0.8, 0.35, 0.6) if k == 0 else (0.5, 0.75, 0.4)):
+            out += rect(x + 10, 54 + i * 18, 50, 8, "none", DIM, 1.5, 2) + rect(x + 10, 54 + i * 18, 50 * w, 8, INK, "none", 0, 2)
+    return out + check(145, 130, 9) + text(100, 76, "OR", 12, DIM)
+
+
+def art_economic_evaluation():
+    out = line([(100, 14), (100, 136)], INK, 2.5) + line([(14, 76), (186, 76)], INK, 2.5)
+    out += line([(28, 128), (176, 22)], ACC, 2.5, "7 5") + circle(150, 52, 7, ACC) + circle(132, 30, 6, HOT)
+    return out + text(104, 22, "+ COST", 10, INK, "start") + text(184, 92, "+ QALY", 10, INK, "end") + text(60, 122, "£ / QALY", 11, ACC)
+
+
+def art_think_aloud():
+    out = rect(70, 40, 116, 78, "#0f172a", INK, 3, 5) + rect(80, 52, 96, 10, "none", DIM, 2, 2) + rect(80, 70, 96, 10, "none", HOT, 2.5, 2) + rect(80, 88, 44, 12, ACC, ACC, 0, 3)
+    out += path("M150,92 l0,14 l4,-4 l5,8 l3,-2 l-5,-8 l6,0 z", INK, 1.5, fill=INK) + line([(110, 118), (146, 118)], INK, 3)
+    out += person(36, 112, 2.0, INK) + bubble(10, 18, 56, 30, ACC, "#0f172a")
+    return out + text(38, 39, "HMM…?", 13, ACC)
+
+
+def art_pdsa():
+    out = ""
+    for k, (lab, a0) in enumerate((("P", -90), ("D", 0), ("S", 90), ("A", 180))):
+        a1 = a0 + 80
+        x0, y0 = 70 + 46 * math.cos(math.radians(a0)), 76 + 46 * math.sin(math.radians(a0))
+        x1, y1 = 70 + 46 * math.cos(math.radians(a1)), 76 + 46 * math.sin(math.radians(a1))
+        out += path(f"M{_f(x0)},{_f(y0)} A46,46 0 0 1 {_f(x1)},{_f(y1)}", ACC if k == 0 else INK, 6)
+        am = math.radians(a0 + 40)
+        out += text(70 + 28 * math.cos(am), 76 + 28 * math.sin(am) + 6, lab, 17, ACC if k == 0 else INK)
+    out += line([(126, 128), (190, 64)], DIM, 2.5)
+    return out + "".join(circle(136 + i * 18, 108 - i * 18, 9, "none", ACC, 3) for i in range(3))
 
 
 DESIGN_ART = {k.replace("art_", "").replace("_", "-"): v for k, v in dict(globals()).items() if k.startswith("art_")}

@@ -1,4 +1,4 @@
-"""Art for the 64 Question cards (Q01-Q64).
+"""Art for the 73 Question cards (Q01-Q73).
 
 Each picture shows the SUBJECT of the research scenario (a vape, a butterfly, a bridge in a storm...), never the study
 design, so the art cannot give the answer away. Built from the primitives in art.py.
@@ -806,4 +806,67 @@ def q64():  # Grit or not?
     return mountain + trail + flag + climber + cap
 
 
-QUESTION_ART = {f"Q{k:02d}": globals()[f"q{k:02d}"] for k in range(1, 65)}
+def q65():  # Newts in the pond
+    pond = _ellipse(100, 98, 92, 38, "#0e749088", COOL, 3) + path("M30,96 Q60,88 90,96 M110,108 Q140,100 170,108", "#7DD3FC88", 2)
+    newt = lambda x, y, s, c: _rot(-12, x, y, path(f"M{x - 22 * s},{y} Q{x - 6 * s},{y - 7 * s} {x + 12 * s},{y - 2 * s} Q{x + 26 * s},{y} {x + 30 * s},{y - 8 * s} M{x - 22 * s},{y} Q{x - 6 * s},{y + 6 * s} {x + 12 * s},{y + 2 * s}", c, 3.5) + circle(x - 18 * s, y - 2 * s, 1.6, DARK))
+    net = path("M150,18 L118,72 M118,72 q-14,8 -6,24 q14,8 28,-4 q4,-16 -22,-20 z", INK, 2.5, fill="#F8FAFC22")
+    return pond + newt(64, 98, 1, "#F59E0B") + newt(122, 112, .8, "#F59E0B") + newt(98, 84, .7, "#FBBF24") + net + _cloud(40, 40, 50, DIM, "rgba(148,163,184,.4)")
+
+
+def q66():  # Migraine genes
+    head = path("M44,132 V108 Q22,100 26,70 Q30,26 72,22 Q112,20 116,64 L124,80 L114,84 V104 Q114,112 100,112 H84 V132", INK, 3, fill=SHADOW)
+    pain = bolt(78, 56, 1.2, HOT) + path("M56,40 l10,8 M96,36 l-8,10", HOT, 3)
+    return head + pain + helix(130, 76, 192, 16, 2.5)
+
+
+def q67():  # The freezer
+    box = rect(22, 20, 88, 116, "#7DD3FC22", INK, 3, 6) + line([(22, 58), (110, 58)], INK, 2.5) + line([(22, 98), (110, 98)], INK, 2.5) + rect(98, 30, 6, 18, INK, INK, 0, 2)
+    tubes = "".join(rect(32 + i * 12, 66 + (k * 40) - 34, 7, 22, "#FB718599" if (i + k) % 3 == 0 else "#F8FAFC55", INK, 1.5, 2) for k in (0, 1, 2) for i in range(6))
+    heart = path("M152,128 C116,104 118,72 140,72 C150,72 152,82 152,86 C152,82 154,72 164,72 C186,72 188,104 152,128 Z", HOT, 3, fill="#FB718566")
+    return box + tubes + heart + path("M128,96 H140 L146,84 L154,110 L160,96 H176", INK, 2.5)
+
+
+def q68():  # Seeds of choice
+    stalk = line([(70, 136), (70, 30)], GREEN, 4) + "".join(path(f"M70,{y} Q{70 + s * 40},{y - 12} {70 + s * 54},{y + 8}", GREEN, 3, fill="#86EFAC44") for y, s in ((110, 1), (90, -1), (70, 1), (52, -1)))
+    cob = _rot(18, 82, 60, _ellipse(82, 60, 9, 22, ACC, "#B45309", 2) + "".join(line([(76, 48 + k * 6), (88, 48 + k * 6)], "#B45309", 1.2) for k in range(5)))
+    sun = circle(166, 32, 14, ACC) + "".join(line([(166 + 18 * math.cos(a), 32 + 18 * math.sin(a)), (166 + 24 * math.cos(a), 32 + 24 * math.sin(a))], ACC, 2.5) for a in [k * math.pi / 4 for k in range(8)])
+    coins = "".join(_ellipse(150, 126 - k * 7, 18, 6, ACC, DARK, 1.5) for k in range(4))
+    cracked = path("M10,136 L190,136 M24,136 l8,-8 l-4,-6 M120,136 l6,-7 l6,7", "#D6B98C", 2.5)
+    return cracked + stalk + cob + sun + coins
+
+
+def q69():  # Worth the price?
+    syringe = _rot(-35, 70, 70, rect(34, 62, 66, 18, "#7DD3FC55", INK, 2.5, 3) + rect(100, 66, 18, 10, INK, INK, 0, 1) + line([(118, 71), (138, 71)], INK, 2) + line([(24, 71), (34, 71)], INK, 4) + line([(20, 60), (20, 82)], INK, 4))
+    scale = line([(150, 30), (150, 130)], INK, 3) + line([(116, 50), (184, 40)], INK, 3) + line([(126, 136), (174, 136)], INK, 3)
+    pans = path("M104,50 Q116,70 128,50 Z", INK, 2, fill=SHADOW) + path("M172,40 Q184,60 196,40 Z", INK, 2, fill=SHADOW)
+    return syringe + scale + pans + text(116, 46, "£", 16, ACC) + person(184, 30, .8, INK)
+
+
+def q70():  # Why this deal?
+    flag = rect(118, 18, 66, 22, "#FACC15", "none", 0, 0) + rect(118, 40, 66, 11, "#2563EB", "none", 0, 0) + rect(118, 51, 66, 11, "#DC2626", "none", 0, 0) + line([(118, 18), (118, 136)], INK, 3)
+    hands = path("M14,104 L52,96 Q62,92 72,96 L98,106 Q104,110 98,114 L80,116 M98,106 Q112,100 126,104 L170,92", INK, 4) + path("M60,98 Q70,110 86,112", ACC, 3)
+    dove = path("M40,48 Q54,32 72,40 Q82,30 96,34 Q84,42 80,52 Q64,62 46,56 Z", INK, 2, fill="#F8FAFCdd")
+    return flag + hands + dove + doc(150, 86, 30, 38, INK, 3, SHADOW)
+
+
+def q71():  # Under fifty
+    ribbon = path("M78,28 Q60,28 64,56 L94,118 M78,28 Q96,28 92,56 L62,118", "#F472B6", 9)
+    docs = "".join(doc(118 + k * 8, 28 + k * 10, 34, 44, INK, 3, "#0f172acc") for k in range(4))
+    return ribbon + docs + text(160, 126, "< 50 ?", 16, ACC)
+
+
+def q72():  # The abandoned form
+    laptop = rect(52, 22, 112, 76, DARK, INK, 3, 5) + path("M40,106 H176 L166,98 H50 Z", INK, 2.5, fill=SHADOW)
+    form = rect(64, 34, 88, 9, "none", DIM, 1.8, 2) + rect(64, 50, 88, 9, "none", DIM, 1.8, 2) + rect(64, 66, 54, 9, "none", HOT, 2.2, 2) + cross(140, 84, 7)
+    return laptop + form + person(26, 112, 1.8, INK) + text(26, 62, "?", 22, ACC)
+
+
+def q73():  # No-shows
+    cal = rect(18, 26, 92, 92, "#F8FAFC22", INK, 3, 5) + rect(18, 26, 92, 18, HOT, "none", 0, 5)
+    days = "".join(rect(26 + (k % 4) * 21, 52 + (k // 4) * 21, 15, 15, "none", DIM, 1.5, 2) for k in range(12))
+    misses = cross(33.5, 59.5, 5) + cross(75.5, 80.5, 5) + cross(54.5, 101.5, 5)
+    phone = rect(128, 40, 52, 92, DARK, INK, 3, 8) + bubble(134, 54, 40, 26, ACC, "#FCD34D33") + line([(140, 64), (166, 64)], ACC, 2) + circle(154, 122, 4, DIM)
+    return cal + days + misses + phone
+
+
+QUESTION_ART = {f"Q{k:02d}": globals()[f"q{k:02d}"] for k in range(1, 74)}
