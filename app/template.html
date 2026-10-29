@@ -164,6 +164,31 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 .cite { font-size: 13.5px; color: var(--muted); }
 .cite a, .cards details a { color: var(--accent); }
 
+/* deck explanation pop-up */
+.tip { position: fixed; z-index: 50; width: min(320px, calc(100vw - 24px)); display: grid; grid-template-columns: 54px 1fr; gap: 12px; align-items: center;
+  background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-top: 4px solid var(--c); border-radius: 12px; padding: 12px 14px;
+  box-shadow: 0 14px 34px rgba(0,0,0,.28); pointer-events: none; animation: tipIn .22s cubic-bezier(.2,.8,.2,1) both; }
+.tip.above { transform-origin: var(--ax) 100%; } .tip.below { transform-origin: var(--ax) 0; }
+.tip::before { content: ""; position: absolute; left: calc(var(--ax) - 7px); width: 12px; height: 12px; background: var(--surface); transform: rotate(45deg); }
+.tip.below::before { top: -9px; border-left: 4px solid var(--c); border-top: 4px solid var(--c); }
+.tip.above::before { bottom: -7px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.tip.out { animation: tipOut .15s ease-in both; }
+.tip b { font-family: var(--f-display); font-size: 15px; }
+.tip p { margin: 3px 0 0; font-size: 13.5px; line-height: 1.4; color: var(--muted); }
+@keyframes tipIn { from { opacity: 0; transform: translateY(6px) scale(.92); } }
+@keyframes tipOut { to { opacity: 0; transform: translateY(4px) scale(.96); } }
+.tip-fan { position: relative; width: 54px; height: 56px; }
+.tip-fan i { position: absolute; left: 13px; top: 4px; width: 30px; height: 44px; border-radius: 5px; background: var(--c); box-shadow: 0 0 0 2px var(--surface), 0 3px 8px rgba(0,0,0,.3);
+  display: grid; place-items: center; font-style: normal; font-size: 17px; animation: fan .5s cubic-bezier(.2,.8,.2,1) both; }
+.tip-fan i:nth-child(1) { --r: -18deg; --x: -9px; opacity: .55; }
+.tip-fan i:nth-child(2) { --r: 0deg; --x: 0px; opacity: .8; animation-delay: .05s; }
+.tip-fan i:nth-child(3) { --r: 16deg; --x: 9px; background: color-mix(in srgb, var(--c) 70%, #fff); animation: fan .5s .1s cubic-bezier(.2,.8,.2,1) both, wobble 2.4s .7s ease-in-out infinite; }
+@keyframes fan { from { transform: rotate(0) translateX(0) translateY(8px); } to { transform: rotate(var(--r)) translateX(var(--x)); } }
+@keyframes wobble { 50% { transform: rotate(calc(var(--r) - 6deg)) translateX(var(--x)) translateY(-3px); } 0%, 100% { transform: rotate(var(--r)) translateX(var(--x)); } }
+.count { cursor: help; border-radius: 8px; padding: 2px 4px; margin: -2px -4px; transition: background .15s; }
+.count:hover, .count:focus-visible { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+@media (prefers-reduced-motion: reduce) { .tip, .tip.out, .tip-fan i { animation: none; } .tip-fan i { transform: rotate(var(--r)) translateX(var(--x)); } }
+
 /* home */
 .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 24px; align-items: center; min-height: 430px; margin-bottom: 26px; }
 @media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; } }
@@ -630,6 +655,62 @@ function renderTray() {
 // ---------- decks browser
 let deck = "designs";
 const DECKS = { designs: "Designs", questions: "Questions", threats: "Threats", safeguards: "Safeguards", twists: "Twists", programs: "Programmes" };
+
+// ---------- deck explanations: a small animated pop-up on hover, focus or tap
+const DECK_INFO = {
+  questions: { color: "#2340A8", icon: "❓", text: "Research problems from real fields. Each has a suit (the kind of knowledge wanted) and constraints (the situation). Your job: find the design that can answer it." },
+  designs: { color: "#15803D", icon: "🧪", text: "Study designs, colour-coded by family. Each card shows what it answers, which situations it fits or struggles with, and the biases it is weak against." },
+  threats: { color: "#B91C1C", icon: "⚠️", text: "Biases and validity threats: the “fallacy” deck. A reviewer plays one against a design that is weak to it." },
+  safeguards: { color: "#0F766E", icon: "🛡️", text: "Design and analysis features that counter specific threats: the “refutation” deck. Authors play them to defend their design." },
+  twists: { color: "#7E22CE", icon: "🌀", text: "Mid-round surprises such as “Funding cut” that add a constraint and force you to rethink your design." },
+  programs: { color: "#0C4A6E", icon: "🗺️", text: "Cooperative five-stage challenges: one research project, from the first question to the final synthesis." },
+};
+let tipEl = null, tipFor = null;
+function showTip(anchor) {
+  const k = anchor.dataset.tip, info = DECK_INFO[k];
+  if (!info || tipFor === anchor) return;
+  hideTip(true);
+  tipFor = anchor;
+  tipEl = document.createElement("div");
+  tipEl.className = "tip"; tipEl.setAttribute("role", "tooltip"); tipEl.id = "deck-tip";
+  tipEl.style.setProperty("--c", info.color);
+  tipEl.innerHTML = `<div class="tip-fan" aria-hidden="true"><i></i><i></i><i>${info.icon}</i></div>
+    <div><b>${esc(DECKS[k])} · ${DATA[k].length} cards</b><p>${esc(info.text)}</p></div>`;
+  document.body.appendChild(tipEl);
+  anchor.setAttribute("aria-describedby", "deck-tip");
+  const a = anchor.getBoundingClientRect(), t = tipEl.getBoundingClientRect();
+  const left = Math.max(12, Math.min(innerWidth - t.width - 12, a.left + a.width / 2 - t.width / 2));
+  const below = a.bottom + t.height + 14 < innerHeight;
+  tipEl.style.left = left + "px";
+  tipEl.style.top = (below ? a.bottom + 10 : a.top - t.height - 10) + "px";
+  tipEl.style.setProperty("--ax", (a.left + a.width / 2 - left) + "px");
+  tipEl.classList.add(below ? "below" : "above");
+}
+function hideTip(now = false) {
+  if (!tipEl) return;
+  const el = tipEl;
+  tipFor?.removeAttribute("aria-describedby");
+  tipEl = null; tipFor = null;
+  if (now || reduceMotion) { el.remove(); return; }
+  el.classList.add("out");
+  setTimeout(() => el.remove(), 160);
+}
+function bindTips(root) {
+  root.querySelectorAll("[data-tip]").forEach(el => {
+    el.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") showTip(el); });
+    el.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") hideTip(); });
+    el.addEventListener("focus", () => showTip(el));
+    el.addEventListener("blur", () => hideTip());
+  });
+}
+addEventListener("scroll", () => hideTip(true), { passive: true });
+addEventListener("keydown", e => { if (e.key === "Escape") hideTip(); });
+document.addEventListener("pointerdown", e => {
+  const t = e.target.closest("[data-tip]");
+  // On touch screens a tap shows the explanation; a second tap on the same name hides it.
+  if (t && e.pointerType !== "mouse") { if (tipFor === t) hideTip(); else showTip(t); }
+  else if (!t) hideTip();
+});
 function cardHTML(kind, x) {
   const card = DATA.cards[kind][x.id];
   if (kind === "questions") return `<figure>${card}<details><summary>Answer</summary><p>🥇 ${x.best.map(i => esc(D[i].name)).join(", ")}<br>🥈 ${x.ok.map(i => esc(D[i].name)).join(", ") || "–"}</p><p>${esc(x.why)}</p></details></figure>`;
@@ -639,7 +720,9 @@ function cardHTML(kind, x) {
   return `<figure>${card}</figure>`;
 }
 function renderDecks() {
-  $("deck-tabs").innerHTML = Object.entries(DECKS).map(([k, v]) => `<button data-deck="${k}" aria-pressed="${deck === k}">${v} · ${DATA[k].length}</button>`).join("");
+  hideTip(true);
+  $("deck-tabs").innerHTML = Object.entries(DECKS).map(([k, v]) => `<button data-deck="${k}" data-tip="${k}" aria-pressed="${deck === k}">${v} · ${DATA[k].length}</button>`).join("");
+  bindTips($("deck-tabs"));
   $("deck-tabs").querySelectorAll("button").forEach(b => b.onclick = () => { deck = b.dataset.deck; renderDecks(); });
   const term = $("deck-search").value.trim().toLowerCase();
   const items = DATA[deck].filter(x => !term || JSON.stringify(x).toLowerCase().includes(term));
@@ -1099,7 +1182,8 @@ function cycleFan() {
 }
 function countUp() {
   const items = [["Questions", questions.length], ["Designs", designs.length], ["Threats", threats.length], ["Safeguards", safeguards.length]];
-  $("home-counts").innerHTML = items.map(([k]) => `<div><b>0</b><span class="label">${k}</span></div>`).join("");
+  $("home-counts").innerHTML = items.map(([k]) => `<div class="count" data-tip="${k.toLowerCase()}" tabindex="0"><b>0</b><span class="label">${k}</span></div>`).join("");
+  bindTips($("home-counts"));
   const bs = $("home-counts").querySelectorAll("b"), t0 = performance.now(), dur = reduceMotion ? 1 : 1200;
   const step = t => {
     const f = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - f, 3);
