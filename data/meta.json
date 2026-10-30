@@ -1,6 +1,6 @@
 {
   "title": "Methodical",
-  "tagline": "Every question deserves the right design.",
+  "tagline": "Match your research method to the challenge.",
   "version": "0.2 (prototype)",
   "suits": [
     {"id": "DESCRIBE", "color": "#0E7490",   "icon": "📊", "name": "Describe",   "ask": "What is it? How much, how often, where, and is it changing?"},
