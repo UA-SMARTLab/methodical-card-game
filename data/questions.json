@@ -648,5 +648,14 @@
    "traps": {"cluster-rct": "One clinic can't be a cluster trial, and the team wants to learn and adapt month by month.",
              "systematic-review": "Reviews say reminders help on average. The question is what works in this clinic."},
    "why": "Run small cycles: plan a change, try it for a week or two, study the run chart, act on what you learn. Mark every change on the chart, and keep measuring long enough to tell real improvement from seasonal swings.",
-   "key_threat": "history-trend"}
+   "key_threat": "history-trend"},
+
+  {"id": "Q74", "suit": "SYNTHESIZE", "field": "Software engineering", "title": "The blogs know more", "difficulty": 2,
+   "text": "Teams keep asking when automating their software tests pays off. Practitioners have written hundreds of blog posts, talks and white papers about it, but only a handful of peer-reviewed studies exist. What is known?",
+   "constraints": ["practice-led"],
+   "best": ["multivocal-review"], "ok": ["scoping-review", "delphi"],
+   "traps": {"systematic-review": "Restricted to peer-reviewed studies, you'd throw away most of what is actually known, and there's no effect to pool.",
+             "rct": "One more experiment adds a single data point; the question is what the field already knows."},
+   "why": "When practice runs ahead of research, a multivocal review follows Garousi et al. (2019): search academic databases and the grey literature (Google, practitioner sites, conference talks), grade each grey source for authority, method and objectivity, stop by saturation, and report the white and grey evidence side by side.",
+   "key_threat": "source-credibility"}
 ]

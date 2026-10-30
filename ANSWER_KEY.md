@@ -1111,6 +1111,21 @@ Ask every trial team for its patient-level data, check it, and analyse age the s
 
 *Watch out for:* **Selection bias**, countered by Representative sampling, Allocation concealment, Causal diagram (DAG), Comprehensive search, Intention-to-treat, Time-zero alignment.
 
+### Q74 · The blogs know more (Software engineering, ★★)
+
+> Teams keep asking when automating their software tests pays off. Practitioners have written hundreds of blog posts, talks and white papers about it, but only a handful of peer-reviewed studies exist. What is known?
+
+Constraints: 📰 Practice-led
+
+- 🥇 **Best:** Multivocal literature review
+- 🥈 **Defensible:** Scoping review, Delphi consensus
+- ⚠️ **Trap, Systematic review & meta-analysis:** Restricted to peer-reviewed studies, you'd throw away most of what is actually known, and there's no effect to pool.
+- ⚠️ **Trap, Randomized controlled trial:** One more experiment adds a single data point; the question is what the field already knows.
+
+When practice runs ahead of research, a multivocal review follows Garousi et al. (2019): search academic databases and the grey literature (Google, practitioner sites, conference talks), grade each grey source for authority, method and objectivity, stop by saturation, and report the white and grey evidence side by side.
+
+*Watch out for:* **Unvetted sources**, countered by Grey-literature appraisal, Triangulation.
+
 ## Research programmes (cooperative mode)
 
 ### P1 · Screens & teen mental health
@@ -1221,6 +1236,7 @@ A hospital group wants an AI tool that flags patients who will need intensive ca
 | Prior art review | Evidence synthesis | Q61 |
 | Co-citation analysis | Evidence synthesis | Q62 |
 | Bibliographic coupling | Evidence synthesis | Q63 |
+| Multivocal literature review | Evidence synthesis | Q74 |
 | Diagnostic accuracy study | Measurement | Q33 |
 | Reliability & agreement study | Measurement | Q35, Q36 |
 | Instrument development & validation | Measurement | Q34 |

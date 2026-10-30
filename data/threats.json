@@ -95,6 +95,12 @@
    "countered_by": ["comprehensive-search", "preregistration"],
    "ref": {"cite": "Rosenthal (1979). The file drawer problem and tolerance for null results. Psychological Bulletin.", "url": "https://doi.org/10.1037/0033-2909.86.3.638"}},
 
+  {"id": "source-credibility", "name": "Unvetted sources", "short": "Nobody checked it, and the author may be selling something.",
+   "text": "Grey sources skip peer review: vendors, consultants and enthusiasts can publish striking claims with no visible method or data.",
+   "example": "The Standish CHAOS reports' famous IT-project failure rates were cited for years; Eveleens & Verhoef (2010) showed their definitions skewed the figures.",
+   "countered_by": ["grey-appraisal", "triangulation"],
+   "ref": {"cite": "Eveleens & Verhoef (2010). The rise and fall of the Chaos report figures. IEEE Software.", "url": "https://doi.org/10.1109/MS.2009.154"}},
+
   {"id": "forking-paths", "name": "Forking paths & p-hacking", "short": "Try enough analyses and one of them will be 'significant'.",
    "text": "Flexible choices of outcomes, subgroups and analyses, or peeking at the data, until something is 'significant'.",
    "example": "Simmons et al. (2011) used flexible analyses to 'show' that listening to a Beatles song made people younger.",

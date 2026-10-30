@@ -37,6 +37,7 @@
     {"id": "rollout",           "icon": "📅", "name": "Rollout",        "text": "Everyone will get the intervention anyway; only the timing is flexible."},
     {"id": "fast-cheap",        "icon": "💸", "name": "Tight budget",   "text": "Weeks or months, not years; a small budget."},
     {"id": "unknown-territory", "icon": "❓", "name": "Uncharted",      "text": "Little prior theory; you don't yet know which variables matter."},
+    {"id": "practice-led",      "icon": "📰", "name": "Practice-led",   "text": "Practice runs ahead of research: most of what is known sits in blogs, white papers, talks and manuals, not journals."},
     {"id": "many-studies",      "icon": "🗂️", "name": "Many studies",   "text": "A substantial body of primary research already exists."}
   ],
   "scoring": {"best": 3, "ok": 1, "trap": -2, "unlisted": 0, "appeal_win": 1}

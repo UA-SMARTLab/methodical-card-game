@@ -7,11 +7,11 @@ All of them use the same cards.
 
 | Deck | Cards | What it is |
 |---|---|---|
-| **Question** | 73 | A research problem with a field, a **suit** (the kind of question) and **constraint** icons. |
-| **Design** | 59 | A study type, colour-coded by **family**. It shows which suits it serves, which constraints it fits or struggles with, and which threats it is weak against. |
-| **Threat** | 28 | A bias or validity threat, with a real example. This is the "fallacy" deck. |
-| **Safeguard** | 33 | A design or analysis feature that counters specific threats, usable only with certain design families. This is the "refutation" deck. |
-| **Twist** | 16 | A mid-round surprise that adds a constraint ("The ethics board says no") or triggers an event. |
+| **Question** | 74 | A research problem with a field, a **suit** (the kind of question) and **constraint** icons. |
+| **Design** | 60 | A study type, colour-coded by **family**. It shows which suits it serves, which constraints it fits or struggles with, and which threats it is weak against. |
+| **Threat** | 29 | A bias or validity threat, with a real example. This is the "fallacy" deck. |
+| **Safeguard** | 34 | A design or analysis feature that counters specific threats, usable only with certain design families. This is the "refutation" deck. |
+| **Twist** | 17 | A mid-round surprise that adds a constraint ("The ethics board says no") or triggers an event. |
 | **Research Programme** | 6 | A big challenge broken into 5 stages, printed as an A6 mat for the cooperative mode. |
 | **Reference** | 4 | Suits, constraints, families and scoring. |
 | **Answer key** | booklet | Best / defensible / trap answers for every Question and Programme, with the reasoning. |
@@ -61,7 +61,7 @@ Good appeals are the whole point of the game, so write the strong ones down and 
 
 Good for classes, journal clubs and first games.
 
-1. **Lay out the Methods Map.** Place all 59 Design cards face up, grouped by family colour.
+1. **Lay out the Methods Map.** Place all 60 Design cards face up, grouped by family colour.
 2. A reader draws a **Question** card and reads it aloud, including its constraints.
 3. Everyone silently writes down the design they'd choose. Advanced players also write the **one threat** they'd worry about most.
 4. Reveal together. The reader looks the card up in the answer-key booklet and reads the answer and the *why* aloud.
