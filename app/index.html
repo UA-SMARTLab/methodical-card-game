@@ -243,9 +243,23 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 .pick { background: none; border: 0; padding: 0; border-radius: calc(var(--card-u) * 3.2); transition: transform .18s, box-shadow .18s; }
 .pick:focus-visible { transform: translateY(-8px) rotate(-1deg); box-shadow: 0 16px 30px rgba(0,0,0,.35); }
 /* Hover magnifier: the card grows to a readable size, toward the middle of the screen so it stays in view. */
-.zoomable { transition: transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s; }
-.zoomable.zoom { transform: scale(var(--z, 1.6)) !important; transform-origin: var(--ox, center) var(--oy, center); z-index: 30; position: relative;
-  box-shadow: 0 24px 60px rgba(0,0,0,.55); animation: none !important; transition-delay: .08s; }
+.zoomable { transition: transform .18s cubic-bezier(.2,.8,.2,1), box-shadow .18s; transform-origin: var(--ox, center) var(--oy, center); }
+.zoomable.zoom { transform: scale(var(--z, 1.6)) !important; z-index: 30; position: relative;
+  box-shadow: 0 24px 60px rgba(0,0,0,.55); animation: none !important; }
+/* magnifier button (shown on touch screens) and the full-screen viewer */
+.lens { display: none; position: absolute; z-index: 5; top: -9px; left: -9px; width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--accent);
+  background: var(--surface); font-size: 16px; line-height: 1; padding: 0; box-shadow: 0 2px 8px rgba(0,0,0,.3); }
+@media (hover: none) { .lens { display: grid; place-items: center; } }
+.qwrap { position: relative; }
+.viewer { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; align-content: center; gap: 14px; padding: 16px;
+  background: rgba(8, 12, 20, .78); backdrop-filter: blur(3px); animation: vIn .2s ease both; cursor: zoom-out; }
+.viewer-card { --card-u: min(calc((100vw - 32px) / 63), calc((100vh - 90px) / 88), 6px); animation: vCard .28s cubic-bezier(.2,.9,.3,1.2) both; }
+.viewer-card .tcg { box-shadow: 0 24px 60px rgba(0,0,0,.6); }
+.viewer-hint { color: #CBD5E1; font: 600 13px var(--f-mono); letter-spacing: .06em; }
+.viewer.out { animation: vOut .18s ease both; }
+@keyframes vIn { from { opacity: 0; } } @keyframes vOut { to { opacity: 0; } }
+@keyframes vCard { from { transform: scale(.6) translateY(30px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .viewer, .viewer-card, .viewer.out { animation: none; } }
 .qwrap .zoomable.zoom { --z: 1.25; }
 @media (prefers-reduced-motion: reduce) { .pick { transition: none; } .pick:hover { transform: none; } }
 
@@ -650,7 +664,8 @@ function nextQuestion() {
 function chip(cid) { const c = CON[cid]; return `<span class="chip" title="${esc(c.text)}">${c.icon} ${esc(c.name)}</span>`; }
 
 function renderQuestion() {
-  $("qslot").innerHTML = `<div class="qwrap deal" aria-label="Question card">${DATA.cards.questions[q.id]}</div>`;
+  $("qslot").innerHTML = `<div class="qwrap deal" aria-label="Question card">${DATA.cards.questions[q.id]}${lens("q")}</div>`;
+  $("qslot").querySelector("[data-lens]").onclick = () => openViewer($("qslot").querySelector(".tcg"));
   magnify($("qslot").querySelector(".tcg"), 1.25);
 }
 
@@ -663,18 +678,54 @@ function tierOf(id) {
 
 // Grow a card on hover so its text is readable without zooming the page. Only for mouse-like pointers;
 // the card grows toward the centre of the window so the enlarged card stays on screen.
+// Grow a card on hover so its text is readable without zooming the page (mouse-like pointers only).
+// It grows only after the pointer rests on it briefly, shrinks at once on leaving, and only one card is enlarged at a time,
+// so sweeping the mouse across the cards can't set off a chain of grow-and-shrink.
+let zoomed = null, zoomTimer = 0;
+function unzoom() { clearTimeout(zoomTimer); if (zoomed) { zoomed.classList.remove("zoom"); zoomed = null; } }
 function magnify(el, max = 1.9) {
-  if (!el || reduceMotion || !matchMedia("(hover: hover)").matches) return;
-  el.classList.add("zoomable");
-  el.addEventListener("pointerenter", () => {
-    const r = el.getBoundingClientRect();
-    const z = Math.max(1.1, Math.min(max, 400 / r.width, (innerHeight - 40) / r.height));
-    el.style.setProperty("--z", z);
-    el.style.setProperty("--ox", r.left + r.width / 2 < innerWidth / 3 ? "left" : r.left + r.width / 2 > innerWidth * 2 / 3 ? "right" : "center");
-    el.style.setProperty("--oy", r.top < innerHeight * .25 ? "top" : r.bottom > innerHeight * .75 ? "bottom" : "center");
-    el.classList.add("zoom");
+  if (!el) return;
+  // Touch screens: press and hold the card, or use its magnifier button, to open it full screen.
+  let hold = 0, held = false;
+  el.addEventListener("pointerdown", e => {
+    if (e.pointerType === "mouse") return;
+    held = false;
+    hold = setTimeout(() => { held = true; openViewer(el); }, 450);
   });
-  el.addEventListener("pointerleave", () => el.classList.remove("zoom"));
+  for (const ev of ["pointerup", "pointercancel", "pointermove"]) el.addEventListener(ev, e => { if (ev !== "pointermove" || Math.abs(e.movementX) + Math.abs(e.movementY) > 6) clearTimeout(hold); });
+  el.addEventListener("click", e => { if (held) { e.preventDefault(); e.stopImmediatePropagation(); held = false; } }, true);
+  el.addEventListener("contextmenu", e => { if (held) e.preventDefault(); });
+  if (reduceMotion || !matchMedia("(hover: hover)").matches) return;
+  el.classList.add("zoomable");
+  el.addEventListener("pointerenter", e => {
+    if (e.pointerType !== "mouse") return;
+    clearTimeout(zoomTimer);
+    zoomTimer = setTimeout(() => {
+      if (zoomed && zoomed !== el) zoomed.classList.remove("zoom");
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--z", Math.max(1.1, Math.min(max, 400 / r.width, (innerHeight - 40) / r.height)));
+      el.style.setProperty("--ox", r.left + r.width / 2 < innerWidth / 3 ? "left" : r.left + r.width / 2 > innerWidth * 2 / 3 ? "right" : "center");
+      el.style.setProperty("--oy", r.top < innerHeight * .25 ? "top" : r.bottom > innerHeight * .75 ? "bottom" : "center");
+      el.classList.add("zoom"); zoomed = el;
+    }, 220);
+  });
+  el.addEventListener("pointerleave", () => { clearTimeout(zoomTimer); if (zoomed === el) unzoom(); });
+}
+
+// Full-screen card viewer, for phones (and the magnifier buttons). Tap anywhere or press Escape to close.
+function openViewer(el) {
+  unzoom();
+  const card = (el.matches(".tcg") ? el : el.querySelector(".tcg")).outerHTML;
+  const v = document.createElement("div");
+  v.className = "viewer"; v.setAttribute("role", "dialog"); v.setAttribute("aria-label", "Enlarged card");
+  v.innerHTML = `<div class="viewer-card">${card}</div><span class="viewer-hint">Tap anywhere to close</span>`;
+  const close = () => { v.classList.add("out"); setTimeout(() => v.remove(), reduceMotion ? 0 : 180); removeEventListener("keydown", esc); };
+  const esc = e => { if (e.key === "Escape") close(); };
+  v.onclick = close; addEventListener("keydown", esc);
+  document.body.appendChild(v);
+}
+function lens(target) {
+  return `<button class="lens" type="button" aria-label="Enlarge this card" data-lens="${target}">🔍</button>`;
 }
 
 function renderPanel() {
@@ -682,7 +733,7 @@ function renderPanel() {
   if (phase === "choose") {
     p.innerHTML = `<span class="label">Your move</span><h3>Which design answers this question?</h3>
       ${FEATURES.table ? "<p>Pick one from the periodic table below, then submit it from the tray.</p>" : `<div class="pick-wrap"><div class="pick-cards">${choices.map(id =>
-        `<div class="pick-slot"><button class="pick" data-pick="${id}" aria-label="${esc(D[id].name)}" title="${esc(D[id].gist)}">${DATA.cards.designs[id]}</button>${refLink(id)}</div>`).join("")}</div></div>`}
+        `<div class="pick-slot"><button class="pick" data-pick="${id}" aria-label="${esc(D[id].name)}" title="${esc(D[id].gist)}">${DATA.cards.designs[id]}</button>${refLink(id)}${lens(id)}</div>`).join("")}</div></div>`}
       <ol class="steps" style="margin-top:14px">
         <li><b>Name the suit.</b> What kind of knowledge is wanted?</li>
         <li><b>Read the constraints.</b> They usually decide between otherwise good designs.</li>
@@ -690,6 +741,7 @@ function renderPanel() {
       </ol>
       <p class="label" style="margin-top:14px">Scoring: best +${SC.best} · defensible +${SC.ok} · trap ${SC.trap} · unlisted ${SC.unlisted}</p>`;
     p.querySelectorAll("[data-pick]").forEach(b => { b.onclick = () => { picked = b.dataset.pick; submit(); }; magnify(b); });
+    p.querySelectorAll(".pick-slot [data-lens]").forEach(b => b.onclick = () => openViewer(b.closest(".pick-slot")));
     return;
   }
   const tier = tierOf(picked);
@@ -703,7 +755,7 @@ function renderPanel() {
   if (!FEATURES.table) html += `<div class="pick-wrap"><div class="pick-cards">${choices.map(id => {
     const t = tierOf(id), mine = id === picked;
     return `<div class="pick-slot"><button class="pick res res-${t}${mine ? " chosen" : ""}" disabled aria-label="${esc(D[id].name)}: ${badge[t]}${mine ? " (your pick)" : ""}">${DATA.cards.designs[id]}</button>
-      <span class="badge b-${t}">${mine ? (pts > 0 ? "+" + pts + " " : pts < 0 ? pts + " " : "") : ""}${badge[t]}</span>${mine ? '<span class="mine">YOUR PICK</span>' : ""}${refLink(id)}</div>`;
+      ${lens(id)}<span class="badge b-${t}">${mine ? (pts > 0 ? "+" + pts + " " : pts < 0 ? pts + " " : "") : ""}${badge[t]}</span>${mine ? '<span class="mine">YOUR PICK</span>' : ""}${refLink(id)}</div>`;
   }).join("")}</div></div>`;
   html += `<span class="label" style="display:block;margin-top:16px">Verdict on ${esc(D[picked].name)}</span>
     <div class="verdict v-${tier}"><span class="pts">${pts > 0 ? "+" : ""}${pts}</span>${vtext}</div>`;
@@ -715,6 +767,7 @@ function renderPanel() {
   p.innerHTML = html;
   renderReview();
   p.querySelectorAll(".pick.res").forEach(b => magnify(b));
+  p.querySelectorAll(".pick-slot [data-lens]").forEach(b => b.onclick = () => openViewer(b.closest(".pick-slot")));
   const mine = p.querySelector(".pick.chosen");
   if (mine && tier === "best") setTimeout(() => confetti(mine), reduceMotion ? 0 : 250);
 }
