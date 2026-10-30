@@ -241,7 +241,12 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 .pick-cards { --card-u: min(4.4px, calc((100cqw - 42px) / 252)); display: grid; grid-template-columns: repeat(4, max-content); gap: 14px; }
 @container (max-width: 700px) { .pick-cards { --card-u: min(4.4px, calc((100cqw - 14px) / 126)); grid-template-columns: repeat(2, max-content); } }
 .pick { background: none; border: 0; padding: 0; border-radius: calc(var(--card-u) * 3.2); transition: transform .18s, box-shadow .18s; }
-.pick:hover, .pick:focus-visible { transform: translateY(-8px) rotate(-1deg); box-shadow: 0 16px 30px rgba(0,0,0,.35); }
+.pick:focus-visible { transform: translateY(-8px) rotate(-1deg); box-shadow: 0 16px 30px rgba(0,0,0,.35); }
+/* Hover magnifier: the card grows to a readable size, toward the middle of the screen so it stays in view. */
+.zoomable { transition: transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s; }
+.zoomable.zoom { transform: scale(var(--z, 1.6)) !important; transform-origin: var(--ox, center) var(--oy, center); z-index: 30; position: relative;
+  box-shadow: 0 24px 60px rgba(0,0,0,.55); animation: none !important; transition-delay: .08s; }
+.qwrap .zoomable.zoom { --z: 1.25; }
 @media (prefers-reduced-motion: reduce) { .pick { transition: none; } .pick:hover { transform: none; } }
 
 /* "?" link to each design's key reference */
@@ -646,6 +651,7 @@ function chip(cid) { const c = CON[cid]; return `<span class="chip" title="${esc
 
 function renderQuestion() {
   $("qslot").innerHTML = `<div class="qwrap deal" aria-label="Question card">${DATA.cards.questions[q.id]}</div>`;
+  magnify($("qslot").querySelector(".tcg"), 1.25);
 }
 
 function tierOf(id) {
@@ -653,6 +659,22 @@ function tierOf(id) {
   if (q.ok.includes(id)) return "ok";
   if (id in q.traps) return "trap";
   return "unlisted";
+}
+
+// Grow a card on hover so its text is readable without zooming the page. Only for mouse-like pointers;
+// the card grows toward the centre of the window so the enlarged card stays on screen.
+function magnify(el, max = 1.9) {
+  if (!el || reduceMotion || !matchMedia("(hover: hover)").matches) return;
+  el.classList.add("zoomable");
+  el.addEventListener("pointerenter", () => {
+    const r = el.getBoundingClientRect();
+    const z = Math.max(1.1, Math.min(max, 400 / r.width, (innerHeight - 40) / r.height));
+    el.style.setProperty("--z", z);
+    el.style.setProperty("--ox", r.left + r.width / 2 < innerWidth / 3 ? "left" : r.left + r.width / 2 > innerWidth * 2 / 3 ? "right" : "center");
+    el.style.setProperty("--oy", r.top < innerHeight * .25 ? "top" : r.bottom > innerHeight * .75 ? "bottom" : "center");
+    el.classList.add("zoom");
+  });
+  el.addEventListener("pointerleave", () => el.classList.remove("zoom"));
 }
 
 function renderPanel() {
@@ -667,7 +689,7 @@ function renderPanel() {
         <li><b>Expect review.</b> You'll have to defend your choice against the problem's biggest threat.</li>
       </ol>
       <p class="label" style="margin-top:14px">Scoring: best +${SC.best} · defensible +${SC.ok} · trap ${SC.trap} · unlisted ${SC.unlisted}</p>`;
-    p.querySelectorAll("[data-pick]").forEach(b => b.onclick = () => { picked = b.dataset.pick; submit(); });
+    p.querySelectorAll("[data-pick]").forEach(b => { b.onclick = () => { picked = b.dataset.pick; submit(); }; magnify(b); });
     return;
   }
   const tier = tierOf(picked);
@@ -692,6 +714,7 @@ function renderPanel() {
   html += `<div class="review" id="review"></div>`;
   p.innerHTML = html;
   renderReview();
+  p.querySelectorAll(".pick.res").forEach(b => magnify(b));
   const mine = p.querySelector(".pick.chosen");
   if (mine && tier === "best") setTimeout(() => confetti(mine), reduceMotion ? 0 : 250);
 }
