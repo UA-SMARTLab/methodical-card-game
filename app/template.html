@@ -56,6 +56,12 @@ nav button[aria-selected="true"] { color: var(--ink); border-color: var(--accent
 .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
 select, .btn { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; font: inherit; font-size: 14px; color: var(--ink); }
 .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+/* Once a question is answered, the deal button pulses: it is the next thing to press. */
+#b-new { transition: transform .15s, box-shadow .15s; }
+#b-new:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+#b-new.nudge { animation: nudge 1.8s ease-in-out infinite; }
+@keyframes nudge { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent); } 50% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--accent) 0%, transparent); transform: scale(1.04); } }
+@media (prefers-reduced-motion: reduce) { #b-new.nudge { animation: none; outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent); outline-offset: 2px; } }
 .btn:disabled { opacity: .45; cursor: not-allowed; }
 .toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); }
 
@@ -373,7 +379,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
       <select id="f-diff" aria-label="Difficulty">
         <option value="0">Any difficulty</option><option value="1">★ Intro</option><option value="2">★★ Intermediate</option><option value="3">★★★ Advanced</option>
       </select>
-      <button class="btn" id="b-new">Deal another question</button>
+      <button class="btn primary" id="b-new">🃏 Deal another question</button>
       <label class="toggle" data-feature="table"><input type="checkbox" id="f-hints"> Icon hints</label>
     </div>
     <div class="bench">
@@ -515,6 +521,7 @@ function nextQuestion() {
   const id = queue.shift();
   q = questions.find(x => x.id === id);
   picked = null; phase = "choose";
+  $("b-new").classList.remove("nudge");
   // Four choices: the best design, a defensible one and a trap where the key has them, the rest drawn at random.
   const keyed = new Set([...q.best, ...q.ok, ...Object.keys(q.traps)]);
   choices = shuffle([q.best[0], ...shuffle(q.ok).slice(0, 1), ...shuffle(Object.keys(q.traps)).slice(0, 1),
@@ -611,6 +618,7 @@ function answerReview(id) {
 
 function submit() {
   if (!picked || phase !== "choose") return;
+  $("b-new").classList.add("nudge");
   phase = "result"; review = null;
   const tier = tierOf(picked);
   stats.score += SC[tier]; stats.answered += 1;
