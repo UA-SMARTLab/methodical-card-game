@@ -93,6 +93,8 @@ CARD_CSS = """
 .tcg .art { flex: none; height: calc(var(--u) * 37.5); border-radius: calc(var(--u) * .7); overflow: hidden; background: #0f172a;
   box-shadow: 0 0 0 calc(var(--u) * .55) rgba(255,255,255,.9), 0 0 0 calc(var(--u) * .9) rgba(0,0,0,.45); margin: calc(var(--u) * .5) calc(var(--u) * .9); }
 .tcg .art svg { width: 100%; height: 100%; display: block; }
+/* Pictures keep left-to-right coordinates in right-to-left languages, so labels stay anchored where they were drawn. */
+.tcg .art svg, .mat .art svg, .tcg.back svg { direction: ltr; }
 .tcg.tcg-q .art { height: calc(var(--u) * 31); }
 .tcg.tcg-t .art { height: calc(var(--u) * 43); }
 .tcg.tcg-s .art { height: calc(var(--u) * 40.5); }

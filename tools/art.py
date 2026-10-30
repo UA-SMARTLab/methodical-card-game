@@ -401,14 +401,14 @@ def art_did():
 
 def art_rdd():
     r = lcg(9)
-    out = axes(16, 16, 174, 116) + line([(104, 16), (104, 130)], ACC, 2.5, "6 5")
+    out = axes(16, 16, 174, 116) + line([(104, 30), (104, 130)], ACC, 2.5, "6 5")
     pts = []
     for k in range(34):
         x = 24 + k * 4.8
         base = 112 - (x - 24) * 0.32 - (26 if x > 104 else 0)
         pts.append((x, base + (r() - .5) * 18))
     out += scatter(pts, 2.4, DIM) + line([(24, 112), (104, 86.4)], INK, 3.5) + line([(104, 60.4), (184, 34.8)], INK, 3.5)
-    return out + line([(110, 86), (110, 61)], HOT, 3.5) + text(104, 12, "CUTOFF", 11, ACC)
+    return out + line([(110, 86), (110, 61)], HOT, 3.5) + text(104, 25, "CUTOFF", 11, ACC)
 
 
 def art_its():
