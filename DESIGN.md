@@ -182,6 +182,8 @@ so the cards feel like a game and the table can read them at a glance:
 - **Uniform backs, answers in a booklet.** In v0.1 the answers were printed on the backs of the question cards, so the top card
   of a face-down deck showed its own answer. v0.2 gives every card the same back.
 
+**Question cards are all one neutral colour (graphite).** In v0.2 they took their suit's colour, but the suit colours resembled the design-family colours (Cause red like Experimental, Synthesize green like Evidence synthesis, and so on). On 78% of questions the best design's card matched the question's colour, and picking by colour alone found the best design 45% of the time instead of 25%. The suit is still shown by its icon and name. The graphite was chosen to be distinct from every family colour and the card back, and the colour-only strategy now does no better than chance. Don't reintroduce colour on question cards that echoes a design family.
+
 ## 9. Key sources the design leans on
 
 Every Design, Threat and Safeguard card carries its own key reference (`ref` in `data/designs.json`, `threats.json` and `safeguards.json`): the paper that defined it, or the guideline or review that made it standard. Each DOI was checked against Crossref, and the citation text is generated from the Crossref record. Prior art review links the US statute that defines prior art. The build refuses any of these cards without a reference.

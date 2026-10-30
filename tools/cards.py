@@ -26,6 +26,9 @@ except ImportError:
 
 e = html.escape
 
+# Every question card shares one neutral colour. Colouring them by suit leaked the answer: suit colours resembled
+# the design-family colours, so on most questions the best design's card matched the question's colour.
+QUESTION_COLOR = "#40402C"
 THREAT_COLOR = "#9F1239"
 SAFEGUARD_COLOR = "#047857"
 TWIST_COLOR = "#6D28D9"
@@ -182,10 +185,10 @@ def question_card(cx, q):
     s = cx.SUIT[q["suit"]]
     chips = "".join(f'<span class="chip">{art.CONSTRAINT_ICONS[c]}{e(cx.CON[c]["name"])}</span>' for c in q["constraints"])
     stars = "".join(f'<span class="star{"" if k < q["difficulty"] else " off"}">★</span>' for k in range(3))
-    return f'''<div class="tcg tcg-q" style="--c:{s["color"]}">
+    return f'''<div class="tcg tcg-q" style="--c:{QUESTION_COLOR}">
   <div class="nm">{_name(q["title"])}<span class="attr">{art.SUIT_ICONS[q["suit"]]}</span></div>
   <div class="lv"><span>{e(s["name"])} question</span><span>{stars}</span></div>
-  {_art(QUESTION_ART.get(q["id"]), "q-" + q["id"], s["color"], "question")}
+  {_art(QUESTION_ART.get(q["id"]), "q-" + q["id"], QUESTION_COLOR, "question")}
   <div class="tb">
     <div class="ty">[ {e(q["field"])} ]</div>
     <p class="fx">{e(q["text"])}</p>
