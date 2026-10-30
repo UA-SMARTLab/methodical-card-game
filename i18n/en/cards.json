@@ -1,0 +1,1714 @@
+{
+ "meta": {
+  "tagline": "Match your research method to the challenge.",
+  "suits": {
+   "DESCRIBE": {
+    "name": "Describe",
+    "ask": "What is it? How much, how often, where, and is it changing?"
+   },
+   "EXPLORE": {
+    "name": "Explore",
+    "ask": "What is going on here? How and why do people experience or do it?"
+   },
+   "ASSOCIATE": {
+    "name": "Associate",
+    "ask": "Do X and Y go together, and does X come first?"
+   },
+   "CAUSE": {
+    "name": "Cause",
+    "ask": "Does changing X change Y? Does the intervention work?"
+   },
+   "PREDICT": {
+    "name": "Predict",
+    "ask": "What will happen, and to whom?"
+   },
+   "MEASURE": {
+    "name": "Measure",
+    "ask": "Can we measure it accurately, reliably, and validly?"
+   },
+   "EXPLAIN": {
+    "name": "Explain",
+    "ask": "What mechanism or law must hold? What follows from the theory?"
+   },
+   "BUILD": {
+    "name": "Build",
+    "ask": "Can we make something that works, and is the plan feasible?"
+   },
+   "SYNTHESIZE": {
+    "name": "Synthesize",
+    "ask": "What does all the existing evidence say?"
+   }
+  },
+  "families": {
+   "descriptive": {
+    "name": "Descriptive observational"
+   },
+   "analytical": {
+    "name": "Analytical observational"
+   },
+   "quasi": {
+    "name": "Quasi-experimental"
+   },
+   "experimental": {
+    "name": "Experimental"
+   },
+   "qualitative": {
+    "name": "Qualitative & mixed"
+   },
+   "synthesis": {
+    "name": "Evidence synthesis"
+   },
+   "measurement": {
+    "name": "Measurement"
+   },
+   "computational": {
+    "name": "Theory & computation"
+   },
+   "engineering": {
+    "name": "Design & development"
+   }
+  },
+  "constraints": {
+   "no-assign": {
+    "name": "Can't assign",
+    "text": "You can't (ethically or practically) decide who or what gets the exposure."
+   },
+   "rare-outcome": {
+    "name": "Rare outcome",
+    "text": "The outcome is rare: roughly 1 in 1,000 or rarer."
+   },
+   "rare-exposure": {
+    "name": "Rare exposure",
+    "text": "Only a small, identifiable group is exposed."
+   },
+   "long-latency": {
+    "name": "Long latency",
+    "text": "Years or decades pass between cause and effect."
+   },
+   "transient": {
+    "name": "Brief trigger",
+    "text": "The exposure is brief and its effect is immediate."
+   },
+   "existing-data": {
+    "name": "Existing data",
+    "text": "Records, registries, logs or archives already exist."
+   },
+   "single-unit": {
+    "name": "One unit",
+    "text": "Only one or a handful of units: one patient, one country, one factory."
+   },
+   "group-level": {
+    "name": "Group-level",
+    "text": "The exposure acts on whole groups, or would spill over between people."
+   },
+   "cutoff": {
+    "name": "Cutoff rule",
+    "text": "A threshold on a score decides who gets the exposure."
+   },
+   "rollout": {
+    "name": "Rollout",
+    "text": "Everyone will get the intervention anyway; only the timing is flexible."
+   },
+   "fast-cheap": {
+    "name": "Tight budget",
+    "text": "Weeks or months, not years; a small budget."
+   },
+   "unknown-territory": {
+    "name": "Uncharted",
+    "text": "Little prior theory; you don't yet know which variables matter."
+   },
+   "practice-led": {
+    "name": "Practice-led",
+    "text": "Practice runs ahead of research: most of what is known sits in blogs, white papers, talks and manuals, not journals."
+   },
+   "many-studies": {
+    "name": "Many studies",
+    "text": "A substantial body of primary research already exists."
+   }
+  }
+ },
+ "questions": {
+  "Q01": {
+   "title": "City vape count",
+   "field": "Public health",
+   "text": "The city council wants to know what share of adults vape right now, by age group, before it votes on a ban next quarter.",
+   "why": "'What share, right now?' is a prevalence question, answered by one well-sampled snapshot. Put the effort into the sampling frame and weighting, not into follow-up.",
+   "traps": {
+    "cohort-prospective": "Follows people for years to measure new cases. The council needs current prevalence next quarter.",
+    "case-control": "Sampling people by whether they vape destroys any estimate of how common vaping is."
+   }
+  },
+  "Q02": {
+   "title": "Tattoo rash",
+   "field": "Dermatology",
+   "text": "Five patients at one clinic developed an unusual rash weeks after getting tattoos with the same new ink. Nothing like it has been published.",
+   "why": "A careful case series is the fastest way to raise a signal that others can test. Its job is to describe and alert. A case-control study is the logical next step, not the first.",
+   "traps": {
+    "rct": "Deliberately exposing people to a suspected harm is unethical, and premature.",
+    "systematic-review": "There is nothing yet to synthesize."
+   }
+  },
+  "Q03": {
+   "title": "Vanishing butterflies",
+   "field": "Ecology",
+   "text": "Is a migratory butterfly population declining over the decade, and is the decline steady or sudden?",
+   "why": "Trends need standardized counts repeated over many years, the backbone of conservation science. Changes in observers, sites or methods over time are the main enemy.",
+   "traps": {
+    "cross-sectional": "One snapshot can't show a trend.",
+    "field-experiment": "Nothing is being manipulated. The question is what is happening, not why."
+   }
+  },
+  "Q04": {
+   "title": "Jupiter census",
+   "field": "Astronomy",
+   "text": "What fraction of nearby Sun-like stars host a Jupiter-mass planet?",
+   "why": "It's a prevalence question in disguise: a defined sample of stars observed with a known detection completeness. Correcting for what the instrument can't see is the whole game.",
+   "traps": {
+    "case-report": "One spectacular planetary system tells you nothing about the fraction.",
+    "analytical-model": "Formation theory can suggest a number, but this asks for an observed frequency."
+   }
+  },
+  "Q05": {
+   "title": "After approval",
+   "field": "Pharmacology",
+   "text": "A new diabetes drug was approved after trials in 3,000 people. How often does it cause serious liver injury now that millions use it?",
+   "why": "Post-marketing pharmacovigilance (spontaneous reports plus active monitoring of health records) exists because rare harms are invisible in trials. Signals are then confirmed with analytical studies.",
+   "traps": {
+    "rct": "Seeing a 1-in-50,000 harm would need an impossibly large trial. That is exactly why the approval trials missed it.",
+    "cross-sectional": "Liver injury is an event over time, not a state at one moment."
+   }
+  },
+  "Q06": {
+   "title": "Smog atlas",
+   "field": "Environmental health",
+   "text": "Before investing in a big study, you want a quick, cheap first look: do countries with more air pollution have higher asthma rates?",
+   "why": "Comparing aggregate data across countries is the cheapest hypothesis generator there is. Just never conclude that polluted individuals get asthma from it: that's the ecological fallacy.",
+   "traps": {
+    "cohort-prospective": "Years and millions spent on what should be a cheap first look.",
+    "rct": "You can't assign air pollution."
+   }
+  },
+  "Q07": {
+   "title": "Rare cancer, common spray",
+   "field": "Paediatric oncology",
+   "text": "Is a rare childhood cancer (about 1 in 50,000 children) associated with the mother's use of a common pesticide during pregnancy?",
+   "why": "Rare outcome: start from the cases. Draw controls from the population that produced them, and take exposure from records rather than memory, because grieving parents remember differently. A record-linkage cohort works only if registries already capture the pesticide exposure.",
+   "traps": {
+    "cohort-prospective": "You'd need to follow millions of pregnancies to collect a handful of cases.",
+    "cross-sectional": "It can't establish that the exposure came before the cancer."
+   }
+  },
+  "Q08": {
+   "title": "Clean-room workers",
+   "field": "Occupational health",
+   "text": "A few hundred workers handle a novel solvent at a single chip factory. Is the exposure linked to later kidney disease?",
+   "why": "Rare exposure: sample on the exposure. Employment records let you assemble the exposed workforce and an unexposed comparison group (e.g. office staff) and trace their outcomes. Comparing with the general public invites the healthy-worker effect.",
+   "traps": {
+    "case-control": "The exposure is so rare that almost none of the kidney-disease cases in the population will have had it.",
+    "ecological": "One factory gives no groups to compare."
+   }
+  },
+  "Q09": {
+   "title": "Snow shovel",
+   "field": "Cardiology",
+   "text": "Does a bout of heavy physical exertion trigger a heart attack within the following hour?",
+   "why": "Brief exposure, acute effect: compare each patient's exertion in the hour before their heart attack with their own usual exertion. Every stable personal confounder cancels out.",
+   "traps": {
+    "cross-sectional": "It can't capture the hour before an event.",
+    "cohort-prospective": "You'd need hour-by-hour exertion logs from huge numbers of people to catch a few events."
+   }
+  },
+  "Q10": {
+   "title": "Diet and dementia",
+   "field": "Neurology",
+   "text": "Is a high intake of ultra-processed food in midlife associated with dementia 20 years later?",
+   "why": "Measure diet before anyone has dementia and wait, or (faster) analyse an existing cohort that recorded diet decades ago. Watch for reverse causation: early, pre-clinical dementia changes eating habits.",
+   "traps": {
+    "rct": "Nobody sticks to an assigned diet for 20 years.",
+    "case-control": "People with dementia can't reliably report their diet from two decades ago."
+   }
+  },
+  "Q11": {
+   "title": "New pill vs. old",
+   "field": "Cardiology",
+   "text": "Does a new blood-pressure drug prevent more strokes than the current standard drug?",
+   "why": "A clean causal question about an intervention you can assign, with genuine uncertainty about which is better: randomize. Conceal allocation, blind if you can, analyse by intention to treat.",
+   "traps": {
+    "cohort-retrospective": "Doctors give new drugs to particular kinds of patients. Confounding by indication makes the comparison unreliable.",
+    "case-report": "Anecdotes can't estimate a comparative effect."
+   }
+  },
+  "Q12": {
+   "title": "Peer tutoring",
+   "field": "Education",
+   "text": "Does a new peer-tutoring method raise maths scores? Pupils in the same class share notes and talk constantly.",
+   "why": "When an intervention spreads between individuals, randomize the group (class or school) instead. Then analyse at the right level, because pupils in the same class aren't independent.",
+   "traps": {
+    "rct": "Randomizing pupils within classes lets the method leak to the controls, diluting the effect."
+   }
+  },
+  "Q13": {
+   "title": "Soda tax",
+   "field": "Public health",
+   "text": "One state introduced a sugary-drinks tax; its similar neighbour didn't. Supermarket sales data exist for both, three years before and after. Did the tax cut consumption?",
+   "why": "Compare the change in the taxed state with the change in the untaxed one. The key assumption, parallel trends, can be checked in the years before the tax.",
+   "traps": {
+    "cross-sectional": "Comparing the two states once, after the tax, can't separate the tax from differences that were already there."
+   }
+  },
+  "Q14": {
+   "title": "Scholarship cutoff",
+   "field": "Education policy",
+   "text": "Students scoring 70 or more on a national exam receive a scholarship. Does the scholarship make them more likely to graduate from university?",
+   "why": "A student who scored 70 and one who scored 69 are nearly identical, except one got the money. The estimate is local to the cutoff. Check that nobody could nudge their score across it.",
+   "traps": {
+    "cohort-retrospective": "Comparing all recipients with all non-recipients compares stronger students with weaker ones.",
+    "cross-sectional": "A one-off comparison of graduates and non-graduates can't separate the scholarship from ability."
+   }
+  },
+  "Q15": {
+   "title": "Sepsis alert",
+   "field": "Health services",
+   "text": "A hospital switched on an electronic sepsis alert on a known date. Monthly sepsis deaths are available for five years before and two years after. Did the alert help?",
+   "why": "Many time points before and after a sharp date separate the alert's effect from the trend that was already under way. Add a control series (another hospital, or a condition the alert can't affect) to rule out coincident changes.",
+   "traps": {
+    "cross-sectional": "A snapshot can't see a change.",
+    "case-report": "One dramatic rescue proves nothing about the death rate."
+   }
+  },
+  "Q16": {
+   "title": "Reunification",
+   "field": "Economics",
+   "text": "What did German reunification in 1990 do to West Germany's GDP per capita?",
+   "why": "One treated unit, many possible comparisons: build a weighted blend of other OECD countries that tracked West Germany before 1990, then watch where the paths split. Abadie, Diamond & Hainmueller did exactly this.",
+   "traps": {
+    "rct": "Countries can't be randomized to reunify.",
+    "cross-sectional": "A one-year comparison with other countries ignores differences that existed before 1990."
+   }
+  },
+  "Q17": {
+   "title": "Her migraine",
+   "field": "Neurology",
+   "text": "A patient has migraines several times a week. Does a new as-needed migraine drug relieve her attacks better than her usual painkiller?",
+   "why": "Frequent attacks and a fast-acting drug: randomize which drug she takes for each attack (or block of attacks), blind it with identical capsules, and repeat. The answer is about her.",
+   "traps": {
+    "rct": "A trial's average effect doesn't tell you whether this one patient responds.",
+    "case-report": "An uncontrolled before-and-after story is fooled by regression to the mean: she sought help at her worst."
+   }
+  },
+  "Q18": {
+   "title": "Two inhalers",
+   "field": "Pharmacology",
+   "text": "Do two inhaler formulations produce the same improvement in lung function in people with stable asthma?",
+   "why": "Stable chronic condition, short-acting reversible effect: each person tries both in random order with a washout. Between-person noise vanishes, so far fewer participants are needed.",
+   "traps": {
+    "cohort-retrospective": "Patients end up on one inhaler or the other for reasons tied to how severe their asthma is."
+   }
+  },
+  "Q19": {
+   "title": "Three knobs",
+   "field": "Agriculture",
+   "text": "Which combination of fertilizer dose, irrigation schedule and seed variety gives the best yield on real farms?",
+   "why": "Cross the three factors in a factorial layout, randomized to plots in blocks across several farms. One season yields main effects and interactions. This is Fisher's original idea.",
+   "traps": {
+    "cross-sectional": "Farmers who irrigate more also differ in soil, skill and wealth.",
+    "case-study": "One farm can't separate three factors and their interactions."
+   }
+  },
+  "Q20": {
+   "title": "Weld strength",
+   "field": "Manufacturing",
+   "text": "Which of six process parameters (current, speed, gas flow…) drive weld strength in the lab, and do any of them interact?",
+   "why": "A fractional-factorial screening design tests six factors in a few dozen runs and reveals interactions that one-factor-at-a-time testing misses. Randomize the run order to protect against drift. Simulation helps only if a validated process model exists.",
+   "traps": {
+    "cohort-retrospective": "Past production logs confound settings that operators always changed together.",
+    "case-report": "One great weld proves nothing."
+   }
+  },
+  "Q21": {
+   "title": "Checkout button",
+   "field": "Tech",
+   "text": "Will a redesigned checkout button increase completed purchases on a site with 2 million visitors a day?",
+   "why": "Randomize visitors to the old or new button and compare conversion. Fix the sample size and the metric in advance: peeking until it's significant is the classic A/B-test sin.",
+   "traps": {
+    "its": "Even a long time series can't separate the redesign from concurrent campaigns, when randomizing visitors costs nothing.",
+    "interviews-thematic": "Users can't reliably predict their own clicking behaviour."
+   }
+  },
+  "Q22": {
+   "title": "Rat-free islands",
+   "field": "Conservation",
+   "text": "Does eradicating invasive rats increase seabird nesting success? There are 20 similar islands, and you have permits for 10 eradications.",
+   "why": "Randomly choose which 10 islands get eradication and measure all 20 before and after (a randomized BACI design). Random allocation stops you from picking the 'easy' islands. Twenty units is few, so plan the power.",
+   "traps": {
+    "cross-sectional": "Islands that never had rats differ from rat islands in many other ways.",
+    "case-report": "One island's success story can't be separated from that year's weather."
+   }
+  },
+  "Q23": {
+   "title": "Triage rollout",
+   "field": "Health systems",
+   "text": "The ministry has decided that a new emergency triage protocol will be introduced in all 12 regional hospitals over the next year. Does it reduce deaths?",
+   "why": "Everyone gets it; only the order is open. Randomize the order in which hospitals switch, and every hospital contributes both control and intervention time. Model the background time trend carefully.",
+   "traps": {
+    "rct": "Triage is a hospital-wide process. You can't randomize individual patients within a hospital."
+   }
+  },
+  "Q24": {
+   "title": "Ten candidates",
+   "field": "Infectious disease",
+   "text": "A new respiratory virus is spreading fast and ten repurposed drugs have been proposed. Which of them, if any, reduce deaths in hospitalized patients? You have months.",
+   "why": "One master protocol, one shared control arm; arms are dropped for futility and new ones added. RECOVERY found that dexamethasone saves lives within about 100 days of launch.",
+   "traps": {
+    "case-report": "Early case series claiming miracle cures were widespread and misleading.",
+    "cohort-retrospective": "Sicker patients get experimental drugs. Confounding by indication."
+   }
+  },
+  "Q25": {
+   "title": "Older than the trials",
+   "field": "Pharmacoepidemiology",
+   "text": "Do two classes of diabetes drug differ in their effect on kidney failure in adults over 80, a group excluded from the trials? Insurance claims cover 5 million people.",
+   "why": "Write the protocol of the trial you'd like to run (eligibility, treatment strategies, time zero, follow-up) and emulate it in the claims data with new users and an active comparator. This designs out immortal-time and prevalent-user bias; what remains is confounding by indication.",
+   "traps": {
+    "cross-sectional": "It can't capture who started which drug, and when.",
+    "case-report": "There's no comparison."
+   }
+  },
+  "Q26": {
+   "title": "Does school pay?",
+   "field": "Economics",
+   "text": "Does an extra year of schooling raise later earnings? Compulsory-schooling laws let people born early in the year leave school with slightly less education.",
+   "why": "Quarter of birth nudges schooling but (arguably) affects earnings only through schooling, which makes it an instrument. Interrogate that 'only through' assumption hard, and check the instrument isn't weak.",
+   "traps": {
+    "cross-sectional": "Ability and family background drive both schooling and earnings."
+   }
+  },
+  "Q27": {
+   "title": "LDL: cause or marker?",
+   "field": "Cardiology",
+   "text": "Is lifelong higher LDL cholesterol a cause of coronary heart disease, or merely a marker of other risk factors?",
+   "why": "People inherit LDL-raising or LDL-lowering variants at conception, essentially at random: a natural lifelong trial. Large genetic consortia make it fast. Pleiotropy (genes acting through other paths) is the threat to check. Trials of LDL-lowering drugs answer a shorter-term version.",
+   "traps": {
+    "cross-sectional": "It can't separate cause from marker, or tell which came first.",
+    "ecological": "Country-level cholesterol averages say nothing about mechanisms in individuals."
+   }
+  },
+  "Q28": {
+   "title": "Who crashes next?",
+   "field": "Critical care",
+   "text": "Using vital signs and lab values from the electronic record, can we flag ICU patients likely to deteriorate in the next six hours?",
+   "why": "Develop on one period, then validate on a later period and at another hospital. Guard ruthlessly against leakage, e.g. a lab test that was ordered because the doctor already suspected deterioration.",
+   "traps": {
+    "case-control": "Artificially balancing cases and controls distorts the predicted risks (calibration).",
+    "rct": "Trials test interventions. First you need a model; an RCT of using it comes later."
+   }
+  },
+  "Q29": {
+   "title": "Spring flood",
+   "field": "Hydrology",
+   "text": "How much water will flow into a reservoir next spring, given this winter's snowpack and 40 years of records?",
+   "why": "Decades of snowpack and inflow records support a statistical forecast; a physically based hydrological simulation is a strong alternative or complement. Judge either one by its skill on years it never saw.",
+   "traps": {
+    "field-experiment": "You can't manipulate the snowpack.",
+    "case-study": "One past flood year can't forecast the next one."
+   }
+  },
+  "Q30": {
+   "title": "Next superconductor",
+   "field": "Materials science",
+   "text": "Which of 100,000 hypothetical compounds are most likely to superconduct at high temperature, so the lab can synthesize the top 20?",
+   "why": "Train a model on known materials to rank the candidates, optionally refine the shortlist with first-principles simulation, then test the top hits. Report performance on genuinely new chemistries, not near-duplicates of the training set.",
+   "traps": {
+    "factorial-doe": "Synthesizing 100,000 compounds isn't a plan.",
+    "systematic-review": "The compounds are hypothetical. There's no literature on them yet."
+   }
+  },
+  "Q31": {
+   "title": "Biomarker add-on",
+   "field": "Cardiology",
+   "text": "Does adding a new blood biomarker to an established heart-attack risk score actually improve prediction?",
+   "why": "Association isn't prediction. Compare the model with and without the biomarker on discrimination, calibration and net benefit, in data the model hasn't seen.",
+   "traps": {
+    "case-control": "Showing that cases have higher levels proves association, not added predictive value.",
+    "rct": "No intervention is being tested."
+   }
+  },
+  "Q32": {
+   "title": "Range in 2070",
+   "field": "Ecology",
+   "text": "Where will a mountain plant species be able to live in 2070 under different climate scenarios?",
+   "why": "Species distribution models link today's occurrences to climate, then project them onto scenarios. Mechanistic (physiological) simulations are a valuable cross-check when the future climate falls outside anything in the training data.",
+   "traps": {
+    "case-study": "One population's story can't map a future range.",
+    "rct": "You can't randomize climates."
+   }
+  },
+  "Q33": {
+   "title": "Rapid strep",
+   "field": "Paediatrics",
+   "text": "How accurate is a new 5-minute strep test compared with throat culture, in children who come to clinics with a sore throat?",
+   "why": "Recruit consecutive children with sore throats, do both tests on everyone, and read each test blind to the other. Sensitivity and specificity only mean something in the population where the test will be used.",
+   "traps": {
+    "case-control": "Testing obvious culture-proven cases against healthy volunteers inflates accuracy (spectrum bias).",
+    "rct": "An RCT asks whether using the test improves outcomes. That's a different, later question."
+   }
+  },
+  "Q34": {
+   "title": "Burnout scale",
+   "field": "Occupational psychology",
+   "text": "No good questionnaire exists for 'research burnout' among academics. Build one that others can trust.",
+   "why": "Generate items from theory and interviews, refine them with experts and cognitive testing, then test factor structure, reliability and validity in fresh samples. An exploratory sequential mixed-methods design is essentially this.",
+   "traps": {
+    "cross-sectional": "A big survey with an untested questionnaire measures… something.",
+    "systematic-review": "Reviewing studies can't validate a tool that doesn't exist yet."
+   }
+  },
+  "Q35": {
+   "title": "Two readers",
+   "field": "Radiology",
+   "text": "Do two radiologists give the same osteoarthritis grade when they read the same knee X-rays?",
+   "why": "Both read the same representative set of images, independently and blind to each other; quantify agreement with weighted kappa. The images must span the full range of severity.",
+   "traps": {
+    "diagnostic-accuracy": "Accuracy needs a reference standard. The question is agreement between readers.",
+    "cross-sectional": "Grades from different patients read by different radiologists can't measure agreement."
+   }
+  },
+  "Q36": {
+   "title": "Wrist vs. cuff",
+   "field": "Biomedical engineering",
+   "text": "Can a cheap wrist-worn sensor replace the hospital's validated blood-pressure monitor?",
+   "why": "This is a method-comparison study: measure the same people with both devices and compute Bland–Altman limits of agreement. Decide in advance what difference is clinically acceptable, and don't trust correlation: one device could read 15 mmHg high every time and still correlate perfectly. Include people across the whole blood-pressure range.",
+   "traps": {
+    "ecological": "Comparing average readings across clinics hides how far the two devices disagree in each person.",
+    "rct": "No one needs to be randomized. The question is whether two instruments agree."
+   }
+  },
+  "Q37": {
+   "title": "Lead in the water",
+   "field": "Analytical chemistry",
+   "text": "Fifteen labs measure lead in drinking water using the same standard method. Do they get the same answer from the same sample?",
+   "why": "Send identical, homogeneous samples (ideally with a certified reference value) to every lab, and quantify repeatability and reproducibility (ISO 5725).",
+   "traps": {
+    "systematic-review": "Published results come from different samples and can't isolate lab-to-lab variation.",
+    "surveillance": "Monitoring tap water over time tells you about the water, not about the labs."
+   }
+  },
+  "Q38": {
+   "title": "Engine limit",
+   "field": "Physics",
+   "text": "What is the maximum possible efficiency of ANY heat engine operating between a hot and a cold reservoir?",
+   "why": "'Any engine' is a universal claim, and only a derivation from the laws of thermodynamics can establish it. Carnot's bound came from reasoning, not measurement.",
+   "traps": {
+    "factorial-doe": "Testing engines shows what has been achieved, never what is impossible for every engine.",
+    "simulation": "It simulates particular engines. A universal bound needs a derivation."
+   }
+  },
+  "Q39": {
+   "title": "Bridge in a storm",
+   "field": "Civil engineering",
+   "text": "How will a long, slender bridge deck respond to wind speeds you can't safely test on the real structure?",
+   "why": "Coupled fluid–structure simulation lets you push the virtual bridge to failure. Validate the model against wind-tunnel tests of scale models (the 'ok' answer) before trusting the extreme cases.",
+   "traps": {
+    "case-report": "Tacoma Narrows teaches a lot, but one collapse isn't a design check.",
+    "cross-sectional": "Surveying other bridges doesn't tell you how this one will respond."
+   }
+  },
+  "Q40": {
+   "title": "School closures",
+   "field": "Epidemiology",
+   "text": "How might closing schools change the peak of a flu pandemic in a city of two million?",
+   "why": "An agent-based model with households, schools and workplaces lets you play out scenarios. Present results as ranges under varied assumptions, and check them against data from past epidemics.",
+   "traps": {
+    "rct": "Randomizing closures in the middle of a pandemic is rarely feasible, and far too slow.",
+    "cross-sectional": "A snapshot can't show the dynamics of an epidemic."
+   }
+  },
+  "Q41": {
+   "title": "Clock in a cell",
+   "field": "Systems biology",
+   "text": "A three-gene loop in a bacterium seems to oscillate. Is the negative-feedback loop alone enough to cause oscillations, and under what parameter conditions?",
+   "why": "Write the dynamics as differential equations and analyse their stability; the conditions for oscillation fall out of the mathematics. Simulation explores the parameter space, and the lab then builds and tests the circuit.",
+   "traps": {
+    "cross-sectional": "Snapshots of gene expression can't establish sufficiency of a mechanism.",
+    "case-control": "There are no cases and controls in this question."
+   }
+  },
+  "Q42": {
+   "title": "Neutron-star crash",
+   "field": "Astrophysics",
+   "text": "What gravitational-wave signal should detectors expect when two neutron stars merge?",
+   "why": "The equations are known but have no closed-form solution in this regime, so numerical-relativity simulations produce the waveform templates that detectors search for. Approximate analytical models cover the early inspiral.",
+   "traps": {
+    "case-report": "One observed merger (GW170817) can't supply templates across all masses and spins.",
+    "factorial-doe": "Neutron stars can't be collided in a lab."
+   }
+  },
+  "Q43": {
+   "title": "Price war",
+   "field": "Economics",
+   "text": "Two firms compete by setting prices. Under what conditions will they settle at a stable equilibrium instead of an endless price war?",
+   "why": "Game theory derives equilibria, and the conditions for them, from stated assumptions. The answer is only as good as those assumptions: state them explicitly and test how robust the result is.",
+   "traps": {
+    "case-study": "One price war's story doesn't establish general conditions.",
+    "ab-test": "Testing prices on customers doesn't reveal the strategic logic between firms."
+   }
+  },
+  "Q44": {
+   "title": "Grasp benchmark",
+   "field": "Robotics",
+   "text": "Your lab has a new robot-grasping algorithm. Is it actually better than the state of the art?",
+   "why": "Same objects, same robot, same metrics and published baselines, plus ablations and repeated trials with confidence intervals. Report the failures, and test beyond the benchmark: sim-to-real gaps are where claims die.",
+   "traps": {
+    "case-report": "A cherry-picked demo video isn't evidence.",
+    "interviews-thematic": "Opinions about the algorithm don't measure grasp success."
+   }
+  },
+  "Q45": {
+   "title": "A hand for kids",
+   "field": "Rehabilitation engineering",
+   "text": "Design a low-cost prosthetic hand for children that clinicians and families will actually adopt.",
+   "why": "Iterate: understand the needs, prototype, test with users, refine. Evaluation is built into every cycle, and later the finished device can face a trial.",
+   "traps": {
+    "rct": "There's nothing to test yet.",
+    "systematic-review": "Useful background, but it won't build the hand."
+   }
+  },
+  "Q46": {
+   "title": "Review workbench",
+   "field": "Research software",
+   "text": "Build a tool that guides researchers through a scoping review, and show that it actually helps them.",
+   "why": "Build in short cycles with real researchers, and evaluate each version on real tasks: usability, time taken, and completeness of the resulting review. You are not a neutral judge of your own tool, so let others test it.",
+   "traps": {
+    "rct": "A large trial of a tool that doesn't exist yet is premature.",
+    "case-report": "One happy user isn't an evaluation."
+   }
+  },
+  "Q47": {
+   "title": "Will they come?",
+   "field": "Geriatrics",
+   "text": "Before a costly multi-site trial: can you recruit frail 85-year-olds into a home-exercise programme, keep them in it for 6 months, and measure falls reliably?",
+   "why": "A feasibility study measures recruitment, retention, adherence and data quality against pre-set progression criteria. Resist reporting its effect estimates: it isn't powered for them.",
+   "traps": {
+    "rct": "Launching the full trial blind risks a very expensive failure to recruit.",
+    "systematic-review": "Other trials' recruitment rates help, but they won't tell you about your setting."
+   }
+  },
+  "Q48": {
+   "title": "Therapy over a bad line",
+   "field": "Global health",
+   "text": "Can an app-based talking therapy be delivered in rural clinics with unreliable internet? Will staff use it, and will patients finish it?",
+   "why": "Feasibility first: run it in a few clinics, measure uptake, completion and technical failures, and interview staff and patients about what got in the way.",
+   "traps": {
+    "rct": "Testing effectiveness before you know it can be delivered wastes the trial.",
+    "ecological": "Country-level internet statistics say nothing about your clinics."
+   }
+  },
+  "Q49": {
+   "title": "Run it again?",
+   "field": "Psychiatry",
+   "text": "Forty randomized trials of exercise for depression report conflicting results. What is the overall effect?",
+   "why": "Search exhaustively, appraise risk of bias, pool with a random-effects model and explore why the trials disagree. Look for missing small negative trials.",
+   "traps": {
+    "rct": "A 41st trial adds one more data point to a pile nobody has weighed.",
+    "case-study": "Examining one trial in depth can't settle a conflict among forty."
+   }
+  },
+  "Q50": {
+   "title": "Plastic in the soil",
+   "field": "Environmental science",
+   "text": "What has been studied about microplastics in farm soils (which methods, which regions, which outcomes), and where are the gaps?",
+   "why": "This is a mapping question: chart the literature systematically (PRISMA-ScR) without pooling effects. The output is a map of evidence and gaps that tells everyone what to study next.",
+   "traps": {
+    "field-experiment": "One more experiment doesn't map a field of research.",
+    "network-meta": "There's no set of competing treatments to rank."
+   }
+  },
+  "Q51": {
+   "title": "Six pills, few duels",
+   "field": "Psychiatry",
+   "text": "Six antidepressants exist, but few trials compare them head to head; most compare each with placebo. Which works best?",
+   "why": "Combine direct and indirect comparisons in one network to rank the treatments. Check that the trials are similar enough for indirect comparisons to be fair (transitivity).",
+   "traps": {
+    "rct": "A six-arm head-to-head trial would be enormous, and the indirect evidence already exists.",
+    "cohort-retrospective": "Prescribing patterns are confounded by indication."
+   }
+  },
+  "Q52": {
+   "title": "Three weeks",
+   "field": "Health policy",
+   "text": "A ministry must decide on a school-ventilation policy in three weeks, and asks what the evidence says.",
+   "why": "Streamline a systematic review transparently: a narrower question, fewer databases, single screening with verification. Report what you cut, so readers can judge.",
+   "traps": {
+    "systematic-review": "A full systematic review typically takes a year or more. The decision will be made without it.",
+    "cluster-rct": "A school trial would report long after the deadline."
+   }
+  },
+  "Q53": {
+   "title": "Vitamin D for everything",
+   "field": "Nutrition",
+   "text": "Dozens of systematic reviews link vitamin D to outcomes from fractures to cancer to depression. What's the overall picture, and how credible is each claim?",
+   "why": "Review the reviews: grade each claimed association by its size and credibility, and watch for overlapping primary studies being counted twice.",
+   "traps": {
+    "rct": "One trial can't test dozens of outcomes at once.",
+    "case-report": "Individual stories can't grade a body of evidence."
+   }
+  },
+  "Q54": {
+   "title": "Works here, fails there",
+   "field": "Global health",
+   "text": "Community health-worker programmes succeed brilliantly in some countries and fail in others. Why, for whom, and in what contexts?",
+   "why": "Realist synthesis asks how context triggers mechanisms that produce outcomes, drawing on trials, process evaluations and qualitative studies alike.",
+   "traps": {
+    "rct": "One more trial in one more context won't explain the variation.",
+    "ecological": "Country-level correlations can't reveal the mechanisms."
+   }
+  },
+  "Q55": {
+   "title": "The ignored app",
+   "field": "Nursing",
+   "text": "Night-shift nurses rarely use a new hand-hygiene reminder app, while day-shift nurses do. Nobody knows why.",
+   "why": "When you don't know the variables, ask and listen. Sample night and day nurses purposively and interview them until new themes stop emerging.",
+   "traps": {
+    "cross-sectional": "A survey needs answer options, and you don't know the reasons yet.",
+    "rct": "There's no intervention to test until you understand the problem."
+   }
+  },
+  "Q56": {
+   "title": "Waste pickers",
+   "field": "Urban anthropology",
+   "text": "How do informal waste pickers in a megacity organize their daily work, routes and trade?",
+   "why": "Practices people don't put into words are best seen by being there: months of participant observation, field notes, trust. Reflect on how your presence changes what you see.",
+   "traps": {
+    "cross-sectional": "Official surveys rarely reach informal workers, and they miss tacit practices.",
+    "prediction-model": "There's nothing to predict yet, and no data to train on."
+   }
+  },
+  "Q57": {
+   "title": "The turnaround",
+   "field": "Operations management",
+   "text": "One factory cut its defect rate by 80% in a year while its sister plants didn't. What happened, and what can others learn?",
+   "why": "Study one bounded case in depth, using documents, data, interviews and observation. Compare it with a sister plant that didn't improve; otherwise you are only studying the survivor.",
+   "traps": {
+    "rct": "The change already happened, in one factory.",
+    "cross-sectional": "A survey of many plants can't reconstruct what happened in this one."
+   }
+  },
+  "Q58": {
+   "title": "Back to work",
+   "field": "Health sociology",
+   "text": "There is no theory of how people with long COVID decide when (and whether) to return to work.",
+   "why": "'No theory yet' is the signature of grounded theory: iterative interviewing and coding, and theoretical sampling of new cases to test emerging concepts, until a model of the decision process emerges.",
+   "traps": {
+    "cohort-prospective": "It tells you how many return, not how they decide.",
+    "systematic-review": "There's too little to synthesize, and the goal is new theory."
+   }
+  },
+  "Q59": {
+   "title": "What should we measure?",
+   "field": "Clinical trials",
+   "text": "Trials of therapies for a rare disease all use different endpoints, so none can be compared. Patients and experts disagree on which outcomes matter most.",
+   "why": "A Delphi process with patients, clinicians and researchers rates candidate outcomes over several anonymous rounds. It's the standard route to a 'core outcome set', usually preceded by a review of the outcomes in use and by patient interviews.",
+   "traps": {
+    "rct": "Another trial would just add another endpoint to the pile."
+   }
+  },
+  "Q60": {
+   "title": "The rural gap",
+   "field": "Digital health",
+   "text": "A national survey shows rural clinics adopt telemedicine at half the urban rate. Policymakers ask why.",
+   "why": "An explanatory sequential design: use the survey to pick contrasting clinics (high and low adopters), interview staff to explain the numbers, then integrate the two strands.",
+   "traps": {
+    "cross-sectional": "You already have the 'what'. Another survey won't give the 'why'.",
+    "rct": "There's nothing to randomize until you know the barriers."
+   }
+  },
+  "Q61": {
+   "title": "The tangle clip",
+   "field": "Medical devices",
+   "text": "A nurse has invented a clip that stops IV lines from tangling. Before the hospital pays for prototypes and a patent filing: is it actually new?",
+   "why": "Novelty is judged against everything made public anywhere, in any language: patents, products, catalogues, theses and papers. Search patent databases by classification code as well as by keyword, because patents rarely use everyday words like 'clip'.",
+   "traps": {
+    "design-science": "Building and testing first risks a year spent reinventing, or infringing, someone else's patent.",
+    "systematic-review": "There's no effect to pool, and most prior art for a gadget like this sits in patents and product catalogues, not journals."
+   }
+  },
+  "Q62": {
+   "title": "Roots of a field",
+   "field": "Sustainability science",
+   "text": "Research on 'ecosystem services' has grown for thirty years across ecology and economics. Which classic works form its foundations, and which schools of thought do they fall into?",
+   "why": "Two works are linked each time a later paper cites both, so clusters of co-cited works are the field's schools of thought, and the works that bridge clusters show where ecology and economics meet. Normalize for how often each work is cited, and remember that a citation isn't an endorsement.",
+   "traps": {
+    "systematic-review": "There's no single effect to pool. The question is how the field is structured.",
+    "delphi": "Experts tend to nominate the classics of their own school. The citation record shows what the whole field builds on."
+   }
+  },
+  "Q63": {
+   "title": "Paper flood",
+   "field": "Science of science",
+   "text": "Thousands of papers on AI for drug discovery appeared in the last two years. What are the active research fronts right now, and how do they group?",
+   "why": "Papers that cite the same sources are probably working on the same problem, and that link exists the day a paper is published. Down-weight references that nearly everyone cites (here, the classic deep-learning papers), or they glue every paper into one blob. Then name each cluster by reading its core papers.",
+   "traps": {
+    "co-citation": "Papers this new have barely been cited, so almost nothing links them yet. Co-citation would map their foundations, not today's fronts.",
+    "systematic-review": "There's no focused question or effect to pool, and thousands of papers is far beyond manual appraisal."
+   }
+  },
+  "Q64": {
+   "title": "Grit or not?",
+   "field": "Educational psychology",
+   "text": "A popular 'grit' scale predicts which students finish their degrees. Critics say it's just conscientiousness under a new name. Does it measure something distinct?",
+   "why": "Write down the predicted pattern before collecting data: grit should correlate with conscientiousness, but not so highly that they are the same thing, and it should predict outcomes beyond it. Measure both traits by more than one method (self-report, teacher ratings, behaviour), so shared questionnaire habits don't fake the overlap.",
+   "traps": {
+    "cohort-prospective": "Showing that grit predicts graduation proves nothing new: conscientiousness predicts it too.",
+    "reliability": "A highly reliable scale can reliably measure the wrong thing."
+   }
+  },
+  "Q65": {
+   "title": "Newts in the pond",
+   "field": "Ecology",
+   "text": "How many great crested newts live in a large, murky pond? You can net some on every visit, but never all of them.",
+   "why": "Photograph each newt's unique belly pattern, then net again: the share of already-seen newts in the second catch estimates the total (Lincoln–Petersen). It assumes no newts arrive or leave between visits and that every newt is equally likely to be caught.",
+   "traps": {
+    "cross-sectional": "One netting counts the newts you caught, not the ones you missed.",
+    "surveillance": "Repeated counts track a trend in catches, not how many newts there really are."
+   }
+  },
+  "Q66": {
+   "title": "Migraine genes",
+   "field": "Genetics",
+   "text": "Which genetic variants are linked to migraine? A biobank holds genotypes and health records for half a million people, but nobody knows which genes to look at.",
+   "why": "Test every variant across the genome against a threshold of about 5 × 10⁻⁸, so that millions of tests don't produce false hits. Adjust for ancestry so population structure doesn't fake associations, and replicate the hits in an independent cohort.",
+   "traps": {
+    "mendelian": "Mendelian randomization uses variants you already know to test a cause. Here you are looking for the variants in the first place.",
+    "case-report": "One family with migraine can hint at a gene, but it can't scan the genome across a population."
+   }
+  },
+  "Q67": {
+   "title": "The freezer",
+   "field": "Cardiology",
+   "text": "A biobank froze blood from 60,000 people 15 years ago; 900 have since had a heart attack. Does a new inflammation marker predict who? Each test costs €300.",
+   "why": "Test all 900 cases plus a random subcohort drawn from the whole cohort, blind to who is a case and in random order, so lab batches can't line up with the outcome. The same subcohort can later be reused for other outcomes.",
+   "traps": {
+    "cohort-prospective": "Starting a new cohort means waiting 15 years for what is already in the freezer.",
+    "cohort-retrospective": "Testing all 60,000 samples would cost €18 million. You only need the cases and a sample of everyone else."
+   }
+  },
+  "Q68": {
+   "title": "Seeds of choice",
+   "field": "Agricultural economics",
+   "text": "Would smallholder farmers pay for drought-tolerant maize seed? And what matters most to them: yield, price, taste, or seed they can save for next year?",
+   "why": "Offer choices between seed packages whose yield, price, taste and saveability vary by an experimental design; choice models turn the answers into the weight of each feature and a willingness to pay. Pick the attributes with farmers first, and remember that stated choices overstate real purchases.",
+   "traps": {
+    "cross-sectional": "Asking farmers to rate each feature from 1 to 5 makes everything important and hides the trade-offs.",
+    "rct": "Handing out seed at random tests whether it raises yields, not what farmers value or would pay."
+   }
+  },
+  "Q69": {
+   "title": "Worth the price?",
+   "field": "Health economics",
+   "text": "Trials show a new RSV vaccine protects older adults. Is it worth what the manufacturer is asking the national health service to pay?",
+   "why": "Build a decision model of who catches RSV, who is admitted to hospital and who dies, with and without vaccination. Feed it trial efficacy, costs and quality of life, and report the extra cost per QALY gained, with a probabilistic sensitivity analysis to show how certain that answer is.",
+   "traps": {
+    "rct": "The trials already show that it works. Another trial won't tell you whether it's worth the money.",
+    "systematic-review": "Pooling the efficacy evidence is one input, but it doesn't weigh the costs."
+   }
+  },
+  "Q70": {
+   "title": "Why this deal?",
+   "field": "Political science",
+   "text": "Colombia's 2016 peace agreement led most FARC fighters to disarm, where earlier talks had failed. Three rival explanations are on the table. Which one holds?",
+   "why": "Write down what each explanation predicts you should find (who met when, what was offered, what the leadership said in private), then look for hoop tests that can eliminate an explanation and smoking guns that strongly confirm one. Weigh evidence against your favourite account as hard as evidence for it.",
+   "traps": {
+    "ecological": "Cross-country correlations about peace deals can't test which mechanism worked in Colombia.",
+    "cross-sectional": "A survey of today's opinions can't reconstruct the sequence of decisions that led to the deal."
+   }
+  },
+  "Q71": {
+   "title": "Under fifty",
+   "field": "Oncology",
+   "text": "Twelve trials of a breast-cancer drug show an overall benefit. Do women under 50 benefit too? Most papers don't report results by age, or use different age cut-offs.",
+   "why": "Ask every trial team for its patient-level data, check it, and analyse age the same way in every trial: ideally as a continuous variable, with the treatment-by-age interaction estimated within each trial. Report which trials couldn't share data and whether their results differ.",
+   "traps": {
+    "network-meta": "There is one treatment against control. Nothing needs ranking.",
+    "cohort-retrospective": "Who gets the drug in routine care is confounded by indication."
+   }
+  },
+  "Q72": {
+   "title": "The abandoned form",
+   "field": "Human–computer interaction",
+   "text": "Older patients keep abandoning a hospital's online booking form halfway through. The redesign is frozen in a week.",
+   "why": "Ask five or so representative older users to book an appointment while thinking aloud; watch without helping and log every hesitation and error. Fix the worst problems and test again: several small rounds find more than one big one.",
+   "traps": {
+    "ab-test": "An A/B test tells you which version wins, not where and why people get stuck, and there is no new version yet.",
+    "cross-sectional": "A satisfaction survey misses exactly the people who gave up."
+   }
+  },
+  "Q73": {
+   "title": "No-shows",
+   "field": "Primary care",
+   "text": "A quarter of a clinic's appointments are missed. The team wants to start text reminders this month, then adjust the wording and timing until the rate falls.",
+   "why": "Run small cycles: plan a change, try it for a week or two, study the run chart, act on what you learn. Mark every change on the chart, and keep measuring long enough to tell real improvement from seasonal swings.",
+   "traps": {
+    "cluster-rct": "One clinic can't be a cluster trial, and the team wants to learn and adapt month by month.",
+    "systematic-review": "Reviews say reminders help on average. The question is what works in this clinic."
+   }
+  },
+  "Q74": {
+   "title": "The blogs know more",
+   "field": "Software engineering",
+   "text": "Teams keep asking when automating their software tests pays off. Practitioners have written hundreds of blog posts, talks and white papers about it, but only a handful of peer-reviewed studies exist. What is known?",
+   "why": "When practice runs ahead of research, a multivocal review follows Garousi et al. (2019): search academic databases and the grey literature (Google, practitioner sites, conference talks), grade each grey source for authority, method and objectivity, stop by saturation, and report the white and grey evidence side by side.",
+   "traps": {
+    "systematic-review": "Restricted to peer-reviewed studies, you'd throw away most of what is actually known, and there's no effect to pool.",
+    "rct": "One more experiment adds a single data point; the question is what the field already knows."
+   }
+  }
+ },
+ "designs": {
+  "case-report": {
+   "name": "Case report / case series",
+   "short": "Describe one or a few striking cases in detail. It raises a signal but can't test it.",
+   "gist": "A detailed account of one or a few unusual cases. Raises a signal or a hypothesis; can't test it.",
+   "example": "MMWR, June 1981: Pneumocystis pneumonia in five young men in Los Angeles, the first published description of AIDS."
+  },
+  "cross-sectional": {
+   "name": "Cross-sectional survey",
+   "short": "One snapshot of a sample: how common things are, right now.",
+   "gist": "Measure exposure and outcome in a sample at one moment. Estimates prevalence; can't show which came first.",
+   "example": "National health interview surveys estimating smoking prevalence by age and region."
+  },
+  "ecological": {
+   "name": "Ecological study",
+   "short": "Compare whole groups (countries, regions, years) using their averages.",
+   "gist": "Compare groups (countries, regions, years) using aggregate data. A cheap hypothesis generator; individual-level conclusions are a trap.",
+   "example": "Messerli (2012): national chocolate consumption vs. Nobel laureates per capita."
+  },
+  "surveillance": {
+   "name": "Monitoring / surveillance",
+   "short": "Measure the same thing the same way, again and again, to catch trends.",
+   "gist": "Systematic, repeated measurement of the same quantity across time and place to detect trends and signals.",
+   "example": "The Mauna Loa CO₂ record (since 1958); post-marketing drug-safety pharmacovigilance."
+  },
+  "capture-recapture": {
+   "name": "Capture–recapture",
+   "short": "Sample twice and count the overlap: the fewer you recatch, the more there must be.",
+   "gist": "Estimate the size of a population you can't count completely from the overlap between two or more independent samples or lists.",
+   "example": "Petersen tagged plaice in the 1890s; epidemiologists now match overlapping disease registers the same way."
+  },
+  "cohort-prospective": {
+   "name": "Prospective cohort",
+   "short": "Measure exposure first, then follow people forward to see who gets the outcome.",
+   "gist": "Measure exposures in people before outcomes happen, then follow them forward. Shows temporal order and incidence.",
+   "example": "The Framingham Heart Study (1948–), which gave us the very idea of 'risk factors'."
+  },
+  "cohort-retrospective": {
+   "name": "Retrospective cohort",
+   "short": "Rebuild a cohort from old records and trace what happened to it.",
+   "gist": "Reconstruct a cohort and its outcomes from existing records. Fast and cheap, but limited to what someone happened to record.",
+   "example": "Occupational cohorts assembled from employment records, e.g. asbestos and shipyard workers."
+  },
+  "case-control": {
+   "name": "Case–control study",
+   "short": "Start from the cases, find comparable controls, look back at exposures.",
+   "gist": "Start from people with the outcome (cases) and comparable people without it (controls); compare their past exposures.",
+   "example": "Doll & Hill (1950): smoking histories of lung-cancer patients vs. other hospital patients."
+  },
+  "case-crossover": {
+   "name": "Case-crossover",
+   "short": "Each case is their own control: what happened just before the event?",
+   "gist": "Each case is their own control: compare exposure just before the event with the same person's exposure at other times.",
+   "example": "Mittleman et al. (1993): heavy exertion as a trigger of heart attack within the hour."
+  },
+  "target-trial": {
+   "name": "Target trial emulation",
+   "short": "Design the ideal trial on paper, then emulate it in real-world data.",
+   "gist": "Write the protocol of the trial you wish you could run, then emulate it step by step in observational data.",
+   "example": "Hernán & Robins' framework; emulated trials of statins and vaccines using health records."
+  },
+  "iv": {
+   "name": "Instrumental variable analysis",
+   "short": "Use a natural nudge that changes the exposure, and nothing else.",
+   "gist": "Find a factor that nudges the exposure but affects the outcome only through it: a natural coin flip.",
+   "example": "Angrist & Krueger (1991): quarter of birth, compulsory schooling and earnings."
+  },
+  "mendelian": {
+   "name": "Mendelian randomization",
+   "short": "Genes are shuffled at conception, which makes them nature's randomized trial.",
+   "gist": "Use genetic variants as instruments. Genes are shuffled at conception, so carriers mimic a lifelong randomized trial.",
+   "example": "LDL-lowering gene variants and coronary heart disease across large genetic consortia."
+  },
+  "gwas": {
+   "name": "Genome-wide association study",
+   "short": "Test millions of genetic variants, one by one, for a link with a trait.",
+   "gist": "Genotype many thousands of people and test each of millions of variants for association with a trait, with a very strict significance threshold.",
+   "example": "WTCCC (2007): 2,000 cases each of seven common diseases against 3,000 shared controls."
+  },
+  "case-cohort": {
+   "name": "Case-cohort / nested case–control",
+   "short": "Measure the costly exposure only in the cases and a sample of the rest.",
+   "gist": "Inside a cohort with stored samples, measure an expensive exposure only in all cases plus a random subcohort (or matched controls).",
+   "example": "EPIC-InterAct: a random subcohort of about 16,000 drawn from 340,000 Europeans to study type 2 diabetes."
+  },
+  "did": {
+   "name": "Difference-in-differences",
+   "short": "Compare the before–after change in a treated group with an untreated one.",
+   "gist": "Compare the change over time in a group that got an intervention with the change in a similar group that didn't.",
+   "example": "Card & Krueger (1994): New Jersey's minimum-wage rise vs. neighbouring Pennsylvania."
+  },
+  "rdd": {
+   "name": "Regression discontinuity",
+   "short": "A cutoff decides treatment: compare those just above with those just below.",
+   "gist": "When a rule assigns treatment at a cutoff, compare units just above and just below: nearly identical except for treatment.",
+   "example": "Angrist & Lavy (1999): Maimonides' rule capping class size at 40 pupils."
+  },
+  "its": {
+   "name": "Interrupted time series",
+   "short": "Many data points before and after a dated change: did the trend break?",
+   "gist": "Many measurements before and after a dated intervention; test for a change in level or slope beyond the existing trend.",
+   "example": "Hospital admissions for heart attacks before and after a public smoking ban."
+  },
+  "synthetic-control": {
+   "name": "Synthetic control",
+   "short": "Build a weighted twin of one treated unit from untreated ones.",
+   "gist": "Build a weighted 'twin' of one treated unit from untreated units that tracked it before the intervention; compare after.",
+   "example": "Abadie et al.: California's 1988 tobacco programme; the economic cost of German reunification."
+  },
+  "rct": {
+   "name": "Randomized controlled trial",
+   "short": "Chance decides who gets the intervention. Then compare outcomes.",
+   "gist": "Randomly allocate individuals to intervention or control, follow them up, compare outcomes. The benchmark for 'does it work?'",
+   "example": "MRC streptomycin trial for tuberculosis (1948), the first modern randomized trial."
+  },
+  "cluster-rct": {
+   "name": "Cluster randomized trial",
+   "short": "Randomize whole groups (schools, villages, clinics), not individuals.",
+   "gist": "Randomize whole groups (schools, clinics, villages) when the intervention acts at group level or would spill over.",
+   "example": "School-based deworming and hygiene trials randomized by school."
+  },
+  "crossover": {
+   "name": "Crossover trial",
+   "short": "Everyone gets both treatments, in random order, with a washout between.",
+   "gist": "Each participant gets both treatments in random order, separated by a washout. Needs far fewer people.",
+   "example": "Bioequivalence studies of generic versus brand-name drugs."
+  },
+  "factorial-doe": {
+   "name": "Factorial experiment (DoE)",
+   "short": "Vary several factors at once to find their effects and interactions.",
+   "gist": "Vary several factors at once in a controlled setting. Estimates each effect and their interactions in few runs.",
+   "example": "Fisher's agricultural experiments at Rothamsted; screening designs in process engineering."
+  },
+  "n-of-1": {
+   "name": "N-of-1 trial",
+   "short": "A randomized trial inside a single person.",
+   "gist": "Repeated, randomized, ideally blinded treatment periods within a single patient to find out what works for them.",
+   "example": "Personalized trials of pain or ADHD medication in individual patients."
+  },
+  "stepped-wedge": {
+   "name": "Stepped-wedge trial",
+   "short": "Everyone gets it in the end; chance decides who goes first.",
+   "gist": "All clusters start as controls and switch to the intervention at randomly ordered times until everyone has it.",
+   "example": "The Gambia Hepatitis Intervention Study (1986), which phased in infant vaccination region by region."
+  },
+  "ab-test": {
+   "name": "Online A/B test",
+   "short": "Randomize users to two versions and watch what they do.",
+   "gist": "Randomize users of a digital product to variants. Huge samples detect tiny effects within days.",
+   "example": "Search and e-commerce platforms running thousands of controlled experiments a year."
+  },
+  "adaptive-platform": {
+   "name": "Adaptive / platform trial",
+   "short": "One master trial: arms are dropped and added as evidence arrives.",
+   "gist": "One master protocol tests many treatments against a shared control; arms are dropped or added as data accrue.",
+   "example": "RECOVERY (COVID-19): dexamethasone shown to save lives within about 100 days of launch."
+  },
+  "field-experiment": {
+   "name": "Field experiment",
+   "short": "Randomize and manipulate in the real world: plots, islands, markets.",
+   "gist": "Manipulate a factor in the real world (plots, islands, villages, markets) with randomized replicates and controls.",
+   "example": "Paine (1966, 1969): removing Pisaster starfish from a rocky shore collapsed its diversity: the 'keystone species'."
+  },
+  "ethnography": {
+   "name": "Ethnography",
+   "short": "Live inside the setting for months and learn how it really works.",
+   "gist": "Immerse yourself in a setting for months, observing and taking part, to understand practices and meanings from the inside.",
+   "example": "Whyte's Street Corner Society (1943); Latour & Woolgar's Laboratory Life (1979)."
+  },
+  "grounded-theory": {
+   "name": "Grounded theory",
+   "short": "Build a new theory, step by step, up from the data.",
+   "gist": "Collect and analyse data in iterative cycles (coding, comparing, sampling) to build a new theory from the ground up.",
+   "example": "Glaser & Strauss (1965), Awareness of Dying: how hospital staff and patients manage knowledge of death."
+  },
+  "interviews-thematic": {
+   "name": "Interviews & thematic analysis",
+   "short": "Ask, listen, and find the patterns in what people say.",
+   "gist": "In-depth interviews or focus groups analysed for patterns of meaning. Answers 'how' and 'why' from people's own view.",
+   "example": "Exploring why patients stop taking a medication they were prescribed."
+  },
+  "case-study": {
+   "name": "Case study (in-depth)",
+   "short": "One bounded case, examined from every angle in its real context.",
+   "gist": "Study one or a few bounded cases (a company, a project, a policy) in their real context, using many sources of evidence.",
+   "example": "Allison's Essence of Decision (1971) on the Cuban missile crisis; engineering failure investigations."
+  },
+  "process-tracing": {
+   "name": "Process tracing",
+   "short": "Test rival causal stories inside one case, clue by clue.",
+   "gist": "Test rival explanations of one case against the evidence each predicts, step by step: hoop tests can rule one out, smoking guns confirm one.",
+   "example": "Van Evera's (1997) hoop and smoking-gun tests, now a standard tool in political science."
+  },
+  "delphi": {
+   "name": "Delphi consensus",
+   "short": "Experts vote anonymously, round after round, until they converge.",
+   "gist": "Experts rate statements anonymously over repeated rounds, seeing the group's feedback, until consensus emerges.",
+   "example": "COMET-initiative 'core outcome sets' that tell trialists what every trial in a field should measure."
+  },
+  "mixed-sequential": {
+   "name": "Mixed methods (sequential)",
+   "short": "Numbers then stories to explain them, or stories then numbers to test them.",
+   "gist": "Combine numbers and narratives in sequence: a survey then interviews to explain it, or interviews then a survey to test them.",
+   "example": "Explanatory sequential design: a survey finds a gap, follow-up interviews explain it."
+  },
+  "systematic-review": {
+   "name": "Systematic review & meta-analysis",
+   "short": "Find every study on a focused question, appraise them, pool them.",
+   "gist": "A pre-specified, exhaustive search and appraisal of all studies on a focused question; pool results where sensible.",
+   "example": "Cochrane reviews; the antenatal-steroids forest plot in the Cochrane logo."
+  },
+  "scoping-review": {
+   "name": "Scoping review",
+   "short": "Map what has been studied on a broad topic, and where the gaps are.",
+   "gist": "Systematically map what research exists on a broad topic (concepts, methods, gaps) without pooling effects.",
+   "example": "PRISMA-ScR guided maps, e.g. of how AI is used in nursing practice."
+  },
+  "network-meta": {
+   "name": "Network meta-analysis",
+   "short": "Rank many treatments at once from direct and indirect comparisons.",
+   "gist": "Compare many treatments at once by combining direct and indirect evidence across a network of trials.",
+   "example": "Cipriani et al. (2018): 21 antidepressants ranked from 522 trials."
+  },
+  "ipd-meta": {
+   "name": "Individual participant data meta-analysis",
+   "short": "Pool every trial's raw data, not just its published summary.",
+   "gist": "Collect and reanalyse each trial's individual participant data, so outcomes, subgroups and analyses are defined the same way everywhere.",
+   "example": "The Early Breast Cancer Trialists' Collaborative Group, pooling patient-level data from adjuvant-therapy trials since 1985."
+  },
+  "umbrella-review": {
+   "name": "Umbrella review",
+   "short": "A review of reviews: the big picture across a whole field.",
+   "gist": "A review of systematic reviews: summarizes and grades the evidence across many reviews on a broad topic.",
+   "example": "Theodoratou et al. (2014): vitamin D and 137 outcomes across meta-analyses and trials."
+  },
+  "rapid-review": {
+   "name": "Rapid review",
+   "short": "A systematic review on a deadline, with its shortcuts declared.",
+   "gist": "A systematic review with transparently streamlined steps, delivered in weeks to inform an urgent decision.",
+   "example": "Cochrane Rapid Reviews informing COVID-19 policy in 2020."
+  },
+  "realist-review": {
+   "name": "Realist review",
+   "short": "What works, for whom, in what context, and why?",
+   "gist": "Synthesize mixed evidence to explain how complex programmes work: for whom, in what contexts, and why.",
+   "example": "Pawson's realist syntheses of complex social programmes (context + mechanism → outcome)."
+  },
+  "prior-art": {
+   "name": "Prior art review",
+   "short": "Before you build it or call it new, search patents, products and papers for what already exists.",
+   "gist": "Search patents, standards, products, theses and papers for what already exists, before you build, publish or claim novelty.",
+   "example": "In re Hall (1986): one German thesis, shelved in a university library, counted as prior art against a US patent."
+  },
+  "co-citation": {
+   "name": "Co-citation analysis",
+   "short": "Two works are linked whenever a later paper cites both. Clusters reveal a field's foundations.",
+   "gist": "Link works (or authors) each time later papers cite them together; clusters map a field's intellectual base. New papers are invisible.",
+   "example": "Small (1973) defined it; White & Griffith (1981) mapped information science's schools by author co-citation."
+  },
+  "bibliographic-coupling": {
+   "name": "Bibliographic coupling",
+   "short": "Two papers are linked when they cite the same sources. Clusters reveal today's research fronts.",
+   "gist": "Link papers that share references; clusters map current research fronts. Works the day a paper appears, but generic references blur it.",
+   "example": "Kessler (1963) grouped physics papers by the references they share; still a standard way to find research fronts."
+  },
+  "multivocal-review": {
+   "name": "Multivocal literature review",
+   "short": "Review papers and practitioners' blogs, talks and white papers, grading each source.",
+   "gist": "A systematic review that adds grey literature (blogs, white papers, talks) when practice outruns research, and grades each source.",
+   "example": "Garousi, Felderer & Mäntylä (2019) set the guidelines, after an MLR on when to automate software tests."
+  },
+  "diagnostic-accuracy": {
+   "name": "Diagnostic accuracy study",
+   "short": "The new test and the reference standard, on the same real patients.",
+   "gist": "Apply a new test and a reference standard to consecutive people suspected of the condition; estimate sensitivity and specificity.",
+   "example": "STARD-reported evaluations of rapid antigen tests against PCR."
+  },
+  "reliability": {
+   "name": "Reliability & agreement study",
+   "short": "Do raters, devices or repeated measurements agree?",
+   "gist": "Repeat measurements across raters, occasions or devices; quantify agreement (kappa, ICC, Bland–Altman limits).",
+   "example": "Bland & Altman (1986): why correlation is the wrong way to compare two measurement methods."
+  },
+  "validation": {
+   "name": "Instrument development & validation",
+   "short": "Build a questionnaire or scale, and prove it measures what it claims.",
+   "gist": "Build a questionnaire or scale from theory and input, then test its structure, reliability and validity (psychometrics).",
+   "example": "Development of the Maslach Burnout Inventory (1981)."
+  },
+  "nomological": {
+   "name": "Nomological network study",
+   "short": "Predict how your measure should relate to other measures, then test the whole pattern.",
+   "gist": "From theory, predict which measures yours should track, which it shouldn't, and which groups should differ; then test the whole pattern.",
+   "example": "Cronbach & Meehl (1955) coined the idea; Campbell & Fiske's (1959) multitrait–multimethod matrix put it to work."
+  },
+  "discrete-choice": {
+   "name": "Discrete choice experiment",
+   "short": "Make people choose between bundles of features to reveal what they really value.",
+   "gist": "Respondents choose between hypothetical options whose attributes vary by design; choice models reveal trade-offs and willingness to pay.",
+   "example": "McFadden's random-utility models (Nobel prize, 2000), first used to forecast ridership of San Francisco's BART."
+  },
+  "interlab": {
+   "name": "Interlaboratory comparison",
+   "short": "Same sample, many labs: how reproducible is the method?",
+   "gist": "Identical samples go to many labs (a 'round robin'); differences reveal how reproducible a measurement method is.",
+   "example": "Proficiency-testing schemes; BIPM key comparisons between national metrology institutes."
+  },
+  "analytical-model": {
+   "name": "Analytical / mathematical theory",
+   "short": "Derive it with mathematics: what must be true, in every case.",
+   "gist": "Derive results from first principles with mathematics: proofs, closed-form solutions, bounds. 'What must be true if…'",
+   "example": "Carnot's efficiency limit (1824); Nash equilibrium (1950)."
+  },
+  "simulation": {
+   "name": "Computational simulation",
+   "short": "Build the system in a computer and run the experiments reality won't allow.",
+   "gist": "Encode mechanisms in a model (FEM, CFD, Monte Carlo, agent-based) and run experiments impossible, dangerous or too costly in reality.",
+   "example": "Numerical-relativity waveforms of black-hole mergers, computed years before LIGO's first detection."
+  },
+  "prediction-model": {
+   "name": "Prediction model (statistical / ML)",
+   "short": "Learn from past data to forecast who or what comes next.",
+   "gist": "Develop a model that forecasts an outcome from predictors, then test its discrimination and calibration on new data.",
+   "example": "The Framingham risk score; TRIPOD-reported clinical prediction models."
+  },
+  "economic-evaluation": {
+   "name": "Cost-effectiveness analysis",
+   "short": "Weigh the extra cost against the extra benefit: is it worth the money?",
+   "gist": "Compare the costs and outcomes of alternatives, often in a decision model, to find the extra cost per unit of benefit, such as per QALY gained.",
+   "example": "NICE in England weighs new medicines by their cost per quality-adjusted life year (QALY) gained."
+  },
+  "design-science": {
+   "name": "Design science (build & evaluate)",
+   "short": "Build an artifact that solves a real problem, and test it with its users.",
+   "gist": "Iteratively design an artifact (device, software, method) that solves a real problem, and evaluate it with users in context.",
+   "example": "Usability-engineered medical devices (IEC 62366); research software built with its users."
+  },
+  "pilot": {
+   "name": "Pilot / feasibility study",
+   "short": "A dress rehearsal: can the big study actually be run?",
+   "gist": "A small rehearsal of a future study. Can we recruit, retain, deliver and measure? Not for estimating effects.",
+   "example": "CONSORT extension for randomized pilot and feasibility trials (2016)."
+  },
+  "think-aloud": {
+   "name": "Usability test (think-aloud)",
+   "short": "Watch real users try real tasks while they say what they're thinking.",
+   "gist": "Representative users attempt realistic tasks with a prototype while thinking aloud; observers log where and why they struggle.",
+   "example": "Nielsen & Landauer (1993): about five users find most usability problems in one round of testing."
+  },
+  "pdsa": {
+   "name": "Plan–Do–Study–Act cycles",
+   "short": "Small, fast tests of change: try it, measure it, adapt it, repeat.",
+   "gist": "Iterative small-scale tests of a change in a real service, each measured over time on a run chart and used to plan the next cycle.",
+   "example": "The Institute for Healthcare Improvement's Model for Improvement, used in hospitals worldwide."
+  },
+  "benchmark": {
+   "name": "Benchmark evaluation",
+   "short": "Same tasks, same data, same metrics: who really performs best?",
+   "gist": "Compare methods on shared tasks, datasets and metrics under identical conditions, with baselines, ablations and repeated runs.",
+   "example": "ImageNet; robot-grasping benchmarks built on the YCB object set."
+  }
+ },
+ "threats": {
+  "confounding": {
+   "name": "Confounding",
+   "short": "A hidden third factor drives both exposure and outcome.",
+   "text": "A third factor causes both the exposure and the outcome, faking or hiding an effect.",
+   "example": "Coffee drinkers seemed to get more lung cancer, because coffee drinkers smoked more."
+  },
+  "confounding-indication": {
+   "name": "Confounding by indication",
+   "short": "The sickest get the treatment, so the treatment looks harmful.",
+   "text": "The reason someone is treated is itself linked to the outcome, so treatment looks harmful (or helpful) when it isn't.",
+   "example": "In routine records, a heart drug looked deadly because doctors reserved it for the sickest patients."
+  },
+  "selection-bias": {
+   "name": "Selection bias",
+   "short": "Who ends up in the sample depends on what you're studying.",
+   "text": "Who gets into (or stays in) the sample depends on the exposure, the outcome, or both.",
+   "example": "Literary Digest (1936) mailed 10 million ballots, largely to phone and car owners; the 2.4 million returned predicted Landon. Roosevelt won in a landslide."
+  },
+  "attrition": {
+   "name": "Attrition & missing data",
+   "short": "The people who drop out are not like the people who stay.",
+   "text": "Participants drop out, or data go missing, for reasons related to the treatment or the outcome.",
+   "example": "In a weight-loss trial, the people who weren't losing weight quietly stopped coming. The remaining group looked great."
+  },
+  "recall-bias": {
+   "name": "Recall bias",
+   "short": "Cases remember their past differently from controls.",
+   "text": "People with the outcome remember or report past exposures differently from people without it.",
+   "example": "Mothers of babies with birth defects search their memory harder for medicines taken in pregnancy."
+  },
+  "measurement-error": {
+   "name": "Measurement error",
+   "short": "The instrument is noisy, biased or drifting.",
+   "text": "The instrument is noisy, biased, drifting, or used differently across groups or over time.",
+   "example": "Self-reported diets underestimate energy intake, and more so in some groups than in others."
+  },
+  "reverse-causation": {
+   "name": "Reverse causation",
+   "short": "The outcome is causing the 'cause'.",
+   "text": "The outcome (or its early stages) causes the exposure, not the other way round.",
+   "example": "Thin older adults die sooner, partly because illness causes weight loss years before death."
+  },
+  "regression-mean": {
+   "name": "Regression to the mean",
+   "short": "Extreme values drift back toward average on their own.",
+   "text": "Units picked for extreme values drift back toward average on re-measurement, with or without any intervention.",
+   "example": "Pupils chosen for tutoring after their worst-ever test score improve next time, tutoring or not."
+  },
+  "expectation": {
+   "name": "Expectation effects",
+   "short": "Knowing who got what changes the result.",
+   "text": "Placebo, Hawthorne and observer effects: knowing who got what changes behaviour, symptoms or readings.",
+   "example": "Moseley et al. (2002): sham knee arthroscopy relieved pain as much as the real operation."
+  },
+  "contamination": {
+   "name": "Contamination & spillover",
+   "short": "The control group catches the intervention.",
+   "text": "The control group gets exposed to the intervention, or effects spill over between units, diluting the difference.",
+   "example": "Control-group teachers borrowed the new curriculum from their colleagues down the hall."
+  },
+  "immortal-time": {
+   "name": "Immortal time bias",
+   "short": "The treated get credit for time in which they couldn't have died.",
+   "text": "The treated group is credited with follow-up time during which, by definition, the outcome couldn't happen.",
+   "example": "Oscar winners seemed to live ~4 years longer than nominees, partly because you must survive long enough to win."
+  },
+  "collider": {
+   "name": "Collider bias",
+   "short": "Selecting on a common effect invents a link.",
+   "text": "Selecting or adjusting on a common effect of exposure and outcome creates a spurious association (Berkson's bias).",
+   "example": "Among hospital patients, two unrelated diseases look linked, because having either one gets you admitted."
+  },
+  "ecological-fallacy": {
+   "name": "Ecological fallacy",
+   "short": "What's true of groups needn't be true of their members.",
+   "text": "Concluding something about individuals from an association seen only between groups.",
+   "example": "Robinson (1950): US states with more immigrants had higher literacy, though immigrants themselves were less often literate."
+  },
+  "unit-of-analysis": {
+   "name": "Unit-of-analysis error",
+   "short": "Groups were randomized, but individuals were counted.",
+   "text": "Groups are randomized or sampled, but individuals are analysed as if independent. False precision follows.",
+   "example": "A trial randomizing 10 schools analysed 3,000 pupils as independent and reported impossibly narrow confidence intervals."
+  },
+  "survivorship": {
+   "name": "Survivorship bias",
+   "short": "You only see the ones that made it back.",
+   "text": "Only the survivors, successes or still-present units are observed; the failures are invisible.",
+   "example": "Wald, WWII: armour belongs where returning bombers had no bullet holes, because the planes hit there never came back."
+  },
+  "publication-bias": {
+   "name": "Publication bias",
+   "short": "The null results are still in the drawer.",
+   "text": "Positive results get published, null results stay in the drawer, and the literature lies by omission.",
+   "example": "Turner et al. (2008): almost all positive antidepressant trials were published; most negative ones were not, or were spun."
+  },
+  "source-credibility": {
+   "name": "Unvetted sources",
+   "short": "Nobody checked it, and the author may be selling something.",
+   "text": "Grey sources skip peer review: vendors, consultants and enthusiasts can publish striking claims with no visible method or data.",
+   "example": "The Standish CHAOS reports' famous IT-project failure rates were cited for years; Eveleens & Verhoef (2010) showed their definitions skewed the figures."
+  },
+  "forking-paths": {
+   "name": "Forking paths & p-hacking",
+   "short": "Try enough analyses and one of them will be 'significant'.",
+   "text": "Flexible choices of outcomes, subgroups and analyses, or peeking at the data, until something is 'significant'.",
+   "example": "Simmons et al. (2011) used flexible analyses to 'show' that listening to a Beatles song made people younger."
+  },
+  "low-power": {
+   "name": "Low power",
+   "short": "Too small to see the effect, and too noisy to trust a hit.",
+   "text": "Too few units to detect a realistic effect; the 'significant' findings that do emerge are exaggerated.",
+   "example": "Button et al. (2013): median statistical power in neuroscience studies was about 21%."
+  },
+  "overfitting-leakage": {
+   "name": "Overfitting & leakage",
+   "short": "The model memorized the test.",
+   "text": "The model memorizes noise, or sees information from the test data or the future, and fails in the real world.",
+   "example": "Chest X-ray AI learned to recognize which hospital (and scanner) an image came from, not the disease (Zech et al., 2018)."
+  },
+  "spectrum-bias": {
+   "name": "Spectrum bias",
+   "short": "It was only tested on the obvious cases.",
+   "text": "A test or rater is evaluated on clear-cut cases and obvious non-cases rather than on the realistic mix of patients or samples.",
+   "example": "Tests that look near-perfect on severe cases vs. healthy volunteers falter on the mild, ambiguous patients in real clinics."
+  },
+  "history-trend": {
+   "name": "History & secular trends",
+   "short": "Something else changed at the same time.",
+   "text": "Something else changed at the same time (a trend, the season, another policy) and takes the credit or the blame.",
+   "example": "A hospital's hygiene campaign coincided with a nationwide fall in infections and got credit for both."
+  },
+  "carryover": {
+   "name": "Carryover",
+   "short": "The first treatment lingers into the second period.",
+   "text": "The effect of an earlier treatment period bleeds into the next one.",
+   "example": "A drug's effect lingered into the placebo period of a crossover trial, making placebo look effective."
+  },
+  "researcher-lens": {
+   "name": "Researcher bias",
+   "short": "You see what you expected to see.",
+   "text": "The analyst's expectations, attachments or position shape what is seen, coded and reported.",
+   "example": "Analysts who knew the hypothesis read ambiguous interview passages as supporting it."
+  },
+  "external-validity": {
+   "name": "Limited generalizability",
+   "short": "True here, but maybe not anywhere else.",
+   "text": "The sample, setting or conditions differ from where the results will be used.",
+   "example": "Henrich et al. (2010): most psychology findings came from WEIRD samples (Western, Educated, Industrialized, Rich, Democratic)."
+  },
+  "heterogeneity": {
+   "name": "Apples & oranges",
+   "short": "Pooling apples with oranges.",
+   "text": "Studies, populations or interventions pooled together differ so much that the average means little.",
+   "example": "Pooling trials of different drugs, doses and patients gives a precise average of nothing in particular."
+  },
+  "model-assumptions": {
+   "name": "Unvalidated model",
+   "short": "The model rests on assumptions nobody checked.",
+   "text": "A model, derivation or simulation rests on unchecked assumptions, wrong inputs or numerical artifacts.",
+   "example": "The Mars Climate Orbiter was lost in 1999: one team's software used imperial units, the other expected metric."
+  },
+  "construct-validity": {
+   "name": "Wrong construct",
+   "short": "You measured a proxy, not the real thing.",
+   "text": "You measure a proxy or surrogate that doesn't capture what you actually care about.",
+   "example": "CAST (1989): drugs that suppressed irregular heartbeats on monitors increased deaths."
+  },
+  "thin-data": {
+   "name": "Thin data",
+   "short": "Too few voices to support the story.",
+   "text": "Too few or too similar cases and voices; conclusions are drawn before the data are rich enough.",
+   "example": "Six interviews with enthusiastic early adopters produced a 'theory' that collapsed when sceptics were interviewed."
+  }
+ },
+ "safeguards": {
+  "randomization": {
+   "name": "Randomization",
+   "short": "Let chance decide who gets what.",
+   "text": "Let chance decide who gets what. Balances known and unknown confounders, on average."
+  },
+  "allocation-concealment": {
+   "name": "Allocation concealment",
+   "short": "No one can see or steer the next assignment.",
+   "text": "Nobody enrolling participants can know or influence the next assignment."
+  },
+  "blinding": {
+   "name": "Blinding",
+   "short": "Nobody knows who got what.",
+   "text": "Participants, clinicians, outcome assessors or analysts don't know who got what, or what the hypothesis is."
+  },
+  "placebo-sham": {
+   "name": "Placebo or sham control",
+   "short": "The control arm gets an identical-looking dummy.",
+   "text": "The control group gets an indistinguishable dummy, so expectations are equal in both arms."
+  },
+  "itt": {
+   "name": "Intention-to-treat",
+   "short": "Analyse everyone as randomized, whatever happened next.",
+   "text": "Analyse everyone in the group they were randomized to, whatever happened next; handle missing data explicitly."
+  },
+  "preregistration": {
+   "name": "Preregistration",
+   "short": "Lock in the plan before you see the data.",
+   "text": "Publish hypotheses, primary outcome and analysis plan (or review protocol) before seeing the data."
+  },
+  "power-analysis": {
+   "name": "Sample-size planning",
+   "short": "Work out how many you need before you start.",
+   "text": "Work out in advance how many units you need to detect the smallest effect that matters."
+  },
+  "dag-adjustment": {
+   "name": "Causal diagram (DAG)",
+   "short": "Draw the causal map; adjust only for what belongs.",
+   "text": "Draw your causal assumptions; adjust for confounders, and deliberately not for colliders or mediators."
+  },
+  "matching-ps": {
+   "name": "Matching / propensity scores",
+   "short": "Compare like with like.",
+   "text": "Compare treated and untreated units that are similar on measured characteristics."
+  },
+  "negative-control": {
+   "name": "Negative controls",
+   "short": "Test something that should show no effect.",
+   "text": "Test an exposure or outcome that can't plausibly be linked; any 'effect' there exposes hidden bias."
+  },
+  "sensitivity-analysis": {
+   "name": "Sensitivity analysis",
+   "short": "Change the assumptions. Does the answer survive?",
+   "text": "Re-run under different assumptions (missing data, unmeasured confounding, E-values, model choices). Do conclusions survive?"
+  },
+  "active-comparator": {
+   "name": "Active comparator, new users",
+   "short": "Compare new users of one treatment with new users of another.",
+   "text": "Compare new users of a treatment with new users of an alternative for the same indication."
+  },
+  "time-zero": {
+   "name": "Time-zero alignment",
+   "short": "Everyone's clock starts at the same moment.",
+   "text": "Start follow-up when eligibility is met and the treatment strategy is assigned, the same moment for everyone."
+  },
+  "lag-analysis": {
+   "name": "Lag & early-event exclusion",
+   "short": "Leave a gap between exposure and outcome.",
+   "text": "Measure exposure long before the outcome, or set aside early events, to blunt reverse causation."
+  },
+  "concurrent-control": {
+   "name": "Concurrent control group",
+   "short": "A comparison group living through the same period.",
+   "text": "Compare against a group measured over the same period, so trends and regression to the mean hit both equally."
+  },
+  "parallel-trends": {
+   "name": "Pre-trend check & control series",
+   "short": "Show the groups moved together before the change.",
+   "text": "Show the groups moved in parallel before the intervention, or add a comparison series it couldn't have affected."
+  },
+  "cluster-allocation": {
+   "name": "Allocate by cluster",
+   "short": "Assign whole groups, so nothing leaks between arms.",
+   "text": "Assign whole groups (classes, wards, villages) so the intervention can't leak into the control group."
+  },
+  "washout": {
+   "name": "Washout period",
+   "short": "Let the first treatment wear off.",
+   "text": "Leave enough time between treatment periods for the previous effect to disappear."
+  },
+  "external-validation": {
+   "name": "External validation",
+   "short": "Test it on data it has never seen.",
+   "text": "Test the model or method on data from another time or place that it has never seen."
+  },
+  "multiplicity": {
+   "name": "Multiplicity correction",
+   "short": "Name one primary outcome, or pay for every extra test.",
+   "text": "Name one primary outcome, or adjust for the number of tests you run."
+  },
+  "replication": {
+   "name": "Independent replication",
+   "short": "Someone else does it again.",
+   "text": "Another team, sample or site repeats the study, ideally with the same pre-registered plan."
+  },
+  "comprehensive-search": {
+   "name": "Comprehensive search",
+   "short": "Search everywhere, including the drawers.",
+   "text": "Search multiple databases, trial registries, preprints and grey literature, and contact authors."
+  },
+  "grey-appraisal": {
+   "name": "Grey-literature appraisal",
+   "short": "Grade every grey source before you trust it.",
+   "text": "Score each grey source for its producer's authority, stated method, objectivity, date and outlet tier, and set stopping rules for the search in advance."
+  },
+  "heterogeneity-plan": {
+   "name": "Pre-planned heterogeneity analysis",
+   "short": "Plan in advance how you'll explain why studies differ.",
+   "text": "Random-effects models plus pre-specified subgroups and meta-regression to explore why studies differ."
+  },
+  "sampling-frame": {
+   "name": "Representative sampling",
+   "short": "Sample from the whole population, not the convenient part.",
+   "text": "Recruit from a defined population (all consecutive patients, a random sample), not whoever is convenient."
+  },
+  "validated-measures": {
+   "name": "Validated, objective measures",
+   "short": "Use instruments proven to measure what matters.",
+   "text": "Use calibrated instruments, records or validated scales instead of memory or ad-hoc questions, and outcomes that matter rather than unvalidated surrogates."
+  },
+  "reflexivity": {
+   "name": "Reflexivity & double coding",
+   "short": "Write down your own lens, and let a second coder check.",
+   "text": "Keep an audit trail and reflexive notes, have a second analyst code independently, check interpretations with participants."
+  },
+  "triangulation": {
+   "name": "Triangulation",
+   "short": "Different methods, different flaws, same answer.",
+   "text": "Combine sources, methods or designs with different weaknesses. Trust the conclusions they agree on."
+  },
+  "saturation-sampling": {
+   "name": "Theoretical sampling to saturation",
+   "short": "Keep sampling until nothing new turns up.",
+   "text": "Keep adding cases chosen to challenge emerging ideas, until new data add nothing new."
+  },
+  "multilevel-analysis": {
+   "name": "Multilevel analysis",
+   "short": "Model people inside groups inside places.",
+   "text": "Model individuals nested in groups, using individual-level data wherever possible."
+  },
+  "verification-validation": {
+   "name": "Verification & validation",
+   "short": "Check the code is right, then check the model matches reality.",
+   "text": "Verify that the code solves the equations correctly (convergence tests, unit checks); validate the model against real experiments."
+  },
+  "multi-site": {
+   "name": "Multi-site, diverse sample",
+   "short": "Run it where the results will be used.",
+   "text": "Run the study across the settings and populations where the results will actually be used."
+  },
+  "within-comparison": {
+   "name": "Self or sibling comparison",
+   "short": "Compare people with themselves, or siblings with siblings.",
+   "text": "Compare units with themselves, or siblings with each other, so stable background factors cancel out."
+  },
+  "spc": {
+   "name": "Run charts & control limits",
+   "short": "Judge a change against the process's own baseline variation.",
+   "text": "Plot the measure over time from a stable baseline and apply pre-set rules (shifts, trends, control limits), so real change stands out from noise and drift."
+  }
+ },
+ "twists": {
+  "T01": {
+   "name": "The ethics board says no",
+   "text": "Withholding or assigning the exposure is judged unethical. No one may be allocated to it."
+  },
+  "T02": {
+   "name": "Funding cut",
+   "text": "You now have six months and a tenth of the budget."
+  },
+  "T03": {
+   "name": "Rarer than you thought",
+   "text": "New data: the outcome affects about 1 in 20,000, not 1 in 200."
+  },
+  "T04": {
+   "name": "The registry door opens",
+   "text": "A national registry with 20 years of linked records becomes available to you."
+  },
+  "T05": {
+   "name": "The ministry sets a threshold",
+   "text": "Eligibility will be decided by a score: everyone above 60 gets it, everyone below doesn't."
+  },
+  "T06": {
+   "name": "It's happening anyway",
+   "text": "The decision is made: everyone gets the intervention within a year. Only the order is open."
+  },
+  "T07": {
+   "name": "They talk to each other",
+   "text": "Participants share tips, materials and gossip. Anything you give one of them, the others get too."
+  },
+  "T08": {
+   "name": "Only one",
+   "text": "It turns out there is only one eligible unit: one patient, one plant, one country."
+  },
+  "T09": {
+   "name": "Thirty studies just dropped",
+   "text": "A literature search reveals dozens of primary studies on this exact question."
+  },
+  "T10": {
+   "name": "Into the fog",
+   "text": "Experts can't agree what the key variables even are."
+  },
+  "T11": {
+   "name": "Slow burn",
+   "text": "The effect, if any, would take 15 years to show."
+  },
+  "T12": {
+   "name": "A brief trigger",
+   "text": "The suspected cause lasts minutes, and the effect comes within hours."
+  },
+  "T13": {
+   "name": "Only a few are exposed",
+   "text": "The exposure is confined to a few hundred people at one site."
+  },
+  "T14": {
+   "name": "Reviewer 2",
+   "text": "The Reviewer may play one extra Threat against every design this round."
+  },
+  "T15": {
+   "name": "Replication crisis",
+   "text": "Any design not defended with Preregistration or Independent replication loses 1 point this round."
+  },
+  "T16": {
+   "name": "Open science prize",
+   "text": "+1 point to every player who plays Preregistration, Triangulation or Independent replication this round."
+  },
+  "T17": {
+   "name": "It's all on the blogs",
+   "text": "The journals turn up five papers. The practitioners have written five hundred posts, talks and white papers."
+  }
+ },
+ "programs": {
+  "P1": {
+   "name": "Screens & teen mental health",
+   "brief": "Is social media harming adolescents' mental health? Parents, platforms and governments want an answer.",
+   "stages": [
+    "How do teenagers themselves describe their social-media use and its effects?",
+    "How common are heavy use and depressive symptoms, and do they co-occur?",
+    "Does heavy use come before rising symptoms, or the other way round?",
+    "Does cutting use for four weeks improve mood?",
+    "What do all the trials and cohorts add up to?"
+   ]
+  },
+  "P2": {
+   "name": "Microplastics in our bodies",
+   "brief": "Microplastics turn up in blood, placentas and arteries. Are they a health problem?",
+   "stages": [
+    "What has been studied so far, with which methods, and where are the gaps?",
+    "Do different labs measuring the same tissue sample find the same particle counts?",
+    "How much do people carry, and does it vary by region and age?",
+    "Do people with more microplastics in arterial plaque have more heart attacks later?",
+    "Through what cellular mechanism could particles cause inflammation, and at what dose?"
+   ]
+  },
+  "P3": {
+   "name": "A soft gripper for fruit picking",
+   "brief": "Growers can't find seasonal workers. Can a soft robotic gripper pick strawberries without bruising them?",
+   "stages": [
+    "What gripper designs exist, and how have they been evaluated?",
+    "Design a gripper that growers and pickers find usable.",
+    "Which combination of finger material, pressure and approach speed minimizes bruising?",
+    "Does it beat existing grippers on a shared set of fruits and metrics?",
+    "Can it run a full shift in a real greenhouse? Will staff keep using it?"
+   ]
+  },
+  "P4": {
+   "name": "The four-day week",
+   "brief": "A government wants to know if a 32-hour week at full pay is good for workers and firms.",
+   "stages": [
+    "How did the first companies that tried it make it work, or fail?",
+    "Can firms be recruited, and can productivity and well-being be measured consistently?",
+    "Sixty firms volunteered and all will switch eventually. Does it affect burnout and output?",
+    "A whole country adopted it by law in one year. What happened to national productivity?",
+    "Why does it work in some sectors and not in others?"
+   ]
+  },
+  "P5": {
+   "name": "A new post-viral syndrome",
+   "brief": "Months after a new infection, some people report exhaustion and brain fog. What is it, and what helps?",
+   "stages": [
+    "What do the first patients look like?",
+    "How common is it among people who were infected?",
+    "Who is at risk? Does vaccination before infection change the odds?",
+    "Twelve candidate treatments are proposed. Which work?",
+    "Ranking the treatments when few were compared head-to-head."
+   ]
+  },
+  "P6": {
+   "name": "AI triage in the emergency department",
+   "brief": "A hospital group wants an AI tool that flags patients who will need intensive care.",
+   "stages": [
+    "Can routine data predict ICU admission within 24 hours?",
+    "Does it still work at another hospital, a year later?",
+    "Do nurses agree with each other, and with the tool, on the triage level?",
+    "The tool will be switched on in all 8 hospitals this year. Does it save lives?",
+    "Why do some clinicians override it so often?"
+   ]
+  }
+ }
+}

@@ -50,7 +50,12 @@ def rect(x, y, w, h, fill="none", stroke=INK, sw=3, rx=3, o=1, dash=None):
             f'stroke="{stroke}" stroke-width="{sw}" opacity="{o}"{da}/>')
 
 
+# Labels drawn inside pictures, translated per language by the build (i18n/<code>/ui.json, "art" section).
+TR = {}
+
+
 def text(x, y, s, size=14, c=INK, anchor="middle", weight=700, family="'Barlow Condensed', 'Arial Narrow', sans-serif", o=1):
+    s = TR.get(s, s)
     s = s.replace("&", "&amp;").replace("<", "&lt;")
     return (f'<text x="{_f(x)}" y="{_f(y)}" font-size="{size}" fill="{c}" text-anchor="{anchor}" '
             f'font-weight="{weight}" font-family="{family}" opacity="{o}">{s}</text>')

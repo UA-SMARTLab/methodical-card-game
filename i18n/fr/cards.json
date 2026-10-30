@@ -1,0 +1,1714 @@
+{
+ "meta": {
+  "tagline": "Adaptez votre méthode de recherche au défi.",
+  "suits": {
+   "DESCRIBE": {
+    "name": "Décrire",
+    "ask": "Qu’est-ce que c’est ? Combien, à quelle fréquence, où, et est-ce que ça change ?"
+   },
+   "EXPLORE": {
+    "name": "Explorer",
+    "ask": "Que se passe-t-il ici ? Comment et pourquoi les gens le vivent-ils ou le font-ils ?"
+   },
+   "ASSOCIATE": {
+    "name": "Associer",
+    "ask": "X et Y vont-ils ensemble, et X vient-il en premier ?"
+   },
+   "CAUSE": {
+    "name": "Cause",
+    "ask": "Modifier X change-t-il Y ? L’intervention fonctionne-t-elle ?"
+   },
+   "PREDICT": {
+    "name": "Prédire",
+    "ask": "Que va-t-il se passer, et pour qui ?"
+   },
+   "MEASURE": {
+    "name": "Mesurer",
+    "ask": "Peut-on le mesurer de façon exacte, fiable et valide ?"
+   },
+   "EXPLAIN": {
+    "name": "Expliquer",
+    "ask": "Quel mécanisme ou quelle loi doit tenir ? Que découle-t-il de la théorie ?"
+   },
+   "BUILD": {
+    "name": "Construire",
+    "ask": "Peut-on fabriquer quelque chose qui marche, et le plan est-il faisable ?"
+   },
+   "SYNTHESIZE": {
+    "name": "Synthétiser",
+    "ask": "Que disent toutes les données existantes ?"
+   }
+  },
+  "families": {
+   "descriptive": {
+    "name": "Observationnel descriptif"
+   },
+   "analytical": {
+    "name": "Observationnel analytique"
+   },
+   "quasi": {
+    "name": "Quasi expérimental"
+   },
+   "experimental": {
+    "name": "Expérimental"
+   },
+   "qualitative": {
+    "name": "Qualitatif et mixte"
+   },
+   "synthesis": {
+    "name": "Synthèse des données"
+   },
+   "measurement": {
+    "name": "Mesure"
+   },
+   "computational": {
+    "name": "Théorie et calcul"
+   },
+   "engineering": {
+    "name": "Conception et développement"
+   }
+  },
+  "constraints": {
+   "no-assign": {
+    "name": "Pas d’assignation",
+    "text": "Vous ne pouvez pas (éthiquement ou en pratique) décider qui ou quoi reçoit l’exposition."
+   },
+   "rare-outcome": {
+    "name": "Issue rare",
+    "text": "L’issue est rare : environ 1 sur 1 000, voire moins."
+   },
+   "rare-exposure": {
+    "name": "Exposition rare",
+    "text": "Seul un petit groupe identifiable est exposé."
+   },
+   "long-latency": {
+    "name": "Latence longue",
+    "text": "Des années ou des décennies séparent la cause de l’effet."
+   },
+   "transient": {
+    "name": "Déclencheur bref",
+    "text": "L’exposition est brève et son effet immédiat."
+   },
+   "existing-data": {
+    "name": "Données existantes",
+    "text": "Dossiers, registres, journaux ou archives existent déjà."
+   },
+   "single-unit": {
+    "name": "Une unité",
+    "text": "Une seule ou quelques unités : un patient, un pays, une usine."
+   },
+   "group-level": {
+    "name": "Niveau collectif",
+    "text": "L’exposition agit sur des groupes entiers, ou se propagerait entre personnes."
+   },
+   "cutoff": {
+    "name": "Règle de seuil",
+    "text": "Un seuil sur un score décide qui reçoit l’exposition."
+   },
+   "rollout": {
+    "name": "Déploiement",
+    "text": "Tout le monde recevra l’intervention ; seul le calendrier est souple."
+   },
+   "fast-cheap": {
+    "name": "Budget serré",
+    "text": "Des semaines ou des mois, pas des années ; un petit budget."
+   },
+   "unknown-territory": {
+    "name": "Terra incognita",
+    "text": "Peu de théorie préalable ; on ne sait pas encore quelles variables comptent."
+   },
+   "practice-led": {
+    "name": "Pratique en tête",
+    "text": "La pratique devance la recherche : l’essentiel du savoir est dans des blogs, livres blancs, conférences et manuels, pas dans les revues."
+   },
+   "many-studies": {
+    "name": "Études nombreuses",
+    "text": "Un corpus important de recherches primaires existe déjà."
+   }
+  }
+ },
+ "questions": {
+  "Q01": {
+   "title": "Vapoteurs en ville",
+   "field": "Santé publique",
+   "text": "Le conseil municipal veut savoir quelle part des adultes vapote, par âge, avant de voter une interdiction au prochain trimestre.",
+   "why": "« Quelle part, en ce moment ? » est une question de prévalence, à laquelle répond un instantané bien échantillonné. Investir dans la base de sondage et la pondération, pas dans le suivi.",
+   "traps": {
+    "cohort-prospective": "Suit des personnes pendant des années pour mesurer les nouveaux cas. Le conseil veut la prévalence actuelle le trimestre prochain.",
+    "case-control": "Échantillonner selon que l’on vapote ou non détruit toute estimation de la fréquence du vapotage."
+   }
+  },
+  "Q02": {
+   "title": "Éruption de tatouage",
+   "field": "Dermatologie",
+   "text": "Cinq patients d’une clinique ont eu une éruption inhabituelle des semaines après un tatouage avec la même encre nouvelle. Rien de tel n’a été publié.",
+   "why": "Une série de cas soignée est le moyen le plus rapide de lancer un signal que d’autres pourront tester. Son rôle est de décrire et d’alerter. Une étude cas-témoins est l’étape suivante logique, pas la première.",
+   "traps": {
+    "rct": "Exposer délibérément des gens à un danger suspecté est contraire à l’éthique, et prématuré.",
+    "systematic-review": "Il n’y a encore rien à synthétiser."
+   }
+  },
+  "Q03": {
+   "title": "Papillons en déclin",
+   "field": "Écologie",
+   "text": "Une population de papillons migrateurs décline-t-elle sur dix ans, et le déclin est-il régulier ou brutal ?",
+   "why": "Les tendances exigent des comptages standardisés répétés pendant des années, l’ossature de la biologie de la conservation. Les changements d’observateurs, de sites ou de méthodes au fil du temps sont l’ennemi principal.",
+   "traps": {
+    "cross-sectional": "Un seul instantané ne montre pas une tendance.",
+    "field-experiment": "Rien n’est manipulé. La question est ce qui se passe, pas pourquoi."
+   }
+  },
+  "Q04": {
+   "title": "Jupiters à compter",
+   "field": "Astronomie",
+   "text": "Quelle part des étoiles proches de type solaire a une planète de la masse de Jupiter ?",
+   "why": "C’est une question de prévalence déguisée : un échantillon défini d’étoiles observé avec une complétude de détection connue. Corriger pour ce que l’instrument ne voit pas, c’est tout l’enjeu.",
+   "traps": {
+    "case-report": "Un système planétaire spectaculaire ne dit rien de la fraction.",
+    "analytical-model": "La théorie de formation peut suggérer un chiffre, mais on demande une fréquence observée."
+   }
+  },
+  "Q05": {
+   "title": "Après l’AMM",
+   "field": "Pharmacologie",
+   "text": "Un nouvel antidiabétique a été autorisé après des essais sur 3 000 personnes. Des millions le prennent : cause-t-il souvent une atteinte grave du foie ?",
+   "why": "La pharmacovigilance après commercialisation (notifications spontanées plus surveillance active des dossiers médicaux) existe parce que les effets rares sont invisibles dans les essais. Les signaux sont ensuite confirmés par des études analytiques.",
+   "traps": {
+    "rct": "Voir un effet à 1 sur 50 000 demanderait un essai d’une taille impossible. C’est justement pourquoi les essais d’autorisation l’ont manqué.",
+    "cross-sectional": "L’atteinte hépatique est un événement dans le temps, pas un état à un instant donné."
+   }
+  },
+  "Q06": {
+   "title": "Atlas du smog",
+   "field": "Santé environnementale",
+   "text": "Avant d’investir dans une grande étude, vous voulez un premier coup d’œil rapide et peu coûteux : les pays plus pollués ont-ils plus d’asthme ?",
+   "why": "Comparer des données agrégées entre pays est le générateur d’hypothèses le moins cher qui soit. Mais n’en concluez jamais que les individus pollués deviennent asthmatiques : c’est l’erreur écologique.",
+   "traps": {
+    "cohort-prospective": "Des années et des millions pour ce qui devait être un premier coup d’œil bon marché.",
+    "rct": "On ne peut pas assigner la pollution de l’air."
+   }
+  },
+  "Q07": {
+   "title": "Cancer rare, pesticide courant",
+   "field": "Oncologie pédiatrique",
+   "text": "Un cancer rare de l’enfant (environ 1 enfant sur 50 000) est-il associé à l’usage par la mère d’un pesticide courant pendant la grossesse ?",
+   "why": "Issue rare : partir des cas. Tirer les témoins de la population qui a produit les cas, et prendre l’exposition dans les dossiers plutôt que dans la mémoire, car des parents endeuillés se souviennent autrement. Une cohorte par chaînage de registres ne marche que si ceux-ci captent déjà l’exposition au pesticide.",
+   "traps": {
+    "cohort-prospective": "Il faudrait suivre des millions de grossesses pour recueillir une poignée de cas.",
+    "cross-sectional": "Elle ne peut pas établir que l’exposition a précédé le cancer."
+   }
+  },
+  "Q08": {
+   "title": "Salle blanche",
+   "field": "Santé au travail",
+   "text": "Quelques centaines d’ouvriers manipulent un solvant nouveau dans une seule usine de puces. Est-il lié à une maladie rénale ultérieure ?",
+   "why": "Exposition rare : échantillonner sur l’exposition. Les registres du personnel permettent de constituer l’effectif exposé et un groupe de comparaison non exposé (p. ex. le personnel de bureau) et de retracer leurs issues. Comparer à la population générale expose à l’effet du travailleur sain.",
+   "traps": {
+    "case-control": "L’exposition est si rare que presque aucun cas de maladie rénale de la population ne l’aura eue.",
+    "ecological": "Une seule usine ne fournit pas de groupes à comparer."
+   }
+  },
+  "Q09": {
+   "title": "La pelle à neige",
+   "field": "Cardiologie",
+   "text": "Un épisode d’effort physique intense déclenche-t-il un infarctus dans l’heure qui suit ?",
+   "why": "Exposition brève, effet aigu : comparer l’effort de chaque patient dans l’heure précédant l’infarctus à son propre effort habituel. Tout facteur de confusion personnel stable s’annule.",
+   "traps": {
+    "cross-sectional": "Elle ne peut pas saisir l’heure précédant un événement.",
+    "cohort-prospective": "Il faudrait des journaux d’effort heure par heure chez énormément de gens pour capter quelques événements."
+   }
+  },
+  "Q10": {
+   "title": "Régime et démence",
+   "field": "Neurologie",
+   "text": "Manger beaucoup d’aliments ultra-transformés vers 50 ans est-il associé à une démence 20 ans après ?",
+   "why": "Mesurer l’alimentation avant toute démence et attendre, ou (plus vite) analyser une cohorte existante qui a noté l’alimentation il y a des décennies. Attention à la causalité inverse : une démence précoce, préclinique, modifie les habitudes alimentaires.",
+   "traps": {
+    "rct": "Personne ne suit un régime imposé pendant 20 ans.",
+    "case-control": "Les personnes démentes ne peuvent pas rapporter fiablement leur alimentation d’il y a vingt ans."
+   }
+  },
+  "Q11": {
+   "title": "Pilule neuve ou ancienne",
+   "field": "Cardiologie",
+   "text": "Un nouvel antihypertenseur prévient-il plus d’AVC que le médicament de référence actuel ?",
+   "why": "Une question causale nette sur une intervention qu’on peut assigner, avec une vraie incertitude sur le meilleur : randomisez. Gardez l’assignation secrète, travaillez en aveugle si possible, analysez en intention de traiter.",
+   "traps": {
+    "cohort-retrospective": "Les médecins donnent les nouveaux médicaments à certains types de patients. La confusion par indication rend la comparaison peu fiable.",
+    "case-report": "Des anecdotes ne peuvent pas estimer un effet comparatif."
+   }
+  },
+  "Q12": {
+   "title": "Tutorat entre pairs",
+   "field": "Éducation",
+   "text": "Un nouveau tutorat entre pairs améliore-t-il les notes en maths ? Les élèves d’une classe échangent sans cesse leurs notes.",
+   "why": "Quand une intervention se propage entre individus, randomisez plutôt le groupe (classe ou école). Puis analysez au bon niveau, car les élèves d’une même classe ne sont pas indépendants.",
+   "traps": {
+    "rct": "Randomiser les élèves au sein des classes laisse la méthode fuir vers les témoins, ce qui dilue l’effet."
+   }
+  },
+  "Q13": {
+   "title": "Taxe soda",
+   "field": "Santé publique",
+   "text": "Un État a taxé les boissons sucrées ; son voisin similaire non. On a les ventes en supermarché des deux, trois ans avant et après. La taxe a-t-elle réduit la consommation ?",
+   "why": "Comparer l’évolution dans l’État taxé à celle dans l’État non taxé. L’hypothèse clé, les tendances parallèles, se vérifie sur les années précédant la taxe.",
+   "traps": {
+    "cross-sectional": "Comparer les deux États une fois, après la taxe, ne sépare pas la taxe des différences déjà présentes."
+   }
+  },
+  "Q14": {
+   "title": "Seuil de bourse",
+   "field": "Politique éducative",
+   "text": "Les élèves obtenant 70 ou plus à un examen national reçoivent une bourse. La bourse les rend-elle plus susceptibles d’obtenir un diplôme universitaire ?",
+   "why": "Un élève qui a eu 70 et un autre qui a eu 69 sont presque identiques, sauf que l’un a reçu l’argent. L’estimation est locale au seuil. Vérifiez que personne n’a pu pousser sa note au-delà.",
+   "traps": {
+    "cohort-retrospective": "Comparer tous les boursiers à tous les non-boursiers compare des élèves plus forts à des plus faibles.",
+    "cross-sectional": "Une comparaison ponctuelle entre diplômés et non-diplômés ne sépare pas la bourse des aptitudes."
+   }
+  },
+  "Q15": {
+   "title": "Alerte sepsis",
+   "field": "Services de santé",
+   "text": "Un hôpital a activé une alerte électronique de sepsis à une date connue. Les décès mensuels par sepsis existent pour cinq ans avant et deux ans après. L’alerte a-t-elle aidé ?",
+   "why": "De nombreux points avant et après une date nette séparent l’effet de l’alerte de la tendance déjà en cours. Ajoutez une série témoin (un autre hôpital, ou une affection que l’alerte ne peut pas toucher) pour écarter des changements concomitants.",
+   "traps": {
+    "cross-sectional": "Un instantané ne voit pas un changement.",
+    "case-report": "Un sauvetage spectaculaire ne prouve rien sur le taux de décès."
+   }
+  },
+  "Q16": {
+   "title": "Réunification",
+   "field": "Économie",
+   "text": "Qu’a fait la réunification de 1990 au PIB par habitant de l’Allemagne de l’Ouest ?",
+   "why": "Une unité traitée, de nombreuses comparaisons possibles : construire un mélange pondéré d’autres pays de l’OCDE qui suivait l’Allemagne de l’Ouest avant 1990, puis voir où les trajectoires divergent. C’est exactement ce qu’ont fait Abadie, Diamond & Hainmueller.",
+   "traps": {
+    "rct": "On ne peut pas tirer au sort les pays qui se réunifient.",
+    "cross-sectional": "Une comparaison sur un an avec d’autres pays ignore les différences qui existaient avant 1990."
+   }
+  },
+  "Q17": {
+   "title": "Sa migraine",
+   "field": "Neurologie",
+   "text": "Une patiente a des migraines plusieurs fois par semaine. Un nouveau traitement de crise la soulage-t-il mieux que son antalgique habituel ?",
+   "why": "Crises fréquentes et médicament d’action rapide : tirer au sort le médicament pour chaque crise (ou bloc de crises), en aveugle avec des gélules identiques, et répéter. La réponse la concerne, elle.",
+   "traps": {
+    "rct": "L’effet moyen d’un essai ne dit pas si cette patiente-là répond.",
+    "case-report": "Un avant-après non contrôlé est trompé par la régression vers la moyenne : elle a consulté au plus mal."
+   }
+  },
+  "Q18": {
+   "title": "Deux inhalateurs",
+   "field": "Pharmacologie",
+   "text": "Deux formulations d’inhalateur améliorent-elles autant la fonction respiratoire chez des asthmatiques stables ?",
+   "why": "Maladie chronique stable, effet court et réversible : chacun essaie les deux dans un ordre aléatoire avec un wash-out. Le bruit entre personnes disparaît, il faut donc bien moins de participants.",
+   "traps": {
+    "cohort-retrospective": "Les patients se retrouvent sur l’un ou l’autre inhalateur pour des raisons liées à la sévérité de leur asthme."
+   }
+  },
+  "Q19": {
+   "title": "Trois boutons",
+   "field": "Agriculture",
+   "text": "Quelle combinaison de dose d’engrais, d’irrigation et de variété de semence donne le meilleur rendement en vraie ferme ?",
+   "why": "Croiser les trois facteurs dans un plan factoriel, randomisé sur des parcelles en blocs dans plusieurs fermes. Une saison donne effets principaux et interactions. C’est l’idée originale de Fisher.",
+   "traps": {
+    "cross-sectional": "Les agriculteurs qui irriguent davantage diffèrent aussi par le sol, le savoir-faire et la richesse.",
+    "case-study": "Une seule ferme ne peut pas séparer trois facteurs et leurs interactions."
+   }
+  },
+  "Q20": {
+   "title": "Tenue de soudure",
+   "field": "Industrie",
+   "text": "Lesquels de six paramètres (courant, vitesse, débit de gaz…) font la résistance d’une soudure au labo, et interagissent-ils ?",
+   "why": "Un plan de criblage factoriel fractionnaire teste six facteurs en quelques dizaines d’essais et révèle des interactions que les tests un facteur à la fois manquent. Randomisez l’ordre des essais contre la dérive. La simulation n’aide que s’il existe un modèle de procédé validé.",
+   "traps": {
+    "cohort-retrospective": "Les journaux de production confondent des réglages que les opérateurs changeaient toujours ensemble.",
+    "case-report": "Une belle soudure ne prouve rien."
+   }
+  },
+  "Q21": {
+   "title": "Bouton de paiement",
+   "field": "Tech",
+   "text": "Un bouton de paiement redessiné augmentera-t-il les achats sur un site de 2 millions de visiteurs par jour ?",
+   "why": "Répartir au hasard les visiteurs entre l’ancien et le nouveau bouton et comparer la conversion. Fixez à l’avance la taille d’échantillon et la métrique : regarder jusqu’à ce que ce soit significatif est le péché classique du test A/B.",
+   "traps": {
+    "its": "Même une longue série chronologique ne sépare pas la refonte des campagnes concomitantes, alors que randomiser les visiteurs ne coûte rien.",
+    "interviews-thematic": "Les utilisateurs ne savent pas prédire fiablement leurs propres clics."
+   }
+  },
+  "Q22": {
+   "title": "Îles sans rats",
+   "field": "Conservation",
+   "text": "Éradiquer les rats invasifs aide-t-il les oiseaux marins à nicher ? Il y a 20 îles similaires, et des permis pour 10 éradications.",
+   "why": "Tirer au sort les 10 îles éradiquées et mesurer les 20 avant et après (un plan BACI randomisé). Le tirage au sort vous empêche de choisir les îles « faciles ». Vingt unités, c’est peu : planifiez la puissance.",
+   "traps": {
+    "cross-sectional": "Les îles qui n’ont jamais eu de rats diffèrent des autres de bien des façons.",
+    "case-report": "La réussite d’une île ne se sépare pas de la météo de l’année."
+   }
+  },
+  "Q23": {
+   "title": "Triage pour tous",
+   "field": "Systèmes de santé",
+   "text": "Le ministère a décidé qu’un nouveau protocole de triage aux urgences serait introduit dans les 12 hôpitaux régionaux l’an prochain. Réduit-il les décès ?",
+   "why": "Tout le monde l’aura ; seul l’ordre est ouvert. Tirez au sort l’ordre de bascule des hôpitaux, et chacun apporte du temps témoin et du temps intervention. Modélisez soigneusement la tendance temporelle de fond.",
+   "traps": {
+    "rct": "Le triage est un processus à l’échelle de l’hôpital. On ne peut pas randomiser des patients individuels au sein d’un hôpital."
+   }
+  },
+  "Q24": {
+   "title": "Dix candidats",
+   "field": "Maladies infectieuses",
+   "text": "Un nouveau virus respiratoire se propage vite ; dix médicaments repositionnés sont proposés. Lesquels réduisent les décès des patients hospitalisés ? Vous avez quelques mois.",
+   "why": "Un protocole maître, un bras témoin commun ; des bras sont arrêtés pour futilité et d’autres ajoutés. RECOVERY a montré que la dexaméthasone sauvait des vies environ 100 jours après le lancement.",
+   "traps": {
+    "case-report": "Les premières séries de cas annonçant des remèdes miracles étaient nombreuses et trompeuses.",
+    "cohort-retrospective": "Les plus malades reçoivent les médicaments expérimentaux. Confusion par indication."
+   }
+  },
+  "Q25": {
+   "title": "Plus âgés que les essais",
+   "field": "Pharmaco-épidémiologie",
+   "text": "Deux classes d’antidiabétiques diffèrent-elles sur l’insuffisance rénale après 80 ans, âge exclu des essais ? Les données d’assurance couvrent 5 millions de personnes.",
+   "why": "Rédigez le protocole de l’essai que vous aimeriez mener (éligibilité, stratégies, temps zéro, suivi) et émulez-le dans les données d’assurance avec nouveaux usagers et comparateur actif. Cela élimine par conception les biais du temps immortel et des usagers prévalents ; reste la confusion par indication.",
+   "traps": {
+    "cross-sectional": "Elle ne peut pas saisir qui a commencé quel médicament, et quand.",
+    "case-report": "Il n’y a aucune comparaison."
+   }
+  },
+  "Q26": {
+   "title": "L’école, ça paie ?",
+   "field": "Économie",
+   "text": "Une année d’études de plus augmente-t-elle les revenus ? Avec la scolarité obligatoire, les natifs du début d’année peuvent quitter l’école un peu moins instruits.",
+   "why": "Le trimestre de naissance pousse la scolarité mais (on peut le soutenir) n’agit sur les revenus qu’à travers elle, ce qui en fait un instrument. Interrogez durement cette hypothèse du « seulement à travers », et vérifiez que l’instrument n’est pas faible.",
+   "traps": {
+    "cross-sectional": "Les aptitudes et le milieu familial agissent à la fois sur la scolarité et les revenus."
+   }
+  },
+  "Q27": {
+   "title": "LDL : cause ou marqueur ?",
+   "field": "Cardiologie",
+   "text": "Un LDL-cholestérol élevé toute la vie cause-t-il la maladie coronarienne, ou marque-t-il d’autres facteurs de risque ?",
+   "why": "On hérite à la conception de variants qui élèvent ou abaissent le LDL, quasiment au hasard : un essai naturel à vie. Les grands consortiums génétiques le rendent rapide. La pléiotropie (gènes agissant par d’autres voies) est la menace à vérifier. Les essais d’hypolipémiants répondent à une version à plus court terme.",
+   "traps": {
+    "cross-sectional": "Elle ne sépare pas cause et marqueur, ni ce qui vient en premier.",
+    "ecological": "Les moyennes de cholestérol par pays ne disent rien des mécanismes individuels."
+   }
+  },
+  "Q28": {
+   "title": "Qui va décompenser ?",
+   "field": "Réanimation",
+   "text": "Avec les signes vitaux et la biologie du dossier informatisé, peut-on repérer les patients de réa qui vont se dégrader dans les six heures ?",
+   "why": "Développer sur une période, puis valider sur une période ultérieure et dans un autre hôpital. Traquez sans pitié les fuites, p. ex. un examen prescrit parce que le médecin soupçonnait déjà une dégradation.",
+   "traps": {
+    "case-control": "Équilibrer artificiellement cas et témoins fausse les risques prédits (calibration).",
+    "rct": "Les essais testent des interventions. Il faut d’abord un modèle ; un ECR de son utilisation viendra après."
+   }
+  },
+  "Q29": {
+   "title": "Crue printanière",
+   "field": "Hydrologie",
+   "text": "Combien d’eau entrera dans un réservoir au printemps prochain, vu l’enneigement de cet hiver et 40 ans de relevés ?",
+   "why": "Des décennies de relevés d’enneigement et d’apports permettent une prévision statistique ; une simulation hydrologique physique est une alternative ou un complément solide. Jugez l’une ou l’autre sur leur performance sur des années jamais vues.",
+   "traps": {
+    "field-experiment": "On ne peut pas manipuler l’enneigement.",
+    "case-study": "Une seule crue passée ne prévoit pas la suivante."
+   }
+  },
+  "Q30": {
+   "title": "Supraconducteur suivant",
+   "field": "Science des matériaux",
+   "text": "Lesquels de 100 000 composés hypothétiques ont le plus de chances d’être supraconducteurs à haute température, pour en synthétiser 20 ?",
+   "why": "Entraîner un modèle sur les matériaux connus pour classer les candidats, éventuellement affiner la liste par simulation ab initio, puis tester les meilleurs. Rapportez la performance sur des chimies vraiment nouvelles, pas des quasi-doublons du jeu d’entraînement.",
+   "traps": {
+    "factorial-doe": "Synthétiser 100 000 composés n’est pas un plan.",
+    "systematic-review": "Les composés sont hypothétiques. Il n’existe encore aucune littérature."
+   }
+  },
+  "Q31": {
+   "title": "Biomarqueur en plus",
+   "field": "Cardiologie",
+   "text": "Ajouter un nouveau biomarqueur sanguin à un score de risque d’infarctus établi améliore-t-il vraiment la prédiction ?",
+   "why": "Association n’est pas prédiction. Comparez le modèle avec et sans le biomarqueur en discrimination, calibration et bénéfice net, sur des données que le modèle n’a pas vues.",
+   "traps": {
+    "case-control": "Montrer que les cas ont des taux plus élevés prouve une association, pas une valeur prédictive ajoutée.",
+    "rct": "Aucune intervention n’est testée."
+   }
+  },
+  "Q32": {
+   "title": "L’aire en 2070",
+   "field": "Écologie",
+   "text": "Où une plante de montagne pourra-t-elle vivre en 2070 selon différents scénarios climatiques ?",
+   "why": "Les modèles de distribution d’espèces relient les présences actuelles au climat, puis les projettent sur des scénarios. Des simulations mécanistes (physiologiques) sont un recoupement précieux quand le climat futur sort de tout ce que contiennent les données d’entraînement.",
+   "traps": {
+    "case-study": "L’histoire d’une population ne cartographie pas une aire future.",
+    "rct": "On ne peut pas randomiser des climats."
+   }
+  },
+  "Q33": {
+   "title": "Strep rapide",
+   "field": "Pédiatrie",
+   "text": "Que vaut un nouveau test du streptocoque en 5 minutes face à la culture de gorge, chez les enfants qui consultent pour une angine ?",
+   "why": "Recruter des enfants consécutifs ayant mal à la gorge, faire les deux tests à tous, et lire chaque test en aveugle de l’autre. Sensibilité et spécificité n’ont de sens que dans la population où le test servira.",
+   "traps": {
+    "case-control": "Tester des cas évidents confirmés par culture contre des volontaires sains gonfle la performance (biais de spectre).",
+    "rct": "Un ECR demande si utiliser le test améliore les issues. C’est une autre question, ultérieure."
+   }
+  },
+  "Q34": {
+   "title": "Échelle de burn-out",
+   "field": "Psychologie du travail",
+   "text": "Aucun bon questionnaire ne mesure le « burn-out de la recherche » des universitaires. Créez-en un fiable.",
+   "why": "Générer des items à partir de la théorie et d’entretiens, les affiner avec des experts et des tests cognitifs, puis tester structure factorielle, fiabilité et validité sur de nouveaux échantillons. Un devis mixte séquentiel exploratoire, c’est essentiellement cela.",
+   "traps": {
+    "cross-sectional": "Une grande enquête avec un questionnaire non testé mesure… quelque chose.",
+    "systematic-review": "Passer des études en revue ne valide pas un outil qui n’existe pas encore."
+   }
+  },
+  "Q35": {
+   "title": "Deux lecteurs",
+   "field": "Radiologie",
+   "text": "Deux radiologues donnent-ils le même grade d’arthrose quand ils lisent les mêmes radios du genou ?",
+   "why": "Tous deux lisent le même ensemble représentatif d’images, indépendamment et en aveugle l’un de l’autre ; quantifiez la concordance par un kappa pondéré. Les images doivent couvrir toute la gamme de sévérité.",
+   "traps": {
+    "diagnostic-accuracy": "La performance exige un test de référence. La question est la concordance entre lecteurs.",
+    "cross-sectional": "Des grades de patients différents lus par des radiologues différents ne mesurent pas la concordance."
+   }
+  },
+  "Q36": {
+   "title": "Poignet ou bras",
+   "field": "Génie biomédical",
+   "text": "Un capteur de poignet bon marché peut-il remplacer le tensiomètre validé de l’hôpital ?",
+   "why": "C’est une étude de comparaison de méthodes : mesurer les mêmes personnes avec les deux appareils et calculer les limites de concordance de Bland–Altman. Décidez d’avance quel écart est cliniquement acceptable, et ne vous fiez pas à la corrélation : un appareil pourrait lire 15 mmHg de trop à chaque fois et corréler parfaitement. Incluez des personnes sur toute la gamme de tension.",
+   "traps": {
+    "ecological": "Comparer les mesures moyennes entre cliniques masque l’écart entre appareils chez chaque personne.",
+    "rct": "Personne n’a besoin d’être randomisé. La question est de savoir si deux instruments concordent."
+   }
+  },
+  "Q37": {
+   "title": "Du plomb dans l’eau",
+   "field": "Chimie analytique",
+   "text": "Quinze labos dosent le plomb dans l’eau potable avec la même méthode normalisée. Trouvent-ils la même valeur sur le même échantillon ?",
+   "why": "Envoyer à chaque labo des échantillons identiques et homogènes (idéalement avec une valeur de référence certifiée), et quantifier répétabilité et reproductibilité (ISO 5725).",
+   "traps": {
+    "systematic-review": "Les résultats publiés viennent d’échantillons différents et ne peuvent pas isoler la variation entre labos.",
+    "surveillance": "Surveiller l’eau du robinet dans le temps renseigne sur l’eau, pas sur les labos."
+   }
+  },
+  "Q38": {
+   "title": "Limite du moteur",
+   "field": "Physique",
+   "text": "Quel est le rendement maximal de N’IMPORTE QUEL moteur thermique entre une source chaude et une source froide ?",
+   "why": "« N’importe quel moteur » est une affirmation universelle, que seule une dérivation à partir des lois de la thermodynamique peut établir. La borne de Carnot est venue du raisonnement, pas de la mesure.",
+   "traps": {
+    "factorial-doe": "Tester des moteurs montre ce qui a été atteint, jamais ce qui est impossible pour tout moteur.",
+    "simulation": "Elle simule des moteurs particuliers. Une borne universelle exige une dérivation."
+   }
+  },
+  "Q39": {
+   "title": "Pont dans la tempête",
+   "field": "Génie civil",
+   "text": "Comment un long tablier de pont élancé réagira-t-il à des vents impossibles à tester sans danger sur l’ouvrage ?",
+   "why": "La simulation couplée fluide–structure permet de pousser le pont virtuel jusqu’à la rupture. Validez le modèle sur des essais en soufflerie de maquettes (la réponse « défendable ») avant de croire les cas extrêmes.",
+   "traps": {
+    "case-report": "Tacoma Narrows enseigne beaucoup, mais un effondrement n’est pas une vérification de conception.",
+    "cross-sectional": "Étudier d’autres ponts ne dit pas comment celui-ci réagira."
+   }
+  },
+  "Q40": {
+   "title": "Fermer les écoles",
+   "field": "Épidémiologie",
+   "text": "Fermer les écoles changerait-il le pic d’une pandémie grippale dans une ville de deux millions d’habitants ?",
+   "why": "Un modèle multi-agents avec ménages, écoles et lieux de travail permet de jouer des scénarios. Présentez les résultats sous forme de fourchettes selon des hypothèses variées, et confrontez-les aux données d’épidémies passées.",
+   "traps": {
+    "rct": "Randomiser des fermetures en pleine pandémie est rarement faisable, et bien trop lent.",
+    "cross-sectional": "Un instantané ne montre pas la dynamique d’une épidémie."
+   }
+  },
+  "Q41": {
+   "title": "Horloge cellulaire",
+   "field": "Biologie systémique",
+   "text": "Une boucle de trois gènes chez une bactérie semble osciller. La rétroaction négative suffit-elle seule à causer les oscillations, et sous quelles conditions de paramètres ?",
+   "why": "Écrivez la dynamique en équations différentielles et analysez leur stabilité ; les conditions d’oscillation découlent des mathématiques. La simulation explore l’espace des paramètres, puis le labo construit et teste le circuit.",
+   "traps": {
+    "cross-sectional": "Des instantanés de l’expression génique ne peuvent établir qu’un mécanisme suffit.",
+    "case-control": "Il n’y a ni cas ni témoins dans cette question."
+   }
+  },
+  "Q42": {
+   "title": "Étoiles à neutrons",
+   "field": "Astrophysique",
+   "text": "Quel signal d’ondes gravitationnelles attendre de la fusion de deux étoiles à neutrons ?",
+   "why": "Les équations sont connues mais sans solution exacte dans ce régime : des simulations de relativité numérique produisent donc les gabarits d’ondes que cherchent les détecteurs. Des modèles analytiques approchés couvrent la spirale initiale.",
+   "traps": {
+    "case-report": "Une seule fusion observée (GW170817) ne fournit pas de gabarits pour toutes les masses et tous les spins.",
+    "factorial-doe": "On ne peut pas faire entrer en collision des étoiles à neutrons en labo."
+   }
+  },
+  "Q43": {
+   "title": "Prix cassés",
+   "field": "Économie",
+   "text": "Deux entreprises se concurrencent par les prix. À quelles conditions trouvent-elles un équilibre stable plutôt qu’une guerre des prix sans fin ?",
+   "why": "La théorie des jeux dérive les équilibres, et leurs conditions, d’hypothèses énoncées. La réponse ne vaut que ce que valent ces hypothèses : énoncez-les explicitement et testez la robustesse du résultat.",
+   "traps": {
+    "case-study": "L’histoire d’une guerre des prix n’établit pas de conditions générales.",
+    "ab-test": "Tester des prix sur des clients ne révèle pas la logique stratégique entre entreprises."
+   }
+  },
+  "Q44": {
+   "title": "Test de préhension",
+   "field": "Robotique",
+   "text": "Votre labo a un nouvel algorithme de préhension robotique. Est-il vraiment meilleur que l’état de l’art ?",
+   "why": "Mêmes objets, même robot, mêmes métriques et références publiées, plus ablations et essais répétés avec intervalles de confiance. Rapportez les échecs, et testez au-delà du benchmark : c’est dans l’écart simulation-réalité que les affirmations meurent.",
+   "traps": {
+    "case-report": "Une vidéo de démo triée sur le volet n’est pas une preuve.",
+    "interviews-thematic": "Les opinions sur l’algorithme ne mesurent pas le taux de réussite."
+   }
+  },
+  "Q45": {
+   "title": "Main pour enfants",
+   "field": "Ingénierie de réadaptation",
+   "text": "Concevoir une prothèse de main bon marché pour enfants que cliniciens et familles adopteront vraiment.",
+   "why": "Itérer : comprendre les besoins, prototyper, tester avec les utilisateurs, affiner. L’évaluation est intégrée à chaque cycle, et plus tard le dispositif fini pourra passer un essai.",
+   "traps": {
+    "rct": "Il n’y a encore rien à tester.",
+    "systematic-review": "Utile comme contexte, mais elle ne construira pas la main."
+   }
+  },
+  "Q46": {
+   "title": "Atelier de revue",
+   "field": "Logiciel de recherche",
+   "text": "Construire un outil qui guide les chercheurs dans une revue de portée, et montrer qu’il les aide vraiment.",
+   "why": "Construire par cycles courts avec de vrais chercheurs, et évaluer chaque version sur de vraies tâches : utilisabilité, temps passé, complétude de la revue obtenue. Vous n’êtes pas un juge neutre de votre propre outil : laissez d’autres le tester.",
+   "traps": {
+    "rct": "Un grand essai d’un outil qui n’existe pas encore est prématuré.",
+    "case-report": "Un utilisateur content n’est pas une évaluation."
+   }
+  },
+  "Q47": {
+   "title": "Viendront-ils ?",
+   "field": "Gériatrie",
+   "text": "Avant un coûteux essai multicentrique : peut-on recruter des personnes fragiles de 85 ans pour de l’exercice à domicile, les garder 6 mois, et bien mesurer les chutes ?",
+   "why": "Une étude de faisabilité mesure recrutement, rétention, observance et qualité des données selon des critères de progression fixés d’avance. Résistez à l’envie de publier ses estimations d’effet : elle n’a pas la puissance pour cela.",
+   "traps": {
+    "rct": "Lancer l’essai complet à l’aveugle expose à un échec de recrutement très coûteux.",
+    "systematic-review": "Les taux de recrutement d’autres essais aident, mais ne disent rien de votre contexte."
+   }
+  },
+  "Q48": {
+   "title": "Thérapie mal connectée",
+   "field": "Santé mondiale",
+   "text": "Une thérapie par la parole sur appli est-elle faisable dans des centres ruraux à l’internet instable ? Le personnel l’utilisera-t-il, les patients la finiront-ils ?",
+   "why": "La faisabilité d’abord : la déployer dans quelques centres, mesurer adoption, achèvement et pannes techniques, et interroger personnel et patients sur les obstacles.",
+   "traps": {
+    "rct": "Tester l’efficacité avant de savoir si on peut la délivrer gâche l’essai.",
+    "ecological": "Les statistiques internet nationales ne disent rien de vos centres."
+   }
+  },
+  "Q49": {
+   "title": "Encore un essai ?",
+   "field": "Psychiatrie",
+   "text": "Quarante essais randomisés de l’exercice contre la dépression se contredisent. Quel est l’effet global ?",
+   "why": "Chercher de façon exhaustive, évaluer le risque de biais, combiner par un modèle à effets aléatoires et explorer pourquoi les essais divergent. Cherchez les petits essais négatifs manquants.",
+   "traps": {
+    "rct": "Un 41e essai ajoute un point de plus à une pile que personne n’a pesée.",
+    "case-study": "Examiner un essai en profondeur ne tranche pas un désaccord entre quarante."
+   }
+  },
+  "Q50": {
+   "title": "Plastique dans le sol",
+   "field": "Environnement",
+   "text": "Qu’a-t-on étudié sur les microplastiques dans les sols agricoles (quelles méthodes, quelles régions, quelles issues), et où sont les lacunes ?",
+   "why": "C’est une question de cartographie : recenser la littérature de façon systématique (PRISMA-ScR) sans combiner les effets. Le produit est une carte des données et des lacunes qui dit à chacun quoi étudier ensuite.",
+   "traps": {
+    "field-experiment": "Une expérience de plus ne cartographie pas un champ de recherche.",
+    "network-meta": "Il n’y a pas d’ensemble de traitements concurrents à classer."
+   }
+  },
+  "Q51": {
+   "title": "Six pilules, peu de duels",
+   "field": "Psychiatrie",
+   "text": "Six antidépresseurs existent, mais peu d’essais les comparent entre eux ; la plupart les comparent au placebo. Lequel est le meilleur ?",
+   "why": "Combiner comparaisons directes et indirectes dans un réseau pour classer les traitements. Vérifiez que les essais sont assez semblables pour que les comparaisons indirectes soient équitables (transitivité).",
+   "traps": {
+    "rct": "Un essai direct à six bras serait énorme, et les données indirectes existent déjà.",
+    "cohort-retrospective": "Les habitudes de prescription sont faussées par la confusion par indication."
+   }
+  },
+  "Q52": {
+   "title": "Trois semaines",
+   "field": "Santé publique",
+   "text": "Un ministère doit trancher sur la ventilation des écoles en trois semaines, et demande ce que disent les données.",
+   "why": "Alléger une revue systématique en toute transparence : une question plus étroite, moins de bases, une sélection simple avec vérification. Déclarez ce que vous avez coupé, pour que les lecteurs puissent juger.",
+   "traps": {
+    "systematic-review": "Une revue systématique complète prend souvent un an ou plus. La décision sera prise sans elle.",
+    "cluster-rct": "Un essai en milieu scolaire rendrait ses résultats bien après l’échéance."
+   }
+  },
+  "Q53": {
+   "title": "La vitamine D à tout faire",
+   "field": "Nutrition",
+   "text": "Des dizaines de revues systématiques lient la vitamine D aux fractures, au cancer, à la dépression… Quelle vue d’ensemble, et quelle crédibilité pour chaque lien ?",
+   "why": "Passer en revue les revues : graduer chaque association selon sa taille et sa crédibilité, et repérer les études primaires communes comptées deux fois.",
+   "traps": {
+    "rct": "Un seul essai ne peut pas tester des dizaines d’issues à la fois.",
+    "case-report": "Des histoires individuelles ne peuvent pas graduer un corpus de données."
+   }
+  },
+  "Q54": {
+   "title": "Ça marche ici, pas là",
+   "field": "Santé mondiale",
+   "text": "Les programmes d’agents de santé communautaires brillent dans certains pays et échouent ailleurs. Pourquoi, pour qui, dans quels contextes ?",
+   "why": "La synthèse réaliste demande comment le contexte déclenche des mécanismes qui produisent des effets, en s’appuyant aussi bien sur des essais, des évaluations de processus que des études qualitatives.",
+   "traps": {
+    "rct": "Un essai de plus dans un contexte de plus n’expliquera pas la variation.",
+    "ecological": "Des corrélations entre pays ne révèlent pas les mécanismes."
+   }
+  },
+  "Q55": {
+   "title": "L’appli ignorée",
+   "field": "Infirmier",
+   "text": "Les infirmières de nuit utilisent peu une appli de rappel d’hygiène des mains, celles de jour oui. Personne ne sait pourquoi.",
+   "why": "Quand on ne connaît pas les variables, on demande et on écoute. Échantillonnez à dessein des infirmières de nuit et de jour, et interrogez-les jusqu’à ce que de nouveaux thèmes cessent d’émerger.",
+   "traps": {
+    "cross-sectional": "Une enquête exige des options de réponse, et vous ne connaissez pas encore les raisons.",
+    "rct": "Il n’y a rien à tester tant que vous ne comprenez pas le problème."
+   }
+  },
+  "Q56": {
+   "title": "Les récupérateurs",
+   "field": "Anthropologie urbaine",
+   "text": "Comment les récupérateurs de déchets informels d’une mégapole organisent-ils travail, tournées et commerce ?",
+   "why": "Les pratiques que les gens ne mettent pas en mots se voient mieux en étant là : des mois d’observation participante, de notes de terrain, de confiance. Réfléchissez à la façon dont votre présence change ce que vous voyez.",
+   "traps": {
+    "cross-sectional": "Les enquêtes officielles atteignent rarement les travailleurs informels, et ratent les pratiques tacites.",
+    "prediction-model": "Il n’y a encore rien à prédire, ni de données pour entraîner un modèle."
+   }
+  },
+  "Q57": {
+   "title": "Le redressement",
+   "field": "Gestion des opérations",
+   "text": "Une usine a réduit son taux de défauts de 80 % en un an, ses usines sœurs non. Que s’est-il passé, et que peuvent en tirer les autres ?",
+   "why": "Étudier en profondeur un cas délimité, à l’aide de documents, données, entretiens et observation. Comparez-le à une usine sœur qui ne s’est pas améliorée ; sinon vous n’étudiez que le survivant.",
+   "traps": {
+    "rct": "Le changement a déjà eu lieu, dans une seule usine.",
+    "cross-sectional": "Une enquête sur de nombreuses usines ne reconstitue pas ce qui s’est passé dans celle-ci."
+   }
+  },
+  "Q58": {
+   "title": "Reprendre le travail",
+   "field": "Sociologie santé",
+   "text": "Aucune théorie ne dit comment les malades du COVID long décident quand (et si) ils reprennent le travail.",
+   "why": "« Pas encore de théorie » est la signature de la théorisation ancrée : entretiens et codage itératifs, et échantillonnage théorique de nouveaux cas pour tester les concepts émergents, jusqu’à l’émergence d’un modèle du processus de décision.",
+   "traps": {
+    "cohort-prospective": "Elle dit combien reprennent, pas comment ils décident.",
+    "systematic-review": "Il y a trop peu à synthétiser, et le but est une théorie nouvelle."
+   }
+  },
+  "Q59": {
+   "title": "Que faut-il mesurer ?",
+   "field": "Essais cliniques",
+   "text": "Les essais sur une maladie rare utilisent tous des critères différents : aucun n’est comparable. Patients et experts divergent sur les issues qui comptent le plus.",
+   "why": "Un processus Delphi avec patients, cliniciens et chercheurs note des issues candidates sur plusieurs tours anonymes. C’est la voie standard vers un « core outcome set », souvent précédée d’une revue des issues utilisées et d’entretiens avec des patients.",
+   "traps": {
+    "rct": "Un essai de plus ajouterait juste un critère de plus à la pile."
+   }
+  },
+  "Q60": {
+   "title": "Le fossé rural",
+   "field": "Santé numérique",
+   "text": "Une enquête nationale montre que les centres ruraux adoptent deux fois moins la télémédecine que les urbains. Pourquoi ?",
+   "why": "Un devis séquentiel explicatif : utiliser l’enquête pour choisir des centres contrastés (forts et faibles adoptants), interroger le personnel pour expliquer les chiffres, puis intégrer les deux volets.",
+   "traps": {
+    "cross-sectional": "Vous avez déjà le « quoi ». Une enquête de plus ne donnera pas le « pourquoi ».",
+    "rct": "Il n’y a rien à randomiser tant que vous ne connaissez pas les obstacles."
+   }
+  },
+  "Q61": {
+   "title": "Le clip anti-nœuds",
+   "field": "Dispositifs médicaux",
+   "text": "Une infirmière a inventé un clip qui empêche les tubulures de perfusion de s’emmêler. Avant de payer prototypes et brevet : est-ce vraiment nouveau ?",
+   "why": "La nouveauté se juge par rapport à tout ce qui a été rendu public, partout, dans toute langue : brevets, produits, catalogues, thèses et articles. Cherchez dans les bases de brevets par code de classification autant que par mot-clé, car les brevets emploient rarement des mots courants comme « clip ».",
+   "traps": {
+    "design-science": "Construire et tester d’abord, c’est risquer un an à réinventer, ou à contrefaire, le brevet d’un autre.",
+    "systematic-review": "Il n’y a pas d’effet à combiner, et l’antériorité d’un tel gadget se trouve surtout dans les brevets et les catalogues, pas dans les revues."
+   }
+  },
+  "Q62": {
+   "title": "Racines d’un domaine",
+   "field": "Science de la durabilité",
+   "text": "La recherche sur les « services écosystémiques » croît depuis 30 ans entre écologie et économie. Quels classiques en sont les fondations, et de quelles écoles relèvent-ils ?",
+   "why": "Deux travaux sont liés chaque fois qu’un article ultérieur cite les deux : les grappes de travaux co-cités sont les écoles de pensée du domaine, et les travaux qui relient les grappes montrent où écologie et économie se rencontrent. Normalisez selon la fréquence de citation de chaque travail, et rappelez-vous qu’une citation n’est pas une approbation.",
+   "traps": {
+    "systematic-review": "Il n’y a pas d’effet unique à combiner. La question est la structure du domaine.",
+    "delphi": "Les experts ont tendance à nommer les classiques de leur propre école. Les citations montrent sur quoi s’appuie tout le domaine."
+   }
+  },
+  "Q63": {
+   "title": "Déluge d’articles",
+   "field": "Science de la science",
+   "text": "Des milliers d’articles sur l’IA pour découvrir des médicaments en deux ans. Quels sont les fronts de recherche actifs, et comment se regroupent-ils ?",
+   "why": "Des articles qui citent les mêmes sources travaillent probablement sur le même problème, et ce lien existe dès la parution. Sous-pondérez les références que presque tous citent (ici, les articles classiques d’apprentissage profond), sinon elles collent tout en un seul bloc. Puis nommez chaque grappe en lisant ses articles centraux.",
+   "traps": {
+    "co-citation": "Des articles aussi récents ont à peine été cités, donc presque rien ne les relie encore. La co-citation cartographierait leurs fondations, pas les fronts actuels.",
+    "systematic-review": "Il n’y a ni question précise ni effet à combiner, et des milliers d’articles dépassent de loin l’évaluation manuelle."
+   }
+  },
+  "Q64": {
+   "title": "Ténacité ?",
+   "field": "Psychologie de l’éducation",
+   "text": "Une échelle de « grit » (ténacité) prédit quels étudiants finissent leur diplôme. Pour ses critiques, c’est la conscienciosité rebaptisée. Mesure-t-elle autre chose ?",
+   "why": "Écrivez le schéma prédit avant de collecter : le grit doit corréler avec la conscienciosité, mais pas au point d’être la même chose, et doit prédire les issues au-delà d’elle. Mesurez les deux traits par plus d’une méthode (autoévaluation, avis des enseignants, comportement), pour que des habitudes de réponse communes ne simulent pas le recoupement.",
+   "traps": {
+    "cohort-prospective": "Montrer que le grit prédit le diplôme ne prouve rien de neuf : la conscienciosité le prédit aussi.",
+    "reliability": "Une échelle très fiable peut mesurer fiablement la mauvaise chose."
+   }
+  },
+  "Q65": {
+   "title": "Tritons dans la mare",
+   "field": "Écologie",
+   "text": "Combien de tritons crêtés vivent dans une grande mare trouble ? Vous en pêchez quelques-uns à chaque visite, jamais tous.",
+   "why": "Photographiez le motif ventral unique de chaque triton, puis repêchez : la part de tritons déjà vus dans la seconde capture estime le total (Lincoln–Petersen). On suppose qu’aucun triton n’arrive ni ne part entre les visites et que chacun a la même probabilité d’être pris.",
+   "traps": {
+    "cross-sectional": "Une seule pêche compte les tritons attrapés, pas ceux qu’on a manqués.",
+    "surveillance": "Des comptages répétés suivent une tendance des captures, pas le nombre réel de tritons."
+   }
+  },
+  "Q66": {
+   "title": "Gènes et migraine",
+   "field": "Génétique",
+   "text": "Quels variants génétiques sont liés à la migraine ? Une biobanque a génotypes et dossiers d’un demi-million de personnes, mais on ignore quels gènes regarder.",
+   "why": "Tester chaque variant du génome avec un seuil d’environ 5 × 10⁻⁸, pour que des millions de tests ne produisent pas de faux positifs. Ajustez sur l’ascendance pour que la structure de population ne simule pas d’associations, et répliquez les résultats dans une cohorte indépendante.",
+   "traps": {
+    "mendelian": "La randomisation mendélienne utilise des variants déjà connus pour tester une cause. Ici, vous cherchez justement les variants.",
+    "case-report": "Une famille de migraineux peut suggérer un gène, mais ne peut pas balayer le génome dans une population."
+   }
+  },
+  "Q67": {
+   "title": "Le congélateur",
+   "field": "Cardiologie",
+   "text": "Une biobanque a congelé le sang de 60 000 personnes il y a 15 ans ; 900 ont eu un infarctus depuis. Un marqueur d’inflammation les prédit-il ? Chaque dosage coûte 300 €.",
+   "why": "Doser les 900 cas plus une sous-cohorte aléatoire tirée de toute la cohorte, en aveugle du statut de cas et dans un ordre aléatoire, pour que les séries de labo ne s’alignent pas sur l’issue. La même sous-cohorte pourra resservir pour d’autres issues.",
+   "traps": {
+    "cohort-prospective": "Lancer une nouvelle cohorte, c’est attendre 15 ans ce qui est déjà au congélateur.",
+    "cohort-retrospective": "Doser les 60 000 échantillons coûterait 18 millions €. Il ne faut que les cas et un échantillon des autres."
+   }
+  },
+  "Q68": {
+   "title": "Graines de choix",
+   "field": "Économie agricole",
+   "text": "Les petits paysans paieraient-ils un maïs tolérant à la sécheresse ? Et que préfèrent-ils : rendement, prix, goût, ou semences à ressemer ?",
+   "why": "Proposer des choix entre lots de semences dont rendement, prix, goût et réutilisabilité varient selon un plan expérimental ; les modèles de choix traduisent les réponses en poids de chaque attribut et en disposition à payer. Choisissez d’abord les attributs avec les agriculteurs, et rappelez-vous que les choix déclarés surestiment les achats réels.",
+   "traps": {
+    "cross-sectional": "Demander de noter chaque attribut de 1 à 5 rend tout important et masque les arbitrages.",
+    "rct": "Distribuer des semences au hasard teste si elles augmentent les rendements, pas ce que les agriculteurs valorisent ou paieraient."
+   }
+  },
+  "Q69": {
+   "title": "Ça vaut le prix ?",
+   "field": "Économie de la santé",
+   "text": "Des essais montrent qu’un nouveau vaccin anti-VRS protège les seniors. Vaut-il le prix que le fabricant demande au système de santé ?",
+   "why": "Construire un modèle de décision de qui attrape le VRS, qui est hospitalisé et qui meurt, avec et sans vaccination. L’alimenter avec l’efficacité des essais, les coûts et la qualité de vie, et rapporter le surcoût par QALY gagné, avec une analyse de sensibilité probabiliste pour montrer la certitude de la réponse.",
+   "traps": {
+    "rct": "Les essais montrent déjà qu’il marche. Un essai de plus ne dira pas s’il vaut son prix.",
+    "systematic-review": "Combiner les données d’efficacité est une entrée, mais cela ne pèse pas les coûts."
+   }
+  },
+  "Q70": {
+   "title": "Pourquoi cet accord ?",
+   "field": "Science politique",
+   "text": "L’accord de paix colombien de 2016 a fait désarmer la plupart des FARC, là où les pourparlers antérieurs avaient échoué. Trois explications rivales : laquelle tient ?",
+   "why": "Écrivez ce que chaque explication prédit que vous devriez trouver (qui s’est réuni quand, ce qui a été offert, ce que la direction disait en privé), puis cherchez des tests du cerceau qui éliminent une explication et des preuves irréfutables qui en confirment fortement une. Pesez les indices contre votre récit favori aussi durement que ceux en sa faveur.",
+   "traps": {
+    "ecological": "Des corrélations entre pays sur les accords de paix ne peuvent pas tester quel mécanisme a joué en Colombie.",
+    "cross-sectional": "Un sondage des opinions actuelles ne reconstitue pas la séquence de décisions qui a mené à l’accord."
+   }
+  },
+  "Q71": {
+   "title": "Avant cinquante ans",
+   "field": "Oncologie",
+   "text": "Douze essais d’un traitement du cancer du sein montrent un bénéfice global. Et les femmes de moins de 50 ans ? Peu d’articles donnent les résultats par âge, et les seuils varient.",
+   "why": "Demandez à chaque équipe ses données individuelles, vérifiez-les, et analysez l’âge de la même façon dans chaque essai : idéalement en variable continue, avec l’interaction traitement-âge estimée au sein de chaque essai. Indiquez quels essais n’ont pas pu partager leurs données et si leurs résultats diffèrent.",
+   "traps": {
+    "network-meta": "Il y a un traitement contre un témoin. Rien à classer.",
+    "cohort-retrospective": "Qui reçoit le médicament en pratique courante est soumis à la confusion par indication."
+   }
+  },
+  "Q72": {
+   "title": "Formulaire abandonné",
+   "field": "Interaction humain-machine",
+   "text": "Les patients âgés abandonnent à mi-chemin le formulaire de rendez-vous en ligne d’un hôpital. La refonte est figée dans une semaine.",
+   "why": "Demandez à environ cinq utilisateurs âgés représentatifs de prendre rendez-vous en pensant à voix haute ; observez sans aider et notez chaque hésitation et erreur. Corrigez les pires problèmes et testez à nouveau : plusieurs petits tours trouvent plus qu’un grand.",
+   "traps": {
+    "ab-test": "Un test A/B dit quelle version gagne, pas où et pourquoi les gens bloquent, et il n’y a pas encore de nouvelle version.",
+    "cross-sectional": "Une enquête de satisfaction manque justement ceux qui ont abandonné."
+   }
+  },
+  "Q73": {
+   "title": "Lapins posés",
+   "field": "Soins primaires",
+   "text": "Un quart des rendez-vous d’un cabinet sont manqués. L’équipe veut lancer des rappels par SMS ce mois-ci, puis ajuster formulation et horaire jusqu’à ce que le taux baisse.",
+   "why": "Menez de petits cycles : planifier un changement, l’essayer une semaine ou deux, étudier le graphique de suivi, agir selon ce que vous apprenez. Notez chaque changement sur le graphique, et mesurez assez longtemps pour distinguer un vrai progrès des variations saisonnières.",
+   "traps": {
+    "cluster-rct": "Un seul cabinet ne fait pas un essai en grappes, et l’équipe veut apprendre et s’adapter mois après mois.",
+    "systematic-review": "Les revues disent que les rappels aident en moyenne. La question est ce qui marche dans ce cabinet."
+   }
+  },
+  "Q74": {
+   "title": "Les blogs en savent +",
+   "field": "Génie logiciel",
+   "text": "Quand l’automatisation des tests logiciels devient-elle rentable ? Les praticiens ont écrit des centaines de billets, conférences et livres blancs, mais il n’existe qu’une poignée d’études relues. Que sait-on ?",
+   "why": "Quand la pratique devance la recherche, une revue multivocale suit Garousi et al. (2019) : chercher dans les bases académiques et la littérature grise (Google, sites de praticiens, conférences), noter chaque source grise pour son autorité, sa méthode et son objectivité, s’arrêter à saturation, et présenter côte à côte données blanches et grises.",
+   "traps": {
+    "systematic-review": "En se limitant aux études relues par les pairs, on jetterait l’essentiel de ce qu’on sait, et il n’y a pas d’effet à combiner.",
+    "rct": "Une expérience de plus ajoute un seul point ; la question est ce que le domaine sait déjà."
+   }
+  }
+ },
+ "designs": {
+  "case-report": {
+   "name": "Cas clinique / série de cas",
+   "short": "Décrire en détail un ou quelques cas frappants. Lance un signal sans pouvoir le tester.",
+   "gist": "Description détaillée d’un ou de quelques cas inhabituels. Lance un signal ou une hypothèse ; ne peut pas la tester.",
+   "example": "MMWR, juin 1981 : pneumocystose chez cinq jeunes hommes de Los Angeles, première description publiée du sida."
+  },
+  "cross-sectional": {
+   "name": "Enquête transversale",
+   "short": "Un instantané d’un échantillon : la fréquence des choses, maintenant.",
+   "gist": "Mesurer exposition et issue dans un échantillon à un instant donné. Estime une prévalence ; ne montre pas ce qui vient en premier.",
+   "example": "Enquêtes nationales de santé estimant la prévalence du tabagisme par âge et par région."
+  },
+  "ecological": {
+   "name": "Étude écologique",
+   "short": "Comparer des groupes entiers (pays, régions, années) via leurs moyennes.",
+   "gist": "Comparer des groupes (pays, régions, années) à partir de données agrégées. Générateur d’hypothèses bon marché ; conclure au niveau individuel est un piège.",
+   "example": "Messerli (2012) : consommation nationale de chocolat et prix Nobel par habitant."
+  },
+  "surveillance": {
+   "name": "Surveillance / veille",
+   "short": "Mesurer la même chose de la même façon, encore et encore, pour voir venir.",
+   "gist": "Mesure systématique et répétée de la même grandeur dans le temps et l’espace pour détecter tendances et signaux.",
+   "example": "La courbe de CO₂ de Mauna Loa (depuis 1958) ; la pharmacovigilance après commercialisation."
+  },
+  "capture-recapture": {
+   "name": "Capture-recapture",
+   "short": "Échantillonner deux fois et compter le recoupement : moins on recapture, plus il y en a.",
+   "gist": "Estimer la taille d’une population impossible à dénombrer entièrement à partir du recoupement de deux échantillons ou listes indépendants ou plus.",
+   "example": "Petersen marquait des plies dans les années 1890 ; les épidémiologistes croisent aujourd’hui des registres de maladies de la même façon."
+  },
+  "cohort-prospective": {
+   "name": "Cohorte prospective",
+   "short": "Mesurer d’abord l’exposition, puis suivre les gens pour voir qui développe l’issue.",
+   "gist": "Mesurer les expositions avant la survenue des issues, puis suivre les personnes dans le temps. Montre l’ordre temporel et l’incidence.",
+   "example": "La Framingham Heart Study (1948–), qui nous a donné l’idée même de « facteur de risque »."
+  },
+  "cohort-retrospective": {
+   "name": "Cohorte rétrospective",
+   "short": "Reconstituer une cohorte à partir d’archives et retracer son devenir.",
+   "gist": "Reconstituer une cohorte et ses issues à partir de dossiers existants. Rapide et peu coûteux, mais limité à ce que quelqu’un a noté.",
+   "example": "Cohortes professionnelles reconstituées à partir des registres du personnel, p. ex. amiante et chantiers navals."
+  },
+  "case-control": {
+   "name": "Étude cas-témoins",
+   "short": "Partir des cas, trouver des témoins comparables, remonter aux expositions.",
+   "gist": "Partir des personnes atteintes (cas) et de personnes comparables non atteintes (témoins) ; comparer leurs expositions passées.",
+   "example": "Doll & Hill (1950) : tabagisme des patients atteints d’un cancer du poumon vs autres patients hospitalisés."
+  },
+  "case-crossover": {
+   "name": "Étude cas-croisé",
+   "short": "Chaque cas est son propre témoin : que s’est-il passé juste avant ?",
+   "gist": "Chaque cas est son propre témoin : comparer l’exposition juste avant l’événement à celle de la même personne à d’autres moments.",
+   "example": "Mittleman et al. (1993) : l’effort intense comme déclencheur d’infarctus dans l’heure."
+  },
+  "target-trial": {
+   "name": "Émulation d’essai cible",
+   "short": "Concevoir l’essai idéal sur papier, puis l’émuler sur des données réelles.",
+   "gist": "Rédiger le protocole de l’essai qu’on aimerait mener, puis l’émuler pas à pas sur des données observationnelles.",
+   "example": "Le cadre de Hernán & Robins ; essais émulés sur les statines et les vaccins à partir de dossiers médicaux."
+  },
+  "iv": {
+   "name": "Analyse par variable instrumentale",
+   "short": "Un coup de pouce naturel qui change l’exposition, et rien d’autre.",
+   "gist": "Trouver un facteur qui pousse l’exposition mais n’agit sur l’issue qu’à travers elle : un tirage à pile ou face naturel.",
+   "example": "Angrist & Krueger (1991) : trimestre de naissance, scolarité obligatoire et revenus."
+  },
+  "mendelian": {
+   "name": "Randomisation mendélienne",
+   "short": "Les gènes sont tirés au sort à la conception : l’essai randomisé de la nature.",
+   "gist": "Utiliser des variants génétiques comme instruments. Les gènes sont redistribués à la conception : les porteurs imitent un essai randomisé à vie.",
+   "example": "Variants génétiques abaissant le LDL et maladie coronarienne dans de grands consortiums génétiques."
+  },
+  "gwas": {
+   "name": "Étude d’association pangénomique",
+   "short": "Tester des millions de variants, un par un, pour un lien avec un trait.",
+   "gist": "Génotyper des milliers de personnes et tester chacun de millions de variants pour une association avec un trait, avec un seuil de significativité très strict.",
+   "example": "WTCCC (2007) : 2 000 cas pour chacune de sept maladies fréquentes contre 3 000 témoins communs."
+  },
+  "case-cohort": {
+   "name": "Cas-cohorte / cas-témoins nichée",
+   "short": "Mesurer l’exposition coûteuse chez les cas et un échantillon des autres.",
+   "gist": "Dans une cohorte avec échantillons conservés, mesurer une exposition coûteuse seulement chez tous les cas et une sous-cohorte aléatoire (ou des témoins appariés).",
+   "example": "EPIC-InterAct : une sous-cohorte aléatoire d’environ 16 000 personnes parmi 340 000 Européens pour étudier le diabète de type 2."
+  },
+  "did": {
+   "name": "Doubles différences",
+   "short": "Comparer l’évolution avant-après d’un groupe traité à celle d’un non traité.",
+   "gist": "Comparer l’évolution dans le temps d’un groupe ayant reçu une intervention à celle d’un groupe similaire qui ne l’a pas reçue.",
+   "example": "Card & Krueger (1994) : hausse du salaire minimum au New Jersey vs Pennsylvanie voisine."
+  },
+  "rdd": {
+   "name": "Régression sur discontinuité",
+   "short": "Un seuil décide du traitement : comparer ceux juste au-dessus et juste en dessous.",
+   "gist": "Quand une règle attribue le traitement à un seuil, comparer les unités juste au-dessus et juste en dessous : quasi identiques sauf pour le traitement.",
+   "example": "Angrist & Lavy (1999) : la règle de Maïmonide limitant les classes à 40 élèves."
+  },
+  "its": {
+   "name": "Série chronologique interrompue",
+   "short": "Beaucoup de points avant et après un changement daté : la tendance rompt-elle ?",
+   "gist": "De nombreuses mesures avant et après une intervention datée ; tester un changement de niveau ou de pente au-delà de la tendance existante.",
+   "example": "Hospitalisations pour infarctus avant et après une interdiction de fumer dans les lieux publics."
+  },
+  "synthetic-control": {
+   "name": "Contrôle synthétique",
+   "short": "Bâtir un jumeau pondéré d’une unité traitée avec des non traitées.",
+   "gist": "Construire un « jumeau » pondéré d’une unité traitée à partir d’unités non traitées qui la suivaient avant l’intervention ; comparer ensuite.",
+   "example": "Abadie et al. : le programme antitabac de Californie de 1988 ; le coût économique de la réunification allemande."
+  },
+  "rct": {
+   "name": "Essai contrôlé randomisé",
+   "short": "Le hasard décide qui reçoit l’intervention. Puis on compare les issues.",
+   "gist": "Répartir au hasard des individus entre intervention et contrôle, les suivre, comparer les issues. La référence pour « est-ce que ça marche ? »",
+   "example": "Essai du MRC sur la streptomycine dans la tuberculose (1948), premier essai randomisé moderne."
+  },
+  "cluster-rct": {
+   "name": "Essai randomisé en grappes",
+   "short": "Randomiser des groupes (écoles, villages, cliniques), pas des individus.",
+   "gist": "Randomiser des groupes entiers (écoles, cliniques, villages) quand l’intervention agit au niveau du groupe ou se propagerait.",
+   "example": "Essais de déparasitage et d’hygiène en milieu scolaire randomisés par école."
+  },
+  "crossover": {
+   "name": "Essai croisé",
+   "short": "Chacun reçoit les deux traitements, en ordre aléatoire, avec un wash-out.",
+   "gist": "Chaque participant reçoit les deux traitements dans un ordre aléatoire, séparés par un wash-out. Il faut bien moins de monde.",
+   "example": "Études de bioéquivalence des génériques par rapport aux princeps."
+  },
+  "factorial-doe": {
+   "name": "Plan d’expériences factoriel",
+   "short": "Varier plusieurs facteurs à la fois : effets et interactions.",
+   "gist": "Varier plusieurs facteurs à la fois dans un cadre contrôlé. Estime chaque effet et leurs interactions en peu d’essais.",
+   "example": "Les expériences agronomiques de Fisher à Rothamsted ; plans de criblage en génie des procédés."
+  },
+  "n-of-1": {
+   "name": "Essai N-of-1",
+   "short": "Un essai randomisé chez une seule personne.",
+   "gist": "Périodes de traitement répétées, randomisées et idéalement en aveugle chez un seul patient, pour savoir ce qui marche pour lui.",
+   "example": "Essais personnalisés de traitements de la douleur ou du TDAH chez des patients individuels."
+  },
+  "stepped-wedge": {
+   "name": "Essai en escalier",
+   "short": "Tout le monde l’aura à la fin ; le hasard décide qui commence.",
+   "gist": "Toutes les grappes commencent en contrôle et basculent vers l’intervention à des moments tirés au sort, jusqu’à ce que toutes l’aient.",
+   "example": "La Gambia Hepatitis Intervention Study (1986), qui a introduit la vaccination des nourrissons région par région."
+  },
+  "ab-test": {
+   "name": "Test A/B en ligne",
+   "short": "Répartir les utilisateurs au hasard entre deux versions.",
+   "gist": "Randomiser les utilisateurs d’un produit numérique entre des variantes. D’énormes échantillons détectent de minuscules effets en quelques jours.",
+   "example": "Moteurs de recherche et sites marchands menant des milliers d’expériences contrôlées par an."
+  },
+  "adaptive-platform": {
+   "name": "Essai adaptatif / plateforme",
+   "short": "Un essai maître : des bras sont retirés ou ajoutés au fil des données.",
+   "gist": "Un protocole maître teste de nombreux traitements contre un contrôle commun ; des bras sont retirés ou ajoutés au fil des données.",
+   "example": "RECOVERY (COVID-19) : la dexaméthasone a montré qu’elle sauvait des vies environ 100 jours après le lancement."
+  },
+  "field-experiment": {
+   "name": "Expérience de terrain",
+   "short": "Randomiser et manipuler dans le monde réel : parcelles, îles, marchés.",
+   "gist": "Manipuler un facteur dans le monde réel (parcelles, îles, villages, marchés) avec réplicats randomisés et témoins.",
+   "example": "Paine (1966, 1969) : retirer l’étoile de mer Pisaster d’un rivage rocheux a effondré sa diversité : l’« espèce clé de voûte »."
+  },
+  "ethnography": {
+   "name": "Ethnographie",
+   "short": "Vivre des mois dans le milieu pour voir comment il marche vraiment.",
+   "gist": "S’immerger dans un milieu pendant des mois, en observant et en participant, pour comprendre pratiques et significations de l’intérieur.",
+   "example": "Street Corner Society de Whyte (1943) ; Laboratory Life de Latour & Woolgar (1979)."
+  },
+  "grounded-theory": {
+   "name": "Théorisation ancrée",
+   "short": "Bâtir une théorie nouvelle, pas à pas, depuis les données.",
+   "gist": "Collecter et analyser les données par cycles itératifs (codage, comparaison, échantillonnage) pour bâtir une théorie à partir du terrain.",
+   "example": "Glaser & Strauss (1965), Awareness of Dying : comment soignants et patients gèrent la connaissance de la mort."
+  },
+  "interviews-thematic": {
+   "name": "Entretiens et analyse thématique",
+   "short": "Demander, écouter, repérer les motifs dans les propos.",
+   "gist": "Entretiens approfondis ou groupes de discussion analysés pour en dégager des motifs de sens. Répond au « comment » et au « pourquoi » du point de vue des personnes.",
+   "example": "Comprendre pourquoi des patients arrêtent un médicament qui leur a été prescrit."
+  },
+  "case-study": {
+   "name": "Étude de cas (approfondie)",
+   "short": "Un cas délimité, examiné sous tous les angles dans son contexte réel.",
+   "gist": "Étudier un ou quelques cas délimités (une entreprise, un projet, une politique) dans leur contexte réel, à l’aide de multiples sources.",
+   "example": "Essence of Decision d’Allison (1971) sur la crise des missiles de Cuba ; enquêtes sur des défaillances techniques."
+  },
+  "process-tracing": {
+   "name": "Traçage de processus",
+   "short": "Tester des récits causaux rivaux dans un cas, indice par indice.",
+   "gist": "Confronter les explications rivales d’un cas aux indices que chacune prédit, pas à pas : les tests du cerceau en éliminent, les preuves irréfutables en confirment.",
+   "example": "Les tests du cerceau et de l’arme fumante de Van Evera (1997), devenus un outil standard en science politique."
+  },
+  "delphi": {
+   "name": "Consensus Delphi",
+   "short": "Des experts votent anonymement, tour après tour, jusqu’à converger.",
+   "gist": "Des experts notent des énoncés anonymement sur plusieurs tours, en voyant le retour du groupe, jusqu’à l’émergence d’un consensus.",
+   "example": "Les « core outcome sets » de l’initiative COMET, qui disent ce que tout essai d’un domaine doit mesurer."
+  },
+  "mixed-sequential": {
+   "name": "Méthodes mixtes (séquentielles)",
+   "short": "Des chiffres puis des récits pour les expliquer, ou l’inverse pour les tester.",
+   "gist": "Combiner chiffres et récits en séquence : une enquête puis des entretiens pour l’expliquer, ou des entretiens puis une enquête pour les tester.",
+   "example": "Devis séquentiel explicatif : une enquête révèle un écart, des entretiens de suivi l’expliquent."
+  },
+  "systematic-review": {
+   "name": "Revue systématique et méta-analyse",
+   "short": "Trouver toutes les études sur une question, les évaluer, les combiner.",
+   "gist": "Recherche et évaluation exhaustives et préspécifiées de toutes les études sur une question précise ; combiner les résultats quand c’est pertinent.",
+   "example": "Les revues Cochrane ; le forest plot des corticoïdes anténatals dans le logo Cochrane."
+  },
+  "scoping-review": {
+   "name": "Revue de portée",
+   "short": "Cartographier ce qu’on a étudié sur un vaste sujet, et les lacunes.",
+   "gist": "Cartographier systématiquement la recherche existante sur un vaste sujet (concepts, méthodes, lacunes) sans combiner les effets.",
+   "example": "Cartographies guidées par PRISMA-ScR, p. ex. de l’usage de l’IA dans la pratique infirmière."
+  },
+  "network-meta": {
+   "name": "Méta-analyse en réseau",
+   "short": "Classer de nombreux traitements par comparaisons directes et indirectes.",
+   "gist": "Comparer de nombreux traitements à la fois en combinant données directes et indirectes à travers un réseau d’essais.",
+   "example": "Cipriani et al. (2018) : 21 antidépresseurs classés à partir de 522 essais."
+  },
+  "ipd-meta": {
+   "name": "Méta-analyse sur données individuelles",
+   "short": "Combiner les données brutes de chaque essai, pas son seul résumé.",
+   "gist": "Recueillir et réanalyser les données individuelles de chaque essai, pour définir partout de la même façon issues, sous-groupes et analyses.",
+   "example": "L’Early Breast Cancer Trialists’ Collaborative Group, qui combine depuis 1985 les données individuelles des essais de traitement adjuvant."
+  },
+  "umbrella-review": {
+   "name": "Revue parapluie",
+   "short": "Une revue de revues : la vue d’ensemble de tout un domaine.",
+   "gist": "Une revue de revues systématiques : résume et gradue les données de nombreuses revues sur un vaste sujet.",
+   "example": "Theodoratou et al. (2014) : vitamine D et 137 issues à travers méta-analyses et essais."
+  },
+  "rapid-review": {
+   "name": "Revue rapide",
+   "short": "Une revue systématique sous contrainte de temps, raccourcis déclarés.",
+   "gist": "Une revue systématique aux étapes allégées en toute transparence, livrée en quelques semaines pour éclairer une décision urgente.",
+   "example": "Les Cochrane Rapid Reviews qui ont éclairé les politiques COVID-19 en 2020."
+  },
+  "realist-review": {
+   "name": "Revue réaliste",
+   "short": "Qu’est-ce qui marche, pour qui, où, et pourquoi ?",
+   "gist": "Synthétiser des données variées pour expliquer comment fonctionnent des programmes complexes : pour qui, dans quels contextes, et pourquoi.",
+   "example": "Les synthèses réalistes de Pawson sur des programmes sociaux complexes (contexte + mécanisme → effet)."
+  },
+  "prior-art": {
+   "name": "Recherche d’antériorité",
+   "short": "Avant de construire ou de crier à la nouveauté, chercher brevets, produits et articles existants.",
+   "gist": "Chercher dans les brevets, normes, produits, thèses et articles ce qui existe déjà, avant de construire, publier ou revendiquer la nouveauté.",
+   "example": "In re Hall (1986) : une seule thèse allemande, rangée dans une bibliothèque universitaire, a compté comme antériorité contre un brevet américain."
+  },
+  "co-citation": {
+   "name": "Analyse de co-citation",
+   "short": "Deux travaux sont liés si un article ultérieur cite les deux. Les grappes révèlent les fondations.",
+   "gist": "Lier des travaux (ou auteurs) chaque fois que des articles ultérieurs les citent ensemble ; les grappes cartographient la base intellectuelle d’un domaine. Les articles récents sont invisibles.",
+   "example": "Small (1973) l’a définie ; White & Griffith (1981) ont cartographié les écoles des sciences de l’information par co-citation d’auteurs."
+  },
+  "bibliographic-coupling": {
+   "name": "Couplage bibliographique",
+   "short": "Deux articles sont liés s’ils citent les mêmes sources. Les grappes révèlent les fronts actuels.",
+   "gist": "Lier les articles qui partagent des références ; les grappes cartographient les fronts de recherche actuels. Marche dès la parution, mais les références génériques brouillent l’image.",
+   "example": "Kessler (1963) a regroupé des articles de physique par références partagées ; toujours une façon standard de repérer les fronts de recherche."
+  },
+  "multivocal-review": {
+   "name": "Revue multivocale",
+   "short": "Passer en revue articles, blogs, conférences et livres blancs, en notant chaque source.",
+   "gist": "Une revue systématique qui ajoute la littérature grise (blogs, livres blancs, conférences) quand la pratique devance la recherche, et note chaque source.",
+   "example": "Garousi, Felderer & Mäntylä (2019) en ont fixé les lignes directrices, après une MLR sur l’automatisation des tests logiciels."
+  },
+  "diagnostic-accuracy": {
+   "name": "Étude de performance diagnostique",
+   "short": "Le nouveau test et le test de référence, chez les mêmes vrais patients.",
+   "gist": "Appliquer un nouveau test et un test de référence à des personnes consécutives suspectes de la maladie ; estimer sensibilité et spécificité.",
+   "example": "Évaluations rapportées selon STARD de tests antigéniques rapides par rapport à la PCR."
+  },
+  "reliability": {
+   "name": "Étude de fiabilité et concordance",
+   "short": "Évaluateurs, appareils ou mesures répétées concordent-ils ?",
+   "gist": "Répéter les mesures entre évaluateurs, occasions ou appareils ; quantifier la concordance (kappa, CCI, limites de Bland–Altman).",
+   "example": "Bland & Altman (1986) : pourquoi la corrélation est la mauvaise façon de comparer deux méthodes de mesure."
+  },
+  "validation": {
+   "name": "Développement et validation d’instrument",
+   "short": "Créer un questionnaire ou une échelle, et prouver qu’il mesure ce qu’il dit.",
+   "gist": "Construire un questionnaire ou une échelle à partir de la théorie et de consultations, puis tester sa structure, sa fiabilité et sa validité (psychométrie).",
+   "example": "Le développement du Maslach Burnout Inventory (1981)."
+  },
+  "nomological": {
+   "name": "Étude du réseau nomologique",
+   "short": "Prédire comment votre mesure doit se relier aux autres, puis tester tout le schéma.",
+   "gist": "À partir de la théorie, prédire quelles mesures la vôtre doit suivre, lesquelles non, et quels groupes doivent différer ; puis tester tout le schéma.",
+   "example": "Cronbach & Meehl (1955) en ont posé l’idée ; la matrice multitraits-multiméthodes de Campbell & Fiske (1959) l’a mise en œuvre."
+  },
+  "discrete-choice": {
+   "name": "Expérience de choix discrets",
+   "short": "Faire choisir entre des combinaisons d’attributs pour révéler ce qui compte vraiment.",
+   "gist": "Les répondants choisissent entre des options hypothétiques dont les attributs varient selon un plan ; les modèles de choix révèlent arbitrages et disposition à payer.",
+   "example": "Les modèles d’utilité aléatoire de McFadden (prix Nobel 2000), d’abord utilisés pour prévoir la fréquentation du BART de San Francisco."
+  },
+  "interlab": {
+   "name": "Comparaison interlaboratoires",
+   "short": "Même échantillon, nombreux labos : est-ce reproductible ?",
+   "gist": "Des échantillons identiques sont envoyés à de nombreux laboratoires (un « essai circulaire ») ; les écarts révèlent la reproductibilité d’une méthode de mesure.",
+   "example": "Programmes d’essais d’aptitude ; comparaisons clés du BIPM entre instituts nationaux de métrologie."
+  },
+  "analytical-model": {
+   "name": "Théorie analytique / mathématique",
+   "short": "Le démontrer par les maths : ce qui doit être vrai, dans tous les cas.",
+   "gist": "Dériver des résultats des premiers principes par les mathématiques : démonstrations, solutions exactes, bornes. « Ce qui doit être vrai si… »",
+   "example": "La limite de rendement de Carnot (1824) ; l’équilibre de Nash (1950)."
+  },
+  "simulation": {
+   "name": "Simulation numérique",
+   "short": "Bâtir le système en machine et faire les expériences que le réel interdit.",
+   "gist": "Coder des mécanismes dans un modèle (éléments finis, CFD, Monte-Carlo, multi-agents) et mener des expériences impossibles, dangereuses ou trop coûteuses en réalité.",
+   "example": "Formes d’onde de fusions de trous noirs par relativité numérique, calculées des années avant la première détection de LIGO."
+  },
+  "prediction-model": {
+   "name": "Modèle prédictif (statistique / ML)",
+   "short": "Apprendre du passé pour prévoir qui ou quoi vient ensuite.",
+   "gist": "Développer un modèle qui prévoit une issue à partir de prédicteurs, puis tester sa discrimination et sa calibration sur de nouvelles données.",
+   "example": "Le score de risque de Framingham ; les modèles de prédiction clinique rapportés selon TRIPOD."
+  },
+  "economic-evaluation": {
+   "name": "Analyse coût-efficacité",
+   "short": "Peser le surcoût contre le bénéfice en plus : cela vaut-il son prix ?",
+   "gist": "Comparer coûts et résultats des options, souvent dans un modèle de décision, pour trouver le surcoût par unité de bénéfice, par exemple par QALY gagné.",
+   "example": "En Angleterre, le NICE évalue les nouveaux médicaments selon leur coût par année de vie ajustée sur la qualité (QALY) gagnée."
+  },
+  "design-science": {
+   "name": "Science de la conception",
+   "short": "Créer un artefact qui résout un vrai problème, et le tester avec ses usagers.",
+   "gist": "Concevoir de façon itérative un artefact (dispositif, logiciel, méthode) qui résout un vrai problème, et l’évaluer avec les utilisateurs en contexte.",
+   "example": "Dispositifs médicaux conçus selon l’ingénierie de l’aptitude à l’utilisation (IEC 62366) ; logiciels de recherche bâtis avec leurs utilisateurs."
+  },
+  "pilot": {
+   "name": "Étude pilote / de faisabilité",
+   "short": "Une répétition générale : la grande étude est-elle faisable ?",
+   "gist": "Une petite répétition d’une étude future. Peut-on recruter, retenir, délivrer et mesurer ? Pas pour estimer des effets.",
+   "example": "Extension CONSORT pour les essais pilotes et de faisabilité randomisés (2016)."
+  },
+  "think-aloud": {
+   "name": "Test d’utilisabilité à voix haute",
+   "short": "Observer de vrais usagers faire de vraies tâches en pensant tout haut.",
+   "gist": "Des utilisateurs représentatifs réalisent des tâches réalistes avec un prototype en pensant à voix haute ; les observateurs notent où et pourquoi ils bloquent.",
+   "example": "Nielsen & Landauer (1993) : environ cinq utilisateurs trouvent la plupart des problèmes d’utilisabilité en un tour de test."
+  },
+  "pdsa": {
+   "name": "Cycles PDSA",
+   "short": "Petits tests rapides du changement : essayer, mesurer, adapter, recommencer.",
+   "gist": "Tests itératifs à petite échelle d’un changement dans un vrai service, chacun mesuré dans le temps sur un graphique de suivi et utilisé pour planifier le cycle suivant.",
+   "example": "Le Model for Improvement de l’Institute for Healthcare Improvement, utilisé dans des hôpitaux du monde entier."
+  },
+  "benchmark": {
+   "name": "Évaluation comparative",
+   "short": "Mêmes tâches, données et métriques : qui est vraiment le meilleur ?",
+   "gist": "Comparer des méthodes sur des tâches, jeux de données et métriques communs dans des conditions identiques, avec références, ablations et exécutions répétées.",
+   "example": "ImageNet ; les benchmarks de préhension robotique fondés sur le jeu d’objets YCB."
+  }
+ },
+ "threats": {
+  "confounding": {
+   "name": "Biais de confusion",
+   "short": "Un tiers facteur caché agit sur l’exposition et l’issue.",
+   "text": "Un tiers facteur cause à la fois l’exposition et l’issue, et simule ou masque un effet.",
+   "example": "Les buveurs de café semblaient avoir plus de cancers du poumon, parce qu’ils fumaient davantage."
+  },
+  "confounding-indication": {
+   "name": "Confusion par indication",
+   "short": "Les plus malades sont traités, donc le traitement semble nocif.",
+   "text": "La raison du traitement est elle-même liée à l’issue : le traitement semble nocif (ou utile) alors qu’il ne l’est pas.",
+   "example": "Dans les dossiers courants, un médicament cardiaque semblait mortel parce que les médecins le réservaient aux plus malades."
+  },
+  "selection-bias": {
+   "name": "Biais de sélection",
+   "short": "Qui entre dans l’échantillon dépend de ce que l’on étudie.",
+   "text": "Qui entre (ou reste) dans l’échantillon dépend de l’exposition, de l’issue, ou des deux.",
+   "example": "Le Literary Digest (1936) a posté 10 millions de bulletins, surtout à des détenteurs de téléphone et de voiture ; les 2,4 millions renvoyés prédisaient Landon. Roosevelt l’a emporté haut la main."
+  },
+  "attrition": {
+   "name": "Attrition et données manquantes",
+   "short": "Ceux qui abandonnent ne ressemblent pas à ceux qui restent.",
+   "text": "Des participants abandonnent, ou des données manquent, pour des raisons liées au traitement ou à l’issue.",
+   "example": "Dans un essai d’amaigrissement, ceux qui ne perdaient pas de poids ont cessé de venir. Le groupe restant semblait formidable."
+  },
+  "recall-bias": {
+   "name": "Biais de mémorisation",
+   "short": "Les cas se souviennent du passé autrement que les témoins.",
+   "text": "Les personnes atteintes se souviennent ou déclarent leurs expositions passées autrement que les autres.",
+   "example": "Les mères d’enfants nés avec une malformation cherchent plus fort dans leur mémoire les médicaments pris pendant la grossesse."
+  },
+  "measurement-error": {
+   "name": "Erreur de mesure",
+   "short": "L’instrument est bruité, biaisé ou dérive.",
+   "text": "L’instrument est bruité, biaisé, dérive, ou est utilisé différemment selon les groupes ou le temps.",
+   "example": "Les régimes autodéclarés sous-estiment l’apport énergétique, et davantage dans certains groupes que dans d’autres."
+  },
+  "reverse-causation": {
+   "name": "Causalité inverse",
+   "short": "C’est l’issue qui cause la « cause ».",
+   "text": "L’issue (ou ses débuts) cause l’exposition, et non l’inverse.",
+   "example": "Les personnes âgées minces meurent plus tôt, en partie parce que la maladie fait maigrir des années avant le décès."
+  },
+  "regression-mean": {
+   "name": "Régression vers la moyenne",
+   "short": "Les valeurs extrêmes reviennent d’elles-mêmes vers la moyenne.",
+   "text": "Des unités choisies pour leurs valeurs extrêmes reviennent vers la moyenne à la mesure suivante, avec ou sans intervention.",
+   "example": "Les élèves choisis pour du soutien après leur pire note s’améliorent la fois suivante, soutien ou pas."
+  },
+  "expectation": {
+   "name": "Effets d’attente",
+   "short": "Savoir qui a reçu quoi change le résultat.",
+   "text": "Effets placebo, Hawthorne et d’observateur : savoir qui a reçu quoi change comportements, symptômes ou mesures.",
+   "example": "Moseley et al. (2002) : une arthroscopie du genou simulée a soulagé la douleur autant que la vraie opération."
+  },
+  "contamination": {
+   "name": "Contamination et diffusion",
+   "short": "Le groupe témoin attrape l’intervention.",
+   "text": "Le groupe témoin est exposé à l’intervention, ou les effets diffusent entre unités, ce qui dilue la différence.",
+   "example": "Les enseignants du groupe témoin ont emprunté le nouveau programme à leurs collègues du couloir."
+  },
+  "immortal-time": {
+   "name": "Biais du temps immortel",
+   "short": "Les traités sont crédités d’un temps où ils ne pouvaient pas mourir.",
+   "text": "Le groupe traité se voit attribuer un temps de suivi pendant lequel, par définition, l’issue ne pouvait pas survenir.",
+   "example": "Les lauréats d’un Oscar semblaient vivre ~4 ans de plus que les nommés, en partie parce qu’il faut survivre assez longtemps pour gagner."
+  },
+  "collider": {
+   "name": "Biais de collision",
+   "short": "Sélectionner sur un effet commun invente un lien.",
+   "text": "Sélectionner ou ajuster sur un effet commun de l’exposition et de l’issue crée une association fallacieuse (biais de Berkson).",
+   "example": "Chez les patients hospitalisés, deux maladies sans rapport semblent liées, car avoir l’une ou l’autre fait hospitaliser."
+  },
+  "ecological-fallacy": {
+   "name": "Erreur écologique",
+   "short": "Le vrai des groupes n’est pas forcément vrai de leurs membres.",
+   "text": "Conclure sur les individus à partir d’une association observée seulement entre groupes.",
+   "example": "Robinson (1950) : les États américains comptant plus d’immigrés étaient plus alphabétisés, alors que les immigrés eux-mêmes l’étaient moins souvent."
+  },
+  "unit-of-analysis": {
+   "name": "Erreur d’unité d’analyse",
+   "short": "On a randomisé des groupes, mais compté des individus.",
+   "text": "On randomise ou échantillonne des groupes, mais on analyse les individus comme indépendants. D’où une fausse précision.",
+   "example": "Un essai randomisant 10 écoles a analysé 3 000 élèves comme indépendants et rapporté des intervalles de confiance d’une étroitesse impossible."
+  },
+  "survivorship": {
+   "name": "Biais du survivant",
+   "short": "On ne voit que ceux qui sont revenus.",
+   "text": "On n’observe que les survivants, les succès ou ce qui reste ; les échecs sont invisibles.",
+   "example": "Wald, Seconde Guerre mondiale : le blindage va là où les bombardiers revenus n’avaient pas d’impacts, car les avions touchés là ne revenaient jamais."
+  },
+  "publication-bias": {
+   "name": "Biais de publication",
+   "short": "Les résultats nuls dorment dans le tiroir.",
+   "text": "Les résultats positifs sont publiés, les nuls restent dans le tiroir, et la littérature ment par omission.",
+   "example": "Turner et al. (2008) : presque tous les essais positifs d’antidépresseurs ont été publiés ; la plupart des négatifs non, ou ont été enjolivés."
+  },
+  "source-credibility": {
+   "name": "Sources non vérifiées",
+   "short": "Personne n’a vérifié, et l’auteur vend peut-être quelque chose.",
+   "text": "Les sources grises échappent à la relecture : vendeurs, consultants et passionnés publient des affirmations frappantes sans méthode ni données.",
+   "example": "Les taux d’échec des projets informatiques des rapports CHAOS de Standish ont été cités des années ; Eveleens & Verhoef (2010) ont montré que leurs définitions faussaient les chiffres."
+  },
+  "forking-paths": {
+   "name": "Chemins multiples et p-hacking",
+   "short": "Essayez assez d’analyses et l’une sera « significative ».",
+   "text": "Choix flexibles d’issues, de sous-groupes et d’analyses, ou coups d’œil aux données, jusqu’à un résultat « significatif ».",
+   "example": "Simmons et al. (2011) ont « montré », par des analyses flexibles, qu’écouter une chanson des Beatles rajeunissait."
+  },
+  "low-power": {
+   "name": "Faible puissance",
+   "short": "Trop petit pour voir l’effet, trop bruité pour croire un résultat.",
+   "text": "Trop peu d’unités pour détecter un effet réaliste ; les résultats « significatifs » qui émergent sont exagérés.",
+   "example": "Button et al. (2013) : la puissance statistique médiane des études en neurosciences était d’environ 21 %."
+  },
+  "overfitting-leakage": {
+   "name": "Surapprentissage et fuite",
+   "short": "Le modèle a appris le test par cœur.",
+   "text": "Le modèle mémorise du bruit, ou voit des informations des données de test ou du futur, et échoue dans le monde réel.",
+   "example": "Une IA de radiographie thoracique a appris à reconnaître l’hôpital (et l’appareil) d’origine de l’image, pas la maladie (Zech et al., 2018)."
+  },
+  "spectrum-bias": {
+   "name": "Biais de spectre",
+   "short": "On ne l’a testé que sur les cas évidents.",
+   "text": "Un test ou un évaluateur est jugé sur des cas tranchés et des non-cas évidents, pas sur l’éventail réel de patients ou d’échantillons.",
+   "example": "Des tests quasi parfaits sur des cas graves face à des volontaires sains flanchent chez les patients légers et ambigus des vraies consultations."
+  },
+  "history-trend": {
+   "name": "Histoire et tendances",
+   "short": "Autre chose a changé au même moment.",
+   "text": "Autre chose a changé au même moment (une tendance, la saison, une autre politique) et en prend le mérite ou la faute.",
+   "example": "La campagne d’hygiène d’un hôpital a coïncidé avec une baisse nationale des infections et a reçu le mérite des deux."
+  },
+  "carryover": {
+   "name": "Effet de report",
+   "short": "Le premier traitement persiste dans la seconde période.",
+   "text": "L’effet d’une période de traitement antérieure déborde sur la suivante.",
+   "example": "L’effet d’un médicament a persisté pendant la période placebo d’un essai croisé, rendant le placebo efficace en apparence."
+  },
+  "researcher-lens": {
+   "name": "Biais du chercheur",
+   "short": "On voit ce qu’on s’attendait à voir.",
+   "text": "Les attentes, attachements ou la position de l’analyste façonnent ce qui est vu, codé et rapporté.",
+   "example": "Des analystes qui connaissaient l’hypothèse lisaient des passages d’entretien ambigus comme la confirmant."
+  },
+  "external-validity": {
+   "name": "Généralisabilité limitée",
+   "short": "Vrai ici, mais peut-être nulle part ailleurs.",
+   "text": "L’échantillon, le contexte ou les conditions diffèrent de là où l’on utilisera les résultats.",
+   "example": "Henrich et al. (2010) : la plupart des résultats en psychologie venaient d’échantillons WEIRD (occidentaux, éduqués, industrialisés, riches, démocratiques)."
+  },
+  "heterogeneity": {
+   "name": "Choux et carottes",
+   "short": "Mélanger choux et carottes.",
+   "text": "Les études, populations ou interventions combinées diffèrent tant que la moyenne ne veut plus dire grand-chose.",
+   "example": "Combiner des essais de médicaments, doses et patients différents donne une moyenne précise de rien en particulier."
+  },
+  "model-assumptions": {
+   "name": "Modèle non validé",
+   "short": "Le modèle repose sur des hypothèses jamais vérifiées.",
+   "text": "Un modèle, une dérivation ou une simulation repose sur des hypothèses non vérifiées, des entrées fausses ou des artefacts numériques.",
+   "example": "Mars Climate Orbiter a été perdue en 1999 : le logiciel d’une équipe utilisait des unités impériales, l’autre attendait du métrique."
+  },
+  "construct-validity": {
+   "name": "Mauvais construit",
+   "short": "Vous avez mesuré un substitut, pas la vraie chose.",
+   "text": "Vous mesurez un substitut qui ne capte pas ce qui compte vraiment.",
+   "example": "CAST (1989) : des médicaments qui supprimaient les arythmies sur les moniteurs ont augmenté la mortalité."
+  },
+  "thin-data": {
+   "name": "Données minces",
+   "short": "Trop peu de voix pour étayer le récit.",
+   "text": "Trop peu de cas et de voix, ou trop semblables ; on conclut avant que les données soient assez riches.",
+   "example": "Six entretiens avec des adoptants précoces enthousiastes ont produit une « théorie » qui s’est effondrée en interrogeant des sceptiques."
+  }
+ },
+ "safeguards": {
+  "randomization": {
+   "name": "Randomisation",
+   "short": "Le hasard décide qui reçoit quoi.",
+   "text": "Le hasard décide qui reçoit quoi. Équilibre, en moyenne, les facteurs de confusion connus et inconnus."
+  },
+  "allocation-concealment": {
+   "name": "Assignation secrète",
+   "short": "Nul ne peut voir ni orienter la prochaine assignation.",
+   "text": "Personne qui inclut des participants ne peut connaître ni influencer la prochaine assignation."
+  },
+  "blinding": {
+   "name": "En aveugle",
+   "short": "Nul ne sait qui a reçu quoi.",
+   "text": "Participants, cliniciens, évaluateurs ou analystes ignorent qui a reçu quoi, ou quelle est l’hypothèse."
+  },
+  "placebo-sham": {
+   "name": "Placebo ou simulacre",
+   "short": "Le bras témoin reçoit un leurre identique en apparence.",
+   "text": "Le groupe témoin reçoit un leurre indiscernable : les attentes sont égales dans les deux bras."
+  },
+  "itt": {
+   "name": "Intention de traiter",
+   "short": "Analyser chacun tel que randomisé, quoi qu’il arrive ensuite.",
+   "text": "Analyser chacun dans son groupe de randomisation, quoi qu’il arrive ensuite ; traiter explicitement les données manquantes."
+  },
+  "preregistration": {
+   "name": "Préenregistrement",
+   "short": "Verrouiller le plan avant de voir les données.",
+   "text": "Publier hypothèses, critère principal et plan d’analyse (ou protocole de revue) avant de voir les données."
+  },
+  "power-analysis": {
+   "name": "Calcul de l’effectif",
+   "short": "Calculer combien il en faut avant de commencer.",
+   "text": "Calculer à l’avance combien d’unités il faut pour détecter le plus petit effet qui compte."
+  },
+  "dag-adjustment": {
+   "name": "Diagramme causal (DAG)",
+   "short": "Dessiner la carte causale ; n’ajuster que sur ce qu’il faut.",
+   "text": "Dessiner ses hypothèses causales ; ajuster sur les facteurs de confusion, pas sur les colliders ni les médiateurs."
+  },
+  "matching-ps": {
+   "name": "Appariement / score de propension",
+   "short": "Comparer le comparable.",
+   "text": "Comparer des unités traitées et non traitées semblables sur les caractéristiques mesurées."
+  },
+  "negative-control": {
+   "name": "Témoins négatifs",
+   "short": "Tester ce qui ne devrait montrer aucun effet.",
+   "text": "Tester une exposition ou une issue sans lien plausible ; tout « effet » y révèle un biais caché."
+  },
+  "sensitivity-analysis": {
+   "name": "Analyse de sensibilité",
+   "short": "Changer les hypothèses. La réponse tient-elle ?",
+   "text": "Refaire l’analyse sous d’autres hypothèses (données manquantes, confusion non mesurée, E-values, modèles). Les conclusions tiennent-elles ?"
+  },
+  "active-comparator": {
+   "name": "Comparateur actif, nouveaux usagers",
+   "short": "Comparer les nouveaux usagers d’un traitement à ceux d’un autre.",
+   "text": "Comparer les nouveaux usagers d’un traitement à ceux d’une alternative pour la même indication."
+  },
+  "time-zero": {
+   "name": "Temps zéro aligné",
+   "short": "L’horloge de chacun démarre au même moment.",
+   "text": "Démarrer le suivi quand l’éligibilité est atteinte et la stratégie assignée, au même moment pour tous."
+  },
+  "lag-analysis": {
+   "name": "Délai et exclusion précoce",
+   "short": "Laisser un écart entre exposition et issue.",
+   "text": "Mesurer l’exposition bien avant l’issue, ou écarter les événements précoces, contre la causalité inverse."
+  },
+  "concurrent-control": {
+   "name": "Groupe témoin concomitant",
+   "short": "Un groupe de comparaison qui vit la même période.",
+   "text": "Comparer à un groupe mesuré sur la même période : tendances et régression vers la moyenne touchent les deux."
+  },
+  "parallel-trends": {
+   "name": "Tendances préalables et série témoin",
+   "short": "Montrer que les groupes évoluaient ensemble avant.",
+   "text": "Montrer que les groupes évoluaient en parallèle avant l’intervention, ou ajouter une série témoin qu’elle ne pouvait toucher."
+  },
+  "cluster-allocation": {
+   "name": "Allocation par grappe",
+   "short": "Assigner des groupes entiers : rien ne fuit entre bras.",
+   "text": "Assigner des groupes entiers (classes, services, villages) pour que l’intervention ne fuie pas vers les témoins."
+  },
+  "washout": {
+   "name": "Wash-out",
+   "short": "Laisser le 1er traitement s’estomper.",
+   "text": "Laisser assez de temps entre les périodes pour que l’effet précédent disparaisse."
+  },
+  "external-validation": {
+   "name": "Validation externe",
+   "short": "Le tester sur des données jamais vues.",
+   "text": "Tester le modèle ou la méthode sur des données jamais vues, d’une autre époque ou d’un autre lieu."
+  },
+  "multiplicity": {
+   "name": "Correction de multiplicité",
+   "short": "Nommer un critère principal, ou payer chaque test en plus.",
+   "text": "Nommer un seul critère principal, ou ajuster au nombre de tests réalisés."
+  },
+  "replication": {
+   "name": "Réplication indépendante",
+   "short": "Quelqu’un d’autre le refait.",
+   "text": "Une autre équipe, un autre échantillon ou site refait l’étude, idéalement selon le même plan préenregistré."
+  },
+  "comprehensive-search": {
+   "name": "Recherche exhaustive",
+   "short": "Chercher partout, tiroirs compris.",
+   "text": "Interroger plusieurs bases, registres d’essais, prépublications et littérature grise ; contacter les auteurs."
+  },
+  "grey-appraisal": {
+   "name": "Évaluer la littérature grise",
+   "short": "Noter chaque source grise avant de s’y fier.",
+   "text": "Noter chaque source grise : autorité du producteur, méthode déclarée, objectivité, date, rang du support ; fixer d’avance des règles d’arrêt de la recherche."
+  },
+  "heterogeneity-plan": {
+   "name": "Hétérogénéité préplanifiée",
+   "short": "Prévoir comment expliquer pourquoi les études diffèrent.",
+   "text": "Modèles à effets aléatoires, sous-groupes préspécifiés et méta-régression pour explorer pourquoi les études diffèrent."
+  },
+  "sampling-frame": {
+   "name": "Échantillon représentatif",
+   "short": "Échantillonner toute la population, pas la partie commode.",
+   "text": "Recruter dans une population définie (tous les patients consécutifs, un échantillon aléatoire), pas qui est commode."
+  },
+  "validated-measures": {
+   "name": "Mesures objectives validées",
+   "short": "Utiliser des instruments qui mesurent ce qui compte.",
+   "text": "Utiliser instruments étalonnés, dossiers ou échelles validées plutôt que la mémoire ou des questions improvisées, et des issues qui comptent plutôt que des substituts non validés."
+  },
+  "reflexivity": {
+   "name": "Réflexivité et double codage",
+   "short": "Noter son propre prisme, et faire vérifier par un second codeur.",
+   "text": "Tenir une piste d’audit et des notes réflexives, faire coder un second analyste à part, vérifier les interprétations avec les participants."
+  },
+  "triangulation": {
+   "name": "Triangulation",
+   "short": "Méthodes et failles différentes, même réponse.",
+   "text": "Combiner sources, méthodes ou devis aux faiblesses différentes. Se fier aux conclusions communes."
+  },
+  "saturation-sampling": {
+   "name": "Échantillonnage jusqu’à saturation",
+   "short": "Échantillonner jusqu’à ce que rien de neuf ne sorte.",
+   "text": "Ajouter des cas choisis pour défier les idées émergentes, jusqu’à ce que rien de neuf n’apparaisse."
+  },
+  "multilevel-analysis": {
+   "name": "Analyse multiniveau",
+   "short": "Des personnes dans des groupes dans des lieux.",
+   "text": "Modéliser les individus emboîtés dans des groupes, avec des données individuelles si possible."
+  },
+  "verification-validation": {
+   "name": "Vérification et validation",
+   "short": "Vérifier que le code est juste, puis que le modèle colle au réel.",
+   "text": "Vérifier que le code résout correctement les équations (tests de convergence, contrôles d’unités) ; valider le modèle sur de vraies expériences."
+  },
+  "multi-site": {
+   "name": "Multicentrique et diversifié",
+   "short": "Le mener là où les résultats serviront.",
+   "text": "Mener l’étude dans les contextes et populations où les résultats seront réellement utilisés."
+  },
+  "within-comparison": {
+   "name": "Comparaison à soi ou fratrie",
+   "short": "Comparer chacun à lui-même, ou des frères et sœurs entre eux.",
+   "text": "Comparer les unités à elles-mêmes, ou des frères et sœurs entre eux : les facteurs de fond stables s’annulent."
+  },
+  "spc": {
+   "name": "Cartes et limites de contrôle",
+   "short": "Juger un changement d’après la variation de base du processus.",
+   "text": "Tracer la mesure dans le temps depuis une base stable, avec des règles fixées d’avance (décalages, tendances, limites de contrôle) : le vrai changement se détache du bruit et de la dérive."
+  }
+ },
+ "twists": {
+  "T01": {
+   "name": "Le comité d’éthique dit non",
+   "text": "Refuser ou imposer l’exposition est jugé contraire à l’éthique. Personne ne peut y être assigné."
+  },
+  "T02": {
+   "name": "Budget coupé",
+   "text": "Il vous reste six mois et un dixième du budget."
+  },
+  "T03": {
+   "name": "Plus rare que prévu",
+   "text": "Nouvelles données : l’issue touche environ 1 sur 20 000, pas 1 sur 200."
+  },
+  "T04": {
+   "name": "Le registre s’ouvre",
+   "text": "Un registre national de 20 ans de données chaînées devient accessible."
+  },
+  "T05": {
+   "name": "Le ministère fixe un seuil",
+   "text": "L’éligibilité dépendra d’un score : tous ceux au-dessus de 60 l’ont, ceux en dessous non."
+  },
+  "T06": {
+   "name": "Ça se fera de toute façon",
+   "text": "C’est décidé : tout le monde aura l’intervention d’ici un an. Seul l’ordre reste ouvert."
+  },
+  "T07": {
+   "name": "Ils se parlent",
+   "text": "Les participants partagent astuces, matériel et rumeurs. Ce que vous donnez à l’un, les autres l’ont aussi."
+  },
+  "T08": {
+   "name": "Un seul",
+   "text": "Il n’y a en fait qu’une unité éligible : un patient, une usine, un pays."
+  },
+  "T09": {
+   "name": "Trente études tombent",
+   "text": "Une recherche documentaire révèle des dizaines d’études primaires sur cette question."
+  },
+  "T10": {
+   "name": "Brouillard",
+   "text": "Les experts ne s’accordent même pas sur les variables clés."
+  },
+  "T11": {
+   "name": "À petit feu",
+   "text": "L’effet, s’il existe, mettrait 15 ans à apparaître."
+  },
+  "T12": {
+   "name": "Un déclencheur bref",
+   "text": "La cause suspectée dure quelques minutes, l’effet survient dans les heures."
+  },
+  "T13": {
+   "name": "Peu d’exposés",
+   "text": "L’exposition se limite à quelques centaines de personnes sur un site."
+  },
+  "T14": {
+   "name": "Relecteur 2",
+   "text": "Le Relecteur peut jouer une Menace de plus contre chaque devis ce tour-ci."
+  },
+  "T15": {
+   "name": "Crise de réplication",
+   "text": "Tout devis non défendu par Préenregistrement ou Réplication indépendante perd 1 point ce tour."
+  },
+  "T16": {
+   "name": "Bonus science ouverte",
+   "text": "+1 point à chaque joueur qui joue Préenregistrement, Triangulation ou Réplication indépendante ce tour-ci."
+  },
+  "T17": {
+   "name": "Tout est sur les blogs",
+   "text": "Les revues donnent cinq articles. Les praticiens ont écrit cinq cents billets, conférences et livres blancs."
+  }
+ },
+ "programs": {
+  "P1": {
+   "name": "Écrans et santé mentale des ados",
+   "brief": "Les réseaux sociaux nuisent-ils à la santé mentale des adolescents ? Parents, plateformes et gouvernements veulent une réponse.",
+   "stages": [
+    "Comment les adolescents décrivent-ils eux-mêmes leur usage des réseaux sociaux et ses effets ?",
+    "Quelle est la fréquence d’un usage intensif et de symptômes dépressifs, et vont-ils ensemble ?",
+    "L’usage intensif précède-t-il la hausse des symptômes, ou l’inverse ?",
+    "Réduire l’usage pendant quatre semaines améliore-t-il l’humeur ?",
+    "Que disent, mis ensemble, tous les essais et toutes les cohortes ?"
+   ]
+  },
+  "P2": {
+   "name": "Des microplastiques en nous",
+   "brief": "On trouve des microplastiques dans le sang, le placenta et les artères. Sont-ils un problème de santé ?",
+   "stages": [
+    "Qu’a-t-on étudié jusqu’ici, avec quelles méthodes, et où sont les lacunes ?",
+    "Des laboratoires mesurant le même échantillon de tissu trouvent-ils le même nombre de particules ?",
+    "Combien les gens en portent-ils, et cela varie-t-il selon la région et l’âge ?",
+    "Les personnes ayant plus de microplastiques dans la plaque artérielle font-elles plus d’infarctus ensuite ?",
+    "Par quel mécanisme cellulaire les particules pourraient-elles causer une inflammation, et à quelle dose ?"
+   ]
+  },
+  "P3": {
+   "name": "Une pince souple pour la cueillette",
+   "brief": "Les producteurs ne trouvent plus de saisonniers. Une pince robotique souple peut-elle cueillir des fraises sans les abîmer ?",
+   "stages": [
+    "Quelles pinces existent, et comment ont-elles été évaluées ?",
+    "Concevoir une pince que producteurs et cueilleurs trouvent utilisable.",
+    "Quelle combinaison de matériau des doigts, de pression et de vitesse d’approche limite le plus les meurtrissures ?",
+    "Fait-elle mieux que les pinces existantes sur un jeu commun de fruits et de métriques ?",
+    "Peut-elle tenir une journée entière dans une vraie serre ? Le personnel continuera-t-il à l’utiliser ?"
+   ]
+  },
+  "P4": {
+   "name": "La semaine de 4 jours",
+   "brief": "Un gouvernement veut savoir si une semaine de 32 heures à plein salaire est bonne pour les salariés et les entreprises.",
+   "stages": [
+    "Comment les premières entreprises qui l’ont essayée l’ont-elles fait marcher, ou échouer ?",
+    "Peut-on recruter des entreprises, et mesurer productivité et bien-être de façon cohérente ?",
+    "Soixante entreprises volontaires y passeront toutes à terme. Cela change-t-il l’épuisement et la production ?",
+    "Un pays entier l’a adoptée par la loi en un an. Qu’est-il arrivé à la productivité nationale ?",
+    "Pourquoi cela marche-t-il dans certains secteurs et pas dans d’autres ?"
+   ]
+  },
+  "P5": {
+   "name": "Un nouveau syndrome post-viral",
+   "brief": "Des mois après une nouvelle infection, certains décrivent épuisement et brouillard cérébral. Qu’est-ce que c’est, et qu’est-ce qui aide ?",
+   "stages": [
+    "À quoi ressemblent les premiers patients ?",
+    "Quelle est sa fréquence chez les personnes infectées ?",
+    "Qui est à risque ? La vaccination avant l’infection change-t-elle la donne ?",
+    "Douze traitements candidats sont proposés. Lesquels marchent ?",
+    "Classer les traitements quand peu ont été comparés directement."
+   ]
+  },
+  "P6": {
+   "name": "IA de triage aux urgences",
+   "brief": "Un groupe hospitalier veut un outil d’IA qui signale les patients qui auront besoin de soins intensifs.",
+   "stages": [
+    "Les données courantes prédisent-elles une admission en réanimation dans les 24 heures ?",
+    "Cela marche-t-il encore dans un autre hôpital, un an plus tard ?",
+    "Les infirmières s’accordent-elles entre elles, et avec l’outil, sur le niveau de triage ?",
+    "L’outil sera activé dans les 8 hôpitaux cette année. Sauve-t-il des vies ?",
+    "Pourquoi certains cliniciens le contournent-ils si souvent ?"
+   ]
+  }
+ }
+}

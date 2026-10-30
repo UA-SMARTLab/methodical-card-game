@@ -3,6 +3,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@500&family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans+Condensed:ital,wght@0,400;0,600;1,400&display=swap" media="print" onload="this.media='all'">
+<!--__EXTRA_FONTS__-->
 <style>
 /* Layout: a lab bench. The dealt question card and its verdict sit on top; below, a periodic table of all designs in family columns. A sticky tray holds the chosen design. */
 :root {
@@ -244,6 +245,14 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 @keyframes badgeIn { from { opacity: 0; transform: translateX(-50%) translateY(8px) scale(.6); } }
 @media (prefers-reduced-motion: reduce) { .result-head, .pick.chosen, .pick-slot .badge { animation: none !important; } }
 
+/* language picker */
+.lang-pick { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); }
+.lang-pick select { background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; font: inherit; }
+header { position: relative; }
+.brand + .lang-pick { position: absolute; top: 4px; inset-inline-end: 0; }
+/* right-to-left: keep pop-ups and badges on the reading side */
+[dir="rtl"] .ref { right: auto; left: -9px; } [dir="rtl"] .lens { left: auto; right: -9px; }
+
 /* home */
 .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 24px; align-items: center; min-height: 430px; margin-bottom: 26px; }
 @media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; } }
@@ -363,37 +372,38 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 <div class="wrap">
   <header>
     <div class="brand">
-      <h1><a href="#" id="go-home" title="Home">Methodical</a></h1>
-      <p>A card game for scientists. Read the research problem, then pick the study design that can actually answer it.</p>
+      <h1><a href="#" id="go-home" title="{{nav.home}}">Methodical</a></h1>
+      <p>{{brand.tagline}}</p>
     </div>
+    <label class="lang-pick" id="lang-wrap" hidden><span aria-hidden="true">🌐</span><select id="lang-pick" aria-label="{{lang.label}}"></select></label>
     <div class="stats" aria-live="polite">
-      <div class="stat"><b id="s-score">0</b><span class="label">Points</span></div>
-      <div class="stat"><b id="s-acc">–</b><span class="label">Best picks</span></div>
-      <div class="stat"><b id="s-streak">0</b><span class="label">Streak</span></div>
-      <div class="stat"><b id="s-seen">0</b><span class="label">Seen</span></div>
+      <div class="stat"><b id="s-score">0</b><span class="label">{{stats.points}}</span></div>
+      <div class="stat"><b id="s-acc">–</b><span class="label">{{stats.best}}</span></div>
+      <div class="stat"><b id="s-streak">0</b><span class="label">{{stats.streak}}</span></div>
+      <div class="stat"><b id="s-seen">0</b><span class="label">{{stats.seen}}</span></div>
     </div>
   </header>
 
   <nav role="tablist">
-    <button role="tab" id="tab-home" aria-selected="true" data-view="home">Home</button>
-    <button role="tab" id="tab-play" aria-selected="false" data-view="play">Play</button>
-    <button role="tab" id="tab-duel" aria-selected="false" data-view="duel">Duel</button>
-    <button role="tab" id="tab-decks" aria-selected="false" data-view="decks">Browse the decks</button>
-    <button role="tab" id="tab-guide" aria-selected="false" data-view="guide">How it works</button>
+    <button role="tab" id="tab-home" aria-selected="true" data-view="home">{{nav.home}}</button>
+    <button role="tab" id="tab-play" aria-selected="false" data-view="play">{{nav.play}}</button>
+    <button role="tab" id="tab-duel" aria-selected="false" data-view="duel">{{nav.duel}}</button>
+    <button role="tab" id="tab-decks" aria-selected="false" data-view="decks">{{nav.decks}}</button>
+    <button role="tab" id="tab-guide" aria-selected="false" data-view="guide">{{nav.guide}}</button>
   </nav>
 
   <section id="view-home">
     <div class="hero">
       <div class="hero-text">
-        <span class="label">The research design card game</span>
-        <h2 class="hero-title">Match your research method to the <em>challenge</em>.</h2>
-        <p>Read the research problem, play the study design that can answer it, then defend it when Reviewer 2 attacks.</p>
+        <span class="label">{{home.kicker}}</span>
+        <h2 class="hero-title">{{home.title_html}}</h2>
+        <p>{{home.lede}}</p>
         <div class="counts" id="home-counts"></div>
       </div>
       <div class="hero-fan" id="hero-fan" aria-hidden="true"></div>
     </div>
 
-    <h2 class="home-h">Choose your game</h2>
+    <h2 class="home-h">{{home.choose}}</h2>
     <div class="modes" id="home-modes">
       <div class="mode tilt" style="--c:#B91C1C" data-feature="duel">
         <div class="mode-ic">⚔️</div><h3>Duel</h3>
@@ -402,14 +412,14 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
         <span class="label" id="home-record"></span>
       </div>
       <div class="mode tilt" style="--c:#2340A8">
-        <div class="mode-ic">🎯</div><h3>Play</h3>
-        <p>One question at a time: pick the right design from four choices, then defend it in a peer-review round. Filter by suit and difficulty.</p>
-        <div class="mode-go"><button class="btn primary" data-go="play">Deal me a question</button></div>
+        <div class="mode-ic">🎯</div><h3>{{nav.play}}</h3>
+        <p>{{home.play.text}}</p>
+        <div class="mode-go"><button class="btn primary" data-go="play">{{home.play.go}}</button></div>
       </div>
       <div class="mode tilt" style="--c:#15803D">
-        <div class="mode-ic">🃏</div><h3>Browse the decks</h3>
-        <p>Every Question, Design, Threat, Safeguard, Twist and Programme card, with answers and real historical examples.</p>
-        <div class="mode-go"><button class="btn" data-go="decks">Open the decks</button></div>
+        <div class="mode-ic">🃏</div><h3>{{nav.decks}}</h3>
+        <p>{{home.decks.text}}</p>
+        <div class="mode-go"><button class="btn" data-go="decks">{{home.decks.go}}</button></div>
       </div>
       <div class="mode tilt" style="--c:#7E22CE" data-feature="guide">
         <div class="mode-ic">📖</div><h3>How to play</h3>
@@ -418,17 +428,17 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
       </div>
     </div>
 
-    <h2 class="home-h">Quick question</h2>
+    <h2 class="home-h">{{home.quick}}</h2>
     <div class="quick" id="quick"></div>
   </section>
 
   <section id="view-play" hidden>
     <div class="filters">
-      <select id="f-suit" aria-label="Question suit"></select>
-      <select id="f-diff" aria-label="Difficulty">
-        <option value="0">Any difficulty</option><option value="1">★ Intro</option><option value="2">★★ Intermediate</option><option value="3">★★★ Advanced</option>
+      <select id="f-suit" aria-label="{{play.suit_aria}}"></select>
+      <select id="f-diff" aria-label="{{play.diff_aria}}">
+        <option value="0">{{play.any_diff}}</option><option value="1">{{play.diff1}}</option><option value="2">{{play.diff2}}</option><option value="3">{{play.diff3}}</option>
       </select>
-      <button class="btn primary" id="b-new">🃏 Deal another question</button>
+      <button class="btn primary" id="b-new">{{play.deal}}</button>
       <label class="toggle" data-feature="table"><input type="checkbox" id="f-hints"> Icon hints</label>
     </div>
     <div class="bench">
@@ -483,7 +493,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 
   <section id="view-decks" hidden>
     <div class="deck-tabs" id="deck-tabs"></div>
-    <input class="btn" id="deck-search" type="search" placeholder="Search cards" aria-label="Search cards">
+    <input class="btn" id="deck-search" type="search" placeholder="{{decks.search}}" aria-label="{{decks.search}}">
     <div class="cards" id="cards"></div>
   </section>
 
@@ -491,7 +501,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
     <div class="guide" id="guide"></div>
   </section>
 
-  <footer>Methodical v<span id="ver"></span>. Content is generated from the card data in <span class="mono">methodical/data</span>. The answer key has three tiers because methodologists disagree. Argue with it, and improve it.</footer>
+  <footer id="footer"></footer>
 </div>
 
 <div class="tray" id="tray" hidden>
@@ -503,6 +513,15 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 
 <script>
 const DATA = /*__DATA__*/null;
+// Interface strings for this page's language (i18n/<code>/ui.json, with English filling any gaps) and the language list.
+const UI = /*__UI__*/{};
+const LANG = /*__LANG__*/{};
+const fmt = (s, vars) => s.replace(/\{(\w+)\}/g, (m, k) => k in vars ? vars[k] : m);
+// tr: for HTML (the string is escaped; vars are inserted as given, so escape them first). trt: for plain text.
+const tr = (key, vars = {}) => fmt(esc(UI[key] ?? key), vars);
+const trt = (key, vars = {}) => fmt(UI[key] ?? key, vars);
+document.documentElement.lang = LANG.code || "en";
+document.documentElement.dir = LANG.dir || "ltr";
 const { meta, designs, questions, threats, safeguards, twists, programs } = DATA;
 const D = Object.fromEntries(designs.map(d => [d.id, d]));
 const T = Object.fromEntries(threats.map(t => [t.id, t]));
@@ -532,7 +551,7 @@ const FEATURES = { duel: false, guide: false, table: false };
 // Every design carries the paper that defines it (or made it standard). The "?" opens it in a new tab.
 // Threats and Safeguards carry one too. Pass a card object, or a design id.
 const refOf = x => typeof x === "string" ? D[x] : x;
-const refLink = x => { x = refOf(x); return `<a class="ref" href="${esc(x.ref.url)}" target="_blank" rel="noopener" title="Key reference: ${esc(x.ref.cite)}" aria-label="Key reference for ${esc(x.name)}">?</a>`; };
+const refLink = x => { x = refOf(x); return `<a class="ref" href="${esc(x.ref.url)}" target="_blank" rel="noopener" title="${tr("ref.title", { cite: esc(x.ref.cite) })}" aria-label="${tr("ref.aria", { name: esc(x.name) })}">?</a>`; };
 const refLine = x => { x = refOf(x); return `<a href="${esc(x.ref.url)}" target="_blank" rel="noopener">${esc(x.ref.cite)}</a>`; };
 
 const $ = id => document.getElementById(id);
@@ -581,7 +600,7 @@ function nextQuestion() {
 function chip(cid) { const c = CON[cid]; return `<span class="chip" title="${esc(c.text)}">${c.icon} ${esc(c.name)}</span>`; }
 
 function renderQuestion() {
-  $("qslot").innerHTML = `<div class="qwrap deal" aria-label="Question card">${DATA.cards.questions[q.id]}${lens("q")}</div>`;
+  $("qslot").innerHTML = `<div class="qwrap deal" aria-label="${tr("play.question_card")}">${DATA.cards.questions[q.id]}${lens("q")}</div>`;
   $("qslot").querySelector("[data-lens]").onclick = () => openViewer($("qslot").querySelector(".tcg"));
   magnify($("qslot").querySelector(".tcg"), 1.25);
 }
@@ -634,52 +653,52 @@ function openViewer(el) {
   unzoom();
   const card = (el.matches(".tcg") ? el : el.querySelector(".tcg")).outerHTML;
   const v = document.createElement("div");
-  v.className = "viewer"; v.setAttribute("role", "dialog"); v.setAttribute("aria-label", "Enlarged card");
-  v.innerHTML = `<div class="viewer-card">${card}</div><span class="viewer-hint">Tap anywhere to close</span>`;
+  v.className = "viewer"; v.setAttribute("role", "dialog"); v.setAttribute("aria-label", trt("viewer.aria"));
+  v.innerHTML = `<div class="viewer-card">${card}</div><span class="viewer-hint">${tr("viewer.hint")}</span>`;
   const close = () => { v.classList.add("out"); setTimeout(() => v.remove(), reduceMotion ? 0 : 180); removeEventListener("keydown", esc); };
   const esc = e => { if (e.key === "Escape") close(); };
   v.onclick = close; addEventListener("keydown", esc);
   document.body.appendChild(v);
 }
 function lens(target) {
-  return `<button class="lens" type="button" aria-label="Enlarge this card" data-lens="${target}">🔍</button>`;
+  return `<button class="lens" type="button" aria-label="${tr("lens.aria")}" data-lens="${target}">🔍</button>`;
 }
 
 function renderPanel() {
   const p = $("panel");
   if (phase === "choose") {
-    p.innerHTML = `<span class="label">Your move</span><h3>Which design answers this question?</h3>
+    p.innerHTML = `<span class="label">${tr("play.your_move")}</span><h3>${tr("play.which")}</h3>
       ${FEATURES.table ? "<p>Pick one from the periodic table below, then submit it from the tray.</p>" : `<div class="pick-wrap"><div class="pick-cards">${choices.map(id =>
         `<div class="pick-slot"><button class="pick" data-pick="${id}" aria-label="${esc(D[id].name)}" title="${esc(D[id].gist)}">${DATA.cards.designs[id]}</button>${refLink(id)}${lens(id)}</div>`).join("")}</div></div>`}
       <ol class="steps" style="margin-top:14px">
-        <li><b>Name the suit.</b> What kind of knowledge is wanted?</li>
-        <li><b>Read the constraints.</b> They usually decide between otherwise good designs.</li>
-        <li><b>Expect review.</b> You'll have to defend your choice against the problem's biggest threat.</li>
+        <li><b>${tr("play.step1_b")}</b> ${tr("play.step1")}</li>
+        <li><b>${tr("play.step2_b")}</b> ${tr("play.step2")}</li>
+        <li><b>${tr("play.step3_b")}</b> ${tr("play.step3")}</li>
       </ol>
-      <p class="label" style="margin-top:14px">Scoring: best +${SC.best} · defensible +${SC.ok} · trap ${SC.trap} · unlisted ${SC.unlisted}</p>`;
+      <p class="label" style="margin-top:14px">${tr("play.scoring", { best: SC.best, ok: SC.ok, trap: SC.trap, unlisted: SC.unlisted })}</p>`;
     p.querySelectorAll("[data-pick]").forEach(b => { b.onclick = () => { picked = b.dataset.pick; submit(); }; magnify(b); });
     p.querySelectorAll(".pick-slot [data-lens]").forEach(b => b.onclick = () => openViewer(b.closest(".pick-slot")));
     return;
   }
   const tier = tierOf(picked);
   const pts = SC[tier];
-  const names = ids => ids.map(i => esc(D[i].name)).join(", ") || "none";
-  const vtext = { best: "🥇 Best design", ok: "🥈 Defensible", trap: "⚠️ Trap", unlisted: "Unlisted. At a table you could appeal" }[tier];
+  const names = ids => ids.map(i => esc(D[i].name)).join(", ") || tr("play.none");
+  const vtext = tr("verdict." + tier);
   // The four cards stay on the table and show what each one was; the one you picked reacts.
-  const head = { best: "🎉 Correct!", ok: "👍 Defensible, but not the best.", trap: "💥 That's the trap!", unlisted: "🤔 Not quite." }[tier];
-  const badge = { best: "🥇 Best", ok: "🥈 Defensible", trap: "⚠️ Trap", unlisted: "Unlisted" };
+  const head = tr("head." + tier);
+  const badge = { best: tr("tier.best"), ok: tr("tier.ok"), trap: tr("tier.trap"), unlisted: tr("tier.unlisted") };
   let html = `<div class="result-head r-${tier}"><span class="big">${head}</span><span class="pts">${pts > 0 ? "+" : ""}${pts}</span></div>`;
   if (!FEATURES.table) html += `<div class="pick-wrap"><div class="pick-cards">${choices.map(id => {
     const t = tierOf(id), mine = id === picked;
-    return `<div class="pick-slot"><button class="pick res res-${t}${mine ? " chosen" : ""}" disabled aria-label="${esc(D[id].name)}: ${badge[t]}${mine ? " (your pick)" : ""}">${DATA.cards.designs[id]}</button>
-      ${lens(id)}<span class="badge b-${t}">${mine ? (pts > 0 ? "+" + pts + " " : pts < 0 ? pts + " " : "") : ""}${badge[t]}</span>${mine ? '<span class="mine">YOUR PICK</span>' : ""}${refLink(id)}</div>`;
+    return `<div class="pick-slot"><button class="pick res res-${t}${mine ? " chosen" : ""}" disabled aria-label="${mine ? tr("play.your_pick_aria", { design: esc(D[id].name), tier: badge[t] }) : `${esc(D[id].name)}: ${badge[t]}`}">${DATA.cards.designs[id]}</button>
+      ${lens(id)}<span class="badge b-${t}">${mine ? (pts > 0 ? "+" + pts + " " : pts < 0 ? pts + " " : "") : ""}${badge[t]}</span>${mine ? `<span class="mine">${tr("play.your_pick")}</span>` : ""}${refLink(id)}</div>`;
   }).join("")}</div></div>`;
-  html += `<span class="label" style="display:block;margin-top:16px">Verdict on ${esc(D[picked].name)}</span>
+  html += `<span class="label" style="display:block;margin-top:16px">${tr("play.verdict_on", { design: esc(D[picked].name) })}</span>
     <div class="verdict v-${tier}"><span class="pts">${pts > 0 ? "+" : ""}${pts}</span>${vtext}</div>`;
-  if (tier === "trap") html += `<p class="trapline"><b>Why it fails:</b> ${esc(q.traps[picked])}</p>`;
-  html += `<dl class="key"><dt>🥇 Best</dt><dd>${names(q.best)}</dd><dt>🥈 Defensible</dt><dd>${names(q.ok)}</dd>`;
-  for (const [id, r] of Object.entries(q.traps)) if (id !== picked) html += `<dt>⚠️ Trap</dt><dd><b>${esc(D[id].name)}</b>: ${esc(r)}</dd>`;
-  html += `</dl><p>${esc(q.why)}</p><p class="cite">📄 Key reference for ${esc(D[q.best[0]].name)}: ${refLine(q.best[0])}</p>`;
+  if (tier === "trap") html += `<p class="trapline"><b>${tr("play.why_fails")}</b> ${esc(q.traps[picked])}</p>`;
+  html += `<dl class="key"><dt>${tr("tier.best")}</dt><dd>${names(q.best)}</dd><dt>${tr("tier.ok")}</dt><dd>${names(q.ok)}</dd>`;
+  for (const [id, r] of Object.entries(q.traps)) if (id !== picked) html += `<dt>${tr("tier.trap")}</dt><dd><b>${esc(D[id].name)}</b>: ${esc(r)}</dd>`;
+  html += `</dl><p>${esc(q.why)}</p><p class="cite">📄 ${tr("play.key_ref", { design: esc(D[q.best[0]].name) })} ${refLine(q.best[0])}</p>`;
   html += `<div class="review" id="review"></div>`;
   p.innerHTML = html;
   renderReview();
@@ -704,10 +723,10 @@ function buildReview() {
 function renderReview() {
   if (!review) review = buildReview();
   const { t, design, opts, answer } = review;
-  let html = `<span class="label">Peer review</span>
-    <p style="margin-top:4px">Reviewer 2 attacks the ${esc(design.name.toLowerCase())} with <span class="threat-tag">${esc(t.name)}</span>.
+  let html = `<span class="label">${tr("review.label")}</span>
+    <p style="margin-top:4px">${tr("review.attack", { design: `<b>${esc(design.name)}</b>`, threat: `<span class="threat-tag">${esc(t.name)}</span>` })}
     <br><span style="color:var(--muted)">${esc(t.text)}</span></p>
-    <p><b>Which safeguard defends it?</b> <span style="color:var(--muted)">+1 for a successful rebuttal.</span></p>
+    <p><b>${tr("review.which")}</b> <span style="color:var(--muted)">${tr("review.bonus")}</span></p>
     <div class="opts">`;
   for (const s of opts) {
     let cls = "";
@@ -717,11 +736,11 @@ function renderReview() {
   html += `</div>`;
   if (answer) {
     const ok = t.countered_by.includes(answer);
-    html += `<p style="margin-top:12px">${ok ? "✅ Rebuttal accepted. +1." : "❌ That doesn't answer this threat."}
-      ${esc(t.name)} is countered by ${t.countered_by.map(i => esc(S[i].name)).join(", ")}.</p>
-      <p class="cite">📄 On ${esc(t.name.toLowerCase())}: ${refLine(t)}</p>
+    html += `<p style="margin-top:12px">${ok ? tr("review.accepted") : tr("review.rejected")}
+      ${tr("review.countered", { threat: esc(t.name), list: t.countered_by.map(i => esc(S[i].name)).join(", ") })}</p>
+      <p class="cite">📄 ${tr("review.on", { threat: esc(t.name) })} ${refLine(t)}</p>
       <p style="color:var(--muted);font-size:14px"><i>${esc(t.example)}</i></p>`;
-    html += `<div class="row-actions"><button class="btn primary" id="b-next">Next question</button></div>`;
+    html += `<div class="row-actions"><button class="btn primary" id="b-next">${tr("review.next")}</button></div>`;
   }
   $("review").innerHTML = html;
   $("review").querySelectorAll(".opt").forEach(b => b.onclick = () => answerReview(b.dataset.sg));
@@ -779,16 +798,16 @@ function renderTray() {
 
 // ---------- decks browser
 let deck = "designs";
-const DECKS = { designs: "Designs", questions: "Questions", threats: "Threats", safeguards: "Safeguards", twists: "Twists", programs: "Programmes" };
+const DECKS = Object.fromEntries(["designs", "questions", "threats", "safeguards", "twists", "programs"].map(k => [k, trt("deck." + k)]));
 
 // ---------- deck explanations: a small animated pop-up on hover, focus or tap
 const DECK_INFO = {
-  questions: { color: "#2340A8", icon: "❓", text: "Research problems from real fields. Each has a suit (the kind of knowledge wanted) and constraints (the situation). Your job: find the design that can answer it." },
-  designs: { color: "#15803D", icon: "🧪", text: "Study designs, colour-coded by family. Each card shows what it answers, which situations it fits or struggles with, and the biases it is weak against." },
-  threats: { color: "#B91C1C", icon: "⚠️", text: "Biases and validity threats: the “fallacy” deck. A reviewer plays one against a design that is weak to it." },
-  safeguards: { color: "#0F766E", icon: "🛡️", text: "Design and analysis features that counter specific threats: the “refutation” deck. Authors play them to defend their design." },
-  twists: { color: "#7E22CE", icon: "🌀", text: "Mid-round surprises such as “Funding cut” that add a constraint and force you to rethink your design." },
-  programs: { color: "#0C4A6E", icon: "🗺️", text: "Cooperative five-stage challenges: one research project, from the first question to the final synthesis." },
+  questions: { color: "#2340A8", icon: "❓", text: trt("tip.questions") },
+  designs: { color: "#15803D", icon: "🧪", text: trt("tip.designs") },
+  threats: { color: "#B91C1C", icon: "⚠️", text: trt("tip.threats") },
+  safeguards: { color: "#0F766E", icon: "🛡️", text: trt("tip.safeguards") },
+  twists: { color: "#7E22CE", icon: "🌀", text: trt("tip.twists") },
+  programs: { color: "#0C4A6E", icon: "🗺️", text: trt("tip.programs") },
 };
 let tipEl = null, tipFor = null;
 function showTip(anchor) {
@@ -800,7 +819,7 @@ function showTip(anchor) {
   tipEl.className = "tip"; tipEl.setAttribute("role", "tooltip"); tipEl.id = "deck-tip";
   tipEl.style.setProperty("--c", info.color);
   tipEl.innerHTML = `<div class="tip-fan" aria-hidden="true"><i></i><i></i><i>${info.icon}</i></div>
-    <div><b>${esc(DECKS[k])} · ${DATA[k].length} cards</b><p>${esc(info.text)}</p></div>`;
+    <div><b>${tr("tip.count", { deck: esc(DECKS[k]), n: DATA[k].length })}</b><p>${esc(info.text)}</p></div>`;
   document.body.appendChild(tipEl);
   anchor.setAttribute("aria-describedby", "deck-tip");
   const a = anchor.getBoundingClientRect(), t = tipEl.getBoundingClientRect();
@@ -838,10 +857,10 @@ document.addEventListener("pointerdown", e => {
 });
 function cardHTML(kind, x) {
   const card = DATA.cards[kind][x.id];
-  if (kind === "questions") return `<figure>${card}<details><summary>Answer</summary><p>🥇 ${x.best.map(i => esc(D[i].name)).join(", ")}<br>🥈 ${x.ok.map(i => esc(D[i].name)).join(", ") || "–"}</p><p>${esc(x.why)}</p></details></figure>`;
-  if (kind === "designs") return `<figure><div class="pick-slot">${card}${refLink(x.id)}</div><details><summary>More</summary><p>${esc(x.gist)}</p><p><i>${esc(x.example)}</i></p><p>📄 ${refLine(x.id)}</p></details></figure>`;
-  if (kind === "threats") return `<figure><div class="pick-slot">${card}${refLink(x)}</div><details><summary>Example</summary><p>${esc(x.text)}</p><p><i>${esc(x.example)}</i></p><p>📄 ${refLine(x)}</p></details></figure>`;
-  if (kind === "safeguards") return `<figure><div class="pick-slot">${card}${refLink(x)}</div><details><summary>More</summary><p>${esc(x.text)}</p><p>📄 ${refLine(x)}</p></details></figure>`;
+  if (kind === "questions") return `<figure>${card}<details><summary>${tr("decks.answer")}</summary><p>🥇 ${x.best.map(i => esc(D[i].name)).join(", ")}<br>🥈 ${x.ok.map(i => esc(D[i].name)).join(", ") || "–"}</p><p>${esc(x.why)}</p></details></figure>`;
+  if (kind === "designs") return `<figure><div class="pick-slot">${card}${refLink(x.id)}</div><details><summary>${tr("decks.more")}</summary><p>${esc(x.gist)}</p><p><i>${esc(x.example)}</i></p><p>📄 ${refLine(x.id)}</p></details></figure>`;
+  if (kind === "threats") return `<figure><div class="pick-slot">${card}${refLink(x)}</div><details><summary>${tr("decks.example")}</summary><p>${esc(x.text)}</p><p><i>${esc(x.example)}</i></p><p>📄 ${refLine(x)}</p></details></figure>`;
+  if (kind === "safeguards") return `<figure><div class="pick-slot">${card}${refLink(x)}</div><details><summary>${tr("decks.more")}</summary><p>${esc(x.text)}</p><p>📄 ${refLine(x)}</p></details></figure>`;
   return `<figure>${card}</figure>`;
 }
 function renderDecks() {
@@ -852,7 +871,7 @@ function renderDecks() {
   const term = $("deck-search").value.trim().toLowerCase();
   const items = DATA[deck].filter(x => !term || JSON.stringify(x).toLowerCase().includes(term));
   $("cards").classList.toggle("wide", deck === "programs");
-  $("cards").innerHTML = items.map(x => cardHTML(deck, x)).join("") || `<p>No cards match "${esc(term)}".</p>`;
+  $("cards").innerHTML = items.map(x => cardHTML(deck, x)).join("") || `<p>${tr("decks.nomatch", { term: esc(term) })}</p>`;
 }
 
 // ---------- guide
@@ -1306,8 +1325,8 @@ function cycleFan() {
   };
 }
 function countUp() {
-  const items = [["Questions", questions.length], ["Designs", designs.length], ["Threats", threats.length], ["Safeguards", safeguards.length]];
-  $("home-counts").innerHTML = items.map(([k]) => `<div class="count" data-tip="${k.toLowerCase()}" tabindex="0"><b>0</b><span class="label">${k}</span></div>`).join("");
+  const items = [["questions", questions.length], ["designs", designs.length], ["threats", threats.length], ["safeguards", safeguards.length]];
+  $("home-counts").innerHTML = items.map(([k]) => `<div class="count" data-tip="${k}" tabindex="0"><b>0</b><span class="label">${esc(DECKS[k])}</span></div>`).join("");
   bindTips($("home-counts"));
   const bs = $("home-counts").querySelectorAll("b"), t0 = performance.now(), dur = reduceMotion ? 1 : 1200;
   const step = t => {
@@ -1345,15 +1364,15 @@ function renderQuick() {
   const qq = questions[Math.floor(Math.random() * questions.length)];
   const traps = Object.keys(qq.traps), taken = new Set([...qq.best, ...qq.ok, ...traps]);
   const opts = shuffle([qq.best[0], ...(traps.length ? [traps[0]] : []), ...shuffle(designs.map(d => d.id).filter(i => !taken.has(i)))].slice(0, 4));
-  $("quick").innerHTML = `<div style="position:relative"><div class="flip" id="quick-card" role="button" tabindex="0" aria-label="Flip the question card">
-      <div class="face front">${DATA.cards.questions[qq.id]}</div><div class="face back">${backHTML()}</div></div><span class="tap" id="quick-tap">TAP TO FLIP</span></div>
-    <div class="panel" id="quick-panel"><span class="label">One card, one decision</span><h3>Can you pick the right design?</h3>
-      <p>Flip the card, read the problem and its constraints, then choose. A quick warm-up before a duel.</p></div>`;
+  $("quick").innerHTML = `<div style="position:relative"><div class="flip" id="quick-card" role="button" tabindex="0" aria-label="${tr("quick.flip_aria")}">
+      <div class="face front">${DATA.cards.questions[qq.id]}</div><div class="face back">${backHTML()}</div></div><span class="tap" id="quick-tap">${tr("quick.tap")}</span></div>
+    <div class="panel" id="quick-panel"><span class="label">${tr("quick.kicker")}</span><h3>${tr("quick.title")}</h3>
+      <p>${tr("quick.text")}</p></div>`;
   const flip = () => {
     const card = $("quick-card");
     if (card.classList.contains("up")) return;
     card.classList.add("up"); $("quick-tap").remove();
-    $("quick-panel").innerHTML = `<span class="label">${esc(SUIT[qq.suit].name)} question · ${"★".repeat(qq.difficulty)}</span><h3>Which design answers it?</h3>
+    $("quick-panel").innerHTML = `<span class="label">${tr("card.question", { suit: esc(SUIT[qq.suit].name) })} · ${"★".repeat(qq.difficulty)}</span><h3>${tr("quick.which")}</h3>
       <div class="qopts">${opts.map(id => `<button class="opt" data-id="${id}"><b>${esc(D[id].name)}</b><span>${esc(D[id].short)}</span></button>`).join("")}</div><div id="quick-verdict"></div>`;
     $("quick-panel").querySelectorAll(".opt").forEach(b => b.onclick = () => {
       const id = b.dataset.id, tier = qq.best.includes(id) ? "best" : qq.ok.includes(id) ? "ok" : id in qq.traps ? "trap" : "unlisted";
@@ -1361,11 +1380,11 @@ function renderQuick() {
         o.disabled = true;
         if (qq.best.includes(o.dataset.id)) o.classList.add("best"); else if (o.dataset.id in qq.traps) o.classList.add("trap");
       });
-      const text = { best: "🥇 Spot on.", ok: "🥈 Defensible.", trap: "⚠️ That's the trap.", unlisted: "Not quite." }[tier];
+      const text = tr("quick." + tier);
       $("quick-verdict").innerHTML = `<p style="margin-top:12px"><b>${text}</b> ${tier === "trap" ? esc(qq.traps[id]) + " " : ""}${esc(qq.why)}</p>
-        <div class="row-actions"><button class="btn primary" id="quick-next">Another one</button><button class="btn" id="quick-duel">Try a duel</button></div>`;
+        <div class="row-actions"><button class="btn primary" id="quick-next">${tr("quick.another")}</button>${FEATURES.duel ? `<button class="btn" id="quick-duel">${esc(trt("nav.duel"))}</button>` : ""}</div>`;
       $("quick-next").onclick = renderQuick;
-      $("quick-duel").onclick = () => show("duel");
+      if (FEATURES.duel) $("quick-duel").onclick = () => show("duel");
       if (tier === "best") confetti(b);
     });
   };
@@ -1396,13 +1415,23 @@ function show(view) {
 document.querySelectorAll("nav button").forEach(b => b.onclick = () => show(b.dataset.view));
 $("go-home").onclick = e => { e.preventDefault(); show("home"); };
 for (const [k, on] of Object.entries(FEATURES)) if (!on) document.querySelectorAll(`[data-feature="${k}"], #tab-${k}`).forEach(el => el.hidden = true);
-$("f-suit").innerHTML = `<option value="">All suits</option>` + meta.suits.map(s => `<option value="${s.id}">${s.icon} ${esc(s.name)} (${questions.filter(x => x.suit === s.id).length})</option>`).join("");
+$("f-suit").innerHTML = `<option value="">${tr("play.all_suits")}</option>` + meta.suits.map(s => `<option value="${s.id}">${s.icon} ${esc(s.name)} (${questions.filter(x => x.suit === s.id).length})</option>`).join("");
 $("f-suit").onchange = $("f-diff").onchange = () => { queue = []; nextQuestion(); };
 $("f-hints").onchange = renderTable;
 $("b-new").onclick = nextQuestion;
 $("b-submit").onclick = submit;
 $("deck-search").oninput = renderDecks;
-$("ver").textContent = meta.version;
+$("footer").textContent = trt("footer", { version: meta.version });
+// Language switcher: each language is its own page (app/, app/fr/, ...), so switching simply opens that page.
+if ((LANG.langs || []).length > 1) {
+  $("lang-pick").innerHTML = LANG.langs.map(l => `<option value="${esc(l.href)}"${l.current ? " selected" : ""} lang="${l.code}">${esc(l.name)}</option>`).join("");
+  $("lang-pick").onchange = e => { location.href = e.target.value; };
+  $("lang-wrap").hidden = false;
+}
+// Translations can run long: shrink text on newly drawn cards until it fits.
+/*__FIT__*/
+new MutationObserver(ms => { for (const m of ms) for (const n of m.addedNodes) if (n.nodeType === 1 && (n.matches(".tcg") || n.querySelector(".tcg"))) fitCards(n); })
+  .observe(document.body, { childList: true, subtree: true });
 $("ptable-label").textContent = `${designs.length} designs · ${meta.families.length} families · tap one to choose it`;
 renderStats(); renderGuide(); renderDuelStart(); nextQuestion(); renderHome(); show("home");
 </script>

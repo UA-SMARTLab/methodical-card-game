@@ -6,6 +6,7 @@ print (cards are 63 x 88 u, standard poker size) and can be set to any pixel siz
 import html
 
 import art
+from i18n import Strings
 
 try:
     from art_threats import THREAT_ART
@@ -26,6 +27,13 @@ except ImportError:
 
 e = html.escape
 
+# Card labels by key, set by the build for each language (see tools/i18n.py and i18n/<code>/ui.json).
+S = Strings({})
+
+
+def L(key, **kw):
+    return e(S(key, **kw))
+
 # Every question card shares one neutral colour. Colouring them by suit leaked the answer: suit colours resembled
 # the design-family colours, so on most questions the best design's card matched the question's colour.
 QUESTION_COLOR = "#40402C"
@@ -38,11 +46,25 @@ BACK_COLOR = "#0F172A"
 FONTS_URL = ("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800"
              "&family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans+Condensed:ital,wght@0,400;0,600;1,400&display=swap")
 
+# Translations can run longer than English. After cards are on the page, shrink a card's main text a little at a time
+# until its text box fits (down to 70%). Used by the print sheets and the app (which also runs it on new cards).
+FIT_JS = """
+function fitCards(root) {
+  (root || document).querySelectorAll(".tcg .tb").forEach(tb => {
+    let k = 1;
+    tb.style.removeProperty("--fit");
+    while (tb.scrollHeight > tb.clientHeight + 1 && k > 0.72) { k -= 0.04; tb.style.setProperty("--fit", k.toFixed(2)); }
+  });
+}
+if (document.readyState === "loading") addEventListener("DOMContentLoaded", () => fitCards()); else fitCards();
+if (document.fonts) document.fonts.ready.then(() => fitCards());
+"""
+
 CARD_CSS = """
 .tcg { --u: var(--card-u, 1mm); --hi: color-mix(in srgb, var(--c) 72%, #fff); --lo: color-mix(in srgb, var(--c) 55%, #000);
   box-sizing: border-box; width: calc(var(--u) * 63); height: calc(var(--u) * 88); flex: none;
   border-radius: calc(var(--u) * 3.2); padding: calc(var(--u) * 2.3); position: relative; overflow: hidden;
-  display: flex; flex-direction: column; gap: calc(var(--u) * 1.2); color: #16181d; text-align: left;
+  display: flex; flex-direction: column; gap: calc(var(--u) * 1.2); color: #16181d; text-align: start;
   background: linear-gradient(160deg, var(--hi), var(--c) 42%, var(--lo));
   box-shadow: inset 0 0 0 calc(var(--u) * .45) rgba(0,0,0,.45), inset 0 0 0 calc(var(--u) * 1) rgba(255,255,255,.14);
   font-family: "IBM Plex Sans Condensed", "Arial Narrow", sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -54,7 +76,7 @@ CARD_CSS = """
   padding: 0 calc(var(--u) * 1.4) 0 calc(var(--u) * 2.2); border-radius: calc(var(--u) * 1.4);
   background: linear-gradient(#ffffff, #e4e8ee); box-shadow: inset 0 calc(var(--u) * -.45) 0 rgba(0,0,0,.14), 0 calc(var(--u) * .35) calc(var(--u) * .8) rgba(0,0,0,.35); }
 .tcg .nm b { font: 800 calc(var(--u) * 4.4)/1 "Bricolage Grotesque", "Arial Narrow", sans-serif; letter-spacing: -.02em; overflow: hidden; }
-.tcg .nm b.s1 { font-size: calc(var(--u) * 3.95); } .tcg .nm b.s2 { font-size: calc(var(--u) * 3.45); } .tcg .nm b.s3 { font-size: calc(var(--u) * 3.0); line-height: 1.05; }
+.tcg .nm b.s1 { font-size: calc(var(--u) * 3.95); } .tcg .nm b.s2 { font-size: calc(var(--u) * 3.45); } .tcg .nm b.s3 { font-size: calc(var(--u) * 3.0); line-height: 1.05; } .tcg .nm b.s4 { font-size: calc(var(--u) * 2.6); line-height: 1.05; }
 .tcg .attr { flex: none; width: calc(var(--u) * 5.8); height: calc(var(--u) * 5.8); border-radius: 50%; display: grid; place-items: center;
   background: radial-gradient(circle at 35% 30%, var(--hi), var(--lo)); color: #fff; box-shadow: 0 0 0 calc(var(--u) * .4) #fff, 0 0 0 calc(var(--u) * .7) rgba(0,0,0,.35); }
 .tcg .attr .ic, .tcg .sb .ic { width: 62%; height: 62%; }
@@ -78,10 +100,10 @@ CARD_CSS = """
 .tcg .tb { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: calc(var(--u) * .7); padding: calc(var(--u) * 1.1) calc(var(--u) * 1.7) calc(var(--u) * 1);
   border-radius: calc(var(--u) * 1); background: linear-gradient(#f8f9f6, #eceee8); box-shadow: inset 0 0 0 calc(var(--u) * .3) rgba(0,0,0,.28); }
 .tcg .ty { font: 700 calc(var(--u) * 2.45)/1.1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .05em; text-transform: uppercase; color: #3b3f47; }
-.tcg .fx { margin: 0; font-size: calc(var(--u) * 2.95); line-height: 1.24; }
-.tcg.tcg-q .fx { font-size: calc(var(--u) * 2.75); line-height: 1.25; }
+.tcg .fx { margin: 0; font-size: calc(var(--u) * 2.95 * var(--fit, 1)); line-height: 1.24; }
+.tcg.tcg-q .fx { font-size: calc(var(--u) * 2.75 * var(--fit, 1)); line-height: 1.25; }
 .tcg .row { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--u) * .6) calc(var(--u) * 1.2);
-  font: 700 calc(var(--u) * 2.3)/1.15 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .04em; text-transform: uppercase; color: #4b5059; }
+  font: 700 calc(var(--u) * 2.3 * (0.4 + 0.6 * var(--fit, 1)))/1.15 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .04em; text-transform: uppercase; color: #4b5059; }
 .tcg .row .ic { width: calc(var(--u) * 3.5); height: calc(var(--u) * 3.5); }
 .tcg .row .yes { color: #0f7a3c; display: inline-flex; gap: calc(var(--u) * .5); align-items: center; }
 .tcg .row .no { color: #b42318; display: inline-flex; gap: calc(var(--u) * .5); align-items: center; }
@@ -138,7 +160,7 @@ class Ctx:
 
 def _name(s):
     n = len(s)
-    cls = "s3" if n > 30 else "s2" if n > 24 else "s1" if n > 18 else ""
+    cls = "s4" if n > 38 else "s3" if n > 30 else "s2" if n > 24 else "s1" if n > 18 else ""
     return f'<b class="{cls}">{e(s)}</b>'
 
 
@@ -172,11 +194,11 @@ def design_card(cx, d):
   <div class="lv"><span>{serves}</span><span>{cost}&nbsp;{time}</span></div>
   {_art(art.DESIGN_ART.get(d["id"]), "d-" + d["id"], f["color"], "design")}
   <div class="tb">
-    <div class="ty">[ {e(f["name"])} / Design ]</div>
+    <div class="ty">[ {e(f["name"])} / {L("card.design")} ]</div>
     <p class="fx">{e(d["short"])}</p>
     <div class="row">{fits}{strug}</div>
-    <div class="row"><span class="k">Weak vs</span> {weak}</div>
-    <div class="ft"><span>MTH-D{cx.dnum[d["id"]]:02d}</span><span>● cost &nbsp;◆ time</span></div>
+    <div class="row"><span class="k">{L("card.weak_vs")}</span> {weak}</div>
+    <div class="ft"><span>MTH-D{cx.dnum[d["id"]]:02d}</span><span>{L("card.cost_time").replace("  ", " &nbsp;")}</span></div>
   </div>
 </div>'''
 
@@ -187,13 +209,13 @@ def question_card(cx, q):
     stars = "".join(f'<span class="star{"" if k < q["difficulty"] else " off"}">★</span>' for k in range(3))
     return f'''<div class="tcg tcg-q" style="--c:{QUESTION_COLOR}">
   <div class="nm">{_name(q["title"])}<span class="attr">{art.SUIT_ICONS[q["suit"]]}</span></div>
-  <div class="lv"><span>{e(s["name"])} question</span><span>{stars}</span></div>
+  <div class="lv"><span>{L("card.question", suit=s["name"])}</span><span>{stars}</span></div>
   {_art(QUESTION_ART.get(q["id"]), "q-" + q["id"], QUESTION_COLOR, "question")}
   <div class="tb">
     <div class="ty">[ {e(q["field"])} ]</div>
     <p class="fx">{e(q["text"])}</p>
     <div class="row">{chips}</div>
-    <div class="ft"><span>MTH-{q["id"]}</span><span>Which design answers it?</span></div>
+    <div class="ft"><span>MTH-{q["id"]}</span><span>{L("card.which")}</span></div>
   </div>
 </div>'''
 
@@ -202,13 +224,13 @@ def threat_card(cx, t, n):
     by = " · ".join(e(cx.S[s]["name"]) for s in t["countered_by"][:2])
     return f'''<div class="tcg tcg-t" style="--c:{THREAT_COLOR}">
   <div class="nm">{_name(t["name"])}<span class="attr">{_warn_icon()}</span></div>
-  <div class="lv"><span>Threat</span><span>Play on a design</span></div>
+  <div class="lv"><span>{L("card.threat")}</span><span>{L("card.play_on")}</span></div>
   {_art(THREAT_ART.get(t["id"]), "t-" + t["id"], THREAT_COLOR, "threat")}
   <div class="tb">
-    <div class="ty">[ Threat / Bias ]</div>
+    <div class="ty">[ {L("card.threat_bias")} ]</div>
     <p class="fx">{e(t["short"])}</p>
-    <div class="row"><span class="k">Countered by</span> {by}</div>
-    <div class="ft"><span>MTH-B{n:02d}</span><span>Validity threat</span></div>
+    <div class="row"><span class="k">{L("card.countered_by")}</span> {by}</div>
+    <div class="ft"><span>MTH-B{n:02d}</span><span>{L("card.validity")}</span></div>
   </div>
 </div>'''
 
@@ -216,19 +238,19 @@ def threat_card(cx, t, n):
 def safeguard_card(cx, s, n):
     counters = " · ".join(e(cx.T[t]["name"]) for t in s["counters"][:2])
     if "any" in s["applies_to"]:
-        fams = '<span class="k">Any design</span>'
+        fams = f'<span class="k">{L("card.any_design")}</span>'
     else:
         fams = "".join(f'<span class="dot" style="background:{cx.FAM[f]["color"]}" title="{e(cx.FAM[f]["name"])}"></span>' for f in s["applies_to"])
     return f'''<div class="tcg tcg-s" style="--c:{SAFEGUARD_COLOR}">
   <div class="nm">{_name(s["name"])}<span class="attr">{_shield_icon()}</span></div>
-  <div class="lv"><span>Safeguard</span><span>Answer a threat</span></div>
+  <div class="lv"><span>{L("card.safeguard")}</span><span>{L("card.answer_threat")}</span></div>
   {_art(SAFEGUARD_ART.get(s["id"]), "s-" + s["id"], SAFEGUARD_COLOR, "safeguard")}
   <div class="tb">
-    <div class="ty">[ Safeguard ]</div>
+    <div class="ty">[ {L("card.safeguard")} ]</div>
     <p class="fx">{e(s["short"])}</p>
-    <div class="row"><span class="k">Counters</span> {counters}</div>
-    <div class="row"><span class="k">Usable with</span> {fams}</div>
-    <div class="ft"><span>MTH-S{n:02d}</span><span>Defence</span></div>
+    <div class="row"><span class="k">{L("card.counters")}</span> {counters}</div>
+    <div class="row"><span class="k">{L("card.usable_with")}</span> {fams}</div>
+    <div class="ft"><span>MTH-S{n:02d}</span><span>{L("card.defence")}</span></div>
   </div>
 </div>'''
 
@@ -236,19 +258,19 @@ def safeguard_card(cx, s, n):
 def twist_card(cx, x):
     if x["adds"]:
         c = cx.CON[x["adds"]]
-        add = f'<div class="row"><span class="k">Adds</span> <span class="chip">{art.CONSTRAINT_ICONS[c["id"]]}{e(c["name"])}</span></div>'
-        kind = "Constraint"
+        add = f'<div class="row"><span class="k">{L("card.adds")}</span> <span class="chip">{art.CONSTRAINT_ICONS[c["id"]]}{e(c["name"])}</span></div>'
+        kind = L("card.constraint")
     else:
-        add, kind = "", "Event"
+        add, kind = "", L("card.event")
     return f'''<div class="tcg tcg-x" style="--c:{TWIST_COLOR}">
   <div class="nm">{_name(x["name"])}<span class="attr">{_twist_icon()}</span></div>
-  <div class="lv"><span>Twist</span><span>{kind}</span></div>
+  <div class="lv"><span>{L("card.twist")}</span><span>{kind}</span></div>
   {_art(TWIST_ART.get(x["id"]), "x-" + x["id"], TWIST_COLOR, "twist")}
   <div class="tb">
-    <div class="ty">[ Twist / {kind} ]</div>
+    <div class="ty">[ {L("card.twist")} / {kind} ]</div>
     <p class="fx">{e(x["text"])}</p>
     {add}
-    <div class="ft"><span>MTH-{x["id"]}</span><span>Flip after designs are revealed</span></div>
+    <div class="ft"><span>MTH-{x["id"]}</span><span>{L("card.flip_after")}</span></div>
   </div>
 </div>'''
 
@@ -259,7 +281,7 @@ def program_mat(cx, p):
     fn = PROGRAM_ART.get(p["id"])
     inner = fn() if fn else art.text(100, 82, "PROGRAMME ART", 16, art.DIM)
     return f'''<div class="mat">
-  <div class="side"><span class="k">Research programme · {e(p["id"])}</span><h3>{e(p["name"])}</h3>
+  <div class="side"><span class="k">{L("card.programme")} · {e(p["id"])}</span><h3>{e(p["name"])}</h3>
     <div class="art">{art.frame(inner, "p-" + p["id"], art.shade(PROGRAM_COLOR, .12), art.shade(PROGRAM_COLOR, -.45))}</div>
     <p class="brief">{e(p["brief"])}</p></div>
   <ol>{stages}</ol>
@@ -277,12 +299,13 @@ def reference_cards(cx):
     def card(title, body, color="#334155"):
         return f'''<div class="tcg tcg-r" style="--c:{color}"><div class="nm"><b class="s1">{e(title)}</b></div>
   <div class="tb">{body}</div></div>'''
-    score = (f'<ul class="ref"><li>🥇 <span><b>Best</b> +{sc["best"]}</span></li><li>🥈 <span><b>Defensible</b> +{sc["ok"]}</span></li>'
-             f'<li>⚠️ <span><b>Trap</b> {sc["trap"]}</span></li><li>⚖️ <span><b>Unlisted</b> {sc["unlisted"]}, or +{sc["appeal_win"]} if the table upholds your appeal</span></li></ul>')
-    return [card("Suits: the question", f'<ul class="ref">{suits}</ul>'),
-            card("Constraints 1/2", f'<ul class="ref">{"".join(cons[:half])}</ul>'),
-            card("Constraints 2/2", f'<ul class="ref">{"".join(cons[half:])}</ul>'),
-            card("Families & scoring", f'<ul class="ref">{fams}</ul>{score}')]
+    score = (f'<ul class="ref"><li>🥇 <span><b>{L("card.best")}</b> +{sc["best"]}</span></li><li>🥈 <span><b>{L("card.defensible")}</b> +{sc["ok"]}</span></li>'
+             f'<li>⚠️ <span><b>{L("card.trap")}</b> {sc["trap"]}</span></li>'
+             f'<li>⚖️ <span><b>{L("card.unlisted")}</b> {L("card.appeal", unlisted=sc["unlisted"], appeal=sc["appeal_win"])}</span></li></ul>')
+    return [card(S("card.ref_suits"), f'<ul class="ref">{suits}</ul>'),
+            card(S("card.ref_cons1"), f'<ul class="ref">{"".join(cons[:half])}</ul>'),
+            card(S("card.ref_cons2"), f'<ul class="ref">{"".join(cons[half:])}</ul>'),
+            card(S("card.ref_fams"), f'<ul class="ref">{fams}</ul>{score}')]
 
 
 def card_back():
@@ -290,9 +313,9 @@ def card_back():
             '<rect x="20" y="16" width="80" height="92" rx="6" fill="#0f172a" stroke="#FCD34D" stroke-width="3"/>'
             '<text x="28" y="34" font-size="11" fill="#FCD34D" font-family="Barlow Condensed, sans-serif" font-weight="700">46</text>'
             '<text x="60" y="80" font-size="44" fill="#F8FAFC" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800">Me</text>'
-            '<text x="60" y="98" font-size="9" fill="#94A3B8" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" letter-spacing="2">METHOD</text>'
+            '<text x="60" y="98" font-size="9" fill="#94A3B8" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" letter-spacing="2">' + L("card.back_method") + '</text>'
             '<text x="60" y="134" font-size="17" fill="#F8FAFC" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" letter-spacing="1">METHODICAL</text>'
-            '<text x="60" y="146" font-size="7" fill="#FCD34D" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" letter-spacing="1.5">THE RESEARCH DESIGN CARD GAME</text></svg>')
+            '<text x="60" y="146" font-size="7" fill="#FCD34D" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" letter-spacing="1.5">' + L("card.back_game") + '</text></svg>')
     return f'<div class="tcg back" style="--c:{BACK_COLOR}"><div class="bk">{logo}</div></div>'
 
 

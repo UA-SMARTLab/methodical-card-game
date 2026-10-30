@@ -1,0 +1,1714 @@
+{
+ "meta": {
+  "tagline": "Kies de onderzoeksmethode die bij de uitdaging past.",
+  "suits": {
+   "DESCRIBE": {
+    "name": "Beschrijven",
+    "ask": "Wat is het? Hoeveel, hoe vaak, waar, en verandert het?"
+   },
+   "EXPLORE": {
+    "name": "Verkennen",
+    "ask": "Wat speelt hier? Hoe en waarom beleven of doen mensen het?"
+   },
+   "ASSOCIATE": {
+    "name": "Verbanden",
+    "ask": "Gaan X en Y samen, en komt X eerst?"
+   },
+   "CAUSE": {
+    "name": "Oorzaak",
+    "ask": "Verandert Y als je X verandert? Werkt de interventie?"
+   },
+   "PREDICT": {
+    "name": "Voorspellen",
+    "ask": "Wat gaat er gebeuren, en bij wie?"
+   },
+   "MEASURE": {
+    "name": "Meten",
+    "ask": "Kunnen we het nauwkeurig, betrouwbaar en valide meten?"
+   },
+   "EXPLAIN": {
+    "name": "Verklaren",
+    "ask": "Welk mechanisme of welke wet moet gelden? Wat volgt uit de theorie?"
+   },
+   "BUILD": {
+    "name": "Bouwen",
+    "ask": "Kunnen we iets maken dat werkt, en is het plan haalbaar?"
+   },
+   "SYNTHESIZE": {
+    "name": "Synthetiseren",
+    "ask": "Wat zegt al het bestaande bewijs?"
+   }
+  },
+  "families": {
+   "descriptive": {
+    "name": "Beschrijvend observationeel"
+   },
+   "analytical": {
+    "name": "Analytisch observationeel"
+   },
+   "quasi": {
+    "name": "Quasi-experimenteel"
+   },
+   "experimental": {
+    "name": "Experimenteel"
+   },
+   "qualitative": {
+    "name": "Kwalitatief & gemengd"
+   },
+   "synthesis": {
+    "name": "Evidentiesynthese"
+   },
+   "measurement": {
+    "name": "Meten"
+   },
+   "computational": {
+    "name": "Theorie & berekening"
+   },
+   "engineering": {
+    "name": "Ontwerp & ontwikkeling"
+   }
+  },
+  "constraints": {
+   "no-assign": {
+    "name": "Niet toewijsbaar",
+    "text": "Je kunt (ethisch of praktisch) niet bepalen wie of wat de blootstelling krijgt."
+   },
+   "rare-outcome": {
+    "name": "Zeldzame uitkomst",
+    "text": "De uitkomst is zeldzaam: ongeveer 1 op 1.000 of zeldzamer."
+   },
+   "rare-exposure": {
+    "name": "Zeldzame blootstelling",
+    "text": "Slechts een kleine, herkenbare groep is blootgesteld."
+   },
+   "long-latency": {
+    "name": "Lange latentie",
+    "text": "Tussen oorzaak en gevolg liggen jaren of decennia."
+   },
+   "transient": {
+    "name": "Korte trigger",
+    "text": "De blootstelling is kort en het effect is direct."
+   },
+   "existing-data": {
+    "name": "Bestaande data",
+    "text": "Dossiers, registers, logs of archieven bestaan al."
+   },
+   "single-unit": {
+    "name": "Eén eenheid",
+    "text": "Slechts één of enkele eenheden: één patiënt, één land, één fabriek."
+   },
+   "group-level": {
+    "name": "Groepsniveau",
+    "text": "De blootstelling werkt op hele groepen, of slaat over tussen mensen."
+   },
+   "cutoff": {
+    "name": "Afkapregel",
+    "text": "Een drempel op een score bepaalt wie de blootstelling krijgt."
+   },
+   "rollout": {
+    "name": "Uitrol",
+    "text": "Iedereen krijgt de interventie toch; alleen de timing is flexibel."
+   },
+   "fast-cheap": {
+    "name": "Krap budget",
+    "text": "Weken of maanden, geen jaren; een klein budget."
+   },
+   "unknown-territory": {
+    "name": "Onbekend terrein",
+    "text": "Weinig eerdere theorie; je weet nog niet welke variabelen ertoe doen."
+   },
+   "practice-led": {
+    "name": "Praktijkgedreven",
+    "text": "De praktijk loopt voor op het onderzoek: de meeste kennis zit in blogs, whitepapers, lezingen en handleidingen, niet in tijdschriften."
+   },
+   "many-studies": {
+    "name": "Veel studies",
+    "text": "Er bestaat al een flinke hoeveelheid primair onderzoek."
+   }
+  }
+ },
+ "questions": {
+  "Q01": {
+   "title": "Vapen in de stad",
+   "field": "Volksgezondheid",
+   "text": "De gemeenteraad wil weten welk deel van de volwassenen nu vapet, per leeftijdsgroep, voor hij volgend kwartaal over een verbod stemt.",
+   "why": "'Welk deel, nu?' is een prevalentievraag, beantwoord met één goed getrokken momentopname. Steek de moeite in steekproefkader en weging, niet in follow-up.",
+   "traps": {
+    "cohort-prospective": "Volgt mensen jarenlang om nieuwe gevallen te meten. De raad heeft volgend kwartaal de huidige prevalentie nodig.",
+    "case-control": "Mensen selecteren op het feit of ze vapen, vernietigt elke schatting van hoe vaak vapen voorkomt."
+   }
+  },
+  "Q02": {
+   "title": "Tatoeage-uitslag",
+   "field": "Dermatologie",
+   "text": "Vijf patiënten van één kliniek kregen een ongewone huiduitslag, weken na een tatoeage met dezelfde nieuwe inkt. Niets vergelijkbaars is gepubliceerd.",
+   "why": "Een zorgvuldige casusreeks is de snelste manier om een signaal te geven dat anderen kunnen toetsen. Ze beschrijft en waarschuwt. Een patiënt-controleonderzoek is de logische volgende stap, niet de eerste.",
+   "traps": {
+    "rct": "Mensen bewust blootstellen aan vermoede schade is onethisch, en voorbarig.",
+    "systematic-review": "Er valt nog niets te synthetiseren."
+   }
+  },
+  "Q03": {
+   "title": "Verdwijnende vlinders",
+   "field": "Ecologie",
+   "text": "Neemt een populatie trekvlinders af over het decennium, en is de afname geleidelijk of plots?",
+   "why": "Trends vragen gestandaardiseerde tellingen, vele jaren herhaald: de ruggengraat van natuurbehoud. Wisselende waarnemers, locaties of methoden in de tijd zijn de grootste vijand.",
+   "traps": {
+    "cross-sectional": "Eén momentopname kan geen trend tonen.",
+    "field-experiment": "Er wordt niets gemanipuleerd. De vraag is wat er gebeurt, niet waarom."
+   }
+  },
+  "Q04": {
+   "title": "Jupitertelling",
+   "field": "Sterrenkunde",
+   "text": "Welk deel van de nabije zonachtige sterren heeft een planeet zo zwaar als Jupiter?",
+   "why": "Een vermomde prevalentievraag: een omschreven steekproef sterren, waargenomen met een bekende detectievolledigheid. Corrigeren voor wat het instrument niet ziet, is de hele kunst.",
+   "traps": {
+    "case-report": "Eén spectaculair planetenstelsel zegt niets over het aandeel.",
+    "analytical-model": "Vormingstheorie kan een getal suggereren, maar hier wordt een waargenomen frequentie gevraagd."
+   }
+  },
+  "Q05": {
+   "title": "Na de goedkeuring",
+   "field": "Farmacologie",
+   "text": "Een nieuw diabetesmiddel werd goedgekeurd na trials met 3.000 mensen. Hoe vaak veroorzaakt het ernstige leverschade nu miljoenen het gebruiken?",
+   "why": "Farmacovigilantie na markttoelating (spontane meldingen plus actieve monitoring van zorgdossiers) bestaat omdat zeldzame schade in trials onzichtbaar is. Signalen worden daarna bevestigd met analytische studies.",
+   "traps": {
+    "rct": "Een schade van 1 op 50.000 zien vraagt een onmogelijk grote trial. Daarom misten de registratietrials het net.",
+    "cross-sectional": "Leverschade is een gebeurtenis in de tijd, geen toestand op één moment."
+   }
+  },
+  "Q06": {
+   "title": "Smogatlas",
+   "field": "Milieugezondheid",
+   "text": "Voor je in een grote studie investeert, wil je een snelle, goedkope eerste blik: hebben landen met meer luchtvervuiling meer astma?",
+   "why": "Geaggregeerde data tussen landen vergelijken is de goedkoopste bron van hypothesen die er is. Concludeer er alleen nooit uit dat blootgestelde individuen astma krijgen: dat is de ecologische drogreden.",
+   "traps": {
+    "cohort-prospective": "Jaren en miljoenen voor wat een goedkope eerste blik had moeten zijn.",
+    "rct": "Je kunt luchtvervuiling niet toewijzen."
+   }
+  },
+  "Q07": {
+   "title": "Zeldzame kanker, gewone spray",
+   "field": "Kinderoncologie",
+   "text": "Hangt een zeldzame kinderkanker (zo'n 1 op 50.000 kinderen) samen met een veelgebruikt pesticide dat de moeder tijdens de zwangerschap gebruikte?",
+   "why": "Zeldzame uitkomst: start bij de cases. Trek controles uit de populatie waaruit ze komen, en haal de blootstelling uit dossiers in plaats van uit het geheugen, want rouwende ouders herinneren zich anders. Een cohort via registerkoppeling werkt alleen als registers de pesticideblootstelling al vastleggen.",
+   "traps": {
+    "cohort-prospective": "Je zou miljoenen zwangerschappen moeten volgen voor een handvol cases.",
+    "cross-sectional": "Het kan niet aantonen dat de blootstelling voor de kanker kwam."
+   }
+  },
+  "Q08": {
+   "title": "Cleanroomwerkers",
+   "field": "Arbeidsgezondheid",
+   "text": "Een paar honderd werknemers werken met een nieuw oplosmiddel in één chipfabriek. Hangt de blootstelling samen met latere nierziekte?",
+   "why": "Zeldzame blootstelling: selecteer op de blootstelling. Met personeelsdossiers stel je de blootgestelde werknemers en een niet-blootgestelde vergelijkingsgroep (bv. kantoorpersoneel) samen en volg je hun uitkomsten. Vergelijken met de algemene bevolking lokt het healthy-workereffect uit.",
+   "traps": {
+    "case-control": "De blootstelling is zo zeldzaam dat bijna geen enkele nierpatiënt in de bevolking ze heeft gehad.",
+    "ecological": "Eén fabriek levert geen groepen om te vergelijken."
+   }
+  },
+  "Q09": {
+   "title": "Sneeuwschep",
+   "field": "Cardiologie",
+   "text": "Lokt een moment van zware fysieke inspanning binnen het uur een hartinfarct uit?",
+   "why": "Korte blootstelling, acuut effect: vergelijk de inspanning van elke patiënt in het uur voor het infarct met zijn eigen gebruikelijke inspanning. Elke stabiele persoonlijke confounder valt weg.",
+   "traps": {
+    "cross-sectional": "Het kan het uur voor een voorval niet vatten.",
+    "cohort-prospective": "Je zou uur-per-uur-inspanningslogs van enorm veel mensen nodig hebben om een paar voorvallen te vangen."
+   }
+  },
+  "Q10": {
+   "title": "Voeding en dementie",
+   "field": "Neurologie",
+   "text": "Hangt veel ultrabewerkt voedsel op middelbare leeftijd samen met dementie 20 jaar later?",
+   "why": "Meet de voeding voor iemand dementie heeft en wacht, of (sneller) analyseer een bestaand cohort dat decennia geleden de voeding registreerde. Let op omgekeerde causaliteit: vroege, preklinische dementie verandert eetgewoonten.",
+   "traps": {
+    "rct": "Niemand houdt een toegewezen dieet 20 jaar vol.",
+    "case-control": "Mensen met dementie kunnen hun voeding van twintig jaar geleden niet betrouwbaar melden."
+   }
+  },
+  "Q11": {
+   "title": "Nieuwe pil vs. oude",
+   "field": "Cardiologie",
+   "text": "Voorkomt een nieuw bloeddrukmiddel meer beroertes dan het huidige standaardmiddel?",
+   "why": "Een zuivere causale vraag over een interventie die je kunt toewijzen, met echte onzekerheid over wat beter is: randomiseer. Verberg de toewijzing, blindeer als het kan, analyseer volgens intention-to-treat.",
+   "traps": {
+    "cohort-retrospective": "Artsen geven nieuwe middelen aan bepaalde soorten patiënten. Confounding door indicatie maakt de vergelijking onbetrouwbaar.",
+    "case-report": "Anekdotes kunnen geen vergelijkend effect schatten."
+   }
+  },
+  "Q12": {
+   "title": "Peer tutoring",
+   "field": "Onderwijs",
+   "text": "Verhoogt een nieuwe vorm van peer tutoring de wiskundescores? Leerlingen in één klas delen notities en praten voortdurend.",
+   "why": "Als een interventie zich tussen individuen verspreidt, randomiseer dan de groep (klas of school). Analyseer daarna op het juiste niveau, want leerlingen in dezelfde klas zijn niet onafhankelijk.",
+   "traps": {
+    "rct": "Leerlingen binnen klassen randomiseren laat de methode naar de controles lekken, wat het effect verdunt."
+   }
+  },
+  "Q13": {
+   "title": "Frisdranktaks",
+   "field": "Volksgezondheid",
+   "text": "Eén staat voerde een taks op suikerdranken in; zijn vergelijkbare buurstaat niet. Er zijn supermarktverkoopcijfers voor beide, drie jaar voor en na. Verlaagde de taks de consumptie?",
+   "why": "Vergelijk de verandering in de belaste staat met die in de onbelaste. De kernaanname, parallelle trends, kun je checken in de jaren voor de taks.",
+   "traps": {
+    "cross-sectional": "De twee staten één keer vergelijken, na de taks, scheidt de taks niet van verschillen die er al waren."
+   }
+  },
+  "Q14": {
+   "title": "Beursdrempel",
+   "field": "Onderwijsbeleid",
+   "text": "Studenten met 70 of meer op een nationaal examen krijgen een beurs. Maakt de beurs het waarschijnlijker dat ze een universitair diploma halen?",
+   "why": "Een student met 70 en een met 69 zijn bijna identiek, behalve dat één het geld kreeg. De schatting geldt lokaal rond de drempel. Check dat niemand zijn score erover kon duwen.",
+   "traps": {
+    "cohort-retrospective": "Alle beurshouders met alle anderen vergelijken, vergelijkt sterkere met zwakkere studenten.",
+    "cross-sectional": "Een eenmalige vergelijking van afgestudeerden en niet-afgestudeerden scheidt de beurs niet van bekwaamheid."
+   }
+  },
+  "Q15": {
+   "title": "Sepsisalarm",
+   "field": "Gezondheidszorg",
+   "text": "Een ziekenhuis zette op een bekende datum een elektronisch sepsisalarm aan. Er zijn maandelijkse sepsissterftecijfers voor vijf jaar ervoor en twee jaar erna. Hielp het alarm?",
+   "why": "Veel tijdpunten voor en na een scherpe datum scheiden het effect van het alarm van de trend die al bezig was. Voeg een controlereeks toe (een ander ziekenhuis, of een aandoening waar het alarm geen vat op heeft) om toevallige veranderingen uit te sluiten.",
+   "traps": {
+    "cross-sectional": "Een momentopname ziet geen verandering.",
+    "case-report": "Eén dramatische redding bewijst niets over de sterfte."
+   }
+  },
+  "Q16": {
+   "title": "Hereniging",
+   "field": "Economie",
+   "text": "Wat deed de Duitse hereniging in 1990 met het bbp per inwoner van West-Duitsland?",
+   "why": "Eén behandelde eenheid, veel mogelijke vergelijkingen: bouw een gewogen mix van andere OESO-landen die West-Duitsland voor 1990 volgden, en kijk waar de paden splitsen. Abadie, Diamond & Hainmueller deden precies dat.",
+   "traps": {
+    "rct": "Landen kun je niet randomiseren naar hereniging.",
+    "cross-sectional": "Een vergelijking met andere landen in één jaar negeert verschillen die er voor 1990 al waren."
+   }
+  },
+  "Q17": {
+   "title": "Haar migraine",
+   "field": "Neurologie",
+   "text": "Een patiënte heeft meermaals per week migraine. Verlicht een nieuw migrainemiddel naar behoefte haar aanvallen beter dan haar gewone pijnstiller?",
+   "why": "Frequente aanvallen en een snelwerkend middel: randomiseer welk middel ze per aanval (of blok aanvallen) neemt, blindeer met identieke capsules, en herhaal. Het antwoord gaat over haar.",
+   "traps": {
+    "rct": "Het gemiddelde effect van een trial zegt niet of deze ene patiënte reageert.",
+    "case-report": "Een ongecontroleerd voor-naverhaal trapt in regressie naar het gemiddelde: ze zocht hulp op haar slechtst."
+   }
+  },
+  "Q18": {
+   "title": "Twee inhalers",
+   "field": "Farmacologie",
+   "text": "Geven twee inhalatorformuleringen dezelfde verbetering van de longfunctie bij mensen met stabiel astma?",
+   "why": "Stabiele chronische aandoening, kortwerkend omkeerbaar effect: iedereen probeert beide in willekeurige volgorde met een washout. Ruis tussen personen verdwijnt, dus je hebt veel minder deelnemers nodig.",
+   "traps": {
+    "cohort-retrospective": "Patiënten belanden op de ene of de andere inhaler om redenen die met de ernst van hun astma samenhangen."
+   }
+  },
+  "Q19": {
+   "title": "Drie knoppen",
+   "field": "Landbouw",
+   "text": "Welke combinatie van mestdosis, irrigatieschema en zaadras geeft de beste opbrengst op echte boerderijen?",
+   "why": "Kruis de drie factoren in een factorieel ontwerp, gerandomiseerd over percelen in blokken op meerdere boerderijen. Eén seizoen levert hoofdeffecten en interacties op. Dit is Fishers oorspronkelijke idee.",
+   "traps": {
+    "cross-sectional": "Boeren die meer irrigeren, verschillen ook in bodem, vakmanschap en rijkdom.",
+    "case-study": "Eén boerderij kan drie factoren en hun interacties niet scheiden."
+   }
+  },
+  "Q20": {
+   "title": "Lassterkte",
+   "field": "Productie",
+   "text": "Welke van zes procesparameters (stroom, snelheid, gasdebiet…) bepalen de lassterkte in het lab, en interageren er?",
+   "why": "Een fractioneel-factorieel screeningsontwerp test zes factoren in enkele tientallen runs en toont interacties die je met één factor tegelijk mist. Randomiseer de volgorde van de runs tegen drift. Simulatie helpt alleen als er een gevalideerd procesmodel is.",
+   "traps": {
+    "cohort-retrospective": "Oude productielogs vermengen instellingen die operators altijd samen veranderden.",
+    "case-report": "Eén prachtige las bewijst niets."
+   }
+  },
+  "Q21": {
+   "title": "Afrekenknop",
+   "field": "Tech",
+   "text": "Verhoogt een nieuwe afrekenknop het aantal afgeronde aankopen op een site met 2 miljoen bezoekers per dag?",
+   "why": "Randomiseer bezoekers naar de oude of nieuwe knop en vergelijk de conversie. Leg steekproefgrootte en maat vooraf vast: kijken tot het significant is, is de klassieke A/B-testzonde.",
+   "traps": {
+    "its": "Zelfs een lange tijdreeks scheidt het nieuwe ontwerp niet van gelijktijdige campagnes, terwijl bezoekers randomiseren niets kost.",
+    "interviews-thematic": "Gebruikers kunnen hun eigen klikgedrag niet betrouwbaar voorspellen."
+   }
+  },
+  "Q22": {
+   "title": "Rattenvrije eilanden",
+   "field": "Natuurbehoud",
+   "text": "Verhoogt het uitroeien van invasieve ratten het broedsucces van zeevogels? Er zijn 20 vergelijkbare eilanden, en je hebt vergunningen voor 10 uitroeiingen.",
+   "why": "Kies willekeurig welke 10 eilanden aan de beurt komen en meet alle 20 voor en na (een gerandomiseerd BACI-ontwerp). Willekeurige toewijzing belet dat je de 'makkelijke' eilanden kiest. Twintig eenheden is weinig, dus plan de power.",
+   "traps": {
+    "cross-sectional": "Eilanden die nooit ratten hadden, verschillen op veel andere punten van ratteneilanden.",
+    "case-report": "Het succesverhaal van één eiland valt niet los te zien van het weer dat jaar."
+   }
+  },
+  "Q23": {
+   "title": "Uitrol van triage",
+   "field": "Zorgsystemen",
+   "text": "Het ministerie besliste dat een nieuw triageprotocol voor spoed het komende jaar in alle 12 regionale ziekenhuizen wordt ingevoerd. Daalt de sterfte?",
+   "why": "Iedereen krijgt het; alleen de volgorde ligt open. Randomiseer de volgorde waarin ziekenhuizen overstappen, en elk ziekenhuis levert zowel controle- als interventietijd. Modelleer de achterliggende tijdstrend zorgvuldig.",
+   "traps": {
+    "rct": "Triage is een proces voor het hele ziekenhuis. Je kunt geen individuele patiënten binnen een ziekenhuis randomiseren."
+   }
+  },
+  "Q24": {
+   "title": "Tien kandidaten",
+   "field": "Infectieziekten",
+   "text": "Een nieuw luchtwegvirus verspreidt zich snel en tien herbestemde geneesmiddelen zijn voorgesteld. Welke, als er al zijn, verlagen de sterfte bij opgenomen patiënten? Je hebt maanden.",
+   "why": "Eén masterprotocol, één gedeelde controle-arm; armen vallen af wegens futiliteit en nieuwe komen erbij. RECOVERY toonde binnen zo'n 100 dagen na de start dat dexamethason levens redt.",
+   "traps": {
+    "case-report": "Vroege casusreeksen over wondermiddelen waren wijdverspreid en misleidend.",
+    "cohort-retrospective": "Ziekere patiënten krijgen experimentele middelen. Confounding door indicatie."
+   }
+  },
+  "Q25": {
+   "title": "Ouder dan de trials",
+   "field": "Farmaco-epidemiologie",
+   "text": "Verschillen twee klassen diabetesmiddelen in hun effect op nierfalen bij 80-plussers, een groep die uit de trials werd geweerd? Verzekeringsdata dekken 5 miljoen mensen.",
+   "why": "Schrijf het protocol van de trial die je zou willen doen (inclusie, behandelstrategieën, tijdstip nul, follow-up) en emuleer die in de verzekeringsdata met nieuwe gebruikers en een actieve vergelijker. Zo ontwerp je immortal-time- en prevalent-userbias weg; wat overblijft, is confounding door indicatie.",
+   "traps": {
+    "cross-sectional": "Het vat niet wie met welk middel begon, en wanneer.",
+    "case-report": "Er is geen vergelijking."
+   }
+  },
+  "Q26": {
+   "title": "Loont school?",
+   "field": "Economie",
+   "text": "Verhoogt een extra jaar onderwijs het latere inkomen? Door leerplichtwetten kunnen mensen die vroeg in het jaar geboren zijn met iets minder onderwijs de school verlaten.",
+   "why": "Het geboortekwartaal duwt de scholing, maar beïnvloedt het inkomen (wellicht) alleen via de scholing: een instrument. Onderzoek die 'alleen via'-aanname grondig en check dat het instrument niet zwak is.",
+   "traps": {
+    "cross-sectional": "Bekwaamheid en gezinsachtergrond sturen zowel scholing als inkomen."
+   }
+  },
+  "Q27": {
+   "title": "LDL: oorzaak of merker?",
+   "field": "Cardiologie",
+   "text": "Is levenslang hoger LDL-cholesterol een oorzaak van coronaire hartziekte, of slechts een merker van andere risicofactoren?",
+   "why": "Mensen erven LDL-verhogende of -verlagende varianten bij de bevruchting, in wezen willekeurig: een natuurlijke levenslange trial. Grote genetische consortia maken het snel. Pleiotropie (genen die via andere paden werken) is de bedreiging om te checken. Trials met LDL-verlagers beantwoorden een kortere versie.",
+   "traps": {
+    "cross-sectional": "Het scheidt oorzaak niet van merker, en zegt niet wat eerst kwam.",
+    "ecological": "Gemiddelde cholesterolwaarden per land zeggen niets over mechanismen bij individuen."
+   }
+  },
+  "Q28": {
+   "title": "Wie gaat er achteruit?",
+   "field": "Intensieve zorg",
+   "text": "Kunnen we met vitale functies en labwaarden uit het EPD IC-patiënten signaleren die de komende zes uur waarschijnlijk achteruitgaan?",
+   "why": "Ontwikkel op één periode, valideer daarna op een latere periode en in een ander ziekenhuis. Bescherm je meedogenloos tegen leakage, bv. een labtest die werd aangevraagd omdat de arts al achteruitgang vermoedde.",
+   "traps": {
+    "case-control": "Cases en controles kunstmatig in evenwicht brengen vertekent de voorspelde risico's (kalibratie).",
+    "rct": "Trials testen interventies. Eerst heb je een model nodig; een RCT van het gebruik ervan komt later."
+   }
+  },
+  "Q29": {
+   "title": "Voorjaarsvloed",
+   "field": "Hydrologie",
+   "text": "Hoeveel water stroomt volgend voorjaar in een stuwmeer, gezien het sneeuwdek van deze winter en 40 jaar metingen?",
+   "why": "Decennia aan metingen van sneeuwdek en instroom ondersteunen een statistische voorspelling; een fysisch gebaseerde hydrologische simulatie is een sterk alternatief of aanvulling. Beoordeel beide op hun prestaties in jaren die ze nooit zagen.",
+   "traps": {
+    "field-experiment": "Je kunt het sneeuwdek niet manipuleren.",
+    "case-study": "Eén vroeger vloedjaar voorspelt het volgende niet."
+   }
+  },
+  "Q30": {
+   "title": "Volgende supergeleider",
+   "field": "Materiaalkunde",
+   "text": "Welke van 100.000 hypothetische verbindingen zijn het meest kansrijk als hogetemperatuursupergeleider, zodat het lab de top 20 kan synthetiseren?",
+   "why": "Train een model op bekende materialen om de kandidaten te rangschikken, verfijn de shortlist eventueel met simulaties vanuit basisprincipes, en test dan de beste. Rapporteer prestaties op echt nieuwe chemie, niet op bijna-kopieën van de trainingsset.",
+   "traps": {
+    "factorial-doe": "100.000 verbindingen synthetiseren is geen plan.",
+    "systematic-review": "De verbindingen zijn hypothetisch. Er bestaat nog geen literatuur over."
+   }
+  },
+  "Q31": {
+   "title": "Extra biomerker",
+   "field": "Cardiologie",
+   "text": "Verbetert een nieuwe bloedbiomerker, toegevoegd aan een bestaande risicoscore voor hartinfarct, echt de voorspelling?",
+   "why": "Associatie is geen predictie. Vergelijk het model met en zonder de biomerker op onderscheidend vermogen, kalibratie en netto voordeel, in data die het model niet zag.",
+   "traps": {
+    "case-control": "Aantonen dat cases hogere waarden hebben, bewijst associatie, geen toegevoegde voorspellende waarde.",
+    "rct": "Er wordt geen interventie getest."
+   }
+  },
+  "Q32": {
+   "title": "Areaal in 2070",
+   "field": "Ecologie",
+   "text": "Waar zal een bergplant in 2070 kunnen leven onder verschillende klimaatscenario's?",
+   "why": "Soortverspreidingsmodellen koppelen huidige waarnemingen aan het klimaat en projecteren ze op scenario's. Mechanistische (fysiologische) simulaties zijn een waardevolle controle als het toekomstige klimaat buiten alles in de trainingsdata valt.",
+   "traps": {
+    "case-study": "Het verhaal van één populatie brengt geen toekomstig areaal in kaart.",
+    "rct": "Je kunt klimaten niet randomiseren."
+   }
+  },
+  "Q33": {
+   "title": "Snelle strep",
+   "field": "Kindergeneeskunde",
+   "text": "Hoe accuraat is een nieuwe strep-test van 5 minuten vergeleken met een keelkweek, bij kinderen die met keelpijn op consultatie komen?",
+   "why": "Includeer opeenvolgende kinderen met keelpijn, doe beide tests bij iedereen, en lees elke test blind voor de andere. Sensitiviteit en specificiteit betekenen alleen iets in de populatie waar de test gebruikt zal worden.",
+   "traps": {
+    "case-control": "Duidelijke, met kweek bewezen gevallen testen tegenover gezonde vrijwilligers overschat de accuratesse (spectrumbias).",
+    "rct": "Een RCT vraagt of het gebruik van de test de uitkomsten verbetert. Dat is een andere, latere vraag."
+   }
+  },
+  "Q34": {
+   "title": "Burn-outschaal",
+   "field": "Arbeidspsychologie",
+   "text": "Er is geen goede vragenlijst voor 'onderzoeksburn-out' bij academici. Maak er een die anderen kunnen vertrouwen.",
+   "why": "Genereer items uit theorie en interviews, verfijn ze met experts en cognitieve tests, en toets dan factorstructuur, betrouwbaarheid en validiteit in nieuwe steekproeven. Een exploratief sequentieel mixed-methodsontwerp is in wezen dit.",
+   "traps": {
+    "cross-sectional": "Een grote survey met een ongeteste vragenlijst meet… iets.",
+    "systematic-review": "Studies reviewen kan geen instrument valideren dat nog niet bestaat."
+   }
+  },
+  "Q35": {
+   "title": "Twee beoordelaars",
+   "field": "Radiologie",
+   "text": "Geven twee radiologen dezelfde artrosegraad als ze dezelfde knieröntgenfoto's beoordelen?",
+   "why": "Beiden beoordelen dezelfde representatieve set beelden, onafhankelijk en blind voor elkaar; kwantificeer de overeenstemming met gewogen kappa. De beelden moeten het hele spectrum van ernst dekken.",
+   "traps": {
+    "diagnostic-accuracy": "Accuratesse vraagt een referentiestandaard. De vraag is overeenstemming tussen beoordelaars.",
+    "cross-sectional": "Graden van verschillende patiënten, beoordeeld door verschillende radiologen, kunnen geen overeenstemming meten."
+   }
+  },
+  "Q36": {
+   "title": "Pols vs. manchet",
+   "field": "Biomedische technologie",
+   "text": "Kan een goedkope polssensor de gevalideerde bloeddrukmeter van het ziekenhuis vervangen?",
+   "why": "Dit is een methodevergelijkingsstudie: meet dezelfde mensen met beide toestellen en bereken Bland–Altman-overeenstemmingsgrenzen. Bepaal vooraf welk verschil klinisch aanvaardbaar is, en vertrouw geen correlatie: een toestel kan telkens 15 mmHg te hoog meten en toch perfect correleren. Neem mensen op over het hele bloeddrukbereik.",
+   "traps": {
+    "ecological": "Gemiddelde metingen tussen klinieken vergelijken verbergt hoe ver de toestellen per persoon uiteenlopen.",
+    "rct": "Niemand hoeft gerandomiseerd te worden. De vraag is of twee instrumenten overeenstemmen."
+   }
+  },
+  "Q37": {
+   "title": "Lood in het water",
+   "field": "Analytische chemie",
+   "text": "Vijftien labs meten lood in drinkwater met dezelfde standaardmethode. Krijgen ze hetzelfde resultaat uit hetzelfde staal?",
+   "why": "Stuur identieke, homogene stalen (liefst met een gecertificeerde referentiewaarde) naar elk lab, en kwantificeer herhaalbaarheid en reproduceerbaarheid (ISO 5725).",
+   "traps": {
+    "systematic-review": "Gepubliceerde resultaten komen van verschillende stalen en kunnen variatie tussen labs niet isoleren.",
+    "surveillance": "Kraanwater in de tijd monitoren zegt iets over het water, niet over de labs."
+   }
+  },
+  "Q38": {
+   "title": "Motorlimiet",
+   "field": "Natuurkunde",
+   "text": "Wat is het hoogst mogelijke rendement van ELKE warmtemotor tussen een warm en een koud reservoir?",
+   "why": "'Elke motor' is een universele claim, en alleen een afleiding uit de wetten van de thermodynamica kan die vaststellen. Carnots grens kwam uit redeneren, niet uit meten.",
+   "traps": {
+    "factorial-doe": "Motoren testen toont wat bereikt is, nooit wat voor elke motor onmogelijk is.",
+    "simulation": "Het simuleert bepaalde motoren. Een universele grens vraagt een afleiding."
+   }
+  },
+  "Q39": {
+   "title": "Brug in de storm",
+   "field": "Bouwkunde",
+   "text": "Hoe reageert een lang, slank brugdek op windsnelheden die je niet veilig op de echte constructie kunt testen?",
+   "why": "Gekoppelde stroming-constructiesimulatie laat je de virtuele brug tot bezwijken drijven. Valideer het model met windtunneltests op schaalmodellen (het 'ok'-antwoord) voor je de extreme gevallen vertrouwt.",
+   "traps": {
+    "case-report": "Tacoma Narrows leert veel, maar één instorting is geen ontwerpcontrole.",
+    "cross-sectional": "Andere bruggen onderzoeken zegt niet hoe deze zal reageren."
+   }
+  },
+  "Q40": {
+   "title": "Scholen dicht",
+   "field": "Epidemiologie",
+   "text": "Hoe zou scholen sluiten de piek van een grieppandemie veranderen in een stad van twee miljoen?",
+   "why": "Een agent-based model met huishoudens, scholen en werkplekken laat je scenario's doorspelen. Presenteer resultaten als bereiken onder wisselende aannames, en toets ze aan data van eerdere epidemieën.",
+   "traps": {
+    "rct": "Sluitingen randomiseren midden in een pandemie is zelden haalbaar, en veel te traag.",
+    "cross-sectional": "Een momentopname toont de dynamiek van een epidemie niet."
+   }
+  },
+  "Q41": {
+   "title": "Klok in een cel",
+   "field": "Systeembiologie",
+   "text": "Een lus van drie genen in een bacterie lijkt te oscilleren. Volstaat de negatieve terugkoppeling alleen voor oscillaties, en bij welke parameters?",
+   "why": "Schrijf de dynamiek als differentiaalvergelijkingen en analyseer hun stabiliteit; de voorwaarden voor oscillatie volgen uit de wiskunde. Simulatie verkent de parameterruimte, en het lab bouwt en test daarna het circuit.",
+   "traps": {
+    "cross-sectional": "Momentopnames van genexpressie tonen niet aan dat een mechanisme volstaat.",
+    "case-control": "In deze vraag zijn er geen cases en controles."
+   }
+  },
+  "Q42": {
+   "title": "Neutronensterbotsing",
+   "field": "Astrofysica",
+   "text": "Welk zwaartekrachtgolfsignaal moeten detectoren verwachten als twee neutronensterren samensmelten?",
+   "why": "De vergelijkingen zijn bekend, maar hebben in dit regime geen gesloten oplossing; simulaties in numerieke relativiteit leveren de golfvormsjablonen waarnaar detectoren zoeken. Benaderende analytische modellen dekken de vroege inspiraal.",
+   "traps": {
+    "case-report": "Eén waargenomen samensmelting (GW170817) levert geen sjablonen voor alle massa's en spins.",
+    "factorial-doe": "Neutronensterren laat je niet botsen in een lab."
+   }
+  },
+  "Q43": {
+   "title": "Prijzenoorlog",
+   "field": "Economie",
+   "text": "Twee bedrijven concurreren met prijzen. Onder welke voorwaarden komen ze in een stabiel evenwicht in plaats van een eindeloze prijzenoorlog?",
+   "why": "Speltheorie leidt evenwichten, en hun voorwaarden, af uit expliciete aannames. Het antwoord is maar zo goed als die aannames: benoem ze en test hoe robuust het resultaat is.",
+   "traps": {
+    "case-study": "Het verhaal van één prijzenoorlog legt geen algemene voorwaarden vast.",
+    "ab-test": "Prijzen testen op klanten toont de strategische logica tussen bedrijven niet."
+   }
+  },
+  "Q44": {
+   "title": "Grijpbenchmark",
+   "field": "Robotica",
+   "text": "Je lab heeft een nieuw grijpalgoritme voor robots. Is het echt beter dan de state of the art?",
+   "why": "Dezelfde objecten, dezelfde robot, dezelfde maten en gepubliceerde baselines, plus ablaties en herhaalde pogingen met betrouwbaarheidsintervallen. Rapporteer de mislukkingen en test buiten de benchmark: bij de kloof tussen simulatie en realiteit sneuvelen claims.",
+   "traps": {
+    "case-report": "Een uitgekozen demovideo is geen bewijs.",
+    "interviews-thematic": "Meningen over het algoritme meten geen grijpsucces."
+   }
+  },
+  "Q45": {
+   "title": "Een hand voor kinderen",
+   "field": "Revalidatietechnologie",
+   "text": "Ontwerp een goedkope handprothese voor kinderen die clinici en gezinnen echt zullen gebruiken.",
+   "why": "Itereer: begrijp de noden, maak een prototype, test met gebruikers, verfijn. Evaluatie zit in elke cyclus, en later kan het afgewerkte toestel een trial ondergaan.",
+   "traps": {
+    "rct": "Er valt nog niets te testen.",
+    "systematic-review": "Nuttige achtergrond, maar het bouwt de hand niet."
+   }
+  },
+  "Q46": {
+   "title": "Reviewwerkbank",
+   "field": "Onderzoekssoftware",
+   "text": "Bouw een tool die onderzoekers door een scoping review leidt, en toon aan dat hij echt helpt.",
+   "why": "Bouw in korte cycli met echte onderzoekers en evalueer elke versie op echte taken: bruikbaarheid, benodigde tijd en volledigheid van de review. Je bent geen neutrale rechter over je eigen tool, dus laat anderen hem testen.",
+   "traps": {
+    "rct": "Een grote trial van een tool die nog niet bestaat, is voorbarig.",
+    "case-report": "Eén tevreden gebruiker is geen evaluatie."
+   }
+  },
+  "Q47": {
+   "title": "Komen ze wel?",
+   "field": "Geriatrie",
+   "text": "Voor een dure multicentrische trial: kun je kwetsbare 85-jarigen rekruteren voor een thuisoefenprogramma, ze 6 maanden binnenhouden en vallen betrouwbaar meten?",
+   "why": "Een haalbaarheidsstudie meet rekrutering, retentie, therapietrouw en datakwaliteit tegen vooraf vastgelegde voortgangscriteria. Weersta de neiging om effectschattingen te rapporteren: de power ontbreekt.",
+   "traps": {
+    "rct": "De volledige trial blind starten riskeert een zeer dure mislukking bij de rekrutering.",
+    "systematic-review": "Rekruteringscijfers van andere trials helpen, maar zeggen niets over jouw setting."
+   }
+  },
+  "Q48": {
+   "title": "Therapie via slechte lijn",
+   "field": "Mondiale gezondheid",
+   "text": "Werkt gesprekstherapie via een app in landelijke klinieken met onbetrouwbaar internet? Gebruikt het personeel ze, en maken patiënten ze af?",
+   "why": "Eerst haalbaarheid: test ze in enkele klinieken, meet gebruik, voltooiing en technische storingen, en interview personeel en patiënten over wat in de weg stond.",
+   "traps": {
+    "rct": "Effectiviteit testen voor je weet of het geleverd kan worden, verspilt de trial.",
+    "ecological": "Internetstatistieken per land zeggen niets over jouw klinieken."
+   }
+  },
+  "Q49": {
+   "title": "Nog eens doen?",
+   "field": "Psychiatrie",
+   "text": "Veertig gerandomiseerde studies over beweging bij depressie spreken elkaar tegen. Wat is het totale effect?",
+   "why": "Zoek uitputtend, beoordeel het risico op bias, pool met een random-effectsmodel en verken waarom de trials verschillen. Zoek naar ontbrekende kleine negatieve trials.",
+   "traps": {
+    "rct": "Een 41e trial voegt één meetpunt toe aan een stapel die niemand gewogen heeft.",
+    "case-study": "Eén trial diepgaand bekijken beslecht geen conflict tussen veertig."
+   }
+  },
+  "Q50": {
+   "title": "Plastic in de bodem",
+   "field": "Milieuwetenschappen",
+   "text": "Wat is er onderzocht over microplastics in landbouwbodems (welke methoden, welke regio's, welke uitkomsten), en waar zitten de hiaten?",
+   "why": "Dit is een kaartvraag: breng de literatuur systematisch in kaart (PRISMA-ScR) zonder effecten te poolen. Het resultaat is een kaart van bewijs en hiaten die iedereen vertelt wat nog onderzocht moet worden.",
+   "traps": {
+    "field-experiment": "Nog een experiment brengt geen onderzoeksveld in kaart.",
+    "network-meta": "Er zijn geen concurrerende behandelingen om te rangschikken."
+   }
+  },
+  "Q51": {
+   "title": "Zes pillen, weinig duels",
+   "field": "Psychiatrie",
+   "text": "Er zijn zes antidepressiva, maar weinig trials vergelijken ze rechtstreeks; de meeste vergelijken elk met placebo. Welk werkt het best?",
+   "why": "Combineer directe en indirecte vergelijkingen in één netwerk om de behandelingen te rangschikken. Check dat de trials genoeg op elkaar lijken voor eerlijke indirecte vergelijkingen (transitiviteit).",
+   "traps": {
+    "rct": "Een rechtstreekse trial met zes armen zou enorm zijn, en het indirecte bewijs bestaat al.",
+    "cohort-retrospective": "Voorschrijfpatronen zijn verstoord door confounding door indicatie."
+   }
+  },
+  "Q52": {
+   "title": "Drie weken",
+   "field": "Gezondheidsbeleid",
+   "text": "Een ministerie moet binnen drie weken beslissen over ventilatiebeleid in scholen, en vraagt wat het bewijs zegt.",
+   "why": "Stroomlijn een systematische review transparant: een smallere vraag, minder databanken, enkelvoudige screening met verificatie. Rapporteer wat je schrapte, zodat lezers kunnen oordelen.",
+   "traps": {
+    "systematic-review": "Een volledige systematische review duurt doorgaans een jaar of langer. De beslissing valt zonder.",
+    "cluster-rct": "Een schooltrial rapporteert lang na de deadline."
+   }
+  },
+  "Q53": {
+   "title": "Vitamine D voor alles",
+   "field": "Voeding",
+   "text": "Tientallen systematische reviews koppelen vitamine D aan uitkomsten van breuken tot kanker tot depressie. Wat is het totaalbeeld, en hoe geloofwaardig is elke claim?",
+   "why": "Review de reviews: beoordeel elk geclaimd verband op grootte en geloofwaardigheid, en let op overlappende primaire studies die dubbel geteld worden.",
+   "traps": {
+    "rct": "Eén trial kan geen tientallen uitkomsten tegelijk testen.",
+    "case-report": "Individuele verhalen kunnen een bewijsbasis niet beoordelen."
+   }
+  },
+  "Q54": {
+   "title": "Werkt hier, faalt daar",
+   "field": "Mondiale gezondheid",
+   "text": "Programma's met gemeenschapsgezondheidswerkers slagen schitterend in sommige landen en falen in andere. Waarom, voor wie, en in welke context?",
+   "why": "Een realist review vraagt hoe context mechanismen activeert die uitkomsten opleveren, en put daarvoor evengoed uit trials, procesevaluaties als kwalitatieve studies.",
+   "traps": {
+    "rct": "Nog een trial in nog een context verklaart de variatie niet.",
+    "ecological": "Correlaties op landniveau tonen de mechanismen niet."
+   }
+  },
+  "Q55": {
+   "title": "De genegeerde app",
+   "field": "Verpleegkunde",
+   "text": "Nachtverpleegkundigen gebruiken een nieuwe app voor handhygiëne zelden, dagverpleegkundigen wel. Niemand weet waarom.",
+   "why": "Als je de variabelen niet kent: vraag en luister. Selecteer doelgericht nacht- en dagverpleegkundigen en interview tot er geen nieuwe thema's meer opduiken.",
+   "traps": {
+    "cross-sectional": "Een survey vraagt antwoordopties, en je kent de redenen nog niet.",
+    "rct": "Er valt geen interventie te testen tot je het probleem begrijpt."
+   }
+  },
+  "Q56": {
+   "title": "Afvalrapers",
+   "field": "Stadsantropologie",
+   "text": "Hoe organiseren informele afvalrapers in een megastad hun dagelijkse werk, routes en handel?",
+   "why": "Praktijken die mensen niet onder woorden brengen, zie je het best door erbij te zijn: maandenlange participerende observatie, veldnotities, vertrouwen. Reflecteer op hoe je aanwezigheid verandert wat je ziet.",
+   "traps": {
+    "cross-sectional": "Officiële enquêtes bereiken informele werkers zelden en missen impliciete praktijken.",
+    "prediction-model": "Er valt nog niets te voorspellen, en er zijn geen data om op te trainen."
+   }
+  },
+  "Q57": {
+   "title": "De ommekeer",
+   "field": "Operationeel management",
+   "text": "Eén fabriek verlaagde haar foutpercentage op een jaar met 80%, haar zusterfabrieken niet. Wat gebeurde er, en wat kunnen anderen leren?",
+   "why": "Bestudeer één afgebakende casus diepgaand, met documenten, data, interviews en observatie. Vergelijk met een zusterfabriek die niet verbeterde; anders bestudeer je alleen de overlever.",
+   "traps": {
+    "rct": "De verandering is al gebeurd, in één fabriek.",
+    "cross-sectional": "Een survey van veel fabrieken kan niet reconstrueren wat er in deze gebeurde."
+   }
+  },
+  "Q58": {
+   "title": "Terug aan het werk",
+   "field": "Gezondheidssociologie",
+   "text": "Er is geen theorie over hoe mensen met long covid beslissen wanneer (en of) ze weer gaan werken.",
+   "why": "'Nog geen theorie' is het kenmerk van grounded theory: iteratief interviewen en coderen, en theoretisch nieuwe casussen selecteren om opkomende concepten te toetsen, tot een model van het beslisproces ontstaat.",
+   "traps": {
+    "cohort-prospective": "Het zegt hoeveel mensen terugkeren, niet hoe ze beslissen.",
+    "systematic-review": "Er is te weinig om te synthetiseren, en het doel is nieuwe theorie."
+   }
+  },
+  "Q59": {
+   "title": "Wat moeten we meten?",
+   "field": "Klinische studies",
+   "text": "Trials van therapieën voor een zeldzame ziekte gebruiken allemaal andere eindpunten, dus niets is vergelijkbaar. Patiënten en experts zijn het oneens over welke uitkomsten tellen.",
+   "why": "Een Delphiproces met patiënten, clinici en onderzoekers beoordeelt kandidaat-uitkomsten over meerdere anonieme rondes. Het is de standaardroute naar een 'core outcome set', meestal voorafgegaan door een review van gebruikte uitkomsten en door patiëntinterviews.",
+   "traps": {
+    "rct": "Nog een trial zou gewoon nog een eindpunt aan de stapel toevoegen."
+   }
+  },
+  "Q60": {
+   "title": "De landelijke kloof",
+   "field": "Digitale gezondheid",
+   "text": "Een nationale survey toont dat landelijke klinieken half zo vaak telegeneeskunde invoeren als stedelijke. Beleidsmakers vragen waarom.",
+   "why": "Een verklarend sequentieel ontwerp: gebruik de survey om contrasterende klinieken te kiezen (snelle en trage invoerders), interview personeel om de cijfers te verklaren, en integreer dan beide sporen.",
+   "traps": {
+    "cross-sectional": "Het 'wat' heb je al. Nog een survey geeft het 'waarom' niet.",
+    "rct": "Er valt niets te randomiseren tot je de drempels kent."
+   }
+  },
+  "Q61": {
+   "title": "De ontwarclip",
+   "field": "Medische hulpmiddelen",
+   "text": "Een verpleegkundige vond een clip uit die infuuslijnen niet laat verstrikken. Voor het ziekenhuis betaalt voor prototypes en een octrooiaanvraag: is hij echt nieuw?",
+   "why": "Nieuwheid wordt beoordeeld tegen alles wat ergens openbaar is gemaakt, in elke taal: octrooien, producten, catalogi, proefschriften en artikelen. Doorzoek octrooidatabanken op classificatiecode én op trefwoord, want octrooien gebruiken zelden gewone woorden als 'clip'.",
+   "traps": {
+    "design-science": "Eerst bouwen en testen riskeert een jaar lang andermans octrooi opnieuw uitvinden, of erop inbreuk maken.",
+    "systematic-review": "Er is geen effect om te poolen, en de meeste prior art voor zo'n gadget zit in octrooien en productcatalogi, niet in tijdschriften."
+   }
+  },
+  "Q62": {
+   "title": "Wortels van een veld",
+   "field": "Duurzaamheidswetenschap",
+   "text": "Onderzoek naar 'ecosysteemdiensten' groeit al dertig jaar in ecologie en economie. Welke klassiekers vormen de fundamenten, en tot welke denkscholen behoren ze?",
+   "why": "Twee werken zijn verbonden telkens als een later artikel ze allebei citeert, dus clusters van samen geciteerde werken zijn de denkscholen van het veld, en werken die clusters overbruggen tonen waar ecologie en economie elkaar raken. Normaliseer voor hoe vaak elk werk geciteerd wordt, en onthoud dat een citatie geen instemming is.",
+   "traps": {
+    "systematic-review": "Er is geen enkel effect om te poolen. De vraag is hoe het veld gestructureerd is.",
+    "delphi": "Experts noemen vooral de klassiekers van hun eigen school. Het citatiedossier toont waarop het hele veld bouwt."
+   }
+  },
+  "Q63": {
+   "title": "Artikelvloed",
+   "field": "Wetenschapsonderzoek",
+   "text": "In de laatste twee jaar verschenen duizenden artikelen over AI voor geneesmiddelenontwikkeling. Wat zijn nu de actieve onderzoeksfronten, en hoe groeperen ze?",
+   "why": "Artikelen die dezelfde bronnen citeren, werken waarschijnlijk aan hetzelfde probleem, en die band bestaat vanaf de dag van publicatie. Geef referenties die bijna iedereen citeert (hier de klassieke deep-learningartikelen) minder gewicht, anders plakken ze alles tot één klomp. Benoem dan elke cluster door de kernartikelen te lezen.",
+   "traps": {
+    "co-citation": "Zulke nieuwe artikelen zijn nauwelijks geciteerd, dus er verbindt ze nog bijna niets. Co-citatie zou hun fundamenten tonen, niet de huidige fronten.",
+    "systematic-review": "Er is geen gerichte vraag of effect om te poolen, en duizenden artikelen gaan ver boven handmatige beoordeling."
+   }
+  },
+  "Q64": {
+   "title": "Grit of niet?",
+   "field": "Onderwijspsychologie",
+   "text": "Een populaire 'grit'-schaal voorspelt welke studenten hun diploma halen. Critici zeggen dat het gewoon consciëntieusheid onder een nieuwe naam is. Meet het iets aparts?",
+   "why": "Schrijf het voorspelde patroon op voor je data verzamelt: grit moet samenhangen met consciëntieusheid, maar niet zo sterk dat ze hetzelfde zijn, en moet uitkomsten voorspellen bovenop consciëntieusheid. Meet beide kenmerken met meer dan één methode (zelfrapportage, oordeel van leraren, gedrag), zodat gedeelde vragenlijstgewoonten de overlap niet vervalsen.",
+   "traps": {
+    "cohort-prospective": "Aantonen dat grit het afstuderen voorspelt, bewijst niets nieuws: consciëntieusheid voorspelt het ook.",
+    "reliability": "Een zeer betrouwbare schaal kan betrouwbaar het verkeerde meten."
+   }
+  },
+  "Q65": {
+   "title": "Salamanders in de vijver",
+   "field": "Ecologie",
+   "text": "Hoeveel kamsalamanders leven er in een grote, troebele vijver? Je kunt er bij elk bezoek enkele vangen, maar nooit allemaal.",
+   "why": "Fotografeer het unieke buikpatroon van elke salamander en vang dan opnieuw: het aandeel al geziene dieren in de tweede vangst schat het totaal (Lincoln–Petersen). Dat veronderstelt dat er tussen bezoeken geen salamanders bijkomen of vertrekken en dat elk dier even vangbaar is.",
+   "traps": {
+    "cross-sectional": "Eén vangst telt de salamanders die je ving, niet die je miste.",
+    "surveillance": "Herhaalde tellingen volgen een trend in vangsten, niet hoeveel salamanders er echt zijn."
+   }
+  },
+  "Q66": {
+   "title": "Migrainegenen",
+   "field": "Genetica",
+   "text": "Welke genetische varianten hangen samen met migraine? Een biobank heeft genotypes en zorgdossiers van een half miljoen mensen, maar niemand weet naar welke genen te kijken.",
+   "why": "Test elke variant in het genoom tegen een drempel van zo'n 5 × 10⁻⁸, zodat miljoenen tests geen valse treffers opleveren. Corrigeer voor afkomst zodat populatiestructuur geen verbanden veinst, en repliceer de treffers in een onafhankelijk cohort.",
+   "traps": {
+    "mendelian": "Mendeliaanse randomisatie gebruikt varianten die je al kent om een oorzaak te toetsen. Hier zoek je de varianten nog.",
+    "case-report": "Eén familie met migraine kan een gen suggereren, maar kan het genoom niet over een populatie scannen."
+   }
+  },
+  "Q67": {
+   "title": "De vriezer",
+   "field": "Cardiologie",
+   "text": "Een biobank vroor 15 jaar geleden bloed in van 60.000 mensen; 900 kregen sindsdien een hartinfarct. Voorspelt een nieuwe ontstekingsmerker wie? Elke test kost €300.",
+   "why": "Test alle 900 cases plus een willekeurig subcohort uit het hele cohort, blind voor wie een case is en in willekeurige volgorde, zodat labbatches niet samenvallen met de uitkomst. Hetzelfde subcohort kun je later hergebruiken voor andere uitkomsten.",
+   "traps": {
+    "cohort-prospective": "Een nieuw cohort starten betekent 15 jaar wachten op wat al in de vriezer zit.",
+    "cohort-retrospective": "Alle 60.000 stalen testen zou €18 miljoen kosten. Je hebt alleen de cases en een steekproef van de rest nodig."
+   }
+  },
+  "Q68": {
+   "title": "Zaad naar keuze",
+   "field": "Landbouweconomie",
+   "text": "Zouden kleine boeren betalen voor droogtetolerant maïszaad? En wat telt voor hen het meest: opbrengst, prijs, smaak, of zaad dat ze voor volgend jaar kunnen bewaren?",
+   "why": "Bied keuzes aan tussen zaadpakketten waarvan opbrengst, prijs, smaak en bewaarbaarheid volgens een experimenteel ontwerp variëren; keuzemodellen zetten de antwoorden om in het gewicht van elk kenmerk en een betalingsbereidheid. Kies de kenmerken eerst samen met boeren, en onthoud dat uitgesproken keuzes echte aankopen overschatten.",
+   "traps": {
+    "cross-sectional": "Boeren elk kenmerk laten scoren van 1 tot 5 maakt alles belangrijk en verbergt de afwegingen.",
+    "rct": "Willekeurig zaad uitdelen test of het de opbrengst verhoogt, niet wat boeren waarderen of zouden betalen."
+   }
+  },
+  "Q69": {
+   "title": "Het geld waard?",
+   "field": "Gezondheidseconomie",
+   "text": "Trials tonen dat een nieuw RSV-vaccin ouderen beschermt. Is het waard wat de fabrikant aan de nationale gezondheidszorg vraagt?",
+   "why": "Bouw een beslismodel van wie RSV oploopt, wie in het ziekenhuis belandt en wie sterft, met en zonder vaccinatie. Voed het met werkzaamheid uit trials, kosten en levenskwaliteit, en rapporteer de extra kosten per gewonnen QALY, met een probabilistische sensitiviteitsanalyse die toont hoe zeker dat antwoord is.",
+   "traps": {
+    "rct": "De trials tonen al dat het werkt. Nog een trial zegt niet of het het geld waard is.",
+    "systematic-review": "Het bewijs over werkzaamheid poolen is één input, maar weegt de kosten niet."
+   }
+  },
+  "Q70": {
+   "title": "Waarom dit akkoord?",
+   "field": "Politicologie",
+   "text": "Het Colombiaanse vredesakkoord van 2016 bracht de meeste FARC-strijders tot ontwapening, waar eerdere gesprekken faalden. Er zijn drie rivaliserende verklaringen. Welke klopt?",
+   "why": "Schrijf op wat elke verklaring voorspelt dat je zult vinden (wie wanneer samenkwam, wat werd aangeboden, wat de leiding privé zei), en zoek dan hoeptests die een verklaring kunnen uitsluiten en smoking guns die er één sterk bevestigen. Weeg bewijs tegen je favoriete verklaring even zwaar als bewijs ervoor.",
+   "traps": {
+    "ecological": "Correlaties tussen landen over vredesakkoorden kunnen niet toetsen welk mechanisme in Colombia werkte.",
+    "cross-sectional": "Een survey van huidige meningen kan de reeks beslissingen die tot het akkoord leidde niet reconstrueren."
+   }
+  },
+  "Q71": {
+   "title": "Onder de vijftig",
+   "field": "Oncologie",
+   "text": "Twaalf trials van een borstkankermiddel tonen een totaal voordeel. Hebben vrouwen onder de 50 er ook baat bij? De meeste artikelen rapporteren niet per leeftijd, of met andere leeftijdsgrenzen.",
+   "why": "Vraag elk trialteam om de data op patiëntniveau, controleer ze, en analyseer leeftijd overal op dezelfde manier: liefst als continue variabele, met de interactie tussen behandeling en leeftijd geschat binnen elke trial. Rapporteer welke trials geen data konden delen en of hun resultaten afwijken.",
+   "traps": {
+    "network-meta": "Er is één behandeling tegenover controle. Er valt niets te rangschikken.",
+    "cohort-retrospective": "Wie het middel in de routinezorg krijgt, is verstoord door confounding door indicatie."
+   }
+  },
+  "Q72": {
+   "title": "Het verlaten formulier",
+   "field": "Mens-computerinteractie",
+   "text": "Oudere patiënten haken halverwege het online afspraakformulier van een ziekenhuis af. Over een week ligt het nieuwe ontwerp vast.",
+   "why": "Vraag een vijftal representatieve oudere gebruikers een afspraak te maken terwijl ze hardop denken; kijk toe zonder te helpen en noteer elke aarzeling en fout. Los de ergste problemen op en test opnieuw: meerdere kleine rondes vinden meer dan één grote.",
+   "traps": {
+    "ab-test": "Een A/B-test zegt welke versie wint, niet waar en waarom mensen vastlopen, en er is nog geen nieuwe versie.",
+    "cross-sectional": "Een tevredenheidsenquête mist precies de mensen die opgaven."
+   }
+  },
+  "Q73": {
+   "title": "Wegblijvers",
+   "field": "Eerstelijnszorg",
+   "text": "Een kwart van de afspraken in een praktijk wordt gemist. Het team wil deze maand sms-herinneringen starten en dan tekst en timing bijsturen tot het cijfer daalt.",
+   "why": "Draai kleine cycli: plan een verandering, probeer ze een week of twee, bestudeer de runchart, handel naar wat je leert. Markeer elke verandering op de grafiek en blijf lang genoeg meten om echte verbetering van seizoensschommelingen te onderscheiden.",
+   "traps": {
+    "cluster-rct": "Eén praktijk kan geen clusterstudie zijn, en het team wil maand na maand leren en bijsturen.",
+    "systematic-review": "Reviews zeggen dat herinneringen gemiddeld helpen. De vraag is wat in deze praktijk werkt."
+   }
+  },
+  "Q74": {
+   "title": "De blogs weten meer",
+   "field": "Software-engineering",
+   "text": "Teams vragen steeds wanneer het automatiseren van softwaretests loont. De praktijk schreef er honderden blogposts, lezingen en whitepapers over, maar er zijn maar een handvol peer-reviewed studies. Wat weten we?",
+   "why": "Als de praktijk het onderzoek voorbijloopt, volgt een multivocale review Garousi et al. (2019): doorzoek academische databanken en de grijze literatuur (Google, praktijksites, conferentielezingen), beoordeel elke grijze bron op gezag, methode en objectiviteit, stop bij saturatie, en rapporteer het witte en grijze bewijs naast elkaar.",
+   "traps": {
+    "systematic-review": "Beperkt tot peer-reviewed studies gooi je het meeste weg van wat echt geweten is, en er is geen effect om te poolen.",
+    "rct": "Nog een experiment voegt één meetpunt toe; de vraag is wat het veld al weet."
+   }
+  }
+ },
+ "designs": {
+  "case-report": {
+   "name": "Casusbeschrijving / -reeks",
+   "short": "Beschrijf één of enkele opvallende gevallen in detail. Geeft een signaal, maar test het niet.",
+   "gist": "Een gedetailleerd verslag van één of enkele ongewone gevallen. Geeft een signaal of hypothese; kan die niet toetsen.",
+   "example": "MMWR, juni 1981: Pneumocystis-pneumonie bij vijf jonge mannen in Los Angeles, de eerste gepubliceerde beschrijving van aids."
+  },
+  "cross-sectional": {
+   "name": "Cross-sectioneel onderzoek",
+   "short": "Eén momentopname van een steekproef: hoe vaak komt iets nu voor?",
+   "gist": "Meet blootstelling en uitkomst in een steekproef op één moment. Schat de prevalentie; kan niet tonen wat eerst kwam.",
+   "example": "Nationale gezondheidsenquêtes die de prevalentie van roken schatten naar leeftijd en regio."
+  },
+  "ecological": {
+   "name": "Ecologische studie",
+   "short": "Vergelijk hele groepen (landen, regio's, jaren) via hun gemiddelden.",
+   "gist": "Vergelijk groepen (landen, regio's, jaren) met geaggregeerde data. Een goedkope bron van hypothesen; conclusies over individuen zijn een valkuil.",
+   "example": "Messerli (2012): nationale chocoladeconsumptie vs. Nobelprijswinnaars per inwoner."
+  },
+  "surveillance": {
+   "name": "Monitoring / surveillance",
+   "short": "Meet hetzelfde op dezelfde manier, telkens opnieuw, om trends te zien.",
+   "gist": "Systematische, herhaalde meting van dezelfde grootheid in tijd en plaats om trends en signalen op te sporen.",
+   "example": "De CO₂-meetreeks van Mauna Loa (sinds 1958); geneesmiddelenbewaking na markttoelating (farmacovigilantie)."
+  },
+  "capture-recapture": {
+   "name": "Vangst–hervangst",
+   "short": "Neem twee keer een steekproef en tel de overlap: hoe minder je terugvangt, hoe meer er zijn.",
+   "gist": "Schat de omvang van een populatie die je niet volledig kunt tellen uit de overlap tussen twee of meer onafhankelijke steekproeven of lijsten.",
+   "example": "Petersen merkte in de jaren 1890 schollen; epidemiologen koppelen nu overlappende ziekteregisters op dezelfde manier."
+  },
+  "cohort-prospective": {
+   "name": "Prospectief cohortonderzoek",
+   "short": "Meet eerst de blootstelling en volg mensen dan om te zien wie de uitkomst krijgt.",
+   "gist": "Meet blootstellingen voordat uitkomsten optreden en volg mensen daarna op. Toont de volgorde in de tijd en de incidentie.",
+   "example": "De Framingham Heart Study (1948–), die ons het idee 'risicofactor' gaf."
+  },
+  "cohort-retrospective": {
+   "name": "Retrospectief cohortonderzoek",
+   "short": "Reconstrueer een cohort uit oude dossiers en volg wat ermee gebeurde.",
+   "gist": "Reconstrueer een cohort en de uitkomsten uit bestaande dossiers. Snel en goedkoop, maar beperkt tot wat iemand toevallig noteerde.",
+   "example": "Beroepscohorten samengesteld uit personeelsdossiers, bv. asbest- en scheepswerfarbeiders."
+  },
+  "case-control": {
+   "name": "Patiënt-controleonderzoek",
+   "short": "Start bij de cases, zoek vergelijkbare controles, kijk terug naar blootstelling.",
+   "gist": "Start bij mensen met de uitkomst (cases) en vergelijkbare mensen zonder (controles); vergelijk hun eerdere blootstellingen.",
+   "example": "Doll & Hill (1950): rookgeschiedenis van longkankerpatiënten vs. andere ziekenhuispatiënten."
+  },
+  "case-crossover": {
+   "name": "Case-crossover",
+   "short": "Elke case is zijn eigen controle: wat gebeurde vlak voor het voorval?",
+   "gist": "Elke case is zijn eigen controle: vergelijk de blootstelling vlak voor het voorval met die van dezelfde persoon op andere momenten.",
+   "example": "Mittleman et al. (1993): zware inspanning als trigger van een hartinfarct binnen het uur."
+  },
+  "target-trial": {
+   "name": "Target-trial-emulatie",
+   "short": "Ontwerp de ideale trial op papier en emuleer die in praktijkdata.",
+   "gist": "Schrijf het protocol van de trial die je zou willen uitvoeren en emuleer die stap voor stap in observationele data.",
+   "example": "Het raamwerk van Hernán & Robins; geëmuleerde trials van statines en vaccins met zorgdata."
+  },
+  "iv": {
+   "name": "Instrumentele-variabeleanalyse",
+   "short": "Gebruik een natuurlijk duwtje dat alleen de blootstelling verandert.",
+   "gist": "Zoek een factor die de blootstelling beïnvloedt, maar de uitkomst alleen via die blootstelling: een natuurlijke muntworp.",
+   "example": "Angrist & Krueger (1991): geboortekwartaal, leerplicht en inkomen."
+  },
+  "mendelian": {
+   "name": "Mendeliaanse randomisatie",
+   "short": "Genen worden bij de bevruchting geschud: de gerandomiseerde studie van de natuur.",
+   "gist": "Gebruik genetische varianten als instrument. Genen worden bij de bevruchting geschud, dus dragers bootsen een levenslange gerandomiseerde studie na.",
+   "example": "LDL-verlagende genvarianten en coronaire hartziekte in grote genetische consortia."
+  },
+  "gwas": {
+   "name": "Genoombrede associatiestudie",
+   "short": "Test miljoenen genetische varianten, één voor één, op een verband met een kenmerk.",
+   "gist": "Genotypeer vele duizenden mensen en test elk van miljoenen varianten op associatie met een kenmerk, met een zeer strenge significantiedrempel.",
+   "example": "WTCCC (2007): telkens 2.000 cases van zeven veelvoorkomende ziekten tegenover 3.000 gedeelde controles."
+  },
+  "case-cohort": {
+   "name": "Case-cohort / genest patiënt-controle",
+   "short": "Meet de dure blootstelling alleen bij de cases en een steekproef van de rest.",
+   "gist": "Meet binnen een cohort met bewaarde stalen een dure blootstelling alleen bij alle cases plus een willekeurig subcohort (of gematchte controles).",
+   "example": "EPIC-InterAct: een willekeurig subcohort van zo'n 16.000 uit 340.000 Europeanen om type 2-diabetes te bestuderen."
+  },
+  "did": {
+   "name": "Difference-in-differences",
+   "short": "Vergelijk de verandering in een behandelde groep met die in een onbehandelde.",
+   "gist": "Vergelijk de verandering in de tijd in een groep die een interventie kreeg met die in een vergelijkbare groep zonder.",
+   "example": "Card & Krueger (1994): de minimumloonverhoging in New Jersey vs. buurstaat Pennsylvania."
+  },
+  "rdd": {
+   "name": "Regressie-discontinuïteit",
+   "short": "Een afkappunt bepaalt de behandeling: vergelijk net erboven met net eronder.",
+   "gist": "Als een regel de behandeling toekent bij een afkappunt, vergelijk dan eenheden net erboven en net eronder: bijna gelijk, op de behandeling na.",
+   "example": "Angrist & Lavy (1999): de regel van Maimonides die klassen op 40 leerlingen begrenst."
+  },
+  "its": {
+   "name": "Onderbroken tijdreeks",
+   "short": "Veel meetpunten voor en na een gedateerde wijziging: breekt de trend?",
+   "gist": "Veel metingen voor en na een gedateerde interventie; toets of niveau of helling verandert, los van de bestaande trend.",
+   "example": "Ziekenhuisopnames voor hartinfarcten voor en na een rookverbod in openbare ruimtes."
+  },
+  "synthetic-control": {
+   "name": "Synthetische controle",
+   "short": "Bouw een gewogen tweeling van één behandelde eenheid uit onbehandelde.",
+   "gist": "Bouw een gewogen 'tweeling' van één behandelde eenheid uit onbehandelde eenheden die er vóór de interventie op leken; vergelijk daarna.",
+   "example": "Abadie et al.: het tabaksprogramma van Californië (1988); de economische kost van de Duitse hereniging."
+  },
+  "rct": {
+   "name": "Gerandomiseerde gecontroleerde studie",
+   "short": "Het toeval bepaalt wie de interventie krijgt. Vergelijk dan de uitkomsten.",
+   "gist": "Wijs individuen willekeurig toe aan interventie of controle, volg ze op, vergelijk de uitkomsten. De maatstaf voor 'werkt het?'",
+   "example": "De MRC-streptomycinestudie bij tuberculose (1948), de eerste moderne gerandomiseerde studie."
+  },
+  "cluster-rct": {
+   "name": "Clustergerandomiseerde studie",
+   "short": "Randomiseer hele groepen (scholen, dorpen, klinieken), geen individuen.",
+   "gist": "Randomiseer hele groepen (scholen, klinieken, dorpen) als de interventie op groepsniveau werkt of zou overslaan.",
+   "example": "Schoolprogramma's voor ontworming en hygiëne, gerandomiseerd per school."
+  },
+  "crossover": {
+   "name": "Cross-overstudie",
+   "short": "Iedereen krijgt beide behandelingen, in willekeurige volgorde, met een washout.",
+   "gist": "Elke deelnemer krijgt beide behandelingen in willekeurige volgorde, gescheiden door een washout. Vraagt veel minder mensen.",
+   "example": "Bio-equivalentiestudies van generieke versus merkgeneesmiddelen."
+  },
+  "factorial-doe": {
+   "name": "Factorieel experiment (DoE)",
+   "short": "Varieer meerdere factoren tegelijk om hun effecten en interacties te vinden.",
+   "gist": "Varieer meerdere factoren tegelijk in een gecontroleerde omgeving. Schat elk effect en hun interacties in weinig runs.",
+   "example": "Fishers landbouwproeven in Rothamsted; screeningsontwerpen in procestechnologie."
+  },
+  "n-of-1": {
+   "name": "N-of-1-studie",
+   "short": "Een gerandomiseerde studie binnen één persoon.",
+   "gist": "Herhaalde, gerandomiseerde, liefst geblindeerde behandelperiodes bij één patiënt om te zien wat voor hem of haar werkt.",
+   "example": "Gepersonaliseerde studies van pijn- of ADHD-medicatie bij individuele patiënten."
+  },
+  "stepped-wedge": {
+   "name": "Stepped-wedge-studie",
+   "short": "Uiteindelijk krijgt iedereen het; het toeval bepaalt wie eerst gaat.",
+   "gist": "Alle clusters starten als controle en stappen op willekeurig geordende momenten over op de interventie, tot iedereen ze heeft.",
+   "example": "De Gambia Hepatitis Intervention Study (1986), die zuigelingenvaccinatie regio per regio invoerde."
+  },
+  "ab-test": {
+   "name": "Online A/B-test",
+   "short": "Randomiseer gebruikers over twee versies en kijk wat ze doen.",
+   "gist": "Randomiseer gebruikers van een digitaal product over varianten. Enorme steekproeven vinden kleine effecten binnen dagen.",
+   "example": "Zoek- en e-commerceplatforms die duizenden gecontroleerde experimenten per jaar draaien."
+  },
+  "adaptive-platform": {
+   "name": "Adaptieve / platformstudie",
+   "short": "Eén masterstudie: armen vallen af en komen erbij naarmate er bewijs is.",
+   "gist": "Eén masterprotocol test veel behandelingen tegen een gedeelde controle; armen vallen af of komen erbij naarmate data binnenkomen.",
+   "example": "RECOVERY (COVID-19): binnen zo'n 100 dagen na de start bleek dexamethason levens te redden."
+  },
+  "field-experiment": {
+   "name": "Veldexperiment",
+   "short": "Randomiseer en manipuleer in de echte wereld: percelen, eilanden, markten.",
+   "gist": "Manipuleer een factor in de echte wereld (percelen, eilanden, dorpen, markten) met gerandomiseerde herhalingen en controles.",
+   "example": "Paine (1966, 1969): zeesterren (Pisaster) weghalen van een rotskust deed de diversiteit instorten: de 'sleutelsoort'."
+  },
+  "ethnography": {
+   "name": "Etnografie",
+   "short": "Leef maandenlang in de setting en leer hoe het echt werkt.",
+   "gist": "Dompel je maandenlang onder in een setting, observeer en doe mee, om praktijken en betekenissen van binnenuit te begrijpen.",
+   "example": "Whyte's Street Corner Society (1943); Latour & Woolgar's Laboratory Life (1979)."
+  },
+  "grounded-theory": {
+   "name": "Grounded theory",
+   "short": "Bouw stap voor stap een nieuwe theorie op vanuit de data.",
+   "gist": "Verzamel en analyseer data in iteratieve cycli (coderen, vergelijken, steekproeven) om van onderuit een nieuwe theorie te bouwen.",
+   "example": "Glaser & Strauss (1965), Awareness of Dying: hoe ziekenhuispersoneel en patiënten omgaan met kennis over de dood."
+  },
+  "interviews-thematic": {
+   "name": "Interviews & thematische analyse",
+   "short": "Vraag, luister en vind de patronen in wat mensen zeggen.",
+   "gist": "Diepte-interviews of focusgroepen, geanalyseerd op betekenispatronen. Beantwoordt 'hoe' en 'waarom' vanuit het perspectief van mensen zelf.",
+   "example": "Onderzoeken waarom patiënten stoppen met een voorgeschreven geneesmiddel."
+  },
+  "case-study": {
+   "name": "Casestudy (diepgaand)",
+   "short": "Eén afgebakende casus, van alle kanten bekeken in zijn echte context.",
+   "gist": "Bestudeer één of enkele afgebakende casussen (een bedrijf, een project, een beleid) in hun echte context, met veel bronnen van bewijs.",
+   "example": "Allisons Essence of Decision (1971) over de Cubacrisis; onderzoeken naar technisch falen."
+  },
+  "process-tracing": {
+   "name": "Process tracing",
+   "short": "Toets rivaliserende causale verklaringen in één casus, spoor na spoor.",
+   "gist": "Toets rivaliserende verklaringen van één casus aan het bewijs dat elk voorspelt, stap voor stap: hoeptests kunnen er één uitsluiten, smoking guns bevestigen er één.",
+   "example": "De hoep- en smoking-guntests van Van Evera (1997), nu standaard in de politicologie."
+  },
+  "delphi": {
+   "name": "Delphi-consensus",
+   "short": "Experts stemmen anoniem, ronde na ronde, tot ze convergeren.",
+   "gist": "Experts beoordelen stellingen anoniem over herhaalde rondes, met feedback van de groep, tot er consensus ontstaat.",
+   "example": "'Core outcome sets' van het COMET-initiatief, die bepalen wat elke trial in een veld moet meten."
+  },
+  "mixed-sequential": {
+   "name": "Mixed methods (sequentieel)",
+   "short": "Cijfers en dan verhalen om ze te verklaren, of omgekeerd om ze te toetsen.",
+   "gist": "Combineer cijfers en verhalen na elkaar: een survey en dan interviews om die te verklaren, of interviews en dan een survey om ze te toetsen.",
+   "example": "Verklarend sequentieel ontwerp: een survey vindt een kloof, vervolginterviews verklaren die."
+  },
+  "systematic-review": {
+   "name": "Systematische review & meta-analyse",
+   "short": "Vind elke studie over een gerichte vraag, beoordeel ze, pool ze.",
+   "gist": "Een vooraf vastgelegde, uitputtende zoektocht naar en beoordeling van alle studies over een gerichte vraag; pool de resultaten waar zinvol.",
+   "example": "Cochrane-reviews; de forest plot over prenatale corticosteroïden in het Cochrane-logo."
+  },
+  "scoping-review": {
+   "name": "Scoping review",
+   "short": "Breng in kaart wat over een breed onderwerp onderzocht is, en waar de hiaten zitten.",
+   "gist": "Breng systematisch in kaart welk onderzoek er bestaat over een breed onderwerp (concepten, methoden, hiaten), zonder effecten te poolen.",
+   "example": "Overzichten volgens PRISMA-ScR, bv. over hoe AI in de verpleegkunde wordt gebruikt."
+  },
+  "network-meta": {
+   "name": "Netwerkmeta-analyse",
+   "short": "Rangschik veel behandelingen tegelijk via directe en indirecte vergelijkingen.",
+   "gist": "Vergelijk veel behandelingen tegelijk door direct en indirect bewijs te combineren over een netwerk van trials.",
+   "example": "Cipriani et al. (2018): 21 antidepressiva gerangschikt op basis van 522 trials."
+  },
+  "ipd-meta": {
+   "name": "IPD-meta-analyse (individuele data)",
+   "short": "Pool de ruwe data van elke trial, niet alleen de gepubliceerde cijfers.",
+   "gist": "Verzamel en heranalyseer de individuele deelnemersdata van elke trial, zodat uitkomsten, subgroepen en analyses overal op dezelfde manier gedefinieerd zijn.",
+   "example": "De Early Breast Cancer Trialists' Collaborative Group, die sinds 1985 patiëntdata uit trials van adjuvante therapie poolt."
+  },
+  "umbrella-review": {
+   "name": "Umbrella review",
+   "short": "Een review van reviews: het grote plaatje van een heel veld.",
+   "gist": "Een review van systematische reviews: vat het bewijs uit veel reviews over een breed onderwerp samen en beoordeelt het.",
+   "example": "Theodoratou et al. (2014): vitamine D en 137 uitkomsten over meta-analyses en trials heen."
+  },
+  "rapid-review": {
+   "name": "Rapid review",
+   "short": "Een systematische review met deadline, met benoemde shortcuts.",
+   "gist": "Een systematische review met transparant ingekorte stappen, opgeleverd in weken voor een dringende beslissing.",
+   "example": "Cochrane Rapid Reviews ter onderbouwing van het COVID-19-beleid in 2020."
+  },
+  "realist-review": {
+   "name": "Realist review",
+   "short": "Wat werkt, voor wie, in welke context, en waarom?",
+   "gist": "Synthetiseer gemengd bewijs om te verklaren hoe complexe programma's werken: voor wie, in welke context en waarom.",
+   "example": "Pawsons realistische synthesen van complexe sociale programma's (context + mechanisme → uitkomst)."
+  },
+  "prior-art": {
+   "name": "Prior-art-review",
+   "short": "Zoek in octrooien, producten en artikelen wat al bestaat, voor je iets bouwt of nieuw noemt.",
+   "gist": "Zoek in octrooien, normen, producten, proefschriften en artikelen wat al bestaat (de stand van de techniek), voor je bouwt, publiceert of nieuwheid claimt.",
+   "example": "In re Hall (1986): één Duits proefschrift in een universiteitsbibliotheek gold als prior art tegen een Amerikaans octrooi."
+  },
+  "co-citation": {
+   "name": "Co-citatieanalyse",
+   "short": "Twee werken zijn verbonden als een later artikel ze beide citeert. Clusters tonen de basis van een veld.",
+   "gist": "Verbind werken (of auteurs) telkens als latere artikelen ze samen citeren; clusters brengen de intellectuele basis van een veld in kaart. Nieuwe artikelen blijven onzichtbaar.",
+   "example": "Small (1973) definieerde het; White & Griffith (1981) brachten de scholen in de informatiewetenschap in kaart via co-citatie van auteurs."
+  },
+  "bibliographic-coupling": {
+   "name": "Bibliografische koppeling",
+   "short": "Twee artikelen zijn verbonden als ze dezelfde bronnen citeren. Clusters tonen de huidige onderzoeksfronten.",
+   "gist": "Verbind artikelen met gedeelde referenties; clusters brengen huidige onderzoeksfronten in kaart. Werkt vanaf de dag van publicatie, maar algemene referenties vertroebelen het beeld.",
+   "example": "Kessler (1963) groepeerde natuurkundeartikelen op gedeelde referenties; nog steeds een standaardmanier om onderzoeksfronten te vinden."
+  },
+  "multivocal-review": {
+   "name": "Multivocale literatuurreview",
+   "short": "Review artikelen én blogs, lezingen en whitepapers uit de praktijk, en beoordeel elke bron.",
+   "gist": "Een systematische review die grijze literatuur (blogs, whitepapers, lezingen) toevoegt als de praktijk het onderzoek voorbijloopt, en elke bron beoordeelt.",
+   "example": "Garousi, Felderer & Mäntylä (2019) schreven de richtlijnen, na een MLR over wanneer je softwaretests automatiseert."
+  },
+  "diagnostic-accuracy": {
+   "name": "Diagnostische-accuratessestudie",
+   "short": "De nieuwe test en de referentiestandaard, bij dezelfde echte patiënten.",
+   "gist": "Pas een nieuwe test en een referentiestandaard toe bij opeenvolgende mensen met een vermoeden van de aandoening; schat sensitiviteit en specificiteit.",
+   "example": "Volgens STARD gerapporteerde evaluaties van antigeensneltests tegenover PCR."
+  },
+  "reliability": {
+   "name": "Betrouwbaarheid & overeenstemming",
+   "short": "Stemmen beoordelaars, toestellen of herhaalmetingen overeen?",
+   "gist": "Herhaal metingen over beoordelaars, momenten of toestellen; kwantificeer de overeenstemming (kappa, ICC, Bland–Altman-grenzen).",
+   "example": "Bland & Altman (1986): waarom correlatie de verkeerde manier is om twee meetmethoden te vergelijken."
+  },
+  "validation": {
+   "name": "Ontwikkeling & validatie van instrumenten",
+   "short": "Bouw een vragenlijst of schaal en bewijs dat die meet wat hij belooft.",
+   "gist": "Bouw een vragenlijst of schaal op basis van theorie en input, en toets dan de structuur, betrouwbaarheid en validiteit (psychometrie).",
+   "example": "De ontwikkeling van de Maslach Burnout Inventory (1981)."
+  },
+  "nomological": {
+   "name": "Nomologisch-netwerkstudie",
+   "short": "Voorspel hoe je maat met andere maten samenhangt, en toets dan het hele patroon.",
+   "gist": "Voorspel vanuit de theorie met welke maten de jouwe moet samenhangen, met welke niet, en welke groepen moeten verschillen; toets dan het hele patroon.",
+   "example": "Cronbach & Meehl (1955) bedachten het idee; de multitrait-multimethodmatrix van Campbell & Fiske (1959) bracht het in de praktijk."
+  },
+  "discrete-choice": {
+   "name": "Discreet-keuze-experiment",
+   "short": "Laat mensen kiezen tussen pakketten kenmerken om te zien wat ze echt waarderen.",
+   "gist": "Respondenten kiezen tussen hypothetische opties waarvan de kenmerken volgens een ontwerp variëren; keuzemodellen tonen afwegingen en betalingsbereidheid.",
+   "example": "McFaddens random-utilitymodellen (Nobelprijs, 2000), eerst gebruikt om het reizigersaantal van BART in San Francisco te voorspellen."
+  },
+  "interlab": {
+   "name": "Interlaboratoriumvergelijking",
+   "short": "Zelfde staal, veel labs: hoe reproduceerbaar is de methode?",
+   "gist": "Identieke stalen gaan naar veel labs (een 'ringonderzoek'); verschillen tonen hoe reproduceerbaar een meetmethode is.",
+   "example": "Proficiency-testingschema's; BIPM-sleutelvergelijkingen tussen nationale metrologie-instituten."
+  },
+  "analytical-model": {
+   "name": "Analytische / wiskundige theorie",
+   "short": "Leid het wiskundig af: wat moet in elk geval waar zijn?",
+   "gist": "Leid resultaten wiskundig af uit basisprincipes: bewijzen, gesloten oplossingen, grenzen. 'Wat moet waar zijn als…'",
+   "example": "De rendementslimiet van Carnot (1824); het Nash-evenwicht (1950)."
+  },
+  "simulation": {
+   "name": "Computersimulatie",
+   "short": "Bouw het systeem in een computer en doe de experimenten die de realiteit niet toelaat.",
+   "gist": "Vertaal mechanismen naar een model (EEM, CFD, Monte Carlo, agent-based) en voer experimenten uit die in werkelijkheid onmogelijk, gevaarlijk of te duur zijn.",
+   "example": "Golfvormen van samensmeltende zwarte gaten uit numerieke relativiteit, berekend jaren voor de eerste detectie door LIGO."
+  },
+  "prediction-model": {
+   "name": "Predictiemodel (statistisch / ML)",
+   "short": "Leer van oude data om te voorspellen wie of wat er volgt.",
+   "gist": "Ontwikkel een model dat een uitkomst voorspelt uit predictoren en test dan het onderscheidend vermogen en de kalibratie op nieuwe data.",
+   "example": "De Framingham-risicoscore; klinische predictiemodellen gerapporteerd volgens TRIPOD."
+  },
+  "economic-evaluation": {
+   "name": "Kosteneffectiviteitsanalyse",
+   "short": "Weeg de extra kosten af tegen de extra baten: is het het geld waard?",
+   "gist": "Vergelijk kosten en uitkomsten van alternatieven, vaak in een beslismodel, om de extra kosten per eenheid baat te vinden, zoals per gewonnen QALY.",
+   "example": "NICE in Engeland beoordeelt nieuwe geneesmiddelen op hun kosten per gewonnen voor kwaliteit gecorrigeerd levensjaar (QALY)."
+  },
+  "design-science": {
+   "name": "Design science (bouwen & evalueren)",
+   "short": "Bouw een artefact dat een echt probleem oplost en test het met de gebruikers.",
+   "gist": "Ontwerp iteratief een artefact (toestel, software, methode) dat een echt probleem oplost en evalueer het met gebruikers in context.",
+   "example": "Medische hulpmiddelen ontwikkeld volgens usability engineering (IEC 62366); onderzoekssoftware gebouwd samen met de gebruikers."
+  },
+  "pilot": {
+   "name": "Pilot- / haalbaarheidsstudie",
+   "short": "Een generale repetitie: kan de grote studie echt draaien?",
+   "gist": "Een kleine repetitie van een toekomstige studie. Kunnen we rekruteren, behouden, uitvoeren en meten? Niet om effecten te schatten.",
+   "example": "CONSORT-uitbreiding voor gerandomiseerde pilot- en haalbaarheidsstudies (2016)."
+  },
+  "think-aloud": {
+   "name": "Usabilitytest (hardop denken)",
+   "short": "Kijk hoe echte gebruikers echte taken proberen terwijl ze hardop denken.",
+   "gist": "Representatieve gebruikers proberen realistische taken met een prototype terwijl ze hardop denken; observatoren noteren waar en waarom ze vastlopen.",
+   "example": "Nielsen & Landauer (1993): zo'n vijf gebruikers vinden de meeste usabilityproblemen in één testronde."
+  },
+  "pdsa": {
+   "name": "Plan-Do-Study-Act-cycli",
+   "short": "Kleine, snelle verandertests: probeer, meet, pas aan, herhaal.",
+   "gist": "Iteratieve kleinschalige tests van een verandering in een echte dienst, elk over de tijd gemeten op een runchart en gebruikt om de volgende cyclus te plannen.",
+   "example": "Het Model for Improvement van het Institute for Healthcare Improvement, wereldwijd gebruikt in ziekenhuizen."
+  },
+  "benchmark": {
+   "name": "Benchmarkevaluatie",
+   "short": "Zelfde taken, zelfde data, zelfde maten: wie presteert echt het best?",
+   "gist": "Vergelijk methoden op gedeelde taken, datasets en maten onder identieke omstandigheden, met baselines, ablaties en herhaalde runs.",
+   "example": "ImageNet; benchmarks voor robotgrijpen op basis van de YCB-objectset."
+  }
+ },
+ "threats": {
+  "confounding": {
+   "name": "Confounding",
+   "short": "Een verborgen derde factor stuurt blootstelling én uitkomst.",
+   "text": "Een derde factor veroorzaakt zowel blootstelling als uitkomst en veinst of verbergt een effect.",
+   "example": "Koffiedrinkers leken vaker longkanker te krijgen, omdat koffiedrinkers meer rookten."
+  },
+  "confounding-indication": {
+   "name": "Confounding door indicatie",
+   "short": "De ziekste krijgen de behandeling, dus die lijkt schadelijk.",
+   "text": "De reden voor behandeling hangt zelf samen met de uitkomst, dus de behandeling lijkt schadelijk (of nuttig) terwijl ze dat niet is.",
+   "example": "In routinedossiers leek een hartmedicijn dodelijk, omdat artsen het voorbehielden voor de ziekste patiënten."
+  },
+  "selection-bias": {
+   "name": "Selectiebias",
+   "short": "Wie in de steekproef komt, hangt af van wat je bestudeert.",
+   "text": "Wie in de steekproef komt (of blijft), hangt af van de blootstelling, de uitkomst of beide.",
+   "example": "Literary Digest (1936) verstuurde 10 miljoen stembiljetten, vooral naar bezitters van telefoon en auto; de 2,4 miljoen antwoorden voorspelden Landon. Roosevelt won met overmacht."
+  },
+  "attrition": {
+   "name": "Uitval & ontbrekende data",
+   "short": "Wie uitvalt, lijkt niet op wie blijft.",
+   "text": "Deelnemers vallen uit, of data ontbreken, om redenen die met de behandeling of de uitkomst samenhangen.",
+   "example": "In een afslankstudie bleven de mensen die niet afvielen stilletjes weg. De overgebleven groep zag er prima uit."
+  },
+  "recall-bias": {
+   "name": "Recall bias",
+   "short": "Cases herinneren zich hun verleden anders dan controles.",
+   "text": "Mensen met de uitkomst herinneren of melden eerdere blootstellingen anders dan mensen zonder.",
+   "example": "Moeders van baby's met aangeboren afwijkingen graven dieper in hun geheugen naar medicijnen tijdens de zwangerschap."
+  },
+  "measurement-error": {
+   "name": "Meetfout",
+   "short": "Het instrument is ruizig, vertekend of verloopt.",
+   "text": "Het instrument is ruizig, vertekend, verloopt, of wordt anders gebruikt tussen groepen of in de tijd.",
+   "example": "Zelfgerapporteerde voeding onderschat de energie-inname, en bij sommige groepen meer dan bij andere."
+  },
+  "reverse-causation": {
+   "name": "Omgekeerde causaliteit",
+   "short": "De uitkomst veroorzaakt de 'oorzaak'.",
+   "text": "De uitkomst (of een vroeg stadium ervan) veroorzaakt de blootstelling, niet omgekeerd.",
+   "example": "Magere ouderen sterven eerder, deels omdat ziekte al jaren voor het overlijden tot gewichtsverlies leidt."
+  },
+  "regression-mean": {
+   "name": "Regressie naar het gemiddelde",
+   "short": "Extreme waarden schuiven vanzelf terug naar het gemiddelde.",
+   "text": "Eenheden gekozen om hun extreme waarden schuiven bij hermeting terug naar het gemiddelde, met of zonder interventie.",
+   "example": "Leerlingen die bijles krijgen na hun slechtste toets ooit, doen het de volgende keer beter, bijles of niet."
+  },
+  "expectation": {
+   "name": "Verwachtingseffecten",
+   "short": "Weten wie wat kreeg, verandert het resultaat.",
+   "text": "Placebo-, Hawthorne- en observatoreffecten: weten wie wat kreeg, verandert gedrag, klachten of metingen.",
+   "example": "Moseley et al. (2002): een schijnartroscopie van de knie verlichtte de pijn even goed als de echte operatie."
+  },
+  "contamination": {
+   "name": "Contaminatie & overloop",
+   "short": "De controlegroep krijgt de interventie ook.",
+   "text": "De controlegroep wordt blootgesteld aan de interventie, of effecten lopen over tussen eenheden, wat het verschil verdunt.",
+   "example": "Leraren in de controlegroep leenden het nieuwe leerplan van hun collega's verderop in de gang."
+  },
+  "immortal-time": {
+   "name": "Immortal time bias",
+   "short": "Behandelden krijgen tijd toegerekend waarin ze niet konden sterven.",
+   "text": "De behandelde groep krijgt follow-uptijd toegerekend waarin de uitkomst per definitie niet kon optreden.",
+   "example": "Oscarwinnaars leken ~4 jaar langer te leven dan genomineerden, deels omdat je lang genoeg moet leven om te winnen."
+  },
+  "collider": {
+   "name": "Colliderbias",
+   "short": "Selectie op een gedeeld gevolg schept een verband.",
+   "text": "Selecteren of corrigeren op een gemeenschappelijk gevolg van blootstelling en uitkomst schept een schijnverband (Berksonbias).",
+   "example": "Bij ziekenhuispatiënten lijken twee losse ziekten samen te hangen, omdat elk van beide je in het ziekenhuis brengt."
+  },
+  "ecological-fallacy": {
+   "name": "Ecologische drogreden",
+   "short": "Wat geldt voor groepen, geldt niet per se voor hun leden.",
+   "text": "Iets concluderen over individuen uit een verband dat alleen tussen groepen is gezien.",
+   "example": "Robinson (1950): Amerikaanse staten met meer immigranten hadden meer geletterdheid, al waren immigranten zelf minder vaak geletterd."
+  },
+  "unit-of-analysis": {
+   "name": "Fout in analyse-eenheid",
+   "short": "Groepen werden gerandomiseerd, maar individuen geteld.",
+   "text": "Groepen worden gerandomiseerd of bemonsterd, maar individuen geanalyseerd alsof ze onafhankelijk zijn. Dat geeft schijnprecisie.",
+   "example": "Een studie die 10 scholen randomiseerde, analyseerde 3.000 leerlingen als onafhankelijk en rapporteerde onmogelijk smalle betrouwbaarheidsintervallen."
+  },
+  "survivorship": {
+   "name": "Survivorship bias",
+   "short": "Je ziet alleen wie terugkwam.",
+   "text": "Alleen de overlevers, successen of nog aanwezige eenheden worden gezien; de mislukkingen blijven onzichtbaar.",
+   "example": "Wald, WOII: bepantsering hoort waar terugkerende bommenwerpers géén kogelgaten hadden, want de vliegtuigen die daar geraakt werden, kwamen nooit terug."
+  },
+  "publication-bias": {
+   "name": "Publicatiebias",
+   "short": "De nulresultaten liggen nog in de la.",
+   "text": "Positieve resultaten worden gepubliceerd, nulresultaten blijven in de la, en de literatuur liegt door weglating.",
+   "example": "Turner et al. (2008): bijna alle positieve antidepressivastudies werden gepubliceerd; de meeste negatieve niet, of werden mooier voorgesteld."
+  },
+  "source-credibility": {
+   "name": "Ongetoetste bronnen",
+   "short": "Niemand checkte het, en de auteur verkoopt misschien iets.",
+   "text": "Grijze bronnen slaan peerreview over: leveranciers, consultants en liefhebbers publiceren opvallende claims zonder zichtbare methode of data.",
+   "example": "De beroemde faalcijfers voor IT-projecten uit de Standish CHAOS-rapporten werden jarenlang geciteerd; Eveleens & Verhoef (2010) toonden dat de definities de cijfers vertekenden."
+  },
+  "forking-paths": {
+   "name": "Forking paths & p-hacking",
+   "short": "Probeer genoeg analyses en één ervan is 'significant'.",
+   "text": "Flexibele keuzes van uitkomsten, subgroepen en analyses, of tussentijds in de data kijken, tot iets 'significant' is.",
+   "example": "Simmons et al. (2011) 'toonden' met flexibele analyses aan dat luisteren naar een Beatles-nummer mensen jonger maakte."
+  },
+  "low-power": {
+   "name": "Lage power",
+   "short": "Te klein om het effect te zien, te ruizig om een treffer te geloven.",
+   "text": "Te weinig eenheden om een realistisch effect te vinden; de 'significante' bevindingen die opduiken, zijn overdreven.",
+   "example": "Button et al. (2013): de mediane statistische power in neurowetenschappelijke studies was zo'n 21%."
+  },
+  "overfitting-leakage": {
+   "name": "Overfitting & leakage",
+   "short": "Het model leerde de test vanbuiten.",
+   "text": "Het model leert ruis vanbuiten, of ziet informatie uit de testdata of de toekomst, en faalt in de echte wereld.",
+   "example": "AI voor thoraxfoto's leerde herkennen uit welk ziekenhuis (en welke scanner) een beeld kwam, niet de ziekte (Zech et al., 2018)."
+  },
+  "spectrum-bias": {
+   "name": "Spectrumbias",
+   "short": "Alleen getest op de duidelijke gevallen.",
+   "text": "Een test of beoordelaar wordt geëvalueerd op duidelijke gevallen en niet-gevallen in plaats van op de realistische mix van patiënten of stalen.",
+   "example": "Tests die bijna perfect lijken bij ernstige gevallen vs. gezonde vrijwilligers, haperen bij de milde, twijfelachtige patiënten in de echte praktijk."
+  },
+  "history-trend": {
+   "name": "Historie & seculiere trends",
+   "short": "Er veranderde tegelijk iets anders.",
+   "text": "Er veranderde tegelijk iets anders (een trend, het seizoen, ander beleid) dat de eer of de schuld opeist.",
+   "example": "Een hygiënecampagne in een ziekenhuis viel samen met een landelijke daling van infecties en kreeg de eer voor beide."
+  },
+  "carryover": {
+   "name": "Carry-over",
+   "short": "De eerste behandeling werkt na in de tweede periode.",
+   "text": "Het effect van een eerdere behandelperiode loopt door in de volgende.",
+   "example": "Het effect van een geneesmiddel liep door in de placeboperiode van een cross-overstudie, waardoor placebo werkzaam leek."
+  },
+  "researcher-lens": {
+   "name": "Onderzoekersbias",
+   "short": "Je ziet wat je verwachtte te zien.",
+   "text": "De verwachtingen, banden of positie van de analist bepalen wat gezien, gecodeerd en gerapporteerd wordt.",
+   "example": "Analisten die de hypothese kenden, lazen dubbelzinnige interviewfragmenten als steun ervoor."
+  },
+  "external-validity": {
+   "name": "Beperkte generaliseerbaarheid",
+   "short": "Waar hier, maar misschien nergens anders.",
+   "text": "Steekproef, setting of omstandigheden verschillen van waar de resultaten gebruikt worden.",
+   "example": "Henrich et al. (2010): de meeste psychologische bevindingen kwamen uit WEIRD-steekproeven (Western, Educated, Industrialized, Rich, Democratic)."
+  },
+  "heterogeneity": {
+   "name": "Appels & peren",
+   "short": "Appels met peren poolen.",
+   "text": "Samen gepoolde studies, populaties of interventies verschillen zo sterk dat het gemiddelde weinig betekent.",
+   "example": "Trials van verschillende middelen, doses en patiënten poolen geeft een precies gemiddelde van niets in het bijzonder."
+  },
+  "model-assumptions": {
+   "name": "Ongevalideerd model",
+   "short": "Het model rust op aannames die niemand checkte.",
+   "text": "Een model, afleiding of simulatie rust op ongecontroleerde aannames, foute invoer of numerieke artefacten.",
+   "example": "De Mars Climate Orbiter ging in 1999 verloren: de software van het ene team gebruikte Engelse eenheden, het andere verwachtte metrische."
+  },
+  "construct-validity": {
+   "name": "Verkeerd construct",
+   "short": "Je mat een proxy, niet het echte ding.",
+   "text": "Je meet een proxy of surrogaat dat niet vat waar het je echt om gaat.",
+   "example": "CAST (1989): middelen die onregelmatige hartslagen op de monitor onderdrukten, verhoogden de sterfte."
+  },
+  "thin-data": {
+   "name": "Dunne data",
+   "short": "Te weinig stemmen voor het verhaal.",
+   "text": "Te weinig of te gelijkaardige casussen en stemmen; conclusies worden getrokken voor de data rijk genoeg zijn.",
+   "example": "Zes interviews met enthousiaste early adopters leverden een 'theorie' op die instortte toen sceptici werden geïnterviewd."
+  }
+ },
+ "safeguards": {
+  "randomization": {
+   "name": "Randomisatie",
+   "short": "Laat het toeval bepalen wie wat krijgt.",
+   "text": "Laat het toeval bepalen wie wat krijgt. Verdeelt bekende en onbekende confounders gemiddeld gelijk."
+  },
+  "allocation-concealment": {
+   "name": "Verborgen toewijzing",
+   "short": "Niemand kan de volgende toewijzing zien of sturen.",
+   "text": "Niemand die deelnemers includeert, kan de volgende toewijzing kennen of beïnvloeden."
+  },
+  "blinding": {
+   "name": "Blindering",
+   "short": "Niemand weet wie wat kreeg.",
+   "text": "Deelnemers, behandelaars, beoordelaars of analisten weten niet wie wat kreeg, of wat de hypothese is."
+  },
+  "placebo-sham": {
+   "name": "Placebo- of schijncontrole",
+   "short": "De controle-arm krijgt een identiek ogende dummy.",
+   "text": "De controlegroep krijgt een niet te onderscheiden dummy, zodat de verwachtingen in beide armen gelijk zijn."
+  },
+  "itt": {
+   "name": "Intention-to-treat",
+   "short": "Analyseer iedereen zoals gerandomiseerd, wat er ook gebeurde.",
+   "text": "Analyseer iedereen in de groep waarin hij gerandomiseerd werd, wat er ook gebeurde; ga expliciet om met ontbrekende data."
+  },
+  "preregistration": {
+   "name": "Preregistratie",
+   "short": "Leg het plan vast voor je de data ziet.",
+   "text": "Publiceer hypothesen, primaire uitkomst en analyseplan (of reviewprotocol) voor je de data ziet."
+  },
+  "power-analysis": {
+   "name": "Steekproefgrootteplanning",
+   "short": "Bereken vooraf hoeveel je er nodig hebt.",
+   "text": "Bereken vooraf hoeveel eenheden je nodig hebt om het kleinste relevante effect te vinden."
+  },
+  "dag-adjustment": {
+   "name": "Causaal diagram (DAG)",
+   "short": "Teken de causale kaart; corrigeer alleen waar het hoort.",
+   "text": "Teken je causale aannames; corrigeer voor confounders, en bewust niet voor colliders of mediatoren."
+  },
+  "matching-ps": {
+   "name": "Matching / propensityscores",
+   "short": "Vergelijk gelijk met gelijk.",
+   "text": "Vergelijk behandelde en onbehandelde eenheden die op gemeten kenmerken op elkaar lijken."
+  },
+  "negative-control": {
+   "name": "Negatieve controles",
+   "short": "Test iets dat geen effect mag tonen.",
+   "text": "Test een blootstelling of uitkomst die onmogelijk verband kan houden; elk 'effect' daar onthult verborgen bias."
+  },
+  "sensitivity-analysis": {
+   "name": "Sensitiviteitsanalyse",
+   "short": "Verander de aannames. Blijft het antwoord staan?",
+   "text": "Herhaal onder andere aannames (ontbrekende data, ongemeten confounding, E-waarden, modelkeuzes). Blijven de conclusies staan?"
+  },
+  "active-comparator": {
+   "name": "Actieve vergelijker, nieuwe starters",
+   "short": "Vergelijk nieuwe starters op de ene behandeling met die op een andere.",
+   "text": "Vergelijk nieuwe gebruikers van een behandeling met nieuwe gebruikers van een alternatief."
+  },
+  "time-zero": {
+   "name": "Gelijk tijdstip nul",
+   "short": "Ieders klok start op hetzelfde moment.",
+   "text": "Start de follow-up wanneer aan de criteria is voldaan en de behandelstrategie is toegewezen, voor iedereen hetzelfde moment."
+  },
+  "lag-analysis": {
+   "name": "Lag & uitsluiten vroege events",
+   "short": "Laat ruimte tussen blootstelling en uitkomst.",
+   "text": "Meet de blootstelling lang voor de uitkomst, of laat vroege events weg, om omgekeerde causaliteit af te zwakken."
+  },
+  "concurrent-control": {
+   "name": "Gelijktijdige controlegroep",
+   "short": "Een vergelijkingsgroep die dezelfde periode doormaakt.",
+   "text": "Vergelijk met een groep gemeten over dezelfde periode, zodat trends en regressie naar het gemiddelde beide even hard raken."
+  },
+  "parallel-trends": {
+   "name": "Pretrendcheck & controlereeks",
+   "short": "Toon dat de groepen voor de wijziging samen bewogen.",
+   "text": "Toon dat de groepen voor de interventie parallel liepen, of voeg een vergelijkingsreeks toe die ze niet kon beïnvloeden."
+  },
+  "cluster-allocation": {
+   "name": "Toewijzen per cluster",
+   "short": "Wijs hele groepen toe, zodat niets tussen armen lekt.",
+   "text": "Wijs hele groepen toe (klassen, afdelingen, dorpen), zodat de interventie niet naar de controlegroep kan lekken."
+  },
+  "washout": {
+   "name": "Washoutperiode",
+   "short": "Laat de eerste behandeling uitwerken.",
+   "text": "Laat genoeg tijd tussen behandelperiodes zodat het vorige effect verdwijnt."
+  },
+  "external-validation": {
+   "name": "Externe validatie",
+   "short": "Test het op data die het nooit zag.",
+   "text": "Test het model of de methode op data van een andere tijd of plaats die het nooit heeft gezien."
+  },
+  "multiplicity": {
+   "name": "Correctie voor multipliciteit",
+   "short": "Kies één primaire uitkomst, of betaal voor elke extra test.",
+   "text": "Kies één primaire uitkomst, of corrigeer voor het aantal tests dat je uitvoert."
+  },
+  "replication": {
+   "name": "Onafhankelijke replicatie",
+   "short": "Iemand anders doet het opnieuw.",
+   "text": "Een ander team, een andere steekproef of site herhaalt de studie, liefst met hetzelfde gepreregistreerde plan."
+  },
+  "comprehensive-search": {
+   "name": "Uitgebreide zoektocht",
+   "short": "Zoek overal, ook in de laden.",
+   "text": "Doorzoek meerdere databanken, trialregisters, preprints en grijze literatuur, en contacteer auteurs."
+  },
+  "grey-appraisal": {
+   "name": "Beoordeling grijze literatuur",
+   "short": "Beoordeel elke grijze bron voor je ze vertrouwt.",
+   "text": "Scoor elke grijze bron op het gezag van de maker, vermelde methode, objectiviteit, datum en niveau van het kanaal, en leg vooraf stopregels voor de zoektocht vast."
+  },
+  "heterogeneity-plan": {
+   "name": "Geplande heterogeniteitsanalyse",
+   "short": "Plan vooraf hoe je verklaart waarom studies verschillen.",
+   "text": "Random-effectsmodellen plus vooraf vastgelegde subgroepen en meta-regressie om te verkennen waarom studies verschillen."
+  },
+  "sampling-frame": {
+   "name": "Representatieve steekproef",
+   "short": "Trek uit de hele populatie, niet uit het handige deel.",
+   "text": "Rekruteer uit een omschreven populatie (alle opeenvolgende patiënten, een aselecte steekproef), niet wie handig is."
+  },
+  "validated-measures": {
+   "name": "Gevalideerde, objectieve maten",
+   "short": "Gebruik instrumenten die aantoonbaar meten wat telt.",
+   "text": "Gebruik gekalibreerde instrumenten, dossiers of gevalideerde schalen in plaats van geheugen of ad-hocvragen, en uitkomsten die ertoe doen in plaats van ongevalideerde surrogaten."
+  },
+  "reflexivity": {
+   "name": "Reflexiviteit & dubbel coderen",
+   "short": "Noteer je eigen bril en laat een tweede codeur checken.",
+   "text": "Houd een audit trail en reflexieve notities bij, laat een tweede analist onafhankelijk coderen, toets interpretaties bij deelnemers."
+  },
+  "triangulation": {
+   "name": "Triangulatie",
+   "short": "Andere methoden, andere zwaktes, zelfde antwoord.",
+   "text": "Combineer bronnen, methoden of designs met verschillende zwaktes. Vertrouw de conclusies waarover ze het eens zijn."
+  },
+  "saturation-sampling": {
+   "name": "Theoretische steekproef tot saturatie",
+   "short": "Blijf selecteren tot er niets nieuws opduikt.",
+   "text": "Blijf casussen toevoegen die opkomende ideeën uitdagen, tot nieuwe data niets nieuws meer opleveren."
+  },
+  "multilevel-analysis": {
+   "name": "Multilevelanalyse",
+   "short": "Modelleer mensen binnen groepen binnen plaatsen.",
+   "text": "Modelleer individuen genest in groepen, met data op individueel niveau waar mogelijk."
+  },
+  "verification-validation": {
+   "name": "Verificatie & validatie",
+   "short": "Check of de code klopt, en dan of het model de realiteit volgt.",
+   "text": "Verifieer dat de code de vergelijkingen correct oplost (convergentietests, eenhedencontroles); valideer het model tegen echte experimenten."
+  },
+  "multi-site": {
+   "name": "Multicentrisch, divers",
+   "short": "Test het waar de resultaten gebruikt worden.",
+   "text": "Voer de studie uit in de settings en populaties waar de resultaten echt gebruikt zullen worden."
+  },
+  "within-comparison": {
+   "name": "Zelf- of broer-zusvergelijking",
+   "short": "Vergelijk mensen met zichzelf, of broers en zussen onderling.",
+   "text": "Vergelijk eenheden met zichzelf, of broers en zussen onderling, zodat stabiele achtergrondfactoren wegvallen."
+  },
+  "spc": {
+   "name": "Runcharts & controlegrenzen",
+   "short": "Beoordeel een verandering tegen de eigen basisvariatie.",
+   "text": "Zet de maat uit in de tijd vanaf een stabiele basislijn en pas vooraf vastgelegde regels toe (verschuivingen, trends, controlegrenzen), zodat echte verandering opvalt boven ruis en drift."
+  }
+ },
+ "twists": {
+  "T01": {
+   "name": "Ethische commissie zegt nee",
+   "text": "De blootstelling onthouden of toewijzen is onethisch. Niemand mag eraan toegewezen worden."
+  },
+  "T02": {
+   "name": "Budget gekort",
+   "text": "Je hebt nu zes maanden en een tiende van het budget."
+  },
+  "T03": {
+   "name": "Zeldzamer dan gedacht",
+   "text": "Nieuwe data: de uitkomst treft zo'n 1 op 20.000, niet 1 op 200."
+  },
+  "T04": {
+   "name": "Het register gaat open",
+   "text": "Een nationaal register met 20 jaar gekoppelde dossiers komt beschikbaar."
+  },
+  "T05": {
+   "name": "Het ministerie legt een drempel",
+   "text": "Een score beslist: iedereen boven 60 krijgt het, iedereen eronder niet."
+  },
+  "T06": {
+   "name": "Het gebeurt toch",
+   "text": "Het besluit is genomen: binnen een jaar krijgt iedereen de interventie. Alleen de volgorde ligt open."
+  },
+  "T07": {
+   "name": "Ze praten met elkaar",
+   "text": "Deelnemers delen tips, materiaal en roddels. Wat je één geeft, krijgen de anderen ook."
+  },
+  "T08": {
+   "name": "Maar één",
+   "text": "Er blijkt maar één geschikte eenheid: één patiënt, één fabriek, één land."
+  },
+  "T09": {
+   "name": "Plots dertig studies",
+   "text": "Een literatuurzoektocht levert tientallen primaire studies op over precies deze vraag."
+  },
+  "T10": {
+   "name": "In de mist",
+   "text": "Experts zijn het niet eens over wat de kernvariabelen zijn."
+  },
+  "T11": {
+   "name": "Traag vuur",
+   "text": "Het effect, als het er is, wordt pas na 15 jaar zichtbaar."
+  },
+  "T12": {
+   "name": "Een korte trigger",
+   "text": "De vermoedelijke oorzaak duurt minuten, het effect volgt binnen uren."
+  },
+  "T13": {
+   "name": "Maar enkelen blootgesteld",
+   "text": "De blootstelling blijft beperkt tot een paar honderd mensen op één plek."
+  },
+  "T14": {
+   "name": "Reviewer 2",
+   "text": "De Reviewer mag deze ronde één extra Bedreiging spelen tegen elk design."
+  },
+  "T15": {
+   "name": "Replicatiecrisis",
+   "text": "Elk design zonder verdediging met Preregistratie of Onafhankelijke replicatie verliest deze ronde 1 punt."
+  },
+  "T16": {
+   "name": "Open-scienceprijs",
+   "text": "+1 punt voor elke speler die deze ronde Preregistratie, Triangulatie of Onafhankelijke replicatie speelt."
+  },
+  "T17": {
+   "name": "Het staat allemaal op blogs",
+   "text": "De tijdschriften leveren vijf artikelen op. De praktijk schreef vijfhonderd posts, lezingen en whitepapers."
+  }
+ },
+ "programs": {
+  "P1": {
+   "name": "Schermen & mentale gezondheid",
+   "brief": "Schaden sociale media de mentale gezondheid van jongeren? Ouders, platforms en overheden willen een antwoord.",
+   "stages": [
+    "Hoe beschrijven tieners zelf hun gebruik van sociale media en de gevolgen ervan?",
+    "Hoe vaak komen intensief gebruik en depressieve klachten voor, en gaan ze samen?",
+    "Komt intensief gebruik voor de toename van klachten, of omgekeerd?",
+    "Verbetert vier weken minder gebruik de stemming?",
+    "Wat zeggen alle trials en cohorten samen?"
+   ]
+  },
+  "P2": {
+   "name": "Microplastics in ons lichaam",
+   "brief": "Microplastics duiken op in bloed, placenta's en slagaders. Zijn ze een gezondheidsprobleem?",
+   "stages": [
+    "Wat is er al onderzocht, met welke methoden, en waar zitten de hiaten?",
+    "Vinden verschillende labs die hetzelfde weefselstaal meten dezelfde aantallen deeltjes?",
+    "Hoeveel dragen mensen mee, en verschilt dat naar regio en leeftijd?",
+    "Krijgen mensen met meer microplastics in hun vaatplaque later vaker een hartinfarct?",
+    "Via welk cellulair mechanisme zouden deeltjes ontsteking veroorzaken, en bij welke dosis?"
+   ]
+  },
+  "P3": {
+   "name": "Een zachte grijper voor fruitpluk",
+   "brief": "Telers vinden geen seizoenarbeiders. Kan een zachte robotgrijper aardbeien plukken zonder kneuzingen?",
+   "stages": [
+    "Welke grijperontwerpen bestaan er, en hoe zijn ze geëvalueerd?",
+    "Ontwerp een grijper die telers en plukkers bruikbaar vinden.",
+    "Welke combinatie van vingermateriaal, druk en naderingssnelheid geeft de minste kneuzingen?",
+    "Doet hij het beter dan bestaande grijpers op een gedeelde set fruit en maten?",
+    "Houdt hij een volledige shift vol in een echte serre? Blijft het personeel hem gebruiken?"
+   ]
+  },
+  "P4": {
+   "name": "De vierdaagse werkweek",
+   "brief": "Een overheid wil weten of een werkweek van 32 uur met volledig loon goed is voor werknemers en bedrijven.",
+   "stages": [
+    "Hoe kregen de eerste bedrijven die het probeerden het aan de praat, of waarom mislukte het?",
+    "Kunnen bedrijven gerekruteerd worden, en zijn productiviteit en welzijn consistent te meten?",
+    "Zestig bedrijven meldden zich aan en schakelen allemaal ooit over. Heeft het effect op burn-out en output?",
+    "Een heel land voerde het in één jaar wettelijk in. Wat gebeurde er met de nationale productiviteit?",
+    "Waarom werkt het in sommige sectoren wel en in andere niet?"
+   ]
+  },
+  "P5": {
+   "name": "Een nieuw postviraal syndroom",
+   "brief": "Maanden na een nieuwe infectie melden sommige mensen uitputting en hersenmist. Wat is het, en wat helpt?",
+   "stages": [
+    "Hoe zien de eerste patiënten eruit?",
+    "Hoe vaak komt het voor bij mensen die besmet waren?",
+    "Wie loopt risico? Verandert vaccinatie voor de infectie de kans?",
+    "Er worden twaalf kandidaat-behandelingen voorgesteld. Welke werken?",
+    "De behandelingen rangschikken terwijl er weinig rechtstreeks vergeleken zijn."
+   ]
+  },
+  "P6": {
+   "name": "AI-triage op de spoedeisende hulp",
+   "brief": "Een ziekenhuisgroep wil een AI-tool die patiënten signaleert die intensieve zorg nodig zullen hebben.",
+   "stages": [
+    "Kunnen routinedata een IC-opname binnen 24 uur voorspellen?",
+    "Werkt het nog in een ander ziekenhuis, een jaar later?",
+    "Zijn verpleegkundigen het eens met elkaar, en met de tool, over het triageniveau?",
+    "De tool gaat dit jaar aan in alle 8 ziekenhuizen. Redt hij levens?",
+    "Waarom negeren sommige clinici hem zo vaak?"
+   ]
+  }
+ }
+}
