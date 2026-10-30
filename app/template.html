@@ -195,6 +195,36 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 .count:hover, .count:focus-visible { background: color-mix(in srgb, var(--accent) 12%, transparent); }
 @media (prefers-reduced-motion: reduce) { .tip, .tip.out, .tip-fan i { animation: none; } .tip-fan i { transform: rotate(var(--r)) translateX(var(--x)); } }
 
+/* answer reveal: the four cards show what each was, and your pick reacts */
+.result-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; border-radius: 12px; margin-bottom: 18px;
+  animation: headIn .45s cubic-bezier(.2,.8,.2,1) both; }
+.result-head .big { font: 800 clamp(22px, 3vw, 30px)/1.1 var(--f-display); }
+.result-head .pts { font: 800 34px/1 var(--f-display); }
+.r-best { background: color-mix(in srgb, #16A34A 18%, var(--surface)); color: var(--good); }
+.r-ok { background: var(--silver-bg); color: var(--silver); }
+.r-trap { background: var(--trap-bg); color: var(--trap); }
+.r-unlisted { background: var(--silver-bg); color: var(--muted); }
+@keyframes headIn { from { opacity: 0; transform: translateY(-10px) scale(.96); } }
+.pick.res { cursor: default; transition: opacity .4s, filter .4s, transform .3s; }
+.pick.res:not(.chosen) { opacity: .5; filter: saturate(.4); }
+.pick.res:not(.chosen).res-best { opacity: 1; filter: none; box-shadow: 0 0 0 3px #16A34A; }
+.pick.chosen { z-index: 2; }
+.pick.chosen.res-best { animation: winPop .7s cubic-bezier(.2,.9,.3,1.4) both, winGlow 1.6s .7s ease-in-out infinite; }
+.pick.chosen.res-ok { box-shadow: 0 0 0 4px #94A3B8; animation: okNod .6s ease both; }
+.pick.chosen.res-trap, .pick.chosen.res-unlisted { box-shadow: 0 0 0 4px #DC2626; animation: shake .5s ease both; }
+.pick.chosen.res-unlisted { box-shadow: 0 0 0 4px #94A3B8; }
+@keyframes winPop { 0% { transform: scale(1); } 45% { transform: scale(1.1) rotate(-2deg); } 100% { transform: scale(1.05); } }
+@keyframes winGlow { 0%, 100% { box-shadow: 0 0 0 4px #16A34A, 0 0 18px 4px rgba(22,163,74,.45); } 50% { box-shadow: 0 0 0 4px #16A34A, 0 0 34px 10px rgba(22,163,74,.6); } }
+@keyframes okNod { 40% { transform: translateY(-8px); } }
+@keyframes shake { 15%, 55% { transform: translateX(-9px) rotate(-2deg); } 35%, 75% { transform: translateX(9px) rotate(2deg); } }
+.pick-slot .badge { position: absolute; z-index: 4; left: 50%; top: -13px; transform: translateX(-50%); white-space: nowrap; padding: 4px 11px; border-radius: 99px;
+  font: 800 13px/1.2 var(--f-display); color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,.3); animation: badgeIn .4s .15s cubic-bezier(.2,.9,.3,1.4) both; }
+.b-best { background: #16A34A; } .b-ok { background: #64748B; } .b-trap { background: #DC2626; } .b-unlisted { background: #475569; }
+.pick-slot .mine { position: absolute; z-index: 4; left: 50%; bottom: -11px; transform: translateX(-50%); white-space: nowrap; padding: 2px 9px; border-radius: 99px;
+  font: 700 11px/1.3 var(--f-mono); letter-spacing: .08em; background: var(--accent); color: var(--accent-ink); }
+@keyframes badgeIn { from { opacity: 0; transform: translateX(-50%) translateY(8px) scale(.6); } }
+@media (prefers-reduced-motion: reduce) { .result-head, .pick.chosen, .pick-slot .badge { animation: none !important; } }
+
 /* home */
 .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 24px; align-items: center; min-height: 430px; margin-bottom: 26px; }
 @media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; } }
@@ -561,7 +591,16 @@ function renderPanel() {
   const pts = SC[tier];
   const names = ids => ids.map(i => esc(D[i].name)).join(", ") || "none";
   const vtext = { best: "🥇 Best design", ok: "🥈 Defensible", trap: "⚠️ Trap", unlisted: "Unlisted. At a table you could appeal" }[tier];
-  let html = `<span class="label">Verdict on ${esc(D[picked].name)}</span><br>
+  // The four cards stay on the table and show what each one was; the one you picked reacts.
+  const head = { best: "🎉 Correct!", ok: "👍 Defensible, but not the best.", trap: "💥 That's the trap!", unlisted: "🤔 Not quite." }[tier];
+  const badge = { best: "🥇 Best", ok: "🥈 Defensible", trap: "⚠️ Trap", unlisted: "Unlisted" };
+  let html = `<div class="result-head r-${tier}"><span class="big">${head}</span><span class="pts">${pts > 0 ? "+" : ""}${pts}</span></div>`;
+  if (!FEATURES.table) html += `<div class="pick-wrap"><div class="pick-cards">${choices.map(id => {
+    const t = tierOf(id), mine = id === picked;
+    return `<div class="pick-slot"><button class="pick res res-${t}${mine ? " chosen" : ""}" disabled aria-label="${esc(D[id].name)}: ${badge[t]}${mine ? " (your pick)" : ""}">${DATA.cards.designs[id]}</button>
+      <span class="badge b-${t}">${mine ? (pts > 0 ? "+" + pts + " " : pts < 0 ? pts + " " : "") : ""}${badge[t]}</span>${mine ? '<span class="mine">YOUR PICK</span>' : ""}${refLink(id)}</div>`;
+  }).join("")}</div></div>`;
+  html += `<span class="label" style="display:block;margin-top:16px">Verdict on ${esc(D[picked].name)}</span>
     <div class="verdict v-${tier}"><span class="pts">${pts > 0 ? "+" : ""}${pts}</span>${vtext}</div>`;
   if (tier === "trap") html += `<p class="trapline"><b>Why it fails:</b> ${esc(q.traps[picked])}</p>`;
   html += `<dl class="key"><dt>🥇 Best</dt><dd>${names(q.best)}</dd><dt>🥈 Defensible</dt><dd>${names(q.ok)}</dd>`;
@@ -570,6 +609,8 @@ function renderPanel() {
   html += `<div class="review" id="review"></div>`;
   p.innerHTML = html;
   renderReview();
+  const mine = p.querySelector(".pick.chosen");
+  if (mine && tier === "best") setTimeout(() => confetti(mine), reduceMotion ? 0 : 250);
 }
 
 // ---------- peer review round: defend the best design against the key threat
