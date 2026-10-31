@@ -156,6 +156,7 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 /* play: the four choices are whole Design cards */
 /* Four across when the panel is wide, two by two when it isn't; either way the cards grow to fill it. */
 .pick-wrap { container-type: inline-size; margin-top: 8px; }
+.pick-hint { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
 .pick-cards { --card-u: min(4.4px, calc((100cqw - 42px) / 252)); display: grid; grid-template-columns: repeat(4, max-content); gap: 14px; }
 @container (max-width: 700px) { .pick-cards { --card-u: min(4.4px, calc((100cqw - 14px) / 126)); grid-template-columns: repeat(2, max-content); } }
 .pick { background: none; border: 0; padding: 0; border-radius: calc(var(--card-u) * 3.2); transition: transform .18s, box-shadow .18s; }
@@ -175,6 +176,31 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
 .viewer-card .tcg { box-shadow: 0 24px 60px rgba(0,0,0,.6); }
 .viewer-hint { color: #CBD5E1; font: 600 13px var(--f-mono); letter-spacing: .06em; }
 .viewer.out { animation: vOut .18s ease both; }
+/* choosing: the four choices, one at a time, with a big green button to make it your answer */
+.viewer.choosing { cursor: default; touch-action: pinch-zoom; gap: 12px; padding-top: 68px; }
+.viewer.choosing .viewer-card { --card-u: min(calc((100vw - 32px) / 63), calc((100vh - 180px) / 88), 6px); }
+/* dvh: the height left between a phone's toolbars, so the green button is never hidden behind them */
+@supports (height: 100dvh) { .viewer.choosing .viewer-card { --card-u: min(calc((100vw - 32px) / 63), calc((100dvh - 180px) / 88), 6px); } }
+/* a phone held sideways: card on the left, controls beside it */
+@media (orientation: landscape) and (max-height: 520px) {
+  .viewer.choosing { padding-top: 16px; grid-template-columns: auto auto; justify-content: center; column-gap: 24px; }
+  .viewer.choosing .viewer-card { grid-row: span 2; --card-u: min(calc((100vh - 32px) / 88), 6px); }
+  @supports (height: 100dvh) { .viewer.choosing .viewer-card { --card-u: min(calc((100dvh - 32px) / 88), 6px); } }
+  .viewer.choosing .v-dots { align-self: end; } .viewer.choosing .v-bar { align-self: start; }
+}
+.v-dots { display: flex; gap: 7px; } .v-dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(203,213,225,.35); transition: background .2s; }
+.v-dots i.on { background: #F8FAFC; }
+.v-bar { display: flex; align-items: center; gap: 10px; }
+.v-nav, .v-close { width: 48px; height: 48px; border-radius: 50%; border: 0; background: rgba(248,250,252,.14); color: #F8FAFC; font: 600 20px/1 var(--f-display);
+  padding: 0; display: grid; place-items: center; flex: none; }
+.v-nav:hover, .v-close:hover { background: rgba(248,250,252,.26); }
+.v-close { position: fixed; top: 12px; right: 12px; }
+[dir="rtl"] .v-close { right: auto; left: 12px; } [dir="rtl"] .v-nav { transform: scaleX(-1); }
+.v-pick { min-height: 52px; padding: 0 26px; border: 0; border-radius: 99px; background: #15803D; color: #fff; font: 800 18px var(--f-display);
+  box-shadow: 0 0 0 3px rgba(34,197,94,.35), 0 10px 26px rgba(0,0,0,.4); transition: transform .15s, background .15s; }
+.v-pick:hover { background: #166534; transform: translateY(-2px); }
+.v-pick:active { transform: scale(.97); }
+.v-pick:focus-visible, .v-nav:focus-visible, .v-close:focus-visible { outline: 3px solid #F8FAFC; outline-offset: 3px; }
 @keyframes vIn { from { opacity: 0; } } @keyframes vOut { to { opacity: 0; } }
 @keyframes vCard { from { transform: scale(.6) translateY(30px); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .viewer, .viewer-card, .viewer.out { animation: none; } }
@@ -619,14 +645,14 @@ function tierOf(id) {
 // so sweeping the mouse across the cards can't set off a chain of grow-and-shrink.
 let zoomed = null, zoomTimer = 0;
 function unzoom() { clearTimeout(zoomTimer); if (zoomed) { zoomed.classList.remove("zoom"); zoomed = null; } }
-function magnify(el, max = 1.9) {
+function magnify(el, max = 1.9, open = () => openViewer(el)) {
   if (!el) return;
   // Touch screens: press and hold the card, or use its magnifier button, to open it full screen.
   let hold = 0, held = false;
   el.addEventListener("pointerdown", e => {
     if (e.pointerType === "mouse") return;
     held = false;
-    hold = setTimeout(() => { held = true; openViewer(el); }, 450);
+    hold = setTimeout(() => { held = true; open(); }, 450);
   });
   for (const ev of ["pointerup", "pointercancel", "pointermove"]) el.addEventListener(ev, e => { if (ev !== "pointermove" || Math.abs(e.movementX) + Math.abs(e.movementY) > 6) clearTimeout(hold); });
   el.addEventListener("click", e => { if (held) { e.preventDefault(); e.stopImmediatePropagation(); held = false; } }, true);
@@ -649,16 +675,66 @@ function magnify(el, max = 1.9) {
 }
 
 // Full-screen card viewer, for phones (and the magnifier buttons). Tap anywhere or press Escape to close.
-function openViewer(el) {
+// With `choose` ({ids, at, onPick}) it shows the answer choices one at a time instead: arrows, swipes or the arrow keys
+// move between them, and only the green button makes one your answer, so a stray tap can't.
+function openViewer(el, choose) {
   unzoom();
-  const card = (el.matches(".tcg") ? el : el.querySelector(".tcg")).outerHTML;
   const v = document.createElement("div");
-  v.className = "viewer"; v.setAttribute("role", "dialog"); v.setAttribute("aria-label", trt("viewer.aria"));
-  v.innerHTML = `<div class="viewer-card">${card}</div><span class="viewer-hint">${tr("viewer.hint")}</span>`;
-  const close = () => { v.classList.add("out"); setTimeout(() => v.remove(), reduceMotion ? 0 : 180); removeEventListener("keydown", esc); };
-  const esc = e => { if (e.key === "Escape") close(); };
-  v.onclick = close; addEventListener("keydown", esc);
+  v.className = "viewer" + (choose ? " choosing" : ""); v.setAttribute("role", "dialog"); v.setAttribute("aria-modal", "true");
+  v.setAttribute("aria-label", trt("viewer.aria"));
+  const back = document.activeElement, rtl = document.documentElement.dir === "rtl";
+  const close = () => { v.classList.add("out"); setTimeout(() => v.remove(), reduceMotion ? 0 : 180); removeEventListener("keydown", key); };
+  const key = e => {
+    if (e.key === "Escape") { close(); back?.focus?.(); }
+    else if (choose && (e.key === "ArrowLeft" || e.key === "ArrowRight")) step((e.key === "ArrowRight") !== rtl ? 1 : -1);
+  };
+  addEventListener("keydown", key);
+  if (!choose) {
+    const card = (el.matches(".tcg") ? el : el.querySelector(".tcg")).outerHTML;
+    v.innerHTML = `<div class="viewer-card">${card}</div><span class="viewer-hint">${tr("viewer.hint")}</span>`;
+    v.onclick = close;
+    document.body.appendChild(v);
+    return;
+  }
+  const n = choose.ids.length;
+  let at = choose.at, shownAt = 0;
+  v.innerHTML = `<button class="v-close" type="button" aria-label="${tr("viewer.close")}">✕</button>
+    <div class="viewer-card" aria-live="polite"></div>
+    <div class="v-dots" aria-hidden="true">${"<i></i>".repeat(n)}</div>
+    <div class="v-bar"><button class="v-nav" type="button" data-step="-1" aria-label="${tr("viewer.prev")}"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="v-pick" type="button">✓ ${tr("viewer.pick")}</button>
+      <button class="v-nav" type="button" data-step="1" aria-label="${tr("viewer.next")}"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>`;
+  const slot = v.querySelector(".viewer-card");
+  function show(dir) {
+    slot.innerHTML = DATA.cards.designs[choose.ids[at]];
+    v.querySelectorAll(".v-dots i").forEach((d, i) => d.classList.toggle("on", i === at));
+    shownAt = performance.now();
+    if (dir && !reduceMotion) slot.animate([{ transform: `translateX(${(rtl ? -dir : dir) * 48}px)`, opacity: 0 }, { transform: "none", opacity: 1 }],
+      { duration: 220, easing: "cubic-bezier(.2,.8,.2,1)" });
+  }
+  function step(d) { at = (at + d + n) % n; show(d); }
+  // Swipe sideways to move between the choices.
+  let sx = null, sy = 0, swiped = false;
+  v.addEventListener("pointerdown", e => { sx = e.clientX; sy = e.clientY; swiped = false; });
+  v.addEventListener("pointerup", e => {
+    if (sx === null) return;
+    const dx = e.clientX - sx, dy = e.clientY - sy; sx = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > 1.5 * Math.abs(dy)) { swiped = true; step((dx < 0) !== rtl ? 1 : -1); }
+  });
+  v.onclick = e => {
+    if (swiped) { swiped = false; return; }
+    const b = e.target.closest("button");
+    if (b?.dataset.step) step(+b.dataset.step);
+    else if (b?.classList.contains("v-pick")) {
+      // Ignore a press that lands within a moment of the card appearing (a double tap, or a held Enter key).
+      if (performance.now() - shownAt < 350) return;
+      close(); choose.onPick(choose.ids[at]);
+    }
+    else if (b || e.target === v) { close(); back?.focus?.(); }
+  };
+  show(0);
   document.body.appendChild(v);
+  v.querySelector(".v-pick").focus({ preventScroll: true });
 }
 function lens(target) {
   return `<button class="lens" type="button" aria-label="${tr("lens.aria")}" data-lens="${target}">🔍</button>`;
@@ -668,16 +744,19 @@ function renderPanel() {
   const p = $("panel");
   if (phase === "choose") {
     p.innerHTML = `<span class="label">${tr("play.your_move")}</span><h3>${tr("play.which")}</h3>
-      ${FEATURES.table ? "<p>Pick one from the periodic table below, then submit it from the tray.</p>" : `<div class="pick-wrap"><div class="pick-cards">${choices.map(id =>
-        `<div class="pick-slot"><button class="pick" data-pick="${id}" aria-label="${esc(D[id].name)}" title="${esc(D[id].gist)}">${DATA.cards.designs[id]}</button>${refLink(id)}${lens(id)}</div>`).join("")}</div></div>`}
+      ${FEATURES.table ? "<p>Pick one from the periodic table below, then submit it from the tray.</p>" : `<p class="pick-hint">${tr("play.tap_hint")}</p><div class="pick-wrap"><div class="pick-cards">${choices.map(id =>
+        `<div class="pick-slot"><button class="pick" data-pick="${id}" aria-label="${esc(D[id].name)}" title="${esc(D[id].gist)}">${DATA.cards.designs[id]}</button>${refLink(id)}</div>`).join("")}</div></div>`}
       <ol class="steps" style="margin-top:14px">
         <li><b>${tr("play.step1_b")}</b> ${tr("play.step1")}</li>
         <li><b>${tr("play.step2_b")}</b> ${tr("play.step2")}</li>
         <li><b>${tr("play.step3_b")}</b> ${tr("play.step3")}</li>
       </ol>
       <p class="label" style="margin-top:14px">${tr("play.scoring", { best: SC.best, ok: SC.ok, trap: SC.trap, unlisted: SC.unlisted })}</p>`;
-    p.querySelectorAll("[data-pick]").forEach(b => { b.onclick = () => { picked = b.dataset.pick; submit(); }; magnify(b); });
-    p.querySelectorAll(".pick-slot [data-lens]").forEach(b => b.onclick = () => openViewer(b.closest(".pick-slot")));
+    // Tapping a choice opens it full size; the green button there makes it your answer.
+    p.querySelectorAll("[data-pick]").forEach((b, i) => {
+      const open = () => openViewer(b, { ids: choices, at: i, onPick: id => { picked = id; submit(); } });
+      b.onclick = open; magnify(b, 1.9, open);
+    });
     return;
   }
   const tier = tierOf(picked);
