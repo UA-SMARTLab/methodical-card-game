@@ -53,6 +53,13 @@ and work alike. My general rules are in `~/.claude/CLAUDE.md`; this file adds wh
 - Every concept card has a "?" that opens the paper or standard that defines it (`ref: {cite, url}`, https only,
   checked against Crossref). Hover enlarges cards on desktop; the full-screen viewer serves phones.
 - Light and dark themes through CSS tokens; WCAG 2.2 AA; works at 320 px wide and sideways on phones.
+- Leaving never loses a game. Page changes and the full-screen card are history steps (`show`, `openViewer`, a
+  `popstate` handler), so the phone's back button closes the card, then returns to the previous page; steps the game
+  did not make (a `#...` link) are ignored. The round in progress is kept in `localStorage` (`<KEY>-round`: saved
+  after every move, restored on load), so a reload or a closed tab brings back the same round on the same page,
+  without scoring it twice.
+- `tools/test_app.py` plays the built app headless like a player (every prompt card, the viewer's green button,
+  scoring against the key, back button, a round across a reload, decks). Every kit game has one.
 
 ### Content
 - Three-tier answer keys: best, defensible, trap (each trap states why it fails). Unlisted answers can be appealed at

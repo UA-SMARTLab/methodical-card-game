@@ -697,6 +697,31 @@ function renderStats() {
 // ---------- state
 let q = null, picked = null, phase = "choose", queue = [], choices = [];
 
+// The round in progress is kept in this browser, so leaving the game (the phone's back button, a reload, a closed tab)
+// does not lose it: the same Question, choices, answer and peer review come back, on the page the player was on.
+const ROUND = KEY + "-round";
+let restoring = false;
+function saveRound() {
+  if (!q) return;
+  const r = { q: q.id, choices, picked, phase, view: current, review: review && { opts: review.opts.map(s => s.id), answer: review.answer } };
+  try { localStorage.setItem(ROUND, JSON.stringify(r)); } catch (e) {}
+}
+function restoreRound() {
+  let r = null;
+  try { r = JSON.parse(localStorage.getItem(ROUND)); } catch (e) {}
+  const qq = r && questions.find(x => x.id === r.q);
+  if (!qq || !Array.isArray(r.choices) || r.choices.length !== 4 || !r.choices.every(id => D[id])) return null;
+  q = qq; choices = r.choices; picked = D[r.picked] ? r.picked : null;
+  phase = r.phase === "result" && picked ? "result" : "choose";
+  review = phase === "result" && r.review && r.review.opts.every(id => S[id])
+    ? { t: T[q.key_threat], design: D[q.best[0]], opts: r.review.opts.map(id => S[id]), answer: S[r.review.answer] ? r.review.answer : null } : null;
+  restoring = true;
+  renderQuestion(); renderPanel(); renderTable(); renderTray();
+  restoring = false;
+  $("b-new").classList.toggle("nudge", phase === "result");
+  return r.view || "home";
+}
+
 function filtered() {
   const suit = $("f-suit").value, diff = +$("f-diff").value;
   return questions.filter(x => (!suit || x.suit === suit) && (!diff || x.difficulty === diff));
@@ -718,6 +743,7 @@ function nextQuestion() {
   choices = shuffle([q.best[0], ...shuffle(q.ok).slice(0, 1), ...shuffle(Object.keys(q.traps)).slice(0, 1),
     ...shuffle(designs.map(d => d.id).filter(id => !keyed.has(id)))].slice(0, 4));
   renderQuestion(); renderPanel(); renderTable(); renderTray();
+  saveRound();
 }
 
 function chip(cid) { const c = CON[cid]; return `<span class="chip" title="${esc(c.text)}">${c.icon} ${esc(c.name)}</span>`; }
@@ -889,7 +915,7 @@ function renderPanel() {
   p.querySelectorAll(".pick.res").forEach(b => magnify(b));
   p.querySelectorAll(".pick-slot [data-lens]").forEach(b => b.onclick = () => openViewer(b.closest(".pick-slot")));
   const mine = p.querySelector(".pick.chosen");
-  if (mine && tier === "best") setTimeout(() => confetti(mine), reduceMotion ? 0 : 250);
+  if (mine && tier === "best" && !restoring) setTimeout(() => confetti(mine), reduceMotion ? 0 : 250);
 }
 
 // ---------- peer review round: defend the best design against the key threat
@@ -933,7 +959,7 @@ function renderReview() {
 function answerReview(id) {
   review.answer = id;
   if (review.t.countered_by.includes(id)) { stats.score += 1; save(); renderStats(); }
-  renderReview();
+  renderReview(); saveRound();
 }
 
 function submit() {
@@ -944,7 +970,7 @@ function submit() {
   stats.score += SC[tier]; stats.answered += 1;
   if (tier === "best") { stats.bestHits += 1; stats.streak += 1; } else stats.streak = 0;
   stats.seen[q.id] = tier; save(); renderStats();
-  renderPanel(); renderTable(); renderTray();
+  renderPanel(); renderTable(); renderTray(); saveRound();
   $("panel").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
 }
 function scrollToTop() { $("qslot").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); }
@@ -1603,11 +1629,13 @@ function show(view, fromHistory) {
   for (const v of ["home", "play", "duel", "decks", "guide"]) { $("view-" + v).hidden = v !== view; $("tab-" + v).setAttribute("aria-selected", v === view); }
   if (view === "play") renderTray(); else $("tray").hidden = true;
   if (view === "decks") renderDecks();
+  saveRound();
 }
 addEventListener("popstate", e => {
   const open = document.querySelector(".viewer:not(.out)");
   if (open) return open.dismiss();
-  const view = e.state?.view || "home";
+  if (!e.state) return;  // a link to #... on the page, not one of the game's own steps
+  const view = e.state.view || "home";
   if (view !== current) show(view, true);
 });
 document.querySelectorAll("nav button").forEach(b => b.onclick = () => show(b.dataset.view));
@@ -1641,7 +1669,10 @@ if (document.fonts) document.fonts.ready.then(() => fitCards());
 new MutationObserver(ms => { for (const m of ms) for (const n of m.addedNodes) if (n.nodeType === 1 && (n.matches(".tcg") || n.querySelector(".tcg"))) fitCards(n); })
   .observe(document.body, { childList: true, subtree: true });
 $("ptable-label").textContent = `${designs.length} methods · ${meta.families.length} families · tap one to choose it`;
-renderStats(); renderGuide(); renderDuelStart(); nextQuestion(); renderHome(); show("home");
+renderStats(); renderGuide(); renderDuelStart();
+const resumeView = restoreRound();
+if (!resumeView) nextQuestion();
+renderHome(); show(resumeView === "play" ? "play" : "home");
 </script>
 
 </body></html>
