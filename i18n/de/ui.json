@@ -1,6 +1,7 @@
 {
  "ui": {
   "brand.tagline": "Ein Kartenspiel für Forschende. Lies das Forschungsproblem und wähle die Methode, die es wirklich beantworten kann.",
+  "kit.link": "← SMART-Lab Science Game Kit",
   "lang.label": "Sprache",
   "footer": "Methodical v{version}. Der Lösungsschlüssel hat drei Stufen, weil Methodiker uneins sind. Streite mit ihm und verbessere ihn.",
   "stats.points": "Punkte",

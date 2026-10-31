@@ -2,6 +2,7 @@
  "ui": {
   "_comment": "Nederlandse vertaling. Sleutels nooit wijzigen; vertaal alleen de waarden. Laat {placeholders} staan. Sleutels op _html mogen eenvoudige HTML-tags zoals <em> bevatten. Zie GLOSSARY.md voor de gekozen vaktermen.",
   "brand.tagline": "Een kaartspel voor wetenschappers. Lees het onderzoeksprobleem en kies de methode die het echt kan beantwoorden.",
+  "kit.link": "← SMART-Lab Science Game Kit",
   "lang.label": "Taal",
   "footer": "Methodical v{version}. De antwoordsleutel heeft drie niveaus omdat methodologen het oneens zijn. Discussieer erover en maak hem beter.",
   "stats.points": "Punten",

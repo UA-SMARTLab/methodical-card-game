@@ -2,6 +2,7 @@
  "ui": {
   "_comment": "Traduction française. Les clés ne changent jamais ; seules les valeurs sont traduites. Les {placeholders} sont remplis par l’application ; les conserver. Les clés en _html peuvent contenir de simples balises HTML comme <em>.",
   "brand.tagline": "Un jeu de cartes pour scientifiques. Lisez le problème de recherche, puis choisissez la méthode capable d’y répondre.",
+  "kit.link": "← SMART-Lab Science Game Kit",
   "lang.label": "Langue",
   "footer": "Methodical v{version}. Le corrigé a trois niveaux, car les méthodologistes ne sont pas d’accord. Discutez-le, et améliorez-le.",
   "stats.points": "Points",

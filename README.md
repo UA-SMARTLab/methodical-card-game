@@ -1,7 +1,9 @@
 # Methodical
 
 **A card game for scientists that teaches research methods.** Read a research problem, pick the method that can
-actually answer it, then defend that method when a reviewer attacks it with a bias.
+actually answer it, then defend that method when a reviewer attacks it with a bias. The first game of the
+**[SMART-Lab Science Game Kit](https://ua-smartlab.github.io/science-game-kit/)**, with
+[Major Revisions](https://github.com/UA-SMARTLab/major-revisions-card-game) and [Red Flag](https://github.com/UA-SMARTLab/red-flag-card-game).
 
 ![A Question card, the matching Method card, its typical Threat, the Safeguard that counters it, and a Twist](print/preview.png)
 

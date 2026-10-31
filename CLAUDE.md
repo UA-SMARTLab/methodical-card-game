@@ -6,6 +6,12 @@ and work alike. My general rules are in `~/.claude/CLAUDE.md`; this file adds wh
 
 ## The kit: what every game shares
 
+### Front door
+- The kit homepage is its own repo, github.com/UA-SMARTLab/science-game-kit (Pages: ua-smartlab.github.io/science-game-kit/),
+  one hand-written `index.html`. Each game keeps its own repo and Pages site; its app header links back to the
+  homepage (`kit.link` in `ui.json`). After a game's cards change, rebuild the game, then re-render the homepage's card
+  pictures with that repo's `tools/card_images.py`. A new game gets a tile there and a line in the UA-SMARTLab profile README.
+
 ### Architecture
 - Static site, no server, no dependencies. Python standard library only for tooling.
 - `data/*.json` holds every deck; the code never contains card text. `tools/build.py` validates the data (fails on

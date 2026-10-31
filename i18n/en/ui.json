@@ -2,6 +2,7 @@
  "ui": {
   "_comment": "English source. Keys never change; translate the values. {name} placeholders are filled in by the app; keep them. Keys ending in _html may contain simple HTML tags such as <em>.",
   "brand.tagline": "A card game for scientists. Read the research problem, then pick the method that can actually answer it.",
+  "kit.link": "← SMART-Lab Science Game Kit",
   "lang.label": "Language",
   "footer": "Methodical v{version}. The answer key has three tiers because methodologists disagree. Argue with it, and improve it.",
   "stats.points": "Points",
