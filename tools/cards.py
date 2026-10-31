@@ -107,9 +107,14 @@ CARD_CSS = """
 .tcg .row { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--u) * .6) calc(var(--u) * 1.2);
   font: 700 calc(var(--u) * 2.3 * (0.4 + 0.6 * var(--fit, 1)))/1.15 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .04em; text-transform: uppercase; color: #4b5059; }
 .tcg .row .ic { width: calc(var(--u) * 3.5); height: calc(var(--u) * 3.5); }
-.tcg .row .yes { color: #0f7a3c; display: inline-flex; gap: calc(var(--u) * .5); align-items: center; }
-.tcg .row .no { color: #b42318; display: inline-flex; gap: calc(var(--u) * .5); align-items: center; }
+/* "Good for" / "Struggles with": each situation spelled out after its icon, a little tighter than the other rows */
+.tcg .row.cons { column-gap: calc(var(--u) * .9); letter-spacing: .02em; }
+.tcg .row .yes, .tcg .row .no { display: inline-flex; gap: calc(var(--u) * .3); align-items: center; }
+.tcg .row .yes { color: #0f7a3c; } .tcg .row .no { color: #b42318; }
+.tcg .row .yes .ic, .tcg .row .no .ic { width: calc(var(--u) * 2.7); height: calc(var(--u) * 2.7); }
 .tcg .row .k { color: #8a8f98; }
+/* label then plain text: the text starts on the label's line instead of dropping below it */
+.tcg .row.flow { display: block; } .tcg .row.flow .k { margin-inline-end: calc(var(--u) * .9); }
 .tcg .chip { display: inline-flex; align-items: center; gap: calc(var(--u) * .5); padding: calc(var(--u) * .3) calc(var(--u) * 1.1) calc(var(--u) * .3) calc(var(--u) * .6);
   border-radius: calc(var(--u) * 3); background: #1f2937; color: #fff; font: 600 calc(var(--u) * 2.4)/1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .03em; text-transform: uppercase; }
 .tcg .chip .ic { width: calc(var(--u) * 3); height: calc(var(--u) * 3); color: #fcd34d; }
@@ -179,8 +184,9 @@ def _suit_badge(cx, sid, big=False):
     return f'<span class="sb" style="--s:{s["color"]}" title="{e(s["name"])}">{art.SUIT_ICONS[sid]}</span>'
 
 
-def _con_icons(cx, ids):
-    return "".join(f'<span title="{e(cx.CON[c]["name"])}">{art.CONSTRAINT_ICONS[c]}</span>' for c in ids)
+def _con_names(cx, ids, cls):
+    """Constraints spelled out, icon first: the same icon and words as the chips on a Question card, so they match at a glance."""
+    return "".join(f'<span class="{cls}">{art.CONSTRAINT_ICONS[c]}{e(cx.CON[c]["name"])}</span>' for c in ids)
 
 
 def design_card(cx, d):
@@ -188,8 +194,8 @@ def design_card(cx, d):
     serves = "".join(_suit_badge(cx, s) for s in d["serves"])
     cost = "".join(f'<i class="coin{"" if k < d["cost"] else " off"}"></i>' for k in range(3))
     time = "".join(f'<i class="tick{"" if k < d["time"] else " off"}"></i>' for k in range(3))
-    fits = f'<span class="yes">✔ {_con_icons(cx, d["fits"])}</span>' if d["fits"] else ""
-    strug = f'<span class="no">✘ {_con_icons(cx, d["struggles"])}</span>' if d["struggles"] else ""
+    fits = f'<div class="row cons"><span class="k">{L("card.good_for")}</span>{_con_names(cx, d["fits"], "yes")}</div>' if d["fits"] else ""
+    strug = f'<div class="row cons"><span class="k">{L("card.struggles")}</span>{_con_names(cx, d["struggles"], "no")}</div>' if d["struggles"] else ""
     weak = " · ".join(e(cx.T[t]["name"]) for t in d["weak_vs"][:2])
     return f'''<div class="tcg tcg-d" style="--c:{f["color"]}">
   <div class="nm">{_name(d["name"])}<span class="attr">{art.SUIT_ICONS[d["serves"][0]]}</span></div>
@@ -198,8 +204,8 @@ def design_card(cx, d):
   <div class="tb">
     <div class="ty">[ {e(f["name"])} / {L("card.design")} ]</div>
     <p class="fx">{e(d["short"])}</p>
-    <div class="row">{fits}{strug}</div>
-    <div class="row"><span class="k">{L("card.weak_vs")}</span> {weak}</div>
+    {fits}{strug}
+    <div class="row flow"><span class="k">{L("card.weak_vs")}</span> {weak}</div>
     <div class="ft"><span>MTH-D{cx.dnum[d["id"]]:02d}</span><span>{L("card.cost_time").replace("  ", " &nbsp;")}</span></div>
   </div>
 </div>'''
@@ -231,7 +237,7 @@ def threat_card(cx, t, n):
   <div class="tb">
     <div class="ty">[ {L("card.threat_bias")} ]</div>
     <p class="fx">{e(t["short"])}</p>
-    <div class="row"><span class="k">{L("card.countered_by")}</span> {by}</div>
+    <div class="row flow"><span class="k">{L("card.countered_by")}</span> {by}</div>
     <div class="ft"><span>MTH-B{n:02d}</span><span>{L("card.validity")}</span></div>
   </div>
 </div>'''
@@ -250,7 +256,7 @@ def safeguard_card(cx, s, n):
   <div class="tb">
     <div class="ty">[ {L("card.safeguard")} ]</div>
     <p class="fx">{e(s["short"])}</p>
-    <div class="row"><span class="k">{L("card.counters")}</span> {counters}</div>
+    <div class="row flow"><span class="k">{L("card.counters")}</span> {counters}</div>
     <div class="row"><span class="k">{L("card.usable_with")}</span> {fams}</div>
     <div class="ft"><span>MTH-S{n:02d}</span><span>{L("card.defence")}</span></div>
   </div>

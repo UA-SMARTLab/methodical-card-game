@@ -48,9 +48,14 @@
 .tcg .row { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--u) * .6) calc(var(--u) * 1.2);
   font: 700 calc(var(--u) * 2.3 * (0.4 + 0.6 * var(--fit, 1)))/1.15 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .04em; text-transform: uppercase; color: #4b5059; }
 .tcg .row .ic { width: calc(var(--u) * 3.5); height: calc(var(--u) * 3.5); }
-.tcg .row .yes { color: #0f7a3c; display: inline-flex; gap: calc(var(--u) * .5); align-items: center; }
-.tcg .row .no { color: #b42318; display: inline-flex; gap: calc(var(--u) * .5); align-items: center; }
+/* "Good for" / "Struggles with": each situation spelled out after its icon, a little tighter than the other rows */
+.tcg .row.cons { column-gap: calc(var(--u) * .9); letter-spacing: .02em; }
+.tcg .row .yes, .tcg .row .no { display: inline-flex; gap: calc(var(--u) * .3); align-items: center; }
+.tcg .row .yes { color: #0f7a3c; } .tcg .row .no { color: #b42318; }
+.tcg .row .yes .ic, .tcg .row .no .ic { width: calc(var(--u) * 2.7); height: calc(var(--u) * 2.7); }
 .tcg .row .k { color: #8a8f98; }
+/* label then plain text: the text starts on the label's line instead of dropping below it */
+.tcg .row.flow { display: block; } .tcg .row.flow .k { margin-inline-end: calc(var(--u) * .9); }
 .tcg .chip { display: inline-flex; align-items: center; gap: calc(var(--u) * .5); padding: calc(var(--u) * .3) calc(var(--u) * 1.1) calc(var(--u) * .3) calc(var(--u) * .6);
   border-radius: calc(var(--u) * 3); background: #1f2937; color: #fff; font: 600 calc(var(--u) * 2.4)/1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .03em; text-transform: uppercase; }
 .tcg .chip .ic { width: calc(var(--u) * 3); height: calc(var(--u) * 3); color: #fcd34d; }

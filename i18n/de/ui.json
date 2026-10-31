@@ -108,6 +108,8 @@
   "card.question": "Frage: {suit}",
   "card.which": "Welche Methode beantwortet sie?",
   "card.design": "Methode",
+  "card.good_for": "Passt zu",
+  "card.struggles": "Schwierig bei",
   "card.weak_vs": "Schwach gegen",
   "card.cost_time": "● Kosten  ◆ Zeit",
   "card.threat": "Bedrohung",

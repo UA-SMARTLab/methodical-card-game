@@ -109,6 +109,8 @@
   "card.question": "سؤال {suit}",
   "card.which": "أي منهج يجيب عنه؟",
   "card.design": "منهج",
+  "card.good_for": "يلائم",
+  "card.struggles": "يتعثر في",
   "card.weak_vs": "ضعيف أمام",
   "card.cost_time": "● التكلفة  ◆ الوقت",
   "card.threat": "تهديد",

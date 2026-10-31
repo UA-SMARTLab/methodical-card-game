@@ -48,9 +48,14 @@
 .tcg .row { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--u) * .6) calc(var(--u) * 1.2);
   font: 700 calc(var(--u) * 2.3 * (0.4 + 0.6 * var(--fit, 1)))/1.15 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .04em; text-transform: uppercase; color: #4b5059; }
 .tcg .row .ic { width: calc(var(--u) * 3.5); height: calc(var(--u) * 3.5); }
-.tcg .row .yes { color: #0f7a3c; display: inline-flex; gap: calc(var(--u) * .5); align-items: center; }
-.tcg .row .no { color: #b42318; display: inline-flex; gap: calc(var(--u) * .5); align-items: center; }
+/* "Good for" / "Struggles with": each situation spelled out after its icon, a little tighter than the other rows */
+.tcg .row.cons { column-gap: calc(var(--u) * .9); letter-spacing: .02em; }
+.tcg .row .yes, .tcg .row .no { display: inline-flex; gap: calc(var(--u) * .3); align-items: center; }
+.tcg .row .yes { color: #0f7a3c; } .tcg .row .no { color: #b42318; }
+.tcg .row .yes .ic, .tcg .row .no .ic { width: calc(var(--u) * 2.7); height: calc(var(--u) * 2.7); }
 .tcg .row .k { color: #8a8f98; }
+/* label then plain text: the text starts on the label's line instead of dropping below it */
+.tcg .row.flow { display: block; } .tcg .row.flow .k { margin-inline-end: calc(var(--u) * .9); }
 .tcg .chip { display: inline-flex; align-items: center; gap: calc(var(--u) * .5); padding: calc(var(--u) * .3) calc(var(--u) * 1.1) calc(var(--u) * .3) calc(var(--u) * .6);
   border-radius: calc(var(--u) * 3); background: #1f2937; color: #fff; font: 600 calc(var(--u) * 2.4)/1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .03em; text-transform: uppercase; }
 .tcg .chip .ic { width: calc(var(--u) * 3); height: calc(var(--u) * 3); color: #fcd34d; }
@@ -856,8 +861,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Deskriptiv-beobachtend / Methode ]</div>
     <p class="fx">Einen oder wenige auffällige Fälle genau beschreiben. Liefert ein Signal, testet es nicht.</p>
-    <div class="row"><span class="yes">✔ <span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span><span title="Seltenes Outcome"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span><span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Viele Studien"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Selektionsbias · Confounding</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Seltenes Outcome</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Viele Studien</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Selektionsbias · Confounding</div>
     <div class="ft"><span>MTH-D01</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#0F766E">
@@ -867,8 +872,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Deskriptiv-beobachtend / Methode ]</div>
     <p class="fx">Eine Momentaufnahme einer Stichprobe: Wie häufig ist etwas, jetzt gerade?</p>
-    <div class="row"><span class="yes">✔ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Seltenes Outcome"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span><span title="Lange Latenz"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Kurzer Auslöser"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Selektionsbias · Umgekehrte Kausalität</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Seltenes Outcome</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange Latenz</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></svg>Kurzer Auslöser</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Selektionsbias · Umgekehrte Kausalität</div>
     <div class="ft"><span>MTH-D02</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#0F766E">
@@ -878,8 +883,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Deskriptiv-beobachtend / Methode ]</div>
     <p class="fx">Ganze Gruppen (Länder, Regionen, Jahre) anhand ihrer Mittelwerte vergleichen.</p>
-    <div class="row"><span class="yes">✔ <span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Gruppenebene"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Ökologischer Fehlschluss · Confounding</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Gruppenebene</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Ökologischer Fehlschluss · Confounding</div>
     <div class="ft"><span>MTH-D03</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#0F766E">
@@ -889,8 +894,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Deskriptiv-beobachtend / Methode ]</div>
     <p class="fx">Immer wieder dasselbe auf dieselbe Weise messen, um Trends zu erkennen.</p>
-    <div class="row"><span class="yes">✔ <span title="Lange Latenz"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Seltenes Outcome"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span></span><span class="no">✘ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Messfehler · Selektionsbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange Latenz</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Seltenes Outcome</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Messfehler · Selektionsbias</div>
     <div class="ft"><span>MTH-D04</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#0F766E">
@@ -900,8 +905,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Deskriptiv-beobachtend / Methode ]</div>
     <p class="fx">Zwei Stichproben ziehen und die Überlappung zählen: Je weniger Wiederfänge, desto mehr gibt es.</p>
-    <div class="row"><span class="yes">✔ <span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Selektionsbias · Messfehler</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Selektionsbias · Messfehler</div>
     <div class="ft"><span>MTH-D05</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -911,8 +916,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch-beobachtend / Methode ]</div>
     <p class="fx">Erst die Exposition messen, dann Menschen nachbeobachten: Bei wem tritt das Outcome ein?</p>
-    <div class="row"><span class="yes">✔ <span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Seltene Exposition"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 3a9 9 0 0 1 7.8 4.5L14 10.8M4.2 7.5A9 9 0 0 1 12 3M4.2 16.5 10 13.2M19.8 16.5 14 13.2M12 21a9 9 0 0 1-7.8-4.5M19.8 16.5A9 9 0 0 1 12 21"/></svg></span></span><span class="no">✘ <span title="Seltenes Outcome"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span><span title="Lange Latenz"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Confounding · Attrition &amp; fehlende Daten</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 3a9 9 0 0 1 7.8 4.5L14 10.8M4.2 7.5A9 9 0 0 1 12 3M4.2 16.5 10 13.2M19.8 16.5 14 13.2M12 21a9 9 0 0 1-7.8-4.5M19.8 16.5A9 9 0 0 1 12 21"/></svg>Seltene Exposition</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Seltenes Outcome</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange Latenz</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Confounding · Attrition &amp; fehlende Daten</div>
     <div class="ft"><span>MTH-D06</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -922,8 +927,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch-beobachtend / Methode ]</div>
     <p class="fx">Eine Kohorte aus alten Akten rekonstruieren und verfolgen, was mit ihr geschah.</p>
-    <div class="row"><span class="yes">✔ <span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Seltene Exposition"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 3a9 9 0 0 1 7.8 4.5L14 10.8M4.2 7.5A9 9 0 0 1 12 3M4.2 16.5 10 13.2M19.8 16.5 14 13.2M12 21a9 9 0 0 1-7.8-4.5M19.8 16.5A9 9 0 0 1 12 21"/></svg></span><span title="Lange Latenz"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Confounding · Confounding by Indication</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 3a9 9 0 0 1 7.8 4.5L14 10.8M4.2 7.5A9 9 0 0 1 12 3M4.2 16.5 10 13.2M19.8 16.5 14 13.2M12 21a9 9 0 0 1-7.8-4.5M19.8 16.5A9 9 0 0 1 12 21"/></svg>Seltene Exposition</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange Latenz</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Confounding · Confounding by Indication</div>
     <div class="ft"><span>MTH-D07</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -933,8 +938,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch-beobachtend / Methode ]</div>
     <p class="fx">Von den Fällen ausgehen, vergleichbare Kontrollen finden, frühere Expositionen ermitteln.</p>
-    <div class="row"><span class="yes">✔ <span title="Seltenes Outcome"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span><span title="Lange Latenz"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Seltene Exposition"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 3a9 9 0 0 1 7.8 4.5L14 10.8M4.2 7.5A9 9 0 0 1 12 3M4.2 16.5 10 13.2M19.8 16.5 14 13.2M12 21a9 9 0 0 1-7.8-4.5M19.8 16.5A9 9 0 0 1 12 21"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Recall-Bias · Selektionsbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Seltenes Outcome</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange Latenz</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 3a9 9 0 0 1 7.8 4.5L14 10.8M4.2 7.5A9 9 0 0 1 12 3M4.2 16.5 10 13.2M19.8 16.5 14 13.2M12 21a9 9 0 0 1-7.8-4.5M19.8 16.5A9 9 0 0 1 12 21"/></svg>Seltene Exposition</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Recall-Bias · Selektionsbias</div>
     <div class="ft"><span>MTH-D08</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -944,8 +949,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch-beobachtend / Methode ]</div>
     <p class="fx">Jeder Fall ist seine eigene Kontrolle: Was geschah kurz vor dem Ereignis?</p>
-    <div class="row"><span class="yes">✔ <span title="Kurzer Auslöser"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></svg></span><span title="Seltenes Outcome"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Lange Latenz"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Recall-Bias · Zeitgeschehen &amp; säkulare Trends</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></svg>Kurzer Auslöser</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Seltenes Outcome</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange Latenz</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Recall-Bias · Zeitgeschehen &amp; säkulare Trends</div>
     <div class="ft"><span>MTH-D09</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Methoden · Seite 2</div><div class="grid"><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -955,8 +960,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch-beobachtend / Methode ]</div>
     <p class="fx">Die ideale Studie auf Papier entwerfen, dann in Real-World-Daten nachbilden.</p>
-    <div class="row"><span class="yes">✔ <span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span><span class="no">✘ <span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Confounding · Confounding by Indication</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Confounding · Confounding by Indication</div>
     <div class="ft"><span>MTH-D10</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -966,8 +971,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch-beobachtend / Methode ]</div>
     <p class="fx">Einen natürlichen Anstoß nutzen, der die Exposition ändert, und sonst nichts.</p>
-    <div class="row"><span class="yes">✔ <span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><span class="no">✘ <span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Confounding · Unvalidiertes Modell</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Confounding · Unvalidiertes Modell</div>
     <div class="ft"><span>MTH-D11</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -977,8 +982,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch-beobachtend / Methode ]</div>
     <p class="fx">Gene werden bei der Zeugung gemischt: das randomisierte Experiment der Natur.</p>
-    <div class="row"><span class="yes">✔ <span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Lange Latenz"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><span class="no">✘ <span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Confounding · Geringe Power</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange Latenz</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Confounding · Geringe Power</div>
     <div class="ft"><span>MTH-D12</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -988,8 +993,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch-beobachtend / Methode ]</div>
     <p class="fx">Millionen Genvarianten einzeln auf einen Zusammenhang mit einem Merkmal testen.</p>
-    <div class="row"><span class="yes">✔ <span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span><span class="no">✘ <span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Forking Paths &amp; p-Hacking · Confounding</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Forking Paths &amp; p-Hacking · Confounding</div>
     <div class="ft"><span>MTH-D13</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -999,8 +1004,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch-beobachtend / Methode ]</div>
     <p class="fx">Die teure Exposition nur bei den Fällen und einer Stichprobe der übrigen messen.</p>
-    <div class="row"><span class="yes">✔ <span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Seltenes Outcome"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Messfehler · Selektionsbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Seltenes Outcome</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Messfehler · Selektionsbias</div>
     <div class="ft"><span>MTH-D14</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#6D28D9">
@@ -1010,8 +1015,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Quasi-experimentell / Methode ]</div>
     <p class="fx">Die Vorher-nachher-Änderung einer behandelten Gruppe mit einer unbehandelten vergleichen.</p>
-    <div class="row"><span class="yes">✔ <span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Gruppenebene"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span><span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><span class="no">✘ <span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Zeitgeschehen &amp; säkulare Trends · Confounding</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Gruppenebene</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Zeitgeschehen &amp; säkulare Trends · Confounding</div>
     <div class="ft"><span>MTH-D15</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#6D28D9">
@@ -1021,8 +1026,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Quasi-experimentell / Methode ]</div>
     <p class="fx">Ein Schwellenwert entscheidet: Vergleiche knapp darüber mit knapp darunter.</p>
-    <div class="row"><span class="yes">✔ <span title="Schwellenregel"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20" stroke-dasharray="2 3"/><path d="M3 16l4-3 4-2M13 7l4-2 4-3"/></svg></span><span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Begrenzte Generalisierbarkeit · Geringe Power</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20" stroke-dasharray="2 3"/><path d="M3 16l4-3 4-2M13 7l4-2 4-3"/></svg>Schwellenregel</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Begrenzte Generalisierbarkeit · Geringe Power</div>
     <div class="ft"><span>MTH-D16</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#6D28D9">
@@ -1032,8 +1037,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Quasi-experimentell / Methode ]</div>
     <p class="fx">Viele Messpunkte vor und nach einer datierten Änderung: Bricht der Trend?</p>
-    <div class="row"><span class="yes">✔ <span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Gruppenebene"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span><span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span><span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Zeitgeschehen &amp; säkulare Trends · Regression zur Mitte</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Gruppenebene</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Zeitgeschehen &amp; säkulare Trends · Regression zur Mitte</div>
     <div class="ft"><span>MTH-D17</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#6D28D9">
@@ -1043,8 +1048,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Quasi-experimentell / Methode ]</div>
     <p class="fx">Aus unbehandelten Einheiten einen gewichteten Zwilling einer behandelten bauen.</p>
-    <div class="row"><span class="yes">✔ <span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span><span title="Gruppenebene"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span><span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Zeitgeschehen &amp; säkulare Trends · Forking Paths &amp; p-Hacking</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Gruppenebene</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Zeitgeschehen &amp; säkulare Trends · Forking Paths &amp; p-Hacking</div>
     <div class="ft"><span>MTH-D18</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Methoden · Seite 3</div><div class="grid"><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1054,8 +1059,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimentell / Methode ]</div>
     <p class="fx">Der Zufall entscheidet, wer die Intervention bekommt. Dann Outcomes vergleichen.</p>
-    <div class="row"><span class="no">✘ <span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Seltenes Outcome"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span><span title="Lange Latenz"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span><span title="Gruppenebene"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Attrition &amp; fehlende Daten · Erwartungseffekte</div>
+    <div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Seltenes Outcome</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange Latenz</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Gruppenebene</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Attrition &amp; fehlende Daten · Erwartungseffekte</div>
     <div class="ft"><span>MTH-D19</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1065,8 +1070,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimentell / Methode ]</div>
     <p class="fx">Ganze Gruppen (Schulen, Dörfer, Praxen) randomisieren, nicht Einzelne.</p>
-    <div class="row"><span class="yes">✔ <span title="Gruppenebene"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span></span><span class="no">✘ <span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span><span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Falsche Analyseeinheit · Selektionsbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Gruppenebene</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Falsche Analyseeinheit · Selektionsbias</div>
     <div class="ft"><span>MTH-D20</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1076,8 +1081,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimentell / Methode ]</div>
     <p class="fx">Alle bekommen beide Behandlungen in zufälliger Reihenfolge, mit Auswaschphase dazwischen.</p>
-    <div class="row"><span class="yes">✔ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Lange Latenz"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Carry-over-Effekt · Attrition &amp; fehlende Daten</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange Latenz</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Carry-over-Effekt · Attrition &amp; fehlende Daten</div>
     <div class="ft"><span>MTH-D21</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1087,8 +1092,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimentell / Methode ]</div>
     <p class="fx">Mehrere Faktoren zugleich variieren, um Effekte und Wechselwirkungen zu finden.</p>
-    <div class="row"><span class="yes">✔ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Messfehler · Begrenzte Generalisierbarkeit</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Messfehler · Begrenzte Generalisierbarkeit</div>
     <div class="ft"><span>MTH-D22</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1098,8 +1103,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimentell / Methode ]</div>
     <p class="fx">Eine randomisierte Studie mit nur einer Person.</p>
-    <div class="row"><span class="yes">✔ <span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Lange Latenz"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Carry-over-Effekt · Erwartungseffekte</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange Latenz</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Carry-over-Effekt · Erwartungseffekte</div>
     <div class="ft"><span>MTH-D23</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1109,8 +1114,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimentell / Methode ]</div>
     <p class="fx">Am Ende bekommen es alle; der Zufall entscheidet, wer anfängt.</p>
-    <div class="row"><span class="yes">✔ <span title="Rollout"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M7 18h3v-3h3v-3h4" /></svg></span><span title="Gruppenebene"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span></span><span class="no">✘ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Zeitgeschehen &amp; säkulare Trends · Falsche Analyseeinheit</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M7 18h3v-3h3v-3h4" /></svg>Rollout</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Gruppenebene</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Zeitgeschehen &amp; säkulare Trends · Falsche Analyseeinheit</div>
     <div class="ft"><span>MTH-D24</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1120,8 +1125,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimentell / Methode ]</div>
     <p class="fx">Nutzer zufällig auf zwei Versionen verteilen, Verhalten messen.</p>
-    <div class="row"><span class="yes">✔ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Lange Latenz"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Forking Paths &amp; p-Hacking · Falsches Konstrukt</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange Latenz</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Forking Paths &amp; p-Hacking · Falsches Konstrukt</div>
     <div class="ft"><span>MTH-D25</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1131,8 +1136,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimentell / Methode ]</div>
     <p class="fx">Eine Masterstudie: Arme fallen weg und kommen hinzu, je nach Evidenz.</p>
-    <div class="row"><span class="no">✘ <span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Zeitgeschehen &amp; säkulare Trends · Forking Paths &amp; p-Hacking</div>
+    <div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Zeitgeschehen &amp; säkulare Trends · Forking Paths &amp; p-Hacking</div>
     <div class="ft"><span>MTH-D26</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1142,8 +1147,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimentell / Methode ]</div>
     <p class="fx">In der echten Welt randomisieren und eingreifen: Parzellen, Inseln, Märkte.</p>
-    <div class="row"><span class="yes">✔ <span title="Gruppenebene"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span></span><span class="no">✘ <span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Kontamination &amp; Spillover · Zeitgeschehen &amp; säkulare Trends</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Gruppenebene</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Kontamination &amp; Spillover · Zeitgeschehen &amp; säkulare Trends</div>
     <div class="ft"><span>MTH-D27</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Methoden · Seite 4</div><div class="grid"><div class="tcg tcg-d" style="--c:#B45309">
@@ -1153,8 +1158,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Qualitativ &amp; Mixed Methods / Methode ]</div>
     <p class="fx">Monatelang im Feld leben und lernen, wie es wirklich funktioniert.</p>
-    <div class="row"><span class="yes">✔ <span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span><span class="no">✘ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Forscherbias · Begrenzte Generalisierbarkeit</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Forscherbias · Begrenzte Generalisierbarkeit</div>
     <div class="ft"><span>MTH-D28</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B45309">
@@ -1164,8 +1169,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Qualitativ &amp; Mixed Methods / Methode ]</div>
     <p class="fx">Schritt für Schritt eine neue Theorie aus den Daten aufbauen.</p>
-    <div class="row"><span class="yes">✔ <span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span><span class="no">✘ <span title="Viele Studien"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Forscherbias · Dünne Datenlage</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Viele Studien</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Forscherbias · Dünne Datenlage</div>
     <div class="ft"><span>MTH-D29</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B45309">
@@ -1175,8 +1180,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Qualitativ &amp; Mixed Methods / Methode ]</div>
     <p class="fx">Fragen, zuhören und Muster im Gesagten finden.</p>
-    <div class="row"><span class="yes">✔ <span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Forscherbias · Dünne Datenlage</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Forscherbias · Dünne Datenlage</div>
     <div class="ft"><span>MTH-D30</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B45309">
@@ -1186,8 +1191,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Qualitativ &amp; Mixed Methods / Methode ]</div>
     <p class="fx">Ein abgegrenzter Fall, aus jedem Blickwinkel in seinem echten Kontext.</p>
-    <div class="row"><span class="yes">✔ <span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span><span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Begrenzte Generalisierbarkeit · Forscherbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Begrenzte Generalisierbarkeit · Forscherbias</div>
     <div class="ft"><span>MTH-D31</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B45309">
@@ -1197,8 +1202,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Qualitativ &amp; Mixed Methods / Methode ]</div>
     <p class="fx">Rivalisierende Kausalerklärungen in einem Fall testen, Indiz für Indiz.</p>
-    <div class="row"><span class="yes">✔ <span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span><span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><span class="no">✘ <span title="Viele Studien"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Forscherbias · Survivorship-Bias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Viele Studien</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Forscherbias · Survivorship-Bias</div>
     <div class="ft"><span>MTH-D32</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B45309">
@@ -1208,8 +1213,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Qualitativ &amp; Mixed Methods / Methode ]</div>
     <p class="fx">Experten stimmen anonym ab, Runde um Runde, bis sie sich annähern.</p>
-    <div class="row"><span class="yes">✔ <span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Selektionsbias · Forscherbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Selektionsbias · Forscherbias</div>
     <div class="ft"><span>MTH-D33</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B45309">
@@ -1219,8 +1224,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Qualitativ &amp; Mixed Methods / Methode ]</div>
     <p class="fx">Zahlen, dann Geschichten zur Erklärung, oder Geschichten, dann Zahlen zum Test.</p>
-    <div class="row"><span class="yes">✔ <span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span><span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><span class="no">✘ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Forscherbias · Selektionsbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Forscherbias · Selektionsbias</div>
     <div class="ft"><span>MTH-D34</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1230,8 +1235,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Evidenzsynthese / Methode ]</div>
     <p class="fx">Alle Studien zu einer klaren Frage finden, bewerten, zusammenfassen.</p>
-    <div class="row"><span class="yes">✔ <span title="Viele Studien"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span><span class="no">✘ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span><span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Publikationsbias · Äpfel &amp; Birnen</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Viele Studien</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Publikationsbias · Äpfel &amp; Birnen</div>
     <div class="ft"><span>MTH-D35</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1241,8 +1246,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Evidenzsynthese / Methode ]</div>
     <p class="fx">Kartieren, was zu einem breiten Thema erforscht ist und wo Lücken sind.</p>
-    <div class="row"><span class="yes">✔ <span title="Viele Studien"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span><span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Publikationsbias · Forscherbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Viele Studien</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Publikationsbias · Forscherbias</div>
     <div class="ft"><span>MTH-D36</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Methoden · Seite 5</div><div class="grid"><div class="tcg tcg-d" style="--c:#15803D">
@@ -1252,8 +1257,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Evidenzsynthese / Methode ]</div>
     <p class="fx">Viele Behandlungen zugleich nach Rang ordnen, aus direkten und indirekten Vergleichen.</p>
-    <div class="row"><span class="yes">✔ <span title="Viele Studien"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span><span class="no">✘ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Äpfel &amp; Birnen · Publikationsbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Viele Studien</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Äpfel &amp; Birnen · Publikationsbias</div>
     <div class="ft"><span>MTH-D37</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1263,8 +1268,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Evidenzsynthese / Methode ]</div>
     <p class="fx">Die Rohdaten jeder Studie poolen, nicht nur die publizierte Zusammenfassung.</p>
-    <div class="row"><span class="yes">✔ <span title="Viele Studien"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span><span class="no">✘ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Selektionsbias · Äpfel &amp; Birnen</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Viele Studien</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Selektionsbias · Äpfel &amp; Birnen</div>
     <div class="ft"><span>MTH-D38</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1274,8 +1279,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Evidenzsynthese / Methode ]</div>
     <p class="fx">Ein Review der Reviews: das Gesamtbild eines ganzen Fachgebiets.</p>
-    <div class="row"><span class="yes">✔ <span title="Viele Studien"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Publikationsbias · Äpfel &amp; Birnen</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Viele Studien</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Publikationsbias · Äpfel &amp; Birnen</div>
     <div class="ft"><span>MTH-D39</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1285,8 +1290,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Evidenzsynthese / Methode ]</div>
     <p class="fx">Ein systematischer Review unter Zeitdruck, mit offengelegten Abkürzungen.</p>
-    <div class="row"><span class="yes">✔ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span><span title="Viele Studien"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Publikationsbias · Selektionsbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Viele Studien</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Publikationsbias · Selektionsbias</div>
     <div class="ft"><span>MTH-D40</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1296,8 +1301,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Evidenzsynthese / Methode ]</div>
     <p class="fx">Was wirkt, für wen, in welchem Kontext, und warum?</p>
-    <div class="row"><span class="yes">✔ <span title="Viele Studien"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span><span class="no">✘ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Forscherbias · Äpfel &amp; Birnen</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Viele Studien</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Forscherbias · Äpfel &amp; Birnen</div>
     <div class="ft"><span>MTH-D41</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1307,8 +1312,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Evidenzsynthese / Methode ]</div>
     <p class="fx">Bevor du es baust oder neu nennst: Patente, Produkte und Papers nach Vorhandenem durchsuchen.</p>
-    <div class="row"><span class="yes">✔ <span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Selektionsbias · Forscherbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Selektionsbias · Forscherbias</div>
     <div class="ft"><span>MTH-D42</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1318,8 +1323,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Evidenzsynthese / Methode ]</div>
     <p class="fx">Zwei Werke sind verbunden, wenn ein späteres Paper beide zitiert. Cluster zeigen die Grundlagen eines Fachs.</p>
-    <div class="row"><span class="yes">✔ <span title="Viele Studien"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span><span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Survivorship-Bias · Falsches Konstrukt</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Viele Studien</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Survivorship-Bias · Falsches Konstrukt</div>
     <div class="ft"><span>MTH-D43</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1329,8 +1334,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Evidenzsynthese / Methode ]</div>
     <p class="fx">Zwei Papers sind verbunden, wenn sie dieselben Quellen zitieren. Cluster zeigen aktuelle Forschungsfronten.</p>
-    <div class="row"><span class="yes">✔ <span title="Viele Studien"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span><span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Falsches Konstrukt · Selektionsbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Viele Studien</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Falsches Konstrukt · Selektionsbias</div>
     <div class="ft"><span>MTH-D44</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1340,8 +1345,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Evidenzsynthese / Methode ]</div>
     <p class="fx">Papers und Blogs, Vorträge, White Papers aus der Praxis sichten und jede Quelle bewerten.</p>
-    <div class="row"><span class="yes">✔ <span title="Praxisgetrieben"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><path d="M7 8h7M7 12h7M7 16h4"/></svg></span><span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Ungeprüfte Quellen · Selektionsbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><path d="M7 8h7M7 12h7M7 16h4"/></svg>Praxisgetrieben</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Ungeprüfte Quellen · Selektionsbias</div>
     <div class="ft"><span>MTH-D45</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Methoden · Seite 6</div><div class="grid"><div class="tcg tcg-d" style="--c:#475569">
@@ -1351,8 +1356,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Messung / Methode ]</div>
     <p class="fx">Neuer Test und Referenzstandard an denselben echten Patienten.</p>
-    <div class="row"><span class="no">✘ <span title="Seltenes Outcome"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Spektrumbias · Erwartungseffekte</div>
+    <div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Seltenes Outcome</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Spektrumbias · Erwartungseffekte</div>
     <div class="ft"><span>MTH-D46</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#475569">
@@ -1362,8 +1367,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Messung / Methode ]</div>
     <p class="fx">Stimmen Beurteiler, Geräte oder Messwiederholungen überein?</p>
-    <div class="row"><span class="yes">✔ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Spektrumbias · Selektionsbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Spektrumbias · Selektionsbias</div>
     <div class="ft"><span>MTH-D47</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#475569">
@@ -1373,8 +1378,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Messung / Methode ]</div>
     <p class="fx">Einen Fragebogen oder eine Skala entwickeln und zeigen, dass sie misst, was sie soll.</p>
-    <div class="row"><span class="yes">✔ <span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span><span class="no">✘ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Falsches Konstrukt · Selektionsbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Falsches Konstrukt · Selektionsbias</div>
     <div class="ft"><span>MTH-D48</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#475569">
@@ -1384,8 +1389,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Messung / Methode ]</div>
     <p class="fx">Vorhersagen, wie dein Maß mit anderen zusammenhängen sollte, dann das ganze Muster testen.</p>
-    <div class="row"><span class="no">✘ <span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Messfehler · Forking Paths &amp; p-Hacking</div>
+    <div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Messfehler · Forking Paths &amp; p-Hacking</div>
     <div class="ft"><span>MTH-D49</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#475569">
@@ -1395,8 +1400,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Messung / Methode ]</div>
     <p class="fx">Menschen zwischen Merkmalsbündeln wählen lassen, um zu zeigen, was sie wirklich schätzen.</p>
-    <div class="row"><span class="yes">✔ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Begrenzte Generalisierbarkeit · Selektionsbias</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Begrenzte Generalisierbarkeit · Selektionsbias</div>
     <div class="ft"><span>MTH-D50</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#475569">
@@ -1406,8 +1411,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Messung / Methode ]</div>
     <p class="fx">Dieselbe Probe, viele Labore: Wie reproduzierbar ist die Methode?</p>
-    <div class="row"><span class="no">✘ <span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Messfehler</div>
+    <div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Messfehler</div>
     <div class="ft"><span>MTH-D51</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#BE185D">
@@ -1417,8 +1422,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Theorie &amp; Berechnung / Methode ]</div>
     <p class="fx">Mathematisch herleiten: was in jedem Fall gelten muss.</p>
-    <div class="row"><span class="yes">✔ <span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Unvalidiertes Modell</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Unvalidiertes Modell</div>
     <div class="ft"><span>MTH-D52</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#BE185D">
@@ -1428,8 +1433,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Theorie &amp; Berechnung / Methode ]</div>
     <p class="fx">Das System im Computer nachbauen und Experimente fahren, die die Realität nicht erlaubt.</p>
-    <div class="row"><span class="yes">✔ <span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span><span class="no">✘ <span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Unvalidiertes Modell · Forking Paths &amp; p-Hacking</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Unvalidiertes Modell · Forking Paths &amp; p-Hacking</div>
     <div class="ft"><span>MTH-D53</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#BE185D">
@@ -1439,8 +1444,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Theorie &amp; Berechnung / Methode ]</div>
     <p class="fx">Aus vergangenen Daten lernen, wer oder was als Nächstes kommt.</p>
-    <div class="row"><span class="yes">✔ <span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><span class="no">✘ <span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Overfitting &amp; Leakage · Begrenzte Generalisierbarkeit</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Overfitting &amp; Leakage · Begrenzte Generalisierbarkeit</div>
     <div class="ft"><span>MTH-D54</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Methoden · Seite 7</div><div class="grid"><div class="tcg tcg-d" style="--c:#BE185D">
@@ -1450,8 +1455,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Theorie &amp; Berechnung / Methode ]</div>
     <p class="fx">Mehrkosten gegen Zusatznutzen abwägen: Ist es das Geld wert?</p>
-    <div class="row"><span class="yes">✔ <span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Keine Zuteilung"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span><span class="no">✘ <span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Unvalidiertes Modell · Begrenzte Generalisierbarkeit</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Keine Zuteilung</span></div><div class="row cons"><span class="k">Schwierig bei</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Unvalidiertes Modell · Begrenzte Generalisierbarkeit</div>
     <div class="ft"><span>MTH-D55</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#78350F">
@@ -1461,8 +1466,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Entwurf &amp; Entwicklung / Methode ]</div>
     <p class="fx">Ein Artefakt bauen, das ein echtes Problem löst, und mit Nutzern testen.</p>
-    <div class="row"><span class="yes">✔ <span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Forscherbias · Begrenzte Generalisierbarkeit</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Forscherbias · Begrenzte Generalisierbarkeit</div>
     <div class="ft"><span>MTH-D56</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#78350F">
@@ -1472,8 +1477,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Entwurf &amp; Entwicklung / Methode ]</div>
     <p class="fx">Eine Generalprobe: Lässt sich die große Studie überhaupt durchführen?</p>
-    <div class="row"><span class="yes">✔ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Geringe Power · Begrenzte Generalisierbarkeit</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Geringe Power · Begrenzte Generalisierbarkeit</div>
     <div class="ft"><span>MTH-D57</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#78350F">
@@ -1483,8 +1488,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Entwurf &amp; Entwicklung / Methode ]</div>
     <p class="fx">Echten Nutzern bei echten Aufgaben zusehen, während sie laut denken.</p>
-    <div class="row"><span class="yes">✔ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span><span title="Neuland"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Selektionsbias · Erwartungseffekte</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Neuland</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Selektionsbias · Erwartungseffekte</div>
     <div class="ft"><span>MTH-D58</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#78350F">
@@ -1494,8 +1499,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Entwurf &amp; Entwicklung / Methode ]</div>
     <p class="fx">Kleine, schnelle Änderungstests: ausprobieren, messen, anpassen, wiederholen.</p>
-    <div class="row"><span class="yes">✔ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span><span title="Eine Einheit"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span><span title="Rollout"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M7 18h3v-3h3v-3h4" /></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Zeitgeschehen &amp; säkulare Trends · Regression zur Mitte</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eine Einheit</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M7 18h3v-3h3v-3h4" /></svg>Rollout</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Zeitgeschehen &amp; säkulare Trends · Regression zur Mitte</div>
     <div class="ft"><span>MTH-D59</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#78350F">
@@ -1505,8 +1510,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Entwurf &amp; Entwicklung / Methode ]</div>
     <p class="fx">Gleiche Aufgaben, gleiche Daten, gleiche Metriken: Wer ist wirklich am besten?</p>
-    <div class="row"><span class="yes">✔ <span title="Knappes Budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span><span title="Vorhandene Daten"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span></div>
-    <div class="row"><span class="k">Schwach gegen</span> Overfitting &amp; Leakage · Forking Paths &amp; p-Hacking</div>
+    <div class="row cons"><span class="k">Passt zu</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Knappes Budget</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Vorhandene Daten</span></div>
+    <div class="row flow"><span class="k">Schwach gegen</span> Overfitting &amp; Leakage · Forking Paths &amp; p-Hacking</div>
     <div class="ft"><span>MTH-D60</span><span>● Kosten &nbsp;◆ Zeit</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Bedrohungen · Seite 1</div><div class="grid"><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1516,7 +1521,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Ein verborgener dritter Faktor steuert Exposition und Outcome.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Randomisierung · Kausaldiagramm (DAG)</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Randomisierung · Kausaldiagramm (DAG)</div>
     <div class="ft"><span>MTH-B01</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1526,7 +1531,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Die Kränksten bekommen die Behandlung, also wirkt sie schädlich.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Randomisierung · Aktiver Komparator, Neuanwender</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Randomisierung · Aktiver Komparator, Neuanwender</div>
     <div class="ft"><span>MTH-B02</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1536,7 +1541,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Wer in die Stichprobe kommt, hängt vom Untersuchten ab.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Repräsentative Stichprobe · Verdeckte Zuteilung</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Repräsentative Stichprobe · Verdeckte Zuteilung</div>
     <div class="ft"><span>MTH-B03</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1546,7 +1551,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Wer aussteigt, ist anders als wer bleibt.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Intention-to-treat · Sensitivitätsanalyse</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Intention-to-treat · Sensitivitätsanalyse</div>
     <div class="ft"><span>MTH-B04</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1556,7 +1561,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Fälle erinnern sich anders als Kontrollen.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Validierte, objektive Messungen · Verblindung</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Validierte, objektive Messungen · Verblindung</div>
     <div class="ft"><span>MTH-B05</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1566,7 +1571,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Das Instrument rauscht, ist verzerrt oder driftet.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Validierte, objektive Messungen · Verblindung</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Validierte, objektive Messungen · Verblindung</div>
     <div class="ft"><span>MTH-B06</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1576,7 +1581,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Das Outcome verursacht die „Ursache“.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Lag-Zeit &amp; Ausschluss früher Ereignisse · Randomisierung</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Lag-Zeit &amp; Ausschluss früher Ereignisse · Randomisierung</div>
     <div class="ft"><span>MTH-B07</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1586,7 +1591,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Extremwerte wandern von selbst zum Mittel zurück.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Zeitgleiche Kontrollgruppe · Randomisierung</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Zeitgleiche Kontrollgruppe · Randomisierung</div>
     <div class="ft"><span>MTH-B08</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1596,7 +1601,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Zu wissen, wer was bekam, ändert das Ergebnis.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Verblindung · Placebo- oder Scheinkontrolle</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Verblindung · Placebo- oder Scheinkontrolle</div>
     <div class="ft"><span>MTH-B09</span><span>Validitätsbedrohung</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Bedrohungen · Seite 2</div><div class="grid"><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1606,7 +1611,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Die Kontrollgruppe bekommt die Intervention ab.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Zuteilung nach Cluster</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Zuteilung nach Cluster</div>
     <div class="ft"><span>MTH-B10</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1616,7 +1621,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Den Behandelten wird Zeit gutgeschrieben, in der sie nicht sterben konnten.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Gleicher Zeitpunkt null</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Gleicher Zeitpunkt null</div>
     <div class="ft"><span>MTH-B11</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1626,7 +1631,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Selektion nach einer gemeinsamen Folge erzeugt Scheinzusammenhänge.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Kausaldiagramm (DAG) · Repräsentative Stichprobe</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Kausaldiagramm (DAG) · Repräsentative Stichprobe</div>
     <div class="ft"><span>MTH-B12</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1636,7 +1641,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Was für Gruppen gilt, gilt nicht unbedingt für ihre Mitglieder.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Mehrebenenanalyse</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Mehrebenenanalyse</div>
     <div class="ft"><span>MTH-B13</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1646,7 +1651,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Gruppen wurden randomisiert, aber Einzelne gezählt.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Mehrebenenanalyse</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Mehrebenenanalyse</div>
     <div class="ft"><span>MTH-B14</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1656,7 +1661,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Du siehst nur die, die zurückkamen.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Repräsentative Stichprobe · Gleicher Zeitpunkt null</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Repräsentative Stichprobe · Gleicher Zeitpunkt null</div>
     <div class="ft"><span>MTH-B15</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1666,7 +1671,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Die Nullbefunde liegen noch in der Schublade.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Umfassende Suche · Präregistrierung</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Umfassende Suche · Präregistrierung</div>
     <div class="ft"><span>MTH-B16</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1676,7 +1681,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Niemand hat es geprüft, und der Autor verkauft vielleicht etwas.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Bewertung grauer Literatur · Triangulation</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Bewertung grauer Literatur · Triangulation</div>
     <div class="ft"><span>MTH-B17</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1686,7 +1691,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Probier genug Analysen, und eine wird „signifikant“.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Präregistrierung · Korrektur für Multiplizität</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Präregistrierung · Korrektur für Multiplizität</div>
     <div class="ft"><span>MTH-B18</span><span>Validitätsbedrohung</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Bedrohungen · Seite 3</div><div class="grid"><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1696,7 +1701,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Zu klein, um den Effekt zu sehen, zu verrauscht, um Treffern zu trauen.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Fallzahlplanung · Unabhängige Replikation</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Fallzahlplanung · Unabhängige Replikation</div>
     <div class="ft"><span>MTH-B19</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1706,7 +1711,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Das Modell kennt den Test auswendig.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Externe Validierung · Präregistrierung</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Externe Validierung · Präregistrierung</div>
     <div class="ft"><span>MTH-B20</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1716,7 +1721,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Nur an den eindeutigen Fällen getestet.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Repräsentative Stichprobe</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Repräsentative Stichprobe</div>
     <div class="ft"><span>MTH-B21</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1726,7 +1731,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Gleichzeitig hat sich etwas anderes geändert.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Zeitgleiche Kontrollgruppe · Vortrend-Prüfung &amp; Kontrollreihe</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Zeitgleiche Kontrollgruppe · Vortrend-Prüfung &amp; Kontrollreihe</div>
     <div class="ft"><span>MTH-B22</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1736,7 +1741,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Die erste Behandlung wirkt in die zweite Phase nach.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Auswaschphase</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Auswaschphase</div>
     <div class="ft"><span>MTH-B23</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1746,7 +1751,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Du siehst, was du erwartet hast.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Reflexivität &amp; Doppelkodierung · Verblindung</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Reflexivität &amp; Doppelkodierung · Verblindung</div>
     <div class="ft"><span>MTH-B24</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1756,7 +1761,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Wahr hier, aber vielleicht nirgends sonst.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Multizentrisch, diverse Stichprobe · Repräsentative Stichprobe</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Multizentrisch, diverse Stichprobe · Repräsentative Stichprobe</div>
     <div class="ft"><span>MTH-B25</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1766,7 +1771,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Äpfel mit Birnen gepoolt.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Geplante Heterogenitätsanalyse · Sensitivitätsanalyse</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Geplante Heterogenitätsanalyse · Sensitivitätsanalyse</div>
     <div class="ft"><span>MTH-B26</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1776,7 +1781,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Das Modell beruht auf ungeprüften Annahmen.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Verifikation &amp; Validierung · Sensitivitätsanalyse</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Verifikation &amp; Validierung · Sensitivitätsanalyse</div>
     <div class="ft"><span>MTH-B27</span><span>Validitätsbedrohung</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Bedrohungen · Seite 4</div><div class="grid"><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1786,7 +1791,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Du hast einen Proxy gemessen, nicht die Sache selbst.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Validierte, objektive Messungen · Triangulation</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Validierte, objektive Messungen · Triangulation</div>
     <div class="ft"><span>MTH-B28</span><span>Validitätsbedrohung</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1796,7 +1801,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedrohung / Bias ]</div>
     <p class="fx">Zu wenige Stimmen für die Geschichte.</p>
-    <div class="row"><span class="k">Abgewehrt durch</span> Theoretisches Sampling bis zur Sättigung · Triangulation</div>
+    <div class="row flow"><span class="k">Abgewehrt durch</span> Theoretisches Sampling bis zur Sättigung · Triangulation</div>
     <div class="ft"><span>MTH-B29</span><span>Validitätsbedrohung</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Schutzmaßnahmen · Seite 1</div><div class="grid"><div class="tcg tcg-s" style="--c:#047857">
@@ -1806,7 +1811,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Der Zufall entscheidet, wer was bekommt.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Confounding · Confounding by Indication</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Confounding · Confounding by Indication</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#B91C1C" title="Experimentell"></span></div>
     <div class="ft"><span>MTH-S01</span><span>Verteidigung</span></div>
   </div>
@@ -1817,7 +1822,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Niemand kann die nächste Zuteilung sehen oder steuern.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Selektionsbias</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Selektionsbias</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#B91C1C" title="Experimentell"></span></div>
     <div class="ft"><span>MTH-S02</span><span>Verteidigung</span></div>
   </div>
@@ -1828,7 +1833,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Niemand weiß, wer was bekam.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Recall-Bias · Messfehler</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Recall-Bias · Messfehler</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="k">Jede Methode</span></div>
     <div class="ft"><span>MTH-S03</span><span>Verteidigung</span></div>
   </div>
@@ -1839,7 +1844,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Der Kontrollarm bekommt ein gleich aussehendes Placebo.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Erwartungseffekte</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Erwartungseffekte</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#B91C1C" title="Experimentell"></span></div>
     <div class="ft"><span>MTH-S04</span><span>Verteidigung</span></div>
   </div>
@@ -1850,7 +1855,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Alle wie randomisiert analysieren, egal was danach geschah.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Selektionsbias · Attrition &amp; fehlende Daten</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Selektionsbias · Attrition &amp; fehlende Daten</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#B91C1C" title="Experimentell"></span></div>
     <div class="ft"><span>MTH-S05</span><span>Verteidigung</span></div>
   </div>
@@ -1861,7 +1866,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Den Plan festlegen, bevor du die Daten siehst.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Publikationsbias · Forking Paths &amp; p-Hacking</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Publikationsbias · Forking Paths &amp; p-Hacking</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="k">Jede Methode</span></div>
     <div class="ft"><span>MTH-S06</span><span>Verteidigung</span></div>
   </div>
@@ -1872,7 +1877,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Vorab berechnen, wie viele du brauchst.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Geringe Power</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Geringe Power</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="k">Jede Methode</span></div>
     <div class="ft"><span>MTH-S07</span><span>Verteidigung</span></div>
   </div>
@@ -1883,7 +1888,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Das Kausaldiagramm zeichnen; nur für das Richtige adjustieren.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Confounding · Selektionsbias</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Confounding · Selektionsbias</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#0F766E" title="Deskriptiv-beobachtend"></span><span class="dot" style="background:#1D4ED8" title="Analytisch-beobachtend"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimentell"></span></div>
     <div class="ft"><span>MTH-S08</span><span>Verteidigung</span></div>
   </div>
@@ -1894,7 +1899,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Gleiches mit Gleichem vergleichen.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Confounding · Confounding by Indication</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Confounding · Confounding by Indication</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#1D4ED8" title="Analytisch-beobachtend"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimentell"></span></div>
     <div class="ft"><span>MTH-S09</span><span>Verteidigung</span></div>
   </div>
@@ -1905,7 +1910,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Etwas testen, das keinen Effekt zeigen dürfte.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Confounding · Confounding by Indication</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Confounding · Confounding by Indication</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#0F766E" title="Deskriptiv-beobachtend"></span><span class="dot" style="background:#1D4ED8" title="Analytisch-beobachtend"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimentell"></span></div>
     <div class="ft"><span>MTH-S10</span><span>Verteidigung</span></div>
   </div>
@@ -1916,7 +1921,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Annahmen ändern. Überlebt die Antwort?</p>
-    <div class="row"><span class="k">Wehrt ab</span> Confounding · Confounding by Indication</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Confounding · Confounding by Indication</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="k">Jede Methode</span></div>
     <div class="ft"><span>MTH-S11</span><span>Verteidigung</span></div>
   </div>
@@ -1927,7 +1932,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Neuanwender einer Behandlung mit Neuanwendern einer anderen vergleichen.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Confounding by Indication</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Confounding by Indication</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#1D4ED8" title="Analytisch-beobachtend"></span></div>
     <div class="ft"><span>MTH-S12</span><span>Verteidigung</span></div>
   </div>
@@ -1938,7 +1943,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Für alle startet die Uhr im selben Moment.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Selektionsbias · Immortal-Time-Bias</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Selektionsbias · Immortal-Time-Bias</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#1D4ED8" title="Analytisch-beobachtend"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimentell"></span><span class="dot" style="background:#0F766E" title="Deskriptiv-beobachtend"></span></div>
     <div class="ft"><span>MTH-S13</span><span>Verteidigung</span></div>
   </div>
@@ -1949,7 +1954,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Eine Lücke zwischen Exposition und Outcome lassen.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Umgekehrte Kausalität</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Umgekehrte Kausalität</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#1D4ED8" title="Analytisch-beobachtend"></span><span class="dot" style="background:#0F766E" title="Deskriptiv-beobachtend"></span></div>
     <div class="ft"><span>MTH-S14</span><span>Verteidigung</span></div>
   </div>
@@ -1960,7 +1965,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Eine Vergleichsgruppe, die denselben Zeitraum erlebt.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Regression zur Mitte · Zeitgeschehen &amp; säkulare Trends</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Regression zur Mitte · Zeitgeschehen &amp; säkulare Trends</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#B91C1C" title="Experimentell"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimentell"></span><span class="dot" style="background:#1D4ED8" title="Analytisch-beobachtend"></span></div>
     <div class="ft"><span>MTH-S15</span><span>Verteidigung</span></div>
   </div>
@@ -1971,7 +1976,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Zeigen, dass die Gruppen vor der Änderung parallel liefen.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Zeitgeschehen &amp; säkulare Trends</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Zeitgeschehen &amp; säkulare Trends</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#6D28D9" title="Quasi-experimentell"></span></div>
     <div class="ft"><span>MTH-S16</span><span>Verteidigung</span></div>
   </div>
@@ -1982,7 +1987,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Ganze Gruppen zuteilen, damit nichts zwischen Armen durchsickert.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Kontamination &amp; Spillover</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Kontamination &amp; Spillover</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#B91C1C" title="Experimentell"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimentell"></span></div>
     <div class="ft"><span>MTH-S17</span><span>Verteidigung</span></div>
   </div>
@@ -1993,7 +1998,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Die erste Behandlung abklingen lassen.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Carry-over-Effekt</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Carry-over-Effekt</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#B91C1C" title="Experimentell"></span></div>
     <div class="ft"><span>MTH-S18</span><span>Verteidigung</span></div>
   </div>
@@ -2004,7 +2009,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">An Daten testen, die es nie gesehen hat.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Overfitting &amp; Leakage</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Overfitting &amp; Leakage</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#BE185D" title="Theorie &amp; Berechnung"></span><span class="dot" style="background:#78350F" title="Entwurf &amp; Entwicklung"></span><span class="dot" style="background:#475569" title="Messung"></span></div>
     <div class="ft"><span>MTH-S19</span><span>Verteidigung</span></div>
   </div>
@@ -2015,7 +2020,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Einen primären Endpunkt nennen oder für jeden Extratest zahlen.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Forking Paths &amp; p-Hacking</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Forking Paths &amp; p-Hacking</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="k">Jede Methode</span></div>
     <div class="ft"><span>MTH-S20</span><span>Verteidigung</span></div>
   </div>
@@ -2026,7 +2031,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Jemand anderes macht es noch einmal.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Forking Paths &amp; p-Hacking · Geringe Power</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Forking Paths &amp; p-Hacking · Geringe Power</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="k">Jede Methode</span></div>
     <div class="ft"><span>MTH-S21</span><span>Verteidigung</span></div>
   </div>
@@ -2037,7 +2042,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Überall suchen, auch in den Schubladen.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Selektionsbias · Publikationsbias</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Selektionsbias · Publikationsbias</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#15803D" title="Evidenzsynthese"></span></div>
     <div class="ft"><span>MTH-S22</span><span>Verteidigung</span></div>
   </div>
@@ -2048,7 +2053,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Jede graue Quelle bewerten, bevor du ihr traust.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Ungeprüfte Quellen</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Ungeprüfte Quellen</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#15803D" title="Evidenzsynthese"></span></div>
     <div class="ft"><span>MTH-S23</span><span>Verteidigung</span></div>
   </div>
@@ -2059,7 +2064,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Vorab planen, wie du Unterschiede zwischen Studien erklärst.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Äpfel &amp; Birnen</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Äpfel &amp; Birnen</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#15803D" title="Evidenzsynthese"></span></div>
     <div class="ft"><span>MTH-S24</span><span>Verteidigung</span></div>
   </div>
@@ -2070,7 +2075,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Aus der ganzen Population ziehen, nicht aus dem bequemen Teil.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Selektionsbias · Collider-Bias</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Selektionsbias · Collider-Bias</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="k">Jede Methode</span></div>
     <div class="ft"><span>MTH-S25</span><span>Verteidigung</span></div>
   </div>
@@ -2081,7 +2086,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Instrumente nutzen, die nachweislich das Richtige messen.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Recall-Bias · Messfehler</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Recall-Bias · Messfehler</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="k">Jede Methode</span></div>
     <div class="ft"><span>MTH-S26</span><span>Verteidigung</span></div>
   </div>
@@ -2092,7 +2097,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Die eigene Brille offenlegen und gegenkodieren lassen.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Erwartungseffekte · Forscherbias</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Erwartungseffekte · Forscherbias</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#B45309" title="Qualitativ &amp; Mixed Methods"></span><span class="dot" style="background:#15803D" title="Evidenzsynthese"></span><span class="dot" style="background:#78350F" title="Entwurf &amp; Entwicklung"></span></div>
     <div class="ft"><span>MTH-S27</span><span>Verteidigung</span></div>
   </div>
@@ -2103,7 +2108,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Andere Methoden, andere Schwächen, gleiche Antwort.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Messfehler · Erwartungseffekte</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Messfehler · Erwartungseffekte</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="k">Jede Methode</span></div>
     <div class="ft"><span>MTH-S28</span><span>Verteidigung</span></div>
   </div>
@@ -2114,7 +2119,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Weitere Fälle ziehen, bis nichts Neues mehr auftaucht.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Dünne Datenlage</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Dünne Datenlage</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#B45309" title="Qualitativ &amp; Mixed Methods"></span></div>
     <div class="ft"><span>MTH-S29</span><span>Verteidigung</span></div>
   </div>
@@ -2125,7 +2130,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Menschen in Gruppen an Orten modellieren.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Ökologischer Fehlschluss · Falsche Analyseeinheit</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Ökologischer Fehlschluss · Falsche Analyseeinheit</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#0F766E" title="Deskriptiv-beobachtend"></span><span class="dot" style="background:#1D4ED8" title="Analytisch-beobachtend"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimentell"></span><span class="dot" style="background:#B91C1C" title="Experimentell"></span></div>
     <div class="ft"><span>MTH-S30</span><span>Verteidigung</span></div>
   </div>
@@ -2136,7 +2141,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Prüfen, ob der Code stimmt, dann ob das Modell zur Realität passt.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Unvalidiertes Modell</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Unvalidiertes Modell</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#BE185D" title="Theorie &amp; Berechnung"></span><span class="dot" style="background:#78350F" title="Entwurf &amp; Entwicklung"></span></div>
     <div class="ft"><span>MTH-S31</span><span>Verteidigung</span></div>
   </div>
@@ -2147,7 +2152,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Dort testen, wo die Ergebnisse genutzt werden.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Begrenzte Generalisierbarkeit</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Begrenzte Generalisierbarkeit</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="k">Jede Methode</span></div>
     <div class="ft"><span>MTH-S32</span><span>Verteidigung</span></div>
   </div>
@@ -2158,7 +2163,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Menschen mit sich selbst oder Geschwister miteinander vergleichen.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Confounding</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Confounding</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#1D4ED8" title="Analytisch-beobachtend"></span><span class="dot" style="background:#B91C1C" title="Experimentell"></span></div>
     <div class="ft"><span>MTH-S33</span><span>Verteidigung</span></div>
   </div>
@@ -2169,7 +2174,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Schutzmaßnahme ]</div>
     <p class="fx">Eine Änderung an der eigenen Grundvariation des Prozesses messen.</p>
-    <div class="row"><span class="k">Wehrt ab</span> Regression zur Mitte · Zeitgeschehen &amp; säkulare Trends</div>
+    <div class="row flow"><span class="k">Wehrt ab</span> Regression zur Mitte · Zeitgeschehen &amp; säkulare Trends</div>
     <div class="row"><span class="k">Nutzbar mit</span> <span class="dot" style="background:#78350F" title="Entwurf &amp; Entwicklung"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimentell"></span><span class="dot" style="background:#0F766E" title="Deskriptiv-beobachtend"></span></div>
     <div class="ft"><span>MTH-S34</span><span>Verteidigung</span></div>
   </div>

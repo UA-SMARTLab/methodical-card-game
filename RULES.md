@@ -28,8 +28,9 @@ Every card is laid out like a trading card:
 - **Name bar** with the card's **attribute** (for Methods and Questions, its main suit).
 - **Level row**: a Method's suits plus its **cost** (gold coins) and **time** (white diamonds); a Question's **difficulty** (★).
 - **Art box**: on a Method card the picture *is* the study's diagram, e.g. a die splitting a crowd into two arms, or the jump at a cutoff.
-- **Text box**: a type line, one sentence of effect text, then icon rows: ✔ constraints the method fits, ✘ constraints it struggles with,
-  and the threats it is weak against.
+- **Text box**: a type line, one sentence of effect text, then three labelled rows: **Good for** (constraints the method fits, in green),
+  **Struggles with** (constraints it handles badly, in red) and **Weak vs** (the threats it is weak against).
+  Each constraint shows the same icon and name as the tags on a Question card, so they can be matched at a glance.
 
 **Suits** (the kind of question):
 📊 Describe · 🧭 Explore · 🔗 Associate · 🎯 Cause · 🔮 Predict · 📏 Measure · 🧮 Explain · 🛠️ Build · 📚 Synthesize
@@ -39,8 +40,8 @@ Every card is laid out like a trading card:
 1️⃣ One unit · 👥 Group-level · ✂️ Cutoff rule · 📅 Rollout · 💸 Tight budget · ❓ Uncharted · 🗂️ Many studies
 
 The quickest way to match a question to a method is to check that the method **serves the question's suit**,
-**fits** its constraints, and doesn't **struggle** with any of them. The icons are a help, not the answer.
-Two methods can both pass the icon check, and choosing between them is where the thinking happens.
+**fits** its constraints, and doesn't **struggle** with any of them. These rows are a help, not the answer.
+Two methods can both pass this check, and choosing between them is where the thinking happens.
 
 ### Scoring (all competitive modes)
 

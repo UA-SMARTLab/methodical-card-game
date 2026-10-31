@@ -182,7 +182,10 @@ so the cards feel like a game and the table can read them at a glance:
   engineering design (the Design & development family, the Design science card), so the card type is now *Method*: it covers
   study designs (cohort, randomized trial) and methods in the narrow sense (interviews, co-citation analysis). Running text still
   says *study design* where that is the precise term. Code and data keep the old id (`designs`).
-- **Icons instead of words** for suits and constraints, decoded by the four reference cards.
+- **Icons for suits; constraints in words.** Suits are icons, decoded by the reference cards. Constraints were icons too, after
+  a ✔ or ✘, but players found that hard to read, so Method cards now spell them out under **Good for** and **Struggles with**,
+  icon first, in the same words as the Question card's tags. It costs some space: the most crowded French and German cards
+  shrink their effect text to 72%.
 - **Uniform backs, answers in a booklet.** In v0.1 the answers were printed on the backs of the question cards, so the top card
   of a face-down deck showed its own answer. v0.2 gives every card the same back.
 

@@ -48,9 +48,14 @@
 .tcg .row { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--u) * .6) calc(var(--u) * 1.2);
   font: 700 calc(var(--u) * 2.3 * (0.4 + 0.6 * var(--fit, 1)))/1.15 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .04em; text-transform: uppercase; color: #4b5059; }
 .tcg .row .ic { width: calc(var(--u) * 3.5); height: calc(var(--u) * 3.5); }
-.tcg .row .yes { color: #0f7a3c; display: inline-flex; gap: calc(var(--u) * .5); align-items: center; }
-.tcg .row .no { color: #b42318; display: inline-flex; gap: calc(var(--u) * .5); align-items: center; }
+/* "Good for" / "Struggles with": each situation spelled out after its icon, a little tighter than the other rows */
+.tcg .row.cons { column-gap: calc(var(--u) * .9); letter-spacing: .02em; }
+.tcg .row .yes, .tcg .row .no { display: inline-flex; gap: calc(var(--u) * .3); align-items: center; }
+.tcg .row .yes { color: #0f7a3c; } .tcg .row .no { color: #b42318; }
+.tcg .row .yes .ic, .tcg .row .no .ic { width: calc(var(--u) * 2.7); height: calc(var(--u) * 2.7); }
 .tcg .row .k { color: #8a8f98; }
+/* label then plain text: the text starts on the label's line instead of dropping below it */
+.tcg .row.flow { display: block; } .tcg .row.flow .k { margin-inline-end: calc(var(--u) * .9); }
 .tcg .chip { display: inline-flex; align-items: center; gap: calc(var(--u) * .5); padding: calc(var(--u) * .3) calc(var(--u) * 1.1) calc(var(--u) * .3) calc(var(--u) * .6);
   border-radius: calc(var(--u) * 3); background: #1f2937; color: #fff; font: 600 calc(var(--u) * 2.4)/1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .03em; text-transform: uppercase; }
 .tcg .chip .ic { width: calc(var(--u) * 3); height: calc(var(--u) * 3); color: #fcd34d; }
@@ -856,8 +861,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Beschrijvend observationeel / Methode ]</div>
     <p class="fx">Beschrijf één of enkele opvallende gevallen in detail. Geeft een signaal, maar test het niet.</p>
-    <div class="row"><span class="yes">✔ <span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span><span title="Zeldzame uitkomst"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span><span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Veel studies"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Selectiebias · Confounding</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Zeldzame uitkomst</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Veel studies</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Selectiebias · Confounding</div>
     <div class="ft"><span>MTH-D01</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#0F766E">
@@ -867,8 +872,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Beschrijvend observationeel / Methode ]</div>
     <p class="fx">Eén momentopname van een steekproef: hoe vaak komt iets nu voor?</p>
-    <div class="row"><span class="yes">✔ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Zeldzame uitkomst"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span><span title="Lange latentie"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Korte trigger"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Selectiebias · Omgekeerde causaliteit</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Zeldzame uitkomst</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange latentie</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></svg>Korte trigger</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Selectiebias · Omgekeerde causaliteit</div>
     <div class="ft"><span>MTH-D02</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#0F766E">
@@ -878,8 +883,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Beschrijvend observationeel / Methode ]</div>
     <p class="fx">Vergelijk hele groepen (landen, regio&#x27;s, jaren) via hun gemiddelden.</p>
-    <div class="row"><span class="yes">✔ <span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Groepsniveau"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Ecologische fout · Confounding</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Groepsniveau</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Ecologische fout · Confounding</div>
     <div class="ft"><span>MTH-D03</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#0F766E">
@@ -889,8 +894,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Beschrijvend observationeel / Methode ]</div>
     <p class="fx">Meet hetzelfde op dezelfde manier, telkens opnieuw, om trends te zien.</p>
-    <div class="row"><span class="yes">✔ <span title="Lange latentie"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Zeldzame uitkomst"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span></span><span class="no">✘ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Meetfout · Selectiebias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange latentie</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Zeldzame uitkomst</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Meetfout · Selectiebias</div>
     <div class="ft"><span>MTH-D04</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#0F766E">
@@ -900,8 +905,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Beschrijvend observationeel / Methode ]</div>
     <p class="fx">Neem twee keer een steekproef en tel de overlap: hoe minder je terugvangt, hoe meer er zijn.</p>
-    <div class="row"><span class="yes">✔ <span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Selectiebias · Meetfout</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Selectiebias · Meetfout</div>
     <div class="ft"><span>MTH-D05</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -911,8 +916,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch observationeel / Methode ]</div>
     <p class="fx">Meet eerst de blootstelling en volg mensen dan om te zien wie de uitkomst krijgt.</p>
-    <div class="row"><span class="yes">✔ <span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Zeldzame blootstelling"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 3a9 9 0 0 1 7.8 4.5L14 10.8M4.2 7.5A9 9 0 0 1 12 3M4.2 16.5 10 13.2M19.8 16.5 14 13.2M12 21a9 9 0 0 1-7.8-4.5M19.8 16.5A9 9 0 0 1 12 21"/></svg></span></span><span class="no">✘ <span title="Zeldzame uitkomst"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span><span title="Lange latentie"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Confounding · Uitval &amp; ontbrekende data</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 3a9 9 0 0 1 7.8 4.5L14 10.8M4.2 7.5A9 9 0 0 1 12 3M4.2 16.5 10 13.2M19.8 16.5 14 13.2M12 21a9 9 0 0 1-7.8-4.5M19.8 16.5A9 9 0 0 1 12 21"/></svg>Zeldzame blootstelling</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Zeldzame uitkomst</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange latentie</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Confounding · Uitval &amp; ontbrekende data</div>
     <div class="ft"><span>MTH-D06</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -922,8 +927,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch observationeel / Methode ]</div>
     <p class="fx">Reconstrueer een cohort uit oude dossiers en volg wat ermee gebeurde.</p>
-    <div class="row"><span class="yes">✔ <span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Zeldzame blootstelling"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 3a9 9 0 0 1 7.8 4.5L14 10.8M4.2 7.5A9 9 0 0 1 12 3M4.2 16.5 10 13.2M19.8 16.5 14 13.2M12 21a9 9 0 0 1-7.8-4.5M19.8 16.5A9 9 0 0 1 12 21"/></svg></span><span title="Lange latentie"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Confounding · Confounding door indicatie</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 3a9 9 0 0 1 7.8 4.5L14 10.8M4.2 7.5A9 9 0 0 1 12 3M4.2 16.5 10 13.2M19.8 16.5 14 13.2M12 21a9 9 0 0 1-7.8-4.5M19.8 16.5A9 9 0 0 1 12 21"/></svg>Zeldzame blootstelling</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange latentie</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Confounding · Confounding door indicatie</div>
     <div class="ft"><span>MTH-D07</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -933,8 +938,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch observationeel / Methode ]</div>
     <p class="fx">Start bij de cases, zoek vergelijkbare controles, kijk terug naar blootstelling.</p>
-    <div class="row"><span class="yes">✔ <span title="Zeldzame uitkomst"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span><span title="Lange latentie"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Zeldzame blootstelling"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 3a9 9 0 0 1 7.8 4.5L14 10.8M4.2 7.5A9 9 0 0 1 12 3M4.2 16.5 10 13.2M19.8 16.5 14 13.2M12 21a9 9 0 0 1-7.8-4.5M19.8 16.5A9 9 0 0 1 12 21"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Recall bias · Selectiebias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Zeldzame uitkomst</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange latentie</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 3a9 9 0 0 1 7.8 4.5L14 10.8M4.2 7.5A9 9 0 0 1 12 3M4.2 16.5 10 13.2M19.8 16.5 14 13.2M12 21a9 9 0 0 1-7.8-4.5M19.8 16.5A9 9 0 0 1 12 21"/></svg>Zeldzame blootstelling</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Recall bias · Selectiebias</div>
     <div class="ft"><span>MTH-D08</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -944,8 +949,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch observationeel / Methode ]</div>
     <p class="fx">Elke case is zijn eigen controle: wat gebeurde vlak voor het voorval?</p>
-    <div class="row"><span class="yes">✔ <span title="Korte trigger"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></svg></span><span title="Zeldzame uitkomst"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Lange latentie"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Recall bias · Historie &amp; seculaire trends</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="currentColor"/></svg>Korte trigger</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Zeldzame uitkomst</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange latentie</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Recall bias · Historie &amp; seculaire trends</div>
     <div class="ft"><span>MTH-D09</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Methoden · pagina 2</div><div class="grid"><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -955,8 +960,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch observationeel / Methode ]</div>
     <p class="fx">Ontwerp de ideale trial op papier en emuleer die in praktijkdata.</p>
-    <div class="row"><span class="yes">✔ <span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span><span class="no">✘ <span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Confounding · Confounding door indicatie</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Confounding · Confounding door indicatie</div>
     <div class="ft"><span>MTH-D10</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -966,8 +971,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch observationeel / Methode ]</div>
     <p class="fx">Gebruik een natuurlijk duwtje dat alleen de blootstelling verandert.</p>
-    <div class="row"><span class="yes">✔ <span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><span class="no">✘ <span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Confounding · Ongevalideerd model</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Confounding · Ongevalideerd model</div>
     <div class="ft"><span>MTH-D11</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -977,8 +982,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch observationeel / Methode ]</div>
     <p class="fx">Genen worden bij de bevruchting geschud: de gerandomiseerde trial van de natuur.</p>
-    <div class="row"><span class="yes">✔ <span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Lange latentie"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><span class="no">✘ <span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Confounding · Lage power</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange latentie</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Confounding · Lage power</div>
     <div class="ft"><span>MTH-D12</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -988,8 +993,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch observationeel / Methode ]</div>
     <p class="fx">Test miljoenen genetische varianten, één voor één, op een verband met een kenmerk.</p>
-    <div class="row"><span class="yes">✔ <span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span><span class="no">✘ <span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Forking paths &amp; p-hacking · Confounding</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Forking paths &amp; p-hacking · Confounding</div>
     <div class="ft"><span>MTH-D13</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#1D4ED8">
@@ -999,8 +1004,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Analytisch observationeel / Methode ]</div>
     <p class="fx">Meet de dure blootstelling alleen bij de cases en een steekproef van de rest.</p>
-    <div class="row"><span class="yes">✔ <span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Zeldzame uitkomst"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Meetfout · Selectiebias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Zeldzame uitkomst</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Meetfout · Selectiebias</div>
     <div class="ft"><span>MTH-D14</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#6D28D9">
@@ -1010,8 +1015,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Quasi-experimenteel / Methode ]</div>
     <p class="fx">Vergelijk de verandering in een behandelde groep met die in een onbehandelde.</p>
-    <div class="row"><span class="yes">✔ <span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Groepsniveau"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span><span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><span class="no">✘ <span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Historie &amp; seculaire trends · Confounding</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Groepsniveau</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Historie &amp; seculaire trends · Confounding</div>
     <div class="ft"><span>MTH-D15</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#6D28D9">
@@ -1021,8 +1026,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Quasi-experimenteel / Methode ]</div>
     <p class="fx">Een afkappunt bepaalt de behandeling: vergelijk net erboven met net eronder.</p>
-    <div class="row"><span class="yes">✔ <span title="Afkapregel"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20" stroke-dasharray="2 3"/><path d="M3 16l4-3 4-2M13 7l4-2 4-3"/></svg></span><span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Beperkte generaliseerbaarheid · Lage power</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20" stroke-dasharray="2 3"/><path d="M3 16l4-3 4-2M13 7l4-2 4-3"/></svg>Afkapregel</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Beperkte generaliseerbaarheid · Lage power</div>
     <div class="ft"><span>MTH-D16</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#6D28D9">
@@ -1032,8 +1037,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Quasi-experimenteel / Methode ]</div>
     <p class="fx">Veel meetpunten voor en na de startdatum van een wijziging: breekt de trend?</p>
-    <div class="row"><span class="yes">✔ <span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Groepsniveau"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span><span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span><span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Historie &amp; seculaire trends · Regressie naar het gemiddelde</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Groepsniveau</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Historie &amp; seculaire trends · Regressie naar het gemiddelde</div>
     <div class="ft"><span>MTH-D17</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#6D28D9">
@@ -1043,8 +1048,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Quasi-experimenteel / Methode ]</div>
     <p class="fx">Bouw een gewogen tweeling van één behandelde eenheid uit onbehandelde.</p>
-    <div class="row"><span class="yes">✔ <span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span><span title="Groepsniveau"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span><span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Historie &amp; seculaire trends · Forking paths &amp; p-hacking</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Groepsniveau</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Historie &amp; seculaire trends · Forking paths &amp; p-hacking</div>
     <div class="ft"><span>MTH-D18</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Methoden · pagina 3</div><div class="grid"><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1054,8 +1059,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimenteel / Methode ]</div>
     <p class="fx">Het toeval bepaalt wie de interventie krijgt. Vergelijk dan de uitkomsten.</p>
-    <div class="row"><span class="no">✘ <span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Zeldzame uitkomst"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span><span title="Lange latentie"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span><span title="Groepsniveau"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Uitval &amp; ontbrekende data · Verwachtingseffecten</div>
+    <div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Zeldzame uitkomst</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange latentie</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Groepsniveau</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Uitval &amp; ontbrekende data · Verwachtingseffecten</div>
     <div class="ft"><span>MTH-D19</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1065,8 +1070,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimenteel / Methode ]</div>
     <p class="fx">Randomiseer hele groepen (scholen, dorpen, klinieken), geen individuen.</p>
-    <div class="row"><span class="yes">✔ <span title="Groepsniveau"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span></span><span class="no">✘ <span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span><span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Verkeerde analyse-eenheid · Selectiebias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Groepsniveau</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Verkeerde analyse-eenheid · Selectiebias</div>
     <div class="ft"><span>MTH-D20</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1076,8 +1081,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimenteel / Methode ]</div>
     <p class="fx">Iedereen krijgt beide behandelingen in gelote volgorde, met een wash-out ertussen.</p>
-    <div class="row"><span class="yes">✔ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Lange latentie"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Carry-over · Uitval &amp; ontbrekende data</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange latentie</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Carry-over · Uitval &amp; ontbrekende data</div>
     <div class="ft"><span>MTH-D21</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1087,8 +1092,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimenteel / Methode ]</div>
     <p class="fx">Varieer meerdere factoren tegelijk om hun effecten en interacties te vinden.</p>
-    <div class="row"><span class="yes">✔ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Meetfout · Beperkte generaliseerbaarheid</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Meetfout · Beperkte generaliseerbaarheid</div>
     <div class="ft"><span>MTH-D22</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1098,8 +1103,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimenteel / Methode ]</div>
     <p class="fx">Een gerandomiseerde trial binnen één persoon.</p>
-    <div class="row"><span class="yes">✔ <span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Lange latentie"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Carry-over · Verwachtingseffecten</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange latentie</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Carry-over · Verwachtingseffecten</div>
     <div class="ft"><span>MTH-D23</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1109,8 +1114,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimenteel / Methode ]</div>
     <p class="fx">Uiteindelijk krijgt iedereen het; het toeval bepaalt wie eerst gaat.</p>
-    <div class="row"><span class="yes">✔ <span title="Uitrol"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M7 18h3v-3h3v-3h4" /></svg></span><span title="Groepsniveau"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span></span><span class="no">✘ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Historie &amp; seculaire trends · Verkeerde analyse-eenheid</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M7 18h3v-3h3v-3h4" /></svg>Uitrol</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Groepsniveau</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Historie &amp; seculaire trends · Verkeerde analyse-eenheid</div>
     <div class="ft"><span>MTH-D24</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1120,8 +1125,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimenteel / Methode ]</div>
     <p class="fx">Randomiseer gebruikers over twee versies en kijk wat ze doen.</p>
-    <div class="row"><span class="yes">✔ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Lange latentie"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg></span><span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Forking paths &amp; p-hacking · Verkeerd construct</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 6 10 6 10 10S7 16 7 22M17 2c0 6-10 6-10 10s10 4 10 10"/></svg>Lange latentie</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Forking paths &amp; p-hacking · Verkeerd construct</div>
     <div class="ft"><span>MTH-D25</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1131,8 +1136,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimenteel / Methode ]</div>
     <p class="fx">Eén mastertrial: armen vallen af en komen erbij naarmate er bewijs is.</p>
-    <div class="row"><span class="no">✘ <span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Historie &amp; seculaire trends · Forking paths &amp; p-hacking</div>
+    <div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Historie &amp; seculaire trends · Forking paths &amp; p-hacking</div>
     <div class="ft"><span>MTH-D26</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B91C1C">
@@ -1142,8 +1147,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Experimenteel / Methode ]</div>
     <p class="fx">Randomiseer en manipuleer in de echte wereld: percelen, eilanden, markten.</p>
-    <div class="row"><span class="yes">✔ <span title="Groepsniveau"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg></span></span><span class="no">✘ <span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Contaminatie &amp; spillover · Historie &amp; seculaire trends</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M7 20v-2a5 5 0 0 1 10 0v2M1.5 19v-1.5A3.5 3.5 0 0 1 6 14M22.5 19v-1.5A3.5 3.5 0 0 0 18 14"/></svg>Groepsniveau</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Contaminatie &amp; spillover · Historie &amp; seculaire trends</div>
     <div class="ft"><span>MTH-D27</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Methoden · pagina 4</div><div class="grid"><div class="tcg tcg-d" style="--c:#B45309">
@@ -1153,8 +1158,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Kwalitatief &amp; gemengd / Methode ]</div>
     <p class="fx">Leef maandenlang in de setting en leer hoe het echt werkt.</p>
-    <div class="row"><span class="yes">✔ <span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span><span class="no">✘ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Onderzoekersbias · Beperkte generaliseerbaarheid</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Onderzoekersbias · Beperkte generaliseerbaarheid</div>
     <div class="ft"><span>MTH-D28</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B45309">
@@ -1164,8 +1169,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Kwalitatief &amp; gemengd / Methode ]</div>
     <p class="fx">Bouw stap voor stap een nieuwe theorie op vanuit de data.</p>
-    <div class="row"><span class="yes">✔ <span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span><span class="no">✘ <span title="Veel studies"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Onderzoekersbias · Magere data</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Veel studies</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Onderzoekersbias · Magere data</div>
     <div class="ft"><span>MTH-D29</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B45309">
@@ -1175,8 +1180,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Kwalitatief &amp; gemengd / Methode ]</div>
     <p class="fx">Vraag, luister en vind de patronen in wat mensen zeggen.</p>
-    <div class="row"><span class="yes">✔ <span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Onderzoekersbias · Magere data</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Onderzoekersbias · Magere data</div>
     <div class="ft"><span>MTH-D30</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B45309">
@@ -1186,8 +1191,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Kwalitatief &amp; gemengd / Methode ]</div>
     <p class="fx">Eén afgebakende casus, van alle kanten bekeken in zijn echte context.</p>
-    <div class="row"><span class="yes">✔ <span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span><span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Beperkte generaliseerbaarheid · Onderzoekersbias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Beperkte generaliseerbaarheid · Onderzoekersbias</div>
     <div class="ft"><span>MTH-D31</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B45309">
@@ -1197,8 +1202,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Kwalitatief &amp; gemengd / Methode ]</div>
     <p class="fx">Toets rivaliserende causale verklaringen in één casus, spoor na spoor.</p>
-    <div class="row"><span class="yes">✔ <span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span><span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><span class="no">✘ <span title="Veel studies"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Onderzoekersbias · Survivorship bias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Veel studies</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Onderzoekersbias · Survivorship bias</div>
     <div class="ft"><span>MTH-D32</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B45309">
@@ -1208,8 +1213,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Kwalitatief &amp; gemengd / Methode ]</div>
     <p class="fx">Experts stemmen anoniem, ronde na ronde, tot ze convergeren.</p>
-    <div class="row"><span class="yes">✔ <span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Selectiebias · Onderzoekersbias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Selectiebias · Onderzoekersbias</div>
     <div class="ft"><span>MTH-D33</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#B45309">
@@ -1219,8 +1224,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Kwalitatief &amp; gemengd / Methode ]</div>
     <p class="fx">Cijfers en dan verhalen om ze te verklaren, of omgekeerd om ze te toetsen.</p>
-    <div class="row"><span class="yes">✔ <span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span><span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><span class="no">✘ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Onderzoekersbias · Selectiebias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Onderzoekersbias · Selectiebias</div>
     <div class="ft"><span>MTH-D34</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1230,8 +1235,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bewijssynthese / Methode ]</div>
     <p class="fx">Vind elke studie over een gerichte vraag, beoordeel ze, pool ze.</p>
-    <div class="row"><span class="yes">✔ <span title="Veel studies"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span><span class="no">✘ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span><span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Publicatiebias · Appels &amp; peren</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Veel studies</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Publicatiebias · Appels &amp; peren</div>
     <div class="ft"><span>MTH-D35</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1241,8 +1246,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bewijssynthese / Methode ]</div>
     <p class="fx">Breng in kaart wat over een breed onderwerp onderzocht is, en waar de hiaten zitten.</p>
-    <div class="row"><span class="yes">✔ <span title="Veel studies"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span><span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Publicatiebias · Onderzoekersbias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Veel studies</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Publicatiebias · Onderzoekersbias</div>
     <div class="ft"><span>MTH-D36</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Methoden · pagina 5</div><div class="grid"><div class="tcg tcg-d" style="--c:#15803D">
@@ -1252,8 +1257,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bewijssynthese / Methode ]</div>
     <p class="fx">Rangschik veel behandelingen tegelijk via directe en indirecte vergelijkingen.</p>
-    <div class="row"><span class="yes">✔ <span title="Veel studies"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span><span class="no">✘ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Appels &amp; peren · Publicatiebias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Veel studies</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Appels &amp; peren · Publicatiebias</div>
     <div class="ft"><span>MTH-D37</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1263,8 +1268,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bewijssynthese / Methode ]</div>
     <p class="fx">Pool de ruwe data van elke trial, niet alleen de gepubliceerde cijfers.</p>
-    <div class="row"><span class="yes">✔ <span title="Veel studies"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span><span class="no">✘ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Selectiebias · Appels &amp; peren</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Veel studies</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Selectiebias · Appels &amp; peren</div>
     <div class="ft"><span>MTH-D38</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1274,8 +1279,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bewijssynthese / Methode ]</div>
     <p class="fx">Een review van reviews: het grote plaatje van een heel veld.</p>
-    <div class="row"><span class="yes">✔ <span title="Veel studies"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Publicatiebias · Appels &amp; peren</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Veel studies</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Publicatiebias · Appels &amp; peren</div>
     <div class="ft"><span>MTH-D39</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1285,8 +1290,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bewijssynthese / Methode ]</div>
     <p class="fx">Een systematische review met deadline, met benoemde shortcuts.</p>
-    <div class="row"><span class="yes">✔ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span><span title="Veel studies"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Publicatiebias · Selectiebias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Veel studies</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Publicatiebias · Selectiebias</div>
     <div class="ft"><span>MTH-D40</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1296,8 +1301,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bewijssynthese / Methode ]</div>
     <p class="fx">Wat werkt, voor wie, in welke context, en waarom?</p>
-    <div class="row"><span class="yes">✔ <span title="Veel studies"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span></span><span class="no">✘ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Onderzoekersbias · Appels &amp; peren</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Veel studies</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Onderzoekersbias · Appels &amp; peren</div>
     <div class="ft"><span>MTH-D41</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1307,8 +1312,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bewijssynthese / Methode ]</div>
     <p class="fx">Zoek in octrooien, producten en artikelen wat al bestaat, voor je iets bouwt of nieuw noemt.</p>
-    <div class="row"><span class="yes">✔ <span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Selectiebias · Onderzoekersbias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Selectiebias · Onderzoekersbias</div>
     <div class="ft"><span>MTH-D42</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1318,8 +1323,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bewijssynthese / Methode ]</div>
     <p class="fx">Twee werken zijn verbonden als een later artikel ze beide citeert. Clusters tonen de basis van een veld.</p>
-    <div class="row"><span class="yes">✔ <span title="Veel studies"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span><span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Survivorship bias · Verkeerd construct</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Veel studies</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Survivorship bias · Verkeerd construct</div>
     <div class="ft"><span>MTH-D43</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1329,8 +1334,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bewijssynthese / Methode ]</div>
     <p class="fx">Twee artikelen zijn verbonden als ze dezelfde bronnen citeren. Clusters tonen de huidige onderzoeksfronten.</p>
-    <div class="row"><span class="yes">✔ <span title="Veel studies"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg></span><span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Verkeerd construct · Selectiebias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="13" height="12" rx="1"/><path d="M7 6h13v12M10 3h13v12" /></svg>Veel studies</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Verkeerd construct · Selectiebias</div>
     <div class="ft"><span>MTH-D44</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#15803D">
@@ -1340,8 +1345,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bewijssynthese / Methode ]</div>
     <p class="fx">Review artikelen én blogs, lezingen en whitepapers uit de praktijk, en beoordeel elke bron.</p>
-    <div class="row"><span class="yes">✔ <span title="Praktijkgedreven"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><path d="M7 8h7M7 12h7M7 16h4"/></svg></span><span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Ongetoetste bronnen · Selectiebias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><path d="M7 8h7M7 12h7M7 16h4"/></svg>Praktijkgedreven</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Ongetoetste bronnen · Selectiebias</div>
     <div class="ft"><span>MTH-D45</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Methoden · pagina 6</div><div class="grid"><div class="tcg tcg-d" style="--c:#475569">
@@ -1351,8 +1356,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Meetonderzoek / Methode ]</div>
     <p class="fx">De nieuwe test en de referentiestandaard, bij dezelfde echte patiënten.</p>
-    <div class="row"><span class="no">✘ <span title="Zeldzame uitkomst"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Spectrumbias · Verwachtingseffecten</div>
+    <div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg>Zeldzame uitkomst</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Spectrumbias · Verwachtingseffecten</div>
     <div class="ft"><span>MTH-D46</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#475569">
@@ -1362,8 +1367,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Meetonderzoek / Methode ]</div>
     <p class="fx">Stemmen beoordelaars, apparaten of herhaalmetingen overeen?</p>
-    <div class="row"><span class="yes">✔ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Spectrumbias · Selectiebias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Spectrumbias · Selectiebias</div>
     <div class="ft"><span>MTH-D47</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#475569">
@@ -1373,8 +1378,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Meetonderzoek / Methode ]</div>
     <p class="fx">Bouw een vragenlijst of schaal en bewijs dat die meet wat hij belooft.</p>
-    <div class="row"><span class="yes">✔ <span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span><span class="no">✘ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Verkeerd construct · Selectiebias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Verkeerd construct · Selectiebias</div>
     <div class="ft"><span>MTH-D48</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#475569">
@@ -1384,8 +1389,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Meetonderzoek / Methode ]</div>
     <p class="fx">Voorspel hoe je meting met andere maten moet samenhangen, en toets het hele patroon.</p>
-    <div class="row"><span class="no">✘ <span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Meetfout · Forking paths &amp; p-hacking</div>
+    <div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Meetfout · Forking paths &amp; p-hacking</div>
     <div class="ft"><span>MTH-D49</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#475569">
@@ -1395,8 +1400,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Meetonderzoek / Methode ]</div>
     <p class="fx">Laat mensen kiezen tussen pakketten kenmerken om te zien wat ze echt waarderen.</p>
-    <div class="row"><span class="yes">✔ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span><span class="no">✘ <span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Beperkte generaliseerbaarheid · Selectiebias</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Beperkte generaliseerbaarheid · Selectiebias</div>
     <div class="ft"><span>MTH-D50</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#475569">
@@ -1406,8 +1411,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Meetonderzoek / Methode ]</div>
     <p class="fx">Zelfde monster, veel labs: hoe reproduceerbaar is de methode?</p>
-    <div class="row"><span class="no">✘ <span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Meetfout</div>
+    <div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Meetfout</div>
     <div class="ft"><span>MTH-D51</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#BE185D">
@@ -1417,8 +1422,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Theorie &amp; berekening / Methode ]</div>
     <p class="fx">Leid het wiskundig af: wat moet in elk geval waar zijn?</p>
-    <div class="row"><span class="yes">✔ <span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Ongevalideerd model</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Ongevalideerd model</div>
     <div class="ft"><span>MTH-D52</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#BE185D">
@@ -1428,8 +1433,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Theorie &amp; berekening / Methode ]</div>
     <p class="fx">Bouw het systeem in een computer en doe de experimenten die de realiteit niet toelaat.</p>
-    <div class="row"><span class="yes">✔ <span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span><span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span></span><span class="no">✘ <span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Ongevalideerd model · Forking paths &amp; p-hacking</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Ongevalideerd model · Forking paths &amp; p-hacking</div>
     <div class="ft"><span>MTH-D53</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#BE185D">
@@ -1439,8 +1444,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Theorie &amp; berekening / Methode ]</div>
     <p class="fx">Leer van eerdere data om te voorspellen wie of wat er volgt.</p>
-    <div class="row"><span class="yes">✔ <span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><span class="no">✘ <span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Overfitting &amp; leakage · Beperkte generaliseerbaarheid</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Overfitting &amp; leakage · Beperkte generaliseerbaarheid</div>
     <div class="ft"><span>MTH-D54</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Methoden · pagina 7</div><div class="grid"><div class="tcg tcg-d" style="--c:#BE185D">
@@ -1450,8 +1455,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Theorie &amp; berekening / Methode ]</div>
     <p class="fx">Weeg de extra kosten af tegen de extra baten: is het het geld waard?</p>
-    <div class="row"><span class="yes">✔ <span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span title="Niet toewijsbaar"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg></span></span><span class="no">✘ <span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Ongevalideerd model · Beperkte generaliseerbaarheid</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/><path d="M9.5 11.5h5" /></svg>Niet toewijsbaar</span></div><div class="row cons"><span class="k">Moeite met</span><span class="no"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Ongevalideerd model · Beperkte generaliseerbaarheid</div>
     <div class="ft"><span>MTH-D55</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#78350F">
@@ -1461,8 +1466,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Ontwerp &amp; ontwikkeling / Methode ]</div>
     <p class="fx">Bouw een artefact dat een echt probleem oplost en test het met de gebruikers.</p>
-    <div class="row"><span class="yes">✔ <span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Onderzoekersbias · Beperkte generaliseerbaarheid</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Onderzoekersbias · Beperkte generaliseerbaarheid</div>
     <div class="ft"><span>MTH-D56</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#78350F">
@@ -1472,8 +1477,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Ontwerp &amp; ontwikkeling / Methode ]</div>
     <p class="fx">Een generale repetitie: kan de grote studie echt draaien?</p>
-    <div class="row"><span class="yes">✔ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Lage power · Beperkte generaliseerbaarheid</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Lage power · Beperkte generaliseerbaarheid</div>
     <div class="ft"><span>MTH-D57</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#78350F">
@@ -1483,8 +1488,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Ontwerp &amp; ontwikkeling / Methode ]</div>
     <p class="fx">Kijk hoe echte gebruikers echte taken proberen terwijl ze hardop denken.</p>
-    <div class="row"><span class="yes">✔ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span><span title="Onbekend terrein"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Selectiebias · Verwachtingseffecten</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 9a4.5 4.5 0 0 1-1 9z"/><path d="M11 10.5a1.8 1.8 0 1 1 2 1.8c-.6.2-1 .7-1 1.2"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>Onbekend terrein</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Selectiebias · Verwachtingseffecten</div>
     <div class="ft"><span>MTH-D58</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#78350F">
@@ -1494,8 +1499,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Ontwerp &amp; ontwikkeling / Methode ]</div>
     <p class="fx">Kleine, snelle verandertests: probeer, meet, pas aan, herhaal.</p>
-    <div class="row"><span class="yes">✔ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span><span title="Eén eenheid"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg></span><span title="Uitrol"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M7 18h3v-3h3v-3h4" /></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Historie &amp; seculaire trends · Regressie naar het gemiddelde</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Eén eenheid</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M7 18h3v-3h3v-3h4" /></svg>Uitrol</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Historie &amp; seculaire trends · Regressie naar het gemiddelde</div>
     <div class="ft"><span>MTH-D59</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div><div class="tcg tcg-d" style="--c:#78350F">
@@ -1505,8 +1510,8 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Ontwerp &amp; ontwikkeling / Methode ]</div>
     <p class="fx">Zelfde taken, zelfde data, zelfde maten: wie presteert echt het best?</p>
-    <div class="row"><span class="yes">✔ <span title="Krap budget"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg></span><span title="Bestaande data"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span></div>
-    <div class="row"><span class="k">Kwetsbaar voor</span> Overfitting &amp; leakage · Forking paths &amp; p-hacking</div>
+    <div class="row cons"><span class="k">Geschikt bij</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="6"/><path d="M9 11v3l2 1"/><path d="M17 3v6M14 6h6"/></svg>Krap budget</span><span class="yes"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Bestaande data</span></div>
+    <div class="row flow"><span class="k">Kwetsbaar voor</span> Overfitting &amp; leakage · Forking paths &amp; p-hacking</div>
     <div class="ft"><span>MTH-D60</span><span>● kosten &nbsp;◆ tijd</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Bedreigingen · pagina 1</div><div class="grid"><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1516,7 +1521,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Een verborgen derde factor stuurt blootstelling én uitkomst.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Randomisatie · Causaal diagram (DAG)</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Randomisatie · Causaal diagram (DAG)</div>
     <div class="ft"><span>MTH-B01</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1526,7 +1531,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">De zieksten krijgen de behandeling, dus die lijkt schadelijk.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Randomisatie · Actieve comparator, nieuwe gebruikers</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Randomisatie · Actieve comparator, nieuwe gebruikers</div>
     <div class="ft"><span>MTH-B02</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1536,7 +1541,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Wie in de steekproef komt, hangt af van wat je bestudeert.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Representatieve steekproef · Verborgen toewijzing</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Representatieve steekproef · Verborgen toewijzing</div>
     <div class="ft"><span>MTH-B03</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1546,7 +1551,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Wie uitvalt, lijkt niet op wie blijft.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Intention-to-treat · Sensitiviteitsanalyse</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Intention-to-treat · Sensitiviteitsanalyse</div>
     <div class="ft"><span>MTH-B04</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1556,7 +1561,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Cases herinneren zich hun verleden anders dan controles.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Gevalideerde, objectieve maten · Blindering</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Gevalideerde, objectieve maten · Blindering</div>
     <div class="ft"><span>MTH-B05</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1566,7 +1571,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Het instrument is onnauwkeurig, vertekend of verloopt.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Gevalideerde, objectieve maten · Blindering</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Gevalideerde, objectieve maten · Blindering</div>
     <div class="ft"><span>MTH-B06</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1576,7 +1581,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">De uitkomst veroorzaakt de &#x27;oorzaak&#x27;.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Lag &amp; vroege events uitsluiten · Randomisatie</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Lag &amp; vroege events uitsluiten · Randomisatie</div>
     <div class="ft"><span>MTH-B07</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1586,7 +1591,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Extreme waarden schuiven vanzelf terug naar het gemiddelde.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Gelijktijdige controlegroep · Randomisatie</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Gelijktijdige controlegroep · Randomisatie</div>
     <div class="ft"><span>MTH-B08</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1596,7 +1601,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Weten wie wat kreeg, verandert het resultaat.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Blindering · Placebo of schijnbehandeling</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Blindering · Placebo of schijnbehandeling</div>
     <div class="ft"><span>MTH-B09</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Bedreigingen · pagina 2</div><div class="grid"><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1606,7 +1611,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">De controlegroep krijgt de interventie ook.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Toewijzen per cluster</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Toewijzen per cluster</div>
     <div class="ft"><span>MTH-B10</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1616,7 +1621,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Behandelden krijgen tijd toegerekend waarin ze niet konden sterven.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Gelijk tijdstip nul</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Gelijk tijdstip nul</div>
     <div class="ft"><span>MTH-B11</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1626,7 +1631,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Selectie op een gedeeld gevolg schept een verband.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Causaal diagram (DAG) · Representatieve steekproef</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Causaal diagram (DAG) · Representatieve steekproef</div>
     <div class="ft"><span>MTH-B12</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1636,7 +1641,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Wat geldt voor groepen, geldt niet per se voor hun leden.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Multilevelanalyse</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Multilevelanalyse</div>
     <div class="ft"><span>MTH-B13</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1646,7 +1651,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Groepen werden gerandomiseerd, maar individuen geteld.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Multilevelanalyse</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Multilevelanalyse</div>
     <div class="ft"><span>MTH-B14</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1656,7 +1661,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Je ziet alleen wie terugkwam.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Representatieve steekproef · Gelijk tijdstip nul</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Representatieve steekproef · Gelijk tijdstip nul</div>
     <div class="ft"><span>MTH-B15</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1666,7 +1671,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">De nulresultaten liggen nog in de la.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Uitputtende zoekactie · Preregistratie</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Uitputtende zoekactie · Preregistratie</div>
     <div class="ft"><span>MTH-B16</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1676,7 +1681,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Niemand controleerde het, en de auteur verkoopt misschien iets.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Beoordeling grijze literatuur · Triangulatie</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Beoordeling grijze literatuur · Triangulatie</div>
     <div class="ft"><span>MTH-B17</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1686,7 +1691,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Probeer genoeg analyses en één ervan is &#x27;significant&#x27;.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Preregistratie · Correctie voor multipliciteit</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Preregistratie · Correctie voor multipliciteit</div>
     <div class="ft"><span>MTH-B18</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Bedreigingen · pagina 3</div><div class="grid"><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1696,7 +1701,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Te klein om het effect te zien, te onzeker om een treffer te geloven.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Powerberekening · Onafhankelijke replicatie</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Powerberekening · Onafhankelijke replicatie</div>
     <div class="ft"><span>MTH-B19</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1706,7 +1711,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Het model leerde de test uit het hoofd.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Externe validatie · Preregistratie</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Externe validatie · Preregistratie</div>
     <div class="ft"><span>MTH-B20</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1716,7 +1721,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Alleen getest op de duidelijke gevallen.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Representatieve steekproef</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Representatieve steekproef</div>
     <div class="ft"><span>MTH-B21</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1726,7 +1731,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Er veranderde tegelijk iets anders.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Gelijktijdige controlegroep · Pretrendcheck &amp; controlereeks</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Gelijktijdige controlegroep · Pretrendcheck &amp; controlereeks</div>
     <div class="ft"><span>MTH-B22</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1736,7 +1741,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">De eerste behandeling werkt na in de tweede periode.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Wash-outperiode</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Wash-outperiode</div>
     <div class="ft"><span>MTH-B23</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1746,7 +1751,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Je ziet wat je verwachtte te zien.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Reflexiviteit &amp; dubbel coderen · Blindering</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Reflexiviteit &amp; dubbel coderen · Blindering</div>
     <div class="ft"><span>MTH-B24</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1756,7 +1761,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Waar hier, maar misschien nergens anders.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Multicentrisch, divers · Representatieve steekproef</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Multicentrisch, divers · Representatieve steekproef</div>
     <div class="ft"><span>MTH-B25</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1766,7 +1771,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Appels met peren poolen.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Geplande heterogeniteitsanalyse · Sensitiviteitsanalyse</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Geplande heterogeniteitsanalyse · Sensitiviteitsanalyse</div>
     <div class="ft"><span>MTH-B26</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1776,7 +1781,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Het model rust op aannames die niemand controleerde.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Verificatie &amp; validatie · Sensitiviteitsanalyse</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Verificatie &amp; validatie · Sensitiviteitsanalyse</div>
     <div class="ft"><span>MTH-B27</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Bedreigingen · pagina 4</div><div class="grid"><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1786,7 +1791,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Je mat een proxy, niet het echte ding.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Gevalideerde, objectieve maten · Triangulatie</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Gevalideerde, objectieve maten · Triangulatie</div>
     <div class="ft"><span>MTH-B28</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div><div class="tcg tcg-t" style="--c:#9F1239">
@@ -1796,7 +1801,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Bedreiging / bias ]</div>
     <p class="fx">Te weinig stemmen voor het verhaal.</p>
-    <div class="row"><span class="k">Ondervangen door</span> Theoretische sampling tot saturatie · Triangulatie</div>
+    <div class="row flow"><span class="k">Ondervangen door</span> Theoretische sampling tot saturatie · Triangulatie</div>
     <div class="ft"><span>MTH-B29</span><span>Validiteitsbedreiging</span></div>
   </div>
 </div></div></section><section class="sheet"><div class="label">Waarborgen · pagina 1</div><div class="grid"><div class="tcg tcg-s" style="--c:#047857">
@@ -1806,7 +1811,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Laat het toeval bepalen wie wat krijgt.</p>
-    <div class="row"><span class="k">Ondervangt</span> Confounding · Confounding door indicatie</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Confounding · Confounding door indicatie</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#B91C1C" title="Experimenteel"></span></div>
     <div class="ft"><span>MTH-S01</span><span>Verdediging</span></div>
   </div>
@@ -1817,7 +1822,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Niemand kan de volgende toewijzing zien of sturen.</p>
-    <div class="row"><span class="k">Ondervangt</span> Selectiebias</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Selectiebias</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#B91C1C" title="Experimenteel"></span></div>
     <div class="ft"><span>MTH-S02</span><span>Verdediging</span></div>
   </div>
@@ -1828,7 +1833,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Niemand weet wie wat kreeg.</p>
-    <div class="row"><span class="k">Ondervangt</span> Recall bias · Meetfout</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Recall bias · Meetfout</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="k">Elke methode</span></div>
     <div class="ft"><span>MTH-S03</span><span>Verdediging</span></div>
   </div>
@@ -1839,7 +1844,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">De controle-arm krijgt een identiek ogende dummy.</p>
-    <div class="row"><span class="k">Ondervangt</span> Verwachtingseffecten</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Verwachtingseffecten</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#B91C1C" title="Experimenteel"></span></div>
     <div class="ft"><span>MTH-S04</span><span>Verdediging</span></div>
   </div>
@@ -1850,7 +1855,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Analyseer iedereen zoals gerandomiseerd, wat er ook gebeurde.</p>
-    <div class="row"><span class="k">Ondervangt</span> Selectiebias · Uitval &amp; ontbrekende data</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Selectiebias · Uitval &amp; ontbrekende data</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#B91C1C" title="Experimenteel"></span></div>
     <div class="ft"><span>MTH-S05</span><span>Verdediging</span></div>
   </div>
@@ -1861,7 +1866,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Leg het plan vast voor je de data ziet.</p>
-    <div class="row"><span class="k">Ondervangt</span> Publicatiebias · Forking paths &amp; p-hacking</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Publicatiebias · Forking paths &amp; p-hacking</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="k">Elke methode</span></div>
     <div class="ft"><span>MTH-S06</span><span>Verdediging</span></div>
   </div>
@@ -1872,7 +1877,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Bereken vooraf hoeveel je er nodig hebt.</p>
-    <div class="row"><span class="k">Ondervangt</span> Lage power</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Lage power</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="k">Elke methode</span></div>
     <div class="ft"><span>MTH-S07</span><span>Verdediging</span></div>
   </div>
@@ -1883,7 +1888,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Teken de causale kaart; corrigeer alleen voor wat erin hoort.</p>
-    <div class="row"><span class="k">Ondervangt</span> Confounding · Selectiebias</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Confounding · Selectiebias</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#0F766E" title="Beschrijvend observationeel"></span><span class="dot" style="background:#1D4ED8" title="Analytisch observationeel"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimenteel"></span></div>
     <div class="ft"><span>MTH-S08</span><span>Verdediging</span></div>
   </div>
@@ -1894,7 +1899,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Vergelijk gelijk met gelijk.</p>
-    <div class="row"><span class="k">Ondervangt</span> Confounding · Confounding door indicatie</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Confounding · Confounding door indicatie</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#1D4ED8" title="Analytisch observationeel"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimenteel"></span></div>
     <div class="ft"><span>MTH-S09</span><span>Verdediging</span></div>
   </div>
@@ -1905,7 +1910,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Test iets dat geen effect mag tonen.</p>
-    <div class="row"><span class="k">Ondervangt</span> Confounding · Confounding door indicatie</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Confounding · Confounding door indicatie</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#0F766E" title="Beschrijvend observationeel"></span><span class="dot" style="background:#1D4ED8" title="Analytisch observationeel"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimenteel"></span></div>
     <div class="ft"><span>MTH-S10</span><span>Verdediging</span></div>
   </div>
@@ -1916,7 +1921,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Verander de aannames. Blijft het antwoord staan?</p>
-    <div class="row"><span class="k">Ondervangt</span> Confounding · Confounding door indicatie</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Confounding · Confounding door indicatie</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="k">Elke methode</span></div>
     <div class="ft"><span>MTH-S11</span><span>Verdediging</span></div>
   </div>
@@ -1927,7 +1932,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Vergelijk starters op de ene behandeling met starters op een andere.</p>
-    <div class="row"><span class="k">Ondervangt</span> Confounding door indicatie</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Confounding door indicatie</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#1D4ED8" title="Analytisch observationeel"></span></div>
     <div class="ft"><span>MTH-S12</span><span>Verdediging</span></div>
   </div>
@@ -1938,7 +1943,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Ieders klok start op hetzelfde moment.</p>
-    <div class="row"><span class="k">Ondervangt</span> Selectiebias · Immortal time bias</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Selectiebias · Immortal time bias</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#1D4ED8" title="Analytisch observationeel"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimenteel"></span><span class="dot" style="background:#0F766E" title="Beschrijvend observationeel"></span></div>
     <div class="ft"><span>MTH-S13</span><span>Verdediging</span></div>
   </div>
@@ -1949,7 +1954,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Laat ruimte tussen blootstelling en uitkomst.</p>
-    <div class="row"><span class="k">Ondervangt</span> Omgekeerde causaliteit</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Omgekeerde causaliteit</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#1D4ED8" title="Analytisch observationeel"></span><span class="dot" style="background:#0F766E" title="Beschrijvend observationeel"></span></div>
     <div class="ft"><span>MTH-S14</span><span>Verdediging</span></div>
   </div>
@@ -1960,7 +1965,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Een vergelijkingsgroep die dezelfde periode doormaakt.</p>
-    <div class="row"><span class="k">Ondervangt</span> Regressie naar het gemiddelde · Historie &amp; seculaire trends</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Regressie naar het gemiddelde · Historie &amp; seculaire trends</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#B91C1C" title="Experimenteel"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimenteel"></span><span class="dot" style="background:#1D4ED8" title="Analytisch observationeel"></span></div>
     <div class="ft"><span>MTH-S15</span><span>Verdediging</span></div>
   </div>
@@ -1971,7 +1976,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Toon dat de groepen vóór de wijziging samen bewogen.</p>
-    <div class="row"><span class="k">Ondervangt</span> Historie &amp; seculaire trends</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Historie &amp; seculaire trends</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#6D28D9" title="Quasi-experimenteel"></span></div>
     <div class="ft"><span>MTH-S16</span><span>Verdediging</span></div>
   </div>
@@ -1982,7 +1987,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Wijs hele groepen toe, zodat niets tussen armen lekt.</p>
-    <div class="row"><span class="k">Ondervangt</span> Contaminatie &amp; spillover</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Contaminatie &amp; spillover</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#B91C1C" title="Experimenteel"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimenteel"></span></div>
     <div class="ft"><span>MTH-S17</span><span>Verdediging</span></div>
   </div>
@@ -1993,7 +1998,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Laat de eerste behandeling uitwerken.</p>
-    <div class="row"><span class="k">Ondervangt</span> Carry-over</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Carry-over</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#B91C1C" title="Experimenteel"></span></div>
     <div class="ft"><span>MTH-S18</span><span>Verdediging</span></div>
   </div>
@@ -2004,7 +2009,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Test het op data die het nooit zag.</p>
-    <div class="row"><span class="k">Ondervangt</span> Overfitting &amp; leakage</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Overfitting &amp; leakage</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#BE185D" title="Theorie &amp; berekening"></span><span class="dot" style="background:#78350F" title="Ontwerp &amp; ontwikkeling"></span><span class="dot" style="background:#475569" title="Meetonderzoek"></span></div>
     <div class="ft"><span>MTH-S19</span><span>Verdediging</span></div>
   </div>
@@ -2015,7 +2020,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Kies één primaire uitkomst, of betaal voor elke extra test.</p>
-    <div class="row"><span class="k">Ondervangt</span> Forking paths &amp; p-hacking</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Forking paths &amp; p-hacking</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="k">Elke methode</span></div>
     <div class="ft"><span>MTH-S20</span><span>Verdediging</span></div>
   </div>
@@ -2026,7 +2031,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Iemand anders doet het opnieuw.</p>
-    <div class="row"><span class="k">Ondervangt</span> Forking paths &amp; p-hacking · Lage power</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Forking paths &amp; p-hacking · Lage power</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="k">Elke methode</span></div>
     <div class="ft"><span>MTH-S21</span><span>Verdediging</span></div>
   </div>
@@ -2037,7 +2042,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Zoek overal, ook in de laden.</p>
-    <div class="row"><span class="k">Ondervangt</span> Selectiebias · Publicatiebias</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Selectiebias · Publicatiebias</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#15803D" title="Bewijssynthese"></span></div>
     <div class="ft"><span>MTH-S22</span><span>Verdediging</span></div>
   </div>
@@ -2048,7 +2053,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Beoordeel elke grijze bron voor je ze vertrouwt.</p>
-    <div class="row"><span class="k">Ondervangt</span> Ongetoetste bronnen</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Ongetoetste bronnen</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#15803D" title="Bewijssynthese"></span></div>
     <div class="ft"><span>MTH-S23</span><span>Verdediging</span></div>
   </div>
@@ -2059,7 +2064,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Plan vooraf hoe je verklaart waarom studies verschillen.</p>
-    <div class="row"><span class="k">Ondervangt</span> Appels &amp; peren</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Appels &amp; peren</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#15803D" title="Bewijssynthese"></span></div>
     <div class="ft"><span>MTH-S24</span><span>Verdediging</span></div>
   </div>
@@ -2070,7 +2075,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Trek uit de hele populatie, niet uit het makkelijke deel.</p>
-    <div class="row"><span class="k">Ondervangt</span> Selectiebias · Colliderbias</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Selectiebias · Colliderbias</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="k">Elke methode</span></div>
     <div class="ft"><span>MTH-S25</span><span>Verdediging</span></div>
   </div>
@@ -2081,7 +2086,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Gebruik instrumenten die aantoonbaar meten wat telt.</p>
-    <div class="row"><span class="k">Ondervangt</span> Recall bias · Meetfout</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Recall bias · Meetfout</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="k">Elke methode</span></div>
     <div class="ft"><span>MTH-S26</span><span>Verdediging</span></div>
   </div>
@@ -2092,7 +2097,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Noteer je eigen bril en laat een tweede codeur meekijken.</p>
-    <div class="row"><span class="k">Ondervangt</span> Verwachtingseffecten · Onderzoekersbias</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Verwachtingseffecten · Onderzoekersbias</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#B45309" title="Kwalitatief &amp; gemengd"></span><span class="dot" style="background:#15803D" title="Bewijssynthese"></span><span class="dot" style="background:#78350F" title="Ontwerp &amp; ontwikkeling"></span></div>
     <div class="ft"><span>MTH-S27</span><span>Verdediging</span></div>
   </div>
@@ -2103,7 +2108,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Andere methoden, andere zwaktes, zelfde antwoord.</p>
-    <div class="row"><span class="k">Ondervangt</span> Meetfout · Verwachtingseffecten</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Meetfout · Verwachtingseffecten</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="k">Elke methode</span></div>
     <div class="ft"><span>MTH-S28</span><span>Verdediging</span></div>
   </div>
@@ -2114,7 +2119,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Blijf selecteren tot er niets nieuws opduikt.</p>
-    <div class="row"><span class="k">Ondervangt</span> Magere data</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Magere data</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#B45309" title="Kwalitatief &amp; gemengd"></span></div>
     <div class="ft"><span>MTH-S29</span><span>Verdediging</span></div>
   </div>
@@ -2125,7 +2130,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Modelleer mensen binnen groepen binnen plaatsen.</p>
-    <div class="row"><span class="k">Ondervangt</span> Ecologische fout · Verkeerde analyse-eenheid</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Ecologische fout · Verkeerde analyse-eenheid</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#0F766E" title="Beschrijvend observationeel"></span><span class="dot" style="background:#1D4ED8" title="Analytisch observationeel"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimenteel"></span><span class="dot" style="background:#B91C1C" title="Experimenteel"></span></div>
     <div class="ft"><span>MTH-S30</span><span>Verdediging</span></div>
   </div>
@@ -2136,7 +2141,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Controleer of de code klopt, en dan of het model de realiteit volgt.</p>
-    <div class="row"><span class="k">Ondervangt</span> Ongevalideerd model</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Ongevalideerd model</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#BE185D" title="Theorie &amp; berekening"></span><span class="dot" style="background:#78350F" title="Ontwerp &amp; ontwikkeling"></span></div>
     <div class="ft"><span>MTH-S31</span><span>Verdediging</span></div>
   </div>
@@ -2147,7 +2152,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Test het waar de resultaten gebruikt worden.</p>
-    <div class="row"><span class="k">Ondervangt</span> Beperkte generaliseerbaarheid</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Beperkte generaliseerbaarheid</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="k">Elke methode</span></div>
     <div class="ft"><span>MTH-S32</span><span>Verdediging</span></div>
   </div>
@@ -2158,7 +2163,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Vergelijk mensen met zichzelf, of broers en zussen onderling.</p>
-    <div class="row"><span class="k">Ondervangt</span> Confounding</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Confounding</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#1D4ED8" title="Analytisch observationeel"></span><span class="dot" style="background:#B91C1C" title="Experimenteel"></span></div>
     <div class="ft"><span>MTH-S33</span><span>Verdediging</span></div>
   </div>
@@ -2169,7 +2174,7 @@ body { margin: 0; background: #d7dbe0; font-family: "IBM Plex Sans Condensed", "
   <div class="tb">
     <div class="ty">[ Waarborg ]</div>
     <p class="fx">Beoordeel een verandering tegen de eigen basisvariatie.</p>
-    <div class="row"><span class="k">Ondervangt</span> Regressie naar het gemiddelde · Historie &amp; seculaire trends</div>
+    <div class="row flow"><span class="k">Ondervangt</span> Regressie naar het gemiddelde · Historie &amp; seculaire trends</div>
     <div class="row"><span class="k">Bruikbaar met</span> <span class="dot" style="background:#78350F" title="Ontwerp &amp; ontwikkeling"></span><span class="dot" style="background:#6D28D9" title="Quasi-experimenteel"></span><span class="dot" style="background:#0F766E" title="Beschrijvend observationeel"></span></div>
     <div class="ft"><span>MTH-S34</span><span>Verdediging</span></div>
   </div>

@@ -109,6 +109,8 @@
   "card.question": "Vraag: {suit}",
   "card.which": "Welke methode beantwoordt het?",
   "card.design": "Methode",
+  "card.good_for": "Geschikt bij",
+  "card.struggles": "Moeite met",
   "card.weak_vs": "Kwetsbaar voor",
   "card.cost_time": "● kosten  ◆ tijd",
   "card.threat": "Bedreiging",

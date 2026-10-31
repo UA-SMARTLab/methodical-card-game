@@ -109,6 +109,8 @@
   "card.question": "{suit} question",
   "card.which": "Which method answers it?",
   "card.design": "Method",
+  "card.good_for": "Good for",
+  "card.struggles": "Struggles with",
   "card.weak_vs": "Weak vs",
   "card.cost_time": "● cost  ◆ time",
   "card.threat": "Threat",

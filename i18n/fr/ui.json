@@ -109,6 +109,8 @@
   "card.question": "Question {suit}",
   "card.which": "Quelle méthode y répond ?",
   "card.design": "Méthode",
+  "card.good_for": "Convient à",
+  "card.struggles": "Mal adaptée à",
   "card.weak_vs": "Vulnérable à",
   "card.cost_time": "● coût  ◆ temps",
   "card.threat": "Menace",
