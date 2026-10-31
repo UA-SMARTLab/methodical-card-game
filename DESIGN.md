@@ -173,11 +173,15 @@ so the cards feel like a game and the table can read them at a glance:
 
 - **One picture, one sentence.** Each card has an illustration and a single sentence of effect text. The long explanations,
   examples and citations moved to the app and the answer-key booklet.
-- **The picture is the content.** On Design cards the art is the study's own diagram: arms splitting after a die, arrows pointing
+- **The picture is the content.** On Method cards the art is the study's own diagram: arms splitting after a die, arrows pointing
   backwards from cases, a jump at a cutoff, a staircase of clusters switching over. Players learn the shape of each design.
   Question art shows the *subject* of the problem, never the design, so it can't give the answer away.
-- **Trading-card colour language.** Design cards take their family's colour (like monster types). Threats are crimson
+- **Trading-card colour language.** Method cards take their family's colour (like monster types). Threats are crimson
   (like trap cards), Safeguards emerald (like spell cards), Twists violet.
+- **Method, not Design, as the card name.** The cards were called Design until v0.2. On its own, "design" was ambiguous next to
+  engineering design (the Design & development family, the Design science card), so the card type is now *Method*: it covers
+  study designs (cohort, randomized trial) and methods in the narrow sense (interviews, co-citation analysis). Running text still
+  says *study design* where that is the precise term. Code and data keep the old id (`designs`).
 - **Icons instead of words** for suits and constraints, decoded by the four reference cards.
 - **Uniform backs, answers in a booklet.** In v0.1 the answers were printed on the backs of the question cards, so the top card
   of a face-down deck showed its own answer. v0.2 gives every card the same back.
@@ -186,7 +190,7 @@ so the cards feel like a game and the table can read them at a glance:
 
 ## 9. Key sources the design leans on
 
-Every Design, Threat and Safeguard card carries its own key reference (`ref` in `data/designs.json`, `threats.json` and `safeguards.json`): the paper that defined it, or the guideline or review that made it standard. Each DOI was checked against Crossref, and the citation text is generated from the Crossref record. Prior art review links the US statute that defines prior art. The build refuses any of these cards without a reference.
+Every Method, Threat and Safeguard card carries its own key reference (`ref` in `data/designs.json`, `threats.json` and `safeguards.json`): the paper that defined it, or the guideline or review that made it standard. Each DOI was checked against Crossref, and the citation text is generated from the Crossref record. Prior art review links the US statute that defines prior art. The build refuses any of these cards without a reference.
 
 
 - Shadish, Cook & Campbell (2002), *Experimental and Quasi-Experimental Designs*: validity typology, threats.

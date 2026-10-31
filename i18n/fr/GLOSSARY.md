@@ -14,7 +14,8 @@ Les numéros entre crochets renvoient aux sources en fin de document. « Usage c
 
 | Anglais | Français retenu | Source | Note |
 |---|---|---|---|
-| (study / research) design | **schéma d'étude** ; « schéma » seul quand le contexte suffit | [1] [2] [12] | « Devis » est l'usage québécois ; le GDT propose « plan d'étude » [3]. L'ISPED : « Le schéma d'étude c'est le type d'enquête […] On parle de *design* en anglais » [1]. Remplace « devis » partout (nom du paquet, étiquette de carte, interface, rebondissements). |
+| (study / research) design | **schéma d'étude** ; « schéma » seul quand le contexte suffit | [1] [2] [12] | « Devis » est l'usage québécois ; le GDT propose « plan d'étude » [3]. L'ISPED : « Le schéma d'étude c'est le type d'enquête […] On parle de *design* en anglais » [1]. Remplace « devis » partout ; reste le terme technique dans les explications. |
+| Design (type de carte) | **Méthode** ; paquet « Méthodes » | | Choix de l'auteur du jeu (octobre 2026) : en anglais, *design* seul se confondait avec la conception technique (famille « Design & development », carte « Design science »). Le type de carte s'appelle donc *Method* en anglais et « Méthode » dans toutes les langues. |
 | outcome (variable mesurée, comparée, ajustée) | **critère de jugement** ; « critère de jugement principal » (forme courte usuelle : « critère principal ») pour *primary outcome* | [4] | Lexique Cochrane France [4]. Remplace « issue », qui n'est pas employé en ce sens en France (sauf « issue de grossesse »). Sur les cartes à texte serré, « critère principal » ou « critères » seuls. |
 | outcome (quelque chose qui survient) | **événement** (« événement rare », « qui présente l'événement », « avant la survenue des événements ») | [1] [19] | Les cours d'épidémiologie parlent de survenue d'un « phénomène de santé » ou d'un événement [1]. |
 | outcome (cadre réaliste, C + M → O) | **effet** (configuration contexte-mécanisme-effet, CME) | [17] | Usage de l'évaluation réaliste francophone (Ridde, Robert). Étiquette d'illustration OUTCOME → EFFET. |
@@ -76,7 +77,7 @@ Les numéros entre crochets renvoient aux sources en fin de document. « Usage c
 | Practice-led | **Pratique en avance** | | Ancien : « Pratique en tête ». |
 | Many studies | **Nombreuses études** | | |
 
-## Schémas d'étude (cartes Design)
+## Schémas d'étude (cartes Méthode)
 
 | Anglais | Français | Source | Note |
 |---|---|---|---|

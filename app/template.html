@@ -433,7 +433,7 @@ header { position: relative; }
     <div class="modes" id="home-modes">
       <div class="mode tilt" style="--c:#B91C1C" data-feature="duel">
         <div class="mode-ic">⚔️</div><h3>Duel</h3>
-        <p>You against the computer. Draft designs, play them face down onto open questions, challenge and rebut. 8 rounds.</p>
+        <p>You against the computer. Draft methods, play them face down onto open questions, challenge and rebut. 8 rounds.</p>
         <div class="mode-go" id="home-bots"></div>
         <span class="label" id="home-record"></span>
       </div>
@@ -482,13 +482,13 @@ header { position: relative; }
     <div class="d-start panel" id="d-start">
       <span class="label">You versus the computer</span>
       <h3>Duel</h3>
-      <p>Each of you is dealt <b>7 Design cards</b> and <b>3 tactics cards</b> (Threats and Safeguards). Four research questions lie face up.
-        Every round you both play one design, face down, onto any open question. Then the cards flip.</p>
+      <p>Each of you is dealt <b>7 Method cards</b> and <b>3 tactics cards</b> (Threats and Safeguards). Four research questions lie face up.
+        Every round you both play one method, face down, onto any open question. Then the cards flip.</p>
       <ul class="steps">
-        <li><b>Score it:</b> best +3, defensible +1, unlisted 0, trap −2. Answer the same question as your rival with a better design and you <b>scoop</b> them: +1 more.</li>
-        <li><b>Review it:</b> challenge your rival's design by naming one of its weaknesses: +1 to you and −1 to them if it lands, −1 to you if it isn't a real weakness. They can rebut by naming a Safeguard that counters it and suits their design, and then they gain 1 instead. A challenge is worth it against weak defenders and costly against strong ones. A matching Threat or Safeguard card in hand makes it automatic.</li>
-        <li><b>Draft:</b> after each round, take one of four face-up designs into your hand. Pick the one that answers a question still on the table.</li>
-        <li><b>Plan ahead:</b> once per round you may swap a design for a random new one (−1). Highest score after 8 rounds wins.</li>
+        <li><b>Score it:</b> best +3, defensible +1, unlisted 0, trap −2. Answer the same question as your rival with a better method and you <b>scoop</b> them: +1 more.</li>
+        <li><b>Review it:</b> challenge your rival's method by naming one of its weaknesses: +1 to you and −1 to them if it lands, −1 to you if it isn't a real weakness. They can rebut by naming a Safeguard that counters it and suits their method, and then they gain 1 instead. A challenge is worth it against weak defenders and costly against strong ones. A matching Threat or Safeguard card in hand makes it automatic.</li>
+        <li><b>Draft:</b> after each round, take one of four face-up methods into your hand. Pick the one that answers a question still on the table.</li>
+        <li><b>Plan ahead:</b> once per round you may swap a method for a random new one (−1). Highest score after 8 rounds wins.</li>
       </ul>
       <p style="margin-top:12px"><b>Choose your opponent</b></p>
       <div class="d-skill" id="d-skill"></div>
@@ -533,7 +533,7 @@ header { position: relative; }
 <div class="tray" id="tray" hidden>
   <div class="in">
     <div class="info" id="tray-info"></div>
-    <button class="btn primary" id="b-submit">Submit design</button>
+    <button class="btn primary" id="b-submit">Submit method</button>
   </div>
 </div>
 
@@ -956,11 +956,11 @@ function renderDecks() {
 // ---------- guide
 function renderGuide() {
   $("guide").innerHTML = `
-  <div class="panel"><h3>The idea</h3><p>Logic card games pair fallacies with refutations. Methodical does the same for research design, in two layers:</p>
-    <ul><li><b>Question → Design.</b> Read a research problem and pick the study type that can answer it under its constraints.</li>
-    <li><b>Threat → Safeguard.</b> Every design has typical biases. Reviewers attack with Threat cards; authors defend with Safeguards.</li></ul></div>
+  <div class="panel"><h3>The idea</h3><p>Logic card games pair fallacies with refutations. Methodical does the same for research methods, in two layers:</p>
+    <ul><li><b>Question → Method.</b> Read a research problem and pick the method that can answer it under its constraints.</li>
+    <li><b>Threat → Safeguard.</b> Every method has typical biases. Reviewers attack with Threat cards; authors defend with Safeguards.</li></ul></div>
   <div class="panel"><h3>Four ways to play</h3><ul>
-    <li><b>Methods Map.</b> Everyone picks a design for the same question. For classes, 10 min.</li>
+    <li><b>Methods Map.</b> Everyone picks a method for the same question. For classes, 10 min.</li>
     <li><b>Peer Review.</b> Propose, attack, rebut. Competitive, 3–6 players.</li>
     <li><b>Research Programme.</b> A cooperative 5-stage project against rising doubt.</li>
     <li><b>Reviewer 2.</b> A fast critique drill with mismatched cards.</li></ul>
@@ -968,7 +968,7 @@ function renderGuide() {
     <p style="margin-top:10px">This page is the solo trainer. The full rules and print-and-play sheets are in the <span class="mono">methodical/</span> folder.</p></div>
   <div class="panel"><h3>Suits: the kind of question</h3><div class="legend">${meta.suits.map(s => `<div>${s.icon} <b>${esc(s.name)}</b>: ${esc(s.ask)}</div>`).join("")}</div></div>
   <div class="panel"><h3>Constraints: the situation</h3><div class="legend">${meta.constraints.map(c => `<div>${c.icon} <b>${esc(c.name)}</b>: ${esc(c.text)}</div>`).join("")}</div></div>
-  <div class="panel"><h3>Why three tiers?</h3><p>Methodologists disagree, so each question has a <b>best</b> design, <b>defensible</b> alternatives, and <b>traps</b> that look right but fail for a reason printed on the card. In table play, unlisted designs can be <b>appealed</b>: argue for 60 seconds and the table votes.</p>
+  <div class="panel"><h3>Why three tiers?</h3><p>Methodologists disagree, so each question has a <b>best</b> method, <b>defensible</b> alternatives, and <b>traps</b> that look right but fail for a reason printed on the card. In table play, unlisted methods can be <b>appealed</b>: argue for 60 seconds and the table votes.</p>
     <p><button class="btn" id="b-reset">Reset my stats</button></p></div>`;
   $("b-reset").onclick = () => { stats = { score: 0, answered: 0, bestHits: 0, streak: 0, seen: {} }; save(); renderStats(); $("b-reset").textContent = "Stats reset"; };
 }
@@ -1069,7 +1069,7 @@ function log(html, fresh = false) {
 function renderPile() {
   const n = Math.min(6, Math.ceil(duel.ddeck.length / 6));
   $("d-pile").innerHTML = Array.from({ length: n }, (_, i) => `<div style="left:${i * 1.6}px;top:${-i * 1.6}px">${backHTML()}</div>`).join("");
-  $("d-pile-n").textContent = `${duel.ddeck.length} designs`;
+  $("d-pile-n").textContent = `${duel.ddeck.length} methods`;
 }
 function renderHands(dealt = []) {
   const live = duel.phase === "choose";
@@ -1098,7 +1098,7 @@ function renderTactics(mode = null, ok = () => true) {
   $("d-me-tac").querySelectorAll("button").forEach(b => b.onclick = () => duel.resolve && duel.resolve(+b.dataset.i));
 }
 function slotHTML(who, id, up) {
-  const lbl = who === "me" ? "Your design" : `${esc(duel.bot.name)}'s design`;
+  const lbl = who === "me" ? "Your method" : `${esc(duel.bot.name)}'s method`;
   if (!id) return `<span class="label">${lbl}</span><div class="ph"></div>`;
   return `<span class="label">${lbl}${up ? ` · on “${esc(QX[duel.play[who].q].title)}”` : ""}</span>
     <div class="flip${up ? " up" : ""}"><div class="face front">${DATA.cards.designs[id]}</div><div class="face back">${backHTML()}</div></div>`;
@@ -1108,9 +1108,9 @@ function renderActions() {
   if (duel.phase === "choose") {
     const d = duel.sel && D[duel.sel];
     const where = duel.qsel ? `on “${esc(QX[duel.qsel].title)}”` : "";
-    a.innerHTML = `<button class="btn primary" id="d-play" ${duel.sel && duel.qsel ? "" : "disabled"}>Play ${d ? esc(d.name) : "a design"} ${where}</button>
+    a.innerHTML = `<button class="btn primary" id="d-play" ${duel.sel && duel.qsel ? "" : "disabled"}>Play ${d ? esc(d.name) : "a method"} ${where}</button>
       <button class="btn" id="d-swap" ${duel.sel && !duel.swapped && duel.ddeck.length ? "" : "disabled"}>Swap it for a new card (−1)</button>
-      <span class="hint">${!duel.sel ? "Pick a design from your hand" : !duel.qsel ? "Now pick the question it answers" : esc(d.gist)}</span>`;
+      <span class="hint">${!duel.sel ? "Pick a method from your hand" : !duel.qsel ? "Now pick the question it answers" : esc(d.gist)}</span>`;
     $("d-play").onclick = playMine;
     $("d-swap").onclick = swapMine;
     return;
@@ -1146,7 +1146,7 @@ async function startDuel(bot) {
   for (let i = 0; i < DUEL.hand; i++) { dealt.push(...draw(duel.me, 1), ...draw(duel.bot, 1)); }
   drawTactics(duel.me, DUEL.tactics); drawTactics(duel.bot, DUEL.tactics);
   renderHands(dealt); renderTactics();
-  log(`Dealt you ${DUEL.hand} designs and ${DUEL.tactics} tactics cards. ${esc(bot.name)} got the same.`);
+  log(`Dealt you ${DUEL.hand} methods and ${DUEL.tactics} tactics cards. ${esc(bot.name)} got the same.`);
   await wait(DUEL.hand * 2 * 85 + 450);
   nextRound();
 }
@@ -1159,7 +1159,7 @@ async function nextRound() {
   $("d-round").textContent = `Round ${duel.round} of ${DUEL.rounds}`;
   $("d-slot-me").innerHTML = slotHTML("me"); $("d-slot-bot").innerHTML = slotHTML("bot");
   renderMarket(fresh); renderHands(); renderTactics(); renderActions();
-  log(`<b>Round ${duel.round}.</b> Choose a design from your hand and the open question it answers.`, true);
+  log(`<b>Round ${duel.round}.</b> Choose a method from your hand and the open question it answers.`, true);
   await wait(700);
   // The computer commits first, face down, so its choice can't depend on yours.
   const choice = botChoose();
@@ -1169,7 +1169,7 @@ async function nextRound() {
   $("d-slot-bot").innerHTML = slotHTML("bot", choice.d, false);
   flyFrom($("d-slot-bot").querySelector(".flip"), from);
   renderHands();
-  log(`${esc(duel.bot.name)} has played a design face down.`);
+  log(`${esc(duel.bot.name)} has played a method face down.`);
 }
 
 async function swapMine() {
@@ -1299,7 +1299,7 @@ async function challengeMe() {
   log(`${esc(duel.bot.name)} challenges your ${esc(D[myD].name)} with <span class="threat-tag">${esc(T[tid].name)}</span>. ${esc(T[tid].short)}`);
   const opts = safeguardOptions(tid, myD);
   renderTactics("safeguard", x => blocks(x.id, tid, myD));
-  const ans = await ask(`<div style="width:100%"><span class="hint">Rebut it: which safeguard counters ${esc(T[tid].name.toLowerCase())} and works for your design? (right: +1; wrong: −1 to you, +1 to them). Or play a Safeguard card.</span>
+  const ans = await ask(`<div style="width:100%"><span class="hint">Rebut it: which safeguard counters ${esc(T[tid].name.toLowerCase())} and works for your method? (right: +1; wrong: −1 to you, +1 to them). Or play a Safeguard card.</span>
     <div class="opts">${opts.map(x => optBtn("s:" + x, S[x].name, S[x].short)).join("")}</div></div>`);
   let sid;
   if (typeof ans === "number") {
@@ -1348,7 +1348,7 @@ async function endRound() {
   duel.phase = "draft"; duel.revealed = false;
   renderMarket(refillMarket()); renderHands(); renderTactics();
   const mine = offer();
-  log("Draft: take one of these designs into your hand.", true);
+  log("Draft: take one of these methods into your hand.", true);
   const pick = await ask(`<div class="d-draft">${mine.map(id => `<button data-act="${id}" title="${esc(D[id].gist)}">${DATA.cards.designs[id]}</button>`).join("")}</div>`);
   duel.me.hand.push(pick);
   duel.ddeck.unshift(...mine.filter(id => id !== pick));
@@ -1511,6 +1511,6 @@ if ((LANG.langs || []).length > 1) {
 /*__FIT__*/
 new MutationObserver(ms => { for (const m of ms) for (const n of m.addedNodes) if (n.nodeType === 1 && (n.matches(".tcg") || n.querySelector(".tcg"))) fitCards(n); })
   .observe(document.body, { childList: true, subtree: true });
-$("ptable-label").textContent = `${designs.length} designs · ${meta.families.length} families · tap one to choose it`;
+$("ptable-label").textContent = `${designs.length} methods · ${meta.families.length} families · tap one to choose it`;
 renderStats(); renderGuide(); renderDuelStart(); nextQuestion(); renderHome(); show("home");
 </script>

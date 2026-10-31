@@ -1190,7 +1190,7 @@ A hospital group wants an AI tool that flags patients who will need intensive ca
 
 ## Coverage
 
-| Design | Family | Best answer to |
+| Method | Family | Best answer to |
 |---|---|---|
 | Case report / case series | Descriptive observational | Q02 |
 | Cross-sectional survey | Descriptive observational | Q01, Q04 |

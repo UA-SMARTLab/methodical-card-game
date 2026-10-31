@@ -325,7 +325,7 @@ def build_answer_key():
         for i, st in enumerate(p["stages"], 1):
             L.append(f"{i}. {SUIT[st['suit']]['icon']} {st['ask']} → **{', '.join(dname(a) for a in st['accept'])}**")
         L.append("")
-    L += ["## Coverage", "", "| Design | Family | Best answer to |", "|---|---|---|"]
+    L += ["## Coverage", "", "| Method | Family | Best answer to |", "|---|---|---|"]
     for d in designs:
         qs = [q["id"] for q in questions if d["id"] in q["best"]]
         L.append(f"| {d['name']} | {FAM[d['family']]['name']} | {', '.join(qs)} |")

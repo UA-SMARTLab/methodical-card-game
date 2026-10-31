@@ -1628,11 +1628,11 @@
   },
   "T14": {
    "name": "Reviewer 2",
-   "text": "The Reviewer may play one extra Threat against every design this round."
+   "text": "The Reviewer may play one extra Threat against every method this round."
   },
   "T15": {
    "name": "Replication crisis",
-   "text": "Any design not defended with Preregistration or Independent replication loses 1 point this round."
+   "text": "Any method not defended with Preregistration or Independent replication loses 1 point this round."
   },
   "T16": {
    "name": "Open science prize",

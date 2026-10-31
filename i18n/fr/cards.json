@@ -1628,11 +1628,11 @@
   },
   "T14": {
    "name": "Relecteur 2",
-   "text": "Le Relecteur peut jouer une Menace de plus contre chaque schéma ce tour-ci."
+   "text": "Le Relecteur peut jouer une Menace de plus contre chaque méthode ce tour-ci."
   },
   "T15": {
    "name": "Crise de la reproductibilité",
-   "text": "Tout schéma non défendu par Préenregistrement ou Réplication indépendante perd 1 point ce tour-ci."
+   "text": "Toute méthode non défendue par Préenregistrement ou Réplication indépendante perd 1 point ce tour-ci."
   },
   "T16": {
    "name": "Bonus science ouverte",

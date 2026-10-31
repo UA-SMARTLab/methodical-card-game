@@ -1628,11 +1628,11 @@
   },
   "T14": {
    "name": "Reviewer 2",
-   "text": "Der Reviewer darf diese Runde gegen jedes Design eine zusätzliche Bedrohung spielen."
+   "text": "Der Reviewer darf diese Runde gegen jede Methode eine zusätzliche Bedrohung spielen."
   },
   "T15": {
    "name": "Replikationskrise",
-   "text": "Jedes Design ohne Präregistrierung oder Unabhängige Replikation verliert diese Runde 1 Punkt."
+   "text": "Jede Methode ohne Präregistrierung oder Unabhängige Replikation verliert diese Runde 1 Punkt."
   },
   "T16": {
    "name": "Open-Science-Preis",

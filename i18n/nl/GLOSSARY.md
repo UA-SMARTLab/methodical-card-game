@@ -8,7 +8,7 @@ Terms chosen for the Dutch translation (`cards.json`, `ui.json`), and the reason
 - **Keep the English term when Dutch researchers do.** Confounding, bias, power, follow-up, intention-to-treat, scoping review, grounded theory, difference-in-differences, overfitting and similar terms stay in English because Dutch journals and checklists use them that way. Everything else is in Dutch.
 - **Trial vs. studie.** Randomized experimental designs are called *trial*, as in NTvG and the Cochrane Netherlands checklists. *Studie* and *onderzoek* are used for any study. In the draft, *studie* was used for RCTs, which blurred the difference between experiments and observational studies.
 - **Random.** *Willekeurig* can mean "arbitrary" in Dutch. Where randomness is the methodological point, the translation uses *gerandomiseerd*, *door loting*, *gelote volgorde* or *aselect* (for samples and subcohorts), never *willekeurig*.
-- **Design.** The cards use *design* or *studiedesign* (the card type is "Design"). *Ontwerp* is kept for engineering and product design and for a statistical *experimenteel ontwerp* (choice sets, screening designs). *Proefopzet* is used for agricultural factorial layouts.
+- **Methode and design.** The card type is *Methode* (deck *Methoden*), following the English *Method*: "design" on its own was ambiguous next to engineering design. In running text a study design stays *design* or *studiedesign*. *Ontwerp* is kept for engineering and product design and for a statistical *experimenteel ontwerp* (choice sets, screening designs). *Proefopzet* is used for agricultural factorial layouts.
 - **Evidence status.** "Verified" means the term was seen in the cited source while preparing this glossary. "Convention" means standard usage known to the reviewer that was not checked online. A native reviewer should look at those first.
 
 ## Main sources
@@ -212,7 +212,7 @@ Terms chosen for the Dutch translation (`cards.json`, `ui.json`), and the reason
 | suit | kleur | Card-game term (harten, ruiten, ...). |
 | Weak vs | Kwetsbaar voor | The draft's *Zwak tegen* is a calque. |
 | Counters / Countered by | Ondervangt / Ondervangen door | A safeguard *ondervangt* a threat; it does not *weerlegt* (refute) it. *Weerlegging* stays for the game's "rebuttal". |
-| Play on a design | Speel tegen een design | |
+| Play on a method | Speel tegen een methode | |
 | Validity threat | Validiteitsbedreiging | |
 | Intermediate / Advanced | Halfgevorderd / Gevorderd | The draft shifted the levels (Gevorderd / Expert). |
 | Best / Defensible / Trap / Unlisted | Beste / Verdedigbaar / Valkuil / Niet vermeld | Card text that names a tier uses these words. Q39 said "'ok'-antwoord"; it now says *verdedigbare antwoord*. |

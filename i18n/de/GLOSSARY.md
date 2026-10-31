@@ -9,6 +9,9 @@ multi-word compounds hyphenated (Duden rule for English loan compounds), e.g. *I
 Where an established German term exists, it is used. Grammatical gender of *Review* is **masculine** throughout
 (*der systematische Review*, *ein Scoping Review*), following the DNEbM glossary.
 
+**Card type.** The card type is *Methode* (deck *Methoden*), following the English *Method*: *Design* on its own reads as
+styling in German. *Studiendesign* stays the technical term for a study design in running text.
+
 ## Sources (codes used in the table)
 
 | Code | Source |

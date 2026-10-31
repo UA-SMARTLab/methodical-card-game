@@ -6,6 +6,7 @@ Principles:
 
 - **The term Arabic scientific writing actually uses.** For medicine and epidemiology, the WHO Eastern Mediterranean Regional Office (EMRO) usage comes first: the Unified Medical Dictionary (المعجم الطبي الموحد) and the Arabic abstracts of the *Eastern Mediterranean Health Journal* (EMHJ). For economics, social science, information science and engineering, the usage of Arabic textbooks, theses and institutional documents in that field.
 - **The most widely understood form** where usage differs between regions (Levant, Egypt, Gulf, Maghreb). Alternatives are listed in the notes.
+- **Card type.** The card type is منهج (deck المناهج), following the English *Method*: تصميم on its own suggests graphic or engineering design. تصميم الدراسة stays the technical term for a study design in running text.
 - **One concept, one term**, in every field: card names, short texts, explanations, trap reasons, interface strings and art labels.
 - Modern Standard Arabic, Arabic punctuation (، ؛ ؟), Western digits. Author, study and organisation names stay in Latin script.
 
