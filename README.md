@@ -106,3 +106,10 @@ Each `GLOSSARY.md` records those choices and ends with the questions a native-sp
 Prototype v0.2: complete content in trading-card format, fully illustrated, printable, playable solo. The answer key has had one independent methodological
 review pass, and its corrections are applied. Next steps are in [`DESIGN.md` §7](DESIGN.md#7-open-questions-and-next-steps),
 starting with playtesting the Peer Review scoring and expert review per field.
+
+## Licence
+
+© 2026 Abdulhamid Baghdadi, SMART-Lab, Universiteit Antwerpen. Free for non-commercial use: teaching, study, research
+and play. The cards, art and rules are under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/);
+the software is under the [PolyForm Noncommercial License 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0/).
+Selling the game or making merchandise from it needs written permission. Details in [`LICENSE.md`](LICENSE.md).
