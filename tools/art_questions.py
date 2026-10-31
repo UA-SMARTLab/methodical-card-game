@@ -289,7 +289,7 @@ def q12():  # Peer tutoring
     out = person(40, 96, 1.7) + person(160, 96, 1.7, ACC)
     out += line([(18, 120), (182, 120)], INK, 3) + line([(30, 120), (30, 140)], INK, 3) + line([(170, 120), (170, 140)], INK, 3)
     out += path("M100,118 L74,110 V92 L100,100 L126,92 V110 Z", INK, 2.5, fill=SHADOW) + line([(100, 100), (100, 118)], INK, 2)
-    for x, y, s in ((84, 40, "+"), (104, 28, "×"), (124, 44, "÷"), (100, 62, "="), (72, 66, "2"), (132, 70, "3")):
+    for x, y, s in ((84, 40, "+"), (104, 34, "×"), (124, 44, "÷"), (100, 62, "="), (72, 66, "2"), (132, 70, "3")):
         out += text(x, y + 6, s, 18, ACC if s in "+×÷=" else INK)
     return out
 
@@ -300,7 +300,7 @@ def q13():  # Soda tax
     bottle += "".join(circle(x, y, 2, INK, o=.6) for x, y in ((56, 70), (70, 62), (62, 120), (74, 116)))
     tag = path("M118,44 L176,44 L176,96 L118,96 L104,70 Z", ACC, 3, fill="#FCD34D33") + circle(116, 70, 4, "none", ACC, 2)
     tag += text(146, 80, "TAX", 22, ACC)
-    return bottle + path("M72,34 Q100,40 112,70", DIM, 2) + tag + text(146, 122, "$", 26, INK)
+    return bottle + path("M72,34 Q100,40 112,70", DIM, 2) + tag + text(146, 118, "$", 26, INK)
 
 
 def q14():  # Scholarship cutoff
@@ -752,7 +752,7 @@ def q59():  # What should we measure?
     ribbon = path("M60,24 Q40,24 44,50 L72,110 M60,24 Q80,24 76,50 L48,110", COOL, 10)
     stripes = path("M60,24 Q40,24 44,50 L72,110 M60,24 Q80,24 76,50 L48,110", INK, 2.5)
     tape = circle(144, 56, 30, ACC, INK, 0) + circle(144, 56, 10, DARK) + rect(140, 82, 52, 20, ACC, ACC, 0, 2) + _ruler_ticks(146, 102, 190, 6, DARK)
-    return ribbon + stripes + tape + text(144, 130, "?", 26, INK) + text(110, 30, "?", 18, DIM) + text(60, 138, "?", 18, DIM)
+    return ribbon + stripes + tape + text(144, 118, "?", 22, INK) + text(106, 40, "?", 18, DIM) + text(60, 120, "?", 18, DIM)
 
 
 def q60():  # The rural gap
@@ -852,7 +852,7 @@ def q70():  # Why this deal?
 def q71():  # Under fifty
     ribbon = path("M78,28 Q60,28 64,56 L94,118 M78,28 Q96,28 92,56 L62,118", "#F472B6", 9)
     docs = "".join(doc(118 + k * 8, 28 + k * 10, 34, 44, INK, 3, "#0f172acc") for k in range(4))
-    return ribbon + docs + text(160, 126, "< 50 ?", 16, ACC)
+    return ribbon + docs + text(160, 123, "< 50 ?", 16, ACC)
 
 
 def q72():  # The abandoned form
@@ -870,16 +870,16 @@ def q73():  # No-shows
 
 
 def q74():  # The blogs know more
-    journals = "".join(doc(14 + k * 18, 104, 16, 22, INK, 2, DARK, 1.5) for k in range(3))
-    shelf = line([(10, 128), (74, 128)], INK, 3) + text(42, 144, "5", 14, INK)
+    journals = "".join(doc(14 + k * 18, 84, 16, 22, INK, 2, DARK, 1.5) for k in range(3))
+    shelf = line([(10, 108), (74, 108)], INK, 3) + text(42, 124, "5", 14, INK)
     r = lcg(74)
     posts = ""
     for k in range(14):
-        x, y = 96 + r() * 86, 30 + r() * 90
+        x, y = 96 + r() * 86, 30 + r() * 66
         posts += (bubble(x - 12, y - 8, 24, 16, COOL, DARK, "left", 1.5) if k % 3 else
                   rect(x - 12, y - 8, 24, 16, DARK, ACC, 1.5, 2) + path(f"M{x - 3},{y - 4} L{x + 5},{y} L{x - 3},{y + 4} Z", ACC, 0, fill=ACC))
     gear_ = gear(42, 50, 20, INK, 8, DARK) + check(42, 50, 8)
-    return journals + shelf + posts + gear_ + text(140, 144, "500", 14, COOL)
+    return journals + shelf + posts + gear_ + text(140, 124, "500", 14, COOL)
 
 
 QUESTION_ART = {f"Q{k:02d}": globals()[f"q{k:02d}"] for k in range(1, 75)}

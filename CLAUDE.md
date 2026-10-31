@@ -19,7 +19,9 @@ and work alike. My general rules are in `~/.claude/CLAUDE.md`; this file adds wh
   `app/index.html` (from `app/template.html`), `app/<code>/index.html` per language, `print/` sheets and the answer key.
   Generated files are never edited by hand.
 - `tools/cards.py` draws cards as HTML; `tools/art*.py` draws each card's picture as inline SVG (viewBox 200×150,
-  `preserveAspectRatio="xMidYMid slice"`, so keep labels away from the top and bottom 20 units).
+  `preserveAspectRatio="xMidYMid slice"`). The picture box's shape differs by card type, so how much of the top and
+  bottom is cut off differs too: in Methodical only y 20–130 shows on Questions, 9–141 on Methods, 3–147 on Twists and
+  Safeguards, all of it on Threats. Measure, don't assume: `tools/check_cards.py` flags any picture label cut off.
 - `tools/i18n.py`: English is the source. `i18n/en/ui.json` holds interface strings under stable keys;
   `i18n/en/cards.json` is generated from `data/`. Each language has `i18n/<code>/{ui.json, cards.json, GLOSSARY.md}`;
   anything missing falls back to English. `i18n/languages.json` lists languages (en, fr, nl, de, ar; ar is RTL).
@@ -32,8 +34,10 @@ and work alike. My general rules are in `~/.claude/CLAUDE.md`; this file adds wh
   type line `[ FAMILY / TYPE ]` (Barlow Condensed, upper case), one sentence of effect text (IBM Plex Sans Condensed),
   labelled rows (grey upper-case label, then content: e.g. "Good for", "Struggles with", "Weak vs"), footer with the
   card code (MTH-D01) and a legend.
-- Text that runs long shrinks to fit (`fitCards`, never below 72%); the build check is "no card overflows in any
-  language".
+- Text that runs long shrinks to fit (`fitCards`, never below 72%). After `build.py`, run `tools/check_cards.py`
+  (headless Chrome or Edge, all print sheets): no text box, name or picture label overflows in any language. Every kit
+  game has the same file. A long single-word name (Dutch and German compounds) gets a soft hyphen (U+00AD) where it
+  may break.
 - Colour language: concept cards take their family's colour; prompt cards (Questions) are one neutral colour
   (#40402C) so colour never gives the answer away; Threats crimson #9F1239, Safeguards emerald #047857, Twists violet
   #6D28D9, Programmes #0C4A6E, backs #0F172A.

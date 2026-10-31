@@ -316,8 +316,8 @@ def art_case_report():
 def art_cross_sectional():
     r = lcg(4)
     pc = lambda i, j: HOT if r() < .3 else INK
-    return (crowd(30, 46, 8, 3, 20, 32, 0.75, pc) + rect(16, 22, 168, 100, "none", ACC, 3, 6, dash="7 6")
-            + line([(14, 136), (186, 136)], DIM, 2) + circle(100, 136, 5, ACC) + text(100, 18, "NOW", 12, ACC))
+    return (crowd(30, 46, 8, 3, 20, 32, 0.75, pc) + rect(16, 26, 168, 96, "none", ACC, 3, 6, dash="7 6")
+            + line([(14, 136), (186, 136)], DIM, 2) + circle(100, 136, 5, ACC) + text(100, 22, "NOW", 12, ACC))
 
 
 def art_ecological():
@@ -454,7 +454,7 @@ def art_crossover():
         out += rect(44, y, 56, 18, a, a, 0, 4) + rect(124, y, 56, 18, b, b, 0, 4)
         out += text(72, y + 14, "A" if a == ACC else "B", 14, "#0f172a") + text(152, y + 14, "B" if b == COOL else "A", 14, "#0f172a")
     out += path("M100,53 L124,105 M100,105 L124,53", DIM, 2, dash="4 4")
-    return out + text(112, 138, "WASHOUT", 11, DIM)
+    return out + text(112, 135, "WASHOUT", 11, DIM)
 
 
 def art_factorial_doe():
@@ -488,8 +488,8 @@ def art_stepped_wedge():
     for row in range(4):
         for col in range(5):
             on = col > row
-            out += rect(28 + col * 30, 22 + row * 26, 26, 22, ACC if on else "none", ACC if on else DIM, 2, 2)
-    return out + arrow(28, 134, 176, 134, DIM, 2) + text(102, 148, "TIME", 10, DIM)
+            out += rect(28 + col * 30, 14 + row * 26, 26, 22, ACC if on else "none", ACC if on else DIM, 2, 2)
+    return out + arrow(28, 124, 176, 124, DIM, 2) + text(102, 138, "TIME", 10, DIM)
 
 
 def art_ab_test():
@@ -567,7 +567,7 @@ def art_mixed_sequential():
     out = axes(14, 40, 60, 66, INK, 2.5) + "".join(rect(22 + k * 14, 106 - h, 10, h, ACC, ACC, 0, 1) for k, h in enumerate((20, 46, 30, 54)))
     out += arrow(84, 76, 116, 76, INK, 3.5)
     out += bubble(124, 34, 62, 36, INK, "#0f172a55") + line([(134, 46), (176, 46)], INK, 2) + line([(134, 56), (162, 56)], INK, 2)
-    return out + person(150, 112, 1.2, DIM) + text(44, 132, "NUMBERS", 11, ACC) + text(156, 142, "STORIES", 11, INK)
+    return out + person(150, 112, 1.2, DIM) + text(44, 132, "NUMBERS", 11, ACC) + text(156, 136, "STORIES", 11, INK)
 
 
 def art_systematic_review():
@@ -613,7 +613,7 @@ def art_rapid_review():
 
 
 def art_realist_review():
-    out = circle(62, 76, 46, "none", COOL, 3, dash="5 5") + gear(62, 76, 22, ACC, 10) + text(62, 138, "CONTEXT", 11, COOL)
+    out = circle(62, 76, 46, "none", COOL, 3, dash="5 5") + gear(62, 76, 22, ACC, 10) + text(62, 135, "CONTEXT", 11, COOL)
     out += arrow(114, 76, 146, 76, INK, 3.5) + star(168, 76, 18, ACC)
     return out + text(62, 26, "MECHANISM", 10, ACC) + text(168, 108, "OUTCOME", 10, INK)
 
@@ -647,11 +647,11 @@ def art_bibliographic_coupling():
             out += arrow(cx + (k - 1.5) * 5, 94, 29 + k * 46, 50, DIM, 2, head=6)
     out += doc(40, 96, 32, 40, INK, 0, "#0f172a") + doc(128, 96, 32, 40, INK, 0, "#0f172a")
     out += text(56, 125, "A", 18, INK) + text(144, 125, "B", 18, INK)
-    return out + line([(76, 116), (124, 116)], ACC, 6) + text(100, 138, "×2", 12, ACC)
+    return out + line([(76, 116), (124, 116)], ACC, 6) + text(100, 135, "×2", 12, ACC)
 
 
 def art_multivocal_review():
-    out = text(32, 16, "WHITE", 10, INK) + text(32, 84, "GREY", 10, DIM)
+    out = text(32, 21, "WHITE", 10, INK) + text(32, 84, "GREY", 10, DIM)
     out += doc(10, 22, 20, 26, INK, 2, "#0f172a", 2) + doc(36, 24, 20, 26, INK, 2, "#0f172a", 2)
     out += bubble(8, 92, 26, 18, DIM, "#0f172a44", "left", 2) + rect(38, 92, 26, 18, "#0f172a44", DIM, 2, 2)
     out += path("M44,96 L56,101 L44,106 Z", DIM, 0, fill=DIM) + doc(20, 116, 20, 24, DIM, 2, "#0f172a44", 2)
@@ -667,7 +667,7 @@ def art_diagnostic_accuracy():
     out += line([(22, 64), (36, 64)], HOT, 3) + line([(22, 74), (36, 74)], HOT, 3)
     out += rect(70, 22, 116, 104, "none", INK, 2.5, 4) + line([(128, 22), (128, 126)], INK, 2.5) + line([(70, 74), (186, 74)], INK, 2.5)
     return (out + check(99, 48, 13) + cross(157, 48, 9) + cross(99, 100, 9) + check(157, 100, 13)
-            + text(99, 18, "+", 14, INK) + text(157, 18, "−", 14, INK))
+            + text(99, 21, "+", 12, INK) + text(157, 21, "−", 12, INK))
 
 
 def art_reliability():
@@ -743,7 +743,7 @@ def art_prediction_model():
 def art_design_science():
     out = carrow(100, 20, 170, 24, 172, 88, INK, 3) + carrow(170, 104, 150, 140, 70, 132, INK, 3) + carrow(46, 118, 18, 70, 72, 26, INK, 3)
     out += gear(92, 78, 24, ACC, 9) + gear(124, 64, 14, INK, 7)
-    return out + text(178, 62, "BUILD", 10, INK, "start") + text(110, 148, "TEST", 10, INK) + text(14, 54, "LEARN", 10, INK, "start")
+    return out + text(175, 62, "BUILD", 10, INK, "start") + text(110, 124, "TEST", 10, INK) + text(14, 54, "LEARN", 10, INK, "start")
 
 
 def art_pilot():

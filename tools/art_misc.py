@@ -152,7 +152,7 @@ def tw_threshold():
         out += rect(x, 126 - h, 12, h, ACC if above else "none", ACC if above else DIM, 2, 1)
     out += line([(100, 14), (100, 132)], HOT, 3, "6 5")
     out += scissors(100, 26, 90, 0.7, INK, 18)
-    out += text(110, 146, "60", 13, HOT, "start")
+    out += text(110, 140, "60", 13, HOT, "start")
     return out
 
 
@@ -189,7 +189,7 @@ def tw_only_one():
     out += rect(82, 2, 36, 12, INK, INK, 0, 3)
     for x in (24, 176):
         out += person(x, 116, 1.3, FAINT)
-    return out + person(100, 104, 2.4) + text(100, 148, "N = 1", 12, ACC)
+    return out + person(100, 104, 2.4) + text(100, 143, "N = 1", 12, ACC)
 
 
 def tw_thirty():
@@ -269,7 +269,7 @@ def tw_reviewer2():
     pen = rect(-5, -34, 10, 56, HOT, DARK, 1.5, 2) + poly([(-5, 22), (5, 22), (0, 34)], INK) + rect(-5, -34, 10, 10, DARK, "none", 0, 1)
     out += g(pen, 30, 0, 0, 120, 112)
     out += path("M100,138 q10,-8 20,0 t20,0", HOT, 3)
-    return out + text(164, 92, "2", 92, HOT, weight=800)
+    return out + text(164, 94, "2", 80, HOT, weight=800)
 
 
 def tw_replication():

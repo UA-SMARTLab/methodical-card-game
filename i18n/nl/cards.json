@@ -871,7 +871,7 @@
    "example": "MMWR, juni 1981: Pneumocystis-pneumonie bij vijf jonge mannen in Los Angeles, de eerste gepubliceerde beschrijving van aids."
   },
   "cross-sectional": {
-   "name": "Dwarsdoorsnedeonderzoek",
+   "name": "Dwarsdoorsnede­onderzoek",
    "short": "Eén momentopname van een steekproef: hoe vaak komt iets nu voor?",
    "gist": "Meet blootstelling en uitkomst in een steekproef op één moment. Schat de prevalentie; kan niet tonen wat eerst kwam.",
    "example": "Nationale gezondheidsenquêtes die de prevalentie van roken schatten naar leeftijd en regio."
@@ -1165,7 +1165,7 @@
    "example": "McFaddens random-utilitymodellen (Nobelprijs, 2000), eerst gebruikt om het reizigersaantal van BART in San Francisco te voorspellen."
   },
   "interlab": {
-   "name": "Interlaboratoriumvergelijking",
+   "name": "Interlaboratorium­vergelijking",
    "short": "Zelfde monster, veel labs: hoe reproduceerbaar is de methode?",
    "gist": "Identieke monsters gaan naar veel labs (een 'ringonderzoek'); verschillen tonen hoe reproduceerbaar een meetmethode is.",
    "example": "Ringonderzoeken voor proficiency testing; BIPM-sleutelvergelijkingen tussen nationale metrologie-instituten."
