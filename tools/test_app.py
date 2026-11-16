@@ -5,10 +5,11 @@
 
 The test page loads the app in a frame and plays every Question once: tap a Method card, press the green "Pick this
 card" button in the full-screen viewer, then defend the best Method in the peer-review round. It also checks the home
-page, the decks, the phone's back button, signed scores in right-to-left pages, and that a round in progress
-survives leaving the game. Expected tiers come from the answer key in data/questions.json, by definition: a Method
-listed under "best" is best, under "ok" defensible, under "traps" a trap, anything else unlisted. Exit status 1 on any
-failure.
+page, the decks, the phone's back button, signed scores in right-to-left pages, that a round in progress survives
+leaving the game, and Find your method (highlighting, walking a branch, Back, and every Method traced back to its
+routes and walked forwards again). Expected tiers come from the answer key in data/questions.json, by definition: a
+Method listed under "best" is best, under "ok" defensible, under "traps" a trap, anything else unlisted. Expected tree
+results come from data/method-tree.json, by definition. Exit status 1 on any failure.
 """
 import json
 import re
@@ -130,6 +131,43 @@ async function run() {
     if (counts[k] !== w.eval(`DATA.${k}.length`)) fail(`decks: ${k} shows ${counts[k]} cards, expected ${w.eval(`DATA.${k}.length`)}`);
   }
   out.counts = counts;
+  // Find your method. Expected values come from data/method-tree.json (window.TREE), by definition.
+  const tap = el => el.dispatchEvent(new w.MouseEvent("click", { bubbles: true }));
+  w.FIND_RESOLVE = w.eval("FIND.resolve");
+  w.eval('show("home")'); await sleep(30);
+  $('[data-go="find"]').click(); await sleep(60);
+  if ($("#view-find").hidden) fail("find: the home tile did not open Find your method");
+  if ($$("#ft-map .nd[data-aim]:not(.chipn):not(.sit)").length !== 9) fail("find: the overview should show 9 kinds of question");
+  if ($$("#ft-map .nd.fill").length !== 9) fail("find: the overview should show 9 Method families");
+  // A first click lights a kind of question's families; a situation lights only the Methods it leads to.
+  tap($('#ft-map .nd[data-aim="CAUSE"]:not(.chipn):not(.sit)')); await sleep(30);
+  const lit = $$("#ft-map .nd.fill.on").length;
+  if (lit !== window.TREE.fams.CAUSE) fail(`find: Causal lit ${lit} families, its branch reaches ${window.TREE.fams.CAUSE}`);
+  tap($('#ft-map .nd.chipn[data-aim="CAUSE"][data-sit="con:cutoff"]')); await sleep(30);
+  const via = $$("#ft-detail [data-walk]").map(b => { const [aim, p] = b.dataset.walk.split("|");
+    return w.FIND_RESOLVE(aim, p.split(".").map(Number)).leaf.method; });
+  if (via.join() !== window.TREE.cutoff.join()) fail(`find: Cutoff rule under Causal leads to ${via}, the tree says ${window.TREE.cutoff}`);
+  // A second click opens the branch; answering walks it; Back steps back through it.
+  tap($('#ft-map .nd[data-aim="CAUSE"]:not(.chipn):not(.sit)')); await sleep(30);
+  tap($('#ft-map .nd[data-aim="CAUSE"]:not(.chipn):not(.sit)')); await sleep(30);
+  if (w.eval("FIND.state.aim") !== "CAUSE") fail("find: a second click did not open the Causal branch");
+  tap($('#ft-map .nd[data-p="2"]')); await sleep(30); tap($('#ft-map .nd[data-p="2.0"]')); await sleep(30);
+  if (!$("#ft-detail .tcg") || w.eval("FIND.resolve('CAUSE', [2, 0]).leaf.method") !== "rdd") fail("find: walking Causal › can't assign › cutoff did not show Regression discontinuity");
+  if (await goBack()) { if (w.eval("FIND.state.path.join('.')") !== "2") fail(`find: back went to ${w.eval("FIND.state.path.join('.')")}, expected the previous answer`); }
+  else fail("find: back had no step to return to");
+  // Method to RQ: every Method shows all its routes, and walking the first one forwards lands on that Method.
+  $('#view-find [data-ft="method"]').click(); await sleep(30);
+  let traced = 0;
+  for (const [m, n] of Object.entries(window.TREE.routes)) {
+    w.eval(`FIND.restore({ tab: "method", f: D["${m}"].family, m: "${m}" })`); await sleep(5);
+    const rows = $$("#ft-rmap .nd[data-aim]").length;
+    if (rows !== n) fail(`find: ${m} shows ${rows} routes, the tree has ${n}`);
+    tap($("#ft-rmap .nd[data-walk]")); await sleep(5);
+    const st = w.eval("FIND.state"), leaf = w.FIND_RESOLVE(st.aim, st.path);
+    if (st.tab !== "rq" || !leaf || leaf.leaf.method !== m || !$("#ft-detail .tcg")) fail(`find: walking a route back from ${m} did not land on its card`);
+    else traced++;
+  }
+  out.traced = traced;
 }
 run().catch(e => out.fails.push("driver crashed: " + e)).finally(() => { document.body.dataset.result = JSON.stringify(out); });
 """
@@ -146,6 +184,28 @@ def expectations():
     return out
 
 
+def tree_expectations():
+    """From data/method-tree.json, by definition: how many routes end on each Method, how many Method families each
+    kind of question's branch reaches, and the Methods below the Cutoff rule answers in the Causal branch."""
+    tree = json.loads((ROOT / "data" / "method-tree.json").read_text(encoding="utf-8"))
+    family = {d["id"]: d["family"] for d in json.loads((ROOT / "data" / "designs.json").read_text(encoding="utf-8"))}
+    routes, fams, cutoff = {}, {}, []
+
+    def walk(node, aim, under_cutoff):
+        for o in node["options"]:
+            hit = under_cutoff or (aim == "CAUSE" and o.get("con") == "cutoff")
+            if "method" in o:
+                routes[o["method"]] = routes.get(o["method"], 0) + 1
+                fams.setdefault(aim, set()).add(family[o["method"]])
+                if hit:
+                    cutoff.append(o["method"])
+            elif "next" in o:
+                walk(o["next"], aim, hit)
+    for aim, node in tree["aims"].items():
+        walk(node, aim, False)
+    return {"routes": routes, "fams": {a: len(f) for a, f in fams.items()}, "cutoff": cutoff}
+
+
 def run_test(exe):
     app = (ROOT / "app" / "index.html").as_uri()
     with tempfile.TemporaryDirectory() as tmp:
@@ -153,7 +213,7 @@ def run_test(exe):
         page.write_text(f"""<!doctype html><html><head><meta charset="utf-8"><style>html,body{{margin:0;height:100%}}
 iframe{{border:0;width:100%;height:100%;display:block}}</style></head><body>
 <iframe id="app" src="{app}"></iframe>
-<script>window.EXPECT = {json.dumps(expectations())};
+<script>window.EXPECT = {json.dumps(expectations())}; window.TREE = {json.dumps(tree_expectations())};
 document.getElementById("app").addEventListener("load", () => setTimeout(() => {{ {DRIVER} }}, 400), {{ once: true }});</script></body></html>""",
                         encoding="utf-8")
         dom = subprocess.run([exe, "--headless=new", "--disable-gpu", "--no-first-run", "--allow-file-access-from-files",
@@ -168,7 +228,8 @@ document.getElementById("app").addEventListener("load", () => setTimeout(() => {
     for f in res["fails"] + [f"page error: {e}" for e in res["errors"]]:
         print("FAIL", f)
     ok = not res["fails"] and not res["errors"]
-    print(f"{'ok  ' if ok else 'FAIL'} played {res['played']} Questions through the viewer and its green button; decks show {res.get('counts')}")
+    print(f"{'ok  ' if ok else 'FAIL'} played {res['played']} Questions through the viewer and its green button; decks show {res.get('counts')}; "
+          f"Find your method traced {res.get('traced', 0)} Methods back and walked them forwards")
     return ok
 
 

@@ -42,6 +42,10 @@ On the 60 Method cards the illustration is the study's own diagram, so the pictu
   | Ubuntu | [`play-ubuntu.sh`](play-ubuntu.sh) | In Files, right-click it and choose **Run as a Program**, or run `./play-ubuntu.sh`. |
 
   If a launcher won't run because its executable bit was lost (for example when it was unzipped), run `sh play-mac.command` or `sh play-ubuntu.sh`.
+- **Find your method:** a page in the app with a decision tree in two directions. *RQ to Method* starts from your
+  research question: pick its kind of question, answer a few plain questions about your situation, and arrive at the
+  Method card that fits. *Method to RQ* is the mirror image: pick a Method and see every research question and
+  situation that leads to it. Each zone names the classification it follows (see [`docs/`](docs)).
 - **Print a prototype:** open [`print/cards.html`](print/cards.html) in Chrome and print at 100% on A4 with background graphics on, then cut. That gives 218 poker-size cards and 6 programme mats.
   All cards share one back ([`print/backs.html`](print/backs.html)); opaque card sleeves are the easiest alternative. The answers are in [`print/answer-key.html`](print/answer-key.html).
 - **Rules:** [`RULES.md`](RULES.md) has four modes: *Methods Map* (classroom), *Peer Review* (competitive), *Research Programme* (cooperative) and *Reviewer 2* (drill).
@@ -69,6 +73,9 @@ The script (standard library only) validates every cross-reference and regenerat
 and the app. Card layout lives in `tools/cards.py`; the art is hand-built SVG in `tools/art*.py` (`art.py` holds the drawing kit
 and the method diagrams). The build also checks that every method is the best answer somewhere, that every method's weakness has a usable
 safeguard, and that each question's key threat is one its best method is actually weak to.
+The *Find your method* tree lives in [`data/method-tree.json`](data/method-tree.json); the build refuses a branch that
+ends on a method whose card doesn't serve that kind of question, and checks that every method is reachable and that every
+question's best answer lies on its own branch. `python3 tools/test_app.py` plays the built app headless, including the tree.
 
 ## Languages
 

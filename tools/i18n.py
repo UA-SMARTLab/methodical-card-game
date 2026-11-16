@@ -29,6 +29,42 @@ TEXT_FIELDS = {
 }
 
 
+# The "Find your method" tree (data/method-tree.json) is nested, so its text is keyed by its path in the tree
+# ("aims/CAUSE/options/2/label"). Only fields with these names are text; ids, links and sources stay as they are.
+TREE_TEXT = {"intro", "q", "help", "label", "hint", "short", "plain", "term", "tag", "name", "what", "situation", "note"}
+
+
+def tree_text(tree):
+    """The tree's translatable strings, {path: text}."""
+    out = {}
+
+    def walk(x, path, key):
+        if isinstance(x, dict):
+            for k, v in x.items():
+                if not k.startswith("_") and k != "ref":
+                    walk(v, path + [k], k)
+        elif isinstance(x, list):
+            for i, v in enumerate(x):
+                walk(v, path + [str(i)], key)
+        elif isinstance(x, str) and key in TREE_TEXT:
+            out["/".join(path)] = x
+    walk(tree, [], None)
+    return out
+
+
+def apply_tree(tree, tr):
+    """Lay translated strings {path: text} over the tree, in place. Paths that no longer exist are ignored."""
+    for path, text in (tr or {}).items():
+        *parents, last = path.split("/")
+        node = tree
+        for p in parents:
+            node = node[int(p)] if isinstance(node, list) and p.isdigit() and int(p) < len(node) else node.get(p) if isinstance(node, dict) else None
+            if node is None:
+                break
+        if text and isinstance(node, dict) and isinstance(node.get(last), str):
+            node[last] = text
+
+
 def load_json(path, default=None):
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else default
 
@@ -52,6 +88,8 @@ def source_cards(data):
             if deck == "programs":
                 entry["stages"] = [st["ask"] for st in x["stages"]]
             out[deck][x["id"]] = entry
+    if "tree" in data:
+        out["tree"] = tree_text(data["tree"])
     return out
 
 
@@ -88,6 +126,8 @@ def translated(data, code):
                 for st, ask in zip(x["stages"], t.get("stages", [])):
                     if ask:
                         st["ask"] = ask
+    if "tree" in data:
+        apply_tree(data["tree"], tr.get("tree"))
     return data
 
 

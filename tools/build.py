@@ -27,6 +27,7 @@ threats = load("threats")
 safeguards = load("safeguards")
 twists = load("twists")
 programs = load("programs")
+tree = load("method-tree")
 
 D = {d["id"]: d for d in designs}
 T = {t["id"]: t for t in threats}
@@ -136,6 +137,86 @@ for d in designs:
             warnings.append(f"design {d['id']}: no usable safeguard against its weakness '{tid}'")
 
 
+# --------------------------------------------------------------------------- the "Find your method" tree
+# data/method-tree.json: one branch per kind of question (suit), each ending on Methods. A branch may only end on a
+# Method whose card serves that kind of question, every Method must be reachable, and every Question card's best
+# answer should lie on its own kind of question's branch.
+def tree_walk(node, path):
+    """Every option under node, with the option indexes leading to it."""
+    for i, opt in enumerate(node["options"]):
+        yield path + [i], opt
+        if "next" in opt:
+            yield from tree_walk(opt["next"], path + [i])
+
+
+tree_leaves = []  # (suit, path, design id)
+for sid in SUIT:
+    if sid not in tree["aims"]:
+        errors.append(f"method-tree: kind of question {sid} has no branch")
+for aim, node in tree["aims"].items():
+    if aim not in SUIT:
+        errors.append(f"method-tree: unknown kind of question {aim}")
+        continue
+    # The first fork is asked in everyday words, with a real Question card of that kind as its example.
+    for k in ("tag", "short", "plain", "term", "example", "q"):
+        if not node.get(k):
+            errors.append(f"method-tree {aim}: needs '{k}'")
+    ex = next((q for q in questions if q["id"] == node.get("example")), None)
+    if node.get("example") and (not ex or ex["suit"] != aim):
+        errors.append(f"method-tree {aim}: example {node['example']} is not a {aim} Question card")
+    for path, opt in tree_walk(node, []):
+        where = f"method-tree {aim} {'.'.join(str(i + 1) for i in path)} '{opt['label']}'"
+        ends = [k for k in ("method", "next", "goto") if k in opt]
+        if len(ends) != 1:
+            errors.append(f"{where}: needs exactly one of method, next, goto (has {ends or 'none'})")
+        if "con" in opt and opt["con"] not in CON:
+            errors.append(f"{where}: unknown constraint {opt['con']}")
+        if "time" in opt and opt["time"] not in tree["time"]["terms"]:
+            errors.append(f"{where}: unknown time term {opt['time']}")
+        if "goto" in opt and opt["goto"] not in SUIT:
+            errors.append(f"{where}: goto unknown kind of question {opt['goto']}")
+        if "method" in opt:
+            m = opt["method"]
+            if m not in D:
+                errors.append(f"{where}: unknown design {m}")
+                continue
+            tree_leaves.append((aim, path, m))
+            # A branch must never teach that a Method answers a kind of question its own card says it does not serve.
+            if aim not in D[m]["serves"]:
+                errors.append(f"{where}: {m} does not serve {aim} (its card serves {D[m]['serves']})")
+            if "con" in opt and opt["con"] not in D[m]["fits"]:
+                warnings.append(f"{where}: constraint {opt['con']} is not in {m}'s fits")
+for d in designs:
+    if not any(m == d["id"] for _, _, m in tree_leaves):
+        errors.append(f"method-tree: design {d['id']} cannot be reached")
+tree_paths = {}
+for aim, path, m in tree_leaves:
+    tree_paths.setdefault((aim, m), path)
+for q in questions:
+    if not any((q["suit"], b) in tree_paths for b in q["best"]):
+        warnings.append(f"method-tree: question {q['id']}'s best answer {q['best']} is not on the {q['suit']} branch")
+for g, grp in tree["time"]["groups"].items():
+    if not grp.get("ref", {}).get("cite"):
+        errors.append(f"method-tree time group {g}: needs a source")
+for t_id, term in tree["time"]["terms"].items():
+    if term.get("group") not in tree["time"]["groups"]:
+        errors.append(f"method-tree time term {t_id}: unknown group {term.get('group')}")
+# Research purposes shown as tags: each names the kinds of question it spans and its source.
+for p in tree["purposes"]["options"]:
+    check_ids(p["aims"], SUIT, f"method-tree purpose {p['id']}", "kind of question")
+    if not p.get("tag") or not p.get("ref", {}).get("cite"):
+        errors.append(f"method-tree purpose {p['id']}: needs a tag and a source")
+    if p["ref"].get("url") and not p["ref"]["url"].startswith("https://"):
+        errors.append(f"method-tree purpose {p['id']}: source link must be https")
+# Every Method family says which source its grouping follows, or that it is the game's own.
+for f in FAM:
+    src = tree["sources"]["families"].get(f)
+    if not src:
+        errors.append(f"method-tree: family {f} has no source")
+    elif src.get("fit") not in ("source", "partial", "own") or not src.get("cite"):
+        errors.append(f"method-tree: family {f} needs fit (source, partial or own) and cite")
+
+
 # --------------------------------------------------------------------------- languages
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import art  # noqa: E402  (needs the tools/ folder on sys.path)
@@ -144,7 +225,7 @@ import i18n  # noqa: E402
 
 e = html.escape
 DATA_ALL = {"meta": meta, "designs": designs, "questions": questions, "threats": threats,
-            "safeguards": safeguards, "twists": twists, "programs": programs}
+            "safeguards": safeguards, "twists": twists, "programs": programs, "tree": tree}
 
 
 class Lang:
@@ -413,6 +494,9 @@ if __name__ == "__main__":
         if info["code"] == "en":
             print(f"ok: {len(questions)} questions, {len(designs)} designs, {len(threats)} threats, "
                   f"{len(safeguards)} safeguards, {len(twists)} twists, {len(programs)} programmes ({n} printable cards)")
+            reach = sum(any((q["suit"], b) in tree_paths for b in q["best"]) for q in questions)
+            print(f"  method tree: {len(tree_leaves)} branch ends reach {len({m for _, _, m in tree_leaves})}/{len(designs)} designs; "
+                  f"{reach}/{len(questions)} questions reach their best answer on their own branch")
             print("  en: source language")
         else:
             total, done = i18n.coverage(info["code"])

@@ -165,6 +165,15 @@ Rules the validator enforces (see `tools/build.py`):
 6. **Art and print.** v0.2 uses hand-built vector art (see section 9). A print-on-demand run would fit a standard two-deck box.
    Painted art could later replace the illustrations on Question cards, but the Design diagrams should stay diagrams.
 7. **Name.** "Methodical" is a working title. Alternatives: *Fit for Purpose*, *Design Space*, *Reviewer 2*, *Study Hall*.
+8. **Find your method: sources for the forks.** The top of the tree is sourced (section 10); the follow-up questions
+   inside each branch are not yet. Each fork needs the published rule it encodes (e.g. Grimes & Schulz 2002 for "can
+   you assign the exposure?").
+9. **Find your method: family names.** Three Method families have no published category of their own
+   (quasi-experimental, theory & computation, design & development) and two are only partly published (qualitative
+   & mixed, measurement); cross-sectional studies are *analytical* in Grimes & Schulz (2002) and MeSH but *descriptive*
+   here. See `docs/method-tree-taxonomies.md`.
+10. **Find your method: translations.** The tree's text (data/method-tree.json) and its interface strings are English
+    only so far; French, Dutch, German and Arabic fall back to English.
 
 ## 8. Trading-card format (v0.2)
 
@@ -206,3 +215,30 @@ Every Method, Threat and Safeguard card carries its own key reference (`ref` in 
 - Cronbach & Meehl (1955) on construct validity and the nomological network; Campbell & Fiske (1959) on the multitrait–multimethod matrix.
 - Hevner et al. (2004) on design science in information systems; Montgomery, *Design and Analysis of Experiments*.
 - The EQUATOR reporting guidelines (CONSORT, STROBE, STARD, TRIPOD, PRISMA).
+
+## 10. Find your method: the decision tree
+
+An app page (`data/method-tree.json`, the *Find your method* tab) that walks from a research question to a Method
+card, and back. It keeps three zones apart, read left to right, because the game rests on the same split: a Question
+card is **what you study**, the constraints are **your situation**, a Method card is **your tool**.
+
+- **What you study.** The first fork is the nine suits, asked in plain words ("Does one thing change another?") with a
+  real Question card as the example and the research term as a badge (*Causal*). Two research purposes that span several
+  suits ride along as extra badges: **Explanatory** (Association, Causal, Theoretical) and **Evaluative** (Causal,
+  Measurement), after Saunders, Lewis & Thornhill (2019, §5.7). A separate first layer of seven purposes was tried and
+  dropped: it repeated the suits. A past/present/future first question was also considered and dropped: time cuts across
+  every purpose, so it sits lower down, as *time horizon* (cross-sectional, longitudinal) and *direction* (retrospective,
+  prospective) badges on the answers where timing decides the method.
+- **Your situation.** Each branch asks about the constraints in everyday words; each answer names the constraint card
+  it stands for. The Explain suit is badged *Theoretical*, not *Explanatory*, because in Saunders et al. (2019),
+  Shmueli (2010) and Hernán et al. (2019) "explanatory" means causal.
+- **Your tool.** Each Method family says which published category it follows, partly follows, or that it is the game's
+  own grouping (sources in `data/method-tree.json`; how each was checked in `docs/method-tree-taxonomies.md`).
+- **Two directions.** *RQ to Method* walks forwards; *Method to RQ* is the mirror image, listing every route that ends on
+  a Method. Clicking a kind of question or a single situation lights its paths through the tree.
+- **Checks.** `tools/build.py` refuses a branch that ends on a Method whose card doesn't serve that suit and requires every
+  Method to be reachable; it warns if a Question card's best answer is not on its own suit's branch (all 74 are).
+  `tools/test_app.py` traces every Method back and walks it forwards again.
+
+Sources and how each was verified: `docs/method-tree-sources.md` (purposes, time terms) and
+`docs/method-tree-taxonomies.md` (Method families, research fields).

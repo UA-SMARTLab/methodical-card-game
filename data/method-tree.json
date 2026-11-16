@@ -1,0 +1,939 @@
+{
+ "_about": "The \"Find your method\" tree, read by tools/build.py (which checks it) and by the app's Find your method page. The first fork is the kind of question (a suit in meta.json), asked in everyday words (short, plain) with a real Question card as its example; the research term comes second (tag, term). Each branch then asks about the situation until it lands on a Method (method, an id in designs.json). next is a follow-up question, goto jumps to another kind of question, con is the constraint the answer stands for, time a time term, and a node's help teaches the research word behind its plain question. purposes: the research purposes that span several kinds of question (shown as tags), each with its source. sources: where each zone's categories come from; see docs/method-tree-sources.md for how each was checked.",
+ "intro": "Have a research question but not sure how to study it? Answer a few plain questions. Each answer narrows the choice, until you reach the method that fits.",
+ "first": {
+  "q": "What do you want to find out?",
+  "help": "Pick the one closest to your research question. The examples are real question cards from the game."
+ },
+ "aims": {
+  "DESCRIBE": {
+   "tag": "Descriptive",
+   "short": "How many? How often?",
+   "plain": "How common something is, how much there is, or whether it is changing.",
+   "term": "a descriptive question",
+   "example": "Q01",
+   "q": "What do you want to describe?",
+   "options": [
+    {
+     "label": "One or a few unusual cases",
+     "hint": "A patient, an accident or a failure nobody has seen before",
+     "con": "single-unit",
+     "method": "case-report"
+    },
+    {
+     "label": "A group you can take a sample from",
+     "next": {
+      "q": "Once, or again and again?",
+      "options": [
+       {
+        "label": "Once: how common is it right now?",
+        "con": "fast-cheap",
+        "time": "cross-sectional",
+        "method": "cross-sectional"
+       },
+       {
+        "label": "Again and again: is it going up or down?",
+        "hint": "The same measurement, taken the same way, over years",
+        "time": "longitudinal",
+        "method": "surveillance"
+       }
+      ]
+     }
+    },
+    {
+     "label": "A group nobody can list in full",
+     "hint": "Animals in a pond, people without a fixed address: count them from the overlap of two samples",
+     "method": "capture-recapture"
+    },
+    {
+     "label": "Whole countries, regions or years",
+     "hint": "You only have their averages, not data on single people",
+     "con": "group-level",
+     "method": "ecological"
+    },
+    {
+     "label": "Published research itself",
+     "hint": "Who cites whom: the shape of a research field",
+     "goto": "SYNTHESIZE"
+    }
+   ]
+  },
+  "EXPLORE": {
+   "tag": "Exploratory",
+   "short": "What is going on, and why?",
+   "plain": "How people experience or do something, when nobody yet knows what matters.",
+   "term": "an exploratory question",
+   "example": "Q55",
+   "q": "Where can you learn about it?",
+   "options": [
+    {
+     "label": "From people: their experience and habits",
+     "con": "unknown-territory",
+     "next": {
+      "q": "How much time can you spend with them?",
+      "options": [
+       {
+        "label": "Months: live among them and watch",
+        "method": "ethnography"
+       },
+       {
+        "label": "Weeks: interview them, then look for patterns",
+        "con": "fast-cheap",
+        "method": "interviews-thematic"
+       },
+       {
+        "label": "Until a new explanation grows out of what you hear",
+        "method": "grounded-theory"
+       },
+       {
+        "label": "One place or event, studied from every side",
+        "con": "single-unit",
+        "method": "case-study"
+       }
+      ]
+     }
+    },
+    {
+     "label": "From experts who disagree",
+     "hint": "Ask them in rounds until they agree",
+     "method": "delphi"
+    },
+    {
+     "label": "From watching people use a product",
+     "method": "think-aloud"
+    },
+    {
+     "label": "From what has already been written",
+     "next": {
+      "q": "Where is most of it written?",
+      "options": [
+       {
+        "label": "In scientific journals",
+        "con": "many-studies",
+        "method": "scoping-review"
+       },
+       {
+        "label": "In blogs, talks and company reports",
+        "con": "practice-led",
+        "method": "multivocal-review"
+       }
+      ]
+     }
+    },
+    {
+     "label": "From numbers and from people's stories",
+     "hint": "One part explains or tests the other",
+     "method": "mixed-sequential"
+    }
+   ]
+  },
+  "ASSOCIATE": {
+   "tag": "Association",
+   "short": "Do two things go together?",
+   "plain": "Whether people with one thing more often have another, without proving that one causes the other.",
+   "term": "a question of association",
+   "example": "Q10",
+   "q": "Do you already know which possible cause to look at?",
+   "help": "Researchers call the possible cause the exposure, and the result the outcome.",
+   "options": [
+    {
+     "label": "No: test millions of genes, one by one",
+     "con": "unknown-territory",
+     "method": "gwas"
+    },
+    {
+     "label": "Yes: one possible cause, one result",
+     "next": {
+      "q": "Is one of them rare?",
+      "options": [
+       {
+        "label": "The result is rare: 1 in 1,000 people or fewer",
+        "con": "rare-outcome",
+        "next": {
+         "q": "What is the possible cause like?",
+         "options": [
+          {
+           "label": "Brief, and it acts at once",
+           "hint": "Something that happened in the hour or day before",
+           "con": "transient",
+           "method": "case-crossover"
+          },
+          {
+           "label": "Long-lasting, and easy to ask about or look up",
+           "hint": "Start from the result, then look back at the cause",
+           "time": "retrospective",
+           "method": "case-control"
+          },
+          {
+           "label": "Costly to measure, from stored samples",
+           "hint": "Measure it only for those with the result and a sample of the rest",
+           "con": "existing-data",
+           "method": "case-cohort"
+          }
+         ]
+        }
+       },
+       {
+        "label": "The cause is rare: only a small group has it",
+        "con": "rare-exposure",
+        "next": {
+         "q": "Are there already records of that group?",
+         "options": [
+          {
+           "label": "Yes: rebuild the group from old records",
+           "con": "existing-data",
+           "time": "retrospective",
+           "method": "cohort-retrospective"
+          },
+          {
+           "label": "No: measure now, then follow them for years",
+           "time": "prospective",
+           "method": "cohort-prospective"
+          }
+         ]
+        }
+       },
+       {
+        "label": "Neither: both are common",
+        "next": {
+         "q": "What data can you get?",
+         "options": [
+          {
+           "label": "One quick snapshot of many people",
+           "con": "fast-cheap",
+           "time": "cross-sectional",
+           "method": "cross-sectional"
+          },
+          {
+           "label": "Only averages for whole countries or regions",
+           "con": "group-level",
+           "method": "ecological"
+          },
+          {
+           "label": "Measurements of the same people over time",
+           "time": "longitudinal",
+           "method": "cohort-prospective"
+          }
+         ]
+        }
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "CAUSE": {
+   "tag": "Causal",
+   "short": "Does one thing change another?",
+   "plain": "Whether a treatment, policy or design change actually makes a difference.",
+   "term": "a causal question",
+   "example": "Q21",
+   "q": "Can you decide who gets the treatment or change?",
+   "help": "Researchers call the treatment or change the intervention. If you decide who gets it, your study is an experiment; if not, it is observational.",
+   "options": [
+    {
+     "label": "Yes, and I can let chance decide, like a coin toss",
+     "next": {
+      "q": "Who does the coin toss pick?",
+      "help": "Letting chance decide is called randomization. It makes the groups alike in everything except the treatment.",
+      "options": [
+       {
+        "label": "Single people",
+        "next": {
+         "q": "Anything special about your situation?",
+         "options": [
+          {
+           "label": "No: compare two groups, the standard way",
+           "method": "rct"
+          },
+          {
+           "label": "They are visitors to a website or app",
+           "con": "fast-cheap",
+           "method": "ab-test"
+          },
+          {
+           "label": "There are many treatments, and results come in over time",
+           "hint": "Weak treatments are dropped and new ones added",
+           "method": "adaptive-platform"
+          },
+          {
+           "label": "Each person can try both, one after the other",
+           "hint": "A lasting condition, and a treatment whose effect wears off",
+           "method": "crossover"
+          },
+          {
+           "label": "There is only one person",
+           "hint": "Which treatment works best for this one patient?",
+           "con": "single-unit",
+           "method": "n-of-1"
+          }
+         ]
+        }
+       },
+       {
+        "label": "Whole groups: schools, villages, clinics",
+        "hint": "When people in a group would share or copy the treatment",
+        "con": "group-level",
+        "next": {
+         "q": "Will every group get it in the end?",
+         "options": [
+          {
+           "label": "Yes: only the order is open",
+           "con": "rollout",
+           "method": "stepped-wedge"
+          },
+          {
+           "label": "No, and the groups are services like schools or clinics",
+           "method": "cluster-rct"
+          },
+          {
+           "label": "No, and the groups are places in nature or markets",
+           "hint": "Fields, islands, shops",
+           "method": "field-experiment"
+          }
+         ]
+        }
+       },
+       {
+        "label": "Several settings at once",
+        "hint": "What each setting does, and how they work together",
+        "method": "factorial-doe"
+       }
+      ]
+     }
+    },
+    {
+     "label": "Yes, but only small changes in my own work",
+     "hint": "Try it, measure, adjust, repeat",
+     "con": "single-unit",
+     "method": "pdsa"
+    },
+    {
+     "label": "No: it already happened, or it would be unfair or unsafe",
+     "con": "no-assign",
+     "next": {
+      "q": "Did something else decide who got it?",
+      "help": "Sometimes a rule, a date or nature splits people into groups for you. Researchers call this a natural experiment.",
+      "options": [
+       {
+        "label": "A score with a cut-off: above it you get it, below you don't",
+        "con": "cutoff",
+        "method": "rdd"
+       },
+       {
+        "label": "A change on a known date: a new law, policy or product",
+        "next": {
+         "q": "What can you compare with?",
+         "options": [
+          {
+           "label": "A similar group that did not get the change",
+           "con": "group-level",
+           "method": "did"
+          },
+          {
+           "label": "Only the same place, measured many times before and after",
+           "con": "single-unit",
+           "time": "longitudinal",
+           "method": "its"
+          },
+          {
+           "label": "A blend of similar places that did not get it",
+           "hint": "Mixed to look like the changed place before the change",
+           "method": "synthetic-control"
+          }
+         ]
+        }
+       },
+       {
+        "label": "Something that nudges people towards it, and affects nothing else",
+        "next": {
+         "q": "What is the nudge?",
+         "options": [
+          {
+           "label": "Their genes",
+           "hint": "Genes are handed out by chance at conception",
+           "con": "long-latency",
+           "method": "mendelian"
+          },
+          {
+           "label": "Something else: distance, a lottery, a rule",
+           "method": "iv"
+          }
+         ]
+        }
+       },
+       {
+        "label": "Nothing: the groups also differ in other ways",
+        "next": {
+         "q": "What do you have to work with?",
+         "help": "Those other differences are called confounders. Whatever you pick, the analysis must adjust for them.",
+         "options": [
+          {
+           "label": "Detailed records: copy the trial you wish you could run",
+           "con": "existing-data",
+           "method": "target-trial"
+          },
+          {
+           "label": "The result is rare: start from people who have it",
+           "con": "rare-outcome",
+           "time": "retrospective",
+           "method": "case-control"
+          },
+          {
+           "label": "The cause is brief: compare each person with themselves just before",
+           "con": "transient",
+           "method": "case-crossover"
+          },
+          {
+           "label": "Old records of a group that had it",
+           "con": "existing-data",
+           "time": "retrospective",
+           "method": "cohort-retrospective"
+          },
+          {
+           "label": "Time to follow people for years",
+           "time": "prospective",
+           "method": "cohort-prospective"
+          }
+         ]
+        }
+       },
+       {
+        "label": "Nothing, and there is only one case",
+        "hint": "Test competing explanations, clue by clue",
+        "con": "single-unit",
+        "method": "process-tracing"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "PREDICT": {
+   "tag": "Prediction",
+   "short": "What will happen?",
+   "plain": "Forecasting what comes next, or who it will happen to, without needing to know why.",
+   "term": "a prediction question",
+   "example": "Q29",
+   "q": "What do you want to predict?",
+   "options": [
+    {
+     "label": "Who will get a result: an illness, a failure, a default",
+     "next": {
+      "q": "Do you have data from the past?",
+      "options": [
+       {
+        "label": "Yes: records that show who got it",
+        "con": "existing-data",
+        "method": "prediction-model"
+       },
+       {
+        "label": "Yes, but the result is rare and one predictor is costly to measure",
+        "con": "rare-outcome",
+        "method": "case-cohort"
+       },
+       {
+        "label": "No: measure now, then follow people",
+        "time": "prospective",
+        "method": "cohort-prospective"
+       }
+      ]
+     }
+    },
+    {
+     "label": "Where a trend is heading",
+     "con": "long-latency",
+     "time": "longitudinal",
+     "method": "surveillance"
+    },
+    {
+     "label": "How a system will behave, when you can't experiment on it",
+     "hint": "A river, a city's traffic, an epidemic",
+     "con": "no-assign",
+     "method": "simulation"
+    },
+    {
+     "label": "What people will choose",
+     "method": "discrete-choice"
+    },
+    {
+     "label": "Which tool or algorithm will do best",
+     "hint": "Same tasks, same data, same scores",
+     "method": "benchmark"
+    },
+    {
+     "label": "Whether it is worth the money",
+     "method": "economic-evaluation"
+    }
+   ]
+  },
+  "MEASURE": {
+   "tag": "Measurement",
+   "short": "Can I measure it properly?",
+   "plain": "Whether a test, device or questionnaire gives answers you can trust.",
+   "term": "a measurement question",
+   "example": "Q33",
+   "q": "What must your measurement show?",
+   "options": [
+    {
+     "label": "That a test finds what it should",
+     "hint": "Compared with the best test there is, which researchers call the reference standard",
+     "method": "diagnostic-accuracy"
+    },
+    {
+     "label": "That repeated measurements agree",
+     "next": {
+      "q": "Agree across what?",
+      "options": [
+       {
+        "label": "Different people or devices, in one place",
+        "con": "fast-cheap",
+        "method": "reliability"
+       },
+       {
+        "label": "Different laboratories, testing the same sample",
+        "method": "interlab"
+       }
+      ]
+     }
+    },
+    {
+     "label": "That it really measures what it claims",
+     "hint": "Does a stress questionnaire measure stress, or something else?",
+     "next": {
+      "q": "Does the questionnaire or scale exist yet?",
+      "options": [
+       {
+        "label": "No: build it and test it",
+        "con": "unknown-territory",
+        "method": "validation"
+       },
+       {
+        "label": "No, and it isn't even clear what to ask: interview people first",
+        "con": "unknown-territory",
+        "method": "mixed-sequential"
+       },
+       {
+        "label": "Yes: check it relates to other measures the way theory says",
+        "method": "nomological"
+       }
+      ]
+     }
+    },
+    {
+     "label": "What people value",
+     "hint": "Make them choose between options",
+     "method": "discrete-choice"
+    },
+    {
+     "label": "What experts agree on, where nothing can be measured yet",
+     "method": "delphi"
+    }
+   ]
+  },
+  "EXPLAIN": {
+   "tag": "Theoretical",
+   "short": "Why does it work this way?",
+   "plain": "The mechanism behind something: what must happen, and what follows from a theory.",
+   "term": "a theoretical question",
+   "example": "Q39",
+   "q": "How will you find out why?",
+   "options": [
+    {
+     "label": "Work it out with mathematics",
+     "hint": "What must be true, every time",
+     "method": "analytical-model"
+    },
+    {
+     "label": "Build the system in a computer and run it",
+     "hint": "When it is too complex to work out by hand",
+     "method": "simulation"
+    },
+    {
+     "label": "Experiment: change several settings together",
+     "method": "factorial-doe"
+    },
+    {
+     "label": "Study it in real life",
+     "next": {
+      "q": "Do you already have an explanation to test?",
+      "options": [
+       {
+        "label": "No: build one from what you observe",
+        "con": "unknown-territory",
+        "method": "grounded-theory"
+       },
+       {
+        "label": "Yes, in one case: test competing explanations",
+        "con": "single-unit",
+        "method": "process-tracing"
+       },
+       {
+        "label": "Yes, in one case: study it from every side",
+        "con": "single-unit",
+        "method": "case-study"
+       },
+       {
+        "label": "Yes: a theory of how measurements should relate",
+        "method": "nomological"
+       }
+      ]
+     }
+    },
+    {
+     "label": "From existing studies: what works, for whom, and why",
+     "con": "many-studies",
+     "method": "realist-review"
+    }
+   ]
+  },
+  "BUILD": {
+   "tag": "Design & development",
+   "short": "Can I make something that works?",
+   "plain": "Designing a device, tool or programme, and showing that it works and can be used.",
+   "term": "a design or development question",
+   "example": "Q45",
+   "q": "Where are you with what you're making?",
+   "options": [
+    {
+     "label": "Not started: does something like it exist already?",
+     "hint": "Search patents, products and papers",
+     "method": "prior-art"
+    },
+    {
+     "label": "Planning a big study: can it actually be run?",
+     "hint": "A small trial run first",
+     "con": "fast-cheap",
+     "method": "pilot"
+    },
+    {
+     "label": "Building it",
+     "next": {
+      "q": "What do you need to find out?",
+      "options": [
+       {
+        "label": "Does it solve the problem for the people who use it?",
+        "con": "unknown-territory",
+        "method": "design-science"
+       },
+       {
+        "label": "Can people work out how to use it?",
+        "method": "think-aloud"
+       },
+       {
+        "label": "Which settings work best?",
+        "method": "factorial-doe"
+       }
+      ]
+     }
+    },
+    {
+     "label": "Comparing it with others",
+     "next": {
+      "q": "Compared on what?",
+      "options": [
+       {
+        "label": "Performance on the same tasks",
+        "method": "benchmark"
+       },
+       {
+        "label": "Cost against benefit",
+        "method": "economic-evaluation"
+       }
+      ]
+     }
+    },
+    {
+     "label": "Improving a process already in use",
+     "hint": "Small, quick rounds of change",
+     "method": "pdsa"
+    }
+   ]
+  },
+  "SYNTHESIZE": {
+   "tag": "Evidence synthesis",
+   "short": "What have studies already found?",
+   "plain": "Bringing together the research that already exists, instead of starting a new study.",
+   "term": "an evidence synthesis question",
+   "example": "Q49",
+   "q": "What do you want from the existing studies?",
+   "options": [
+    {
+     "label": "One combined answer to a focused question",
+     "con": "many-studies",
+     "next": {
+      "q": "Anything special?",
+      "options": [
+       {
+        "label": "No: the standard way",
+        "method": "systematic-review"
+       },
+       {
+        "label": "I only have a few weeks",
+        "con": "fast-cheap",
+        "method": "rapid-review"
+       },
+       {
+        "label": "Many treatments to rank against each other",
+        "method": "network-meta"
+       },
+       {
+        "label": "I can get each study's raw data",
+        "method": "ipd-meta"
+       },
+       {
+        "label": "Many reviews already exist on it",
+        "method": "umbrella-review"
+       }
+      ]
+     }
+    },
+    {
+     "label": "Why it works, for whom, and in what situations",
+     "method": "realist-review"
+    },
+    {
+     "label": "A map of what has been studied, and the gaps",
+     "next": {
+      "q": "Where is most of it written?",
+      "options": [
+       {
+        "label": "In scientific journals",
+        "con": "many-studies",
+        "method": "scoping-review"
+       },
+       {
+        "label": "In blogs, talks and company reports",
+        "con": "practice-led",
+        "method": "multivocal-review"
+       }
+      ]
+     }
+    },
+    {
+     "label": "The shape of a research field",
+     "next": {
+      "q": "Its roots, or what is active right now?",
+      "options": [
+       {
+        "label": "Its roots: works that are often cited together",
+        "hint": "Needs years of citations to build up",
+        "method": "co-citation"
+       },
+       {
+        "label": "What is active now: new papers that cite the same sources",
+        "hint": "Works even on brand-new papers",
+        "method": "bibliographic-coupling"
+       }
+      ]
+     }
+    },
+    {
+     "label": "What already exists, before you build",
+     "method": "prior-art"
+    }
+   ]
+  }
+ },
+ "purposes": {
+  "options": [
+   {
+    "id": "explore",
+    "tag": "Exploratory",
+    "short": "To discover what is going on",
+    "plain": "Ask open questions about something nobody understands well yet, to see what matters.",
+    "term": "exploratory research",
+    "aims": [
+     "EXPLORE"
+    ],
+    "ref": {
+     "cite": "Saunders, Lewis & Thornhill (2019). Research Methods for Business Students, section 5.7. Pearson.",
+     "url": ""
+    }
+   },
+   {
+    "id": "describe",
+    "tag": "Descriptive",
+    "short": "To describe how things are",
+    "plain": "An accurate picture of people, events or situations: how many, how often, where, and whether it is changing.",
+    "term": "descriptive research",
+    "aims": [
+     "DESCRIBE"
+    ],
+    "ref": {
+     "cite": "Saunders, Lewis & Thornhill (2019). Research Methods for Business Students, section 5.7. Pearson.",
+     "url": ""
+    }
+   },
+   {
+    "id": "explain",
+    "tag": "Explanatory",
+    "short": "To find out what leads to what, and why",
+    "plain": "Whether one thing goes with another, causes it, or must follow from a theory.",
+    "term": "explanatory research",
+    "aims": [
+     "ASSOCIATE",
+     "CAUSE",
+     "EXPLAIN"
+    ],
+    "ref": {
+     "cite": "Saunders, Lewis & Thornhill (2019). Research Methods for Business Students, section 5.7. Pearson.",
+     "url": ""
+    }
+   },
+   {
+    "id": "evaluate",
+    "tag": "Evaluative",
+    "short": "To find out how well something works",
+    "plain": "A treatment, a policy or a test: does it work, and how well?",
+    "term": "evaluative research",
+    "aims": [
+     "CAUSE",
+     "MEASURE"
+    ],
+    "ref": {
+     "cite": "Saunders, Lewis & Thornhill (2019). Research Methods for Business Students, section 5.7. Pearson.",
+     "url": ""
+    }
+   },
+   {
+    "id": "predict",
+    "tag": "Predictive",
+    "short": "To forecast what will happen",
+    "plain": "Who it will happen to, or what comes next, without needing to know why.",
+    "term": "predictive research",
+    "aims": [
+     "PREDICT"
+    ],
+    "ref": {
+     "cite": "Shmueli (2010). To Explain or to Predict? Statistical Science.",
+     "url": "https://doi.org/10.1214/10-STS330"
+    }
+   },
+   {
+    "id": "design",
+    "tag": "Design",
+    "short": "To make something that works",
+    "plain": "A device, a tool, a programme or a plan: build it, and show that it works and can be used.",
+    "term": "design research",
+    "aims": [
+     "BUILD"
+    ],
+    "ref": {
+     "cite": "Gregor (2006). The Nature of Theory in Information Systems. MIS Quarterly.",
+     "url": "https://doi.org/10.2307/25148742"
+    }
+   },
+   {
+    "id": "existing",
+    "tag": "Review",
+    "short": "To learn what studies have already found",
+    "plain": "Bring together the research that already exists, instead of starting a new study.",
+    "term": "secondary research: a review",
+    "aims": [
+     "SYNTHESIZE"
+    ],
+    "ref": {
+     "cite": "Grant & Booth (2009). A typology of reviews: an analysis of 14 review types and associated methodologies. Health Information and Libraries Journal.",
+     "url": "https://doi.org/10.1111/j.1471-1842.2009.00848.x"
+    }
+   }
+  ]
+ },
+ "time": {
+  "_about": "Time words shown as badges on the answers where timing decides the method ('time' on an option). Not a first question: time cuts across every purpose.",
+  "groups": {
+   "horizon": {
+    "name": "Time horizon",
+    "ref": {
+     "cite": "Saunders, Lewis & Thornhill (2019). Research Methods for Business Students, figure 5.1 (the research onion). Pearson.",
+     "url": ""
+    }
+   },
+   "direction": {
+    "name": "Direction",
+    "ref": {
+     "cite": "Euser et al. (2009). Cohort Studies: Prospective versus Retrospective. Nephron Clinical Practice.",
+     "url": "https://doi.org/10.1159/000235241"
+    }
+   }
+  },
+  "terms": {
+   "cross-sectional": {
+    "group": "horizon",
+    "name": "Cross-sectional",
+    "plain": "A snapshot: everything is measured at one point in time."
+   },
+   "longitudinal": {
+    "group": "horizon",
+    "name": "Longitudinal",
+    "plain": "The same things are measured again and again over time."
+   },
+   "retrospective": {
+    "group": "direction",
+    "name": "Retrospective",
+    "plain": "Looks back at what already happened, in records or in people's memories."
+   },
+   "prospective": {
+    "group": "direction",
+    "name": "Prospective",
+    "plain": "Starts now and follows people forward in time."
+   }
+  }
+ },
+ "sources": {
+  "_about": "Per Method family, the source its grouping follows: fit is source (a published category), partial, or own (the game's own grouping, named with an anchor).",
+  "what": "The nine kinds of question are the game's own suits. Two research purposes span several of them:",
+  "situation": "The situations are the game's own constraint cards. Time terms: Saunders et al. (2019), figure 5.1; Euser et al. (2009).",
+  "families": {
+   "descriptive": {
+    "fit": "source",
+    "cite": "Grimes & Schulz (2002): observational studies without a comparison group are descriptive.",
+    "url": "https://doi.org/10.1016/S0140-6736(02)07283-5",
+    "note": "Grimes & Schulz and MeSH count cross-sectional studies as analytical; the game files them here."
+   },
+   "analytical": {
+    "fit": "source",
+    "cite": "Grimes & Schulz (2002): observational studies with a comparison group are analytical.",
+    "url": "https://doi.org/10.1016/S0140-6736(02)07283-5"
+   },
+   "quasi": {
+    "fit": "own",
+    "cite": "Own grouping. The term follows the ERIC thesaurus descriptor \"Quasiexperimental Design\".",
+    "url": "https://eric.ed.gov/?ti=Quasiexperimental+Design",
+    "note": "No family of its own in Grimes & Schulz, MeSH or EQUATOR."
+   },
+   "experimental": {
+    "fit": "source",
+    "cite": "Grimes & Schulz (2002): the investigator assigns the exposure.",
+    "url": "https://doi.org/10.1016/S0140-6736(02)07283-5"
+   },
+   "qualitative": {
+    "fit": "partial",
+    "cite": "MeSH 2026: Qualitative Research (D036301).",
+    "url": "https://id.nlm.nih.gov/mesh/D036301",
+    "note": "Mixed methods has no MeSH heading."
+   },
+   "synthesis": {
+    "fit": "source",
+    "cite": "MeSH 2026: Evidence Synthesis (D000099290, publication type V03.500).",
+    "url": "https://id.nlm.nih.gov/mesh/D000099290",
+    "note": "MeSH files bibliometric methods (co-citation, coupling) under information science."
+   },
+   "measurement": {
+    "fit": "partial",
+    "cite": "MeSH 2026: Validation Study (D023361); otherwise the game's own grouping.",
+    "url": "https://id.nlm.nih.gov/mesh/D023361"
+   },
+   "computational": {
+    "fit": "own",
+    "cite": "Own grouping: no published category groups models, simulation, prediction and cost-effectiveness."
+   },
+   "engineering": {
+    "fit": "own",
+    "cite": "Own grouping, anchored in Hevner et al. (2004), design science, and Gregor (2006), design and action.",
+    "url": "https://doi.org/10.2307/25148625"
+   }
+  }
+ }
+}

@@ -399,6 +399,83 @@ header { position: relative; }
   .d-market { --card-u: 3.3px; }
   .d-arena { --card-u: 2.4px; }
 }
+
+/* Find your method: a decision tree in two directions, one card per tab. RQ to Method reads left to right (what you
+   study, your situation, your tool); Method to RQ is its mirror image. The tree is drawn in SVG and is itself the way
+   to choose. Classes start with ft- so they never meet the rest of the app's. */
+#view-find { --f-cond: "Barlow Condensed", "Arial Narrow", sans-serif; }
+.ft-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.ft-tabs button[aria-selected="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.ft-card { padding: 16px; }
+.ft-navrow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 0 0 10px; }
+.ft-navrow:has(> .ft-back[hidden]) { display: none; }
+.ft-back { padding: 5px 12px; }
+.ft-trail { display: flex; flex-wrap: wrap; gap: 4px 2px; align-items: center; font-size: 13px; flex: 1 1 200px; }
+.ft-trail button { border: 0; background: none; padding: 2px 4px; border-radius: 6px; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; font: inherit; cursor: pointer; }
+.ft-trail .sep { color: var(--muted); }
+.ft-trail .here { padding: 2px 4px; font-weight: 600; }
+.ft-trail .tagbtn { text-decoration: none; padding: 0; }
+.ft-kicker { font: 700 12px/1 var(--f-cond); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+.ft-now h2 { font-size: 22px; font-weight: 800; letter-spacing: -.01em; margin: 0 0 2px; }
+.ft-now p { margin: 0 0 6px; color: var(--muted); font-size: 14px; max-width: 80ch; }
+.ft-tag { display: inline-block; background: var(--tc); color: #fff; font: 700 12px/1 var(--f-cond); letter-spacing: .08em; text-transform: uppercase; border-radius: 5px; padding: 4px 7px 3px; vertical-align: 1px; }
+.ft-tag.neutral { box-shadow: 0 0 0 1px var(--muted); }
+/* Time words are outlined, not filled: time is a property of the design, not a game category with a colour. */
+.ft-time { display: inline-flex; align-items: center; gap: 4px; border: 1.5px solid var(--ink); color: var(--ink); border-radius: 5px; font: 700 12px/1 var(--f-cond); letter-spacing: .08em; text-transform: uppercase; padding: 3px 6px 2px; }
+.ft-time em { font-style: normal; color: var(--muted); }
+.ft-chip { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px 1px 6px; color: var(--muted); }
+.ft-chip em { font-style: normal; }
+.ft-scroll { overflow-x: auto; margin: 6px -16px 0; padding: 0 16px; -webkit-overflow-scrolling: touch; }
+svg.ft-map { display: block; font-family: var(--f-body); }
+.ft-map .zh text { fill: var(--muted); font: 700 12px var(--f-cond); letter-spacing: .1em; }
+.ft-map .zh line { stroke: var(--muted); stroke-width: 2; }
+.ft-map .edge { fill: none; stroke: var(--line); stroke-width: 1.5; stroke-linecap: round; }
+.ft-map .edge.on { stroke: var(--accent); stroke-width: 3; }
+.ft-map .edge.tool { stroke-width: 2; opacity: .7; }
+.ft-map .edge.tool.lit { stroke-width: 3; opacity: 1; }
+.ft-map .edge.dim, .ft-map .edge.tool.dim { opacity: .08; }
+.ft-map .nd { cursor: pointer; }
+.ft-map .nd.static { cursor: default; }
+.ft-map .nd.dim { opacity: .3; }
+.ft-map .nd rect.box { fill: var(--surface); stroke: var(--line); stroke-width: 1.2; }
+.ft-map .nd rect.ring { fill: none; stroke: none; }
+.ft-map .nd text { fill: var(--ink); font-size: 12px; }
+.ft-map .nd text.sub { fill: var(--muted); font-size: 10.5px; }
+.ft-map .nd.on rect.box { stroke: var(--accent); stroke-width: 2.4; }
+.ft-map .nd.now rect.box { stroke: var(--accent); stroke-width: 2.4; stroke-dasharray: 4 3; }
+.ft-map .nd:hover rect.box { stroke: var(--accent); }
+.ft-map .nd:focus { outline: none; } .ft-map .nd:focus-visible rect.box, .ft-map .nd:focus-visible rect.bg { stroke: var(--accent); stroke-width: 3; }
+.ft-map .nd.sit rect.box { stroke-dasharray: 4 3; }
+.ft-map .nd.sit.on rect.box { stroke: var(--accent); stroke-width: 2; }
+.ft-map .nd.sit text.sitk { fill: var(--muted); font: 700 11px var(--f-cond); letter-spacing: .08em; }
+.ft-map .nd.sit .nd.chipn rect.box { stroke: var(--line); stroke-dasharray: none; stroke-width: 1; }
+.ft-map .nd.sit .nd.chipn:hover rect.box { stroke: var(--accent); }
+.ft-map .nd.sit .nd.chipn.on rect.box { fill: var(--accent); stroke: var(--accent); }
+.ft-map .nd.chipn.on text { fill: var(--accent-ink); font-weight: 600; }
+.ft-map .nd.chipn.dim { opacity: .4; }
+.ft-map .nd.fill text { fill: #fff; }
+.ft-map .nd.fill text.sub { fill: rgba(255,255,255,.85); }
+.ft-map .nd.fill.on rect.ring { stroke: var(--accent); stroke-width: 3; }
+.ft-note { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+.ft-detail { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: start; border-top: 1px solid var(--line); margin-top: 14px; padding-top: 14px; }
+.ft-detail.wide { grid-template-columns: 1fr; }
+.ft-detail .card { --card-u: 4.4px; }
+@media (max-width: 700px) { .ft-detail { grid-template-columns: minmax(0, 1fr); justify-items: center; } }
+.ft-detail ol { margin: 6px 0 12px; padding-inline-start: 22px; font-size: 14px; }
+.ft-detail li { margin-bottom: 6px; }
+.ft-detail li .q { color: var(--muted); display: block; font-size: 13px; }
+.ft-detail p { font-size: 14px; margin: 0 0 10px; max-width: none; }
+.ft-src { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin: 0 0 14px; font-size: 13px; }
+.ft-src p:last-child { margin: 6px 0 0; }
+.ft-fit { white-space: nowrap; display: inline-block; font: 700 11px/1 var(--f-cond); letter-spacing: .06em; text-transform: uppercase; border-radius: 4px; padding: 3px 6px 2px; border: 1px solid currentColor; }
+.ft-fit.source { color: var(--good); } .ft-fit.partial { color: var(--gold); } .ft-fit.own { color: var(--muted); }
+.ft-small { padding: 2px 10px; font-size: 12px; }
+details.ft-srcs { border-top: 1px solid var(--line); margin-top: 14px; padding-top: 10px; }
+details.ft-srcs summary { cursor: pointer; font: 700 13px var(--f-cond); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.ft-zsrc { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 10px; font-size: 13px; }
+.ft-zsrc > div { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.ft-zsrc h3 { font: 700 12px/1.2 var(--f-cond); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.ft-zsrc ul { margin: 6px 0 0; padding-inline-start: 18px; } .ft-zsrc li { margin-bottom: 4px; }
 </style>
 
 <div class="wrap">
@@ -421,6 +498,7 @@ header { position: relative; }
     <button role="tab" id="tab-home" aria-selected="true" data-view="home">{{nav.home}}</button>
     <button role="tab" id="tab-play" aria-selected="false" data-view="play">{{nav.play}}</button>
     <button role="tab" id="tab-duel" aria-selected="false" data-view="duel">{{nav.duel}}</button>
+    <button role="tab" id="tab-find" aria-selected="false" data-view="find">{{nav.find}}</button>
     <button role="tab" id="tab-decks" aria-selected="false" data-view="decks">{{nav.decks}}</button>
     <button role="tab" id="tab-guide" aria-selected="false" data-view="guide">{{nav.guide}}</button>
   </nav>
@@ -453,6 +531,11 @@ header { position: relative; }
         <div class="mode-ic">🃏</div><h3>{{nav.decks}}</h3>
         <p>{{home.decks.text}}</p>
         <div class="mode-go"><button class="btn" data-go="decks">{{home.decks.go}}</button></div>
+      </div>
+      <div class="mode tilt" style="--c:#0E7490" data-feature="find">
+        <div class="mode-ic">🌳</div><h3>{{nav.find}}</h3>
+        <p>{{home.find.text}}</p>
+        <div class="mode-go"><button class="btn" data-go="find">{{home.find.go}}</button></div>
       </div>
       <div class="mode tilt" style="--c:#7E22CE" data-feature="guide">
         <div class="mode-ic">📖</div><h3>How to play</h3>
@@ -534,6 +617,29 @@ header { position: relative; }
     <div class="guide" id="guide"></div>
   </section>
 
+  <section id="view-find" hidden>
+    <div class="ft-tabs" role="tablist" aria-label="{{nav.find}}">
+      <button class="btn" role="tab" id="ft-tab-rq" data-ft="rq" aria-selected="true" title="{{find.tab.rq_title}}">{{find.tab.rq}}</button>
+      <button class="btn" role="tab" id="ft-tab-method" data-ft="method" aria-selected="false" title="{{find.tab.method_title}}">{{find.tab.method}}</button>
+    </div>
+    <div class="panel ft-card" id="ft-rq">
+      <div class="ft-navrow"><button class="btn ft-back" id="ft-back" hidden>{{find.back}}</button><nav class="ft-trail" id="ft-trail" aria-label="{{find.zone.what}}"></nav></div>
+      <div class="ft-now" id="ft-now" aria-live="polite"></div>
+      <div class="ft-scroll"><svg class="ft-map" id="ft-map" role="img" aria-label="{{find.aria.fwd}}"></svg></div>
+      <p class="ft-note" id="ft-note"></p>
+      <div id="ft-detail"></div>
+      <details class="ft-srcs"><summary>{{find.sources}}</summary><div class="ft-zsrc" id="ft-zsrc"></div></details>
+    </div>
+    <div class="panel ft-card" id="ft-method" hidden>
+      <div class="ft-navrow"><button class="btn ft-back" id="ft-rback" hidden>{{find.back}}</button><nav class="ft-trail" id="ft-rtrail" aria-label="{{find.zone.tool}}"></nav></div>
+      <div class="ft-now" id="ft-rnow" aria-live="polite"></div>
+      <div class="ft-scroll"><svg class="ft-map" id="ft-rmap" role="img" aria-label="{{find.aria.rev}}"></svg></div>
+      <p class="ft-note" id="ft-rnote"></p>
+      <div id="ft-rdetail"></div>
+      <details class="ft-srcs"><summary>{{find.sources}}</summary><div class="ft-zsrc" id="ft-rzsrc"></div></details>
+    </div>
+  </section>
+
   <footer id="footer"></footer>
 </div>
 
@@ -579,7 +685,7 @@ const SYM = { "case-report": "Cr", "cross-sectional": "Xs", "ecological": "Ec", 
   "economic-evaluation": "Ce", "think-aloud": "Ta", "pdsa": "Pd" };
 
 // Parts of the app that are switched off for now. Their code stays, so switching one back on is a one-word change.
-const FEATURES = { duel: false, guide: false, table: false };
+const FEATURES = { duel: false, guide: false, table: false, find: true };
 
 // Every design carries the paper that defines it (or made it standard). The "?" opens it in a new tab.
 // Threats and Safeguards carry one too. Pass a card object, or a design id.
@@ -1523,6 +1629,440 @@ function renderHome() {
   if (!reduceMotion) fanTimer = setInterval(cycleFan, 3200);
 }
 
+// ---------- Find your method: the decision tree (data/method-tree.json), in two directions.
+// RQ to Method reads left to right: what you study (kind of question), your situation (the follow-up answers), your
+// tool (the Method). Method to RQ is its mirror image. Every step is a history step, so Back walks back through it.
+const FIND = (() => {
+  const TR = DATA.tree, AIMS = meta.suits.map(s => s.id);
+  const CODE = Object.fromEntries(designs.map((d, i) => [d.id, "MTH-D" + String(i + 1).padStart(2, "0")]));
+  const PUR = Object.fromEntries(TR.purposes.options.map(p => [p.id, p]));
+  // aim/path: the branch walked in RQ to Method; hl/sit: a kind of question, and one of its situations, lit on the
+  // overview; f/m: the family opened and the Method picked in Method to RQ.
+  const START = { tab: "rq", aim: null, path: [], hl: null, sit: null, f: null, m: null };
+  let fs = { ...START };
+  const go = s => {
+    fs = { ...fs, ...s };
+    try { history.pushState({ view: "find", depth: (history.state?.depth || 0) + 1, ft: fs }, ""); } catch (e) {}
+    render();
+  };
+  const replace = s => { fs = { ...fs, ...s }; try { history.replaceState({ ...(history.state || {}), view: "find", ft: fs }, ""); } catch (e) {} render(); };
+  // Back retraces the last step taken in the tree; on a page reached without one, it climbs one level.
+  function back() {
+    if (history.state?.ft) return history.back();
+    if (fs.tab === "method") return replace(fs.m ? { m: null } : { f: null });
+    if (fs.aim && fs.path.length) return replace({ path: fs.path.slice(0, -1) });
+    if (fs.aim) return replace({ aim: null, path: [], hl: fs.aim });
+    replace(fs.sit ? { sit: null } : { hl: null });
+  }
+
+  // ---- reading the tree
+  function resolve(aim, path) {
+    let node = TR.aims[aim]; const steps = [];
+    for (let k = 0; k < path.length; k++) {
+      const opt = node && node.options[path[k]];
+      if (!opt) return null;
+      steps.push({ node, opt });
+      if (opt.next) node = opt.next;
+      else if (k === path.length - 1) return { steps, leaf: opt };
+      else return null;
+    }
+    return { steps, node };
+  }
+  const memo = {};
+  function branchOf(a) {
+    if (memo[a]) return memo[a];
+    const methods = new Set(), fams = new Set(), cons = [], times = [];
+    (function c(x) { x.options.forEach(o => {
+      if (o.con && !cons.includes(o.con)) cons.push(o.con);
+      if (o.time && !times.includes(o.time)) times.push(o.time);
+      if (o.method) { methods.add(o.method); fams.add(D[o.method].family); } else if (o.next) c(o.next);
+    }); })(TR.aims[a]);
+    return (memo[a] = { methods, fams, cons, times });
+  }
+  const situationsOf = a => { const b = branchOf(a);
+    return [...b.cons.map(c => ({ key: "con:" + c, name: CON[c].name })), ...b.times.map(t => ({ key: "time:" + t, name: TR.time.terms[t].name }))]; };
+  // Every route through one situation: each answer that stands for it, and every Method below that answer.
+  function viaSituation(a, key) {
+    const [kind, id] = key.split(":"), out = [];
+    const below = (o, path, labels) => o.method ? out.push({ m: o.method, path, labels })
+      : o.next && o.next.options.forEach((x, j) => below(x, [...path, j], [...labels, x.label]));
+    (function c(node, path, labels) { node.options.forEach((o, i) => {
+      const p = [...path, i], l = [...labels, o.label];
+      if ((kind === "con" ? o.con : o.time) === id) below(o, p, l); else if (o.next) c(o.next, p, l);
+    }); })(TR.aims[a], [], []);
+    return out;
+  }
+  // Every route that ends on Method m: its kind of question and the answers along the way.
+  function pathsTo(m) {
+    const out = [];
+    AIMS.forEach(a => (function walk(node, path, steps) {
+      node.options.forEach((o, i) => {
+        const s2 = [...steps, { q: node.q, o }];
+        if (o.method === m) out.push({ aim: a, path: [...path, i], steps: s2 });
+        else if (o.next) walk(o.next, [...path, i], s2);
+      });
+    })(TR.aims[a], [], []));
+    return out;
+  }
+
+  // ---- words, badges and sources
+  const aimLabel = a => TR.aims[a].short;
+  const famColour = m => FAM[D[m].family].color;
+  const cut = (s, n) => s.length > n ? s.slice(0, n - 1) + "…" : s;
+  function wrap(s, n) {
+    const lines = [""]; s.split(" ").forEach(w => { const l = lines[lines.length - 1];
+      if ((l + " " + w).trim().length > n && l) lines.push(w); else lines[lines.length - 1] = (l + " " + w).trim(); });
+    return lines.length > 2 ? [lines[0], cut(lines.slice(1).join(" "), n)] : lines;
+  }
+  // Kinds of question wear their suit colour; Explanatory and Evaluative, the research purposes that span several
+  // kinds of question, ride along in the neutral prompt-card colour (cards.QUESTION_COLOR), as they are no game category.
+  const PURPOSE_COLOUR = "#40402C";
+  const tag = (t, c, cls = "") => `<span class="ft-tag ${cls}" style="--tc:${c}">${esc(t)}</span>`;
+  const aimTag = a => tag(TR.aims[a].tag, SUIT[a].color);
+  const purposesOf = a => TR.purposes.options.filter(p => p.aims.length > 1 && p.aims.includes(a));
+  const purTag = p => tag(PUR[p].tag, PURPOSE_COLOUR, "neutral");
+  const purposeTags = a => purposesOf(a).map(p => `<span title="${esc(p.short + ": " + p.ref.cite)}">${purTag(p.id)}</span>`).join(" ");
+  const conChip = c => c ? `<span class="ft-chip" title="${esc(CON[c].text)}"><em>${tr("find.on_cards")}</em> ${CON[c].icon} ${esc(CON[c].name)}</span>` : "";
+  const CLOCK = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+  const timeBadge = t => { if (!t) return ""; const d = TR.time.terms[t], g = TR.time.groups[d.group];
+    return `<span class="ft-time" title="${esc(d.plain + " " + g.ref.cite)}">${CLOCK}<em>${esc(g.name)}:</em> ${esc(d.name)}</span>`; };
+  const fitName = f => trt("find.fit." + f);
+  const link = (cite, url) => url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(cite)}</a>` : esc(cite);
+  const famSource = f => { const s = TR.sources.families[f];
+    return `<div class="ft-src"><p class="ft-kicker">${tr("find.tool_family")}</p>${tag(FAM[f].name, FAM[f].color)} <span class="ft-fit ${s.fit}">${esc(fitName(s.fit))}</span>
+      <p>${link(s.cite, s.url)}${s.note ? ` <span class="label">${esc(s.note)}</span>` : ""}</p></div>`; };
+  const subOf = o => [o.con && CON[o.con].name, o.time && TR.time.terms[o.time].name].filter(Boolean).join(" · ");
+  const zoneSources = () => {
+    const used = TR.purposes.options.filter(p => p.aims.length > 1);
+    return `<div><h3>${tr("find.zone.what")}</h3><p style="margin:0">${esc(TR.sources.what)}</p>
+        <ul>${used.map(p => `<li>${purTag(p.id)} ${link(p.ref.cite, p.ref.url)}</li>`).join("")}</ul></div>
+      <div><h3>${tr("find.zone.situation")}</h3><p style="margin:0">${esc(TR.sources.situation)}</p></div>
+      <div><h3>${tr("find.zone.tool")}</h3><ul>${meta.families.map(f => { const s = TR.sources.families[f.id];
+        return `<li><b>${esc(f.name)}</b> <span class="ft-fit ${s.fit}">${esc(fitName(s.fit))}</span><br>${link(s.cite, s.url)}</li>`; }).join("")}</ul></div>`;
+  };
+
+  // ---- drawing pieces shared by both trees
+  const TOP = 44, W = 210, GAP = 36, RH = 62, BH = 52, LEAFW = 200, AIMW = 250;
+  const up = k => trt(k).toUpperCase();
+  const head = (x1, x2, label) => `<g class="zh"><line x1="${x1}" x2="${x2}" y1="30" y2="30"></line><text x="${x1}" y="22">${esc(label)}</text></g>`;
+  // Lines between two columns of boxes, drawn like a circuit schematic: out horizontally, one vertical run in its own
+  // lane, in horizontally, with small rounded corners. Each box spreads its line ends along its edge, ordered by where
+  // the other end sits, so lines leave side by side. Lit lines are drawn last, on top. With bus (a tree), every line
+  // from one box leaves from its middle and shares one vertical run.
+  function links(list, x1, x2, bus = false) {
+    const ports = (side, other, spread) => {
+      const groups = {}, out = [];
+      list.forEach((l, i) => (groups[l[side].key] = groups[l[side].key] || []).push(i));
+      Object.values(groups).forEach(ix => {
+        const mid = i => list[i][other].y + list[i][other].h / 2;
+        ix.sort((p, q) => mid(p) - mid(q));
+        const n = list[ix[0]][side], span = spread ? Math.min(n.h * 0.7, (ix.length - 1) * 7) : 0;
+        ix.forEach((i, k) => { out[i] = n.y + n.h / 2 - span / 2 + (ix.length > 1 ? span * k / (ix.length - 1) : 0); });
+      });
+      return out;
+    };
+    const pa = ports("a", "b", !bus), pb = ports("b", "a", true), lane = [];
+    const lo = x1 + (x2 - x1) * 0.18, hi = x1 + (x2 - x1) * 0.82;
+    if (bus) list.forEach((l, i) => { lane[i] = x1 + (x2 - x1) * 0.45; });
+    else {
+      // Lines heading down take the lanes on the left, lines heading up those on the right, so corners don't cross.
+      const order = list.map((_, i) => i).sort((p, q) => (pb[p] - pa[p] > 0) - (pb[q] - pa[q] > 0) || pa[p] - pa[q] || pb[p] - pb[q]);
+      order.forEach((i, k) => { lane[i] = order.length > 1 ? lo + (hi - lo) * k / (order.length - 1) : (x1 + x2) / 2; });
+    }
+    const path = (ya, yb, lx) => {
+      if (Math.abs(yb - ya) < 1) return `M${x1},${ya} H${x2}`;
+      const s = yb > ya ? 1 : -1, r = Math.min(5, Math.abs(yb - ya) / 2);
+      return `M${x1},${ya} H${lx - r} Q${lx},${ya} ${lx},${ya + s * r} V${yb - s * r} Q${lx},${yb} ${lx + r},${yb} H${x2}`;
+    };
+    const rank = c => (/\bdim\b/.test(c) ? 0 : /\b(lit|on)\b/.test(c) ? 2 : 1);
+    return list.map((l, i) => ({ l, i })).sort((p, q) => rank(p.l.cls || "") - rank(q.l.cls || ""))
+      .map(({ l, i }) => `<path class="edge ${l.cls || ""}"${l.color ? ` style="stroke:${l.color}"` : ""} d="${path(pa[i], pb[i], lane[i])}"/>`).join("");
+  }
+  // Solid badges in SVG with white text, the same look as the HTML badges. Width estimated from the letters.
+  function svgBadges(list) {
+    let x = 12, out = "";
+    list.forEach(([t, c, neutral]) => { const w = Math.round(t.length * 7.2 + 12);
+      out += `<rect x="${x}" y="6" width="${w}" height="17" rx="4" style="fill:${c};stroke:${neutral ? "var(--muted)" : "none"};stroke-width:1"></rect>
+        <text x="${x + 6}" y="19" style="fill:#fff;font:700 12px var(--f-cond);letter-spacing:.08em">${esc(t.toUpperCase())}</text>`; x += w + 6; });
+    return out;
+  }
+  const aimBadges = a => svgBadges([[TR.aims[a].tag, SUIT[a].color], ...purposesOf(a).map(p => [p.tag, PURPOSE_COLOUR, true])]);
+  function aimBox(a, x, y, w, h, cls = "", data = "") {
+    const s = SUIT[a];
+    return `<g class="nd ${cls}" tabindex="0" role="button" data-aim="${a}" ${data} transform="translate(${x} ${y})">
+      <title>${esc(TR.aims[a].plain + " " + trt("find.called", { term: TR.aims[a].term }))}</title>
+      <rect class="box" width="${w}" height="${h}" rx="8" style="stroke:${s.color};stroke-width:1.5"></rect>
+      <rect width="6" height="${h}" rx="3" style="fill:${s.color};stroke:none"></rect>
+      ${aimBadges(a)}<text x="14" y="44">${esc(cut(aimLabel(a), Math.floor(w / 7)))}</text></g>`;
+  }
+  // A branch's situations as separate chips, wrapped into rows. Each chip can be picked to light its own path.
+  const CHIP_H = 18, CHIP_GAP = 4;
+  function chipRows(a, w) {
+    const out = []; let x = 12, row = 0;
+    situationsOf(a).forEach(s => { const cw = Math.round(s.name.length * 6.3 + 14);
+      if (x + cw > w - 10 && x > 12) { row++; x = 12; }
+      out.push({ ...s, x, row, w: cw }); x += cw + CHIP_GAP; });
+    return { chips: out, rows: out.length ? row + 1 : 0 };
+  }
+  function sitChips(a, x, y, w, h, cls, sel) {
+    const { chips } = chipRows(a, w);
+    return `<g class="nd sit ${cls}" tabindex="0" role="button" data-aim="${a}" transform="translate(${x} ${y})">
+      <title>${esc(trt("find.sit_title"))}</title>
+      <rect class="box" width="${w}" height="${h}" rx="8"></rect>
+      <text x="12" y="17" class="sitk">${esc(trt("find.situations", { n: chips.length }).toUpperCase())}</text>
+      ${chips.map(c => { const on = sel === c.key, off = sel && !on, cy = 24 + c.row * (CHIP_H + CHIP_GAP);
+        return `<g class="nd chipn${on ? " on" : ""}${off ? " dim" : ""}" tabindex="0" role="button" data-aim="${a}" data-sit="${c.key}" transform="translate(${c.x} ${cy})">
+          <title>${esc(trt("find.chip_title", { name: c.name }))}</title>
+          <rect class="box" width="${c.w}" height="${CHIP_H}" rx="9"></rect><text x="7" y="13" style="font-size:11px">${esc(c.name)}</text></g>`; }).join("")}</g>`;
+  }
+  // The summary box for a branch's situations, in Method to RQ, where they are shown but not picked.
+  function sitBox(a, x, y, w, h, cls = "") {
+    const words = situationsOf(a).map(s => s.name), lines = wrap(words.join(" · "), Math.floor(w / 6.4));
+    return `<g class="nd sit ${cls}" transform="translate(${x} ${y})"><title>${esc(words.join(", "))}</title>
+      <rect class="box" width="${w}" height="${h}" rx="8"></rect>
+      <text x="12" y="18" class="sitk">${esc(trt("find.situations", { n: words.length }).toUpperCase())}</text>
+      ${lines.map((l, k) => `<text x="12" y="${34 + k * 14}" style="font-size:11.5px">${esc(l)}</text>`).join("")}</g>`;
+  }
+  function famBox(f, x, y, w, h, cls = "", data = "") {
+    const F = FAM[f], n = designs.filter(m => m.family === f).length;
+    return `<g class="nd fill ${cls}" tabindex="0" role="button" ${data} transform="translate(${x} ${y})"><title>${esc(F.name)}</title>
+      <rect class="bg" width="${w}" height="${h}" rx="8" style="fill:${F.color}"></rect><rect class="ring" x="-3" y="-3" width="${w + 6}" height="${h + 6}" rx="10"></rect>
+      <text x="14" y="${h / 2 - 2}" style="font:700 12px var(--f-cond);letter-spacing:.08em">${esc(F.name.toUpperCase())}</text>
+      <text class="sub" x="14" y="${h / 2 + 15}">${esc(trt("find.cards_line", { n, fit: fitName(TR.sources.families[f].fit) }))}</text></g>`;
+  }
+  function methodBox(id, x, y, w, h, cls = "", data = "") {
+    return `<g class="nd fill ${cls}" tabindex="0" role="button" ${data} transform="translate(${x} ${y})"><title>${esc(D[id].name + " · " + FAM[D[id].family].name)}</title>
+      <rect class="bg" width="${w}" height="${h}" rx="6" style="fill:${famColour(id)}"></rect><rect class="ring" x="-3" y="-3" width="${w + 6}" height="${h + 6}" rx="8"></rect>
+      <text x="10" y="${h / 2 - 2}" style="font-weight:600">${esc(cut(D[id].name, Math.floor(w / 6.8)))}</text>
+      <text class="sub" x="10" y="${h / 2 + 13}" style="font-family:var(--f-mono)">${CODE[id]}</text></g>`;
+  }
+  function answerBox(o, x, y, w, h, cls, data) {
+    const lines = wrap(o.label, Math.floor(w / 6.6)), sub = subOf(o);
+    const y0 = sub ? (lines.length === 1 ? 20 : 15) : (lines.length === 1 ? h / 2 + 4 : h / 2 - 3);
+    return `<g class="nd ${cls}" tabindex="0" role="button" ${data} transform="translate(${x} ${y})"><title>${esc(o.label + (o.hint ? " — " + o.hint : "") + (sub ? " · " + sub : ""))}</title>
+      <rect class="box" width="${w}" height="${h}" rx="8"></rect>
+      ${lines.map((l, k) => `<text x="10" y="${y0 + k * 14}">${esc(l)}</text>`).join("")}
+      ${sub ? `<text class="sub" x="10" y="${h - 8}">${esc(cut(sub, Math.floor(w / 6)))}</text>` : ""}</g>`;
+  }
+  const setSvg = (svg, w, h, inner) => { svg.setAttribute("viewBox", `0 0 ${w} ${h}`); svg.setAttribute("width", w); svg.setAttribute("height", h); svg.innerHTML = inner; };
+  function pickable(svg, handler) {
+    svg.addEventListener("click", e => { const g = e.target.closest(".nd:not(.static)"); if (g) handler(g); });
+    svg.addEventListener("keydown", e => { if (e.key !== "Enter" && e.key !== " ") return;
+      const g = e.target.closest(".nd:not(.static)"); if (g) { e.preventDefault(); handler(g); } });
+  }
+  const trail = (crumbs, rootTo) => `<button data-to="${rootTo}">${tr("find.start")}</button><span class="sep">›</span>` + crumbs.map((c, k) => k === crumbs.length - 1
+    ? `<span class="here"${c.title ? ` title="${esc(c.title)}"` : ""}>${c.html}</span>`
+    : `<button data-to="${c.to}"${c.title ? ` title="${esc(c.title)}" class="tagbtn"` : ""}>${c.html}</button><span class="sep">›</span>`).join("");
+
+  // ---- RQ to Method
+  function layoutBranch(aim) {
+    const items = []; let row = 0, maxDepth = 0;
+    (function place(node, depth, path) {
+      const ys = node.options.map((o, i) => {
+        const p = [...path, i]; maxDepth = Math.max(maxDepth, depth);
+        if (o.next) { const y = place(o.next, depth + 1, p); items.push({ o, depth, path: p, y }); return y; }
+        const y = row++ * RH; items.push({ o, depth, path: p, y, leaf: true }); return y;
+      });
+      return (ys[0] + ys[ys.length - 1]) / 2;
+    })(TR.aims[aim], 1, []);
+    const top = items.filter(i => i.depth === 1).map(i => i.y);
+    return { items, rootY: (Math.min(...top) + Math.max(...top)) / 2, rows: row, maxDepth };
+  }
+  function drawForward() {
+    const svg = $("ft-map");
+    if (!fs.aim) {
+      // Overview: one row per kind of question; a row grows to fit its situation chips. A kind of question picked (hl)
+      // lights its situations, lines and families; a situation picked too (sit) lights only the families it leads to.
+      const AW = 280, SX = 16 + AW + 36, SW = 340, FX = SX + SW + 190, FW = 260, H = 56, GAPY = 10;
+      const hs = AIMS.map(a => Math.max(H, 26 + chipRows(a, SW).rows * (CHIP_H + CHIP_GAP) + 4));
+      const ys = hs.reduce((acc, h, i) => [...acc, i ? acc[i - 1] + hs[i - 1] + GAPY : TOP], []);
+      const total = ys[ys.length - 1] + hs[hs.length - 1] - TOP;
+      const fgap = (total - H) / (meta.families.length - 1), fy = k => TOP + k * fgap;
+      const hl = fs.hl, sit = fs.sit, via = hl && sit ? viaSituation(hl, sit) : null;
+      const litFams = hl ? new Set(via ? via.map(v => D[v.m].family) : branchOf(hl).fams) : null;
+      let edges = "", nodes = ""; const toTools = [];
+      AIMS.forEach((a, i) => {
+        const y = ys[i], h = hs[i], cls = hl ? (a === hl ? "on" : "dim") : "";
+        nodes += aimBox(a, 16, y, AW, h, cls) + sitChips(a, SX, y, SW, h, cls, a === hl ? sit : null);
+        edges += `<path class="edge${a === hl ? " on" : hl ? " dim" : ""}" d="M${16 + AW},${y + h / 2} H${SX}"/>`;
+        branchOf(a).fams.forEach(f => { const k = meta.families.findIndex(x => x.id === f), lit = a === hl && litFams.has(f);
+          toTools.push({ a: { key: a, y, h }, b: { key: f, y: fy(k), h: H }, color: FAM[f].color, cls: "tool" + (lit ? " lit" : hl ? " dim" : "") }); });
+      });
+      edges += links(toTools, SX + SW, FX);
+      meta.families.forEach((f, k) => { nodes += famBox(f.id, FX, fy(k), FW, H, "static" + (hl ? (litFams.has(f.id) ? " on" : " dim") : "")); });
+      const heads = head(16, 16 + AW, "1 · " + up("find.head.what_kind")) + head(SX, SX + SW, "2 · " + up("find.zone.situation")) + head(FX, FX + FW, "3 · " + up("find.head.tool_family"));
+      setSvg(svg, FX + FW + 16, TOP + total + 8, heads + edges + nodes);
+      $("ft-note").textContent = trt(sit ? "find.note.sit" : hl ? "find.note.hl" : "find.note.overview");
+      return;
+    }
+    // A branch: the kind of question, its answers column by column, then the Method cards.
+    const L = layoutBranch(fs.aim), x = d => 16 + (d === 0 ? 0 : AIMW + GAP + (d - 1) * (W + GAP)), cardX = x(L.maxDepth + 1);
+    const yy = y => TOP + y, r = resolve(fs.aim, fs.path), here = r.node ? fs.path.join(".") : null;
+    const onPath = p => p.length <= fs.path.length && p.every((v, k) => v === fs.path[k]);
+    let edges = "", nodes = ""; const byDepth = {};
+    const parentOf = it => it.path.length === 1 ? { key: "root", y: yy(L.rootY), h: BH }
+      : (() => { const pa = L.items.find(j => j.path.join(".") === it.path.slice(0, -1).join(".")); return { key: pa.path.join("."), y: yy(pa.y), h: BH }; })();
+    L.items.forEach(it => {
+      const on = onPath(it.path), now = it.path.slice(0, -1).join(".") === here;
+      (byDepth[it.depth] = byDepth[it.depth] || []).push({ a: parentOf(it), b: { key: it.path.join("."), y: yy(it.y), h: BH }, cls: on ? "on" : "" });
+      nodes += answerBox(it.o, x(it.depth), yy(it.y), W, BH, `${on ? "on" : ""}${now ? " now" : ""}`, `data-p="${it.path.join(".")}"`);
+      if (it.leaf && it.o.method) {
+        const lit = on && r.leaf;
+        edges += `<path class="edge${lit ? " on" : ""}" d="M${x(it.depth) + W},${yy(it.y) + BH / 2} H${cardX}" ${lit ? "" : 'stroke-dasharray="2 4"'}/>`;
+        nodes += methodBox(it.o.method, cardX, yy(it.y), LEAFW, BH, `${lit ? "on" : ""}${r.leaf && !lit ? " dim" : ""}`, `data-p="${it.path.join(".")}"`);
+      }
+      if (it.leaf && it.o.goto) nodes += `<text x="${x(it.depth) + W + 8}" y="${yy(it.y) + BH / 2 + 4}" style="fill:var(--accent);font-size:12px">↪ ${esc(aimLabel(it.o.goto))}</text>`;
+    });
+    Object.entries(byDepth).forEach(([d, list]) => { d = +d; edges += links(list, d === 1 ? x(0) + AIMW : x(d - 1) + W, x(d), true); });
+    nodes += aimBox(fs.aim, 16, yy(L.rootY), AIMW, BH, "on", 'data-p=""');
+    const heads = head(16, 16 + AIMW, "1 · " + up("find.zone.what")) + head(x(1), x(L.maxDepth) + W, "2 · " + up("find.zone.situation")) + head(cardX, cardX + LEAFW, "3 · " + up("find.zone.tool"));
+    setSvg(svg, cardX + LEAFW + 16, TOP + Math.max(L.rows, 1) * RH + 8, heads + edges + nodes);
+    $("ft-note").textContent = trt(r.leaf ? "find.note.leaf" : "find.note.branch");
+  }
+  function aimInfo(id, open) {
+    const a = TR.aims[id], b = branchOf(id);
+    return `<div class="ft-detail wide"><div><p style="margin:0">${aimTag(id)} ${purposeTags(id)} <b>${esc(a.short)}</b> ${esc(a.plain)}
+      <br><i>${tr("find.example")} ${esc(questions.find(q => q.id === a.example).text)}</i>
+      <br><span class="label">${tr("find.called", { term: esc(a.term) })} ${tr("find.on_cards")} ${SUIT[id].icon} ${esc(SUIT[id].name)}.
+      ${tr("find.leads", { m: b.methods.size, f: b.fams.size })}</span></p>
+      ${open ? `<p style="margin:10px 0 0"><button class="btn primary" id="ft-open">${tr("find.open_branch")}</button></p>` : ""}</div></div>`;
+  }
+  function renderForward() {
+    const r = fs.aim ? resolve(fs.aim, fs.path) : null;
+    $("ft-trail").innerHTML = fs.aim ? trail([{ html: aimTag(fs.aim), title: aimLabel(fs.aim), to: "" },
+      ...r.steps.map((s, k) => ({ html: esc(s.opt.label), to: fs.path.slice(0, k + 1).join(".") }))], "root") : "";
+    $("ft-back").hidden = !fs.aim && !fs.hl;
+    // What to do now, above the tree.
+    if (!fs.aim) $("ft-now").innerHTML = `<p class="ft-kicker">1 · ${tr("find.zone.what")}</p><h2>${esc(TR.first.q)}</h2><p>${esc(TR.first.help)}</p>`;
+    else if (r.node) $("ft-now").innerHTML = `<p class="ft-kicker">2 · ${tr("find.zone.situation")} · ${tr("find.question_n", { n: fs.path.length + 2 })}</p><h2>${esc(r.node.q)}</h2>${r.node.help ? `<p>${esc(r.node.help)}</p>` : ""}`;
+    else $("ft-now").innerHTML = `<p class="ft-kicker">3 · ${tr("find.zone.tool")}</p><h2>${esc(D[r.leaf.method].name)}</h2>`;
+    drawForward();
+    // Below the tree: the routes through a picked situation, a picked kind of question, or the card reached.
+    const det = $("ft-detail");
+    if (!fs.aim && fs.hl && fs.sit) {
+      const via = viaSituation(fs.hl, fs.sit), name = situationsOf(fs.hl).find(x => x.key === fs.sit).name;
+      det.innerHTML = `<div class="ft-detail wide"><div>
+        <p>${aimTag(fs.hl)} <b>${esc(aimLabel(fs.hl))}</b> → ${tr("find.through")} <b>${esc(name)}</b> → ${tr("find.n_methods", { n: via.length })}</p>
+        <ol>${via.map(v => `<li>${v.labels.map(esc).join(' <span class="label">›</span> ')} → ${tag(D[v.m].name, famColour(v.m))}
+          <button class="btn ft-small" data-walk="${fs.hl}|${v.path.join(".")}">${tr("find.walk_it")}</button></li>`).join("")}</ol>
+        <p style="margin:0"><button class="btn" id="ft-open">${tr("find.open_whole")}</button></p></div></div>`;
+    } else if (!fs.aim && fs.hl) det.innerHTML = aimInfo(fs.hl, true);
+    else if (fs.aim && r.node && !fs.path.length) det.innerHTML = aimInfo(fs.aim, false);
+    else if (r && r.leaf) {
+      const m = D[r.leaf.method];
+      det.innerHTML = `<div class="ft-detail"><div class="card">${DATA.cards.designs[m.id]}</div><div>${famSource(m.family)}
+        <h3 style="font-size:16px;margin:0">${tr("find.why")}</h3>
+        <ol><li><span class="q">${esc(TR.first.q)}</span>${aimTag(fs.aim)} ${purposeTags(fs.aim)} ${esc(aimLabel(fs.aim))}</li>
+          ${r.steps.map(s => `<li><span class="q">${esc(s.node.q)}</span>${esc(s.opt.label)} ${conChip(s.opt.con)} ${timeBadge(s.opt.time)}</li>`).join("")}</ol>
+        <p>${esc(m.gist)}</p>
+        <p><span class="ft-kicker" style="display:block;margin-bottom:2px">${tr("find.real_example")}</span>${esc(m.example)}</p>
+        <p><span class="ft-kicker" style="display:block;margin-bottom:2px">${tr("find.defined_in")}</span>${refLine(m)}</p></div></div>`;
+    } else det.innerHTML = "";
+    const open = $("ft-open");
+    if (open) open.onclick = () => go({ aim: fs.hl, path: [], hl: null, sit: null });
+  }
+
+  // ---- Method to RQ: the same tree, mirrored
+  function drawReverse() {
+    const svg = $("ft-rmap"), FW = 260, H = 56, R = 66, AW = 290, SW = 280;
+    if (!fs.m) {
+      const FX = 16, MX = FX + FW + 36, MW = 220, open = fs.f ? designs.filter(m => m.family === fs.f) : [];
+      const SX = (open.length ? MX + MW : FX + FW) + 170, AX = SX + SW + 36;
+      const rows = Math.max(AIMS.length, open.length), fgap = (rows * R - H) / (meta.families.length - 1), fy = k => TOP + k * fgap;
+      const mgap = open.length > 1 ? (rows * R - H) / (open.length - 1) : 0, my = k => TOP + k * mgap;
+      const ay = i => TOP + i * (rows * R - H) / (AIMS.length - 1);
+      let edges = "", nodes = ""; const famToSit = [], famToMeth = [], methToSit = [], sitNode = i => ({ key: AIMS[i], y: ay(i), h: H });
+      AIMS.forEach((a, i) => {
+        const b = branchOf(a), lit = !fs.f || b.fams.has(fs.f), dim = lit ? "" : "dim";
+        nodes += sitBox(a, SX, ay(i), SW, H, dim + " static") + aimBox(a, AX, ay(i), AW, H, dim + " static");
+        edges += `<path class="edge${lit ? "" : " dim"}" d="M${SX + SW},${ay(i) + H / 2} H${AX}"/>`;
+        if (!fs.f) b.fams.forEach(f => { const k = meta.families.findIndex(x => x.id === f);
+          famToSit.push({ a: { key: f, y: fy(k), h: H }, b: sitNode(i), color: FAM[f].color, cls: "tool" }); });
+      });
+      meta.families.forEach((f, k) => { nodes += famBox(f.id, FX, fy(k), FW, H, `${fs.f === f.id ? "on" : ""}${fs.f && fs.f !== f.id ? " dim" : ""}`, `data-f="${f.id}"`); });
+      open.forEach((m, k) => {
+        const fk = meta.families.findIndex(x => x.id === fs.f);
+        famToMeth.push({ a: { key: fs.f, y: fy(fk), h: H }, b: { key: m.id, y: my(k), h: H }, cls: "on" });
+        nodes += methodBox(m.id, MX, my(k), MW, H, "", `data-m="${m.id}"`);
+        AIMS.forEach((a, i) => { if (branchOf(a).methods.has(m.id)) methToSit.push({ a: { key: m.id, y: my(k), h: H }, b: sitNode(i), color: FAM[fs.f].color, cls: "tool" }); });
+      });
+      edges += links(famToSit, FX + FW, SX) + links(famToMeth, FX + FW, MX, true) + links(methToSit, MX + MW, SX);
+      const heads = head(FX, open.length ? MX + MW : FX + FW, "3 · " + up(open.length ? "find.head.tool_family_method" : "find.head.tool_family"))
+        + head(SX, SX + SW, "2 · " + up("find.zone.situation")) + head(AX, AX + AW, "1 · " + up("find.head.what_kind"));
+      setSvg(svg, AX + AW + 16, TOP + rows * R + 8, heads + edges + nodes);
+      $("ft-rnote").textContent = trt(fs.f ? "find.note.rev_family" : "find.note.rev");
+      return;
+    }
+    // One Method: each route is a row, read from the tool back to the kind of question.
+    const routes = pathsTo(fs.m), maxLen = Math.max(...routes.map(r => r.steps.length));
+    const x = d => 16 + (d === 0 ? 0 : 220 + GAP + (d - 1) * (W + GAP)), AX = x(maxLen + 1);
+    const ry = i => TOP + i * RH, midY = TOP + ((routes.length - 1) * RH) / 2;
+    let edges = links(routes.map((rt, i) => ({ a: { key: "m", y: midY, h: BH }, b: { key: i, y: ry(i), h: BH }, cls: "on" })), 16 + 220, x(1), true);
+    let nodes = methodBox(fs.m, 16, midY, 220, BH, "on static");
+    routes.forEach((rt, i) => {
+      const rev = [...rt.steps].reverse(), data = `data-walk="${rt.aim}|${rt.path.join(".")}"`;
+      rev.forEach((s, k) => {
+        nodes += answerBox(s.o, x(k + 1), ry(i), W, BH, "", data);
+        if (k) edges += `<path class="edge on" d="M${x(k) + W},${ry(i) + BH / 2} H${x(k + 1)}"/>`;
+      });
+      edges += `<path class="edge on" d="M${x(rev.length) + W},${ry(i) + BH / 2} H${AX}"/>`;
+      nodes += aimBox(rt.aim, AX, ry(i), AIMW, BH, "", data);
+    });
+    const heads = head(16, 236, "3 · " + up("find.zone.tool")) + head(x(1), x(maxLen) + W, "2 · " + up("find.head.situation_back")) + head(AX, AX + AIMW, "1 · " + up("find.zone.what"));
+    setSvg(svg, AX + AIMW + 16, TOP + routes.length * RH + 8, heads + edges + nodes);
+    $("ft-rnote").textContent = trt("find.note.routes");
+  }
+  function renderReverse() {
+    $("ft-rtrail").innerHTML = fs.f ? trail([{ html: tag(FAM[fs.f].name, FAM[fs.f].color), to: "f" }, ...(fs.m ? [{ html: esc(D[fs.m].name) }] : [])], "root") : "";
+    $("ft-rback").hidden = !fs.f;
+    if (!fs.f) $("ft-rnow").innerHTML = `<p class="ft-kicker">3 · ${tr("find.zone.tool")}</p><h2>${tr("find.rev.title")}</h2><p>${tr("find.rev.lede")}</p>`;
+    else if (!fs.m) $("ft-rnow").innerHTML = `<p class="ft-kicker">3 · ${tr("find.zone.tool")}</p><h2>${tr("find.rev.which", { family: esc(FAM[fs.f].name.toLowerCase()) })}</h2>`;
+    else $("ft-rnow").innerHTML = `<p class="ft-kicker">3 · ${tr("find.zone.tool")} → 1 · ${tr("find.zone.what")}</p><h2>${tr("find.rev.routes", { name: esc(D[fs.m].name), n: pathsTo(fs.m).length })}</h2>`;
+    drawReverse();
+    $("ft-rdetail").innerHTML = fs.m ? `<div class="ft-detail"><div class="card">${DATA.cards.designs[fs.m]}</div><div>${famSource(D[fs.m].family)}
+      <p>${esc(D[fs.m].gist)}</p><p><span class="ft-kicker" style="display:block;margin-bottom:2px">${tr("find.defined_in")}</span>${refLine(fs.m)}</p></div></div>` : "";
+  }
+
+  function render() {
+    $("ft-rq").hidden = fs.tab !== "rq"; $("ft-method").hidden = fs.tab !== "method";
+    document.querySelectorAll("#view-find [data-ft]").forEach(b => b.setAttribute("aria-selected", b.dataset.ft === fs.tab));
+    if (fs.tab === "rq") renderForward(); else renderReverse();
+  }
+  // Wiring, once.
+  $("ft-zsrc").innerHTML = $("ft-rzsrc").innerHTML = zoneSources();
+  document.querySelectorAll("#view-find [data-ft]").forEach(b => b.onclick = () => { if (fs.tab !== b.dataset.ft) go({ tab: b.dataset.ft }); });
+  $("ft-back").onclick = back; $("ft-rback").onclick = back;
+  pickable($("ft-map"), g => {
+    if (!fs.aim) {
+      // On the overview, a first click lights a kind of question (or one situation); a second click opens its branch.
+      const a = g.dataset.aim;
+      if (g.dataset.sit) return go(fs.hl === a && fs.sit === g.dataset.sit ? { sit: null } : { hl: a, sit: g.dataset.sit });
+      return fs.hl === a ? go({ aim: a, path: [], hl: null, sit: null }) : go({ hl: a, sit: null });
+    }
+    const p = g.dataset.p ? g.dataset.p.split(".").map(Number) : [];
+    const r = resolve(fs.aim, p);
+    if (r && r.leaf && r.leaf.goto) return go({ aim: r.leaf.goto, path: [] });
+    go({ path: p });
+  });
+  pickable($("ft-rmap"), g => {
+    if (g.dataset.f) return go({ f: fs.f === g.dataset.f ? null : g.dataset.f, m: null });
+    if (g.dataset.m) return go({ m: g.dataset.m });
+    if (g.dataset.walk) { const [aim, p] = g.dataset.walk.split("|"); go({ tab: "rq", aim, path: p.split(".").map(Number), hl: null, sit: null }); }
+  });
+  $("ft-detail").addEventListener("click", e => { const b = e.target.closest("[data-walk]"); if (!b) return;
+    const [aim, p] = b.dataset.walk.split("|"); go({ aim, path: p.split(".").map(Number), hl: null, sit: null }); });
+  $("ft-trail").addEventListener("click", e => { const b = e.target.closest("button[data-to]"); if (!b) return;
+    if (b.dataset.to === "root") go({ aim: null, path: [], hl: fs.aim, sit: null }); else go({ path: b.dataset.to ? b.dataset.to.split(".").map(Number) : [] }); });
+  $("ft-rtrail").addEventListener("click", e => { const b = e.target.closest("button[data-to]"); if (!b) return;
+    go(b.dataset.to === "root" ? { f: null, m: null } : { m: null }); });
+  return {
+    render,
+    // A history step back into the page: its own saved state, or the start for the step that opened the page.
+    restore(ft) { fs = { ...START, ...(ft || {}) }; render(); },
+    pathsTo, resolve, get state() { return fs; },
+  };
+})();
+
 // Each page change is a step in the browser's history, so the phone's back button returns to the previous page of the
 // game (and closes an open card first) instead of leaving it. Only Back from the first page leaves.
 let current = null;
@@ -1536,9 +2076,10 @@ function show(view, fromHistory) {
   document.querySelector(".brand p").hidden = view === "home";
   document.querySelector("nav").hidden = view === "home";
   if (view === "home" && $("view-home").hidden) { renderFan(); countUp(); }
-  for (const v of ["home", "play", "duel", "decks", "guide"]) { $("view-" + v).hidden = v !== view; $("tab-" + v).setAttribute("aria-selected", v === view); }
+  for (const v of ["home", "play", "duel", "decks", "guide", "find"]) { $("view-" + v).hidden = v !== view; $("tab-" + v).setAttribute("aria-selected", v === view); }
   if (view === "play") renderTray(); else $("tray").hidden = true;
   if (view === "decks") renderDecks();
+  if (view === "find") FIND.render();
   saveRound();
 }
 addEventListener("popstate", e => {
@@ -1547,6 +2088,8 @@ addEventListener("popstate", e => {
   if (!e.state) return;  // a link to #... on the page, not one of the game's own steps
   const view = e.state.view || "home";
   if (view !== current) show(view, true);
+  // Steps inside Find your method carry the tree's state; the step that opened the page carries none.
+  if (view === "find") FIND.restore(e.state.ft || null);
 });
 document.querySelectorAll("nav button").forEach(b => b.onclick = () => show(b.dataset.view));
 $("go-home").onclick = e => { e.preventDefault(); show("home"); };

@@ -46,7 +46,8 @@ and work alike. My general rules are in `~/.claude/CLAUDE.md`; this file adds wh
   "SMART-Lab Science Game Kit", so a stray card can be sorted back into its game.
 
 ### App
-- Pages: Home (lively: fanned cards, live counts, a quick question), Play, Browse the decks, language picker.
+- Pages: Home (lively: fanned cards, live counts, a quick question), Play, Find your method (Methodical: a decision
+  tree from research question to Method and back, `data/method-tree.json`), Browse the decks, language picker.
 - Play: one prompt card, four answer choices shown as whole cards. Tapping a card opens it full screen; only the big
   green "Pick this card" button answers. The result reacts on the cards themselves (badges, "Your pick", confetti for
   the best answer), then explains, then links the key reference. "Deal another question" is highlighted afterwards.
@@ -59,7 +60,8 @@ and work alike. My general rules are in `~/.claude/CLAUDE.md`; this file adds wh
   after every move, restored on load), so a reload or a closed tab brings back the same round on the same page,
   without scoring it twice.
 - `tools/test_app.py` plays the built app headless like a player (every prompt card, the viewer's green button,
-  scoring against the key, back button, a round across a reload, decks). Every kit game has one.
+  scoring against the key, back button, a round across a reload, decks; in Methodical also the Find your method tree).
+  Every kit game has one.
 
 ### Content
 - Three-tier answer keys: best, defensible, trap (each trap states why it fails). Unlisted answers can be appealed at
