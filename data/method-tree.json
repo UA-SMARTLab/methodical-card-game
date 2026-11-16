@@ -137,12 +137,12 @@
    "help": "Researchers call the possible cause the exposure, and the result the outcome.",
    "options": [
     {
-     "label": "No: test millions of genes, one by one",
+     "label": "Cause unknown: test millions of genes, one by one",
      "con": "unknown-territory",
      "method": "gwas"
     },
     {
-     "label": "Yes: one possible cause, one result",
+     "label": "One possible cause and one result in mind",
      "next": {
       "q": "Is one of them rare?",
       "options": [
@@ -180,13 +180,13 @@
          "q": "Are there already records of that group?",
          "options": [
           {
-           "label": "Yes: rebuild the group from old records",
+           "label": "Records exist: rebuild the group from them",
            "con": "existing-data",
            "time": "retrospective",
            "method": "cohort-retrospective"
           },
           {
-           "label": "No: measure now, then follow them for years",
+           "label": "No records: measure now, then follow them for years",
            "time": "prospective",
            "method": "cohort-prospective"
           }
@@ -194,7 +194,7 @@
         }
        },
        {
-        "label": "Neither: both are common",
+        "label": "Both the cause and the result are common",
         "next": {
          "q": "What data can you get?",
          "options": [
@@ -232,7 +232,7 @@
    "help": "Researchers call the treatment or change the intervention. If you decide who gets it, your study is an experiment; if not, it is observational.",
    "options": [
     {
-     "label": "Yes, and I can let chance decide, like a coin toss",
+     "label": "I decide, and chance can pick, like a coin toss",
      "next": {
       "q": "Who does the coin toss pick?",
       "help": "Letting chance decide is called randomization. It makes the groups alike in everything except the treatment.",
@@ -243,7 +243,7 @@
          "q": "Anything special about your situation?",
          "options": [
           {
-           "label": "No: compare two groups, the standard way",
+           "label": "Nothing special: compare two groups, the standard way",
            "method": "rct"
           },
           {
@@ -278,16 +278,16 @@
          "q": "Will every group get it in the end?",
          "options": [
           {
-           "label": "Yes: only the order is open",
+           "label": "Every group gets it in the end; only the order is open",
            "con": "rollout",
            "method": "stepped-wedge"
           },
           {
-           "label": "No, and the groups are services like schools or clinics",
+           "label": "Not all get it; groups are services, like clinics",
            "method": "cluster-rct"
           },
           {
-           "label": "No, and the groups are places in nature or markets",
+           "label": "Not all get it; groups are places in nature or markets",
            "hint": "Fields, islands, shops",
            "method": "field-experiment"
           }
@@ -303,13 +303,13 @@
      }
     },
     {
-     "label": "Yes, but only small changes in my own work",
+     "label": "I decide, but only small changes in my own work",
      "hint": "Try it, measure, adjust, repeat",
      "con": "single-unit",
      "method": "pdsa"
     },
     {
-     "label": "No: it already happened, or it would be unfair or unsafe",
+     "label": "I can't decide: it already happened, or would be unfair",
      "con": "no-assign",
      "next": {
       "q": "Did something else decide who got it?",
@@ -363,7 +363,7 @@
         }
        },
        {
-        "label": "Nothing: the groups also differ in other ways",
+        "label": "Nothing decided it: the groups also differ in other ways",
         "next": {
          "q": "What do you have to work with?",
          "help": "Those other differences are called confounders. Whatever you pick, the analysis must adjust for them.",
@@ -399,7 +399,7 @@
         }
        },
        {
-        "label": "Nothing, and there is only one case",
+        "label": "Nothing decided it, and there is only one case",
         "hint": "Test competing explanations, clue by clue",
         "con": "single-unit",
         "method": "process-tracing"
@@ -423,17 +423,17 @@
       "q": "Do you have data from the past?",
       "options": [
        {
-        "label": "Yes: records that show who got it",
+        "label": "Past records show who got it",
         "con": "existing-data",
         "method": "prediction-model"
        },
        {
-        "label": "Yes, but the result is rare and one predictor is costly to measure",
+        "label": "Past data, but a rare result and a costly predictor",
         "con": "rare-outcome",
         "method": "case-cohort"
        },
        {
-        "label": "No: measure now, then follow people",
+        "label": "No past data: measure now, then follow people",
         "time": "prospective",
         "method": "cohort-prospective"
        }
@@ -504,17 +504,17 @@
       "q": "Does the questionnaire or scale exist yet?",
       "options": [
        {
-        "label": "No: build it and test it",
+        "label": "No scale yet: build it and test it",
         "con": "unknown-territory",
         "method": "validation"
        },
        {
-        "label": "No, and it isn't even clear what to ask: interview people first",
+        "label": "No scale, and unclear what to ask: interview first",
         "con": "unknown-territory",
         "method": "mixed-sequential"
        },
        {
-        "label": "Yes: check it relates to other measures the way theory says",
+        "label": "Scale exists: test its links to other measures",
         "method": "nomological"
        }
       ]
@@ -559,22 +559,22 @@
       "q": "Do you already have an explanation to test?",
       "options": [
        {
-        "label": "No: build one from what you observe",
+        "label": "No explanation yet: build one from what you observe",
         "con": "unknown-territory",
         "method": "grounded-theory"
        },
        {
-        "label": "Yes, in one case: test competing explanations",
+        "label": "Rival explanations in one case: test them",
         "con": "single-unit",
         "method": "process-tracing"
        },
        {
-        "label": "Yes, in one case: study it from every side",
+        "label": "One case, explanation in hand: study it from every side",
         "con": "single-unit",
         "method": "case-study"
        },
        {
-        "label": "Yes: a theory of how measurements should relate",
+        "label": "A theory of how measurements should relate",
         "method": "nomological"
        }
       ]
@@ -665,7 +665,7 @@
       "q": "Anything special?",
       "options": [
        {
-        "label": "No: the standard way",
+        "label": "Nothing special: the standard review",
         "method": "systematic-review"
        },
        {

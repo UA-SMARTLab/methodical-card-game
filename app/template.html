@@ -456,6 +456,8 @@ svg.ft-map { display: block; font-family: var(--f-body); }
 .ft-map .nd.fill text { fill: #fff; }
 .ft-map .nd.fill text.sub { fill: rgba(255,255,255,.85); }
 .ft-map .nd.fill.on rect.ring { stroke: var(--accent); stroke-width: 3; }
+.ft-map text.qlab { fill: var(--muted); font-size: 11.5px; font-style: italic; }
+.ft-map text.qlab.cur { fill: var(--accent); font-weight: 600; font-style: normal; }
 .ft-note { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
 .ft-detail { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: start; border-top: 1px solid var(--line); margin-top: 14px; padding-top: 14px; }
 .ft-detail.wide { grid-template-columns: 1fr; }
@@ -1855,18 +1857,21 @@ const FIND = (() => {
     : `<button data-to="${c.to}"${c.title ? ` title="${esc(c.title)}" class="tagbtn"` : ""}>${c.html}</button><span class="sep">›</span>`).join("");
 
   // ---- RQ to Method
+  // Each group of answers is headed by the question it answers, so an answer never has to be read without its question.
+  const QH = 32;
   function layoutBranch(aim) {
-    const items = []; let row = 0, maxDepth = 0;
+    const items = [], qs = []; let cur = 0, maxDepth = 0;
     (function place(node, depth, path) {
+      qs.push({ q: node.q, depth, path: path.join("."), y: cur }); cur += QH;
       const ys = node.options.map((o, i) => {
         const p = [...path, i]; maxDepth = Math.max(maxDepth, depth);
         if (o.next) { const y = place(o.next, depth + 1, p); items.push({ o, depth, path: p, y }); return y; }
-        const y = row++ * RH; items.push({ o, depth, path: p, y, leaf: true }); return y;
+        const y = cur; cur += RH; items.push({ o, depth, path: p, y, leaf: true }); return y;
       });
       return (ys[0] + ys[ys.length - 1]) / 2;
     })(TR.aims[aim], 1, []);
     const top = items.filter(i => i.depth === 1).map(i => i.y);
-    return { items, rootY: (Math.min(...top) + Math.max(...top)) / 2, rows: row, maxDepth };
+    return { items, qs, rootY: (Math.min(...top) + Math.max(...top)) / 2, height: cur, maxDepth };
   }
   function drawForward() {
     const svg = $("ft-map");
@@ -1914,9 +1919,14 @@ const FIND = (() => {
       if (it.leaf && it.o.goto) nodes += `<text x="${x(it.depth) + W + 8}" y="${yy(it.y) + BH / 2 + 4}" style="fill:var(--accent);font-size:12px">↪ ${esc(aimLabel(it.o.goto))}</text>`;
     });
     Object.entries(byDepth).forEach(([d, list]) => { d = +d; edges += links(list, d === 1 ? x(0) + AIMW : x(d - 1) + W, x(d), true); });
+    // The questions, each above the answers it offers; the one in front of you is in the accent colour.
+    L.qs.forEach(q => {
+      const lines = wrap(q.q, Math.floor(W / 6.2)), cur = q.path === here;
+      nodes += `<text class="qlab${cur ? " cur" : ""}" x="${x(q.depth)}" y="${yy(q.y) + 12}">${lines.map((l, k) => `<tspan x="${x(q.depth)}" dy="${k ? 13 : 0}">${esc(l)}</tspan>`).join("")}</text>`;
+    });
     nodes += aimBox(fs.aim, 16, yy(L.rootY), AIMW, BH, "on", 'data-p=""');
     const heads = head(16, 16 + AIMW, "1 · " + up("find.zone.what")) + head(x(1), x(L.maxDepth) + W, "2 · " + up("find.zone.situation")) + head(cardX, cardX + LEAFW, "3 · " + up("find.zone.tool"));
-    setSvg(svg, cardX + LEAFW + 16, TOP + Math.max(L.rows, 1) * RH + 8, heads + edges + nodes);
+    setSvg(svg, cardX + LEAFW + 16, TOP + L.height + 8, heads + edges + nodes);
     $("ft-note").textContent = trt(r.leaf ? "find.note.leaf" : "find.note.branch");
   }
   function aimInfo(id, open) {
