@@ -250,7 +250,9 @@ card is **what you study**, the constraints are **your situation**, a Method car
   read says (49 of 60 for now), it is **our reading**, Table 4.4 applied to the Method's own definition, with a note
   saying why. It is drawn apart (a dashed inner outline, "(our reading)" on its label, a dashed badge in its details), so
   it is never mistaken for a sourced mark. Sources that would replace our readings: `docs/method-tree-reasoning-pending.md`.
-  The drawing for a Method with no reasoning at all ("no source yet", dashed and faint) stays, should one be added
+  Each family (or published group) box holds a row of small squares along its bottom, one per Method, always in the same order, so lighting a
+  reasoning or a kind of question shows which Methods inside it change: solid when lit, hollow when lit only by our
+  reading. The drawing for a Method with no reasoning at all ("no source yet", dashed and faint) stays, should one be added
   without one; the build warns about it.
 - **Two directions.** *RQ to Method* walks forwards; *Method to RQ* is the mirror image, listing every route that ends on
   a Method. Clicking a kind of question or a single situation lights its paths through the tree.

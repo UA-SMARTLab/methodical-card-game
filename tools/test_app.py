@@ -220,6 +220,11 @@ async function run() {
     if (w.eval("FIND.state").rz !== rz) fail(`find: the reasoning control did not pick ${rz}`);
     const lit = $$("#ft-map .nd.fill.on").length;
     if (lit !== r.families) fail(`find: ${rz} lights ${lit} Method families, expected ${r.families}`);
+    // Each family holds one square per Method; the lit ones are the Methods marked, hollow where it is our reading.
+    const minis = $$("#ft-map .mini").length, litMinis = $$("#ft-map .mini.lit").length, hollow = $$("#ft-map .mini.lit.ours").length;
+    const wantLit = Object.values(r.byFamily).reduce((s, v) => s + v, 0), wantHollow = Object.values(r.oursByFamily).reduce((s, v) => s + v, 0);
+    if (minis !== window.CLS.nMethods || litMinis !== wantLit || hollow !== wantHollow)
+      fail(`find: ${rz} shows ${minis} squares, ${litMinis} lit, ${hollow} hollow; expected ${window.CLS.nMethods}, ${wantLit}, ${wantHollow}`);
     for (const [f, n] of Object.entries(r.byFamily)) {
       w.eval(`FIND.restore({ tab: "method", f: "${f}", rz: "${rz}" })`); await sleep(5);
       const on = $$("#ft-rmap .nd.fill.on[data-m]").length, ours = $$("#ft-rmap .nd.fill.on.ours[data-m]").length, wantOurs = r.oursByFamily[f] || 0;
@@ -330,7 +335,7 @@ def class_expectations():
     unmarked_aims = sorted(a for a, v in tree["aims"].items() if not ends(v, set()) & set(marks))
     return {"tool": tool, "question": question, "reasoning": reasoning, "marked": sorted(marks),
             "unmarkedByFamily": unmarked, "unmarkedAims": unmarked_aims,
-            "ours": sorted(d for d, m in marks.items() if m["basis"] == "ours")}
+            "ours": sorted(d for d, m in marks.items() if m["basis"] == "ours"), "nMethods": len(family)}
 
 
 def run_test(exe):

@@ -228,7 +228,7 @@
   "find.reason.unsourced": "no source yet",
   "find.reason.ours": "our reading",
   "find.reason.count_ours": "{k} of {n} {name} · {j} our reading",
-  "find.reason.legend": "Dashed outline: our own reading of the definitions, where no source we read says.",
+  "find.reason.legend": "Dashed outline or hollow square: our own reading of the definitions, where no source we read says.",
   "find.basis.ours": "our own reading of the definitions; no source we read says",
   "find.reason.none": "No source marks its reasoning",
   "find.reason.either": "either way",

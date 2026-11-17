@@ -478,6 +478,12 @@ svg.ft-map { display: block; font-family: var(--f-body); }
 .ft-map .nd.fill.ours rect.bg { stroke: #fff; stroke-width: 1.5; stroke-dasharray: 5 4; stroke-opacity: .85; }
 .ft-map .nd.fill.ours.on rect.ring { stroke-dasharray: 7 4; }
 .ft-ours .ft-tag { outline: 1.5px dashed var(--muted); outline-offset: 2px; }
+.ft-map .mini { fill: rgba(255,255,255,.55); }
+.ft-map .mini.lit { fill: #fff; }
+.ft-map .mini.lit.ours { fill: none; stroke: #fff; stroke-width: 1.5; }
+.ft-map .mini.off { fill: rgba(255,255,255,.16); }
+.ft-map .nd.fill.none .mini { fill: var(--muted); } .ft-map .nd.fill.none .mini.lit { fill: var(--text); }
+.ft-map .nd.fill.none .mini.lit.ours { fill: none; stroke: var(--text); } .ft-map .nd.fill.none .mini.off { fill: var(--muted); opacity: .3; }
 .ft-legend { display: inline-flex; align-items: center; gap: 6px; }
 .ft-dash { display: inline-block; width: 22px; height: 12px; border: 1.5px dashed var(--muted); border-radius: 3px; }
 .ft-map .nd.fill.none rect.bg { fill: none; stroke: var(--muted); stroke-dasharray: 5 4; stroke-width: 1.5; }
@@ -1914,16 +1920,27 @@ const FIND = (() => {
       ${lines.map((l, k) => `<text x="12" y="${34 + k * 14}" style="font-size:11.5px">${esc(l)}</text>`).join("")}</g>`;
   }
   // A tool group: a game family, a published category, or the dashed "not classified by this source" group.
-  function groupBox(g, x, y, w, h, cls = "", data = "") {
+  // One small square per Method in the group, always in the same order, so lighting a reasoning or a kind of question
+  // shows which Methods inside the group change. Lit squares are solid; with a reasoning picked, a Method lit only by our
+  // own reading is hollow.
+  // One row along the bottom of the box; a large group gets smaller squares so it still fits in one row.
+  const GH = 80;
+  function miniRow(g, w, h, lit) {
+    const n = g.members.length, size = n * 15 <= w - 26 ? 12 : 8, pitch = size + (size === 12 ? 3 : 2);
+    return g.members.map((m, i) => { const on = lit && lit.has(m);
+      const state = on ? "lit" + (fs.rz && rzOurs(m) ? " ours" : "") : lit ? "off" : "";
+      return `<rect class="mini ${state}" data-mini="${m}" x="${14 + i * pitch}" y="${h - 12 - size}" width="${size}" height="${size}" rx="2"><title>${esc(D[m].name)}</title></rect>`; }).join("");
+  }
+  function groupBox(g, x, y, w, h, cls = "", data = "", lit = null) {
     const n = g.members.length, u = g.members.filter(m => !RZ.items[m]).length;
     const j = g.members.filter(m => rzHas(m) && rzOurs(m)).length;
     const sub = fs.rz && overview() ? trt(u ? "find.reason.count_open" : j ? "find.reason.count_ours" : "find.reason.count", { k: g.members.filter(rzHas).length, n, u, j, name: rzName(fs.rz).toLowerCase() })
       : g.fit ? trt("find.cards_line", { n, fit: fitName(g.fit) }) : trt("find.n_methods", { n });
-    const lines = wrap(g.name.toUpperCase(), Math.floor(w / 7.4));
+    const lines = wrap(g.name.toUpperCase(), Math.floor((w - 28) / 7.4)), ys = lines.length > 1 ? 18 : 22;
     return `<g class="nd fill${g.none ? " none" : ""} ${cls}" tabindex="0" role="button" ${data} transform="translate(${x} ${y})"><title>${esc(g.name + (g.def ? ": " + g.def : ""))}</title>
       <rect class="bg" width="${w}" height="${h}" rx="8" style="${g.none ? "" : `fill:${g.color}`}"></rect><rect class="ring" x="-3" y="-3" width="${w + 6}" height="${h + 6}" rx="10"></rect>
-      ${lines.map((l, k) => `<text x="14" y="${h / 2 - 2 - (lines.length - 1) * 7 + k * 13}" style="font:700 12px var(--f-cond);letter-spacing:.08em">${esc(l)}</text>`).join("")}
-      <text class="sub" x="14" y="${h / 2 + 15 + (lines.length - 1) * 6}">${esc(sub)}</text></g>`;
+      ${lines.map((l, k) => `<text x="14" y="${ys + k * 13}" style="font:700 12px var(--f-cond);letter-spacing:.08em">${esc(l)}</text>`).join("")}
+      <text class="sub" x="14" y="${ys + (lines.length - 1) * 13 + 15}">${esc(cut(sub, Math.floor((w - 28) / 5.6)))}</text>${miniRow(g, w, h, lit)}</g>`;
   }
   // A question-side group, drawn as a block beside the kinds of question it holds.
   function qGroupBox(g, x, y, w, h) {
@@ -2017,7 +2034,8 @@ const FIND = (() => {
       const ys = []; let cy = TOP;
       rows.forEach((r, i) => { if (i && r.gi !== rows[i - 1].gi) cy += GGAP; ys.push(cy); cy += hs[i] + GAPY; });
       const total = cy - GAPY - TOP;
-      const tgroups = groupsOf("tool", fs.tv), fgap = tgroups.length > 1 ? (total - H) / (tgroups.length - 1) : 0, fy = k => TOP + k * fgap;
+      const tgroups = groupsOf("tool", fs.tv), tall = Math.max(total, (tgroups.length - 1) * (GH + 10) + GH);
+      const fgap = tgroups.length > 1 ? (tall - GH) / (tgroups.length - 1) : 0, fy = k => TOP + k * fgap;
       const hl = fs.hl, sit = fs.sit, via = hl && sit ? viaSituation(hl, sit) : null;
       // The reasoning overlay narrows what is lit to the Methods marked with the chosen approach.
       const picked = hl ? new Set(via ? via.map(v => v.m) : branchOf(hl).methods) : null;
@@ -2032,16 +2050,16 @@ const FIND = (() => {
         edges += `<path class="edge${hl && rowLit ? " on" : lighting && !rowLit ? " dim" : ""}" d="M${AX + AW},${y + h / 2} H${SX}"/>`;
         tgroups.forEach((g, k) => { if (!g.members.some(m => ms.has(m))) return;
           const lit = lighting && rowLit && g.members.some(m => ms.has(m) && litMethods.has(m));
-          toTools.push({ a: { key: i, y, h }, b: { key: g.id, y: fy(k), h: H }, color: g.color || "var(--muted)", cls: "tool" + (lit ? " lit" : lighting ? " dim" : "") }); });
+          toTools.push({ a: { key: i, y, h }, b: { key: g.id, y: fy(k), h: GH }, color: g.color || "var(--muted)", cls: "tool" + (lit ? " lit" : lighting ? " dim" : "") }); });
       });
       edges += links(toTools, SX + SW, FX);
       if (!qOwn) { const q = qGroupsDrawn(qgroups, rows, ys, hs, 16, false, hl); nodes += q.nodes; edges += q.edges; }
-      tgroups.forEach((g, k) => { nodes += groupBox(g, FX, fy(k), FW, H, "static" + (lighting ? (groupLit(g) ? " on"
-        : !hl && fs.rz && rzGroupClass(g.members) === "unsourced" ? " unsourced" : " dim") : "")); });
+      tgroups.forEach((g, k) => { nodes += groupBox(g, FX, fy(k), FW, GH, "static" + (lighting ? (groupLit(g) ? " on"
+        : !hl && fs.rz && rzGroupClass(g.members) === "unsourced" ? " unsourced" : " dim") : ""), "", litMethods); });
       const qhead = qOwn ? up("find.head.what_kind") : up("find.zone.what") + ": " + QV[fs.qv].name.toUpperCase();
       const thead = TV[fs.tv].own ? up("find.head.tool_family") : up("find.zone.tool") + ": " + TV[fs.tv].name.toUpperCase();
       const heads = head(16, AX + AW, "1 · " + qhead) + head(SX, SX + SW, "2 · " + up("find.zone.situation")) + head(FX, FX + FW, "3 · " + thead);
-      setSvg(svg, FX + FW + 16, TOP + total + 8, heads + edges + nodes);
+      setSvg(svg, FX + FW + 16, TOP + tall + 8, heads + edges + nodes);
       $("ft-note").textContent = trt(sit ? "find.note.sit" : hl ? "find.note.hl" : "find.note.overview");
       return;
     }
@@ -2128,8 +2146,10 @@ const FIND = (() => {
       const arows = qRows(qgroups);
       const FX = 16, MX = FX + FW + 36, MW = 220;
       const SX = (open.length ? MX + MW : FX + FW) + 170, AX = SX + SW + 36;
+      // The family boxes are taller than the rest (they hold a square per Method), so their column may run longer.
       const rows = Math.max(arows.length, open.length, tgroups.length), span = rows * R - H;
-      const fy = k => TOP + (tgroups.length > 1 ? k * span / (tgroups.length - 1) : 0);
+      const gspan = Math.max(span, (tgroups.length - 1) * (GH + 10)), height = Math.max(rows * R, gspan + GH);
+      const fy = k => TOP + (tgroups.length > 1 ? k * gspan / (tgroups.length - 1) : 0);
       const my = k => TOP + (open.length > 1 ? k * span / (open.length - 1) : 0);
       const ay = i => TOP + (arows.length > 1 ? i * span / (arows.length - 1) : 0);
       let edges = "", nodes = ""; const famToSit = [], famToMeth = [], methToSit = [], sitNode = i => ({ key: i, y: ay(i), h: H });
@@ -2138,15 +2158,16 @@ const FIND = (() => {
         nodes += sitBox(r.a, SX, ay(i), SW, H, dim + " static") + aimBox(r.a, AX, ay(i), AW, H, dim + " static");
         edges += `<path class="edge${lit ? "" : " dim"}" d="M${SX + SW},${ay(i) + H / 2} H${AX}"/>`;
         if (!G) tgroups.forEach((g, k) => { if (g.members.some(m => ms.has(m)))
-          famToSit.push({ a: { key: g.id, y: fy(k), h: H }, b: sitNode(i), color: g.color || "var(--muted)", cls: "tool" }); });
+          famToSit.push({ a: { key: g.id, y: fy(k), h: GH }, b: sitNode(i), color: g.color || "var(--muted)", cls: "tool" }); });
       });
       if (!qOwn) { const q = qGroupsDrawn(qgroups, arows, arows.map((_, i) => ay(i)), arows.map(() => H), AX + AW + QGLANE, true, null);
         nodes += q.nodes; edges += q.edges; }
-      tgroups.forEach((g, k) => { nodes += groupBox(g, FX, fy(k), FW, H, `${fs.f === g.id ? "on" : ""}${G && fs.f !== g.id ? " dim" : ""}`
-        + (!G && fs.rz && rzGroupClass(g.members) !== "on" ? " " + rzGroupClass(g.members) : ""), `data-f="${g.id}"`); });
+      tgroups.forEach((g, k) => { nodes += groupBox(g, FX, fy(k), FW, GH, `${fs.f === g.id ? "on" : ""}${G && fs.f !== g.id ? " dim" : ""}`
+        + (!G && fs.rz && rzGroupClass(g.members) !== "on" ? " " + rzGroupClass(g.members) : ""), `data-f="${g.id}"`,
+        fs.rz ? new Set(g.members.filter(rzHas)) : null); });
       open.forEach((m, k) => {
         const fk = tgroups.indexOf(G);
-        famToMeth.push({ a: { key: G.id, y: fy(fk), h: H }, b: { key: m.id, y: my(k), h: H }, cls: "on" });
+        famToMeth.push({ a: { key: G.id, y: fy(fk), h: GH }, b: { key: m.id, y: my(k), h: H }, cls: "on" });
         nodes += methodBox(m.id, MX, my(k), MW, H, fs.rz ? rzClass(m.id) : "", `data-m="${m.id}"`);
         arows.forEach((r, i) => { if (branchOf(r.a).methods.has(m.id)) methToSit.push({ a: { key: m.id, y: my(k), h: H }, b: sitNode(i), color: famColour(m.id), cls: "tool" }); });
       });
@@ -2154,7 +2175,7 @@ const FIND = (() => {
       const thead = TV[fs.tv].own ? up(open.length ? "find.head.tool_family_method" : "find.head.tool_family") : up("find.zone.tool") + ": " + TV[fs.tv].name.toUpperCase();
       const qhead = qOwn ? up("find.head.what_kind") : up("find.zone.what") + ": " + QV[fs.qv].name.toUpperCase();
       const heads = head(FX, open.length ? MX + MW : FX + FW, "3 · " + thead) + head(SX, SX + SW, "2 · " + up("find.zone.situation")) + head(AX, AX + AW + QGW, "1 · " + qhead);
-      setSvg(svg, AX + AW + QGW + 16, TOP + rows * R + 8, heads + edges + nodes);
+      setSvg(svg, AX + AW + QGW + 16, TOP + height + 8, heads + edges + nodes);
       $("ft-rnote").textContent = trt(fs.f ? "find.note.rev_family" : "find.note.rev");
       return;
     }
