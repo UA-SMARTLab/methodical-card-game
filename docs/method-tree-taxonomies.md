@@ -6,6 +6,16 @@ Every entry says what was read and where. Nothing here is from memory. Sources a
 Grant & Booth 2009) are not re-checked, except that the Grimes & Schulz abstract has now been read in its
 PubMed record (see below).
 
+**Update 2026-11-17.** The descriptive, analytical and experimental families now cite the CDC's *Principles of
+Epidemiology in Public Health Practice*, 3rd ed. (archived course, last reviewed 18 May 2012), lesson 1:
+[section 6](https://archive.cdc.gov/www_cdc_gov/csels/dsepd/ss1978/lesson1/section6.html) ("Descriptive epidemiology
+covers time, place, and person") and [section 7](https://archive.cdc.gov/www_cdc_gov/csels/dsepd/ss1978/lesson1/section7.html)
+("The key feature of analytic epidemiology is a comparison group"; in an experimental study the investigator
+determines the exposure; "a cross-sectional study is a perfectly fine tool for descriptive epidemiology purposes").
+Read by us with WebFetch. Grimes & Schulz (2002) left the game to keep the references few; its entries below are the
+record. MeSH has no descriptive/analytic split (searched the MeSH lookup API: only Observational Study D064888 and
+Epidemiologic Studies D016021).
+
 Game data read: `data/meta.json` (9 families), `data/designs.json` (60 methods with `family` and `ref`),
 `data/questions.json` (74 questions, 61 distinct `field` values).
 

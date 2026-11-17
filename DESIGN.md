@@ -171,12 +171,12 @@ Rules the validator enforces (see `tools/build.py`):
 9. **Find your method: family names.** Three Method families have no published category of their own
    (quasi-experimental, theory & computation, design & development) and two are only partly published (qualitative
    & mixed, measurement); cross-sectional studies are *analytical* in Grimes & Schulz (2002) and MeSH but *descriptive*
-   here. See `docs/method-tree-taxonomies.md`.
+   here, as in the CDC's epidemiology course (lesson 1, section 7). See `docs/method-tree-taxonomies.md`.
 10. **Find your method: translations.** The tree's text (data/method-tree.json) and its interface strings are English
     only so far; French, Dutch, German and Arabic fall back to English.
-11. **Find your method: family definitions.** Grimes & Schulz (2002) left the classification switch on 2026-11-17, but
-    three families (descriptive, analytical, experimental) still cite it for what their names mean, since MeSH has no
-    such split. Keep it there, or find another source for those three names.
+11. ~~**Find your method: family definitions.**~~ Done 2026-11-17: descriptive, analytical and experimental now cite the
+    CDC's *Principles of Epidemiology in Public Health Practice* (3rd ed., lesson 1, sections 6–7), since MeSH has no
+    such split; it also files cross-sectional studies as descriptive, as the game does.
 
 ## 8. Trading-card format (v0.2)
 

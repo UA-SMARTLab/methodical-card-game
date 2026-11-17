@@ -107,25 +107,25 @@
    "families": {
     "descriptive": {
      "fit": "source",
-     "cite": "Grimes & Schulz (2002): observational studies without a comparison group are descriptive.",
-     "url": "https://doi.org/10.1016/S0140-6736(02)07283-5",
-     "note": "Grimes & Schulz and MeSH count cross-sectional studies as analytical; the game files them here."
+     "cite": "CDC (2012). Principles of Epidemiology in Public Health Practice, 3rd ed., lesson 1, section 6: descriptive epidemiology covers time, place and person.",
+     "url": "https://archive.cdc.gov/www_cdc_gov/csels/dsepd/ss1978/lesson1/section6.html",
+     "note": "Cross-sectional studies are filed here: the same course calls them a perfectly fine tool for descriptive epidemiology (section 7)."
     },
     "analytical": {
      "fit": "source",
-     "cite": "Grimes & Schulz (2002): observational studies with a comparison group are analytical.",
-     "url": "https://doi.org/10.1016/S0140-6736(02)07283-5"
+     "cite": "CDC (2012). Principles of Epidemiology in Public Health Practice, 3rd ed., lesson 1, section 7: the key feature of analytic epidemiology is a comparison group.",
+     "url": "https://archive.cdc.gov/www_cdc_gov/csels/dsepd/ss1978/lesson1/section7.html"
     },
     "quasi": {
      "fit": "own",
      "cite": "Own grouping. The term follows the ERIC thesaurus descriptor \"Quasiexperimental Design\".",
      "url": "https://eric.ed.gov/?ti=Quasiexperimental+Design",
-     "note": "No family of its own in Grimes & Schulz, MeSH or EQUATOR."
+     "note": "No family of its own in MeSH or EQUATOR."
     },
     "experimental": {
      "fit": "source",
-     "cite": "Grimes & Schulz (2002): the investigator assigns the exposure.",
-     "url": "https://doi.org/10.1016/S0140-6736(02)07283-5"
+     "cite": "CDC (2012). Principles of Epidemiology in Public Health Practice, 3rd ed., lesson 1, section 7: in an experimental study the investigator determines the exposure.",
+     "url": "https://archive.cdc.gov/www_cdc_gov/csels/dsepd/ss1978/lesson1/section7.html"
     },
     "qualitative": {
      "fit": "partial",
