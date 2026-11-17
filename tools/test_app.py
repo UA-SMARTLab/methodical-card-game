@@ -190,6 +190,22 @@ async function run() {
     views++;
   }
   out.views = views;
+  // The switch applies one source at a time: picking a source regroups its side and returns the other to ours;
+  // "Our grouping" returns both. By definition of the control.
+  w.eval('FIND.restore({ tab: "rq" })'); await sleep(10);
+  const own = { qv: w.eval("DATA.classes.question[0].id"), tv: w.eval("DATA.classes.tool[0].id") };
+  for (const b of $$("#ft-lenses [data-lens]").map(x => x.dataset.lens)) {
+    $(`#ft-lenses [data-lens="${b}"]`).click(); await sleep(10);
+    const st = w.eval("FIND.state"), [side, id] = b.split("|");
+    const want = side === "ours" ? own : side === "question" ? { qv: id, tv: own.tv } : { qv: own.qv, tv: id };
+    if (st.qv !== want.qv || st.tv !== want.tv) fail(`find: the switch "${b}" gave ${st.qv} / ${st.tv}, expected ${want.qv} / ${want.tv}`);
+    if ($$('#ft-lenses [aria-checked="true"]').length !== 1) fail(`find: after "${b}" the switch shows ${$$('#ft-lenses [aria-checked="true"]').length} choices as selected`);
+  }
+  // The switch is for the whole tree: walking a branch hides it, and the Method boxes show no published group there.
+  w.eval('FIND.restore({ tab: "rq", tv: "mesh", aim: "CAUSE", path: [2] })'); await sleep(10);
+  if (!$("#ft-lenses").hidden || /·/.test($("#ft-map .nd.fill text.sub")?.textContent || "")) fail("find: the classification switch still applies while walking a branch");
+  w.eval('FIND.restore({ tab: "rq", tv: "mesh" })'); await sleep(10);
+  if ($("#ft-lenses").hidden) fail("find: the classification switch is missing on the whole tree");
 }
 run().catch(e => out.fails.push("driver crashed: " + e)).finally(() => { document.body.dataset.result = JSON.stringify(out); });
 """

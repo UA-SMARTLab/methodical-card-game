@@ -456,10 +456,16 @@ svg.ft-map { display: block; font-family: var(--f-body); }
 .ft-map .nd.fill text { fill: #fff; }
 .ft-map .nd.fill text.sub { fill: rgba(255,255,255,.85); }
 .ft-map .nd.fill.on rect.ring { stroke: var(--accent); stroke-width: 3; }
-.ft-lenses { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0 0 12px; }
-.ft-lens { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
-.ft-lens .ft-kicker { margin: 0 4px 0 0; }
-.ft-lens button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.ft-lenses { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 12px; }
+.ft-lenses .ft-kicker { margin: 0; }
+/* One segmented choice: our grouping, or one source at a time. Each source says which side it regroups. */
+.ft-seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: 3px; gap: 2px; }
+.ft-seg button { border: 0; background: none; border-radius: 9px; padding: 6px 12px; font: inherit; font-size: 14px; color: inherit; cursor: pointer;
+  display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; }
+.ft-seg button small { font-size: 11px; color: var(--muted); }
+.ft-seg button:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.ft-seg button[aria-checked="true"] { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.ft-seg button[aria-checked="true"] small { color: var(--accent-ink); opacity: .85; }
 .ft-cls { margin: 4px 0 0; padding-inline-start: 18px; } .ft-cls li { margin-bottom: 4px; }
 .ft-map .nd.fill.none rect.bg { fill: none; stroke: var(--muted); stroke-dasharray: 5 4; stroke-width: 1.5; }
 .ft-map .nd.fill.none text { fill: var(--muted); } .ft-map .nd.fill.none text.sub { fill: var(--muted); }
@@ -1776,9 +1782,19 @@ const FIND = (() => {
       <div><h3>${tr("find.zone.tool")}</h3>${schemes("tool")}<ul>${meta.families.map(f => { const s = CL.tool[0].families[f.id];
         return `<li><b>${esc(f.name)}</b> <span class="ft-fit ${s.fit}">${esc(fitName(s.fit))}</span><br>${link(s.cite, s.url)}</li>`; }).join("")}</ul></div>`;
   };
-  // The two switches: how to view what you study, and how to view your tool.
-  const lensBar = () => ["question", "tool"].map(side => `<div class="ft-lens"><span class="ft-kicker">${tr(side === "question" ? "find.view.what" : "find.view.tool")}</span>
-    ${CL[side].map(s => `<button class="btn ft-small" data-lens="${side}|${s.id}" aria-pressed="${(side === "question" ? fs.qv : fs.tv) === s.id}" title="${esc(s.cite)}">${esc(s.name)}</button>`).join("")}</div>`).join("");
+  // One choice: view the categories by our grouping (which draws on all these sources and fills their gaps), or by one
+  // source at a time. A source regroups only its own side; the other side stays as ours.
+  const OWN_Q = CL.question[0].id, OWN_T = CL.tool[0].id;
+  // The whole tree is shown at the start of RQ to Method, and in Method to RQ until a Method is picked.
+  const overview = () => fs.tab === "rq" ? !fs.aim : !fs.m;
+  const lensBar = () => {
+    const ours = fs.qv === OWN_Q && fs.tv === OWN_T;
+    const opt = (key, name, side, on, title) => `<button role="radio" aria-checked="${on}" data-lens="${key}" title="${esc(title)}">${esc(name)}${side ? `<small>${esc(side)}</small>` : ""}</button>`;
+    return `<span class="ft-kicker" id="ft-lens-label">${tr("find.view.label")}</span>
+      <div class="ft-seg" role="radiogroup" aria-labelledby="ft-lens-label">${opt("ours", trt("find.view.ours"), trt("find.view.ours_side"), ours, trt("find.view.ours_title"))}
+      ${["question", "tool"].map(side => CL[side].filter(s => !s.own).map(s => opt(`${side}|${s.id}`, s.name, trt("find.view.side." + side),
+        (side === "question" ? fs.qv : fs.tv) === s.id, s.cite)).join("")).join("")}</div>`;
+  };
 
   // ---- drawing pieces shared by both trees
   const TOP = 44, W = 210, GAP = 36, RH = 62, BH = 52, LEAFW = 200, AIMW = 250;
@@ -1883,7 +1899,7 @@ const FIND = (() => {
     return `<g class="nd fill ${cls}" tabindex="0" role="button" ${data} transform="translate(${x} ${y})"><title>${esc(D[id].name + " · " + FAM[D[id].family].name)}</title>
       <rect class="bg" width="${w}" height="${h}" rx="6" style="fill:${famColour(id)}"></rect><rect class="ring" x="-3" y="-3" width="${w + 6}" height="${h + 6}" rx="8"></rect>
       <text x="10" y="${h / 2 - 2}" style="font-weight:600">${esc(cut(D[id].name, Math.floor(w / 6.8)))}</text>
-      <text class="sub" x="10" y="${h / 2 + 13}"><tspan style="font-family:var(--f-mono)">${CODE[id]}</tspan>${TV[fs.tv].own ? ""
+      <text class="sub" x="10" y="${h / 2 + 13}"><tspan style="font-family:var(--f-mono)">${CODE[id]}</tspan>${TV[fs.tv].own || !overview() ? ""
         : ` · ${esc(cut(toolGroupOf(id).map(g => g.none ? trt("find.not_classified") : g.name).join(", "), Math.floor(w / 6.2) - 10))}`}</text></g>`;
   }
   function answerBox(o, x, y, w, h, cls, data) {
@@ -2107,7 +2123,9 @@ const FIND = (() => {
   }
 
   function render() {
-    $("ft-lenses").innerHTML = lensBar();
+    // The classification switch is for viewing the whole tree; walking a branch, or one Method's routes, uses our grouping.
+    $("ft-lenses").innerHTML = overview() ? lensBar() : "";
+    $("ft-lenses").hidden = !overview();
     $("ft-rq").hidden = fs.tab !== "rq"; $("ft-method").hidden = fs.tab !== "method";
     document.querySelectorAll("#view-find [data-ft]").forEach(b => b.setAttribute("aria-selected", b.dataset.ft === fs.tab));
     if (fs.tab === "rq") renderForward(); else renderReverse();
@@ -2119,8 +2137,8 @@ const FIND = (() => {
   // Switching a classification keeps the walk; only the opened tool group belongs to the old scheme, so it closes.
   $("ft-lenses").addEventListener("click", e => { const b = e.target.closest("[data-lens]"); if (!b) return;
     const [side, id] = b.dataset.lens.split("|");
-    if (side === "question" && fs.qv !== id) go({ qv: id });
-    if (side === "tool" && fs.tv !== id) go({ tv: id, f: null }); });
+    const next = side === "ours" ? { qv: OWN_Q, tv: OWN_T } : side === "question" ? { qv: id, tv: OWN_T } : { qv: OWN_Q, tv: id };
+    if (next.qv !== fs.qv || next.tv !== fs.tv) go({ ...next, f: next.tv === fs.tv ? fs.f : null }); });
   pickable($("ft-map"), g => {
     if (!fs.aim) {
       // On the overview, a first click lights a kind of question (or one situation); a second click opens its branch.
