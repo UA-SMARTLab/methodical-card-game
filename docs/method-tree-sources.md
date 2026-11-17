@@ -34,3 +34,36 @@ Each entry says what was read and how. Nothing here is from memory.
 - **Design** is a goal of its own in Gregor ("design and action", "prescription"), not a kind of evaluation.
 - **Review** (secondary research) sits outside these purpose typologies; Grant & Booth classify reviews.
 - **Association** and **measurement** are not purposes in any of these typologies. Association is what epidemiology's *analytical* observational studies examine (Grimes & Schulz); measurement studies are a kind of study, not a goal of research in these schemes.
+
+## Reasoning: deductive, inductive, abductive (checked 2026-11-17)
+
+The approaches come from Saunders, Bristow, Thornhill & Lewis (2019), "Understanding research philosophy and approaches
+to theory development", ch. 4 of *Research Methods for Business Students*, 8th ed., §4.5, pp. 152–158
+([ORO record](https://oro.open.ac.uk/66370/)). Read in the authors' own copy (ResearchGate, an uncorrected proof dated
+29/01/2019, so page numbers may differ slightly in print). Table 4.4 (p. 153) sets out deduction, induction and
+abduction: their logic, how they generalise, how they use data, and what they do to theory. Pages 155–157 say a study
+can combine them and that the choice "depends" on the researcher's philosophy and the topic. The chapter's learning
+goals also name a fourth approach, retroduction, which p. 156 treats as another name for abduction among critical
+realists. The chapter assigns no Methods, so each Method's mark rests on its own source:
+
+| Method | Mark | Basis | Source, location | How read |
+|---|---|---|---|---|
+| Randomised trial | deductive | named | Moher et al. (2010), CONSORT 2010 E&E, item 2b, [doi:10.1136/bmj.c869](https://doi.org/10.1136/bmj.c869) | Full text (PMC2844943); quote rechecked by us |
+| A/B test | deductive | named | Kohavi, Henne & Sommerfield (2007), §1, [doi:10.1145/1281192.1281295](https://doi.org/10.1145/1281192.1281295) | pp. 1–2 |
+| Nomological network | deductive | named | Cronbach & Meehl (1955), "The nomological net", [doi:10.1037/h0040957](https://doi.org/10.1037/h0040957) | Full text (psychclassics) |
+| Grounded theory | inductive | named | Chun Tie, Birks & Francis (2019), Background, [doi:10.1177/2050312118822927](https://doi.org/10.1177/2050312118822927) | Full text (Europe PMC); no open copy of Glaser & Strauss (1967) |
+| Case study | deductive + inductive | named | Crowe et al. (2011), "Analysing, interpreting and reporting case studies", [doi:10.1186/1471-2288-11-100](https://doi.org/10.1186/1471-2288-11-100) | Full text (PMC3141799); quote rechecked by us |
+| Process tracing | deductive + inductive | named | Collier (2011), p. 824, [doi:10.1017/S1049096511001429](https://doi.org/10.1017/S1049096511001429) | Full PDF |
+| Thematic analysis | deductive + inductive | named | Braun & Clarke (2012), APA Handbook, p. 58, [doi:10.1037/13620-004](https://doi.org/10.1037/13620-004) | Chapter pages; the 2006 paper was not reached |
+| Mixed methods (sequential) | all three | named | Johnson & Onwuegbuzie (2004), p. 17, [doi:10.3102/0013189X033007014](https://doi.org/10.3102/0013189X033007014) | Full PDF; said of mixed methods in general |
+| Systematic review | deductive + inductive | definition | Page et al. (2021), PRISMA 2020, Introduction ("generate or evaluate theories"), [doi:10.1136/bmj.n71](https://doi.org/10.1136/bmj.n71) | Full text |
+| Realist review | abductive | definition | Wong et al. (2013), RAMESES, Background and items 11, 14, [doi:10.1186/1741-7015-11-21](https://doi.org/10.1186/1741-7015-11-21) | Full text; says "theory-driven", "building and testing", not "abductive" |
+| Design science | abductive | definition | Hevner et al. (2004), pp. 76, 78 (build-and-evaluate loop), [doi:10.2307/25148625](https://doi.org/10.2307/25148625) | pp. 75–78 |
+
+Method-level sources were read by a research subagent through WebFetch. Two quotes (CONSORT item 2b, Crowe et al.) were
+rechecked by us, and every DOI was checked with Crossref.
+
+**Left unmarked**, because no source we read settles it: scoping review, prediction model and Delphi (their sources
+state no reasoning); GWAS (neither Visscher et al. 2017 nor Bush & Moore 2012 calls it "hypothesis-free"); ethnography,
+factorial experiment, field experiment, co-citation and case report (their sources could not be read). The other Methods
+were not checked yet.

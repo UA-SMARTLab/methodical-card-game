@@ -2082,6 +2082,26 @@
   "tool/2/items/simulation/note": "Computer Simulation (D003198). Own heading, under Computing Methodologies.",
   "tool/2/items/prediction-model/note": "Prediction Methods, Machine (D000098411). Prediction Methods, Machine; its label says machine, but its scope note covers statistical models too.",
   "tool/2/items/pilot/note": "Pilot Projects (D010865). Own heading ('Pilot Study' is an entry term), under Epidemiologic Study Characteristics.",
-  "tool/2/items/think-aloud/note": "User-Centered Design (D000086825). 'Usability Testing' is an entry term of User-Centered Design, filed under Software."
+  "tool/2/items/think-aloud/note": "User-Centered Design (D000086825). 'Usability Testing' is an entry term of User-Centered Design, filed under Software.",
+  "reasoning/name": "Saunders et al. (2019)",
+  "reasoning/what": "Approaches to theory development",
+  "reasoning/rule": "Not rigid: one study can combine deduction and induction, and the choice depends on the topic and the researcher's philosophy.",
+  "reasoning/groups/0/name": "Deductive",
+  "reasoning/groups/0/def": "Start from a theory and collect data to test the hypotheses it implies.",
+  "reasoning/groups/1/name": "Inductive",
+  "reasoning/groups/1/def": "Start from data, find themes and patterns, and build a theory or framework from them.",
+  "reasoning/groups/2/name": "Abductive",
+  "reasoning/groups/2/def": "Start from a surprising fact, propose the theory that would explain it, then test that theory with more data.",
+  "reasoning/items/rct/note": "Item 2b: hypotheses are pre-specified questions being tested.",
+  "reasoning/items/ab-test/note": "Section 1: the experiment retains or rejects the null hypothesis of no difference.",
+  "reasoning/items/nomological/note": "The proposed interpretation generates specific testable hypotheses.",
+  "reasoning/items/grounded-theory/note": "Theory generated from data inductively; deduction and abduction also have a part as the theory develops.",
+  "reasoning/items/case-study/note": "Findings can serve theory development and theory testing.",
+  "reasoning/items/process-tracing/note": "p. 824: evaluates prior hypotheses and discovers new ones.",
+  "reasoning/items/interviews-thematic/note": "p. 58: coding can be inductive, or deductive (theory-driven).",
+  "reasoning/items/mixed-sequential/note": "p. 17: mixed methods research uses induction, deduction and abduction. Said of mixed methods in general.",
+  "reasoning/items/systematic-review/note": "Reviews can generate or evaluate theories: theory building is inductive, theory testing deductive (Table 4.4).",
+  "reasoning/items/realist-review/note": "Builds theory-based explanations, then tests and refines them in turn, as abduction does (Table 4.4); the source does not use the word.",
+  "reasoning/items/design-science/note": "An iterated build-and-evaluate loop in which theories are applied, tested, modified and extended, as abduction does (Table 4.4)."
  }
 }

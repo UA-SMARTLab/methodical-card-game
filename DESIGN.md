@@ -240,7 +240,13 @@ card is **what you study**, the constraints are **your situation**, a Method car
   through Grimes & Schulz (2002) or MeSH 2026. Each item says whether the source *names* it or whether we applied the
   source's *definition* (with the reason), and whatever a source leaves out sits in a visible "not classified by …"
   group: no single classification covers every Method, and showing that is part of the lesson. The Explanatory and
-  Evaluative tags are the Saunders et al. groups that span several suits.
+  Evaluative tags are the Saunders et al. groups that span several suits. A kind of question that a source puts in two
+  groups (Saunders et al.'s causal question: explanatory and evaluative) is drawn once, with a line from each group.
+- **Reasoning overlay.** A second control lights the Methods marked *deductive*, *inductive* or *abductive*, the
+  approaches to theory development in Saunders et al. (2019, §4.5). It lights Methods but never regroups them, because
+  Saunders et al. say a study can combine the approaches and name no Methods. Each mark has its own source in
+  `data/classifications.json` (`reasoning`), named or by definition. A Method marked twice goes either way, and an
+  unmarked one is not lit: no source we read settles it (49 of 60 for now).
 - **Two directions.** *RQ to Method* walks forwards; *Method to RQ* is the mirror image, listing every route that ends on
   a Method. Clicking a kind of question or a single situation lights its paths through the tree.
 - **Checks.** `tools/build.py` refuses a branch that ends on a Method whose card doesn't serve that suit and requires every

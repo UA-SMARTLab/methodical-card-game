@@ -185,8 +185,13 @@ async function run() {
   }
   for (const [id, q] of Object.entries(window.CLS.question)) {
     w.eval(`FIND.restore({ tab: "rq", qv: "${id}" })`); await sleep(10);
-    const blocks = $$("#ft-map .nd.qgroup").length, rows = $$("#ft-map .nd[data-aim]:not(.chipn):not(.sit)").length;
-    if (blocks !== q.groups || rows !== q.rows) fail(`find: the ${id} view shows ${blocks} groups and ${rows} rows, expected ${q.groups} and ${q.rows}`);
+    const blocks = $$("#ft-map .nd.qgroup").length, rows = $$("#ft-map .nd[data-aim]:not(.chipn):not(.sit)").length,
+      qlinks = $$("#ft-map .edge.qlink").length;
+    if (blocks !== q.groups || rows !== q.rows || qlinks !== q.links)
+      fail(`find: the ${id} view shows ${blocks} groups, ${rows} rows and ${qlinks} group lines, expected ${q.groups}, ${q.rows} and ${q.links}`);
+    w.eval(`FIND.restore({ tab: "method", qv: "${id}" })`); await sleep(10);
+    const mrows = $$("#ft-rmap .nd[data-aim]:not(.sit)").length, mlinks = $$("#ft-rmap .edge.qlink").length;
+    if (mrows !== q.rows || mlinks !== q.links) fail(`find: mirrored, the ${id} view shows ${mrows} rows and ${mlinks} group lines, expected ${q.rows} and ${q.links}`);
     views++;
   }
   out.views = views;
@@ -199,13 +204,34 @@ async function run() {
     const st = w.eval("FIND.state"), [side, id] = b.split("|");
     const want = side === "ours" ? own : side === "question" ? { qv: id, tv: own.tv } : { qv: own.qv, tv: id };
     if (st.qv !== want.qv || st.tv !== want.tv) fail(`find: the switch "${b}" gave ${st.qv} / ${st.tv}, expected ${want.qv} / ${want.tv}`);
-    if ($$('#ft-lenses [aria-checked="true"]').length !== 1) fail(`find: after "${b}" the switch shows ${$$('#ft-lenses [aria-checked="true"]').length} choices as selected`);
+    if ($$('#ft-lenses [data-lens][aria-checked="true"]').length !== 1) fail(`find: after "${b}" the switch shows ${$$('#ft-lenses [data-lens][aria-checked="true"]').length} choices as selected`);
   }
   // The switch is for the whole tree: walking a branch hides it, and the Method boxes show no published group there.
   w.eval('FIND.restore({ tab: "rq", tv: "mesh", aim: "CAUSE", path: [2] })'); await sleep(10);
   if (!$("#ft-lenses").hidden || /·/.test($("#ft-map .nd.fill text.sub")?.textContent || "")) fail("find: the classification switch still applies while walking a branch");
   w.eval('FIND.restore({ tab: "rq", tv: "mesh" })'); await sleep(10);
   if ($("#ft-lenses").hidden) fail("find: the classification switch is missing on the whole tree");
+  // The reasoning overlay lights exactly the families holding a Method marked with the chosen approach, and in Method
+  // to RQ exactly the marked Methods of an opened family; every Method's details name its reasoning or say none is
+  // marked. Expected counts from data/classifications.json, by definition.
+  for (const [rz, r] of Object.entries(window.CLS.reasoning)) {
+    $('#ft-lenses [data-lens="ours"]').click(); await sleep(5);
+    $(`#ft-lenses [data-rz="${rz}"]`).click(); await sleep(10);
+    if (w.eval("FIND.state").rz !== rz) fail(`find: the reasoning control did not pick ${rz}`);
+    const lit = $$("#ft-map .nd.fill.on").length;
+    if (lit !== r.families) fail(`find: ${rz} lights ${lit} Method families, expected ${r.families}`);
+    for (const [f, n] of Object.entries(r.byFamily)) {
+      w.eval(`FIND.restore({ tab: "method", f: "${f}", rz: "${rz}" })`); await sleep(5);
+      const on = $$("#ft-rmap .nd.fill.on[data-m]").length;
+      if (on !== n) fail(`find: ${rz} lights ${on} Methods in ${f}, expected ${n}`);
+    }
+    w.eval('FIND.restore({ tab: "rq" })'); await sleep(5);
+  }
+  for (const d of window.CLS.marked) {
+    w.eval(`FIND.restore({ tab: "method", f: D["${d}"].family, m: "${d}" })`); await sleep(5);
+    if (!/Reasoning:/.test($("#ft-rdetail").textContent)) fail(`find: ${d}'s details do not show its reasoning`);
+  }
+  out.reasoning = window.CLS.marked.length;
 }
 run().catch(e => out.fails.push("driver crashed: " + e)).finally(() => { document.body.dataset.result = JSON.stringify(out); });
 """
@@ -247,7 +273,8 @@ def tree_expectations():
 def class_expectations():
     """From data/classifications.json, by definition: for each published tool scheme, its groups and how many designs
     each holds (plus the 'not classified' group when designs are left out); for each published question scheme, how
-    many group blocks and rows (a kind of question in two groups is a row in each) its view shows."""
+    many group blocks, rows and group lines its view shows. Each kind of question is one row, however many groups hold
+    it; each group draws a line to every row it holds, so a kind of question in two groups gets two lines."""
     cl = json.loads((ROOT / "data" / "classifications.json").read_text(encoding="utf-8"))
     designs = [d["id"] for d in json.loads((ROOT / "data" / "designs.json").read_text(encoding="utf-8"))]
     suits = [s["id"] for s in json.loads((ROOT / "data" / "meta.json").read_text(encoding="utf-8"))["suits"]]
@@ -262,9 +289,17 @@ def class_expectations():
         if s.get("own"):
             continue
         rest = [a for a in suits if a not in s["items"]]
-        rows = sum(len(m["groups"]) for m in s["items"].values()) + len(rest)
-        question[s["id"]] = {"groups": len(s["groups"]) + (1 if rest else 0), "rows": rows}
-    return {"tool": tool, "question": question}
+        links = sum(len(m["groups"]) for m in s["items"].values()) + len(rest)
+        question[s["id"]] = {"groups": len(s["groups"]) + (1 if rest else 0), "rows": len(suits), "links": links}
+    family = {d["id"]: d["family"] for d in json.loads((ROOT / "data" / "designs.json").read_text(encoding="utf-8"))}
+    marks, reasoning = cl["reasoning"]["items"], {}
+    for g in cl["reasoning"]["groups"]:
+        by = {}
+        for d, m in marks.items():
+            if g["id"] in m["groups"]:
+                by[family[d]] = by.get(family[d], 0) + 1
+        reasoning[g["id"]] = {"families": len(by), "byFamily": by}
+    return {"tool": tool, "question": question, "reasoning": reasoning, "marked": sorted(marks)}
 
 
 def run_test(exe):
@@ -290,7 +325,8 @@ document.getElementById("app").addEventListener("load", () => setTimeout(() => {
         print("FAIL", f)
     ok = not res["fails"] and not res["errors"]
     print(f"{'ok  ' if ok else 'FAIL'} played {res['played']} Questions through the viewer and its green button; decks show {res.get('counts')}; "
-          f"Find your method traced {res.get('traced', 0)} Methods back and walked them forwards, and checked {res.get('views', 0)} classification views")
+          f"Find your method traced {res.get('traced', 0)} Methods back and walked them forwards, and checked {res.get('views', 0)} classification views "
+          f"and the reasoning overlay ({res.get('reasoning', 0)} Methods marked)")
     return ok
 
 

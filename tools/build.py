@@ -238,6 +238,17 @@ for side, table, what in (("question", SUIT, "kind of question"), ("tool", D, "d
         errors.append(f"classifications {side}: needs unique scheme ids, the game's own first")
     for s in classes[side]:
         check_scheme(side, s, table, what)
+# The reasoning overlay: Saunders et al.'s approaches, and for each marked Method its own source.
+rz = classes.get("reasoning")
+if not rz:
+    errors.append("classifications: needs the reasoning overlay")
+else:
+    check_scheme("reasoning", rz, D, "design")
+    for item, m in rz.get("items", {}).items():
+        if not m.get("cite") or not m.get("url", "").startswith("https://"):
+            errors.append(f"classifications reasoning {item}: each mark needs its own source (cite, https url)")
+        if m.get("basis") == "definition" and not m.get("note"):
+            errors.append(f"classifications reasoning {item}: a mark by definition needs a note saying why")
 # The game's own families each say which published category they follow, or that they are the game's own.
 own_families = classes["tool"][0].get("families", {})
 for f in FAM:
@@ -531,6 +542,9 @@ if __name__ == "__main__":
             for side, n in (("question", len(SUIT)), ("tool", len(designs))):
                 print(f"  {side} views: " + "; ".join(f"{s['name']} " + ("(own)" if s.get("own") else f"{len(s['items'])}/{n} classified")
                                                        for s in classes[side]))
+            marks = classes["reasoning"]["items"]
+            print(f"  reasoning overlay: {len(marks)}/{len(designs)} Methods marked (" + ", ".join(
+                f"{g['name'].lower()} {sum(g['id'] in m['groups'] for m in marks.values())}" for g in classes["reasoning"]["groups"]) + ")")
             print("  en: source language")
         else:
             total, done = i18n.coverage(info["code"])

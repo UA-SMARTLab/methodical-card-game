@@ -809,5 +809,43 @@
     }
    }
   }
- ]
+ ],
+ "reasoning": {
+  "_about": "An overlay, not a regrouping: the tree view can light up the Methods marked with one approach to theory development. The approaches and their definitions come from Saunders et al. (2019), section 4.5, which says outright that a study can combine them and that the choice depends on the topic and the researcher's philosophy, and which names no Methods. So each Method's mark has its own source (cite, url); basis named means that source names the reasoning, definition that we applied Saunders et al.'s Table 4.4 to how that source defines the Method (note says why). A Method with two or more groups goes either way. A Method left out is not marked: no source we read settles it.",
+  "id": "saunders-approach",
+  "name": "Saunders et al. (2019)",
+  "what": "Approaches to theory development",
+  "cite": "Saunders, Bristow, Thornhill & Lewis (2019). Understanding research philosophy and approaches to theory development. In Research Methods for Business Students, 8th edition, section 4.5, pp. 152–158. Pearson.",
+  "url": "https://oro.open.ac.uk/66370/",
+  "rule": "Not rigid: one study can combine deduction and induction, and the choice depends on the topic and the researcher's philosophy.",
+  "groups": [
+   {"id": "deductive", "name": "Deductive", "def": "Start from a theory and collect data to test the hypotheses it implies."},
+   {"id": "inductive", "name": "Inductive", "def": "Start from data, find themes and patterns, and build a theory or framework from them."},
+   {"id": "abductive", "name": "Abductive", "def": "Start from a surprising fact, propose the theory that would explain it, then test that theory with more data."}
+  ],
+  "items": {
+   "rct": {"groups": ["deductive"], "basis": "named", "note": "Item 2b: hypotheses are pre-specified questions being tested.",
+    "cite": "Moher et al. (2010). CONSORT 2010 Explanation and Elaboration. BMJ.", "url": "https://doi.org/10.1136/bmj.c869"},
+   "ab-test": {"groups": ["deductive"], "basis": "named", "note": "Section 1: the experiment retains or rejects the null hypothesis of no difference.",
+    "cite": "Kohavi, Henne & Sommerfield (2007). Practical guide to controlled experiments on the web. KDD.", "url": "https://doi.org/10.1145/1281192.1281295"},
+   "nomological": {"groups": ["deductive"], "basis": "named", "note": "The proposed interpretation generates specific testable hypotheses.",
+    "cite": "Cronbach & Meehl (1955). Construct validity in psychological tests. Psychological Bulletin.", "url": "https://doi.org/10.1037/h0040957"},
+   "grounded-theory": {"groups": ["inductive"], "basis": "named", "note": "Theory generated from data inductively; deduction and abduction also have a part as the theory develops.",
+    "cite": "Chun Tie, Birks & Francis (2019). Grounded theory research: a design framework for novice researchers. SAGE Open Medicine.", "url": "https://doi.org/10.1177/2050312118822927"},
+   "case-study": {"groups": ["deductive", "inductive"], "basis": "named", "note": "Findings can serve theory development and theory testing.",
+    "cite": "Crowe et al. (2011). The case study approach. BMC Medical Research Methodology.", "url": "https://doi.org/10.1186/1471-2288-11-100"},
+   "process-tracing": {"groups": ["deductive", "inductive"], "basis": "named", "note": "p. 824: evaluates prior hypotheses and discovers new ones.",
+    "cite": "Collier (2011). Understanding Process Tracing. PS: Political Science & Politics.", "url": "https://doi.org/10.1017/S1049096511001429"},
+   "interviews-thematic": {"groups": ["deductive", "inductive"], "basis": "named", "note": "p. 58: coding can be inductive, or deductive (theory-driven).",
+    "cite": "Braun & Clarke (2012). Thematic analysis. APA Handbook of Research Methods in Psychology, vol. 2.", "url": "https://doi.org/10.1037/13620-004"},
+   "mixed-sequential": {"groups": ["deductive", "inductive", "abductive"], "basis": "named", "note": "p. 17: mixed methods research uses induction, deduction and abduction. Said of mixed methods in general.",
+    "cite": "Johnson & Onwuegbuzie (2004). Mixed Methods Research: A Research Paradigm Whose Time Has Come. Educational Researcher.", "url": "https://doi.org/10.3102/0013189X033007014"},
+   "systematic-review": {"groups": ["deductive", "inductive"], "basis": "definition", "note": "Reviews can generate or evaluate theories: theory building is inductive, theory testing deductive (Table 4.4).",
+    "cite": "Page et al. (2021). The PRISMA 2020 statement. BMJ.", "url": "https://doi.org/10.1136/bmj.n71"},
+   "realist-review": {"groups": ["abductive"], "basis": "definition", "note": "Builds theory-based explanations, then tests and refines them in turn, as abduction does (Table 4.4); the source does not use the word.",
+    "cite": "Wong et al. (2013). RAMESES publication standards: realist syntheses. BMC Medicine.", "url": "https://doi.org/10.1186/1741-7015-11-21"},
+   "design-science": {"groups": ["abductive"], "basis": "definition", "note": "An iterated build-and-evaluate loop in which theories are applied, tested, modified and extended, as abduction does (Table 4.4).",
+    "cite": "Hevner et al. (2004). Design science in information systems research. MIS Quarterly.", "url": "https://doi.org/10.2307/25148625"}
+  }
+ }
 }
