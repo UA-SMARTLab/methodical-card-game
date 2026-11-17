@@ -456,6 +456,15 @@ svg.ft-map { display: block; font-family: var(--f-body); }
 .ft-map .nd.fill text { fill: #fff; }
 .ft-map .nd.fill text.sub { fill: rgba(255,255,255,.85); }
 .ft-map .nd.fill.on rect.ring { stroke: var(--accent); stroke-width: 3; }
+.ft-lenses { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0 0 12px; }
+.ft-lens { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.ft-lens .ft-kicker { margin: 0 4px 0 0; }
+.ft-lens button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.ft-cls { margin: 4px 0 0; padding-inline-start: 18px; } .ft-cls li { margin-bottom: 4px; }
+.ft-map .nd.fill.none rect.bg { fill: none; stroke: var(--muted); stroke-dasharray: 5 4; stroke-width: 1.5; }
+.ft-map .nd.fill.none text { fill: var(--muted); } .ft-map .nd.fill.none text.sub { fill: var(--muted); }
+.ft-map .nd.qgroup rect.box { fill: color-mix(in srgb, var(--muted) 10%, transparent); stroke: var(--muted); }
+.ft-map .nd.qgroup.none rect.box { fill: none; stroke-dasharray: 5 4; }
 .ft-map text.qlab { fill: var(--muted); font-size: 11.5px; font-style: italic; }
 .ft-map text.qlab.cur { fill: var(--accent); font-weight: 600; font-style: normal; }
 .ft-note { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
@@ -624,6 +633,7 @@ details.ft-srcs summary { cursor: pointer; font: 700 13px var(--f-cond); letter-
       <button class="btn" role="tab" id="ft-tab-rq" data-ft="rq" aria-selected="true" title="{{find.tab.rq_title}}">{{find.tab.rq}}</button>
       <button class="btn" role="tab" id="ft-tab-method" data-ft="method" aria-selected="false" title="{{find.tab.method_title}}">{{find.tab.method}}</button>
     </div>
+    <div class="ft-lenses" id="ft-lenses"></div>
     <div class="panel ft-card" id="ft-rq">
       <div class="ft-navrow"><button class="btn ft-back" id="ft-back" hidden>{{find.back}}</button><nav class="ft-trail" id="ft-trail" aria-label="{{find.zone.what}}"></nav></div>
       <div class="ft-now" id="ft-now" aria-live="polite"></div>
@@ -1637,10 +1647,13 @@ function renderHome() {
 const FIND = (() => {
   const TR = DATA.tree, AIMS = meta.suits.map(s => s.id);
   const CODE = Object.fromEntries(designs.map((d, i) => [d.id, "MTH-D" + String(i + 1).padStart(2, "0")]));
-  const PUR = Object.fromEntries(TR.purposes.options.map(p => [p.id, p]));
+  // Published classifications (data/classifications.json) the tree can be viewed through: the first on each side is
+  // the game's own grouping.
+  const CL = DATA.classes, QV = Object.fromEntries(CL.question.map(s => [s.id, s])), TV = Object.fromEntries(CL.tool.map(s => [s.id, s]));
   // aim/path: the branch walked in RQ to Method; hl/sit: a kind of question, and one of its situations, lit on the
-  // overview; f/m: the family opened and the Method picked in Method to RQ.
-  const START = { tab: "rq", aim: null, path: [], hl: null, sit: null, f: null, m: null };
+  // overview; f/m: the tool group opened and the Method picked in Method to RQ; qv/tv: the classification each side
+  // is viewed through.
+  const START = { tab: "rq", aim: null, path: [], hl: null, sit: null, f: null, m: null, qv: CL.question[0].id, tv: CL.tool[0].id };
   let fs = { ...START };
   const go = s => {
     fs = { ...fs, ...s };
@@ -1721,27 +1734,51 @@ const FIND = (() => {
   const PURPOSE_COLOUR = "#40402C";
   const tag = (t, c, cls = "") => `<span class="ft-tag ${cls}" style="--tc:${c}">${esc(t)}</span>`;
   const aimTag = a => tag(TR.aims[a].tag, SUIT[a].color);
-  const purposesOf = a => TR.purposes.options.filter(p => p.aims.length > 1 && p.aims.includes(a));
-  const purTag = p => tag(PUR[p].tag, PURPOSE_COLOUR, "neutral");
-  const purposeTags = a => purposesOf(a).map(p => `<span title="${esc(p.short + ": " + p.ref.cite)}">${purTag(p.id)}</span>`).join(" ");
+  // The purpose tags (Explanatory, Evaluative) are the Saunders et al. groups that span several kinds of question.
+  const SAUNDERS = QV.saunders;
+  const purposesOf = a => SAUNDERS.groups.filter(g => Object.values(SAUNDERS.items).filter(m => m.groups.includes(g.id)).length > 1
+    && (SAUNDERS.items[a]?.groups || []).includes(g.id));
+  const purTag = g => tag(g.name, PURPOSE_COLOUR, "neutral");
+  const purposeTags = a => purposesOf(a).map(g => `<span title="${esc(g.def + " " + SAUNDERS.cite)}">${purTag(g)}</span>`).join(" ");
+  // A scheme's groups, with a "not classified by this source" group for whatever it leaves out. The game's own
+  // families keep their colours; published groups take the neutral colour, as they are no game category.
+  const NONE = "_none";
+  function groupsOf(side, id) {
+    const s = (side === "tool" ? TV : QV)[id], all = side === "tool" ? designs.map(d => d.id) : AIMS;
+    if (s.own && side === "tool") return meta.families.map(f => ({ id: f.id, name: f.name, color: FAM[f.id].color, def: TV[id].families[f.id].cite,
+      fit: TV[id].families[f.id].fit, members: all.filter(m => D[m].family === f.id) }));
+    if (s.own) return AIMS.map(a => ({ id: a, name: TR.aims[a].tag, color: SUIT[a].color, members: [a] }));
+    const out = s.groups.map(g => ({ ...g, color: PURPOSE_COLOUR, members: all.filter(x => (s.items[x]?.groups || []).includes(g.id)) }));
+    const rest = all.filter(x => !s.items[x]);
+    if (rest.length) out.push({ id: NONE, name: trt("find.unclassified", { source: s.name }), def: "", color: "", none: true, members: rest });
+    return out;
+  }
+  const toolGroupOf = m => groupsOf("tool", fs.tv).filter(g => g.members.includes(m));
   const conChip = c => c ? `<span class="ft-chip" title="${esc(CON[c].text)}"><em>${tr("find.on_cards")}</em> ${CON[c].icon} ${esc(CON[c].name)}</span>` : "";
   const CLOCK = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
   const timeBadge = t => { if (!t) return ""; const d = TR.time.terms[t], g = TR.time.groups[d.group];
     return `<span class="ft-time" title="${esc(d.plain + " " + g.ref.cite)}">${CLOCK}<em>${esc(g.name)}:</em> ${esc(d.name)}</span>`; };
   const fitName = f => trt("find.fit." + f);
   const link = (cite, url) => url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(cite)}</a>` : esc(cite);
-  const famSource = f => { const s = TR.sources.families[f];
+  // Under a Method card: its game family and that family's source, then how each published scheme classifies it.
+  const famSource = f => { const s = CL.tool[0].families[f];
     return `<div class="ft-src"><p class="ft-kicker">${tr("find.tool_family")}</p>${tag(FAM[f].name, FAM[f].color)} <span class="ft-fit ${s.fit}">${esc(fitName(s.fit))}</span>
       <p>${link(s.cite, s.url)}${s.note ? ` <span class="label">${esc(s.note)}</span>` : ""}</p></div>`; };
+  const methodClasses = m => `<div class="ft-src"><p class="ft-kicker">${tr("find.published_views")}</p><ul class="ft-cls">${CL.tool.filter(s => !s.own).map(s => {
+    const it = s.items[m], gs = it ? s.groups.filter(g => it.groups.includes(g.id)) : [];
+    return `<li><b>${link(s.name, s.url)}:</b> ${it ? gs.map(g => tag(g.name, PURPOSE_COLOUR, "neutral")).join(" ") + ` <span class="label">${esc(trt("find.basis." + it.basis))}${it.note ? " · " + esc(it.note) : ""}</span>`
+      : `<span class="label">${tr("find.unclassified", { source: esc(s.name) })}</span>`}</li>`; }).join("")}</ul></div>`;
   const subOf = o => [o.con && CON[o.con].name, o.time && TR.time.terms[o.time].name].filter(Boolean).join(" · ");
   const zoneSources = () => {
-    const used = TR.purposes.options.filter(p => p.aims.length > 1);
-    return `<div><h3>${tr("find.zone.what")}</h3><p style="margin:0">${esc(TR.sources.what)}</p>
-        <ul>${used.map(p => `<li>${purTag(p.id)} ${link(p.ref.cite, p.ref.url)}</li>`).join("")}</ul></div>
+    const schemes = side => `<ul>${CL[side].filter(s => !s.own).map(s => `<li>${link(s.cite, s.url)}${s.rule ? ` <span class="label">${esc(s.rule)}</span>` : ""}</li>`).join("")}</ul>`;
+    return `<div><h3>${tr("find.zone.what")}</h3><p style="margin:0">${esc(TR.sources.what)}</p>${schemes("question")}</div>
       <div><h3>${tr("find.zone.situation")}</h3><p style="margin:0">${esc(TR.sources.situation)}</p></div>
-      <div><h3>${tr("find.zone.tool")}</h3><ul>${meta.families.map(f => { const s = TR.sources.families[f.id];
+      <div><h3>${tr("find.zone.tool")}</h3>${schemes("tool")}<ul>${meta.families.map(f => { const s = CL.tool[0].families[f.id];
         return `<li><b>${esc(f.name)}</b> <span class="ft-fit ${s.fit}">${esc(fitName(s.fit))}</span><br>${link(s.cite, s.url)}</li>`; }).join("")}</ul></div>`;
   };
+  // The two switches: how to view what you study, and how to view your tool.
+  const lensBar = () => ["question", "tool"].map(side => `<div class="ft-lens"><span class="ft-kicker">${tr(side === "question" ? "find.view.what" : "find.view.tool")}</span>
+    ${CL[side].map(s => `<button class="btn ft-small" data-lens="${side}|${s.id}" aria-pressed="${(side === "question" ? fs.qv : fs.tv) === s.id}" title="${esc(s.cite)}">${esc(s.name)}</button>`).join("")}</div>`).join("");
 
   // ---- drawing pieces shared by both trees
   const TOP = 44, W = 210, GAP = 36, RH = 62, BH = 52, LEAFW = 200, AIMW = 250;
@@ -1788,7 +1825,7 @@ const FIND = (() => {
         <text x="${x + 6}" y="19" style="fill:#fff;font:700 12px var(--f-cond);letter-spacing:.08em">${esc(t.toUpperCase())}</text>`; x += w + 6; });
     return out;
   }
-  const aimBadges = a => svgBadges([[TR.aims[a].tag, SUIT[a].color], ...purposesOf(a).map(p => [p.tag, PURPOSE_COLOUR, true])]);
+  const aimBadges = a => svgBadges([[TR.aims[a].tag, SUIT[a].color], ...purposesOf(a).map(g => [g.name, PURPOSE_COLOUR, true])]);
   function aimBox(a, x, y, w, h, cls = "", data = "") {
     const s = SUIT[a];
     return `<g class="nd ${cls}" tabindex="0" role="button" data-aim="${a}" ${data} transform="translate(${x} ${y})">
@@ -1825,18 +1862,29 @@ const FIND = (() => {
       <text x="12" y="18" class="sitk">${esc(trt("find.situations", { n: words.length }).toUpperCase())}</text>
       ${lines.map((l, k) => `<text x="12" y="${34 + k * 14}" style="font-size:11.5px">${esc(l)}</text>`).join("")}</g>`;
   }
-  function famBox(f, x, y, w, h, cls = "", data = "") {
-    const F = FAM[f], n = designs.filter(m => m.family === f).length;
-    return `<g class="nd fill ${cls}" tabindex="0" role="button" ${data} transform="translate(${x} ${y})"><title>${esc(F.name)}</title>
-      <rect class="bg" width="${w}" height="${h}" rx="8" style="fill:${F.color}"></rect><rect class="ring" x="-3" y="-3" width="${w + 6}" height="${h + 6}" rx="10"></rect>
-      <text x="14" y="${h / 2 - 2}" style="font:700 12px var(--f-cond);letter-spacing:.08em">${esc(F.name.toUpperCase())}</text>
-      <text class="sub" x="14" y="${h / 2 + 15}">${esc(trt("find.cards_line", { n, fit: fitName(TR.sources.families[f].fit) }))}</text></g>`;
+  // A tool group: a game family, a published category, or the dashed "not classified by this source" group.
+  function groupBox(g, x, y, w, h, cls = "", data = "") {
+    const n = g.members.length, sub = g.fit ? trt("find.cards_line", { n, fit: fitName(g.fit) }) : trt("find.n_methods", { n });
+    const lines = wrap(g.name.toUpperCase(), Math.floor(w / 7.4));
+    return `<g class="nd fill${g.none ? " none" : ""} ${cls}" tabindex="0" role="button" ${data} transform="translate(${x} ${y})"><title>${esc(g.name + (g.def ? ": " + g.def : ""))}</title>
+      <rect class="bg" width="${w}" height="${h}" rx="8" style="${g.none ? "" : `fill:${g.color}`}"></rect><rect class="ring" x="-3" y="-3" width="${w + 6}" height="${h + 6}" rx="10"></rect>
+      ${lines.map((l, k) => `<text x="14" y="${h / 2 - 2 - (lines.length - 1) * 7 + k * 13}" style="font:700 12px var(--f-cond);letter-spacing:.08em">${esc(l)}</text>`).join("")}
+      <text class="sub" x="14" y="${h / 2 + 15 + (lines.length - 1) * 6}">${esc(sub)}</text></g>`;
+  }
+  // A question-side group, drawn as a block beside the kinds of question it holds.
+  function qGroupBox(g, x, y, w, h) {
+    const lines = wrap(g.name, Math.floor(w / 7.2)), defl = g.def ? wrap(g.def, Math.floor(w / 6.2)) : [];
+    return `<g class="nd qgroup${g.none ? " none" : ""} static" transform="translate(${x} ${y})"><title>${esc(g.name + (g.def ? ": " + g.def : ""))}</title>
+      <rect class="box" width="${w}" height="${h}" rx="8"></rect>
+      ${lines.map((l, k) => `<text x="12" y="${20 + k * 15}" style="font-weight:700">${esc(l)}</text>`).join("")}
+      ${defl.map((l, k) => `<text class="sub" x="12" y="${22 + lines.length * 15 + k * 13}">${esc(l)}</text>`).join("")}</g>`;
   }
   function methodBox(id, x, y, w, h, cls = "", data = "") {
     return `<g class="nd fill ${cls}" tabindex="0" role="button" ${data} transform="translate(${x} ${y})"><title>${esc(D[id].name + " · " + FAM[D[id].family].name)}</title>
       <rect class="bg" width="${w}" height="${h}" rx="6" style="fill:${famColour(id)}"></rect><rect class="ring" x="-3" y="-3" width="${w + 6}" height="${h + 6}" rx="8"></rect>
       <text x="10" y="${h / 2 - 2}" style="font-weight:600">${esc(cut(D[id].name, Math.floor(w / 6.8)))}</text>
-      <text class="sub" x="10" y="${h / 2 + 13}" style="font-family:var(--f-mono)">${CODE[id]}</text></g>`;
+      <text class="sub" x="10" y="${h / 2 + 13}"><tspan style="font-family:var(--f-mono)">${CODE[id]}</tspan>${TV[fs.tv].own ? ""
+        : ` · ${esc(cut(toolGroupOf(id).map(g => g.none ? trt("find.not_classified") : g.name).join(", "), Math.floor(w / 6.2) - 10))}`}</text></g>`;
   }
   function answerBox(o, x, y, w, h, cls, data) {
     const lines = wrap(o.label, Math.floor(w / 6.6)), sub = subOf(o);
@@ -1878,24 +1926,37 @@ const FIND = (() => {
     if (!fs.aim) {
       // Overview: one row per kind of question; a row grows to fit its situation chips. A kind of question picked (hl)
       // lights its situations, lines and families; a situation picked too (sit) lights only the families it leads to.
-      const AW = 280, SX = 16 + AW + 36, SW = 340, FX = SX + SW + 190, FW = 260, H = 56, GAPY = 10;
-      const hs = AIMS.map(a => Math.max(H, 26 + chipRows(a, SW).rows * (CHIP_H + CHIP_GAP) + 4));
-      const ys = hs.reduce((acc, h, i) => [...acc, i ? acc[i - 1] + hs[i - 1] + GAPY : TOP], []);
-      const total = ys[ys.length - 1] + hs[hs.length - 1] - TOP;
-      const fgap = (total - H) / (meta.families.length - 1), fy = k => TOP + k * fgap;
+      // Viewed through a published question scheme, the rows are grouped under its groups (a kind of question in two
+      // groups appears in both); viewed through a published tool scheme, the tool column holds its groups.
+      const qOwn = QV[fs.qv].own, QGW = qOwn ? 0 : 190, AX = 16 + QGW;
+      const AW = 280, SX = AX + AW + 36, SW = 340, FX = SX + SW + 190, FW = 260, H = 56, GAPY = 10, GGAP = 14;
+      const qgroups = qOwn ? [{ members: AIMS }] : groupsOf("question", fs.qv);
+      const rows = []; qgroups.forEach((g, gi) => g.members.forEach(a => rows.push({ a, gi })));
+      const hs = rows.map(r => Math.max(H, 26 + chipRows(r.a, SW).rows * (CHIP_H + CHIP_GAP) + 4));
+      const ys = []; let cy = TOP;
+      rows.forEach((r, i) => { if (i && r.gi !== rows[i - 1].gi) cy += GGAP; ys.push(cy); cy += hs[i] + GAPY; });
+      const total = cy - GAPY - TOP;
+      const tgroups = groupsOf("tool", fs.tv), fgap = tgroups.length > 1 ? (total - H) / (tgroups.length - 1) : 0, fy = k => TOP + k * fgap;
       const hl = fs.hl, sit = fs.sit, via = hl && sit ? viaSituation(hl, sit) : null;
-      const litFams = hl ? new Set(via ? via.map(v => D[v.m].family) : branchOf(hl).fams) : null;
+      const litMethods = hl ? new Set(via ? via.map(v => v.m) : branchOf(hl).methods) : null;
+      const groupLit = g => g.members.some(m => litMethods.has(m));
       let edges = "", nodes = ""; const toTools = [];
-      AIMS.forEach((a, i) => {
-        const y = ys[i], h = hs[i], cls = hl ? (a === hl ? "on" : "dim") : "";
-        nodes += aimBox(a, 16, y, AW, h, cls) + sitChips(a, SX, y, SW, h, cls, a === hl ? sit : null);
-        edges += `<path class="edge${a === hl ? " on" : hl ? " dim" : ""}" d="M${16 + AW},${y + h / 2} H${SX}"/>`;
-        branchOf(a).fams.forEach(f => { const k = meta.families.findIndex(x => x.id === f), lit = a === hl && litFams.has(f);
-          toTools.push({ a: { key: a, y, h }, b: { key: f, y: fy(k), h: H }, color: FAM[f].color, cls: "tool" + (lit ? " lit" : hl ? " dim" : "") }); });
+      rows.forEach((r, i) => {
+        const a = r.a, y = ys[i], h = hs[i], cls = hl ? (a === hl ? "on" : "dim") : "";
+        nodes += aimBox(a, AX, y, AW, h, cls) + sitChips(a, SX, y, SW, h, cls, a === hl ? sit : null);
+        edges += `<path class="edge${a === hl ? " on" : hl ? " dim" : ""}" d="M${AX + AW},${y + h / 2} H${SX}"/>`;
+        const ms = branchOf(a).methods;
+        tgroups.forEach((g, k) => { if (!g.members.some(m => ms.has(m))) return;
+          const lit = a === hl && groupLit(g);
+          toTools.push({ a: { key: i, y, h }, b: { key: g.id, y: fy(k), h: H }, color: g.color || "var(--muted)", cls: "tool" + (lit ? " lit" : hl ? " dim" : "") }); });
       });
       edges += links(toTools, SX + SW, FX);
-      meta.families.forEach((f, k) => { nodes += famBox(f.id, FX, fy(k), FW, H, "static" + (hl ? (litFams.has(f.id) ? " on" : " dim") : "")); });
-      const heads = head(16, 16 + AW, "1 · " + up("find.head.what_kind")) + head(SX, SX + SW, "2 · " + up("find.zone.situation")) + head(FX, FX + FW, "3 · " + up("find.head.tool_family"));
+      if (!qOwn) qgroups.forEach((g, gi) => { const ix = rows.map((r, i) => r.gi === gi ? i : -1).filter(i => i >= 0);
+        if (ix.length) nodes += qGroupBox(g, 16, ys[ix[0]], QGW - 16, ys[ix[ix.length - 1]] + hs[ix[ix.length - 1]] - ys[ix[0]]); });
+      tgroups.forEach((g, k) => { nodes += groupBox(g, FX, fy(k), FW, H, "static" + (hl ? (groupLit(g) ? " on" : " dim") : "")); });
+      const qhead = qOwn ? up("find.head.what_kind") : up("find.zone.what") + ": " + QV[fs.qv].name.toUpperCase();
+      const thead = TV[fs.tv].own ? up("find.head.tool_family") : up("find.zone.tool") + ": " + TV[fs.tv].name.toUpperCase();
+      const heads = head(16, AX + AW, "1 · " + qhead) + head(SX, SX + SW, "2 · " + up("find.zone.situation")) + head(FX, FX + FW, "3 · " + thead);
       setSvg(svg, FX + FW + 16, TOP + total + 8, heads + edges + nodes);
       $("ft-note").textContent = trt(sit ? "find.note.sit" : hl ? "find.note.hl" : "find.note.overview");
       return;
@@ -1960,7 +2021,7 @@ const FIND = (() => {
     else if (fs.aim && r.node && !fs.path.length) det.innerHTML = aimInfo(fs.aim, false);
     else if (r && r.leaf) {
       const m = D[r.leaf.method];
-      det.innerHTML = `<div class="ft-detail"><div class="card">${DATA.cards.designs[m.id]}</div><div>${famSource(m.family)}
+      det.innerHTML = `<div class="ft-detail"><div class="card">${DATA.cards.designs[m.id]}</div><div>${famSource(m.family)}${methodClasses(m.id)}
         <h3 style="font-size:16px;margin:0">${tr("find.why")}</h3>
         <ol><li><span class="q">${esc(TR.first.q)}</span>${aimTag(fs.aim)} ${purposeTags(fs.aim)} ${esc(aimLabel(fs.aim))}</li>
           ${r.steps.map(s => `<li><span class="q">${esc(s.node.q)}</span>${esc(s.opt.label)} ${conChip(s.opt.con)} ${timeBadge(s.opt.time)}</li>`).join("")}</ol>
@@ -1976,30 +2037,39 @@ const FIND = (() => {
   function drawReverse() {
     const svg = $("ft-rmap"), FW = 260, H = 56, R = 66, AW = 290, SW = 280;
     if (!fs.m) {
-      const FX = 16, MX = FX + FW + 36, MW = 220, open = fs.f ? designs.filter(m => m.family === fs.f) : [];
+      // The tool column holds the groups of the tool scheme viewed through; opening one lists its Methods. The kinds of
+      // question on the right are grouped by the question scheme viewed through, mirrored.
+      const tgroups = groupsOf("tool", fs.tv), G = tgroups.find(g => g.id === fs.f), open = G ? G.members.map(id => D[id]) : [];
+      const qOwn = QV[fs.qv].own, qgroups = qOwn ? [{ members: AIMS }] : groupsOf("question", fs.qv), QGW = qOwn ? 0 : 190;
+      const arows = []; qgroups.forEach((g, gi) => g.members.forEach(a => arows.push({ a, gi })));
+      const FX = 16, MX = FX + FW + 36, MW = 220;
       const SX = (open.length ? MX + MW : FX + FW) + 170, AX = SX + SW + 36;
-      const rows = Math.max(AIMS.length, open.length), fgap = (rows * R - H) / (meta.families.length - 1), fy = k => TOP + k * fgap;
-      const mgap = open.length > 1 ? (rows * R - H) / (open.length - 1) : 0, my = k => TOP + k * mgap;
-      const ay = i => TOP + i * (rows * R - H) / (AIMS.length - 1);
-      let edges = "", nodes = ""; const famToSit = [], famToMeth = [], methToSit = [], sitNode = i => ({ key: AIMS[i], y: ay(i), h: H });
-      AIMS.forEach((a, i) => {
-        const b = branchOf(a), lit = !fs.f || b.fams.has(fs.f), dim = lit ? "" : "dim";
-        nodes += sitBox(a, SX, ay(i), SW, H, dim + " static") + aimBox(a, AX, ay(i), AW, H, dim + " static");
+      const rows = Math.max(arows.length, open.length, tgroups.length), span = rows * R - H;
+      const fy = k => TOP + (tgroups.length > 1 ? k * span / (tgroups.length - 1) : 0);
+      const my = k => TOP + (open.length > 1 ? k * span / (open.length - 1) : 0);
+      const ay = i => TOP + (arows.length > 1 ? i * span / (arows.length - 1) : 0);
+      let edges = "", nodes = ""; const famToSit = [], famToMeth = [], methToSit = [], sitNode = i => ({ key: i, y: ay(i), h: H });
+      arows.forEach((r, i) => {
+        const ms = branchOf(r.a).methods, lit = !G || G.members.some(m => ms.has(m)), dim = lit ? "" : "dim";
+        nodes += sitBox(r.a, SX, ay(i), SW, H, dim + " static") + aimBox(r.a, AX, ay(i), AW, H, dim + " static");
         edges += `<path class="edge${lit ? "" : " dim"}" d="M${SX + SW},${ay(i) + H / 2} H${AX}"/>`;
-        if (!fs.f) b.fams.forEach(f => { const k = meta.families.findIndex(x => x.id === f);
-          famToSit.push({ a: { key: f, y: fy(k), h: H }, b: sitNode(i), color: FAM[f].color, cls: "tool" }); });
+        if (!G) tgroups.forEach((g, k) => { if (g.members.some(m => ms.has(m)))
+          famToSit.push({ a: { key: g.id, y: fy(k), h: H }, b: sitNode(i), color: g.color || "var(--muted)", cls: "tool" }); });
       });
-      meta.families.forEach((f, k) => { nodes += famBox(f.id, FX, fy(k), FW, H, `${fs.f === f.id ? "on" : ""}${fs.f && fs.f !== f.id ? " dim" : ""}`, `data-f="${f.id}"`); });
+      if (!qOwn) qgroups.forEach((g, gi) => { const ix = arows.map((r, i) => r.gi === gi ? i : -1).filter(i => i >= 0);
+        if (ix.length) nodes += qGroupBox(g, AX + AW + 16, ay(ix[0]), QGW - 16, ay(ix[ix.length - 1]) + H - ay(ix[0])); });
+      tgroups.forEach((g, k) => { nodes += groupBox(g, FX, fy(k), FW, H, `${fs.f === g.id ? "on" : ""}${G && fs.f !== g.id ? " dim" : ""}`, `data-f="${g.id}"`); });
       open.forEach((m, k) => {
-        const fk = meta.families.findIndex(x => x.id === fs.f);
-        famToMeth.push({ a: { key: fs.f, y: fy(fk), h: H }, b: { key: m.id, y: my(k), h: H }, cls: "on" });
+        const fk = tgroups.indexOf(G);
+        famToMeth.push({ a: { key: G.id, y: fy(fk), h: H }, b: { key: m.id, y: my(k), h: H }, cls: "on" });
         nodes += methodBox(m.id, MX, my(k), MW, H, "", `data-m="${m.id}"`);
-        AIMS.forEach((a, i) => { if (branchOf(a).methods.has(m.id)) methToSit.push({ a: { key: m.id, y: my(k), h: H }, b: sitNode(i), color: FAM[fs.f].color, cls: "tool" }); });
+        arows.forEach((r, i) => { if (branchOf(r.a).methods.has(m.id)) methToSit.push({ a: { key: m.id, y: my(k), h: H }, b: sitNode(i), color: famColour(m.id), cls: "tool" }); });
       });
       edges += links(famToSit, FX + FW, SX) + links(famToMeth, FX + FW, MX, true) + links(methToSit, MX + MW, SX);
-      const heads = head(FX, open.length ? MX + MW : FX + FW, "3 · " + up(open.length ? "find.head.tool_family_method" : "find.head.tool_family"))
-        + head(SX, SX + SW, "2 · " + up("find.zone.situation")) + head(AX, AX + AW, "1 · " + up("find.head.what_kind"));
-      setSvg(svg, AX + AW + 16, TOP + rows * R + 8, heads + edges + nodes);
+      const thead = TV[fs.tv].own ? up(open.length ? "find.head.tool_family_method" : "find.head.tool_family") : up("find.zone.tool") + ": " + TV[fs.tv].name.toUpperCase();
+      const qhead = qOwn ? up("find.head.what_kind") : up("find.zone.what") + ": " + QV[fs.qv].name.toUpperCase();
+      const heads = head(FX, open.length ? MX + MW : FX + FW, "3 · " + thead) + head(SX, SX + SW, "2 · " + up("find.zone.situation")) + head(AX, AX + AW + QGW, "1 · " + qhead);
+      setSvg(svg, AX + AW + QGW + 16, TOP + rows * R + 8, heads + edges + nodes);
       $("ft-rnote").textContent = trt(fs.f ? "find.note.rev_family" : "find.note.rev");
       return;
     }
@@ -2023,17 +2093,21 @@ const FIND = (() => {
     $("ft-rnote").textContent = trt("find.note.routes");
   }
   function renderReverse() {
-    $("ft-rtrail").innerHTML = fs.f ? trail([{ html: tag(FAM[fs.f].name, FAM[fs.f].color), to: "f" }, ...(fs.m ? [{ html: esc(D[fs.m].name) }] : [])], "root") : "";
+    const G = fs.f && groupsOf("tool", fs.tv).find(g => g.id === fs.f);
+    const gTag = g => g.none ? `<b>${esc(g.name)}</b>` : tag(g.name, g.color, TV[fs.tv].own ? "" : "neutral");
+    $("ft-rtrail").innerHTML = G ? trail([{ html: gTag(G), to: "f" }, ...(fs.m ? [{ html: esc(D[fs.m].name) }] : [])], "root") : "";
     $("ft-rback").hidden = !fs.f;
-    if (!fs.f) $("ft-rnow").innerHTML = `<p class="ft-kicker">3 · ${tr("find.zone.tool")}</p><h2>${tr("find.rev.title")}</h2><p>${tr("find.rev.lede")}</p>`;
-    else if (!fs.m) $("ft-rnow").innerHTML = `<p class="ft-kicker">3 · ${tr("find.zone.tool")}</p><h2>${tr("find.rev.which", { family: esc(FAM[fs.f].name.toLowerCase()) })}</h2>`;
+    if (!G) $("ft-rnow").innerHTML = `<p class="ft-kicker">3 · ${tr("find.zone.tool")}</p><h2>${tr("find.rev.title")}</h2><p>${tr("find.rev.lede")}</p>`;
+    else if (!fs.m) $("ft-rnow").innerHTML = `<p class="ft-kicker">3 · ${tr("find.zone.tool")}</p><h2>${G.none ? tr("find.rev.none", { source: esc(TV[fs.tv].name) })
+      : tr("find.rev.which", { family: esc(G.name) })}</h2>${G.def ? `<p>${esc(G.def)}</p>` : ""}`;
     else $("ft-rnow").innerHTML = `<p class="ft-kicker">3 · ${tr("find.zone.tool")} → 1 · ${tr("find.zone.what")}</p><h2>${tr("find.rev.routes", { name: esc(D[fs.m].name), n: pathsTo(fs.m).length })}</h2>`;
     drawReverse();
-    $("ft-rdetail").innerHTML = fs.m ? `<div class="ft-detail"><div class="card">${DATA.cards.designs[fs.m]}</div><div>${famSource(D[fs.m].family)}
+    $("ft-rdetail").innerHTML = fs.m ? `<div class="ft-detail"><div class="card">${DATA.cards.designs[fs.m]}</div><div>${famSource(D[fs.m].family)}${methodClasses(fs.m)}
       <p>${esc(D[fs.m].gist)}</p><p><span class="ft-kicker" style="display:block;margin-bottom:2px">${tr("find.defined_in")}</span>${refLine(fs.m)}</p></div></div>` : "";
   }
 
   function render() {
+    $("ft-lenses").innerHTML = lensBar();
     $("ft-rq").hidden = fs.tab !== "rq"; $("ft-method").hidden = fs.tab !== "method";
     document.querySelectorAll("#view-find [data-ft]").forEach(b => b.setAttribute("aria-selected", b.dataset.ft === fs.tab));
     if (fs.tab === "rq") renderForward(); else renderReverse();
@@ -2042,6 +2116,11 @@ const FIND = (() => {
   $("ft-zsrc").innerHTML = $("ft-rzsrc").innerHTML = zoneSources();
   document.querySelectorAll("#view-find [data-ft]").forEach(b => b.onclick = () => { if (fs.tab !== b.dataset.ft) go({ tab: b.dataset.ft }); });
   $("ft-back").onclick = back; $("ft-rback").onclick = back;
+  // Switching a classification keeps the walk; only the opened tool group belongs to the old scheme, so it closes.
+  $("ft-lenses").addEventListener("click", e => { const b = e.target.closest("[data-lens]"); if (!b) return;
+    const [side, id] = b.dataset.lens.split("|");
+    if (side === "question" && fs.qv !== id) go({ qv: id });
+    if (side === "tool" && fs.tv !== id) go({ tv: id, f: null }); });
   pickable($("ft-map"), g => {
     if (!fs.aim) {
       // On the overview, a first click lights a kind of question (or one situation); a second click opens its branch.

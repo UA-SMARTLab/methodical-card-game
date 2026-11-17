@@ -168,6 +168,28 @@ async function run() {
     else traced++;
   }
   out.traced = traced;
+  // Classification views: every published scheme shows exactly its groups (plus "not classified" when it leaves
+  // something out), and in Method to RQ each group opens onto exactly its Methods. Expected from data/classifications.json.
+  let views = 0;
+  for (const [id, groups] of Object.entries(window.CLS.tool)) {
+    w.eval(`FIND.restore({ tab: "rq", tv: "${id}" })`); await sleep(10);
+    const boxes = $$("#ft-map .nd.fill").length;
+    if (boxes !== groups.length) fail(`find: the ${id} view shows ${boxes} tool groups, expected ${groups.length}`);
+    for (const g of groups) {
+      w.eval(`FIND.restore({ tab: "method", tv: "${id}" })`); await sleep(5);
+      tap($(`#ft-rmap .nd[data-f="${g.id}"]`)); await sleep(5);
+      const n = $$("#ft-rmap .nd[data-m]").length;
+      if (n !== g.n) fail(`find: ${id} group ${g.id} opens onto ${n} Methods, expected ${g.n}`);
+    }
+    views++;
+  }
+  for (const [id, q] of Object.entries(window.CLS.question)) {
+    w.eval(`FIND.restore({ tab: "rq", qv: "${id}" })`); await sleep(10);
+    const blocks = $$("#ft-map .nd.qgroup").length, rows = $$("#ft-map .nd[data-aim]:not(.chipn):not(.sit)").length;
+    if (blocks !== q.groups || rows !== q.rows) fail(`find: the ${id} view shows ${blocks} groups and ${rows} rows, expected ${q.groups} and ${q.rows}`);
+    views++;
+  }
+  out.views = views;
 }
 run().catch(e => out.fails.push("driver crashed: " + e)).finally(() => { document.body.dataset.result = JSON.stringify(out); });
 """
@@ -206,6 +228,29 @@ def tree_expectations():
     return {"routes": routes, "fams": {a: len(f) for a, f in fams.items()}, "cutoff": cutoff}
 
 
+def class_expectations():
+    """From data/classifications.json, by definition: for each published tool scheme, its groups and how many designs
+    each holds (plus the 'not classified' group when designs are left out); for each published question scheme, how
+    many group blocks and rows (a kind of question in two groups is a row in each) its view shows."""
+    cl = json.loads((ROOT / "data" / "classifications.json").read_text(encoding="utf-8"))
+    designs = [d["id"] for d in json.loads((ROOT / "data" / "designs.json").read_text(encoding="utf-8"))]
+    suits = [s["id"] for s in json.loads((ROOT / "data" / "meta.json").read_text(encoding="utf-8"))["suits"]]
+    tool, question = {}, {}
+    for s in cl["tool"]:
+        if s.get("own"):
+            continue
+        groups = [{"id": g["id"], "n": sum(g["id"] in s["items"].get(d, {}).get("groups", []) for d in designs)} for g in s["groups"]]
+        rest = [d for d in designs if d not in s["items"]]
+        tool[s["id"]] = groups + ([{"id": "_none", "n": len(rest)}] if rest else [])
+    for s in cl["question"]:
+        if s.get("own"):
+            continue
+        rest = [a for a in suits if a not in s["items"]]
+        rows = sum(len(m["groups"]) for m in s["items"].values()) + len(rest)
+        question[s["id"]] = {"groups": len(s["groups"]) + (1 if rest else 0), "rows": rows}
+    return {"tool": tool, "question": question}
+
+
 def run_test(exe):
     app = (ROOT / "app" / "index.html").as_uri()
     with tempfile.TemporaryDirectory() as tmp:
@@ -213,7 +258,7 @@ def run_test(exe):
         page.write_text(f"""<!doctype html><html><head><meta charset="utf-8"><style>html,body{{margin:0;height:100%}}
 iframe{{border:0;width:100%;height:100%;display:block}}</style></head><body>
 <iframe id="app" src="{app}"></iframe>
-<script>window.EXPECT = {json.dumps(expectations())}; window.TREE = {json.dumps(tree_expectations())};
+<script>window.EXPECT = {json.dumps(expectations())}; window.TREE = {json.dumps(tree_expectations())}; window.CLS = {json.dumps(class_expectations())};
 document.getElementById("app").addEventListener("load", () => setTimeout(() => {{ {DRIVER} }}, 400), {{ once: true }});</script></body></html>""",
                         encoding="utf-8")
         dom = subprocess.run([exe, "--headless=new", "--disable-gpu", "--no-first-run", "--allow-file-access-from-files",
@@ -229,7 +274,7 @@ document.getElementById("app").addEventListener("load", () => setTimeout(() => {
         print("FAIL", f)
     ok = not res["fails"] and not res["errors"]
     print(f"{'ok  ' if ok else 'FAIL'} played {res['played']} Questions through the viewer and its green button; decks show {res.get('counts')}; "
-          f"Find your method traced {res.get('traced', 0)} Methods back and walked them forwards")
+          f"Find your method traced {res.get('traced', 0)} Methods back and walked them forwards, and checked {res.get('views', 0)} classification views")
     return ok
 
 

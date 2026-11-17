@@ -233,12 +233,20 @@ card is **what you study**, the constraints are **your situation**, a Method car
   it stands for. The Explain suit is badged *Theoretical*, not *Explanatory*, because in Saunders et al. (2019),
   Shmueli (2010) and Hernán et al. (2019) "explanatory" means causal.
 - **Your tool.** Each Method family says which published category it follows, partly follows, or that it is the game's
-  own grouping (sources in `data/method-tree.json`; how each was checked in `docs/method-tree-taxonomies.md`).
+  own grouping (sources in `data/classifications.json`; how each was checked in `docs/method-tree-taxonomies.md`).
+- **Classification views.** The game's suits and families are its own groupings, and the game is meant to teach
+  published ones. So both sides of the tree can be viewed through one published classification at a time
+  (`data/classifications.json`): the question side through Saunders et al. (2019) or Gregor (2006), the tool side
+  through Grimes & Schulz (2002) or MeSH 2026. Each item says whether the source *names* it or whether we applied the
+  source's *definition* (with the reason), and whatever a source leaves out sits in a visible "not classified by …"
+  group: no single classification covers every Method, and showing that is part of the lesson. The Explanatory and
+  Evaluative tags are the Saunders et al. groups that span several suits.
 - **Two directions.** *RQ to Method* walks forwards; *Method to RQ* is the mirror image, listing every route that ends on
   a Method. Clicking a kind of question or a single situation lights its paths through the tree.
 - **Checks.** `tools/build.py` refuses a branch that ends on a Method whose card doesn't serve that suit and requires every
   Method to be reachable; it warns if a Question card's best answer is not on its own suit's branch (all 74 are).
   `tools/test_app.py` traces every Method back and walks it forwards again.
 
-Sources and how each was verified: `docs/method-tree-sources.md` (purposes, time terms) and
-`docs/method-tree-taxonomies.md` (Method families, research fields).
+Sources and how each was verified: `docs/method-tree-sources.md` (purposes, time terms),
+`docs/method-tree-taxonomies.md` (Method families, research fields) and `docs/method-tree-mesh.md` (every Method in
+MeSH 2026, checked through the NLM MeSH API).

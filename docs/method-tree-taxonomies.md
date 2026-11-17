@@ -66,6 +66,9 @@ Clinical Trial vs Observational Study is defined by whether the investigator ass
 - **No MeSH heading** (exact-label lookup returned nothing): Mixed Methods Research, Ethnography, Case Studies,
   Ecological Studies, Natural Experiment, Difference-in-Differences Analysis, Regression Discontinuity Design,
   Discrete Choice Experiment, Instrumental Variable Analysis.
+  *Correction, 2026-11-17 (per-Method check in `method-tree-mesh.md`):* there are no descriptors with those labels, but
+  some are entry terms of other headings: "Ethnography" (Anthropology, Cultural), "Case Study" (Case Reports),
+  "Natural Experiment" (Observational Study) and "Quasi-Experimental Studies" (Non-Randomized Controlled Trials as Topic).
 
 Mapping of the 9 families:
 

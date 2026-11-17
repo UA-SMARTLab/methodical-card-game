@@ -1,0 +1,813 @@
+{
+ "_about": "Published classifications the Find your method tree can be viewed through, one at a time. question: schemes for the left side (what you study), mapping each kind of question (suit). tool: schemes for the right side (your tool), mapping each Method (design id). In each scheme, items maps an id to the group(s) it belongs to; basis says how: named (the source itself names it) or definition (we applied the source's own definition, see note). An id left out of items is not classified by that source, and the app shows it as such. The first scheme on each side is the game's own grouping, labelled as ours. How each source was checked: docs/method-tree-sources.md, docs/method-tree-taxonomies.md, docs/method-tree-mesh.md.",
+ "question": [
+  {
+   "id": "suits",
+   "name": "The game's suits",
+   "own": true,
+   "cite": "Methodical's own nine kinds of question (the suits on the cards)."
+  },
+  {
+   "id": "saunders",
+   "name": "Saunders et al. (2019)",
+   "what": "Purposes of a research design",
+   "cite": "Saunders, Lewis & Thornhill (2019). Research Methods for Business Students, section 5.7, pp. 186–188. Pearson.",
+   "url": "",
+   "groups": [
+    {
+     "id": "exploratory",
+     "name": "Exploratory",
+     "def": "Ask open questions to discover what is happening."
+    },
+    {
+     "id": "descriptive",
+     "name": "Descriptive",
+     "def": "Gain an accurate profile of events, persons or situations."
+    },
+    {
+     "id": "explanatory",
+     "name": "Explanatory",
+     "def": "Establish causal relationships between variables."
+    },
+    {
+     "id": "evaluative",
+     "name": "Evaluative",
+     "def": "Find out how well something works."
+    }
+   ],
+   "items": {
+    "EXPLORE": {
+     "groups": [
+      "exploratory"
+     ],
+     "basis": "named"
+    },
+    "DESCRIBE": {
+     "groups": [
+      "descriptive"
+     ],
+     "basis": "named"
+    },
+    "ASSOCIATE": {
+     "groups": [
+      "explanatory"
+     ],
+     "basis": "named",
+     "note": "The book's own example of explanatory research is a correlation (scrap rates and machine age)."
+    },
+    "CAUSE": {
+     "groups": [
+      "explanatory",
+      "evaluative"
+     ],
+     "basis": "named",
+     "note": "Causal relationships are explanatory; the effectiveness of a policy or programme is evaluative."
+    },
+    "EXPLAIN": {
+     "groups": [
+      "explanatory"
+     ],
+     "basis": "definition",
+     "note": "Explanatory questions ask why or how."
+    },
+    "MEASURE": {
+     "groups": [
+      "evaluative"
+     ],
+     "basis": "definition",
+     "note": "How well a test or instrument works."
+    }
+   }
+  },
+  {
+   "id": "gregor",
+   "name": "Gregor (2006)",
+   "what": "Goals of theory: what a study's answer is for",
+   "cite": "Gregor (2006). The Nature of Theory in Information Systems. MIS Quarterly 30(3), Table 2, p. 620.",
+   "url": "https://doi.org/10.2307/25148742",
+   "groups": [
+    {
+     "id": "analysis",
+     "name": "Analysis",
+     "def": "Says what is."
+    },
+    {
+     "id": "explanation",
+     "name": "Explanation",
+     "def": "Says what is, how, why, when, and where."
+    },
+    {
+     "id": "prediction",
+     "name": "Prediction",
+     "def": "Says what is and what will be."
+    },
+    {
+     "id": "explanation-prediction",
+     "name": "Explanation and prediction",
+     "def": "Causal explanations and testable propositions."
+    },
+    {
+     "id": "design-action",
+     "name": "Design and action",
+     "def": "Says how to do something."
+    }
+   ],
+   "items": {
+    "DESCRIBE": {
+     "groups": [
+      "analysis"
+     ],
+     "basis": "named",
+     "note": "Gregor's first goal is analysis and description."
+    },
+    "EXPLORE": {
+     "groups": [
+      "analysis"
+     ],
+     "basis": "definition",
+     "note": "Describing what is going on, without testing causes."
+    },
+    "MEASURE": {
+     "groups": [
+      "analysis"
+     ],
+     "basis": "definition",
+     "note": "Defining and describing the constructs themselves."
+    },
+    "EXPLAIN": {
+     "groups": [
+      "explanation"
+     ],
+     "basis": "definition",
+     "note": "How and why, from a mechanism or theory."
+    },
+    "ASSOCIATE": {
+     "groups": [
+      "explanation-prediction"
+     ],
+     "basis": "definition",
+     "note": "Testable propositions about relationships."
+    },
+    "CAUSE": {
+     "groups": [
+      "explanation-prediction"
+     ],
+     "basis": "definition",
+     "note": "Causal explanations with testable propositions."
+    },
+    "PREDICT": {
+     "groups": [
+      "prediction"
+     ],
+     "basis": "named"
+    },
+    "BUILD": {
+     "groups": [
+      "design-action"
+     ],
+     "basis": "named"
+    }
+   }
+  }
+ ],
+ "tool": [
+  {
+   "id": "families",
+   "name": "The game's families",
+   "own": true,
+   "cite": "Methodical's own nine Method families (the colours on the cards). Each says below which published category it follows, if any.",
+   "families": {
+    "descriptive": {
+     "fit": "source",
+     "cite": "Grimes & Schulz (2002): observational studies without a comparison group are descriptive.",
+     "url": "https://doi.org/10.1016/S0140-6736(02)07283-5",
+     "note": "Grimes & Schulz and MeSH count cross-sectional studies as analytical; the game files them here."
+    },
+    "analytical": {
+     "fit": "source",
+     "cite": "Grimes & Schulz (2002): observational studies with a comparison group are analytical.",
+     "url": "https://doi.org/10.1016/S0140-6736(02)07283-5"
+    },
+    "quasi": {
+     "fit": "own",
+     "cite": "Own grouping. The term follows the ERIC thesaurus descriptor \"Quasiexperimental Design\".",
+     "url": "https://eric.ed.gov/?ti=Quasiexperimental+Design",
+     "note": "No family of its own in Grimes & Schulz, MeSH or EQUATOR."
+    },
+    "experimental": {
+     "fit": "source",
+     "cite": "Grimes & Schulz (2002): the investigator assigns the exposure.",
+     "url": "https://doi.org/10.1016/S0140-6736(02)07283-5"
+    },
+    "qualitative": {
+     "fit": "partial",
+     "cite": "MeSH 2026: Qualitative Research (D036301).",
+     "url": "https://id.nlm.nih.gov/mesh/D036301",
+     "note": "Mixed methods has no MeSH heading."
+    },
+    "synthesis": {
+     "fit": "source",
+     "cite": "MeSH 2026: Evidence Synthesis (D000099290, publication type V03.500).",
+     "url": "https://id.nlm.nih.gov/mesh/D000099290",
+     "note": "MeSH files bibliometric methods (co-citation, coupling) under information science."
+    },
+    "measurement": {
+     "fit": "partial",
+     "cite": "MeSH 2026: Validation Study (D023361); otherwise the game's own grouping.",
+     "url": "https://id.nlm.nih.gov/mesh/D023361"
+    },
+    "computational": {
+     "fit": "own",
+     "cite": "Own grouping: no published category groups models, simulation, prediction and cost-effectiveness."
+    },
+    "engineering": {
+     "fit": "own",
+     "cite": "Own grouping, anchored in Hevner et al. (2004), design science, and Gregor (2006), design and action.",
+     "url": "https://doi.org/10.2307/25148625"
+    }
+   }
+  },
+  {
+   "id": "grimes-schulz",
+   "name": "Grimes & Schulz (2002)",
+   "what": "Clinical research designs",
+   "cite": "Grimes & Schulz (2002). An overview of clinical research: the lay of the land. Lancet 359: 57–61.",
+   "url": "https://doi.org/10.1016/S0140-6736(02)07283-5",
+   "rule": "Did the investigator assign the exposure? Yes: experimental. No: observational, which is analytical if it has a comparison group and descriptive if not.",
+   "groups": [
+    {
+     "id": "experimental",
+     "name": "Experimental",
+     "def": "The investigator assigns the exposure."
+    },
+    {
+     "id": "analytical",
+     "name": "Observational, analytical",
+     "def": "Not assigned by the investigator; has a comparison group."
+    },
+    {
+     "id": "descriptive",
+     "name": "Observational, descriptive",
+     "def": "Not assigned by the investigator; no comparison group."
+    }
+   ],
+   "items": {
+    "rct": {
+     "groups": [
+      "experimental"
+     ],
+     "basis": "named",
+     "note": "Randomised trials are the experimental studies the overview names."
+    },
+    "cluster-rct": {
+     "groups": [
+      "experimental"
+     ],
+     "basis": "definition",
+     "note": "The investigator assigns the exposure, by group."
+    },
+    "crossover": {
+     "groups": [
+      "experimental"
+     ],
+     "basis": "definition",
+     "note": "The investigator assigns the order of exposures."
+    },
+    "factorial-doe": {
+     "groups": [
+      "experimental"
+     ],
+     "basis": "definition",
+     "note": "The investigator sets every factor."
+    },
+    "n-of-1": {
+     "groups": [
+      "experimental"
+     ],
+     "basis": "definition",
+     "note": "The investigator assigns treatments within one person."
+    },
+    "stepped-wedge": {
+     "groups": [
+      "experimental"
+     ],
+     "basis": "definition",
+     "note": "The investigator assigns when each group starts."
+    },
+    "ab-test": {
+     "groups": [
+      "experimental"
+     ],
+     "basis": "definition",
+     "note": "The investigator assigns users to versions."
+    },
+    "adaptive-platform": {
+     "groups": [
+      "experimental"
+     ],
+     "basis": "definition",
+     "note": "The investigator assigns patients to arms."
+    },
+    "field-experiment": {
+     "groups": [
+      "experimental"
+     ],
+     "basis": "definition",
+     "note": "The investigator assigns the treatment in the field."
+    },
+    "pdsa": {
+     "groups": [
+      "experimental"
+     ],
+     "basis": "definition",
+     "note": "The team assigns the change, without randomisation: a non-randomised experiment."
+    },
+    "cohort-prospective": {
+     "groups": [
+      "analytical"
+     ],
+     "basis": "named",
+     "note": "Cohort studies are named among the analytical studies."
+    },
+    "cohort-retrospective": {
+     "groups": [
+      "analytical"
+     ],
+     "basis": "named",
+     "note": "Cohort studies are named among the analytical studies."
+    },
+    "case-control": {
+     "groups": [
+      "analytical"
+     ],
+     "basis": "named"
+    },
+    "cross-sectional": {
+     "groups": [
+      "analytical"
+     ],
+     "basis": "named",
+     "note": "Named as analytical here; the game files it as descriptive."
+    },
+    "case-crossover": {
+     "groups": [
+      "analytical"
+     ],
+     "basis": "definition",
+     "note": "Each case is compared with itself at an earlier time."
+    },
+    "case-cohort": {
+     "groups": [
+      "analytical"
+     ],
+     "basis": "definition",
+     "note": "Cases are compared with a sample of the cohort."
+    },
+    "target-trial": {
+     "groups": [
+      "analytical"
+     ],
+     "basis": "definition",
+     "note": "Observational data, compared as in a trial."
+    },
+    "iv": {
+     "groups": [
+      "analytical"
+     ],
+     "basis": "definition",
+     "note": "Observational; groups compared by an instrument."
+    },
+    "mendelian": {
+     "groups": [
+      "analytical"
+     ],
+     "basis": "definition",
+     "note": "Observational; groups compared by genotype."
+    },
+    "gwas": {
+     "groups": [
+      "analytical"
+     ],
+     "basis": "definition",
+     "note": "Observational; people with and without the trait are compared."
+    },
+    "ecological": {
+     "groups": [
+      "analytical"
+     ],
+     "basis": "definition",
+     "note": "Observational; whole groups are compared."
+    },
+    "did": {
+     "groups": [
+      "analytical"
+     ],
+     "basis": "definition",
+     "note": "Not assigned by the investigator; an untreated comparison group."
+    },
+    "rdd": {
+     "groups": [
+      "analytical"
+     ],
+     "basis": "definition",
+     "note": "Assigned by a rule, not the investigator; compared across the cutoff."
+    },
+    "its": {
+     "groups": [
+      "analytical"
+     ],
+     "basis": "definition",
+     "note": "Not assigned by the investigator; compared before and after."
+    },
+    "synthetic-control": {
+     "groups": [
+      "analytical"
+     ],
+     "basis": "definition",
+     "note": "Not assigned by the investigator; compared with a built comparison unit."
+    },
+    "case-report": {
+     "groups": [
+      "descriptive"
+     ],
+     "basis": "named",
+     "note": "Case series are the overview's example of a descriptive study."
+    },
+    "surveillance": {
+     "groups": [
+      "descriptive"
+     ],
+     "basis": "definition",
+     "note": "Counts and trends, without a comparison group."
+    },
+    "capture-recapture": {
+     "groups": [
+      "descriptive"
+     ],
+     "basis": "definition",
+     "note": "Estimates a population's size, without a comparison group."
+    }
+   }
+  },
+  {
+   "id": "mesh",
+   "name": "MeSH 2026",
+   "what": "Study designs and methods in the U.S. National Library of Medicine's subject headings",
+   "cite": "U.S. National Library of Medicine. Medical Subject Headings (MeSH), 2026 edition, checked through the MeSH RDF API on 2026-11-17.",
+   "url": "https://id.nlm.nih.gov/mesh/",
+   "rule": "Each Method sits under the MeSH heading that names it, grouped by the MeSH tree; where MeSH has no heading for it, under the nearest broader one, or not classified.",
+   "groups": [
+    {
+     "id": "case-reports",
+     "name": "Case Reports",
+     "def": "MeSH publication type D002363, tree V03.100."
+    },
+    {
+     "id": "clinical-study",
+     "name": "Clinical Study",
+     "def": "MeSH publication type D000068397, tree V03.175."
+    },
+    {
+     "id": "epidemiologic-methods",
+     "name": "Epidemiologic Methods",
+     "def": "MeSH heading D004812, tree E05.318."
+    },
+    {
+     "id": "evidence-synthesis",
+     "name": "Evidence Synthesis",
+     "def": "MeSH publication type D000099290, tree V03.500."
+    },
+    {
+     "id": "validation-study",
+     "name": "Validation Study",
+     "def": "MeSH publication type D023361, tree V03.950."
+    },
+    {
+     "id": "empirical-research",
+     "name": "Empirical Research",
+     "def": "MeSH heading D036262, tree H01.770.644.241."
+    },
+    {
+     "id": "models-theoretical",
+     "name": "Models, Theoretical",
+     "def": "MeSH heading D008962, tree E05.599."
+    },
+    {
+     "id": "computing-methodologies",
+     "name": "Computing Methodologies",
+     "def": "MeSH heading D003205, tree L01.224."
+    }
+   ],
+   "items": {
+    "case-report": {
+     "groups": [
+      "case-reports"
+     ],
+     "basis": "named",
+     "note": "Case Reports (D002363). Publication type for reports of individual cases."
+    },
+    "cross-sectional": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "named",
+     "note": "Cross-Sectional Studies (D003430). Own heading, under Epidemiologic Studies."
+    },
+    "ecological": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "definition",
+     "note": "Epidemiologic Studies (D016021). No heading; 'ecological' appears only as Ecological Fallacy/Bias under Bias. Nearest is Epidemiologic Studies."
+    },
+    "surveillance": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "named",
+     "note": "Population Surveillance (D011159). Own heading, filed under Data Collection > Surveys and Questionnaires."
+    },
+    "cohort-prospective": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "named",
+     "note": "Prospective Studies (D011446). Own heading, under Cohort Studies."
+    },
+    "cohort-retrospective": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "named",
+     "note": "Retrospective Studies (D012189). Own heading, filed under both Case-Control and Cohort Studies."
+    },
+    "case-control": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "named",
+     "note": "Case-Control Studies (D016022). Own heading, under Epidemiologic Studies."
+    },
+    "case-crossover": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "definition",
+     "note": "Epidemiologic Studies (D016021). No heading or entry term; nearest is Epidemiologic Studies."
+    },
+    "target-trial": {
+     "groups": [
+      "clinical-study"
+     ],
+     "basis": "definition",
+     "note": "Observational Study (D064888). No heading; it analyses observational data, so nearest is the Observational Study publication type."
+    },
+    "iv": {
+     "groups": [
+      "clinical-study"
+     ],
+     "basis": "definition",
+     "note": "Observational Study (D064888). No heading; 'Natural Experiment' is an entry term of Observational Study. Doubtful: IV is an analysis, not a design."
+    },
+    "mendelian": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "named",
+     "note": "Mendelian Randomization Analysis (D057182). Own heading, under Molecular Epidemiology."
+    },
+    "gwas": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "named",
+     "note": "Genome-Wide Association Study (D055106). Own heading, under Epidemiologic Research Design and Molecular Epidemiology."
+    },
+    "case-cohort": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "definition",
+     "note": "Case-Control Studies (D016022). 'Nested Case-Control Studies' is an entry term of Case-Control Studies; case-cohort itself has no term."
+    },
+    "did": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "definition",
+     "note": "Controlled Before-After Studies (D065187). Controlled Before-After Studies is the design that difference-in-differences analyses."
+    },
+    "rdd": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "definition",
+     "note": "Non-Randomized Controlled Trials as Topic (D065228). No heading; 'Quasi-Experimental Studies' is an entry term of Non-Randomized Controlled Trials as Topic."
+    },
+    "its": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "named",
+     "note": "Interrupted Time Series Analysis (D065186). Own heading, under Epidemiologic Studies."
+    },
+    "synthetic-control": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "definition",
+     "note": "Non-Randomized Controlled Trials as Topic (D065228). No heading; nearest is Non-Randomized Controlled Trials as Topic (entry term Quasi-Experimental Studies). Doubtful."
+    },
+    "rct": {
+     "groups": [
+      "clinical-study"
+     ],
+     "basis": "named",
+     "note": "Randomized Controlled Trial (D016449). Publication type, under Controlled Clinical Trial."
+    },
+    "cluster-rct": {
+     "groups": [
+      "clinical-study"
+     ],
+     "basis": "definition",
+     "note": "Randomized Controlled Trial (D016449). No heading or entry term for cluster randomization; nearest is Randomized Controlled Trial."
+    },
+    "crossover": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "named",
+     "note": "Cross-Over Studies (D018592). Own heading, but MeSH files it under Epidemiologic Research Design, not under Clinical Trial."
+    },
+    "n-of-1": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "named",
+     "note": "Single-Case Studies as Topic (D000080907). 'N-of-1 Trials as Topic' is an entry term of Single-Case Studies as Topic, under Clinical Trials as Topic (E05)."
+    },
+    "stepped-wedge": {
+     "groups": [
+      "clinical-study"
+     ],
+     "basis": "definition",
+     "note": "Randomized Controlled Trial (D016449). No heading or entry term; nearest is Randomized Controlled Trial."
+    },
+    "adaptive-platform": {
+     "groups": [
+      "clinical-study"
+     ],
+     "basis": "named",
+     "note": "Adaptive Clinical Trial (D000076362). Own publication type; 'Platform Trial' is one of its entry terms."
+    },
+    "grounded-theory": {
+     "groups": [
+      "empirical-research"
+     ],
+     "basis": "named",
+     "note": "Grounded Theory (D066296). Own heading, under Empirical Research beside Qualitative Research."
+    },
+    "interviews-thematic": {
+     "groups": [
+      "empirical-research"
+     ],
+     "basis": "definition",
+     "note": "Qualitative Research (D036301). No heading for thematic analysis; Interviews as Topic is a data-collection technique, so Qualitative Research."
+    },
+    "mixed-sequential": {
+     "groups": [
+      "empirical-research"
+     ],
+     "basis": "definition",
+     "note": "Empirical Research (D036262). No heading or entry term for mixed methods; nearest heading covering both strands is Empirical Research."
+    },
+    "systematic-review": {
+     "groups": [
+      "evidence-synthesis"
+     ],
+     "basis": "named",
+     "note": "Systematic Review (D000078182). Publication type under Evidence Synthesis; Meta-Analysis is its sibling."
+    },
+    "scoping-review": {
+     "groups": [
+      "evidence-synthesis"
+     ],
+     "basis": "named",
+     "note": "Scoping Review (D000098583). Publication type under Evidence Synthesis."
+    },
+    "network-meta": {
+     "groups": [
+      "evidence-synthesis"
+     ],
+     "basis": "named",
+     "note": "Network Meta-Analysis (D000099094). Only tree V03.600.001 under Meta-Analysis, which is also V03.500.004; grouped through that parent."
+    },
+    "ipd-meta": {
+     "groups": [
+      "evidence-synthesis"
+     ],
+     "basis": "definition",
+     "note": "Meta-Analysis (D017418). No heading for individual participant data; nearest is Meta-Analysis (V03.500.004)."
+    },
+    "umbrella-review": {
+     "groups": [
+      "evidence-synthesis"
+     ],
+     "basis": "named",
+     "note": "Systematic Review (D000078182). 'Umbrella Review' is an entry term of Systematic Review."
+    },
+    "rapid-review": {
+     "groups": [
+      "evidence-synthesis"
+     ],
+     "basis": "definition",
+     "note": "Evidence Synthesis (D000099290). No heading or entry term; nearest is Evidence Synthesis."
+    },
+    "realist-review": {
+     "groups": [
+      "evidence-synthesis"
+     ],
+     "basis": "definition",
+     "note": "Evidence Synthesis (D000099290). No heading or entry term; nearest is Evidence Synthesis."
+    },
+    "prior-art": {
+     "groups": [
+      "evidence-synthesis"
+     ],
+     "basis": "definition",
+     "note": "Evidence Synthesis (D000099290). No heading; Evidence Synthesis covers it only by its broad scope note. Doubtful."
+    },
+    "multivocal-review": {
+     "groups": [
+      "evidence-synthesis"
+     ],
+     "basis": "definition",
+     "note": "Evidence Synthesis (D000099290). No heading; Gray Literature is a topic, so nearest is Evidence Synthesis."
+    },
+    "diagnostic-accuracy": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "definition",
+     "note": "Sensitivity and Specificity (D012680). No heading for the study design; Sensitivity and Specificity names the measures it estimates."
+    },
+    "reliability": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "named",
+     "note": "Reproducibility of Results (D015203). Own heading ('Test-Retest Reliability' is an entry term), under Epidemiologic Research Design."
+    },
+    "validation": {
+     "groups": [
+      "validation-study"
+     ],
+     "basis": "named",
+     "note": "Validation Study (D023361). Validation Study publication type."
+    },
+    "nomological": {
+     "groups": [
+      "validation-study"
+     ],
+     "basis": "definition",
+     "note": "Validation Study (D023361). No heading for nomological networks or construct validity; nearest is Validation Study."
+    },
+    "analytical-model": {
+     "groups": [
+      "models-theoretical"
+     ],
+     "basis": "named",
+     "note": "Models, Theoretical (D008962). Own heading; 'Mathematical Model' is an entry term."
+    },
+    "simulation": {
+     "groups": [
+      "computing-methodologies"
+     ],
+     "basis": "named",
+     "note": "Computer Simulation (D003198). Own heading, under Computing Methodologies."
+    },
+    "prediction-model": {
+     "groups": [
+      "computing-methodologies"
+     ],
+     "basis": "named",
+     "note": "Prediction Methods, Machine (D000098411). Prediction Methods, Machine; its label says machine, but its scope note covers statistical models too."
+    },
+    "pilot": {
+     "groups": [
+      "epidemiologic-methods"
+     ],
+     "basis": "named",
+     "note": "Pilot Projects (D010865). Own heading ('Pilot Study' is an entry term), under Epidemiologic Study Characteristics."
+    },
+    "think-aloud": {
+     "groups": [
+      "computing-methodologies"
+     ],
+     "basis": "named",
+     "note": "User-Centered Design (D000086825). 'Usability Testing' is an entry term of User-Centered Design, filed under Software."
+    }
+   }
+  }
+ ]
+}

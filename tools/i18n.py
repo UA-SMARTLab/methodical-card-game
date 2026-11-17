@@ -31,7 +31,7 @@ TEXT_FIELDS = {
 
 # The "Find your method" tree (data/method-tree.json) is nested, so its text is keyed by its path in the tree
 # ("aims/CAUSE/options/2/label"). Only fields with these names are text; ids, links and sources stay as they are.
-TREE_TEXT = {"intro", "q", "help", "label", "hint", "short", "plain", "term", "tag", "name", "what", "situation", "note"}
+TREE_TEXT = {"intro", "q", "help", "label", "hint", "short", "plain", "term", "tag", "name", "what", "situation", "note", "def", "rule"}
 
 
 def tree_text(tree):
@@ -90,6 +90,8 @@ def source_cards(data):
             out[deck][x["id"]] = entry
     if "tree" in data:
         out["tree"] = tree_text(data["tree"])
+    if "classes" in data:
+        out["classes"] = tree_text(data["classes"])
     return out
 
 
@@ -128,6 +130,8 @@ def translated(data, code):
                         st["ask"] = ask
     if "tree" in data:
         apply_tree(data["tree"], tr.get("tree"))
+    if "classes" in data:
+        apply_tree(data["classes"], tr.get("classes"))
     return data
 
 

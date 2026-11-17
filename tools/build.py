@@ -201,20 +201,51 @@ for g, grp in tree["time"]["groups"].items():
 for t_id, term in tree["time"]["terms"].items():
     if term.get("group") not in tree["time"]["groups"]:
         errors.append(f"method-tree time term {t_id}: unknown group {term.get('group')}")
-# Research purposes shown as tags: each names the kinds of question it spans and its source.
-for p in tree["purposes"]["options"]:
-    check_ids(p["aims"], SUIT, f"method-tree purpose {p['id']}", "kind of question")
-    if not p.get("tag") or not p.get("ref", {}).get("cite"):
-        errors.append(f"method-tree purpose {p['id']}: needs a tag and a source")
-    if p["ref"].get("url") and not p["ref"]["url"].startswith("https://"):
-        errors.append(f"method-tree purpose {p['id']}: source link must be https")
-# Every Method family says which source its grouping follows, or that it is the game's own.
+
+
+# --------------------------------------------------------------------------- published classifications
+# data/classifications.json: schemes the tree can be viewed through. Question-side schemes group the suits; tool-side
+# schemes group the designs. The first scheme on each side is the game's own (labelled as ours); every other scheme
+# cites its source, names its groups, and says for each item whether the source names it or we applied its definition.
+def check_scheme(side, s, table, what):
+    w = f"classifications {side} {s.get('id')}"
+    if not s.get("cite"):
+        errors.append(f"{w}: needs a source (cite)")
+    if s.get("url") and not s["url"].startswith("https://"):
+        errors.append(f"{w}: source link must be https")
+    if s.get("own"):
+        return
+    gids = [g["id"] for g in s.get("groups", [])]
+    if not gids or len(set(gids)) != len(gids):
+        errors.append(f"{w}: needs groups with unique ids")
+    for g in s.get("groups", []):
+        if not g.get("name") or not g.get("def"):
+            errors.append(f"{w} group {g['id']}: needs a name and a definition")
+    for item, m in s.get("items", {}).items():
+        if item not in table:
+            errors.append(f"{w}: unknown {what} {item}")
+        check_ids(m.get("groups", []), set(gids), f"{w} {item}", "group")
+        if not m.get("groups") or m.get("basis") not in ("named", "definition"):
+            errors.append(f"{w} {item}: needs groups and a basis (named or definition)")
+        if m.get("basis") == "definition" and not m.get("note") and side == "tool":
+            errors.append(f"{w} {item}: a mapping by definition needs a note saying why")
+
+
+classes = load("classifications")
+for side, table, what in (("question", SUIT, "kind of question"), ("tool", D, "design")):
+    ids = [s["id"] for s in classes[side]]
+    if len(set(ids)) != len(ids) or not classes[side] or not classes[side][0].get("own"):
+        errors.append(f"classifications {side}: needs unique scheme ids, the game's own first")
+    for s in classes[side]:
+        check_scheme(side, s, table, what)
+# The game's own families each say which published category they follow, or that they are the game's own.
+own_families = classes["tool"][0].get("families", {})
 for f in FAM:
-    src = tree["sources"]["families"].get(f)
+    src = own_families.get(f)
     if not src:
-        errors.append(f"method-tree: family {f} has no source")
+        errors.append(f"classifications: family {f} has no source")
     elif src.get("fit") not in ("source", "partial", "own") or not src.get("cite"):
-        errors.append(f"method-tree: family {f} needs fit (source, partial or own) and cite")
+        errors.append(f"classifications: family {f} needs fit (source, partial or own) and cite")
 
 
 # --------------------------------------------------------------------------- languages
@@ -225,7 +256,7 @@ import i18n  # noqa: E402
 
 e = html.escape
 DATA_ALL = {"meta": meta, "designs": designs, "questions": questions, "threats": threats,
-            "safeguards": safeguards, "twists": twists, "programs": programs, "tree": tree}
+            "safeguards": safeguards, "twists": twists, "programs": programs, "tree": tree, "classes": classes}
 
 
 class Lang:
@@ -497,6 +528,9 @@ if __name__ == "__main__":
             reach = sum(any((q["suit"], b) in tree_paths for b in q["best"]) for q in questions)
             print(f"  method tree: {len(tree_leaves)} branch ends reach {len({m for _, _, m in tree_leaves})}/{len(designs)} designs; "
                   f"{reach}/{len(questions)} questions reach their best answer on their own branch")
+            for side, n in (("question", len(SUIT)), ("tool", len(designs))):
+                print(f"  {side} views: " + "; ".join(f"{s['name']} " + ("(own)" if s.get("own") else f"{len(s['items'])}/{n} classified")
+                                                       for s in classes[side]))
             print("  en: source language")
         else:
             total, done = i18n.coverage(info["code"])

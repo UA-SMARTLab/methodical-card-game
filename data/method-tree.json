@@ -1,5 +1,5 @@
 {
- "_about": "The \"Find your method\" tree, read by tools/build.py (which checks it) and by the app's Find your method page. The first fork is the kind of question (a suit in meta.json), asked in everyday words (short, plain) with a real Question card as its example; the research term comes second (tag, term). Each branch then asks about the situation until it lands on a Method (method, an id in designs.json). next is a follow-up question, goto jumps to another kind of question, con is the constraint the answer stands for, time a time term, and a node's help teaches the research word behind its plain question. purposes: the research purposes that span several kinds of question (shown as tags), each with its source. sources: where each zone's categories come from; see docs/method-tree-sources.md for how each was checked.",
+ "_about": "The \"Find your method\" tree, read by tools/build.py (which checks it) and by the app's Find your method page. The first fork is the kind of question (a suit in meta.json), asked in everyday words (short, plain) with a real Question card as its example; the research term comes second (tag, term). Each branch then asks about the situation until it lands on a Method (method, an id in designs.json). next is a follow-up question, goto jumps to another kind of question, con is the constraint the answer stands for, time a time term, and a node's help teaches the research word behind its plain question. sources: what each zone's own categories are. The published classifications the tree can be viewed through, and the sources for the Method families, are in classifications.json.",
  "intro": "Have a research question but not sure how to study it? Answer a few plain questions. Each answer narrows the choice, until you reach the method that fits.",
  "first": {
   "q": "What do you want to find out?",
@@ -735,111 +735,6 @@
    ]
   }
  },
- "purposes": {
-  "options": [
-   {
-    "id": "explore",
-    "tag": "Exploratory",
-    "short": "To discover what is going on",
-    "plain": "Ask open questions about something nobody understands well yet, to see what matters.",
-    "term": "exploratory research",
-    "aims": [
-     "EXPLORE"
-    ],
-    "ref": {
-     "cite": "Saunders, Lewis & Thornhill (2019). Research Methods for Business Students, section 5.7. Pearson.",
-     "url": ""
-    }
-   },
-   {
-    "id": "describe",
-    "tag": "Descriptive",
-    "short": "To describe how things are",
-    "plain": "An accurate picture of people, events or situations: how many, how often, where, and whether it is changing.",
-    "term": "descriptive research",
-    "aims": [
-     "DESCRIBE"
-    ],
-    "ref": {
-     "cite": "Saunders, Lewis & Thornhill (2019). Research Methods for Business Students, section 5.7. Pearson.",
-     "url": ""
-    }
-   },
-   {
-    "id": "explain",
-    "tag": "Explanatory",
-    "short": "To find out what leads to what, and why",
-    "plain": "Whether one thing goes with another, causes it, or must follow from a theory.",
-    "term": "explanatory research",
-    "aims": [
-     "ASSOCIATE",
-     "CAUSE",
-     "EXPLAIN"
-    ],
-    "ref": {
-     "cite": "Saunders, Lewis & Thornhill (2019). Research Methods for Business Students, section 5.7. Pearson.",
-     "url": ""
-    }
-   },
-   {
-    "id": "evaluate",
-    "tag": "Evaluative",
-    "short": "To find out how well something works",
-    "plain": "A treatment, a policy or a test: does it work, and how well?",
-    "term": "evaluative research",
-    "aims": [
-     "CAUSE",
-     "MEASURE"
-    ],
-    "ref": {
-     "cite": "Saunders, Lewis & Thornhill (2019). Research Methods for Business Students, section 5.7. Pearson.",
-     "url": ""
-    }
-   },
-   {
-    "id": "predict",
-    "tag": "Predictive",
-    "short": "To forecast what will happen",
-    "plain": "Who it will happen to, or what comes next, without needing to know why.",
-    "term": "predictive research",
-    "aims": [
-     "PREDICT"
-    ],
-    "ref": {
-     "cite": "Shmueli (2010). To Explain or to Predict? Statistical Science.",
-     "url": "https://doi.org/10.1214/10-STS330"
-    }
-   },
-   {
-    "id": "design",
-    "tag": "Design",
-    "short": "To make something that works",
-    "plain": "A device, a tool, a programme or a plan: build it, and show that it works and can be used.",
-    "term": "design research",
-    "aims": [
-     "BUILD"
-    ],
-    "ref": {
-     "cite": "Gregor (2006). The Nature of Theory in Information Systems. MIS Quarterly.",
-     "url": "https://doi.org/10.2307/25148742"
-    }
-   },
-   {
-    "id": "existing",
-    "tag": "Review",
-    "short": "To learn what studies have already found",
-    "plain": "Bring together the research that already exists, instead of starting a new study.",
-    "term": "secondary research: a review",
-    "aims": [
-     "SYNTHESIZE"
-    ],
-    "ref": {
-     "cite": "Grant & Booth (2009). A typology of reviews: an analysis of 14 review types and associated methodologies. Health Information and Libraries Journal.",
-     "url": "https://doi.org/10.1111/j.1471-1842.2009.00848.x"
-    }
-   }
-  ]
- },
  "time": {
   "_about": "Time words shown as badges on the answers where timing decides the method ('time' on an option). Not a first question: time cuts across every purpose.",
   "groups": {
@@ -882,58 +777,7 @@
   }
  },
  "sources": {
-  "_about": "Per Method family, the source its grouping follows: fit is source (a published category), partial, or own (the game's own grouping, named with an anchor).",
-  "what": "The nine kinds of question are the game's own suits. Two research purposes span several of them:",
-  "situation": "The situations are the game's own constraint cards. Time terms: Saunders et al. (2019), figure 5.1; Euser et al. (2009).",
-  "families": {
-   "descriptive": {
-    "fit": "source",
-    "cite": "Grimes & Schulz (2002): observational studies without a comparison group are descriptive.",
-    "url": "https://doi.org/10.1016/S0140-6736(02)07283-5",
-    "note": "Grimes & Schulz and MeSH count cross-sectional studies as analytical; the game files them here."
-   },
-   "analytical": {
-    "fit": "source",
-    "cite": "Grimes & Schulz (2002): observational studies with a comparison group are analytical.",
-    "url": "https://doi.org/10.1016/S0140-6736(02)07283-5"
-   },
-   "quasi": {
-    "fit": "own",
-    "cite": "Own grouping. The term follows the ERIC thesaurus descriptor \"Quasiexperimental Design\".",
-    "url": "https://eric.ed.gov/?ti=Quasiexperimental+Design",
-    "note": "No family of its own in Grimes & Schulz, MeSH or EQUATOR."
-   },
-   "experimental": {
-    "fit": "source",
-    "cite": "Grimes & Schulz (2002): the investigator assigns the exposure.",
-    "url": "https://doi.org/10.1016/S0140-6736(02)07283-5"
-   },
-   "qualitative": {
-    "fit": "partial",
-    "cite": "MeSH 2026: Qualitative Research (D036301).",
-    "url": "https://id.nlm.nih.gov/mesh/D036301",
-    "note": "Mixed methods has no MeSH heading."
-   },
-   "synthesis": {
-    "fit": "source",
-    "cite": "MeSH 2026: Evidence Synthesis (D000099290, publication type V03.500).",
-    "url": "https://id.nlm.nih.gov/mesh/D000099290",
-    "note": "MeSH files bibliometric methods (co-citation, coupling) under information science."
-   },
-   "measurement": {
-    "fit": "partial",
-    "cite": "MeSH 2026: Validation Study (D023361); otherwise the game's own grouping.",
-    "url": "https://id.nlm.nih.gov/mesh/D023361"
-   },
-   "computational": {
-    "fit": "own",
-    "cite": "Own grouping: no published category groups models, simulation, prediction and cost-effectiveness."
-   },
-   "engineering": {
-    "fit": "own",
-    "cite": "Own grouping, anchored in Hevner et al. (2004), design science, and Gregor (2006), design and action.",
-    "url": "https://doi.org/10.2307/25148625"
-   }
-  }
+  "what": "The nine kinds of question are the game's own suits. Switch the view to see them grouped by a published classification.",
+  "situation": "The situations are the game's own constraint cards. Time terms: Saunders et al. (2019), figure 5.1; Euser et al. (2009)."
  }
 }
