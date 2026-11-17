@@ -31,7 +31,7 @@ TEXT_FIELDS = {
 
 # The "Find your method" tree (data/method-tree.json) is nested, so its text is keyed by its path in the tree
 # ("aims/CAUSE/options/2/label"). Only fields with these names are text; ids, links and sources stay as they are.
-TREE_TEXT = {"intro", "q", "help", "label", "hint", "short", "plain", "term", "tag", "name", "what", "situation", "note", "def", "rule"}
+TREE_TEXT = {"intro", "q", "help", "label", "hint", "short", "plain", "term", "tag", "name", "what", "situation", "note", "def", "rule", "data"}
 
 
 def tree_text(tree):

@@ -741,15 +741,15 @@
    "horizon": {
     "name": "Time horizon",
     "ref": {
-     "cite": "Saunders, Lewis & Thornhill (2019). Research Methods for Business Students, figure 5.1 (the research onion). Pearson.",
-     "url": ""
+     "cite": "MeSH 2026: Cross-Sectional Studies (D003430), which contrasts them with Longitudinal Studies (D008137).",
+     "url": "https://id.nlm.nih.gov/mesh/D003430"
     }
    },
    "direction": {
     "name": "Direction",
     "ref": {
-     "cite": "Euser et al. (2009). Cohort Studies: Prospective versus Retrospective. Nephron Clinical Practice.",
-     "url": "https://doi.org/10.1159/000235241"
+     "cite": "MeSH 2026: Prospective Studies (D011446) and Retrospective Studies (D012189).",
+     "url": "https://id.nlm.nih.gov/mesh/D011446"
     }
    }
   },
@@ -778,6 +778,6 @@
  },
  "sources": {
   "what": "The nine kinds of question are the game's own suits. Switch the view to see them grouped by a published classification.",
-  "situation": "The situations are the game's own constraint cards. Time terms: Saunders et al. (2019), figure 5.1; Euser et al. (2009)."
+  "situation": "The situations are the game's own constraint cards. Time terms: MeSH 2026 (Cross-Sectional, Longitudinal, Prospective and Retrospective Studies)."
  }
 }

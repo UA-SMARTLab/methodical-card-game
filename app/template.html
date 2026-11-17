@@ -468,24 +468,16 @@ svg.ft-map { display: block; font-family: var(--f-body); }
 .ft-seg button[aria-checked="true"] small { color: var(--accent-ink); opacity: .85; }
 .ft-cls { margin: 4px 0 0; padding-inline-start: 18px; } .ft-cls li { margin-bottom: 4px; }
 .ft-lenses .ft-break { flex-basis: 100%; height: 0; }
-/* Reasoning overlay: what no source marks yet is dashed and faint, not dark, so it never reads as "follows none". */
-.ft-map .nd.unsourced { opacity: .6; }
-.ft-map .nd.unsourced rect.box { stroke-dasharray: 5 4; }
-.ft-map .nd.fill.unsourced rect.bg { fill-opacity: .18; stroke: var(--muted); stroke-dasharray: 5 4; stroke-width: 1.5; }
-.ft-map .nd.fill.unsourced text, .ft-map .nd.fill.unsourced text.sub { fill: var(--text); }
-/* Our own reading of the definitions, where no source says: a dashed white inner outline on the Method, and dashed
-   badges in its details, so it is never mistaken for a sourced mark. */
-.ft-map .nd.fill.ours rect.bg { stroke: #fff; stroke-width: 1.5; stroke-dasharray: 5 4; stroke-opacity: .85; }
-.ft-map .nd.fill.ours.on rect.ring { stroke-dasharray: 7 4; }
-.ft-ours .ft-tag { outline: 1.5px dashed var(--muted); outline-offset: 2px; }
 .ft-map .mini { fill: rgba(255,255,255,.55); }
 .ft-map .mini.lit { fill: #fff; }
-.ft-map .mini.lit.ours { fill: none; stroke: #fff; stroke-width: 1.5; }
 .ft-map .mini.off { fill: rgba(255,255,255,.16); }
 .ft-map .nd.fill.none .mini { fill: var(--muted); } .ft-map .nd.fill.none .mini.lit { fill: var(--text); }
-.ft-map .nd.fill.none .mini.lit.ours { fill: none; stroke: var(--text); } .ft-map .nd.fill.none .mini.off { fill: var(--muted); opacity: .3; }
-.ft-legend { display: inline-flex; align-items: center; gap: 6px; }
-.ft-dash { display: inline-block; width: 22px; height: 12px; border: 1.5px dashed var(--muted); border-radius: 3px; }
+.ft-map .nd.fill.none .mini.off { fill: var(--muted); opacity: .3; }
+/* Your approach to theory: part of your situation, asked once for the whole walk. */
+.ft-theory { border: 1px dashed var(--line); border-radius: 12px; padding: 10px 14px; margin: 0 0 12px; }
+.ft-theory .ft-kicker { margin: 0 0 4px; }
+.ft-tq { margin: 0 0 8px; }
+.ft-tans { margin: 10px 0 0; line-height: 1.5; }
 .ft-map .nd.fill.none rect.bg { fill: none; stroke: var(--muted); stroke-dasharray: 5 4; stroke-width: 1.5; }
 .ft-map .nd.fill.none text { fill: var(--muted); } .ft-map .nd.fill.none text.sub { fill: var(--muted); }
 .ft-map .nd.qgroup rect.box { fill: color-mix(in srgb, var(--muted) 10%, transparent); stroke: var(--muted); }
@@ -662,6 +654,7 @@ details.ft-srcs summary { cursor: pointer; font: 700 13px var(--f-cond); letter-
     <div class="panel ft-card" id="ft-rq">
       <div class="ft-navrow"><button class="btn ft-back" id="ft-back" hidden>{{find.back}}</button><nav class="ft-trail" id="ft-trail" aria-label="{{find.zone.what}}"></nav></div>
       <div class="ft-now" id="ft-now" aria-live="polite"></div>
+      <div class="ft-theory" id="ft-theory"></div>
       <div class="ft-scroll"><svg class="ft-map" id="ft-map" role="img" aria-label="{{find.aria.fwd}}"></svg></div>
       <p class="ft-note" id="ft-note"></p>
       <div id="ft-detail"></div>
@@ -1678,7 +1671,7 @@ const FIND = (() => {
   // aim/path: the branch walked in RQ to Method; hl/sit: a kind of question, and one of its situations, lit on the
   // overview; f/m: the tool group opened and the Method picked in Method to RQ; qv/tv: the classification each side
   // is viewed through.
-  const START = { tab: "rq", aim: null, path: [], hl: null, sit: null, f: null, m: null, qv: CL.question[0].id, tv: CL.tool[0].id, rz: null };
+  const START = { tab: "rq", aim: null, path: [], hl: null, sit: null, f: null, m: null, qv: CL.question[0].id, tv: CL.tool[0].id, ap: null };
   let fs = { ...START };
   const go = s => {
     fs = { ...fs, ...s };
@@ -1754,17 +1747,11 @@ const FIND = (() => {
       if ((l + " " + w).trim().length > n && l) lines.push(w); else lines[lines.length - 1] = (l + " " + w).trim(); });
     return lines.length > 2 ? [lines[0], cut(lines.slice(1).join(" "), n)] : lines;
   }
-  // Kinds of question wear their suit colour; Explanatory and Evaluative, the research purposes that span several
-  // kinds of question, ride along in the neutral prompt-card colour (cards.QUESTION_COLOR), as they are no game category.
+  // Kinds of question wear their suit colour; published groups and approaches take the neutral prompt-card colour
+  // (cards.QUESTION_COLOR), as they are no game category.
   const PURPOSE_COLOUR = "#40402C";
   const tag = (t, c, cls = "") => `<span class="ft-tag ${cls}" style="--tc:${c}">${esc(t)}</span>`;
   const aimTag = a => tag(TR.aims[a].tag, SUIT[a].color);
-  // The purpose tags (Explanatory, Evaluative) are the Saunders et al. groups that span several kinds of question.
-  const SAUNDERS = QV.saunders;
-  const purposesOf = a => SAUNDERS.groups.filter(g => Object.values(SAUNDERS.items).filter(m => m.groups.includes(g.id)).length > 1
-    && (SAUNDERS.items[a]?.groups || []).includes(g.id));
-  const purTag = g => tag(g.name, PURPOSE_COLOUR, "neutral");
-  const purposeTags = a => purposesOf(a).map(g => `<span title="${esc(g.def + " " + SAUNDERS.cite)}">${purTag(g)}</span>`).join(" ");
   // A scheme's groups, with a "not classified by this source" group for whatever it leaves out. The game's own
   // families keep their colours; published groups take the neutral colour, as they are no game category.
   const NONE = "_none";
@@ -1812,30 +1799,25 @@ const FIND = (() => {
     return `<span class="ft-kicker" id="ft-lens-label">${tr("find.view.label")}</span>
       <div class="ft-seg" role="radiogroup" aria-labelledby="ft-lens-label">${opt("ours", trt("find.view.ours"), trt("find.view.ours_side"), ours, trt("find.view.ours_title"))}
       ${["question", "tool"].map(side => CL[side].filter(s => !s.own).map(s => opt(`${side}|${s.id}`, s.name, trt("find.view.side." + side),
-        (side === "question" ? fs.qv : fs.tv) === s.id, s.cite)).join("")).join("")}</div>
-      <span class="ft-break"></span><span class="ft-kicker" id="ft-rz-label">${tr("find.reason.label")}</span>
-      <div class="ft-seg" role="radiogroup" aria-labelledby="ft-rz-label">
-        <button role="radio" aria-checked="${!fs.rz}" data-rz="">${tr("find.reason.off")}</button>
-        ${RZ.groups.map(g => `<button role="radio" aria-checked="${fs.rz === g.id}" data-rz="${g.id}" title="${esc(g.def + " " + trt("find.reason.title", { name: g.name.toLowerCase() }))}">${esc(g.name)}<small>${esc(RZ.name)}</small></button>`).join("")}</div>
-      ${fs.rz ? `<span class="label ft-legend"><span class="ft-dash"></span>${tr("find.reason.legend")}</span>` : ""}`;
+        (side === "question" ? fs.qv : fs.tv) === s.id, s.cite)).join("")).join("")}</div>`;
   };
-  // The reasoning overlay (Saunders et al. 2019, approaches to theory development) does not regroup anything: it lights
-  // the Methods a source marks with the chosen approach. A Method marked with more than one goes either way; one no
-  // source marks is never lit.
+  // The approach to theory (deductive, inductive, abductive) belongs to the research, not to the Method: it is asked as
+  // part of your situation, each answer with the page that supports it. What sources say about particular Methods is
+  // shown only in a Method's details.
   const RZ = CL.reasoning;
-  const rzOf = m => RZ.items[m]?.groups || [];
-  const rzHas = m => rzOf(m).includes(fs.rz);
   const rzName = id => RZ.groups.find(g => g.id === id).name;
-  // Lit, a non-match, or not marked by any source yet: the last is drawn apart, never as a non-match.
-  const rzOurs = m => RZ.items[m]?.basis === "ours";
-  const rzClass = m => (rzHas(m) ? "on" : RZ.items[m] ? "dim" : "unsourced") + (rzOurs(m) ? " ours" : "");
-  const rzGroupClass = ms => ms.some(rzHas) ? "on" : ms.some(m => RZ.items[m]) ? "dim" : "unsourced";
-  const rzLabel = m => { const gs = rzOf(m), l = gs.length > 1 ? trt("find.reason.either") : gs.length ? rzName(gs[0]) : "";
-    return l && rzOurs(m) ? `${l} (${trt("find.reason.ours")})` : l; };
-  const methodReasoning = m => { const it = RZ.items[m];
-    return `<li><b>${tr("find.reason.head")}:</b> ${it ? `<span class="${it.basis === "ours" ? "ft-ours" : ""}">${it.groups.map(g => tag(rzName(g), PURPOSE_COLOUR, "neutral")).join(" ")}</span>`
-      + ` <span class="label">${esc(trt("find.basis." + it.basis))}${it.note ? " · " + esc(it.note) : ""}</span> ${it.cite ? link(it.cite, it.url) : ""}`
-      : `<span class="label">${tr("find.reason.none")}</span>`} <span class="label">(${link(RZ.name, RZ.url)})</span></li>`; };
+  const methodReasoning = m => { const it = RZ.items[m]; if (!it) return "";
+    return `<li><b>${tr("find.reason.head")}:</b> ${it.groups.map(g => tag(rzName(g), PURPOSE_COLOUR, "neutral")).join(" ")}
+      <span class="label">${esc(trt("find.basis." + it.basis))}${it.note ? " · " + esc(it.note) : ""}</span> ${link(it.cite, it.url)}
+      <span class="label">(${tr("find.reason.note")})</span></li>`; };
+  // Your approach to theory: the question, its three answers, and what the chosen one means for your data.
+  const theoryBlock = () => { const S = RZ.situation, G = fs.ap && RZ.groups.find(g => g.id === fs.ap);
+    return `<p class="ft-kicker">2 · ${tr("find.zone.situation")} · ${tr("find.theory.kicker")}</p>
+      <p class="ft-tq"><b>${esc(S.q)}</b> <span class="label">${esc(S.help)}</span></p>
+      <div class="ft-seg" role="radiogroup" aria-label="${esc(S.q)}">${S.options.map(o => `<button role="radio" aria-checked="${fs.ap === o.group}" data-ap="${o.group}" title="${esc(o.hint)}">${esc(o.label)}<small>${esc(rzName(o.group))}</small></button>`).join("")}</div>
+      ${G ? (o => `<p class="ft-tans">${tag(G.name, PURPOSE_COLOUR, "neutral")} ${esc(o.hint)} ${link(o.ref.cite, o.ref.url)}
+        <br><b>${esc(G.name)}:</b> ${esc(G.def)} <b>${tr("find.theory.data")}</b> ${esc(G.data)}
+        <br><span class="label">${esc(RZ.rule)} ${tr("find.theory.defs")} ${link(RZ.name + ", pp. 169–171", RZ.url)}.</span></p>`)(S.options.find(o => o.group === G.id)) : ""}`; };
 
   // ---- drawing pieces shared by both trees
   const TOP = 44, W = 210, GAP = 36, RH = 62, BH = 52, LEAFW = 200, AIMW = 250;
@@ -1882,7 +1864,7 @@ const FIND = (() => {
         <text x="${x + 6}" y="19" style="fill:#fff;font:700 12px var(--f-cond);letter-spacing:.08em">${esc(t.toUpperCase())}</text>`; x += w + 6; });
     return out;
   }
-  const aimBadges = a => svgBadges([[TR.aims[a].tag, SUIT[a].color], ...purposesOf(a).map(g => [g.name, PURPOSE_COLOUR, true])]);
+  const aimBadges = a => svgBadges([[TR.aims[a].tag, SUIT[a].color]]);
   function aimBox(a, x, y, w, h, cls = "", data = "") {
     const s = SUIT[a];
     return `<g class="nd ${cls}" tabindex="0" role="button" data-aim="${a}" ${data} transform="translate(${x} ${y})">
@@ -1920,22 +1902,17 @@ const FIND = (() => {
       ${lines.map((l, k) => `<text x="12" y="${34 + k * 14}" style="font-size:11.5px">${esc(l)}</text>`).join("")}</g>`;
   }
   // A tool group: a game family, a published category, or the dashed "not classified by this source" group.
-  // One small square per Method in the group, always in the same order, so lighting a reasoning or a kind of question
-  // shows which Methods inside the group change. Lit squares are solid; with a reasoning picked, a Method lit only by our
-  // own reading is hollow.
+  // One small square per Method in the group, always in the same order, so lighting a kind of question (or one of its
+  // situations) shows which Methods inside the group it reaches. Lit squares are solid, the rest faint.
   // One row along the bottom of the box; a large group gets smaller squares so it still fits in one row.
   const GH = 80;
   function miniRow(g, w, h, lit) {
     const n = g.members.length, size = n * 15 <= w - 26 ? 12 : 8, pitch = size + (size === 12 ? 3 : 2);
-    return g.members.map((m, i) => { const on = lit && lit.has(m);
-      const state = on ? "lit" + (fs.rz && rzOurs(m) ? " ours" : "") : lit ? "off" : "";
+    return g.members.map((m, i) => { const state = lit ? (lit.has(m) ? "lit" : "off") : "";
       return `<rect class="mini ${state}" data-mini="${m}" x="${14 + i * pitch}" y="${h - 12 - size}" width="${size}" height="${size}" rx="2"><title>${esc(D[m].name)}</title></rect>`; }).join("");
   }
   function groupBox(g, x, y, w, h, cls = "", data = "", lit = null) {
-    const n = g.members.length, u = g.members.filter(m => !RZ.items[m]).length;
-    const j = g.members.filter(m => rzHas(m) && rzOurs(m)).length;
-    const sub = fs.rz && overview() ? trt(u ? "find.reason.count_open" : j ? "find.reason.count_ours" : "find.reason.count", { k: g.members.filter(rzHas).length, n, u, j, name: rzName(fs.rz).toLowerCase() })
-      : g.fit ? trt("find.cards_line", { n, fit: fitName(g.fit) }) : trt("find.n_methods", { n });
+    const n = g.members.length, sub = g.fit ? trt("find.cards_line", { n, fit: fitName(g.fit) }) : trt("find.n_methods", { n });
     const lines = wrap(g.name.toUpperCase(), Math.floor((w - 28) / 7.4)), ys = lines.length > 1 ? 18 : 22;
     return `<g class="nd fill${g.none ? " none" : ""} ${cls}" tabindex="0" role="button" ${data} transform="translate(${x} ${y})"><title>${esc(g.name + (g.def ? ": " + g.def : ""))}</title>
       <rect class="bg" width="${w}" height="${h}" rx="8" style="${g.none ? "" : `fill:${g.color}`}"></rect><rect class="ring" x="-3" y="-3" width="${w + 6}" height="${h + 6}" rx="10"></rect>
@@ -1979,8 +1956,7 @@ const FIND = (() => {
     return `<g class="nd fill ${cls}" tabindex="0" role="button" ${data} transform="translate(${x} ${y})"><title>${esc(D[id].name + " · " + FAM[D[id].family].name)}</title>
       <rect class="bg" width="${w}" height="${h}" rx="6" style="fill:${famColour(id)}"></rect><rect class="ring" x="-3" y="-3" width="${w + 6}" height="${h + 6}" rx="8"></rect>
       <text x="10" y="${h / 2 - 2}" style="font-weight:600">${esc(cut(D[id].name, Math.floor(w / 6.8)))}</text>
-      <text class="sub" x="10" y="${h / 2 + 13}"><tspan style="font-family:var(--f-mono)">${CODE[id]}</tspan>${fs.rz && overview() ? ` · ${esc(rzLabel(id) || trt("find.reason.unsourced"))}`
-        : TV[fs.tv].own || !overview() ? ""
+      <text class="sub" x="10" y="${h / 2 + 13}"><tspan style="font-family:var(--f-mono)">${CODE[id]}</tspan>${TV[fs.tv].own || !overview() ? ""
         : ` · ${esc(cut(toolGroupOf(id).map(g => g.none ? trt("find.not_classified") : g.name).join(", "), Math.floor(w / 6.2) - 10))}`}</text></g>`;
   }
   function answerBox(o, x, y, w, h, cls, data) {
@@ -2037,25 +2013,20 @@ const FIND = (() => {
       const tgroups = groupsOf("tool", fs.tv), tall = Math.max(total, (tgroups.length - 1) * (GH + 10) + GH);
       const fgap = tgroups.length > 1 ? (tall - GH) / (tgroups.length - 1) : 0, fy = k => TOP + k * fgap;
       const hl = fs.hl, sit = fs.sit, via = hl && sit ? viaSituation(hl, sit) : null;
-      // The reasoning overlay narrows what is lit to the Methods marked with the chosen approach.
-      const picked = hl ? new Set(via ? via.map(v => v.m) : branchOf(hl).methods) : null;
-      const litMethods = fs.rz ? new Set(designs.map(d => d.id).filter(m => rzHas(m) && (!picked || picked.has(m)))) : picked;
+      const litMethods = hl ? new Set(via ? via.map(v => v.m) : branchOf(hl).methods) : null;
       const groupLit = g => g.members.some(m => litMethods.has(m)), lighting = !!litMethods;
       let edges = "", nodes = ""; const toTools = [];
       rows.forEach((r, i) => {
-        const a = r.a, y = ys[i], h = hs[i], ms = branchOf(a).methods;
-        const rowLit = hl ? a === hl : !fs.rz || [...ms].some(m => litMethods.has(m));
-        const cls = lighting ? (rowLit ? (hl ? "on" : "") : !hl && rzGroupClass([...ms]) === "unsourced" ? "unsourced" : "dim") : "";
+        const a = r.a, y = ys[i], h = hs[i], ms = branchOf(a).methods, cls = hl ? (a === hl ? "on" : "dim") : "";
         nodes += aimBox(a, AX, y, AW, h, cls) + sitChips(a, SX, y, SW, h, cls, a === hl ? sit : null);
-        edges += `<path class="edge${hl && rowLit ? " on" : lighting && !rowLit ? " dim" : ""}" d="M${AX + AW},${y + h / 2} H${SX}"/>`;
+        edges += `<path class="edge${a === hl ? " on" : hl ? " dim" : ""}" d="M${AX + AW},${y + h / 2} H${SX}"/>`;
         tgroups.forEach((g, k) => { if (!g.members.some(m => ms.has(m))) return;
-          const lit = lighting && rowLit && g.members.some(m => ms.has(m) && litMethods.has(m));
-          toTools.push({ a: { key: i, y, h }, b: { key: g.id, y: fy(k), h: GH }, color: g.color || "var(--muted)", cls: "tool" + (lit ? " lit" : lighting ? " dim" : "") }); });
+          const lit = a === hl && groupLit(g);
+          toTools.push({ a: { key: i, y, h }, b: { key: g.id, y: fy(k), h: GH }, color: g.color || "var(--muted)", cls: "tool" + (lit ? " lit" : hl ? " dim" : "") }); });
       });
       edges += links(toTools, SX + SW, FX);
       if (!qOwn) { const q = qGroupsDrawn(qgroups, rows, ys, hs, 16, false, hl); nodes += q.nodes; edges += q.edges; }
-      tgroups.forEach((g, k) => { nodes += groupBox(g, FX, fy(k), FW, GH, "static" + (lighting ? (groupLit(g) ? " on"
-        : !hl && fs.rz && rzGroupClass(g.members) === "unsourced" ? " unsourced" : " dim") : ""), "", litMethods); });
+      tgroups.forEach((g, k) => { nodes += groupBox(g, FX, fy(k), FW, GH, "static" + (lighting ? (groupLit(g) ? " on" : " dim") : ""), "", litMethods); });
       const qhead = qOwn ? up("find.head.what_kind") : up("find.zone.what") + ": " + QV[fs.qv].name.toUpperCase();
       const thead = TV[fs.tv].own ? up("find.head.tool_family") : up("find.zone.tool") + ": " + TV[fs.tv].name.toUpperCase();
       const heads = head(16, AX + AW, "1 · " + qhead) + head(SX, SX + SW, "2 · " + up("find.zone.situation")) + head(FX, FX + FW, "3 · " + thead);
@@ -2094,7 +2065,7 @@ const FIND = (() => {
   }
   function aimInfo(id, open) {
     const a = TR.aims[id], b = branchOf(id);
-    return `<div class="ft-detail wide"><div><p style="margin:0">${aimTag(id)} ${purposeTags(id)} <b>${esc(a.short)}</b> ${esc(a.plain)}
+    return `<div class="ft-detail wide"><div><p style="margin:0">${aimTag(id)} <b>${esc(a.short)}</b> ${esc(a.plain)}
       <br><i>${tr("find.example")} ${esc(questions.find(q => q.id === a.example).text)}</i>
       <br><span class="label">${tr("find.called", { term: esc(a.term) })} ${tr("find.on_cards")} ${SUIT[id].icon} ${esc(SUIT[id].name)}.
       ${tr("find.leads", { m: b.methods.size, f: b.fams.size })}</span></p>
@@ -2102,6 +2073,7 @@ const FIND = (() => {
   }
   function renderForward() {
     const r = fs.aim ? resolve(fs.aim, fs.path) : null;
+    $("ft-theory").innerHTML = theoryBlock();
     $("ft-trail").innerHTML = fs.aim ? trail([{ html: aimTag(fs.aim), title: aimLabel(fs.aim), to: "" },
       ...r.steps.map((s, k) => ({ html: esc(s.opt.label), to: fs.path.slice(0, k + 1).join(".") }))], "root") : "";
     $("ft-back").hidden = !fs.aim && !fs.hl;
@@ -2125,7 +2097,7 @@ const FIND = (() => {
       const m = D[r.leaf.method];
       det.innerHTML = `<div class="ft-detail"><div class="card">${DATA.cards.designs[m.id]}</div><div>${famSource(m.family)}${methodClasses(m.id)}
         <h3 style="font-size:16px;margin:0">${tr("find.why")}</h3>
-        <ol><li><span class="q">${esc(TR.first.q)}</span>${aimTag(fs.aim)} ${purposeTags(fs.aim)} ${esc(aimLabel(fs.aim))}</li>
+        <ol><li><span class="q">${esc(TR.first.q)}</span>${aimTag(fs.aim)} ${esc(aimLabel(fs.aim))}</li>
           ${r.steps.map(s => `<li><span class="q">${esc(s.node.q)}</span>${esc(s.opt.label)} ${conChip(s.opt.con)} ${timeBadge(s.opt.time)}</li>`).join("")}</ol>
         <p>${esc(m.gist)}</p>
         <p><span class="ft-kicker" style="display:block;margin-bottom:2px">${tr("find.real_example")}</span>${esc(m.example)}</p>
@@ -2162,13 +2134,11 @@ const FIND = (() => {
       });
       if (!qOwn) { const q = qGroupsDrawn(qgroups, arows, arows.map((_, i) => ay(i)), arows.map(() => H), AX + AW + QGLANE, true, null);
         nodes += q.nodes; edges += q.edges; }
-      tgroups.forEach((g, k) => { nodes += groupBox(g, FX, fy(k), FW, GH, `${fs.f === g.id ? "on" : ""}${G && fs.f !== g.id ? " dim" : ""}`
-        + (!G && fs.rz && rzGroupClass(g.members) !== "on" ? " " + rzGroupClass(g.members) : ""), `data-f="${g.id}"`,
-        fs.rz ? new Set(g.members.filter(rzHas)) : null); });
+      tgroups.forEach((g, k) => { nodes += groupBox(g, FX, fy(k), FW, GH, `${fs.f === g.id ? "on" : ""}${G && fs.f !== g.id ? " dim" : ""}`, `data-f="${g.id}"`); });
       open.forEach((m, k) => {
         const fk = tgroups.indexOf(G);
         famToMeth.push({ a: { key: G.id, y: fy(fk), h: GH }, b: { key: m.id, y: my(k), h: H }, cls: "on" });
-        nodes += methodBox(m.id, MX, my(k), MW, H, fs.rz ? rzClass(m.id) : "", `data-m="${m.id}"`);
+        nodes += methodBox(m.id, MX, my(k), MW, H, "", `data-m="${m.id}"`);
         arows.forEach((r, i) => { if (branchOf(r.a).methods.has(m.id)) methToSit.push({ a: { key: m.id, y: my(k), h: H }, b: sitNode(i), color: famColour(m.id), cls: "tool" }); });
       });
       edges += links(famToSit, FX + FW, SX) + links(famToMeth, FX + FW, MX, true) + links(methToSit, MX + MW, SX);
@@ -2229,8 +2199,9 @@ const FIND = (() => {
     const [side, id] = b.dataset.lens.split("|");
     const next = side === "ours" ? { qv: OWN_Q, tv: OWN_T } : side === "question" ? { qv: id, tv: OWN_T } : { qv: OWN_Q, tv: id };
     if (next.qv !== fs.qv || next.tv !== fs.tv) go({ ...next, f: next.tv === fs.tv ? fs.f : null }); });
-  $("ft-lenses").addEventListener("click", e => { const b = e.target.closest("[data-rz]"); if (!b) return;
-    const rz = b.dataset.rz || null; if (rz !== fs.rz) go({ rz }); });
+  // Your approach to theory: picking an answer again clears it.
+  $("ft-theory").addEventListener("click", e => { const b = e.target.closest("[data-ap]"); if (!b) return;
+    go({ ap: fs.ap === b.dataset.ap ? null : b.dataset.ap }); });
   pickable($("ft-map"), g => {
     if (!fs.aim) {
       // On the overview, a first click lights a kind of question (or one situation); a second click opens its branch.

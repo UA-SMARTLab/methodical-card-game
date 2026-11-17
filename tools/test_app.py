@@ -211,44 +211,34 @@ async function run() {
   if (!$("#ft-lenses").hidden || /·/.test($("#ft-map .nd.fill text.sub")?.textContent || "")) fail("find: the classification switch still applies while walking a branch");
   w.eval('FIND.restore({ tab: "rq", tv: "mesh" })'); await sleep(10);
   if ($("#ft-lenses").hidden) fail("find: the classification switch is missing on the whole tree");
-  // The reasoning overlay lights exactly the families holding a Method marked with the chosen approach, and in Method
-  // to RQ exactly the marked Methods of an opened family; every Method's details name its reasoning or say none is
-  // marked. Expected counts from data/classifications.json, by definition.
-  for (const [rz, r] of Object.entries(window.CLS.reasoning)) {
-    $('#ft-lenses [data-lens="ours"]').click(); await sleep(5);
-    $(`#ft-lenses [data-rz="${rz}"]`).click(); await sleep(10);
-    if (w.eval("FIND.state").rz !== rz) fail(`find: the reasoning control did not pick ${rz}`);
-    const lit = $$("#ft-map .nd.fill.on").length;
-    if (lit !== r.families) fail(`find: ${rz} lights ${lit} Method families, expected ${r.families}`);
-    // Each family holds one square per Method; the lit ones are the Methods marked, hollow where it is our reading.
-    const minis = $$("#ft-map .mini").length, litMinis = $$("#ft-map .mini.lit").length, hollow = $$("#ft-map .mini.lit.ours").length;
-    const wantLit = Object.values(r.byFamily).reduce((s, v) => s + v, 0), wantHollow = Object.values(r.oursByFamily).reduce((s, v) => s + v, 0);
-    if (minis !== window.CLS.nMethods || litMinis !== wantLit || hollow !== wantHollow)
-      fail(`find: ${rz} shows ${minis} squares, ${litMinis} lit, ${hollow} hollow; expected ${window.CLS.nMethods}, ${wantLit}, ${wantHollow}`);
-    for (const [f, n] of Object.entries(r.byFamily)) {
-      w.eval(`FIND.restore({ tab: "method", f: "${f}", rz: "${rz}" })`); await sleep(5);
-      const on = $$("#ft-rmap .nd.fill.on[data-m]").length, ours = $$("#ft-rmap .nd.fill.on.ours[data-m]").length, wantOurs = r.oursByFamily[f] || 0;
-      if (on !== n) fail(`find: ${rz} lights ${on} Methods in ${f}, expected ${n}`);
-      if (ours !== wantOurs) fail(`find: ${rz} draws ${ours} lit Methods in ${f} as our reading, expected ${wantOurs}`);
-    }
-    // Methods no source marks yet are drawn as such, not as a non-match; so is a kind of question none of whose
-    // Methods is marked yet.
-    for (const [f, n] of Object.entries(window.CLS.unmarkedByFamily)) {
-      w.eval(`FIND.restore({ tab: "method", f: "${f}", rz: "${rz}" })`); await sleep(5);
-      const un = $$("#ft-rmap .nd.fill.unsourced[data-m]").length;
-      if (un !== n) fail(`find: ${rz} shows ${un} Methods in ${f} as having no source yet, expected ${n}`);
-    }
-    w.eval(`FIND.restore({ tab: "rq", rz: "${rz}" })`); await sleep(5);
-    const rowsUn = $$("#ft-map .nd.unsourced[data-aim]:not(.chipn):not(.sit)").map(x => x.dataset.aim).sort().join(",");
-    if (rowsUn !== window.CLS.unmarkedAims.join(",")) fail(`find: ${rz} shows [${rowsUn}] as having no source yet, expected [${window.CLS.unmarkedAims}]`);
-    w.eval('FIND.restore({ tab: "rq" })'); await sleep(5);
+  // Your approach to theory is part of your situation: each answer names its approach, what it means for your data
+  // and the page that supports it; it stays while you walk a branch; picking it again clears it.
+  // By definition of the data in data/classifications.json.
+  w.eval('FIND.restore({ tab: "rq" })'); await sleep(5);
+  for (const [ap, a] of Object.entries(window.CLS.approaches)) {
+    $(`#ft-theory [data-ap="${ap}"]`).click(); await sleep(10);
+    const txt = $("#ft-theory").textContent;
+    if (w.eval("FIND.state").ap !== ap || !txt.includes(a.name) || !txt.includes(a.ref) || !/What it means for your data/.test(txt))
+      fail(`find: answering the theory question with ${ap} does not show its approach, meaning and source (${a.ref})`);
   }
+  $('#ft-map .nd[data-aim="CAUSE"]').dispatchEvent(new MouseEvent("click", { bubbles: true })); await sleep(5);
+  $('#ft-map .nd[data-aim="CAUSE"]').dispatchEvent(new MouseEvent("click", { bubbles: true })); await sleep(5);
+  if (w.eval("FIND.state").aim !== "CAUSE" || !$("#ft-theory").textContent.includes(Object.values(window.CLS.approaches).pop().name))
+    fail("find: your approach to theory is lost when you walk into a branch");
+  const last = Object.keys(window.CLS.approaches).pop();
+  $(`#ft-theory [data-ap="${last}"]`).click(); await sleep(5);
+  if (w.eval("FIND.state").ap !== null) fail("find: picking your approach again does not clear it");
+  // The Method overlay is gone: what sources say about a Method's reasoning shows only in its details.
+  if ($$("#ft-lenses [data-rz]").length || $$(".ft-map .nd.ours, .ft-map .nd.unsourced").length) fail("find: the old reasoning overlay is still drawn");
   for (const d of window.CLS.marked) {
     w.eval(`FIND.restore({ tab: "method", f: D["${d}"].family, m: "${d}" })`); await sleep(5);
-    const txt = $("#ft-rdetail").textContent;
-    if (!/Reasoning:/.test(txt)) fail(`find: ${d}'s details do not show its reasoning`);
-    if (window.CLS.ours.includes(d) !== /our own reading/.test(txt)) fail(`find: ${d}'s details mislabel whether its reasoning is our own reading`);
+    if (!/Reasoning:/.test($("#ft-rdetail").textContent)) fail(`find: ${d}'s details do not show what its source says about reasoning`);
   }
+  // Each family box holds one square per Method; a kind of question picked lights the squares of the Methods it reaches.
+  w.eval('FIND.restore({ tab: "rq", hl: "CAUSE" })'); await sleep(5);
+  const litSquares = $$("#ft-map .mini.lit").length;
+  if ($$("#ft-map .mini").length !== window.CLS.nMethods || litSquares !== window.CLS.causeMethods)
+    fail(`find: the squares show ${litSquares} Methods lit for CAUSE, expected ${window.CLS.causeMethods} of ${window.CLS.nMethods}`);
   out.reasoning = window.CLS.marked.length;
 }
 run().catch(e => out.fails.push("driver crashed: " + e)).finally(() => { document.body.dataset.result = JSON.stringify(out); });
@@ -309,20 +299,6 @@ def class_expectations():
         rest = [a for a in suits if a not in s["items"]]
         links = sum(len(m["groups"]) for m in s["items"].values()) + len(rest)
         question[s["id"]] = {"groups": len(s["groups"]) + (1 if rest else 0), "rows": len(suits), "links": links}
-    family = {d["id"]: d["family"] for d in json.loads((ROOT / "data" / "designs.json").read_text(encoding="utf-8"))}
-    marks, reasoning = cl["reasoning"]["items"], {}
-    for g in cl["reasoning"]["groups"]:
-        by, ours = {}, {}
-        for d, m in marks.items():
-            if g["id"] in m["groups"]:
-                by[family[d]] = by.get(family[d], 0) + 1
-                if m["basis"] == "ours":
-                    ours[family[d]] = ours.get(family[d], 0) + 1
-        reasoning[g["id"]] = {"families": len(by), "byFamily": by, "oursByFamily": ours}
-    unmarked = {}
-    for d, f in family.items():
-        if d not in marks:
-            unmarked[f] = unmarked.get(f, 0) + 1
     tree = json.loads((ROOT / "data" / "method-tree.json").read_text(encoding="utf-8"))
 
     def ends(node, acc):
@@ -332,10 +308,10 @@ def class_expectations():
             if "next" in o:
                 ends(o["next"], acc)
         return acc
-    unmarked_aims = sorted(a for a, v in tree["aims"].items() if not ends(v, set()) & set(marks))
-    return {"tool": tool, "question": question, "reasoning": reasoning, "marked": sorted(marks),
-            "unmarkedByFamily": unmarked, "unmarkedAims": unmarked_aims,
-            "ours": sorted(d for d, m in marks.items() if m["basis"] == "ours"), "nMethods": len(family)}
+    rz = cl["reasoning"]
+    return {"tool": tool, "question": question, "marked": sorted(rz["items"]), "nMethods": len(designs),
+            "approaches": {g["id"]: {"name": g["name"], "ref": next(o["ref"]["cite"] for o in rz["situation"]["options"] if o["group"] == g["id"])}
+                           for g in rz["groups"]}, "causeMethods": len(ends(tree["aims"]["CAUSE"], set()))}
 
 
 def run_test(exe):
@@ -354,7 +330,8 @@ document.getElementById("app").addEventListener("load", () => setTimeout(() => {
                              capture_output=True, text=True, encoding="utf-8", timeout=600).stdout
     m = re.search(r'data-result="([^"]*)"', dom)
     if not m:
-        print("FAIL: the test page produced no result (the app did not load, or the driver did not finish)")
+        print("FAIL: the test page produced no result. Either the app did not load (open app/index.html and look at the "
+              "console), or the driver did not run: a syntax error in DRIVER stops it silently (check it with node --check).")
         return False
     res = json.loads(m.group(1).replace("&quot;", '"').replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">"))
     for f in res["fails"] + [f"page error: {e}" for e in res["errors"]]:
@@ -362,7 +339,7 @@ document.getElementById("app").addEventListener("load", () => setTimeout(() => {
     ok = not res["fails"] and not res["errors"]
     print(f"{'ok  ' if ok else 'FAIL'} played {res['played']} Questions through the viewer and its green button; decks show {res.get('counts')}; "
           f"Find your method traced {res.get('traced', 0)} Methods back and walked them forwards, and checked {res.get('views', 0)} classification views "
-          f"and the reasoning overlay ({res.get('reasoning', 0)} Methods marked)")
+          f"and your approach to theory ({res.get('reasoning', 0)} Methods with a published note)")
     return ok
 
 

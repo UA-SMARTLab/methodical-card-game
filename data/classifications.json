@@ -1,83 +1,11 @@
 {
- "_about": "Published classifications the Find your method tree can be viewed through, one at a time. question: schemes for the left side (what you study), mapping each kind of question (suit). tool: schemes for the right side (your tool), mapping each Method (design id). In each scheme, items maps an id to the group(s) it belongs to; basis says how: named (the source itself names it) or definition (we applied the source's own definition, see note). An id left out of items is not classified by that source, and the app shows it as such. The first scheme on each side is the game's own grouping, labelled as ours. How each source was checked: docs/method-tree-sources.md, docs/method-tree-taxonomies.md, docs/method-tree-mesh.md.",
+ "_about": "Published classifications the Find your method tree can be viewed through, one at a time: one per side, the strongest we found (2026-11-17: Saunders et al. 2019, a textbook, and Grimes & Schulz 2002, clinical designs only, were dropped to keep the references few; their item-by-item mappings are in this file as of commit e628caa, and how each source was checked is in docs/method-tree-sources.md and docs/method-tree-taxonomies.md). question: schemes for the left side (what you study), mapping each kind of question (suit). tool: schemes for the right side (your tool), mapping each Method (design id). In each scheme, items maps an id to the group(s) it belongs to; basis says how: named (the source itself names it) or definition (we applied the source's own definition, see note). An id left out of items is not classified by that source, and the app shows it as such. The first scheme on each side is the game's own grouping, labelled as ours. How each source was checked: docs/method-tree-sources.md, docs/method-tree-taxonomies.md, docs/method-tree-mesh.md.",
  "question": [
   {
    "id": "suits",
    "name": "The game's suits",
    "own": true,
    "cite": "Methodical's own nine kinds of question (the suits on the cards)."
-  },
-  {
-   "id": "saunders",
-   "name": "Saunders et al. (2019)",
-   "what": "Purposes of a research design",
-   "cite": "Saunders, Lewis & Thornhill (2019). Research Methods for Business Students, section 5.7, pp. 186–188. Pearson.",
-   "url": "",
-   "groups": [
-    {
-     "id": "exploratory",
-     "name": "Exploratory",
-     "def": "Ask open questions to discover what is happening."
-    },
-    {
-     "id": "descriptive",
-     "name": "Descriptive",
-     "def": "Gain an accurate profile of events, persons or situations."
-    },
-    {
-     "id": "explanatory",
-     "name": "Explanatory",
-     "def": "Establish causal relationships between variables."
-    },
-    {
-     "id": "evaluative",
-     "name": "Evaluative",
-     "def": "Find out how well something works."
-    }
-   ],
-   "items": {
-    "EXPLORE": {
-     "groups": [
-      "exploratory"
-     ],
-     "basis": "named"
-    },
-    "DESCRIBE": {
-     "groups": [
-      "descriptive"
-     ],
-     "basis": "named"
-    },
-    "ASSOCIATE": {
-     "groups": [
-      "explanatory"
-     ],
-     "basis": "named",
-     "note": "The book's own example of explanatory research is a correlation (scrap rates and machine age)."
-    },
-    "CAUSE": {
-     "groups": [
-      "explanatory",
-      "evaluative"
-     ],
-     "basis": "named",
-     "note": "Causal relationships are explanatory; the effectiveness of a policy or programme is evaluative."
-    },
-    "EXPLAIN": {
-     "groups": [
-      "explanatory"
-     ],
-     "basis": "definition",
-     "note": "Explanatory questions ask why or how."
-    },
-    "MEASURE": {
-     "groups": [
-      "evaluative"
-     ],
-     "basis": "definition",
-     "note": "How well a test or instrument works."
-    }
-   }
   },
   {
    "id": "gregor",
@@ -224,228 +152,6 @@
      "fit": "own",
      "cite": "Own grouping, anchored in Hevner et al. (2004), design science, and Gregor (2006), design and action.",
      "url": "https://doi.org/10.2307/25148625"
-    }
-   }
-  },
-  {
-   "id": "grimes-schulz",
-   "name": "Grimes & Schulz (2002)",
-   "what": "Clinical research designs",
-   "cite": "Grimes & Schulz (2002). An overview of clinical research: the lay of the land. Lancet 359: 57–61.",
-   "url": "https://doi.org/10.1016/S0140-6736(02)07283-5",
-   "rule": "Did the investigator assign the exposure? Yes: experimental. No: observational, which is analytical if it has a comparison group and descriptive if not.",
-   "groups": [
-    {
-     "id": "experimental",
-     "name": "Experimental",
-     "def": "The investigator assigns the exposure."
-    },
-    {
-     "id": "analytical",
-     "name": "Observational, analytical",
-     "def": "Not assigned by the investigator; has a comparison group."
-    },
-    {
-     "id": "descriptive",
-     "name": "Observational, descriptive",
-     "def": "Not assigned by the investigator; no comparison group."
-    }
-   ],
-   "items": {
-    "rct": {
-     "groups": [
-      "experimental"
-     ],
-     "basis": "named",
-     "note": "Randomised trials are the experimental studies the overview names."
-    },
-    "cluster-rct": {
-     "groups": [
-      "experimental"
-     ],
-     "basis": "definition",
-     "note": "The investigator assigns the exposure, by group."
-    },
-    "crossover": {
-     "groups": [
-      "experimental"
-     ],
-     "basis": "definition",
-     "note": "The investigator assigns the order of exposures."
-    },
-    "factorial-doe": {
-     "groups": [
-      "experimental"
-     ],
-     "basis": "definition",
-     "note": "The investigator sets every factor."
-    },
-    "n-of-1": {
-     "groups": [
-      "experimental"
-     ],
-     "basis": "definition",
-     "note": "The investigator assigns treatments within one person."
-    },
-    "stepped-wedge": {
-     "groups": [
-      "experimental"
-     ],
-     "basis": "definition",
-     "note": "The investigator assigns when each group starts."
-    },
-    "ab-test": {
-     "groups": [
-      "experimental"
-     ],
-     "basis": "definition",
-     "note": "The investigator assigns users to versions."
-    },
-    "adaptive-platform": {
-     "groups": [
-      "experimental"
-     ],
-     "basis": "definition",
-     "note": "The investigator assigns patients to arms."
-    },
-    "field-experiment": {
-     "groups": [
-      "experimental"
-     ],
-     "basis": "definition",
-     "note": "The investigator assigns the treatment in the field."
-    },
-    "pdsa": {
-     "groups": [
-      "experimental"
-     ],
-     "basis": "definition",
-     "note": "The team assigns the change, without randomisation: a non-randomised experiment."
-    },
-    "cohort-prospective": {
-     "groups": [
-      "analytical"
-     ],
-     "basis": "named",
-     "note": "Cohort studies are named among the analytical studies."
-    },
-    "cohort-retrospective": {
-     "groups": [
-      "analytical"
-     ],
-     "basis": "named",
-     "note": "Cohort studies are named among the analytical studies."
-    },
-    "case-control": {
-     "groups": [
-      "analytical"
-     ],
-     "basis": "named"
-    },
-    "cross-sectional": {
-     "groups": [
-      "analytical"
-     ],
-     "basis": "named",
-     "note": "Named as analytical here; the game files it as descriptive."
-    },
-    "case-crossover": {
-     "groups": [
-      "analytical"
-     ],
-     "basis": "definition",
-     "note": "Each case is compared with itself at an earlier time."
-    },
-    "case-cohort": {
-     "groups": [
-      "analytical"
-     ],
-     "basis": "definition",
-     "note": "Cases are compared with a sample of the cohort."
-    },
-    "target-trial": {
-     "groups": [
-      "analytical"
-     ],
-     "basis": "definition",
-     "note": "Observational data, compared as in a trial."
-    },
-    "iv": {
-     "groups": [
-      "analytical"
-     ],
-     "basis": "definition",
-     "note": "Observational; groups compared by an instrument."
-    },
-    "mendelian": {
-     "groups": [
-      "analytical"
-     ],
-     "basis": "definition",
-     "note": "Observational; groups compared by genotype."
-    },
-    "gwas": {
-     "groups": [
-      "analytical"
-     ],
-     "basis": "definition",
-     "note": "Observational; people with and without the trait are compared."
-    },
-    "ecological": {
-     "groups": [
-      "analytical"
-     ],
-     "basis": "definition",
-     "note": "Observational; whole groups are compared."
-    },
-    "did": {
-     "groups": [
-      "analytical"
-     ],
-     "basis": "definition",
-     "note": "Not assigned by the investigator; an untreated comparison group."
-    },
-    "rdd": {
-     "groups": [
-      "analytical"
-     ],
-     "basis": "definition",
-     "note": "Assigned by a rule, not the investigator; compared across the cutoff."
-    },
-    "its": {
-     "groups": [
-      "analytical"
-     ],
-     "basis": "definition",
-     "note": "Not assigned by the investigator; compared before and after."
-    },
-    "synthetic-control": {
-     "groups": [
-      "analytical"
-     ],
-     "basis": "definition",
-     "note": "Not assigned by the investigator; compared with a built comparison unit."
-    },
-    "case-report": {
-     "groups": [
-      "descriptive"
-     ],
-     "basis": "named",
-     "note": "Case series are the overview's example of a descriptive study."
-    },
-    "surveillance": {
-     "groups": [
-      "descriptive"
-     ],
-     "basis": "definition",
-     "note": "Counts and trends, without a comparison group."
-    },
-    "capture-recapture": {
-     "groups": [
-      "descriptive"
-     ],
-     "basis": "definition",
-     "note": "Estimates a population's size, without a comparison group."
     }
    }
   },
@@ -811,18 +517,33 @@
   }
  ],
  "reasoning": {
-  "_about": "An overlay, not a regrouping: the tree view can light up the Methods marked with one approach to theory development. The approaches and their definitions come from Saunders et al. (2019), section 4.5, which says outright that a study can combine them and that the choice depends on the topic and the researcher's philosophy, and which names no Methods. So each Method's mark has its own source (cite, url); basis named means that source names the reasoning, definition that we applied Saunders et al.'s Table 4.4 to how that source defines the Method (note says why). A Method with two or more groups goes either way. basis ours means no source we read settles it, so we assigned it ourselves by applying Table 4.4 to the Method's own definition on its card (note says why; the app shows it apart, as our reading). A Method left out is not marked.",
-  "id": "saunders-approach",
-  "name": "Saunders et al. (2019)",
-  "what": "Approaches to theory development",
-  "cite": "Saunders, Bristow, Thornhill & Lewis (2019). Understanding research philosophy and approaches to theory development. In Research Methods for Business Students, 8th edition, section 4.5, pp. 152–158. Pearson.",
-  "url": "https://oro.open.ac.uk/66370/",
-  "rule": "Not rigid: one study can combine deduction and induction, and the choice depends on the topic and the researcher's philosophy.",
+  "_about": "The approach to theory belongs to the research, not to the Method, so the tree asks it as part of your situation and each answer names its approach. Definitions: Timmermans & Tavory (2012, pp. 170–171), who set out the three logics side by side; the deciding question: whether explicit hypotheses exist to be tested (Suddaby 2006, p. 636) and whether what you observe surprises existing theory (Timmermans & Tavory 2012, p. 169). Each answer cites its own page (ref). groups: def and data are our words for those definitions. items: what published sources say about particular Methods (basis named: the source names the reasoning; definition: these definitions applied to how that source defines the Method, note says why). Shown only in a Method's details, as how the Method has been used; a Method left out is one no source we read settles. 2026-11-17: replaced Saunders et al. (2019), a textbook, at the user's request; how both were checked is in docs/method-tree-sources.md.",
+  "id": "approach",
+  "name": "Timmermans & Tavory (2012)",
+  "what": "Approaches to theory: deduction, induction and abduction",
+  "cite": "Timmermans & Tavory (2012). Theory construction in qualitative research: from grounded theory to abductive analysis. Sociological Theory 30(3), pp. 169–171.",
+  "url": "https://doi.org/10.1177/0735275112457914",
+  "rule": "The three work together: abduction forms a hypothesis, deduction works out what it implies, and induction tests it against the data.",
   "groups": [
-   {"id": "deductive", "name": "Deductive", "def": "Start from a theory and collect data to test the hypotheses it implies."},
-   {"id": "inductive", "name": "Inductive", "def": "Start from data, find themes and patterns, and build a theory or framework from them."},
-   {"id": "abductive", "name": "Abductive", "def": "Start from a surprising fact, propose the theory that would explain it, then test that theory with more data."}
+   {"id": "deductive", "name": "Deductive", "def": "Start from a rule (a theory), apply it to a case, and predict a result that confirms or falsifies the rule.",
+    "data": "Collect data to test the hypothesis your theory implies."},
+   {"id": "inductive", "name": "Inductive", "def": "Start from many cases and infer the general rule they share.",
+    "data": "Collect data first, compare cases, and let the patterns suggest a rule."},
+   {"id": "abductive", "name": "Abductive", "def": "Start from a surprising observation and propose the explanation that would make it unsurprising.",
+    "data": "Use what existing theory cannot explain to form a new hypothesis, then test it with more data."}
   ],
+  "situation": {
+   "q": "Is there already a theory you want to test?",
+   "help": "Whether a theory exists, and whether what you see fits it, decides how your research uses theory. One study can combine approaches.",
+   "options": [
+    {"label": "Yes, and I want to test it", "hint": "The theory gives you hypotheses; your data can confirm or falsify them.", "group": "deductive",
+     "ref": {"cite": "Timmermans & Tavory (2012), p. 170", "url": "https://doi.org/10.1177/0735275112457914"}},
+    {"label": "No, there's no hypothesis to test yet", "hint": "With no explicit hypothesis to test, build theory from the data.", "group": "inductive",
+     "ref": {"cite": "Suddaby (2006), p. 636", "url": "https://doi.org/10.5465/amj.2006.22083020"}},
+    {"label": "Yes, but what I see doesn't fit it", "hint": "A finding that surprises existing theory calls for a new explanation.", "group": "abductive",
+     "ref": {"cite": "Timmermans & Tavory (2012), p. 169", "url": "https://doi.org/10.1177/0735275112457914"}}
+   ]
+  },
   "items": {
    "rct": {"groups": ["deductive"], "basis": "named", "note": "Item 2b: hypotheses are pre-specified questions being tested.",
     "cite": "Moher et al. (2010). CONSORT 2010 Explanation and Elaboration. BMJ.", "url": "https://doi.org/10.1136/bmj.c869"},
@@ -840,61 +561,12 @@
     "cite": "Braun & Clarke (2012). Thematic analysis. APA Handbook of Research Methods in Psychology, vol. 2.", "url": "https://doi.org/10.1037/13620-004"},
    "mixed-sequential": {"groups": ["deductive", "inductive", "abductive"], "basis": "named", "note": "p. 17: mixed methods research uses induction, deduction and abduction. Said of mixed methods in general.",
     "cite": "Johnson & Onwuegbuzie (2004). Mixed Methods Research: A Research Paradigm Whose Time Has Come. Educational Researcher.", "url": "https://doi.org/10.3102/0013189X033007014"},
-   "systematic-review": {"groups": ["deductive", "inductive"], "basis": "definition", "note": "Reviews can generate or evaluate theories: theory building is inductive, theory testing deductive (Table 4.4).",
+   "systematic-review": {"groups": ["deductive", "inductive"], "basis": "definition", "note": "Reviews can generate or evaluate theories: theory building is inductive, theory testing deductive.",
     "cite": "Page et al. (2021). The PRISMA 2020 statement. BMJ.", "url": "https://doi.org/10.1136/bmj.n71"},
-   "realist-review": {"groups": ["abductive"], "basis": "definition", "note": "Builds theory-based explanations, then tests and refines them in turn, as abduction does (Table 4.4); the source does not use the word.",
+   "realist-review": {"groups": ["abductive"], "basis": "definition", "note": "Builds theory-based explanations, then tests and refines them in turn: the cycle led by abduction (Timmermans & Tavory 2012, p. 171); the source does not use the word.",
     "cite": "Wong et al. (2013). RAMESES publication standards: realist syntheses. BMC Medicine.", "url": "https://doi.org/10.1186/1741-7015-11-21"},
-   "design-science": {"groups": ["abductive"], "basis": "definition", "note": "An iterated build-and-evaluate loop in which theories are applied, tested, modified and extended, as abduction does (Table 4.4).",
-    "cite": "Hevner et al. (2004). Design science in information systems research. MIS Quarterly.", "url": "https://doi.org/10.2307/25148625"},
-   "case-report": {"groups": ["inductive"], "basis": "ours", "note": "Raises a signal or a hypothesis from a few cases, and cannot test it."},
-   "cross-sectional": {"groups": ["inductive"], "basis": "ours", "note": "Describes how common things are at one moment: patterns, not a test of a theory."},
-   "ecological": {"groups": ["inductive"], "basis": "ours", "note": "Compares aggregate data across groups to generate hypotheses."},
-   "surveillance": {"groups": ["inductive"], "basis": "ours", "note": "Repeated measurement to detect trends and signals in the data."},
-   "capture-recapture": {"groups": ["inductive"], "basis": "ours", "note": "Estimates a population's size from data; it tests no theory."},
-   "cohort-prospective": {"groups": ["deductive", "inductive"], "basis": "ours", "note": "Can test a hypothesised exposure, or screen many exposures and outcomes for new hypotheses."},
-   "cohort-retrospective": {"groups": ["deductive", "inductive"], "basis": "ours", "note": "Can test a hypothesised exposure, or screen recorded data for new hypotheses."},
-   "case-control": {"groups": ["deductive"], "basis": "ours", "note": "Compares the past exposures of cases and controls to test a suspected cause."},
-   "case-crossover": {"groups": ["deductive"], "basis": "ours", "note": "Tests whether a suspected trigger came just before the event."},
-   "target-trial": {"groups": ["deductive"], "basis": "ours", "note": "Writes the protocol of a trial first, then tests its question in observational data."},
-   "iv": {"groups": ["deductive"], "basis": "ours", "note": "Estimates the effect of a specified exposure, under stated assumptions about the instrument."},
-   "mendelian": {"groups": ["deductive"], "basis": "ours", "note": "Uses genetic variants to test a specified exposure–outcome relationship."},
-   "gwas": {"groups": ["inductive"], "basis": "ours", "note": "Scans millions of variants without a prior hypothesis; hits are new hypotheses."},
-   "case-cohort": {"groups": ["deductive"], "basis": "ours", "note": "Measures a chosen exposure to test its association with the outcome."},
-   "did": {"groups": ["deductive"], "basis": "ours", "note": "Tests whether a specified intervention changed the outcome."},
-   "rdd": {"groups": ["deductive"], "basis": "ours", "note": "Tests whether treatment at a known cutoff changed the outcome."},
-   "its": {"groups": ["deductive"], "basis": "ours", "note": "Tests for a change in level or slope after a dated intervention."},
-   "synthetic-control": {"groups": ["deductive"], "basis": "ours", "note": "Tests whether one unit's outcome departed from its synthetic twin after an intervention."},
-   "cluster-rct": {"groups": ["deductive"], "basis": "ours", "note": "A randomised trial: tests a stated effect of an intervention."},
-   "crossover": {"groups": ["deductive"], "basis": "ours", "note": "A randomised trial: tests a stated effect of an intervention."},
-   "factorial-doe": {"groups": ["deductive"], "basis": "ours", "note": "A controlled experiment: tests the effects of chosen factors and their interactions."},
-   "n-of-1": {"groups": ["deductive"], "basis": "ours", "note": "Randomised periods within one patient test which treatment works for them."},
-   "stepped-wedge": {"groups": ["deductive"], "basis": "ours", "note": "A randomised trial: tests a stated effect of an intervention."},
-   "adaptive-platform": {"groups": ["deductive", "inductive"], "basis": "ours", "note": "Tests treatments against a shared control, and learns from the data as it accrues to drop or add arms."},
-   "field-experiment": {"groups": ["deductive"], "basis": "ours", "note": "Manipulates a factor with randomised replicates to test its effect."},
-   "ethnography": {"groups": ["inductive"], "basis": "ours", "note": "Understands practices and meanings from the inside, building concepts from what is observed."},
-   "delphi": {"groups": ["inductive"], "basis": "ours", "note": "Lets a consensus emerge from experts' repeated ratings."},
-   "scoping-review": {"groups": ["inductive"], "basis": "ours", "note": "Maps what research exists: concepts, methods and gaps."},
-   "network-meta": {"groups": ["deductive"], "basis": "ours", "note": "Combines trials to test and rank the effects of treatments."},
-   "ipd-meta": {"groups": ["deductive"], "basis": "ours", "note": "Reanalyses trials' raw data to test effects defined the same way everywhere."},
-   "umbrella-review": {"groups": ["deductive", "inductive"], "basis": "ours", "note": "Like a systematic review: grades the evidence for claims, and maps a broad topic."},
-   "rapid-review": {"groups": ["deductive", "inductive"], "basis": "ours", "note": "A streamlined systematic review, so it can go either way like one."},
-   "prior-art": {"groups": ["inductive"], "basis": "ours", "note": "Searches for what already exists; it tests no theory."},
-   "co-citation": {"groups": ["inductive"], "basis": "ours", "note": "Clusters emerge from citation data and map a field's foundations."},
-   "bibliographic-coupling": {"groups": ["inductive"], "basis": "ours", "note": "Clusters emerge from shared references and map research fronts."},
-   "multivocal-review": {"groups": ["deductive", "inductive"], "basis": "ours", "note": "A systematic review with grey literature, so it can go either way like one."},
-   "diagnostic-accuracy": {"groups": ["deductive"], "basis": "ours", "note": "Tests how well a test finds a condition against a reference standard."},
-   "reliability": {"groups": ["deductive"], "basis": "ours", "note": "Tests whether repeated measurements agree well enough."},
-   "validation": {"groups": ["abductive"], "basis": "ours", "note": "Builds a scale from theory, tests it, and revises the scale and its theory in turn."},
-   "discrete-choice": {"groups": ["deductive"], "basis": "ours", "note": "Attributes and the choice model are fixed in advance and estimated from the choices."},
-   "interlab": {"groups": ["deductive"], "basis": "ours", "note": "Tests whether a measurement method gives the same result in different labs."},
-   "analytical-model": {"groups": ["deductive"], "basis": "ours", "note": "Derives what must be true if the premises hold: deduction in its purest form."},
-   "simulation": {"groups": ["deductive"], "basis": "ours", "note": "Works out the consequences of the mechanisms encoded in the model."},
-   "prediction-model": {"groups": ["abductive"], "basis": "ours", "note": "Develops a model from data, then tests it on new data."},
-   "economic-evaluation": {"groups": ["deductive"], "basis": "ours", "note": "Derives costs and outcomes of alternatives from a decision model's inputs."},
-   "pilot": {"groups": ["inductive"], "basis": "ours", "note": "Explores whether a study is feasible; it tests no effect and no theory."},
-   "think-aloud": {"groups": ["inductive"], "basis": "ours", "note": "Finds where and why users struggle from what they say and do."},
-   "pdsa": {"groups": ["abductive"], "basis": "ours", "note": "Each cycle tests a change, and its result shapes the next one."},
-   "benchmark": {"groups": ["deductive"], "basis": "ours", "note": "Compares methods under identical conditions to test which performs better."}
+   "design-science": {"groups": ["abductive"], "basis": "definition", "note": "An iterated build-and-evaluate loop in which theories are applied, tested, modified and extended: the cycle led by abduction (Timmermans & Tavory 2012, p. 171).",
+    "cite": "Hevner et al. (2004). Design science in information systems research. MIS Quarterly.", "url": "https://doi.org/10.2307/25148625"}
   }
  }
 }

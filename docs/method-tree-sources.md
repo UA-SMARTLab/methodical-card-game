@@ -3,6 +3,11 @@
 How published typologies name the purposes of research, checked on 2026-11-16 for the "Find your method" page. The game uses these in `data/method-tree.json`; the method-family and research-field sources are in `method-tree-taxonomies.md`.
 Each entry says what was read and how. Nothing here is from memory.
 
+**In use since 2026-11-17:** Gregor (2006) for the kinds of question, MeSH 2026 for the tools and the time terms
+(Cross-Sectional D003430, Longitudinal D008137, Prospective D011446 and Retrospective Studies D012189; scope notes read
+through the NLM MeSH API), and Timmermans & Tavory (2012) with Suddaby (2006) for the approach to theory. Saunders et
+al. (2019) and Grimes & Schulz (2002) were dropped to keep the references few; their entries below stay as the record.
+
 ## Verified
 
 | Source | What it classifies | Its categories (own words) | How checked |
@@ -37,7 +42,20 @@ Each entry says what was read and how. Nothing here is from memory.
 
 ## Reasoning: deductive, inductive, abductive (checked 2026-11-17)
 
-The approaches come from Saunders, Bristow, Thornhill & Lewis (2019), "Understanding research philosophy and approaches
+**Sources in use** (since 2026-11-17, at the user's request: peer-reviewed and few, in place of the textbook below):
+
+| Source | Used for | Checked |
+|---|---|---|
+| Timmermans & Tavory (2012). Theory construction in qualitative research: from grounded theory to abductive analysis. *Sociological Theory* 30(3): 167–186. [doi:10.1177/0735275112457914](https://doi.org/10.1177/0735275112457914) | The three logics side by side (pp. 170–171): deduction "begins with a rule and proceeds through a case"; induction "starts with a collection of given cases"; abduction "starts with consequences and then constructs reasons". Abduction needs a finding surprising "in light of existing theories" (p. 169). How the three work together (p. 171). | Read pp. 169–171 ourselves, in a copy hosted by mackenzie.br (not the publisher's); DOI checked with Crossref |
+| Suddaby (2006). From the editors: What grounded theory is not. *Academy of Management Journal* 49(4): 633–642. [doi:10.5465/amj.2006.22083020](https://doi.org/10.5465/amj.2006.22083020) | The deciding rule for the inductive answer: grounded theory "is best used when no explicit hypotheses exist to be tested" (p. 636, citing Martin & Turner 1986) | Read p. 636 ourselves, in a JSTOR copy hosted by uga.edu; DOI checked with Crossref |
+
+Considered and not used: the SAGE Encyclopedia entries "Deduction", "Induction", "Abduction" (previews only, no author
+shown; its "Abduction" is the interpretivist sense, not Peirce's); the Stanford Encyclopedia of Philosophy, "Abduction"
+(Douven), which is open and authoritative but mainly about inference to the best explanation, not research design;
+Ketokivi & Mantere (2010), Blaikie (2010) and Van Maanen et al. (2007), not read (no open copy). Checked by a research
+subagent; the two in use were then read by us.
+
+**Replaced** (2026-11-17), kept here as the record of what was checked: the approaches came from Saunders, Bristow, Thornhill & Lewis (2019), "Understanding research philosophy and approaches
 to theory development", ch. 4 of *Research Methods for Business Students*, 8th ed., §4.5, pp. 152–158
 ([ORO record](https://oro.open.ac.uk/66370/)). Read in the authors' own copy (ResearchGate, an uncorrected proof dated
 29/01/2019, so page numbers may differ slightly in print). Table 4.4 (p. 153) sets out deduction, induction and

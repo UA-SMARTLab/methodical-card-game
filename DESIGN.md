@@ -174,6 +174,9 @@ Rules the validator enforces (see `tools/build.py`):
    here. See `docs/method-tree-taxonomies.md`.
 10. **Find your method: translations.** The tree's text (data/method-tree.json) and its interface strings are English
     only so far; French, Dutch, German and Arabic fall back to English.
+11. **Find your method: family definitions.** Grimes & Schulz (2002) left the classification switch on 2026-11-17, but
+    three families (descriptive, analytical, experimental) still cite it for what their names mean, since MeSH has no
+    such split. Keep it there, or find another source for those three names.
 
 ## 8. Trading-card format (v0.2)
 
@@ -223,37 +226,39 @@ card, and back. It keeps three zones apart, read left to right, because the game
 card is **what you study**, the constraints are **your situation**, a Method card is **your tool**.
 
 - **What you study.** The first fork is the nine suits, asked in plain words ("Does one thing change another?") with a
-  real Question card as the example and the research term as a badge (*Causal*). Two research purposes that span several
-  suits ride along as extra badges: **Explanatory** (Association, Causal, Theoretical) and **Evaluative** (Causal,
-  Measurement), after Saunders, Lewis & Thornhill (2019, §5.7). A separate first layer of seven purposes was tried and
-  dropped: it repeated the suits. A past/present/future first question was also considered and dropped: time cuts across
-  every purpose, so it sits lower down, as *time horizon* (cross-sectional, longitudinal) and *direction* (retrospective,
-  prospective) badges on the answers where timing decides the method.
+  real Question card as the example and the research term as a badge (*Causal*). A separate first layer of seven
+  purposes was tried and dropped: it repeated the suits. A past/present/future first question was also considered and
+  dropped: time cuts across every purpose, so it sits lower down, as *time horizon* (cross-sectional, longitudinal) and
+  *direction* (retrospective, prospective) badges on the answers where timing decides the method; all four are MeSH
+  headings, and their badges cite MeSH. (2026-11-17: the Explanatory and Evaluative badges, after Saunders et al. 2019,
+  were dropped with that textbook, to keep the references few.)
 - **Your situation.** Each branch asks about the constraints in everyday words; each answer names the constraint card
-  it stands for. The Explain suit is badged *Theoretical*, not *Explanatory*, because in Saunders et al. (2019),
-  Shmueli (2010) and Hernán et al. (2019) "explanatory" means causal.
+  it stands for. The Explain suit is badged *Theoretical*, not *Explanatory*, because in Shmueli (2010) and Hernán et
+  al. (2019) "explanatory" means causal.
 - **Your tool.** Each Method family says which published category it follows, partly follows, or that it is the game's
   own grouping (sources in `data/classifications.json`; how each was checked in `docs/method-tree-taxonomies.md`).
 - **Classification views.** The game's suits and families are its own groupings, and the game is meant to teach
   published ones. So both sides of the tree can be viewed through one published classification at a time
-  (`data/classifications.json`): the question side through Saunders et al. (2019) or Gregor (2006), the tool side
-  through Grimes & Schulz (2002) or MeSH 2026. Each item says whether the source *names* it or whether we applied the
-  source's *definition* (with the reason), and whatever a source leaves out sits in a visible "not classified by …"
-  group: no single classification covers every Method, and showing that is part of the lesson. The Explanatory and
-  Evaluative tags are the Saunders et al. groups that span several suits. A kind of question that a source puts in two
-  groups (Saunders et al.'s causal question: explanatory and evaluative) is drawn once, with a line from each group.
-- **Reasoning overlay.** A second control lights the Methods marked *deductive*, *inductive* or *abductive*, the
-  approaches to theory development in Saunders et al. (2019, §4.5). It lights Methods but never regroups them, because
-  Saunders et al. say a study can combine the approaches and name no Methods. Each mark has its own source in
-  `data/classifications.json` (`reasoning`), named or by definition. A Method marked twice goes either way. Every study
-  tests or builds theory in some way (Saunders et al. 2019, p. 152), so every Method has a reasoning: where no source we
-  read says (49 of 60 for now), it is **our reading**, Table 4.4 applied to the Method's own definition, with a note
-  saying why. It is drawn apart (a dashed inner outline, "(our reading)" on its label, a dashed badge in its details), so
-  it is never mistaken for a sourced mark. Sources that would replace our readings: `docs/method-tree-reasoning-pending.md`.
-  Each family (or published group) box holds a row of small squares along its bottom, one per Method, always in the same order, so lighting a
-  reasoning or a kind of question shows which Methods inside it change: solid when lit, hollow when lit only by our
-  reading. The drawing for a Method with no reasoning at all ("no source yet", dashed and faint) stays, should one be added
-  without one; the build warns about it.
+  (`data/classifications.json`): the question side through Gregor (2006), the tool side through MeSH 2026, one
+  strongest source per side, because many references confuse more than they teach. (2026-11-17: Saunders et al. 2019,
+  a textbook, and Grimes & Schulz 2002, clinical designs only, were dropped; their mappings are in git at e628caa.)
+  Each item says whether the source *names* it or whether we applied the source's *definition* (with the reason), and
+  whatever a source leaves out sits in a visible "not classified by …" group: no single classification covers every
+  Method, and showing that is part of the lesson. A kind of question that a source puts in two groups is drawn once,
+  with a line from each group.
+- **Your approach to theory.** Deductive, inductive and abductive belong to the research, not to the Method, so the
+  tree asks it as part of your situation: "Is there already a theory you want to test?" Its answers: yes, and I want to
+  test it (deductive; Timmermans & Tavory 2012, p. 170); no, there's no hypothesis to test yet (inductive; Suddaby
+  2006, p. 636: theory building "is best used when no explicit hypotheses exist to be tested"); yes, but what I see
+  doesn't fit it (abductive; Timmermans & Tavory 2012, p. 169: abduction needs a finding that is surprising "in light
+  of existing theories"). Definitions: Timmermans & Tavory (2012, pp. 170–171). The chosen answer stays while you walk
+  a branch. (2026-11-17: this replaced an overlay that marked the Methods themselves, which needed our own readings for
+  49 of them, and then Saunders et al. 2019 as its source.) What published sources say about a particular Method's
+  reasoning (11 for now) shows only in its details, as how it has been used. Findings for more Methods:
+  `docs/method-tree-reasoning-pending.md`.
+- **Squares in the family boxes.** Each family (or published group) box holds a row of small squares, one per Method,
+  always in the same order, so lighting a kind of question or one of its situations shows which Methods inside the
+  family it reaches.
 - **Two directions.** *RQ to Method* walks forwards; *Method to RQ* is the mirror image, listing every route that ends on
   a Method. Clicking a kind of question or a single situation lights its paths through the tree.
 - **Checks.** `tools/build.py` refuses a branch that ends on a Method whose card doesn't serve that suit and requires every
