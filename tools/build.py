@@ -225,8 +225,10 @@ def check_scheme(side, s, table, what):
         if item not in table:
             errors.append(f"{w}: unknown {what} {item}")
         check_ids(m.get("groups", []), set(gids), f"{w} {item}", "group")
-        if not m.get("groups") or m.get("basis") not in ("named", "definition"):
-            errors.append(f"{w} {item}: needs groups and a basis (named or definition)")
+        # Only the reasoning overlay takes our own assignments: a published scheme's groups are its author's.
+        bases = ("named", "definition", "ours") if side == "reasoning" else ("named", "definition")
+        if not m.get("groups") or m.get("basis") not in bases:
+            errors.append(f"{w} {item}: needs groups and a basis ({', '.join(bases)})")
         if m.get("basis") == "definition" and not m.get("note") and side == "tool":
             errors.append(f"{w} {item}: a mapping by definition needs a note saying why")
 
@@ -245,10 +247,17 @@ if not rz:
 else:
     check_scheme("reasoning", rz, D, "design")
     for item, m in rz.get("items", {}).items():
+        if m.get("basis") == "ours":
+            # Our own reading of Saunders et al.'s definitions: no source of its own, but always a reason.
+            if m.get("cite") or not m.get("note"):
+                errors.append(f"classifications reasoning {item}: our own assignment needs a note saying why, and no source")
+            continue
         if not m.get("cite") or not m.get("url", "").startswith("https://"):
             errors.append(f"classifications reasoning {item}: each mark needs its own source (cite, https url)")
         if m.get("basis") == "definition" and not m.get("note"):
             errors.append(f"classifications reasoning {item}: a mark by definition needs a note saying why")
+    if len(rz.get("items", {})) < len(D):
+        warnings.append(f"classifications reasoning: {len(D) - len(rz['items'])} Methods have no reasoning")
 # The game's own families each say which published category they follow, or that they are the game's own.
 own_families = classes["tool"][0].get("families", {})
 for f in FAM:
@@ -543,7 +552,8 @@ if __name__ == "__main__":
                 print(f"  {side} views: " + "; ".join(f"{s['name']} " + ("(own)" if s.get("own") else f"{len(s['items'])}/{n} classified")
                                                        for s in classes[side]))
             marks = classes["reasoning"]["items"]
-            print(f"  reasoning overlay: {len(marks)}/{len(designs)} Methods marked (" + ", ".join(
+            ours = sum(m["basis"] == "ours" for m in marks.values())
+            print(f"  reasoning overlay: {len(marks)}/{len(designs)} Methods marked, {len(marks) - ours} from a source, {ours} our reading (" + ", ".join(
                 f"{g['name'].lower()} {sum(g['id'] in m['groups'] for m in marks.values())}" for g in classes["reasoning"]["groups"]) + ")")
             print("  en: source language")
         else:

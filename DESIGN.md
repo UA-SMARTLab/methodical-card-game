@@ -245,11 +245,13 @@ card is **what you study**, the constraints are **your situation**, a Method car
 - **Reasoning overlay.** A second control lights the Methods marked *deductive*, *inductive* or *abductive*, the
   approaches to theory development in Saunders et al. (2019, §4.5). It lights Methods but never regroups them, because
   Saunders et al. say a study can combine the approaches and name no Methods. Each mark has its own source in
-  `data/classifications.json` (`reasoning`), named or by definition. A Method marked twice goes either way. One no source
-  marks yet (49 of 60 for now) is drawn dashed and labelled "no source yet", and so is a kind of question or family
-  whose Methods have no mark yet. A non-match is dimmed. The difference matters: every study tests or builds theory in
-  some way (Saunders et al. 2019, p. 152), so "no source yet" must never read as "follows none". Findings waiting to be
-  entered: `docs/method-tree-reasoning-pending.md`.
+  `data/classifications.json` (`reasoning`), named or by definition. A Method marked twice goes either way. Every study
+  tests or builds theory in some way (Saunders et al. 2019, p. 152), so every Method has a reasoning: where no source we
+  read says (49 of 60 for now), it is **our reading**, Table 4.4 applied to the Method's own definition, with a note
+  saying why. It is drawn apart (a dashed inner outline, "(our reading)" on its label, a dashed badge in its details), so
+  it is never mistaken for a sourced mark. Sources that would replace our readings: `docs/method-tree-reasoning-pending.md`.
+  The drawing for a Method with no reasoning at all ("no source yet", dashed and faint) stays, should one be added
+  without one; the build warns about it.
 - **Two directions.** *RQ to Method* walks forwards; *Method to RQ* is the mirror image, listing every route that ends on
   a Method. Clicking a kind of question or a single situation lights its paths through the tree.
 - **Checks.** `tools/build.py` refuses a branch that ends on a Method whose card doesn't serve that suit and requires every

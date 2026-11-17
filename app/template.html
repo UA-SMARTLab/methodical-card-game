@@ -473,6 +473,13 @@ svg.ft-map { display: block; font-family: var(--f-body); }
 .ft-map .nd.unsourced rect.box { stroke-dasharray: 5 4; }
 .ft-map .nd.fill.unsourced rect.bg { fill-opacity: .18; stroke: var(--muted); stroke-dasharray: 5 4; stroke-width: 1.5; }
 .ft-map .nd.fill.unsourced text, .ft-map .nd.fill.unsourced text.sub { fill: var(--text); }
+/* Our own reading of the definitions, where no source says: a dashed white inner outline on the Method, and dashed
+   badges in its details, so it is never mistaken for a sourced mark. */
+.ft-map .nd.fill.ours rect.bg { stroke: #fff; stroke-width: 1.5; stroke-dasharray: 5 4; stroke-opacity: .85; }
+.ft-map .nd.fill.ours.on rect.ring { stroke-dasharray: 7 4; }
+.ft-ours .ft-tag { outline: 1.5px dashed var(--muted); outline-offset: 2px; }
+.ft-legend { display: inline-flex; align-items: center; gap: 6px; }
+.ft-dash { display: inline-block; width: 22px; height: 12px; border: 1.5px dashed var(--muted); border-radius: 3px; }
 .ft-map .nd.fill.none rect.bg { fill: none; stroke: var(--muted); stroke-dasharray: 5 4; stroke-width: 1.5; }
 .ft-map .nd.fill.none text { fill: var(--muted); } .ft-map .nd.fill.none text.sub { fill: var(--muted); }
 .ft-map .nd.qgroup rect.box { fill: color-mix(in srgb, var(--muted) 10%, transparent); stroke: var(--muted); }
@@ -1803,7 +1810,8 @@ const FIND = (() => {
       <span class="ft-break"></span><span class="ft-kicker" id="ft-rz-label">${tr("find.reason.label")}</span>
       <div class="ft-seg" role="radiogroup" aria-labelledby="ft-rz-label">
         <button role="radio" aria-checked="${!fs.rz}" data-rz="">${tr("find.reason.off")}</button>
-        ${RZ.groups.map(g => `<button role="radio" aria-checked="${fs.rz === g.id}" data-rz="${g.id}" title="${esc(g.def + " " + trt("find.reason.title", { name: g.name.toLowerCase() }))}">${esc(g.name)}<small>${esc(RZ.name)}</small></button>`).join("")}</div>`;
+        ${RZ.groups.map(g => `<button role="radio" aria-checked="${fs.rz === g.id}" data-rz="${g.id}" title="${esc(g.def + " " + trt("find.reason.title", { name: g.name.toLowerCase() }))}">${esc(g.name)}<small>${esc(RZ.name)}</small></button>`).join("")}</div>
+      ${fs.rz ? `<span class="label ft-legend"><span class="ft-dash"></span>${tr("find.reason.legend")}</span>` : ""}`;
   };
   // The reasoning overlay (Saunders et al. 2019, approaches to theory development) does not regroup anything: it lights
   // the Methods a source marks with the chosen approach. A Method marked with more than one goes either way; one no
@@ -1813,12 +1821,14 @@ const FIND = (() => {
   const rzHas = m => rzOf(m).includes(fs.rz);
   const rzName = id => RZ.groups.find(g => g.id === id).name;
   // Lit, a non-match, or not marked by any source yet: the last is drawn apart, never as a non-match.
-  const rzClass = m => rzHas(m) ? "on" : RZ.items[m] ? "dim" : "unsourced";
+  const rzOurs = m => RZ.items[m]?.basis === "ours";
+  const rzClass = m => (rzHas(m) ? "on" : RZ.items[m] ? "dim" : "unsourced") + (rzOurs(m) ? " ours" : "");
   const rzGroupClass = ms => ms.some(rzHas) ? "on" : ms.some(m => RZ.items[m]) ? "dim" : "unsourced";
-  const rzLabel = m => { const gs = rzOf(m); return gs.length > 1 ? trt("find.reason.either") : gs.length ? rzName(gs[0]) : ""; };
+  const rzLabel = m => { const gs = rzOf(m), l = gs.length > 1 ? trt("find.reason.either") : gs.length ? rzName(gs[0]) : "";
+    return l && rzOurs(m) ? `${l} (${trt("find.reason.ours")})` : l; };
   const methodReasoning = m => { const it = RZ.items[m];
-    return `<li><b>${tr("find.reason.head")}:</b> ${it ? it.groups.map(g => tag(rzName(g), PURPOSE_COLOUR, "neutral")).join(" ")
-      + ` <span class="label">${esc(trt("find.basis." + it.basis))}${it.note ? " · " + esc(it.note) : ""}</span> ${link(it.cite, it.url)}`
+    return `<li><b>${tr("find.reason.head")}:</b> ${it ? `<span class="${it.basis === "ours" ? "ft-ours" : ""}">${it.groups.map(g => tag(rzName(g), PURPOSE_COLOUR, "neutral")).join(" ")}</span>`
+      + ` <span class="label">${esc(trt("find.basis." + it.basis))}${it.note ? " · " + esc(it.note) : ""}</span> ${it.cite ? link(it.cite, it.url) : ""}`
       : `<span class="label">${tr("find.reason.none")}</span>`} <span class="label">(${link(RZ.name, RZ.url)})</span></li>`; };
 
   // ---- drawing pieces shared by both trees
@@ -1906,7 +1916,8 @@ const FIND = (() => {
   // A tool group: a game family, a published category, or the dashed "not classified by this source" group.
   function groupBox(g, x, y, w, h, cls = "", data = "") {
     const n = g.members.length, u = g.members.filter(m => !RZ.items[m]).length;
-    const sub = fs.rz && overview() ? trt(u ? "find.reason.count_open" : "find.reason.count", { k: g.members.filter(rzHas).length, n, u, name: rzName(fs.rz).toLowerCase() })
+    const j = g.members.filter(m => rzHas(m) && rzOurs(m)).length;
+    const sub = fs.rz && overview() ? trt(u ? "find.reason.count_open" : j ? "find.reason.count_ours" : "find.reason.count", { k: g.members.filter(rzHas).length, n, u, j, name: rzName(fs.rz).toLowerCase() })
       : g.fit ? trt("find.cards_line", { n, fit: fitName(g.fit) }) : trt("find.n_methods", { n });
     const lines = wrap(g.name.toUpperCase(), Math.floor(w / 7.4));
     return `<g class="nd fill${g.none ? " none" : ""} ${cls}" tabindex="0" role="button" ${data} transform="translate(${x} ${y})"><title>${esc(g.name + (g.def ? ": " + g.def : ""))}</title>

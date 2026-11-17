@@ -1,9 +1,17 @@
 # Reasoning overlay: findings waiting to be entered
 
-Working log, 2026-11-17. Two research subagents checked the Methods not yet marked in
-`data/classifications.json` (`reasoning`). Nothing below is in the data yet. You asked to add new marks tonight. Before
-each mark goes in, its quote is rechecked against the source and its DOI against Crossref. Quotes marked (s) came
-through a summariser and must be read in the source itself. Delete this file once its findings are entered or rejected.
+Working log, 2026-11-17. Two research subagents checked the Methods that had no sourced mark in
+`data/classifications.json` (`reasoning`). Since then every such Method carries **our reading** (basis `ours`): Table
+4.4 applied to its own definition. A finding below replaces our reading with a sourced mark (basis named or definition,
+with cite and url) once its quote is rechecked against the source and its DOI against Crossref. Where a source
+disagrees with our reading, the source wins. Quotes marked (s) came through a summariser and must be read in the source
+itself. Delete this file once its findings are entered or rejected.
+
+Known disagreements with our reading, to settle first: **benchmark** (ours: deductive; Sim's slides, not the card's own
+reference, say "Usually no hypothesis testing"); **cross-sectional** (ours: inductive) and **case-control** (ours:
+deductive), where STROBE says observational research runs from discovery to confirmation, i.e. either way; **diagnostic-accuracy** (ours:
+deductive; STARD's hypothesis concerns accuracy, not theory); **pilot** (ours: inductive; CONSORT's pilot extension
+calls pilot trials exploratory, about the trial's methods).
 
 Already rechecked by us (2026-11-17): STROBE E&E "from discovery to refutation or confirmation" (section "The scope of
 observational research"); Frazier-Wood (2015) Table 1, GWAS: "Is a hypothesis-free or hypothesis-generating approach".

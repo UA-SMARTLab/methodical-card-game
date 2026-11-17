@@ -222,8 +222,9 @@ async function run() {
     if (lit !== r.families) fail(`find: ${rz} lights ${lit} Method families, expected ${r.families}`);
     for (const [f, n] of Object.entries(r.byFamily)) {
       w.eval(`FIND.restore({ tab: "method", f: "${f}", rz: "${rz}" })`); await sleep(5);
-      const on = $$("#ft-rmap .nd.fill.on[data-m]").length;
+      const on = $$("#ft-rmap .nd.fill.on[data-m]").length, ours = $$("#ft-rmap .nd.fill.on.ours[data-m]").length, wantOurs = r.oursByFamily[f] || 0;
       if (on !== n) fail(`find: ${rz} lights ${on} Methods in ${f}, expected ${n}`);
+      if (ours !== wantOurs) fail(`find: ${rz} draws ${ours} lit Methods in ${f} as our reading, expected ${wantOurs}`);
     }
     // Methods no source marks yet are drawn as such, not as a non-match; so is a kind of question none of whose
     // Methods is marked yet.
@@ -239,7 +240,9 @@ async function run() {
   }
   for (const d of window.CLS.marked) {
     w.eval(`FIND.restore({ tab: "method", f: D["${d}"].family, m: "${d}" })`); await sleep(5);
-    if (!/Reasoning:/.test($("#ft-rdetail").textContent)) fail(`find: ${d}'s details do not show its reasoning`);
+    const txt = $("#ft-rdetail").textContent;
+    if (!/Reasoning:/.test(txt)) fail(`find: ${d}'s details do not show its reasoning`);
+    if (window.CLS.ours.includes(d) !== /our own reading/.test(txt)) fail(`find: ${d}'s details mislabel whether its reasoning is our own reading`);
   }
   out.reasoning = window.CLS.marked.length;
 }
@@ -304,11 +307,13 @@ def class_expectations():
     family = {d["id"]: d["family"] for d in json.loads((ROOT / "data" / "designs.json").read_text(encoding="utf-8"))}
     marks, reasoning = cl["reasoning"]["items"], {}
     for g in cl["reasoning"]["groups"]:
-        by = {}
+        by, ours = {}, {}
         for d, m in marks.items():
             if g["id"] in m["groups"]:
                 by[family[d]] = by.get(family[d], 0) + 1
-        reasoning[g["id"]] = {"families": len(by), "byFamily": by}
+                if m["basis"] == "ours":
+                    ours[family[d]] = ours.get(family[d], 0) + 1
+        reasoning[g["id"]] = {"families": len(by), "byFamily": by, "oursByFamily": ours}
     unmarked = {}
     for d, f in family.items():
         if d not in marks:
@@ -324,7 +329,8 @@ def class_expectations():
         return acc
     unmarked_aims = sorted(a for a, v in tree["aims"].items() if not ends(v, set()) & set(marks))
     return {"tool": tool, "question": question, "reasoning": reasoning, "marked": sorted(marks),
-            "unmarkedByFamily": unmarked, "unmarkedAims": unmarked_aims}
+            "unmarkedByFamily": unmarked, "unmarkedAims": unmarked_aims,
+            "ours": sorted(d for d, m in marks.items() if m["basis"] == "ours")}
 
 
 def run_test(exe):
