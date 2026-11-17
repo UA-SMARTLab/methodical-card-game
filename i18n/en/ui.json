@@ -224,6 +224,8 @@
   "find.reason.title": "Light up the Methods a published source marks as {name}. A study can combine approaches, so many Methods go either way.",
   "find.reason.head": "Reasoning",
   "find.reason.count": "{k} of {n} {name}",
+  "find.reason.count_open": "{k} of {n} {name} · {u} no source yet",
+  "find.reason.unsourced": "no source yet",
   "find.reason.none": "No source marks its reasoning",
   "find.reason.either": "either way",
   "find.unclassified": "Not classified by {source}",

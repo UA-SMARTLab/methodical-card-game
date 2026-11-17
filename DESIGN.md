@@ -245,8 +245,11 @@ card is **what you study**, the constraints are **your situation**, a Method car
 - **Reasoning overlay.** A second control lights the Methods marked *deductive*, *inductive* or *abductive*, the
   approaches to theory development in Saunders et al. (2019, §4.5). It lights Methods but never regroups them, because
   Saunders et al. say a study can combine the approaches and name no Methods. Each mark has its own source in
-  `data/classifications.json` (`reasoning`), named or by definition. A Method marked twice goes either way, and an
-  unmarked one is not lit: no source we read settles it (49 of 60 for now).
+  `data/classifications.json` (`reasoning`), named or by definition. A Method marked twice goes either way. One no source
+  marks yet (49 of 60 for now) is drawn dashed and labelled "no source yet", and so is a kind of question or family
+  whose Methods have no mark yet. A non-match is dimmed. The difference matters: every study tests or builds theory in
+  some way (Saunders et al. 2019, p. 152), so "no source yet" must never read as "follows none". Findings waiting to be
+  entered: `docs/method-tree-reasoning-pending.md`.
 - **Two directions.** *RQ to Method* walks forwards; *Method to RQ* is the mirror image, listing every route that ends on
   a Method. Clicking a kind of question or a single situation lights its paths through the tree.
 - **Checks.** `tools/build.py` refuses a branch that ends on a Method whose card doesn't serve that suit and requires every

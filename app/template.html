@@ -468,6 +468,11 @@ svg.ft-map { display: block; font-family: var(--f-body); }
 .ft-seg button[aria-checked="true"] small { color: var(--accent-ink); opacity: .85; }
 .ft-cls { margin: 4px 0 0; padding-inline-start: 18px; } .ft-cls li { margin-bottom: 4px; }
 .ft-lenses .ft-break { flex-basis: 100%; height: 0; }
+/* Reasoning overlay: what no source marks yet is dashed and faint, not dark, so it never reads as "follows none". */
+.ft-map .nd.unsourced { opacity: .6; }
+.ft-map .nd.unsourced rect.box { stroke-dasharray: 5 4; }
+.ft-map .nd.fill.unsourced rect.bg { fill-opacity: .18; stroke: var(--muted); stroke-dasharray: 5 4; stroke-width: 1.5; }
+.ft-map .nd.fill.unsourced text, .ft-map .nd.fill.unsourced text.sub { fill: var(--text); }
 .ft-map .nd.fill.none rect.bg { fill: none; stroke: var(--muted); stroke-dasharray: 5 4; stroke-width: 1.5; }
 .ft-map .nd.fill.none text { fill: var(--muted); } .ft-map .nd.fill.none text.sub { fill: var(--muted); }
 .ft-map .nd.qgroup rect.box { fill: color-mix(in srgb, var(--muted) 10%, transparent); stroke: var(--muted); }
@@ -1807,6 +1812,9 @@ const FIND = (() => {
   const rzOf = m => RZ.items[m]?.groups || [];
   const rzHas = m => rzOf(m).includes(fs.rz);
   const rzName = id => RZ.groups.find(g => g.id === id).name;
+  // Lit, a non-match, or not marked by any source yet: the last is drawn apart, never as a non-match.
+  const rzClass = m => rzHas(m) ? "on" : RZ.items[m] ? "dim" : "unsourced";
+  const rzGroupClass = ms => ms.some(rzHas) ? "on" : ms.some(m => RZ.items[m]) ? "dim" : "unsourced";
   const rzLabel = m => { const gs = rzOf(m); return gs.length > 1 ? trt("find.reason.either") : gs.length ? rzName(gs[0]) : ""; };
   const methodReasoning = m => { const it = RZ.items[m];
     return `<li><b>${tr("find.reason.head")}:</b> ${it ? it.groups.map(g => tag(rzName(g), PURPOSE_COLOUR, "neutral")).join(" ")
@@ -1897,7 +1905,8 @@ const FIND = (() => {
   }
   // A tool group: a game family, a published category, or the dashed "not classified by this source" group.
   function groupBox(g, x, y, w, h, cls = "", data = "") {
-    const n = g.members.length, sub = fs.rz && overview() ? trt("find.reason.count", { k: g.members.filter(rzHas).length, n, name: rzName(fs.rz).toLowerCase() })
+    const n = g.members.length, u = g.members.filter(m => !RZ.items[m]).length;
+    const sub = fs.rz && overview() ? trt(u ? "find.reason.count_open" : "find.reason.count", { k: g.members.filter(rzHas).length, n, u, name: rzName(fs.rz).toLowerCase() })
       : g.fit ? trt("find.cards_line", { n, fit: fitName(g.fit) }) : trt("find.n_methods", { n });
     const lines = wrap(g.name.toUpperCase(), Math.floor(w / 7.4));
     return `<g class="nd fill${g.none ? " none" : ""} ${cls}" tabindex="0" role="button" ${data} transform="translate(${x} ${y})"><title>${esc(g.name + (g.def ? ": " + g.def : ""))}</title>
@@ -1942,7 +1951,7 @@ const FIND = (() => {
     return `<g class="nd fill ${cls}" tabindex="0" role="button" ${data} transform="translate(${x} ${y})"><title>${esc(D[id].name + " · " + FAM[D[id].family].name)}</title>
       <rect class="bg" width="${w}" height="${h}" rx="6" style="fill:${famColour(id)}"></rect><rect class="ring" x="-3" y="-3" width="${w + 6}" height="${h + 6}" rx="8"></rect>
       <text x="10" y="${h / 2 - 2}" style="font-weight:600">${esc(cut(D[id].name, Math.floor(w / 6.8)))}</text>
-      <text class="sub" x="10" y="${h / 2 + 13}"><tspan style="font-family:var(--f-mono)">${CODE[id]}</tspan>${fs.rz && overview() ? (rzLabel(id) ? ` · ${esc(rzLabel(id))}` : "")
+      <text class="sub" x="10" y="${h / 2 + 13}"><tspan style="font-family:var(--f-mono)">${CODE[id]}</tspan>${fs.rz && overview() ? ` · ${esc(rzLabel(id) || trt("find.reason.unsourced"))}`
         : TV[fs.tv].own || !overview() ? ""
         : ` · ${esc(cut(toolGroupOf(id).map(g => g.none ? trt("find.not_classified") : g.name).join(", "), Math.floor(w / 6.2) - 10))}`}</text></g>`;
   }
@@ -2006,7 +2015,8 @@ const FIND = (() => {
       let edges = "", nodes = ""; const toTools = [];
       rows.forEach((r, i) => {
         const a = r.a, y = ys[i], h = hs[i], ms = branchOf(a).methods;
-        const rowLit = hl ? a === hl : !fs.rz || [...ms].some(m => litMethods.has(m)), cls = lighting ? (rowLit ? (hl ? "on" : "") : "dim") : "";
+        const rowLit = hl ? a === hl : !fs.rz || [...ms].some(m => litMethods.has(m));
+        const cls = lighting ? (rowLit ? (hl ? "on" : "") : !hl && rzGroupClass([...ms]) === "unsourced" ? "unsourced" : "dim") : "";
         nodes += aimBox(a, AX, y, AW, h, cls) + sitChips(a, SX, y, SW, h, cls, a === hl ? sit : null);
         edges += `<path class="edge${hl && rowLit ? " on" : lighting && !rowLit ? " dim" : ""}" d="M${AX + AW},${y + h / 2} H${SX}"/>`;
         tgroups.forEach((g, k) => { if (!g.members.some(m => ms.has(m))) return;
@@ -2015,7 +2025,8 @@ const FIND = (() => {
       });
       edges += links(toTools, SX + SW, FX);
       if (!qOwn) { const q = qGroupsDrawn(qgroups, rows, ys, hs, 16, false, hl); nodes += q.nodes; edges += q.edges; }
-      tgroups.forEach((g, k) => { nodes += groupBox(g, FX, fy(k), FW, H, "static" + (lighting ? (groupLit(g) ? " on" : " dim") : "")); });
+      tgroups.forEach((g, k) => { nodes += groupBox(g, FX, fy(k), FW, H, "static" + (lighting ? (groupLit(g) ? " on"
+        : !hl && fs.rz && rzGroupClass(g.members) === "unsourced" ? " unsourced" : " dim") : "")); });
       const qhead = qOwn ? up("find.head.what_kind") : up("find.zone.what") + ": " + QV[fs.qv].name.toUpperCase();
       const thead = TV[fs.tv].own ? up("find.head.tool_family") : up("find.zone.tool") + ": " + TV[fs.tv].name.toUpperCase();
       const heads = head(16, AX + AW, "1 · " + qhead) + head(SX, SX + SW, "2 · " + up("find.zone.situation")) + head(FX, FX + FW, "3 · " + thead);
@@ -2121,11 +2132,11 @@ const FIND = (() => {
       if (!qOwn) { const q = qGroupsDrawn(qgroups, arows, arows.map((_, i) => ay(i)), arows.map(() => H), AX + AW + QGLANE, true, null);
         nodes += q.nodes; edges += q.edges; }
       tgroups.forEach((g, k) => { nodes += groupBox(g, FX, fy(k), FW, H, `${fs.f === g.id ? "on" : ""}${G && fs.f !== g.id ? " dim" : ""}`
-        + (!G && fs.rz && !g.members.some(rzHas) ? " dim" : ""), `data-f="${g.id}"`); });
+        + (!G && fs.rz && rzGroupClass(g.members) !== "on" ? " " + rzGroupClass(g.members) : ""), `data-f="${g.id}"`); });
       open.forEach((m, k) => {
         const fk = tgroups.indexOf(G);
         famToMeth.push({ a: { key: G.id, y: fy(fk), h: H }, b: { key: m.id, y: my(k), h: H }, cls: "on" });
-        nodes += methodBox(m.id, MX, my(k), MW, H, fs.rz ? (rzHas(m.id) ? "on" : "dim") : "", `data-m="${m.id}"`);
+        nodes += methodBox(m.id, MX, my(k), MW, H, fs.rz ? rzClass(m.id) : "", `data-m="${m.id}"`);
         arows.forEach((r, i) => { if (branchOf(r.a).methods.has(m.id)) methToSit.push({ a: { key: m.id, y: my(k), h: H }, b: sitNode(i), color: famColour(m.id), cls: "tool" }); });
       });
       edges += links(famToSit, FX + FW, SX) + links(famToMeth, FX + FW, MX, true) + links(methToSit, MX + MW, SX);

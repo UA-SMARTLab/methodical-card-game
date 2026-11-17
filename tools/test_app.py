@@ -225,6 +225,16 @@ async function run() {
       const on = $$("#ft-rmap .nd.fill.on[data-m]").length;
       if (on !== n) fail(`find: ${rz} lights ${on} Methods in ${f}, expected ${n}`);
     }
+    // Methods no source marks yet are drawn as such, not as a non-match; so is a kind of question none of whose
+    // Methods is marked yet.
+    for (const [f, n] of Object.entries(window.CLS.unmarkedByFamily)) {
+      w.eval(`FIND.restore({ tab: "method", f: "${f}", rz: "${rz}" })`); await sleep(5);
+      const un = $$("#ft-rmap .nd.fill.unsourced[data-m]").length;
+      if (un !== n) fail(`find: ${rz} shows ${un} Methods in ${f} as having no source yet, expected ${n}`);
+    }
+    w.eval(`FIND.restore({ tab: "rq", rz: "${rz}" })`); await sleep(5);
+    const rowsUn = $$("#ft-map .nd.unsourced[data-aim]:not(.chipn):not(.sit)").map(x => x.dataset.aim).sort().join(",");
+    if (rowsUn !== window.CLS.unmarkedAims.join(",")) fail(`find: ${rz} shows [${rowsUn}] as having no source yet, expected [${window.CLS.unmarkedAims}]`);
     w.eval('FIND.restore({ tab: "rq" })'); await sleep(5);
   }
   for (const d of window.CLS.marked) {
@@ -299,7 +309,22 @@ def class_expectations():
             if g["id"] in m["groups"]:
                 by[family[d]] = by.get(family[d], 0) + 1
         reasoning[g["id"]] = {"families": len(by), "byFamily": by}
-    return {"tool": tool, "question": question, "reasoning": reasoning, "marked": sorted(marks)}
+    unmarked = {}
+    for d, f in family.items():
+        if d not in marks:
+            unmarked[f] = unmarked.get(f, 0) + 1
+    tree = json.loads((ROOT / "data" / "method-tree.json").read_text(encoding="utf-8"))
+
+    def ends(node, acc):
+        for o in node["options"]:
+            if "method" in o:
+                acc.add(o["method"])
+            if "next" in o:
+                ends(o["next"], acc)
+        return acc
+    unmarked_aims = sorted(a for a, v in tree["aims"].items() if not ends(v, set()) & set(marks))
+    return {"tool": tool, "question": question, "reasoning": reasoning, "marked": sorted(marks),
+            "unmarkedByFamily": unmarked, "unmarkedAims": unmarked_aims}
 
 
 def run_test(exe):
