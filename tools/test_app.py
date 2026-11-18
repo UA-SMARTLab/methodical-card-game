@@ -129,6 +129,13 @@ async function run() {
     $(`#deck-tabs [data-deck="${k}"]`).click(); await sleep(30);
     counts[k] = $$("#cards figure").length;
     if (counts[k] !== w.eval(`DATA.${k}.length`)) fail(`decks: ${k} shows ${counts[k]} cards, expected ${w.eval(`DATA.${k}.length`)}`);
+    // Every Method card carries its number in the bottom border and no footer row, its kinds of question, cost and
+    // time each with a word under them (three coins, three hourglasses), and its strengths in two columns.
+    if (k === "designs") {
+      const cardsD = $$("#cards .tcg-d"), bad = cardsD.filter(c => !c.querySelector(":scope > .cn") || c.querySelector(".ft")
+        || c.querySelectorAll(".rc.cost").length !== 3 || c.querySelectorAll(".rc.time").length !== 3 || !c.querySelector(".rv .col"));
+      if (!cardsD.length || bad.length) fail(`decks: ${bad.length} of ${cardsD.length} Method cards lack the number in the border, the cost and time circles or the two columns`);
+    }
   }
   out.counts = counts;
   // Find your method. Expected values come from data/method-tree.json (window.TREE), by definition.

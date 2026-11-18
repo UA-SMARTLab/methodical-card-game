@@ -26,10 +26,35 @@
 .tcg .lv > span { display: flex; align-items: center; gap: calc(var(--u) * .8); }
 .tcg .sb { width: calc(var(--u) * 4.4); height: calc(var(--u) * 4.4); border-radius: 50%; display: grid; place-items: center; color: #fff;
   background: var(--s); box-shadow: 0 0 0 calc(var(--u) * .35) #fff; }
-.tcg .coin { width: calc(var(--u) * 2.8); height: calc(var(--u) * 2.8); border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff3b0, #e0a800);
-  box-shadow: 0 0 0 calc(var(--u) * .25) rgba(0,0,0,.45); }
-.tcg .tick { width: calc(var(--u) * 2.2); height: calc(var(--u) * 2.2); transform: rotate(45deg); background: #fff; box-shadow: 0 0 0 calc(var(--u) * .25) rgba(0,0,0,.45); }
 .tcg .off { opacity: .28; }
+/* A Method's level row: every symbol round, with a word under it: the kinds of question it answers, then three coins
+   over "cost" and three hourglasses over "time"; the circles that don't apply are greyed. */
+.tcg .lv.rnd { height: calc(var(--u) * 8.2); align-items: flex-start; padding-top: calc(var(--u) * .7); text-transform: none; }
+.tcg .lv.rnd .lb { display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * .7); }
+.tcg .lv.rnd .lb small { font: 700 calc(var(--u) * 2.1)/1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .06em;
+  text-transform: uppercase; white-space: nowrap; }
+.tcg .lv.rnd .set { display: flex; gap: calc(var(--u) * .7); }
+.tcg .lv.rnd .sb { width: calc(var(--u) * 3.8); height: calc(var(--u) * 3.8); }
+.tcg .rc { width: calc(var(--u) * 3.8); height: calc(var(--u) * 3.8); border-radius: 50%; display: grid; place-items: center;
+  box-shadow: 0 0 0 calc(var(--u) * .35) #fff; }
+.tcg .rc svg { width: 72%; height: 72%; }
+.tcg .rc.cost { background: radial-gradient(circle at 35% 30%, #fff3b0, #e0a800); color: #713F12; }
+.tcg .rc.time { background: #E0F2FE; color: #0C4A6E; }
+.tcg .rc.no { background: #475569; color: #94A3B8; box-shadow: 0 0 0 calc(var(--u) * .3) #94A3B8; }
+/* A Method's strengths and weaknesses in two columns (_strengths): each block has its own colour bar; short items
+   share a line, each led by its icon (a constraint's own, a shield for a Threat), so no separator is needed. */
+.tcg .rv { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u) * 1); font: 700 calc(var(--u) * 2.15 * var(--fit, 1))/1.1 "Barlow Condensed",
+  "Arial Narrow", sans-serif; letter-spacing: .03em; text-transform: uppercase; }
+.tcg .rv .col { display: flex; flex-direction: column; gap: calc(var(--u) * .4); min-width: 0; }
+.tcg .rv .blk { display: flex; flex-direction: column; gap: calc(var(--u) * .1); border-inline-start: calc(var(--u) * .55) solid; padding-inline-start: calc(var(--u) * .8); }
+.tcg .rv .blk.gok { border-color: #047857; } .tcg .rv .blk.gbad { border-color: #b42318; } .tcg .rv .blk.gthr { border-color: #9F1239; }
+.tcg .rv .hd { font-size: calc(var(--u) * 1.85); letter-spacing: .08em; }
+.tcg .rv .gok { color: #0f7a3c; } .tcg .rv .gbad { color: #b42318; } .tcg .rv .gthr { color: #9F1239; }
+.tcg .rv .its { display: flex; flex-wrap: wrap; gap: calc(var(--u) * .2) calc(var(--u) * .5); }
+.tcg .rv .it { display: inline-flex; align-items: center; gap: calc(var(--u) * .3); }
+.tcg .rv .it .ic, .tcg .rv .it .th { width: calc(var(--u) * 2.3); height: calc(var(--u) * 2.3); flex: none; }
+.tcg .rv .it .th { color: #9F1239; }
+.tcg .rv .sub { color: #b42318; } .tcg .rv .main { color: #1f2937; }
 .tcg .star { color: #fde047; font-size: calc(var(--u) * 3.6); line-height: 1; text-shadow: 0 0 calc(var(--u) * .5) rgba(0,0,0,.6); }
 .tcg .art { flex: none; height: calc(var(--u) * 37.5); border-radius: calc(var(--u) * .7); overflow: hidden; background: #0f172a;
   box-shadow: 0 0 0 calc(var(--u) * .55) rgba(255,255,255,.9), 0 0 0 calc(var(--u) * .9) rgba(0,0,0,.45); margin: calc(var(--u) * .5) calc(var(--u) * .9); }
@@ -37,6 +62,9 @@
 /* Pictures keep left-to-right coordinates in right-to-left languages, so labels stay anchored where they were drawn. */
 .tcg .art svg, .mat .art svg, .tcg.back svg { direction: ltr; }
 .tcg.tcg-q .art { height: calc(var(--u) * 31); }
+/* A Method's card number sits in the card's bottom border, so it takes no row of the text box. */
+.tcg .cn { position: absolute; bottom: calc(var(--u) * .45); inset-inline-end: calc(var(--u) * 3.4); color: rgba(255,255,255,.85);
+  font: 600 calc(var(--u) * 1.6)/1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .08em; text-transform: uppercase; }
 .tcg.tcg-t .art { height: calc(var(--u) * 43); }
 .tcg.tcg-s .art { height: calc(var(--u) * 40.5); }
 .tcg.tcg-x .art { height: calc(var(--u) * 41); }

@@ -85,10 +85,35 @@ CARD_CSS = """
 .tcg .lv > span { display: flex; align-items: center; gap: calc(var(--u) * .8); }
 .tcg .sb { width: calc(var(--u) * 4.4); height: calc(var(--u) * 4.4); border-radius: 50%; display: grid; place-items: center; color: #fff;
   background: var(--s); box-shadow: 0 0 0 calc(var(--u) * .35) #fff; }
-.tcg .coin { width: calc(var(--u) * 2.8); height: calc(var(--u) * 2.8); border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff3b0, #e0a800);
-  box-shadow: 0 0 0 calc(var(--u) * .25) rgba(0,0,0,.45); }
-.tcg .tick { width: calc(var(--u) * 2.2); height: calc(var(--u) * 2.2); transform: rotate(45deg); background: #fff; box-shadow: 0 0 0 calc(var(--u) * .25) rgba(0,0,0,.45); }
 .tcg .off { opacity: .28; }
+/* A Method's level row: every symbol round, with a word under it: the kinds of question it answers, then three coins
+   over "cost" and three hourglasses over "time"; the circles that don't apply are greyed. */
+.tcg .lv.rnd { height: calc(var(--u) * 8.2); align-items: flex-start; padding-top: calc(var(--u) * .7); text-transform: none; }
+.tcg .lv.rnd .lb { display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * .7); }
+.tcg .lv.rnd .lb small { font: 700 calc(var(--u) * 2.1)/1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .06em;
+  text-transform: uppercase; white-space: nowrap; }
+.tcg .lv.rnd .set { display: flex; gap: calc(var(--u) * .7); }
+.tcg .lv.rnd .sb { width: calc(var(--u) * 3.8); height: calc(var(--u) * 3.8); }
+.tcg .rc { width: calc(var(--u) * 3.8); height: calc(var(--u) * 3.8); border-radius: 50%; display: grid; place-items: center;
+  box-shadow: 0 0 0 calc(var(--u) * .35) #fff; }
+.tcg .rc svg { width: 72%; height: 72%; }
+.tcg .rc.cost { background: radial-gradient(circle at 35% 30%, #fff3b0, #e0a800); color: #713F12; }
+.tcg .rc.time { background: #E0F2FE; color: #0C4A6E; }
+.tcg .rc.no { background: #475569; color: #94A3B8; box-shadow: 0 0 0 calc(var(--u) * .3) #94A3B8; }
+/* A Method's strengths and weaknesses in two columns (_strengths): each block has its own colour bar; short items
+   share a line, each led by its icon (a constraint's own, a shield for a Threat), so no separator is needed. */
+.tcg .rv { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u) * 1); font: 700 calc(var(--u) * 2.15 * var(--fit, 1))/1.1 "Barlow Condensed",
+  "Arial Narrow", sans-serif; letter-spacing: .03em; text-transform: uppercase; }
+.tcg .rv .col { display: flex; flex-direction: column; gap: calc(var(--u) * .4); min-width: 0; }
+.tcg .rv .blk { display: flex; flex-direction: column; gap: calc(var(--u) * .1); border-inline-start: calc(var(--u) * .55) solid; padding-inline-start: calc(var(--u) * .8); }
+.tcg .rv .blk.gok { border-color: #047857; } .tcg .rv .blk.gbad { border-color: #b42318; } .tcg .rv .blk.gthr { border-color: #9F1239; }
+.tcg .rv .hd { font-size: calc(var(--u) * 1.85); letter-spacing: .08em; }
+.tcg .rv .gok { color: #0f7a3c; } .tcg .rv .gbad { color: #b42318; } .tcg .rv .gthr { color: #9F1239; }
+.tcg .rv .its { display: flex; flex-wrap: wrap; gap: calc(var(--u) * .2) calc(var(--u) * .5); }
+.tcg .rv .it { display: inline-flex; align-items: center; gap: calc(var(--u) * .3); }
+.tcg .rv .it .ic, .tcg .rv .it .th { width: calc(var(--u) * 2.3); height: calc(var(--u) * 2.3); flex: none; }
+.tcg .rv .it .th { color: #9F1239; }
+.tcg .rv .sub { color: #b42318; } .tcg .rv .main { color: #1f2937; }
 .tcg .star { color: #fde047; font-size: calc(var(--u) * 3.6); line-height: 1; text-shadow: 0 0 calc(var(--u) * .5) rgba(0,0,0,.6); }
 .tcg .art { flex: none; height: calc(var(--u) * 37.5); border-radius: calc(var(--u) * .7); overflow: hidden; background: #0f172a;
   box-shadow: 0 0 0 calc(var(--u) * .55) rgba(255,255,255,.9), 0 0 0 calc(var(--u) * .9) rgba(0,0,0,.45); margin: calc(var(--u) * .5) calc(var(--u) * .9); }
@@ -96,6 +121,9 @@ CARD_CSS = """
 /* Pictures keep left-to-right coordinates in right-to-left languages, so labels stay anchored where they were drawn. */
 .tcg .art svg, .mat .art svg, .tcg.back svg { direction: ltr; }
 .tcg.tcg-q .art { height: calc(var(--u) * 31); }
+/* A Method's card number sits in the card's bottom border, so it takes no row of the text box. */
+.tcg .cn { position: absolute; bottom: calc(var(--u) * .45); inset-inline-end: calc(var(--u) * 3.4); color: rgba(255,255,255,.85);
+  font: 600 calc(var(--u) * 1.6)/1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .08em; text-transform: uppercase; }
 .tcg.tcg-t .art { height: calc(var(--u) * 43); }
 .tcg.tcg-s .art { height: calc(var(--u) * 40.5); }
 .tcg.tcg-x .art { height: calc(var(--u) * 41); }
@@ -184,30 +212,62 @@ def _suit_badge(cx, sid, big=False):
     return f'<span class="sb" style="--s:{s["color"]}" title="{e(s["name"])}">{art.SUIT_ICONS[sid]}</span>'
 
 
-def _con_names(cx, ids, cls):
-    """Constraints spelled out, icon first: the same icon and words as the chips on a Question card, so they match at a glance."""
-    return "".join(f'<span class="{cls}">{art.CONSTRAINT_ICONS[c]}{e(cx.CON[c]["name"])}</span>' for c in ids)
+EURO ='<svg viewBox="0 0 24 24" aria-hidden="true"><text x="12" y="17.5" text-anchor="middle" font-size="16" font-weight="800" font-family="Arial, sans-serif" fill="currentColor">€</text></svg>'
+HOURGLASS = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10M7 20h10M8 4c0 5 8 6 8 8s-8 3-8 8M16 4c0 5-8 6-8 8s8 3 8 8" '
+             'fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+
+def _round_row(cx, d):
+    """Every symbol round, with a word under it: the kinds of question the Method answers (suit names, the cards' own
+    term), then three coins over "cost" and three hourglasses over "time", the ones that don't apply greyed."""
+    lab = lambda inner, word: f'<span class="lb">{inner}<small>{e(word)}</small></span>'
+    suits = "".join(lab(_suit_badge(cx, s), cx.SUIT[s]["name"]) for s in d["serves"])
+    scale = lambda kind, icon, n: "".join(f'<i class="rc {kind}{"" if k < n else " no"}">{icon}</i>' for k in range(3))
+    return (f'<div class="lv rnd"><span>{suits}</span><span>{lab(f"<span class=set>{scale("cost", EURO, d["cost"])}</span>", L("card.cost"))}'
+            f'{lab(f"<span class=set>{scale("time", HOURGLASS, d["time"])}</span>", L("card.time"))}</span></div>')
+
+
+SHIELD = ('<svg class="th" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z" fill="none" '
+          'stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M12 8v5M12 16.5v.5" stroke="currentColor" stroke-width="2.6" '
+          'stroke-linecap="round"/></svg>')
+
+
+def _strengths(cx, d):
+    """What the Method is good for, struggles with and is weak against, in two columns: Good for on the left (green),
+    Weak vs on the right (Threat crimson). Struggles with (red) joins whichever column is shorter, so a Method with many
+    struggles and nothing it is good for still fills both columns. Short items share a line."""
+    con = lambda c: f'{art.CONSTRAINT_ICONS[c]}{e(cx.CON[c]["name"])}'
+    groups = [("ok", "gok", L("card.good_for"), [con(c) for c in d["fits"]]),
+              ("bad", "gbad", L("card.struggles"), [con(c) for c in d["struggles"]]),
+              ("thr", "gthr", L("card.weak_vs"), [SHIELD + e(cx.T[t]["name"]) for t in d["weak_vs"][:2]])]
+    groups = [g for g in groups if g[3]]
+    left = [g for g in groups if g[0] == "ok"]
+    right = [g for g in groups if g[0] == "thr"]
+    size = lambda gs: sum(1 + len(g[3]) for g in gs)
+    for g in groups:
+        if g[0] == "bad":
+            if size(left) <= size(right):
+                left.append(g)
+            else:
+                right.insert(0, g)
+    block = lambda g: f'<div class="blk {g[1]}"><span class="hd {g[1]}">{g[2]}</span><span class="its">' + "".join(
+        f'<span class="it {"sub" if g[0] == "bad" else "main"}">{x}</span>' for x in g[3]) + '</span></div>'
+    col = lambda gs: '<div class="col">' + "".join(block(g) for g in gs) + '</div>'
+    return f'<div class="rv">{col(left)}{col(right)}</div>'
 
 
 def design_card(cx, d):
     f = cx.FAM[d["family"]]
-    serves = "".join(_suit_badge(cx, s) for s in d["serves"])
-    cost = "".join(f'<i class="coin{"" if k < d["cost"] else " off"}"></i>' for k in range(3))
-    time = "".join(f'<i class="tick{"" if k < d["time"] else " off"}"></i>' for k in range(3))
-    fits = f'<div class="row cons"><span class="k">{L("card.good_for")}</span>{_con_names(cx, d["fits"], "yes")}</div>' if d["fits"] else ""
-    strug = f'<div class="row cons"><span class="k">{L("card.struggles")}</span>{_con_names(cx, d["struggles"], "no")}</div>' if d["struggles"] else ""
-    weak = " · ".join(e(cx.T[t]["name"]) for t in d["weak_vs"][:2])
+    # The card number sits in the bottom border, so the picture keeps its full height and the text box has no footer.
     return f'''<div class="tcg tcg-d" style="--c:{f["color"]}">
   <div class="nm">{_name(d["name"])}<span class="attr">{art.SUIT_ICONS[d["serves"][0]]}</span></div>
-  <div class="lv"><span>{serves}</span><span>{cost}&nbsp;{time}</span></div>
+  {_round_row(cx, d)}
   {_art(art.DESIGN_ART.get(d["id"]), "d-" + d["id"], f["color"], "design")}
   <div class="tb">
     <div class="ty">[ {e(f["name"])} / {L("card.design")} ]</div>
     <p class="fx">{e(d["short"])}</p>
-    {fits}{strug}
-    <div class="row flow"><span class="k">{L("card.weak_vs")}</span> {weak}</div>
-    <div class="ft"><span>MTH-D{cx.dnum[d["id"]]:02d}</span><span>{L("card.cost_time").replace("  ", " &nbsp;")}</span></div>
-  </div>
+    {_strengths(cx, d)}
+  </div><span class="cn">MTH-D{cx.dnum[d["id"]]:02d}</span>
 </div>'''
 
 

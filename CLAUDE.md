@@ -34,6 +34,11 @@ and work alike. My general rules are in `~/.claude/CLAUDE.md`; this file adds wh
   type line `[ FAMILY / TYPE ]` (Barlow Condensed, upper case), one sentence of effect text (IBM Plex Sans Condensed),
   labelled rows (grey upper-case label, then content: e.g. "Good for", "Struggles with", "Weak vs"), footer with the
   card code (MTH-D01) and a legend.
+- Methodical's Method cards since 2026-11-18 (the siblings have not followed yet): every symbol in the level row is
+  round with a word under it (each kind of question by its suit name; three coins over "cost", three hourglasses over
+  "time", the ones that don't apply greyed); the rows sit in two columns (Good for left in green; Weak vs right in
+  Threat crimson, each Threat with a shield; Struggles with in red joins the shorter column); the card code sits in the
+  bottom border, so there is no footer row and the picture keeps its full height. Other card types keep the footer.
 - Text that runs long shrinks to fit (`fitCards`, never below 72%). After `build.py`, run `tools/check_cards.py`
   (headless Chrome or Edge, all print sheets): no text box, name or picture label overflows in any language. Every kit
   game has the same file. A long single-word name (Dutch and German compounds) gets a soft hyphen (U+00AD) where it
