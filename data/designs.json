@@ -133,7 +133,7 @@
    "fits": ["existing-data", "group-level", "single-unit", "no-assign"], "struggles": [],
    "weak_vs": ["history-trend", "regression-mean", "measurement-error"], "cost": 1, "time": 1,
    "example": "Hospital admissions for heart attacks before and after a public smoking ban.",
-   "ref": {"cite": "Lopez Bernal et al. (2016). Interrupted time series regression for the evaluation of public health interventions: a tutorial. International Journal of Epidemiology.", "url": "https://doi.org/10.1093/ije/dyw098"}},
+   "ref": {"cite": "Lopez Bernal et al. (2017). Interrupted time series regression for the evaluation of public health interventions: a tutorial. International Journal of Epidemiology 46: 348–355.", "url": "https://doi.org/10.1093/ije/dyw098"}},
 
   {"id": "synthetic-control", "name": "Synthetic control", "short": "Build a weighted twin of one treated unit from untreated ones.", "family": "quasi",
    "serves": ["CAUSE"],
