@@ -204,6 +204,7 @@ def build(d, method_id, out_root):
 
 <h2>A real example</h2>
 <p>{e(m["example"])}</p>
+{"".join(quote(q) for q in L.get("example_quotes", []))}
 <p class="src">Defining reference: <a href="{e(ref["url"])}" target="_blank" rel="noopener">{e(ref["cite"])}</a></p>
 
 <h2>Sources</h2>

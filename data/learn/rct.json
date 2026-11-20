@@ -13,8 +13,20 @@
       "short": "Eldridge et al. (2016)",
       "url": "https://doi.org/10.1136/bmj.i5239",
       "checked": "Fig 5 caption read in the vault's copy (library No. 287) on 20 Nov 2026"
+    },
+    "mrc1948": {
+      "cite": "Medical Research Council (1948). Streptomycin treatment of pulmonary tuberculosis: a Medical Research Council investigation. BMJ 2(4582): 769–782.",
+      "short": "Medical Research Council (1948)",
+      "url": "https://doi.org/10.1136/bmj.2.4582.769",
+      "checked": "quotes read word for word on the page scans of the Europe PMC PDF (PMC2091872) on 20 Nov 2026; pages are the journal's"
     }
   },
+  "example_quotes": [
+    {"text": "Determination of whether a patient would be treated by streptomycin and bed-rest (S case) or by bed-rest alone (C case) was made by reference to a statistical series based on random sampling numbers drawn up for each sex at each centre by Professor Bradford Hill", "source": "mrc1948", "where": "p. 770, “The Control Scheme”"},
+    {"text": "the details of the series were unknown to any of the investigators or to the co-ordinator and were contained in a set of sealed envelopes", "source": "mrc1948", "where": "p. 770, “The Control Scheme”"},
+    {"text": "Of the remaining 107 patients 55 had been allocated to the streptomycin group and 52 to the control group.", "source": "mrc1948", "where": "p. 770"},
+    {"text": "Four of the 55 S patients (7%) and 14 of the 52 C patients (27%) died before the end of six months.", "source": "mrc1948", "where": "p. 771, “Results at End of Six Months”"}
+  ],
   "steps": [
     {
       "id": "enrol",
@@ -79,7 +91,7 @@
     "doctor_rule": "The simulated doctor gives the new treatment to the patients who look more likely to recover; severity shows only partly, so the doctor's impression is severity plus noise."
   },
   "limits": [
-    "The streptomycin trial's own numbers (group sizes, deaths, how allocation was concealed) are not shown yet: PMC serves the 1948 paper only as page scans, which have not been read. Add them, with pages, after reading the PDF.",
+    "The streptomycin trial's numbers are its six-month results only (pp. 769–771 read); its later follow-up is not shown.",
     "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
     "English only for now; the learn pages are not in the i18n pipeline yet."
   ]
