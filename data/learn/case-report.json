@@ -1,0 +1,77 @@
+{
+  "method": "case-report",
+  "question": "What did we see in this patient that nobody has described before?",
+  "sources": {
+    "gagnier2013": {
+      "cite": "Gagnier et al. (2013). The CARE guidelines: consensus-based clinical case reporting guideline development. Journal of Medical Case Reports 7: 223.",
+      "short": "Gagnier et al. (2013)",
+      "url": "https://doi.org/10.1186/1752-1947-7-223",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC3844611) on 20 Nov 2026; the article is online-only, so places are given as its sections and CARE checklist items (Table 1); in-text reference numbers are left out. The card's own reference, the CARE explanation and elaboration (Riley et al. 2017), is not open access and was not read"
+    }
+  },
+  "steps": [
+    {
+      "id": "notice",
+      "title": "Notice",
+      "text": "A clinician meets a patient whose illness, or response to treatment, does not fit what is known. That surprise is the reason to write.",
+      "picture": "notice",
+      "quotes": [
+        {"text": "They have proved helpful in the identification of adverse and beneficial effects, the recognition of new diseases, unusual forms of common diseases, and the presentation of rare diseases", "source": "gagnier2013", "where": "Introduction"}
+      ]
+    },
+    {
+      "id": "describe",
+      "title": "Describe",
+      "text": "Write down who the patient is, what they complained of, their history and what the examination found, in enough detail that a reader could recognise the next one.",
+      "picture": "describe",
+      "quotes": [
+        {"text": "A case report is a detailed narrative that describes, for medical, scientific, or educational purposes, a medical problem experienced by one or several patients", "source": "gagnier2013", "where": "Introduction"},
+        {"text": "Main symptoms of the patient (his or her chief complaints)", "source": "gagnier2013", "where": "CARE checklist item 5b"}
+      ]
+    },
+    {
+      "id": "timeline",
+      "title": "Timeline",
+      "text": "Put the events in date order: onset, tests, treatments, follow-up. Order matters, because readers will ask what came before what.",
+      "picture": "timeline",
+      "quotes": [
+        {"text": "The timeline should show how the key events of the case unfolded.", "source": "gagnier2013", "where": "Results, on checklist item 7"}
+      ]
+    },
+    {
+      "id": "diagnose",
+      "title": "Diagnose and treat",
+      "text": "Say how the diagnosis was reached, which others were considered and ruled out, and what was given, at what dose and for how long.",
+      "picture": "diagnose",
+      "quotes": [
+        {"text": "Diagnostic reasoning including other diagnoses considered", "source": "gagnier2013", "where": "CARE checklist item 8c"},
+        {"text": "Administration of intervention (eg, dosage, strength, duration)", "source": "gagnier2013", "where": "CARE checklist item 9a"}
+      ]
+    },
+    {
+      "id": "follow",
+      "title": "Follow up",
+      "text": "Report what happened at every follow-up visit, good and bad, including events nobody expected.",
+      "picture": "follow",
+      "quotes": [
+        {"text": "Adverse and unanticipated events", "source": "gagnier2013", "where": "CARE checklist item 10a"}
+      ]
+    },
+    {
+      "id": "hypothesise",
+      "title": "Raise a hypothesis",
+      "text": "Discuss what the case might mean and why, then hand it on: one case can suggest a cause, but only a study with a comparison can test it.",
+      "picture": "hypothesise",
+      "quotes": [
+        {"text": "Case reports may generate hypotheses for future clinical studies", "source": "gagnier2013", "where": "Introduction"},
+        {"text": "The rationale for conclusions (including assessments of cause and effect)", "source": "gagnier2013", "where": "CARE checklist item 11c"}
+      ]
+    }
+  ],
+  "limits": [
+    "The page follows the 2013 CARE statement, not the card's reference (Riley et al. 2017, the explanation and elaboration), which is behind a paywall and was not read.",
+    "The 1981 MMWR report on Pneumocystis pneumonia named on the card was not read for this page; no detail of it is shown.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

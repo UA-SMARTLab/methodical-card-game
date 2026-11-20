@@ -1,0 +1,68 @@
+{
+  "method": "case-cohort",
+  "question": "How can an expensive measurement be studied in a large cohort without measuring everyone?",
+  "sources": {
+    "kulathinal2007": {
+      "cite": "Kulathinal, Karvanen, Saarela & Kuulasmaa (2007). Case-cohort design in practice – experiences from the MORGAM Project. Epidemiologic Perspectives & Innovations 4: 15.",
+      "short": "Kulathinal et al. (2007)",
+      "url": "https://doi.org/10.1186/1742-5573-4-15",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC2216006) on 20 Nov 2026; places are its numbered sections, whose titles were read in the same XML; in-text reference numbers are left out"
+    }
+  },
+  "steps": [
+    {
+      "id": "cohort",
+      "title": "Start with a cohort",
+      "text": "Take a large cohort that is followed up and has stored samples, where measuring everyone (a genotype, a biomarker) would cost too much.",
+      "picture": "cohort",
+      "quotes": [
+        {"text": "Cohort sampling designs are used in follow-up studies when large cohorts are needed to observe enough cases but it is not feasible to collect data on all covariates for the whole cohort.", "source": "kulathinal2007", "where": "section 1, Introduction"}
+      ]
+    },
+    {
+      "id": "subcohort",
+      "title": "Random subcohort",
+      "text": "Draw a random sample of the whole cohort, without looking at who later becomes a case.",
+      "picture": "subcohort",
+      "quotes": [
+        {"text": "a random subsample of the original cohort (subcohort), selected independently of the definition of cases", "source": "kulathinal2007", "where": "section 1, Introduction"}
+      ]
+    },
+    {
+      "id": "cases",
+      "title": "Add every case",
+      "text": "Add every person who develops the outcome during follow-up. Measure the costly exposure only in this case-cohort set.",
+      "picture": "all_cases",
+      "quotes": [
+        {"text": "all cases outside the subcohort, i.e. all members of the cohort developing any or all events of interest during the follow-up. The union of (1) and (2) is referred to as the case-cohort set.", "source": "kulathinal2007", "where": "section 1, Introduction"},
+        {"text": "Commonly used designs such as the case-control or the nested case-control design require genotyping of all the cases and matched controls for each case.", "source": "kulathinal2007", "where": "section 1, Introduction (the nested case–control alternative)"}
+      ]
+    },
+    {
+      "id": "many",
+      "title": "Reuse for outcomes",
+      "text": "Because the subcohort was drawn at random, the same subcohort serves as comparison for several outcomes, and describes the whole cohort.",
+      "picture": "many",
+      "quotes": [
+        {"text": "a distinct advantage of the case-cohort design is that the selected subcohort can be used for analysing several endpoints of interest.", "source": "kulathinal2007", "where": "section 1, Introduction"}
+      ]
+    },
+    {
+      "id": "weights",
+      "title": "Weight the analysis",
+      "text": "Cases are over-represented, so the analysis weights people back to the whole cohort, for example by the inverse of the subcohort sampling fraction.",
+      "picture": "weights",
+      "quotes": [
+        {"text": "Adjustments to the partial likelihood are required because the cases are overrepresented in the case-cohort set and therefore unadjusted risk sets in the partial likelihood would not represent the original study cohort.", "source": "kulathinal2007", "where": "section 1, Introduction"},
+        {"text": "Here the subcohort members are weighted by the inverse of the sampling fraction at the event time", "source": "kulathinal2007", "where": "section 6.2, Analysis of time-to-event data (Barlow's weighting)"}
+      ]
+    }
+  ],
+  "limits": [
+    "Prentice (1986), the card's reference, was not read in this task; the steps follow Kulathinal et al. (2007), who cite it as the design's theoretical foundation.",
+    "The EPIC-InterAct numbers on the card were not checked in this task.",
+    "The nested case–control variant is mentioned only as a contrast; its own analysis (matched risk sets) is not shown.",
+    "No threat quotes: neither of the card's threats (measurement error, selection bias) is defined in the source read.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

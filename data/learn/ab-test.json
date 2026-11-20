@@ -1,0 +1,130 @@
+{
+  "method": "ab-test",
+  "question": "Does this change to a product make users do better?",
+  "sources": {
+    "kohavi2020": {
+      "cite": "Kohavi et al. (2020). Online randomized controlled experiments at scale: lessons and extensions to medicine. Trials 21: 150.",
+      "short": "Kohavi et al. (2020)",
+      "url": "https://doi.org/10.1186/s13063-020-4084-y",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC7007661) on 20 Nov 2026; places are given as sections; in-text reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "variants",
+      "title": "Build variants",
+      "text": "Make the change (B) and keep the current version (A). Only that one thing differs.",
+      "picture": "variants",
+      "quotes": [
+        {
+          "text": "Every major technology company runs online controlled experiments, often called A/B tests, to gather trustworthy data and make data-driven decisions about how to improve their products. All these controlled experiments are randomized.",
+          "source": "kohavi2020",
+          "where": "Background"
+        }
+      ]
+    },
+    {
+      "id": "oec",
+      "title": "Agree the metric",
+      "text": "Before the test, agree on the one measure (or few) that decides success. Hundreds of other metrics are for understanding, not for picking a winner.",
+      "picture": "oec",
+      "quotes": [
+        {
+          "text": "Agreement on the Overall Evaluation Criterion (OEC) becomes critically important.",
+          "source": "kohavi2020",
+          "where": "Culture change"
+        },
+        {
+          "text": "Since the OEC is used to determine success (e.g., shipping a change) and consists of one or a few metrics, there is less concern about multiple hypothesis testing.",
+          "source": "kohavi2020",
+          "where": "Culture change"
+        }
+      ]
+    },
+    {
+      "id": "split",
+      "title": "Split at random",
+      "text": "Each user is assigned to A or B by chance as they arrive. Huge numbers make tiny effects detectable.",
+      "picture": "split",
+      "quotes": [
+        {
+          "text": "For Bing, Google, and LinkedIn, it is common for each experiment to be exposed to over a million users.",
+          "source": "kohavi2020",
+          "where": "Scale and statistical power"
+        },
+        {
+          "text": "the ability to detect an effect twice as small, e.g., 0.25%, requires quadrupling the number of users.",
+          "source": "kohavi2020",
+          "where": "Scale and statistical power"
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "title": "Check the split",
+      "text": "Before reading results, check that the arms got the share of users they should. A lopsided split means something broke.",
+      "picture": "check",
+      "quotes": [
+        {
+          "text": "If the experiment design is for a ratio of one-to-one (equally sized control and treatment) then deviations in the actual ratio of users in an experiment likely indicate a problem.",
+          "source": "kohavi2020",
+          "where": "Similarities and dissimilarities with medical RCTs"
+        }
+      ]
+    },
+    {
+      "id": "decide",
+      "title": "Ship or drop",
+      "text": "Ship the winner, change or drop the loser, and test the next idea. Most ideas turn out not to help.",
+      "picture": "decide",
+      "quotes": [
+        {
+          "text": "Winners are shipped, losers are modified (given new data and insights from the experiment) or abandoned.",
+          "source": "kohavi2020",
+          "where": "Culture change"
+        },
+        {
+          "text": "most ideas are not as good as we believe",
+          "source": "kohavi2020",
+          "where": "Culture change"
+        }
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "forking-paths": {
+      "text": "It is usually easy to find something that improves (or degrades), but the challenge is to come up with a small set of key metrics, ideally a single OEC, to help make tradeoffs.",
+      "source": "kohavi2020",
+      "where": "Culture change"
+    },
+    "construct-validity": {
+      "text": "A good OEC captures the organizational long-term objectives but must be based on metrics that are measurable in short-term experiments.",
+      "source": "kohavi2020",
+      "where": "Culture change"
+    }
+  },
+  "exercise": {
+    "title": "A/A tests: when nothing changed",
+    "intro": "In an A/A test both arms see exactly the same product, so any difference is chance. Run a batch of 100 and count the 'significant' ones; then let each test look at more metrics.",
+    "quote": {
+      "text": "Because the null hypothesis is true by design in A/A tests, statistically significant differences for each metric should happen at about 5% when using a p value cutoff of 0.05.",
+      "source": "kohavi2020",
+      "where": "Similarities and dissimilarities with medical RCTs"
+    },
+    "data_label": "Example data, simulated for this exercise.",
+    "model": "Each arm has 1000 users who convert at 5%; a metric counts as significant when a two-sided z-test gives p < 0.05. Metrics are simulated as independent, which real metrics are not.",
+    "users": 1000,
+    "rate": 0.05,
+    "metrics": [
+      1,
+      5,
+      20
+    ]
+  },
+  "limits": [
+    "The card's defining paper, Kohavi et al. (2007, KDD), was not read: it is not open in Europe PMC, and no file was downloaded. The quotes come from Kohavi et al. (2020) in Trials instead.",
+    "The \"Background\" quote is the first paragraph of the article's main text, which follows the abstract's own Background heading.",
+    "No defining quote is given for contamination on this page.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

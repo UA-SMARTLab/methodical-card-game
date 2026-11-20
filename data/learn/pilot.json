@@ -1,0 +1,68 @@
+{
+  "method": "pilot",
+  "question": "Can the full study be done, and how?",
+  "sources": {
+    "eldridge2016": {
+      "cite": "Eldridge et al. (2016). CONSORT 2010 statement: extension to randomised pilot and feasibility trials. BMJ 355: i5239.",
+      "short": "Eldridge et al. (2016)",
+      "url": "https://doi.org/10.1136/bmj.i5239",
+      "checked": "every quote read word for word in the vault's text copy (library No. 287) on 20 Nov 2026; the article is online-only (i5239), so places are given as its introduction, box 1 and checklist items; in-text reference numbers are left out"
+    }
+  },
+  "steps": [
+    {
+      "id": "question",
+      "title": "Ask about feasibility",
+      "text": "Name what is uncertain about the future main study: recruitment, retention, delivery, measurement. Those are the pilot's questions.",
+      "picture": "question",
+      "quotes": [
+        {"text": "a feasibility study for a future definitive RCT asks whether the future trial can be done, should be done, and, if so, how.", "source": "eldridge2016", "where": "introduction"},
+        {"text": "The rationale of a pilot trial is to investigate areas of uncertainty about the future definitive RCT", "source": "eldridge2016", "where": "box 1"}
+      ]
+    },
+    {
+      "id": "criteria",
+      "title": "Set criteria first",
+      "text": "Before starting, write down what result means go, go with changes, or stop.",
+      "picture": "criteria",
+      "quotes": [
+        {"text": "This might involve formal progression criteria to decide whether to proceed, to proceed with amendments, or not to proceed", "source": "eldridge2016", "where": "box 1"}
+      ]
+    },
+    {
+      "id": "size",
+      "title": "Size for feasibility",
+      "text": "Choose the number of participants to answer the feasibility questions, and say why.",
+      "picture": "size",
+      "quotes": [
+        {"text": "The number of participants in a pilot study should be based on the feasibility objectives and some rationale should be given", "source": "eldridge2016", "where": "box 1"}
+      ]
+    },
+    {
+      "id": "rehearse",
+      "title": "Rehearse small",
+      "text": "Run the main study, or part of it, on a small scale, and count everyone at every stage.",
+      "picture": "rehearse",
+      "quotes": [
+        {"text": "in a pilot study (that might or might not be randomised) the future definitive RCT, or part of it, is conducted on a smaller scale.", "source": "eldridge2016", "where": "introduction"},
+        {"text": "the numbers of participants who were approached and/or assessed for eligibility, randomly assigned, received intended treatment, and were assessed for each objective", "source": "eldridge2016", "where": "item 13a"}
+      ]
+    },
+    {
+      "id": "decide",
+      "title": "Decide, don't test",
+      "text": "Judge the counts against the criteria and decide on the main study. Do not test whether the treatment works: the pilot is too small for that.",
+      "picture": "decide",
+      "quotes": [
+        {"text": "Formal hypothesis testing for effectiveness (or efficacy) is not recommended.", "source": "eldridge2016", "where": "box 1"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "low-power": {"text": "The aim of a pilot trial is not to assess effectiveness (or efficacy) and it will usually be underpowered to do this", "source": "eldridge2016", "where": "box 1"}
+  },
+  "limits": [
+    "Eldridge et al. (2016) is written for randomised pilot trials; non-randomised pilots follow the same logic but are not covered by the guideline.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

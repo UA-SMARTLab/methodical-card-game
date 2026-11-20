@@ -1,0 +1,84 @@
+{
+  "method": "diagnostic-accuracy",
+  "question": "How well does this test pick out the people who have the condition?",
+  "sources": {
+    "bossuyt2015": {
+      "cite": "Bossuyt et al. (2015). STARD 2015: an updated list of essential items for reporting diagnostic accuracy studies. BMJ 351: h5527.",
+      "short": "Bossuyt et al. (2015)",
+      "url": "https://doi.org/10.1136/bmj.h5527",
+      "checked": "every quote read word for word in the vault's text copy of the PMC full text (library No. 282, PMC4623764) on 20 Nov 2026; the article is online-only (h5527), so places are given as STARD items, tables and the introduction; in-text reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "recruit",
+      "title": "Recruit the suspected",
+      "text": "Take the people in whom the test would really be used: a consecutive series of those suspected of the condition, not a mix of the very sick and the plainly healthy.",
+      "picture": "recruit",
+      "quotes": [
+        {"text": "Whether participants formed a consecutive, random, or convenience series", "source": "bossuyt2015", "where": "item 9"}
+      ]
+    },
+    {
+      "id": "index",
+      "title": "Run the new test",
+      "text": "Apply the test under evaluation (the index test) to everyone, with its cut-off for a positive result fixed in advance.",
+      "picture": "index",
+      "quotes": [
+        {"text": "The test under evaluation", "source": "bossuyt2015", "where": "table 3, the definition of index test"},
+        {"text": "Definition of and rationale for test positivity cut-offs or result categories of the index test, distinguishing pre-specified from exploratory", "source": "bossuyt2015", "where": "item 12a"}
+      ]
+    },
+    {
+      "id": "reference",
+      "title": "Reference standard",
+      "text": "Establish who really has the condition with the best method available, in everyone, not only in those who tested positive.",
+      "picture": "reference",
+      "quotes": [
+        {"text": "The best available method for establishing the presence or absence of the target condition; a gold standard would be an error-free reference standard", "source": "bossuyt2015", "where": "table 3, clinical reference standard"}
+      ]
+    },
+    {
+      "id": "blind",
+      "title": "Read blind",
+      "text": "Whoever reads one test must not know the other's result, or what they expect will colour what they see.",
+      "picture": "blind",
+      "quotes": [
+        {"text": "Whether clinical information and reference standard results were available to the performers or readers of the index test", "source": "bossuyt2015", "where": "item 13a"}
+      ]
+    },
+    {
+      "id": "table",
+      "title": "Count the 2 × 2",
+      "text": "Cross the two results in a table: true and false positives, false and true negatives. Sensitivity and specificity follow from its columns.",
+      "picture": "table",
+      "quotes": [
+        {"text": "Cross tabulation of the index test results (or their distribution) by the results of the reference standard", "source": "bossuyt2015", "where": "item 23"},
+        {"text": "Proportion of those with the target condition who test positive with the index test", "source": "bossuyt2015", "where": "table 3, the definition of sensitivity"},
+        {"text": "Proportion of those without the target condition who test negative with the index test", "source": "bossuyt2015", "where": "table 3, the definition of specificity"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "spectrum-bias": {"text": "if only healthy controls are included, the estimates of test accuracy may not reflect the performance of the test in clinical applications.", "source": "bossuyt2015", "where": "introduction"}
+  },
+  "exercise": {
+    "kind": "threshold",
+    "title": "Move the cut-off",
+    "intro": "Each person has a test value. Above the cut-off the test says positive. Move the cut-off and watch the 2 × 2 table, sensitivity and specificity trade against each other. Then swap the people without the condition: clinic patients with look-alike illnesses, or healthy volunteers.",
+    "quote": {"text": "It is now well established that sensitivity and specificity are not fixed test properties.", "source": "bossuyt2015", "where": "introduction"},
+    "data_label": "Example data, made up for this exercise: 60 people with the condition and 140 without, test values drawn from bell curves with a fixed seed.",
+    "n_with": 60,
+    "n_without": 140,
+    "with_mean": 62, "with_sd": 11,
+    "clinic_mean": 48, "clinic_sd": 11,
+    "healthy_mean": 34, "healthy_sd": 9,
+    "cut": 55
+  },
+  "limits": [
+    "STARD 2015 is a reporting guideline; it lists what a report must say rather than prescribing how to run the study. The steps follow its items.",
+    "The rapid antigen test example on the card is not worked through with real numbers here.",
+    "Predictive values and the ROC curve are mentioned by STARD but not shown.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

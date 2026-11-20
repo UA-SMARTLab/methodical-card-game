@@ -1,0 +1,65 @@
+{
+  "method": "interlab",
+  "question": "Do different laboratories get the same result from the same sample?",
+  "sources": {
+    "broothaerts2020": {
+      "cite": "Broothaerts et al. (2020). Ten years of proficiency testing reveals an improvement in the analytical performance of EU National Reference Laboratories for genetically modified food and feed. Food Control 114: 107237.",
+      "short": "Broothaerts et al. (2020)",
+      "url": "https://doi.org/10.1016/j.foodcont.2020.107237",
+      "checked": "every quote read word for word in the open-access full text from Europe PMC (PMC7224516, full-text XML) on 20 Nov 2026; places are the article's numbered sections; reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "items",
+      "title": "Prepare identical items",
+      "text": "A coordinator makes test items that are the same for everyone and ships them to each laboratory.",
+      "picture": "items",
+      "quotes": [
+        {"text": "For each PT round two test items were prepared and distributed to the participants, consisting of a food or feed matrix containing or spiked with one or more GMOs.", "source": "broothaerts2020", "where": "section 2.1"}
+      ]
+    },
+    {
+      "id": "measure",
+      "title": "Labs measure",
+      "text": "Each laboratory analyses its item with its usual method, without knowing the answer, and reports the result.",
+      "picture": "measure",
+      "quotes": [
+        {"text": "received the test items together with the instruction to identify the unknown GM event(s) present in the materials and to quantify the event(s) identified.", "source": "broothaerts2020", "where": "section 2.1"}
+      ]
+    },
+    {
+      "id": "assign",
+      "title": "Set the target",
+      "text": "Fix the value the results are judged against: from how the item was made, from expert laboratories, from a certified reference, or from a robust mean of all results.",
+      "picture": "assign",
+      "quotes": [
+        {"text": "(i) from the formulation (mass fraction), (ii) by consensus of results reported by expert laboratories (using real-time or digital PCR), (iii) using the certified value of a certified reference material (CRM), or (iv) by calculating the robust mean of the results reported by the NRLs.", "source": "broothaerts2020", "where": "section 2.2, ways of setting the assigned value"}
+      ]
+    },
+    {
+      "id": "score",
+      "title": "Score each lab",
+      "text": "Compare each result with the target and score it. A lab with an unsatisfactory score looks for the cause.",
+      "picture": "score",
+      "quotes": [
+        {"text": "The results reported by the NRLs were then compared to the assigned values and scored by using the percentage deviation", "source": "broothaerts2020", "where": "section 2.3"},
+        {"text": "NRLs that obtained an unsatisfactory z score were requested to perform a root-cause analysis", "source": "broothaerts2020", "where": "section 1"}
+      ]
+    },
+    {
+      "id": "spread",
+      "title": "Read the spread",
+      "text": "The spread of all the labs' results shows how reproducible the method is between laboratories; repeated rounds show whether it improves.",
+      "picture": "spread",
+      "quotes": [
+        {"text": "The outcome revealed a gradual decrease of the relative standard deviation within the sets of the reported data with time.", "source": "broothaerts2020", "where": "abstract"}
+      ]
+    }
+  ],
+  "limits": [
+    "The card's defining reference, the IUPAC International Harmonized Protocol (Thompson et al. 2006), could not be read: the publisher's page answered with a bot check. The page follows one proficiency-testing scheme, Broothaerts et al. (2020), instead.",
+    "The z-score formula and the homogeneity test of ISO 13528 and the IUPAC protocol are not shown, because neither text was read.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

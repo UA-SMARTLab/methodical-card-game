@@ -1,0 +1,78 @@
+{
+  "method": "crossover",
+  "question": "Which of two treatments works better, compared within each person?",
+  "sources": {
+    "dwan2019": {
+      "cite": "Dwan et al. (2019). CONSORT 2010 statement: extension to randomised crossover trials. BMJ 366: l4378.",
+      "short": "Dwan et al. (2019)",
+      "url": "https://doi.org/10.1136/bmj.l4378",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC6667942) on 20 Nov 2026; the article is online-only (l4378), so places are given as its sections, box and CONSORT items; in-text reference numbers are left out of the quotes"
+    },
+    "mills2009": {
+      "cite": "Mills et al. (2009). Design, analysis, and presentation of crossover trials. Trials 10: 27.",
+      "short": "Mills et al. (2009)",
+      "url": "https://doi.org/10.1186/1745-6215-10-27",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC2683810) on 20 Nov 2026; places are given as sections; in-text reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "sequence",
+      "title": "Randomise the order",
+      "text": "Chance decides the order in which each person gets the treatments: A then B, or B then A. Everyone gets both.",
+      "picture": "sequence",
+      "quotes": [
+        {"text": "each individual in a crossover trial receives multiple interventions but in a random order; that is, participants are randomised to sequences of interventions.", "source": "dwan2019", "where": "Methodological features of randomised crossover trials"},
+        {"text": "The allocation might be to sequence one, in which participants have A followed by B, or to sequence two, in which participants have B followed by A.", "source": "dwan2019", "where": "item 8a"}
+      ]
+    },
+    {
+      "id": "period1",
+      "title": "First period",
+      "text": "Each person takes their first treatment for a set time, and the outcome is measured at the end of it.",
+      "picture": "period1",
+      "quotes": [
+        {"text": "Period: a length of time when one treatment was received.", "source": "dwan2019", "where": "box 1, glossary"}
+      ]
+    },
+    {
+      "id": "washout",
+      "title": "Washout",
+      "text": "A gap with no treatment lets the first one wear off, so it does not leak into the second period.",
+      "picture": "washout",
+      "quotes": [
+        {"text": "Washout: a length of time between treatment periods when no treatment is received to allow the treatment to wear off.", "source": "dwan2019", "where": "box 1, glossary"}
+      ]
+    },
+    {
+      "id": "period2",
+      "title": "Swap",
+      "text": "Each person now gets the other treatment, for the same length of time, measured the same way.",
+      "picture": "period2",
+      "quotes": [
+        {"text": "crossover trials provide each participant with two or more sequential treatments in a random order usually separated by a washout period", "source": "mills2009", "where": "Introduction"}
+      ]
+    },
+    {
+      "id": "within",
+      "title": "Compare within",
+      "text": "Compare each person's result on A with their own result on B. Differences between people drop out, which is why far fewer people are needed.",
+      "picture": "within",
+      "quotes": [
+        {"text": "Within a trial, each participant is able to act as his or her own control and permits between and within group comparisons", "source": "mills2009", "where": "Introduction"},
+        {"text": "The analysis of a crossover trial should respect the within participant nature of the comparisons.", "source": "dwan2019", "where": "item 12a"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "carryover": {"text": "the effect of the first intervention persists into the second period so that the observed difference between the treatments depends on the order in which they were received", "source": "dwan2019", "where": "Methodological features of randomised crossover trials"},
+    "attrition": {"text": "Patients may drop out after the first intervention period and thus not receive a second or third treatment. This makes within-subject comparison impossible", "source": "mills2009", "where": "Discussion"}
+  },
+  "limits": [
+    "No exercise: the five pictures carry the idea; the within-person comparison is shown, not simulated.",
+    "The card's example (bioequivalence studies of generic and brand-name drugs) is not quoted here: no source on it was read for this page.",
+    "Designs with more than two treatments or periods are left out; the quotes follow Dwan et al. (2019), who focus on the two-period, two-treatment (AB/BA) design.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

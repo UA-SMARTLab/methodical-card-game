@@ -1,0 +1,91 @@
+{
+  "method": "cluster-rct",
+  "question": "Does an intervention delivered to whole groups cause the outcome?",
+  "sources": {
+    "surr2024": {
+      "cite": "Surr et al. (2024). Researchers' experiences of the design and conduct challenges associated with parallel-group cluster-randomised trials and views on a novel open-cohort design. PLoS One 19: e0297184.",
+      "short": "Surr et al. (2024)",
+      "url": "https://doi.org/10.1371/journal.pone.0297184",
+      "checked": "quotes read word for word in the Europe PMC full text (PMC10889884) on 20 Nov 2026; in-text reference numbers are left out of the quotes"
+    },
+    "hemming2018": {
+      "cite": "Hemming et al. (2018). Reporting of stepped wedge cluster randomised trials: extension of the CONSORT 2010 statement with explanation and elaboration. BMJ 363: k1614.",
+      "short": "Hemming et al. (2018)",
+      "url": "https://doi.org/10.1136/bmj.k1614",
+      "checked": "read in the Europe PMC full text (PMC6225589) on 20 Nov 2026; the quotes here are the CONSORT cluster extension's items as Hemming et al. reprint them under each item (\"CONSORT cluster extension—\"), not the cluster extension itself"
+    },
+    "thompson2022": {
+      "cite": "Thompson et al. (2022). Cluster randomised trials with a binary outcome and a small number of clusters: comparison of individual and cluster level analysis method. BMC Medical Research Methodology 22: 222.",
+      "short": "Thompson et al. (2022)",
+      "url": "https://doi.org/10.1186/s12874-022-01699-2",
+      "checked": "the ICC definition read word for word in the Europe PMC full text (PMC9375419) on 20 Nov 2026"
+    },
+    "lazic2010": {
+      "cite": "Lazic (2010). The problem of pseudoreplication in neuroscientific studies: is it affecting your analysis? BMC Neuroscience 11: 5.",
+      "short": "Lazic (2010)",
+      "url": "https://doi.org/10.1186/1471-2202-11-5",
+      "checked": "the definition of an experimental unit read word for word in the Europe PMC full text (PMC2817684) on 20 Nov 2026; the in-text reference number is left out"
+    }
+  },
+  "steps": [
+    {
+      "id": "groups",
+      "title": "Define clusters",
+      "text": "The unit you allocate is a whole group: a school, a clinic, a village. Everyone in it gets the same arm.",
+      "picture": "groups",
+      "quotes": [
+        {"text": "Cluster-randomised trials (CRTs) randomise groups of individuals (“clusters”) to different interventions or sequences of interventions within a trial, as opposed to individuals.", "source": "surr2024", "where": "Introduction"}
+      ]
+    },
+    {
+      "id": "why",
+      "title": "Say why",
+      "text": "Cluster when the intervention acts on the whole group, or when splitting a group would let it leak from one arm to the other.",
+      "picture": "why",
+      "quotes": [
+        {"text": "CRTs are widely used in settings where interventions are delivered in an attempt to change the culture, environment or general practices and to reduce contamination between arms.", "source": "surr2024", "where": "Introduction"},
+        {"text": "Rationale for using a cluster design.", "source": "hemming2018", "where": "item 2a, the CONSORT cluster extension's wording"}
+      ]
+    },
+    {
+      "id": "allocate",
+      "title": "Randomise clusters",
+      "text": "Chance allocates the clusters, not the people. Then say how people inside each cluster came into the trial.",
+      "picture": "allocate",
+      "quotes": [
+        {"text": "Specification that allocation was based on clusters rather than individuals and whether allocation concealment (if any) was at the cluster level, the individual participant level, or both.", "source": "hemming2018", "where": "item 9, the CONSORT cluster extension's wording"},
+        {"text": "Mechanism by which individual participants were included in clusters for the purposes of the trial (such as complete enumeration, random sampling).", "source": "hemming2018", "where": "item 10b, the CONSORT cluster extension's wording"}
+      ]
+    },
+    {
+      "id": "icc",
+      "title": "Size for likeness",
+      "text": "People in one cluster resemble each other, so each adds less new information. The sample size must allow for it, which usually means more people.",
+      "picture": "icc",
+      "quotes": [
+        {"text": "The ICC is the between cluster variability divided by the total variability.", "source": "thompson2022", "where": "Methods, cluster-level analysis"},
+        {"text": "Method of calculation, number of clusters (and whether equal or unequal cluster sizes are assumed), cluster size, a coefficient of intracluster correlation (ICC or k), and an indication of its uncertainty.", "source": "hemming2018", "where": "item 7a, the CONSORT cluster extension's wording"}
+      ]
+    },
+    {
+      "id": "analyse",
+      "title": "Analyse as clusters",
+      "text": "Compare the arms in a way that respects the grouping. Treating every pupil as independent makes the result look surer than it is.",
+      "picture": "analyse",
+      "quotes": [
+        {"text": "How clustering was taken into account.", "source": "hemming2018", "where": "item 12a, the CONSORT cluster extension's wording"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "unit-of-analysis": {"text": "An experimental unit is defined as the smallest entity that can be randomly assigned to a different treatment condition", "source": "lazic2010", "where": "Background"}
+  },
+  "limits": [
+    "The card's defining paper, the CONSORT cluster extension (Campbell et al. 2012, BMJ e5661), was not read directly: it is not in Europe PMC's open full text, and bmj.com and PMC showed bot checks, which were not passed. Its item wordings are quoted as Hemming et al. (2018) reprint them.",
+    "The design effect (how much clustering inflates the sample size) is described in words only: no source's formula was read in a form that could be quoted word for word.",
+    "No exercise: the pictures carry the idea.",
+    "No defining quotes are given for selection bias or low power on this page.",
+    "The card's example (school-based deworming and hygiene trials) is not quoted: no source on it was read for this page.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

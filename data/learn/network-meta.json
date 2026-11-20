@@ -1,0 +1,77 @@
+{
+  "method": "network-meta",
+  "question": "Of all the treatments, which works best, even those never compared head to head?",
+  "sources": {
+    "ioannidis2009": {
+      "cite": "Ioannidis (2009). Integration of evidence from multiple meta-analyses: a primer on umbrella reviews, treatment networks and multiple treatments meta-analyses. CMAJ 181(8): 488–493.",
+      "short": "Ioannidis (2009)",
+      "url": "https://doi.org/10.1503/cmaj.081086",
+      "checked": "every quote read word for word on the PMC article page (PMC2761440) in Chrome on 20 Nov 2026; volume and pages as printed there; places are given as the article's section headings; in-text reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "network",
+      "title": "Draw the network",
+      "text": "Collect every trial for the condition. Each treatment is a node; a line joins two treatments that some trial compared.",
+      "picture": "network",
+      "quotes": [
+        {"text": "It is depicted by the use of nodes for each available treatment and links between the nodes when the respective treatments have been compared in 1 or more trials.", "source": "ioannidis2009", "where": "Treatment networks"}
+      ]
+    },
+    {
+      "id": "geometry",
+      "title": "Read its shape",
+      "text": "Look at which comparisons were made often and which never. Gaps can reveal what sponsors chose to test.",
+      "picture": "geometry",
+      "quotes": [
+        {"text": "Network geometry addresses what the shape of the network (nodes and links) looks like.", "source": "ioannidis2009", "where": "Network geometry"}
+      ]
+    },
+    {
+      "id": "indirect",
+      "title": "Go via a common arm",
+      "text": "Two drugs never compared directly can still be compared through a treatment both were tested against, such as placebo.",
+      "picture": "indirect",
+      "quotes": [
+        {"text": "To estimate the effect of bupropion versus that of nicotine replacement, we can use either information from their direct (head-to-head) comparison or information from the comparison of each medication against placebo.", "source": "ioannidis2009", "where": "Incoherence"}
+      ]
+    },
+    {
+      "id": "incoherence",
+      "title": "Check the loops",
+      "text": "Where a loop exists, compare the direct and the indirect estimate. If they disagree, find out why before combining.",
+      "picture": "incoherence",
+      "quotes": [
+        {"text": "Incoherence tells us whether the effect estimated from indirect comparisons differs from that estimated from direct comparisons.", "source": "ioannidis2009", "where": "Incoherence"}
+      ]
+    },
+    {
+      "id": "rank",
+      "title": "Estimate and rank",
+      "text": "Combine all the evidence into an effect for every pair, with its uncertainty, and the chance that each treatment is best.",
+      "picture": "rank",
+      "quotes": [
+        {"text": "A multiple treatments meta-analysis eventually derives treatment effects (e.g., relative risks) and the uncertainty (credibility intervals) for pair-wise comparisons of all of the treatments involved in the network, regardless of whether they were compared directly.", "source": "ioannidis2009", "where": "Multiple treatments meta-analysis"},
+        {"text": "A useful feature is to rank the treatments on their probability of being the best.", "source": "ioannidis2009", "where": "Multiple treatments meta-analysis"}
+      ]
+    }
+  ],
+  "exercise": {
+    "kind": "indirect",
+    "title": "Compare two drugs that never met",
+    "intro": "Drug A and drug B were each tested against placebo; one small trial also compared them head to head. Move the placebo-controlled results and see the indirect estimate of A versus B, its uncertainty, and whether it agrees with the direct trial.",
+    "quote": {"text": "Incoherence tells us whether the effect estimated from indirect comparisons differs from that estimated from direct comparisons.", "source": "ioannidis2009", "where": "Incoherence"},
+    "data_label": "Example data, made up for this exercise.",
+    "method_note": "On the log odds ratio scale the indirect estimate is (A vs placebo) minus (B vs placebo), and its variance is the sum of the two variances (the adjusted indirect comparison). Agreement is tested with a z test on the difference between direct and indirect.",
+    "a_vs_p": {"or": 0.60, "se": 0.12},
+    "b_vs_p": {"or": 0.80, "se": 0.15},
+    "a_vs_b_direct": {"or": 0.95, "se": 0.25}
+  },
+  "limits": [
+    "The card's defining paper, Lumley (2002), and the reporting guideline PRISMA-NMA (Hutton et al. 2015) were not read: neither is open in Europe PMC. Ioannidis (2009) is quoted instead.",
+    "Network meta-analysis also assumes transitivity (the trials are similar enough apart from the treatments); no source read here states it in those words, so it is not quoted.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

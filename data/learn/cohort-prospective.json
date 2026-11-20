@@ -1,0 +1,69 @@
+{
+  "method": "cohort-prospective",
+  "question": "Do people with the exposure go on to get the outcome more often?",
+  "sources": {
+    "vandenbroucke2007": {
+      "cite": "Vandenbroucke et al. (2007). Strengthening the Reporting of Observational Studies in Epidemiology (STROBE): explanation and elaboration. PLoS Medicine 4(10): e297.",
+      "short": "Vandenbroucke et al. (2007)",
+      "url": "https://doi.org/10.1371/journal.pmed.0040297",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC2020496) on 20 Nov 2026; the article is online-only (e297), so places are given as its STROBE items and boxes; in-text reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "recruit",
+      "title": "Recruit",
+      "text": "Define who is eligible and enrol a group that is free of the outcome at the start.",
+      "picture": "recruit",
+      "quotes": [
+        {"text": "Closed cohorts (for example birth cohorts) enrol a defined number of participants at study onset and follow them from that time forward, often at set intervals up to a fixed end date.", "source": "vandenbroucke2007", "where": "box 1"}
+      ]
+    },
+    {
+      "id": "baseline",
+      "title": "Measure exposure",
+      "text": "Record each person's exposure at the start, before any outcome has happened, so the time order is clear.",
+      "picture": "baseline",
+      "quotes": [
+        {"text": "They obtain information about people and their exposures at baseline, let time pass, and then assess the occurrence of outcomes.", "source": "vandenbroucke2007", "where": "box 1"}
+      ]
+    },
+    {
+      "id": "follow",
+      "title": "Follow up",
+      "text": "Follow everyone the same way for years, and keep track of who is lost along the way.",
+      "picture": "follow",
+      "quotes": [
+        {"text": "Knowing details about follow-up procedures, including whether procedures minimized non-response and loss to follow-up and whether the procedures were similar for all participants, informs judgments about the validity of results.", "source": "vandenbroucke2007", "where": "item 6(a), explanation"}
+      ]
+    },
+    {
+      "id": "incidence",
+      "title": "Count new cases",
+      "text": "Count the people who develop the outcome during follow-up, in each exposure group.",
+      "picture": "incidence",
+      "quotes": [
+        {"text": "They may examine the number of people who have a disease at a particular time (prevalence), or that develop a disease over a defined period (incidence).", "source": "vandenbroucke2007", "where": "box 7"}
+      ]
+    },
+    {
+      "id": "compare",
+      "title": "Compare risks",
+      "text": "Divide the risk (or rate) in the exposed by that in the unexposed. Adjust for confounders, because exposure was not assigned by chance.",
+      "picture": "compare",
+      "quotes": [
+        {"text": "In a closed cohort cumulative incidences (risks) and incidence rates can be estimated; when exposed and unexposed groups are compared, this leads to risk ratio or rate ratio estimates.", "source": "vandenbroucke2007", "where": "box 1"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "confounding": {"text": "In reality, the seeming association or lack of association is due to another factor that determines the occurrence of the disease but that is also associated with the exposure.", "source": "vandenbroucke2007", "where": "box 5"},
+    "attrition": {"text": "In other studies where follow-up procedures differed between exposed and unexposed groups, readers might recognize substantial bias due to unequal ascertainment of events or differences in non-response or loss to follow-up", "source": "vandenbroucke2007", "where": "item 6(a), explanation"}
+  },
+  "limits": [
+    "The Framingham Study's own design (Dawber et al. 1951, the card's reference) was not read in this task; the steps follow the STROBE explanation instead.",
+    "STROBE itself avoids the words prospective and retrospective (item 4); this page uses prospective for a cohort whose exposure is measured before the outcomes occur.",
+    "The picture's numbers (3 of 9 against 1 of 9) are made up to show the arithmetic.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

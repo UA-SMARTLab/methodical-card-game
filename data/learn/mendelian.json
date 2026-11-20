@@ -1,0 +1,78 @@
+{
+  "method": "mendelian",
+  "question": "Does a modifiable exposure cause a disease, judged by genes that shift the exposure?",
+  "sources": {
+    "skrivankova2021": {
+      "cite": "Skrivankova et al. (2021). Strengthening the reporting of observational studies in epidemiology using mendelian randomisation (STROBE-MR): explanation and elaboration. BMJ: n2233.",
+      "short": "Skrivankova et al. (2021)",
+      "url": "https://doi.org/10.1136/bmj.n2233",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC8546498) on 20 Nov 2026; the article is online-only (n2233), so places are its opening text, tables, boxes and STROBE-MR items; in-text reference numbers are left out; the volume number was not seen in the text copy"
+    },
+    "lousdal2018": {
+      "cite": "Lousdal (2018). An introduction to instrumental variable assumptions, validation and estimation. Emerging Themes in Epidemiology 15: 1.",
+      "short": "Lousdal (2018)",
+      "url": "https://doi.org/10.1186/s12982-018-0069-7",
+      "checked": "quote read word for word in the Europe PMC full text (PMC5776781) on 20 Nov 2026; in-text reference numbers are left out"
+    }
+  },
+  "steps": [
+    {
+      "id": "shuffle",
+      "title": "Nature shuffles",
+      "text": "Each child gets a random half of each parent's variants, so the variants are not tied to lifestyle, and the disease cannot change them.",
+      "picture": "shuffle",
+      "quotes": [
+        {"text": "Genetic variation is essentially randomly inherited from parents to offspring at conception, and consequently, many factors that confound the association between the exposure and outcome cannot affect the genetic variants.", "source": "skrivankova2021", "where": "opening section"},
+        {"text": "Similarly, genetic variants are generally not influenced by the outcome and therefore, by reverse causation.", "source": "skrivankova2021", "where": "opening section"}
+      ]
+    },
+    {
+      "id": "variants",
+      "title": "Pick variants",
+      "text": "Choose variants known, from large genetic studies, to shift the exposure, such as variants that raise LDL cholesterol.",
+      "picture": "variants",
+      "quotes": [
+        {"text": "MR studies use genetic variants robustly related to modifiable exposures to understand the influence of the exposure on various health, social, and economic outcomes.", "source": "skrivankova2021", "where": "opening section"}
+      ]
+    },
+    {
+      "id": "assumptions",
+      "title": "State assumptions",
+      "text": "The variants are instruments, so the instrumental variable assumptions apply: they shift the exposure, share no cause with the outcome, and reach it only through the exposure.",
+      "picture": "assumptions",
+      "quotes": [
+        {"text": "relevance (the genetic variants are associated with the exposure of interest); independence (the genetic variants share no unmeasured cause with the outcome); and exclusion restriction (the genetic variants do not affect the outcome except through their potential effect on the exposure of interest)", "source": "skrivankova2021", "where": "table 2, Instrumental variable assumptions"}
+      ]
+    },
+    {
+      "id": "two-samples",
+      "title": "Two samples",
+      "text": "Often the variant–exposure and variant–outcome associations come from different studies, combined from published summaries.",
+      "picture": "two_samples",
+      "quotes": [
+        {"text": "A type of MR study in which the genetic variant-exposure and genetic variant-outcome associations are estimated in different samples and combined using meta-analysis tools.", "source": "skrivankova2021", "where": "table 2, Two sample MR"}
+      ]
+    },
+    {
+      "id": "estimate",
+      "title": "Estimate",
+      "text": "Relate each variant's effect on the outcome to its effect on the exposure; the slope estimates the exposure's effect.",
+      "picture": "estimate",
+      "quotes": [
+        {"text": "Describe the MR estimator (eg, two stage least squares, Wald ratio) and related statistics.", "source": "skrivankova2021", "where": "item 6c"},
+        {"text": "Secondly, some examples of natural randomisation processes can be found e.g. Mendelian randomisation, where alleles are allocated at random in offspring.", "source": "lousdal2018", "where": "section Three basic assumptions"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "confounding": {"text": "Concerns about violations of the independence assumption usually focus on confounding by ancestry (or population stratification).", "source": "skrivankova2021", "where": "box 2"},
+    "low-power": {"text": "If genetic variants used as instrumental variables are only weakly associated with the exposure of interest, they are said to be “weak instruments,” and then the MR estimates can be biased.", "source": "skrivankova2021", "where": "table 2, Weak instrument bias"}
+  },
+  "limits": [
+    "Davey Smith & Ebrahim (2003), the card's reference, was not read in this task; the steps follow the STROBE-MR explanation.",
+    "The LDL and coronary heart disease labels in the pictures echo the card's example; that literature was not read in this task, and the picture's points are made up.",
+    "The quote of the two-sample definition and of the assumptions is from STROBE-MR's glossary table; the table number (2) is as it appears in the Europe PMC text.",
+    "For a worked instrument estimate, see the instrumental variable page's exercise.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

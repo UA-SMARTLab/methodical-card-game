@@ -1,0 +1,91 @@
+{
+  "method": "rdd",
+  "question": "What does the treatment do for people right at the cutoff?",
+  "sources": {
+    "okeeffe2025": {
+      "cite": "O’Keeffe & Petersen (2025). Regression discontinuity designs in epidemiology: a practical guide. Clinical Epidemiology 17: 845–862.",
+      "short": "O’Keeffe & Petersen (2025)",
+      "url": "https://doi.org/10.2147/CLEP.S552437",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC12581866) on 20 Nov 2026; the web text has no page numbers, so places are given as its section headings; in-text reference numbers are left out. The card's own reference (Thistlethwaite & Campbell 1960) is not open access and was not read"
+    }
+  },
+  "steps": [
+    {
+      "id": "rule",
+      "title": "Find the rule",
+      "text": "Look for a treatment given by a rule on a continuous score, such as statins from a 10-year cardiovascular risk of 10%.",
+      "picture": "rule",
+      "quotes": [
+        {"text": "This variable is then compared to a pre-defined, external, threshold that is used to determine treatment", "source": "okeeffe2025", "where": "Overview of the RDD"}
+      ]
+    },
+    {
+      "id": "jump",
+      "title": "Check the jump",
+      "text": "The chance of being treated must jump at the cutoff: from 0 to 1 if the rule is always followed (sharp), by less if not (fuzzy).",
+      "picture": "jump",
+      "quotes": [
+        {"text": "This is known as a “sharp RDD” – where the threshold is a strict separator for the “treated” (above threshold) and “untreated” (below threshold) groups.", "source": "okeeffe2025", "where": "Sharp RDD"},
+        {"text": "If we do not see a discontinuity at the threshold, we cannot apply the RDD design.", "source": "okeeffe2025", "where": "Assumption 1"}
+      ]
+    },
+    {
+      "id": "no_cheat",
+      "title": "No sorting",
+      "text": "People must not be able to nudge their score across the line. A pile-up of scores just on one side is a warning.",
+      "picture": "no_cheat",
+      "quotes": [
+        {"text": "We also assume that an individual cannot manipulate their own assignment variable in an effort to place them above (or below) the threshold and then receive (or not receive) the treatment/intervention.", "source": "okeeffe2025", "where": "Assumption 1"}
+      ]
+    },
+    {
+      "id": "window",
+      "title": "Look near the line",
+      "text": "Just either side of the cutoff, people are nearly the same; only the rule separates them. Check that their other characteristics balance.",
+      "picture": "window",
+      "quotes": [
+        {"text": "This assumption implies that we consider the threshold to be a quasi-randomising device and that groups either side of the threshold can viewed as similar to randomised groups in a two-group individually randomised RCT.", "source": "okeeffe2025", "where": "Assumption 3"}
+      ]
+    },
+    {
+      "id": "fit",
+      "title": "Fit each side",
+      "text": "Fit the outcome against the score separately below and above the cutoff, within a window around it.",
+      "picture": "fit",
+      "quotes": [
+        {"text": "The continuity-based method for RDD uses flexible models for the relationship between the assignment variable and outcome, separately on each side of the threshold.", "source": "okeeffe2025", "where": "Continuity-based estimation"}
+      ]
+    },
+    {
+      "id": "read_jump",
+      "title": "Read the jump",
+      "text": "The gap between the two fits at the cutoff is the effect. It holds for people near the cutoff, not for everyone.",
+      "picture": "read_jump",
+      "quotes": [
+        {"text": "an effect estimate at the threshold that will be formed using data from individuals with assignment variable values within a small window around the threshold.", "source": "okeeffe2025", "where": "Estimand at the threshold"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "external-validity": {"text": "It is important to remember that the treatment/intervention effect estimate is valid only in a region around the threshold: the RDD does not estimate a global treatment/intervention effect.", "source": "okeeffe2025", "where": "Discussion"}
+  },
+  "exercise": {
+    "title": "How wide a window?",
+    "intro": "Each dot is a patient with a 10-year risk score from 0 to 20%; statins are given from 10%, and they lower the outcome. Compare everyone treated with everyone untreated, then fit a line each side near the cutoff and change the window.",
+    "data_label": "Example data, made up for this exercise with a fixed seed (a sharp rule: everyone at or above 10% is treated); the true effect is built in, so you can check each estimate against it.",
+    "seed": 21,
+    "n": 400,
+    "cutoff": 10,
+    "base": 2.5,
+    "slope": 0.12,
+    "curve": 0.006,
+    "effect": -1,
+    "noise": 1.2,
+    "windows": [1, 3, 6, 10]
+  },
+  "limits": [
+    "The card's defining paper (Thistlethwaite & Campbell 1960) and its example (Angrist & Lavy 1999, Maimonides' rule) were not read for this page.",
+    "The exercise uses a sharp rule and plain straight lines; O’Keeffe & Petersen (2025) also cover fuzzy designs, data-driven bandwidths and local randomisation, which it does not show.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

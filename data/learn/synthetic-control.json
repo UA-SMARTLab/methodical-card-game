@@ -1,0 +1,83 @@
+{
+  "method": "synthetic-control",
+  "question": "What would have happened to this one place without the intervention?",
+  "sources": {
+    "bouttell2018": {
+      "cite": "Bouttell et al. (2018). Synthetic control methodology as a tool for evaluating population-level health interventions. Journal of Epidemiology and Community Health 72: 673–678.",
+      "short": "Bouttell et al. (2018)",
+      "url": "https://doi.org/10.1136/jech-2017-210106",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC6204967) on 20 Nov 2026; the web text has no page numbers, so places are given as its sections, boxes and table; in-text reference numbers are left out. The card's own reference (Abadie et al. 2010) is not open access and was not read"
+    }
+  },
+  "steps": [
+    {
+      "id": "donors",
+      "title": "Pick the donors",
+      "text": "List untreated units that resemble the treated one in what drives the outcome, and leave out any that had a similar intervention.",
+      "picture": "donors",
+      "quotes": [
+        {"text": "It is essential for the credibility of the method that the donor pool only contains units that are similar to the treated unit in aspects important to the outcome", "source": "bouttell2018", "where": "Steps in conducting an SCM study"}
+      ]
+    },
+    {
+      "id": "weights",
+      "title": "Weight a twin",
+      "text": "Give each donor a weight between 0 and 1, the weights summing to 1, chosen so the weighted mix tracks the treated unit before the intervention.",
+      "picture": "weights",
+      "quotes": [
+        {"text": "A counterfactual SC is constructed by weighting control units, such that the level and trend of the preintervention SC most closely matches the treated unit.", "source": "bouttell2018", "where": "Box 2"},
+        {"text": "The usual default is to limit the individual country weights to being between 0 and 1 (with the total of the weights being 1)", "source": "bouttell2018", "where": "Box 2"}
+      ]
+    },
+    {
+      "id": "prefit",
+      "title": "Check the fit",
+      "text": "The twin must follow the treated unit closely for a long stretch before the intervention. If it can't, the method has nothing to stand on.",
+      "picture": "prefit",
+      "quotes": [
+        {"text": "the credibility of the result relies on achieving a good preimplementation fit for the outcome of interest between treated unit and synthetic control, which is difficult if the treated unit is an outlier.", "source": "bouttell2018", "where": "Advantages, assumptions and limitations of SCM"}
+      ]
+    },
+    {
+      "id": "gap",
+      "title": "Read the gap",
+      "text": "Keep the weights fixed and run the twin forward. The gap between the real unit and its twin after the intervention is the estimated effect.",
+      "picture": "gap",
+      "quotes": [
+        {"text": "The difference between this counterfactual and the actual trend for the treated unit represents the estimated intervention effect.", "source": "bouttell2018", "where": "Box 2"}
+      ]
+    },
+    {
+      "id": "placebo",
+      "title": "Run placebos",
+      "text": "Pretend each donor was treated and build its twin too. A real effect should make the treated unit's gap stand out from theirs.",
+      "picture": "placebo",
+      "quotes": [
+        {"text": "Placebo analysis involves performing the analysis as if other units in the donor pool were the treated unit to generate a distribution of effect estimates.", "source": "bouttell2018", "where": "Steps in conducting an SCM study"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "history-trend": {"text": "there are no ‘shocks’, that is, other events that might differentially affect the outcome of interest in the treated unit or the potential control units in either the preintervention or postintervention period", "source": "bouttell2018", "where": "Advantages, assumptions and limitations of SCM"},
+    "forking-paths": {"text": "Clearly, the subjective aspects are important in this method.", "source": "bouttell2018", "where": "Box 1"}
+  },
+  "exercise": {
+    "title": "Build the twin",
+    "intro": "One region started a programme in year 8; four others did not. Set the donors' weights by hand until the dashed twin follows the treated region before the programme, or let the page find the best fit. Then show the years after.",
+    "quote": {"text": "Once the weighting of the SC has been determined for the preintervention period, it is used to construct a counterfactual trend for the outcome in the postimplementation period.", "source": "bouttell2018", "where": "Box 2"},
+    "data_label": "Example data, made up for this exercise: the treated region was built as half region A, 0.3 region B and 0.2 region C, with an effect growing by 1 a year from year 8.",
+    "start_index": 7,
+    "treated": [59.3, 57.9, 57.4, 56.2, 55.5, 54.3, 53.2, 51.8, 49.4, 47.5, 45.7, 43.7],
+    "donors": [
+      {"name": "Region A", "start": 25, "series": [60, 59, 58, 57.5, 56, 55, 54, 53, 52, 51, 50, 49]},
+      {"name": "Region B", "start": 25, "series": [50, 50, 49.5, 49, 48.5, 48, 47, 47, 46, 45.5, 45, 44]},
+      {"name": "Region C", "start": 25, "series": [70, 68, 67, 65, 64, 62, 61, 60, 58, 57, 56, 55]},
+      {"name": "Region D", "start": 25, "series": [40, 41, 42, 42.5, 43, 44, 45, 45, 46, 47, 47.5, 48]}
+    ]
+  },
+  "limits": [
+    "The card's defining paper (Abadie et al. 2010, California's tobacco programme) was not read; Bouttell et al. (2018) summarise it, and only their words are quoted.",
+    "The exercise fits the outcome alone on a 5% grid of weights; real analyses also match on predictor variables and weight them.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

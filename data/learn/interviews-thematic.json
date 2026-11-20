@@ -1,0 +1,75 @@
+{
+  "method": "interviews-thematic",
+  "question": "How and why do people experience this, in their own words?",
+  "sources": {
+    "coates2021": {
+      "cite": "Coates, Jordan & Clarke (2021). A practical guide for conducting qualitative research in medical education: Part 2—Coding and thematic analysis. AEM Education and Training 5(4): e10645.",
+      "short": "Coates et al. (2021)",
+      "url": "https://doi.org/10.1002/aet2.10645",
+      "checked": "every quote read word for word in the PMC article page (PMC8457700) on 20 Nov 2026; the article is online-only (e10645), so places are its section headings; in-text reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "interview",
+      "title": "Interview",
+      "text": "Talk with people one to one or in focus groups, with open questions, and record what they say. Choose them because they have lived the topic.",
+      "picture": "interview",
+      "quotes": [
+        {"text": "An organized and rigorous approach to analyzing qualitative data can yield important insights into the intricacies of human behavior and can answer “how” and “why” questions.", "source": "coates2021", "where": "Abstract"}
+      ]
+    },
+    {
+      "id": "transcribe",
+      "title": "Transcribe and read",
+      "text": "Turn each recording into a transcript, check it against the recording, remove names, and read it closely.",
+      "picture": "transcribe",
+      "quotes": [
+        {"text": "The researcher read the transcripts and made corrections, including clarifying/correcting data collected", "source": "coates2021", "where": "“Data collection”"}
+      ]
+    },
+    {
+      "id": "code",
+      "title": "Code",
+      "text": "Mark each passage that says something about the question with a short label, a code.",
+      "picture": "code",
+      "quotes": [
+        {"text": "A “code” is a short representation that captures the salient features of a main idea expressed by subjects in their responses to questions in a qualitative interview study.", "source": "coates2021", "where": "“Subjective data”"}
+      ]
+    },
+    {
+      "id": "agree",
+      "title": "Agree a codebook",
+      "text": "Write down what each code means, with examples. Where two coders differ, they talk it through and settle it.",
+      "picture": "agree",
+      "quotes": [
+        {"text": "It is helpful to create a guide, or “codebook,” that indicates what each code represents, what ideas should be included in it, and examples from the raw data.", "source": "coates2021", "where": "“Subjective data”"},
+        {"text": "a simple discussion allows each person to explain their thinking and arrive at a mutually acceptable decision.", "source": "coates2021", "where": "“Resolution of disputes”"}
+      ]
+    },
+    {
+      "id": "themes",
+      "title": "Build themes",
+      "text": "Gather codes that share a meaning into themes, and themes into subthemes where people differ.",
+      "picture": "themes",
+      "quotes": [
+        {"text": "After successfully coding the transcripts, the researchers can look for ideas that are similar and designate these as discrete themes", "source": "coates2021", "where": "“Identification of themes and subthemes”"}
+      ]
+    },
+    {
+      "id": "interpret",
+      "title": "Interpret",
+      "text": "Say what the themes mean for the question you asked, illustrated with people's own words.",
+      "picture": "interpret",
+      "quotes": [
+        {"text": "After organizing the data into themes and subthemes, the researchers must interpret the meaning within the context of the research question.", "source": "coates2021", "where": "“Interpreting themes to engender change”"}
+      ]
+    }
+  ],
+  "limits": [
+    "The card's reference, Braun & Clarke (2006), could not be read from here (the publisher's copy is paywalled and the university repository refused the request), so its six phases are not quoted. The page follows Coates et al. (2021), whose worked example codes interviews in a way they frame as grounded theory with a constructivist approach. Check the steps against Braun & Clarke (2006) once it can be read; the codebook and second-coder steps in particular come from Coates et al., not from Braun & Clarke.",
+    "The reporting checklists COREQ (Tong et al. 2007) and SRQR (O'Brien et al. 2014) are not open access in Europe PMC and were not read.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

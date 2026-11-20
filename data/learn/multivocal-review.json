@@ -1,0 +1,67 @@
+{
+  "method": "multivocal-review",
+  "question": "What do research and practice both know about this?",
+  "sources": {
+    "garousi2019": {
+      "cite": "Garousi, Felderer & Mäntylä (2019). Guidelines for including grey literature and conducting multivocal literature reviews in software engineering. Information and Software Technology 106: 101–121.",
+      "short": "Garousi et al. (2019)",
+      "url": "https://doi.org/10.1016/j.infsof.2018.09.006",
+      "checked": "every quote read word for word in the vault's copy of the accepted pre-print (library No. 288) on 20 Nov 2026; the pre-print's page numbers differ from the journal's, so places are given as its abstract, sections and numbered guidelines; in-text reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "decide",
+      "title": "Decide on grey",
+      "text": "First ask whether the answer lives outside journals: in blogs, white papers, talks and manuals. Decide with explicit criteria, not by habit.",
+      "picture": "decide",
+      "quotes": [
+        {"text": "A Multivocal Literature Review (MLR) is a form of a Systematic Literature Review (SLR) which includes the grey literature (e.g., blog posts, videos and white papers) in addition to the published (formal) literature", "source": "garousi2019", "where": "abstract"},
+        {"text": "The decision whether to include the GL in a review study and to conduct an MLR study (instead of a conventional SLR) should be made systematically using a well-defined set of criteria/questions", "source": "garousi2019", "where": "Guideline 3, section 4.2"}
+      ]
+    },
+    {
+      "id": "search",
+      "title": "Search both",
+      "text": "Search academic databases for the papers, and the web, specialist sites and people for the grey sources. Follow links both ways.",
+      "picture": "search",
+      "quotes": [
+        {"text": "General web search engines, specialized databases and websites, backlinks, and contacting individuals directly are ways to search for grey literature.", "source": "garousi2019", "where": "Guideline 7, section 5.1.1"}
+      ]
+    },
+    {
+      "id": "stop",
+      "title": "Stop by rule",
+      "text": "A web search never runs dry, so fix in advance when to stop: when nothing new turns up, or after the top N hits.",
+      "picture": "stop",
+      "quotes": [
+        {"text": "Theoretical saturation, i.e., when no new concepts emerge from the search results anymore", "source": "garousi2019", "where": "section 5.1.2, stopping criterion 1"},
+        {"text": "Effort bounded, i.e., only include the top N search engine hits", "source": "garousi2019", "where": "section 5.1.2, stopping criterion 2"}
+      ]
+    },
+    {
+      "id": "grade",
+      "title": "Grade each source",
+      "text": "Grey sources skip peer review, so grade every one: who wrote it, how, whether they sell something, how recent it is, and where it appeared.",
+      "picture": "grade",
+      "quotes": [
+        {"text": "Apply and adapt the criteria authority of the producer, methodology, objectivity, date, novelty, impact, as well as outlet control (e.g., see Table 7), for study quality assessment of grey literature.", "source": "garousi2019", "where": "Guideline 11, section 5.3"}
+      ]
+    },
+    {
+      "id": "synthesise",
+      "title": "Synthesise",
+      "text": "Extract what each source says and code it, mostly qualitatively, keeping a link back to the source. Say how deep the grey evidence goes.",
+      "picture": "synthesise",
+      "quotes": [
+        {"text": "Many GL sources are suitable for qualitative coding and synthesis. Some GL sources allow combination of survey results but lack of reporting rigor limits the meta-analysis.", "source": "garousi2019", "where": "Guideline 13, section 5.5"}
+      ]
+    }
+  ],
+  "limits": [
+    "Quotes come from the authors' accepted pre-print, not the typeset journal version; wording was not compared with the journal pages.",
+    "The guidelines were written for software engineering; other fields (health, management) have their own grey-literature guidance, not covered here.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

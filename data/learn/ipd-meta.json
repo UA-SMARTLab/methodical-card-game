@@ -1,0 +1,86 @@
+{
+  "method": "ipd-meta",
+  "question": "What do all the trials show, analysed the same way, patient by patient?",
+  "sources": {
+    "tierney2015": {
+      "cite": "Tierney et al. (2015). Individual participant data (IPD) meta-analyses of randomised controlled trials: guidance on their use. PLOS Medicine 12(7): e1001855.",
+      "short": "Tierney et al. (2015)",
+      "url": "https://doi.org/10.1371/journal.pmed.1001855",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC4510878) on 20 Nov 2026; the article is online-only, so places are given as its section headings (each a question); in-text reference numbers and table pointers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "collect",
+      "title": "Collect the raw data",
+      "text": "Find every eligible trial, then ask its team for the original record of every participant, not the published summary.",
+      "picture": "collect",
+      "quotes": [
+        {"text": "large-scale, international, collaborative projects involving the central collection and reanalysis of the original data on each participant, from all of the relevant trials", "source": "tierney2015", "where": "Background"},
+        {"text": "If nonparticipation is born of a desire to bury unfavourable results, not including such trials could bias a meta-analysis", "source": "tierney2015", "where": "Were IPD Obtained from Most Trials?"}
+      ]
+    },
+    {
+      "id": "plan",
+      "title": "Fix the analysis",
+      "text": "With so many possible analyses, write down the outcomes and models in a protocol before looking at the data.",
+      "picture": "plan",
+      "quotes": [
+        {"text": "it is important that the detailed methods of analysis are prespecified in a protocol or analysis plan and are clearly reported upon publication", "source": "tierney2015", "where": "Were the Analyses Prespecified in Detail?"}
+      ]
+    },
+    {
+      "id": "check",
+      "title": "Check the data",
+      "text": "Check each trial's data for gaps, impossible values and mismatches with its paper, and resolve them with the trial team.",
+      "picture": "check",
+      "quotes": [
+        {"text": "IPD can be checked for missing, invalid, out-of-range, or inconsistent items and for discrepancies with any trial publication", "source": "tierney2015", "where": "Was the Integrity of the IPD Checked?"}
+      ]
+    },
+    {
+      "id": "harmonise",
+      "title": "Harmonise",
+      "text": "Define every outcome the same way in every trial and compute the effects yourself, instead of relying on each paper's own analysis.",
+      "picture": "harmonise",
+      "quotes": [
+        {"text": "having IPD can allow harmonisation of outcome definitions across trials, analytical assumptions to be checked, and effect measures to be derived directly from the analysis of the collated data", "source": "tierney2015", "where": "Were the Methods of Analysis Appropriate?"}
+      ]
+    },
+    {
+      "id": "stratify",
+      "title": "Keep trials apart",
+      "text": "Compare treatment with control inside each trial, then combine. Throwing everyone into one big table can bias the answer.",
+      "picture": "stratify",
+      "quotes": [
+        {"text": "Thus, a key component of the analysis is to stratify or account for clustering of participants", "source": "tierney2015", "where": "Were the Methods of Assessing the Overall Effects of Interventions Appropriate?"}
+      ]
+    },
+    {
+      "id": "who",
+      "title": "Ask for whom",
+      "text": "With every participant's data, test whether the effect differs by age, stage or risk, which summary data cannot show.",
+      "picture": "who",
+      "quotes": [
+        {"text": "Rather, the focus should be on estimating the individual participant-level interactions, which is usually only possible with IPD.", "source": "tierney2015", "where": "Were the Methods of Assessing If Effects of Interventions Varied by Trial or Participant Characteristics Appropriate?"}
+      ]
+    }
+  ],
+  "exercise": {
+    "kind": "mega-trial",
+    "title": "One big table, or trial by trial?",
+    "intro": "Two trials of the same treatment. Trial 1 enrolled high-risk patients and gave most of them the treatment; trial 2 enrolled low-risk patients and gave most of them the control. In each trial the treatment lowers the risk. Pool everyone into one big table, then keep the trials apart, and compare.",
+    "quote": {"text": "combining IPD across trials, as though it comes from a single “mega” trial, could lead to biased comparisons of interventions and overprecise estimates of effect", "source": "tierney2015", "where": "Were the Methods of Assessing the Overall Effects of Interventions Appropriate?"},
+    "data_label": "Example data, made up for this exercise.",
+    "method_note": "Keeping the trials apart uses the Mantel–Haenszel risk ratio, which compares arms within each trial and then combines.",
+    "trials": [
+      {"name": "Trial 1 (high risk)", "t_events": 120, "t_n": 300, "c_events": 50, "c_n": 100},
+      {"name": "Trial 2 (low risk)", "t_events": 10, "t_n": 100, "c_events": 36, "c_n": 300}
+    ]
+  },
+  "limits": [
+    "The card's defining paper, Riley et al. (2010) in the BMJ, and the reporting guideline PRISMA-IPD (Stewart et al. 2015, JAMA) were not read: neither is open in Europe PMC. Tierney et al. (2015), written by the Cochrane IPD Methods Group's convenors among others, is quoted instead.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

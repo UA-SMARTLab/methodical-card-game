@@ -1,0 +1,68 @@
+{
+  "method": "validation",
+  "question": "Does this questionnaire measure what it claims to?",
+  "sources": {
+    "clark1995": {
+      "cite": "Clark & Watson (1995). Constructing validity: Basic issues in objective scale development. Psychological Assessment 7(3): 309–319.",
+      "short": "Clark & Watson (1995)",
+      "url": "https://doi.org/10.1037/1040-3590.7.3.309",
+      "checked": "every quote read word for word in the vault's text copy of the article (library No. 283) on 20 Nov 2026; page numbers are the journal's (the copy starts at p. 309); words broken across lines in the scan are joined"
+    }
+  },
+  "steps": [
+    {
+      "id": "define",
+      "title": "Define the construct",
+      "text": "Write down exactly what the scale should capture, and how it relates to neighbouring ideas, before writing a single item.",
+      "picture": "define",
+      "quotes": [
+        {"text": "A critical first step is to develop a precise and detailed conception of the target construct and its theoretical context.", "source": "clark1995", "where": "p. 310"}
+      ]
+    },
+    {
+      "id": "pool",
+      "title": "Write too many items",
+      "text": "Draft a broad pool of items, more than you will keep, covering the construct and its edges, each worded with care.",
+      "picture": "pool",
+      "quotes": [
+        {"text": "the content of the initial item pool should be overinclusive and item wording needs careful attention.", "source": "clark1995", "where": "abstract, p. 309"}
+      ]
+    },
+    {
+      "id": "sample",
+      "title": "Test widely",
+      "text": "Give the pool, with measures of related constructs, to a varied sample that spans the whole population the scale is for.",
+      "picture": "sample",
+      "quotes": [
+        {"text": "the item pool should be tested, along with variables that assess closely related constructs, on a heterogeneous sample representing the entire range of the target population.", "source": "clark1995", "where": "abstract, p. 309"}
+      ]
+    },
+    {
+      "id": "select",
+      "title": "Keep one dimension",
+      "text": "Keep the items that measure one thing together, using factor analysis, not those that merely push internal consistency up.",
+      "picture": "select",
+      "quotes": [
+        {"text": "in selecting scale items, the goal is unidimensionality rather than internal consistency; this means that virtually all interitem correlations should be moderate in magnitude.", "source": "clark1995", "where": "abstract, p. 309"},
+        {"text": "Factor analysis can play a crucial role in ensuring the unidimensionality and discriminant validity of scales.", "source": "clark1995", "where": "abstract, p. 309"}
+      ]
+    },
+    {
+      "id": "pattern",
+      "title": "Check the pattern",
+      "text": "The finished scale should correlate with what theory says it should, and not with what it should not.",
+      "picture": "pattern",
+      "quotes": [
+        {"text": "a good measure will have a predicted convergent and discriminant correlational pattern", "source": "clark1995", "where": "p. 311"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "construct-validity": {"text": "A primary goal of scale development is to create a valid measure of an underlying construct.", "source": "clark1995", "where": "abstract, p. 309"}
+  },
+  "limits": [
+    "The Maslach Burnout Inventory example on the card is not worked through here; its 1981 development paper has not been read for this page.",
+    "Test–retest reliability and the choice of response format, which Clark & Watson (1995) also discuss, are left out.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

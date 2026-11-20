@@ -180,6 +180,10 @@ footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
   background: rgba(8, 12, 20, .78); backdrop-filter: blur(3px); animation: vIn .2s ease both; cursor: zoom-out; }
 .viewer-card { --card-u: min(calc((100vw - 32px) / 63), calc((100vh - 90px) / 88), 6px); animation: vCard .28s cubic-bezier(.2,.9,.3,1.2) both; }
 .viewer-card .tcg { box-shadow: 0 24px 60px rgba(0,0,0,.6); }
+.v-learn { min-height: 48px; display: inline-flex; align-items: center; padding: 0 22px; border-radius: 99px; background: #F8FAFC; color: #0F172A;
+  font: 800 17px var(--f-display); text-decoration: none; }
+.v-learn:hover { background: #E2E8F0; }
+.v-learn:focus-visible { outline: 3px solid #FCD34D; outline-offset: 3px; }
 .viewer-hint { color: #CBD5E1; font: 600 13px var(--f-mono); letter-spacing: .06em; }
 .viewer.out { animation: vOut .18s ease both; }
 /* choosing: the four choices, one at a time, with a big green button to make it your answer */
@@ -867,9 +871,14 @@ function openViewer(el, choose) {
   addEventListener("keydown", key);
   try { history.pushState({ ...history.state, viewer: true, depth: (history.state?.depth || 0) + 1 }, ""); } catch (e) {}
   if (!choose) {
-    const card = (el.matches(".tcg") ? el : el.querySelector(".tcg")).outerHTML;
-    v.innerHTML = `<div class="viewer-card">${card}</div><span class="viewer-hint">${tr("viewer.hint")}</span>`;
+    const tcg = el.matches(".tcg") ? el : el.querySelector(".tcg"), id = tcg.dataset.id;
+    // A Method with a learn page gets a link to it; the pages are English only for now and sit beside the English app.
+    const learn = id && (DATA.learn || []).includes(id)
+      ? `<a class="v-learn" href="${LANG.code === "en" ? "" : "../"}learn/${id}/">▶ ${tr("viewer.learn")}</a>` : "";
+    v.innerHTML = `<div class="viewer-card">${tcg.outerHTML}</div>${learn}<span class="viewer-hint">${tr("viewer.hint")}</span>`;
     v.onclick = close;
+    // Following the link must not also close the card, whose close steps history back and would cancel the visit.
+    v.querySelector(".v-learn")?.addEventListener("click", e => e.stopPropagation());
     document.body.appendChild(v);
     return;
   }

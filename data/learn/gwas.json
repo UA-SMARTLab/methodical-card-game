@@ -1,0 +1,73 @@
+{
+  "method": "gwas",
+  "question": "Which genetic variants are associated with a trait or disease?",
+  "sources": {
+    "visscher2017": {
+      "cite": "Visscher et al. (2017). 10 Years of GWAS Discovery: Biology, Function, and Translation. American Journal of Human Genetics 101(1): 5–22.",
+      "short": "Visscher et al. (2017)",
+      "url": "https://doi.org/10.1016/j.ajhg.2017.06.005",
+      "checked": "every quote read word for word in the PMC full text (PMC5501872), in Chrome, on 20 Nov 2026; places are its section headings, as the PMC page has no page numbers; in-text reference numbers are left out"
+    }
+  },
+  "steps": [
+    {
+      "id": "samples",
+      "title": "Gather people",
+      "text": "Collect DNA and the trait from many thousands of people: cases and controls, or a measured trait such as height.",
+      "picture": "samples",
+      "quotes": [
+        {"text": "The GWAS is an experimental design used to detect associations between genetic variants and traits in samples from populations.", "source": "visscher2017", "where": "section GWAS Rationale and Scientific Basis"}
+      ]
+    },
+    {
+      "id": "test",
+      "title": "Test every variant",
+      "text": "Genotype each person at variants across the whole genome, often millions after imputation, then test each one for association with the trait, one test per variant.",
+      "picture": "test_each",
+      "after": {"source": "visscher2017", "where": "sections Introduction and GWAS Rationale and Scientific Basis"}
+    },
+    {
+      "id": "threshold",
+      "title": "Strict threshold",
+      "text": "With millions of tests, chance alone gives thousands of p values below 0.05. Only p below 5 × 10⁻⁸ counts as genome-wide significant.",
+      "picture": "manhattan",
+      "quotes": [
+        {"text": "where “strong” is defined as statistically significant at the genome-wide p value threshold of 5 × 10−8", "source": "visscher2017", "where": "section General Results"}
+      ]
+    },
+    {
+      "id": "replicate",
+      "title": "Replicate",
+      "text": "Check the hits in independent samples. Well-powered GWAS hits have held up.",
+      "picture": "replicate",
+      "quotes": [
+        {"text": "GWAS associations have proven highly replicable, both within and between populations, under the assumption of adequate sample sizes.", "source": "visscher2017", "where": "section General Results"}
+      ]
+    },
+    {
+      "id": "biology",
+      "title": "Locus to biology",
+      "text": "A hit marks a region, not a gene or a mechanism. Finding which gene and how is further work.",
+      "picture": "biology",
+      "quotes": [
+        {"text": "an association between a genetic variant at a genomic locus and a trait is not directly informative with respect to the target gene or the mechanism whereby the variant is associated with phenotypic differences.", "source": "visscher2017", "where": "section GWAS Rationale and Scientific Basis"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "low-power": {"text": "For example, for such rare variants with an effect size of 1 phenotypic standard deviation unit (about 7 cm for height or 5 BMI units), a sample size of more than one million is required", "source": "visscher2017", "where": "section GWAS Rationale and Scientific Basis"}
+  },
+  "exercise": {
+    "title": "Why 5 × 10⁻⁸?",
+    "intro": "Test many variants that have no effect at all, and count how many look significant at each threshold.",
+    "data_label": "Example data, simulated for this exercise with a seeded random generator: every variant is null, so every hit is false. Real variants are correlated with their neighbours, so a real scan has fewer independent tests than variants.",
+    "counts": [10000, 1000000, 5000000]
+  },
+  "limits": [
+    "Step 2 uses \"after\": Visscher et al. (2017) describe testing SNPs genome-wide across the review, but no single sentence stating one test per variant was read word for word.",
+    "The WTCCC (2007) study named on the card could not be read: the Europe PMC full-text service returned an error for PMC2719288 on 20 Nov 2026.",
+    "Population stratification (confounding by ancestry) is not explained on this page from a GWAS source; see the Mendelian randomization page for the STROBE-MR wording.",
+    "The Manhattan plot in step 3 is drawn by hand, not from data.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

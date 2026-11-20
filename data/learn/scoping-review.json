@@ -1,0 +1,90 @@
+{
+  "method": "scoping-review",
+  "question": "What research exists on this topic, and where are the gaps?",
+  "sources": {
+    "arksey2005": {
+      "cite": "Arksey & O'Malley (2005). Scoping studies: towards a methodological framework. International Journal of Social Research Methodology: 19–32.",
+      "short": "Arksey & O'Malley (2005)",
+      "url": "https://doi.org/10.1080/1364557032000119616",
+      "checked": "every quote read word for word in the vault's copy of the authors' deposited manuscript from White Rose Research Online (library No. 280) on 20 Nov 2026; its page numbers differ from the journal's, so places are given as the framework stages; the deposited copy gives the pages as 19–32"
+    },
+    "levac2010": {
+      "cite": "Levac, Colquhoun & O'Brien (2010). Scoping studies: advancing the methodology. Implementation Science 5: 69.",
+      "short": "Levac et al. (2010)",
+      "url": "https://doi.org/10.1186/1748-5908-5-69",
+      "checked": "read word for word in the Europe PMC full text (PMC2954944) on 20 Nov 2026; the article is online-only, so places are given as its Table 3 rows"
+    },
+    "munn2018": {
+      "cite": "Munn et al. (2018). Systematic review or scoping review? Guidance for authors when choosing between a systematic or scoping review approach. BMC Medical Research Methodology 18: 143.",
+      "short": "Munn et al. (2018)",
+      "url": "https://doi.org/10.1186/s12874-018-0611-x",
+      "checked": "read word for word in the Europe PMC full text (PMC6245623) on 20 Nov 2026; places are given as its sections"
+    }
+  },
+  "steps": [
+    {
+      "id": "question",
+      "title": "Ask broadly",
+      "text": "Start from a broad question about what is known, and name the facets that matter: population, interventions, outcomes.",
+      "picture": "question",
+      "quotes": [
+        {"text": "As with systematic reviews, the starting point is to identify the research question to be addressed as this guides the way that search strategies are built.", "source": "arksey2005", "where": "Framework Stage 1"},
+        {"text": "scoping reviews are an ideal tool to determine the scope or coverage of a body of literature on a given topic", "source": "munn2018", "where": "Background, Indications for scoping reviews"}
+      ]
+    },
+    {
+      "id": "search",
+      "title": "Search widely",
+      "text": "Search databases, reference lists, grey literature and people, published and unpublished, and refine the search as you learn the field's words.",
+      "picture": "search",
+      "quotes": [
+        {"text": "the whole point of scoping the field is to be as comprehensive as possible in identifying primary studies (published and unpublished) and reviews suitable for answering the central research question.", "source": "arksey2005", "where": "Framework Stage 2"}
+      ]
+    },
+    {
+      "id": "select",
+      "title": "Select",
+      "text": "Set inclusion criteria, then sift the hits as a team, tightening the criteria as you go.",
+      "picture": "select",
+      "quotes": [
+        {"text": "This stage should be considered an iterative process involving searching the literature, refining the search strategy, and reviewing articles for study inclusion.", "source": "levac2010", "where": "Table 3, stage #3 Study selection, recommendation 1"}
+      ]
+    },
+    {
+      "id": "chart",
+      "title": "Chart",
+      "text": "Extract the same items from every study into a chart: who, where, what was studied, with which methods.",
+      "picture": "chart",
+      "quotes": [
+        {"text": "describes a technique for synthesising and interpreting qualitative data by sifting, charting and sorting material according to key issues and themes", "source": "arksey2005", "where": "Framework Stage 4, on ‘charting’"},
+        {"text": "Charting should be considered an iterative process in which researchers continually extract data and update the data-charting form.", "source": "levac2010", "where": "Table 3, stage #4 Charting the data, recommendation 1b"}
+      ]
+    },
+    {
+      "id": "map",
+      "title": "Map, not pool",
+      "text": "Report counts and themes across everything found, and point out the gaps. Studies are not graded or pooled, so the map says what exists, not what works.",
+      "picture": "map",
+      "quotes": [
+        {"text": "the scoping study seeks to present an overview of all material reviewed", "source": "arksey2005", "where": "Framework Stage 5"},
+        {"text": "This is because the scoping study does not seek to assess quality of evidence and consequently cannot determine whether particular studies provide robust or generalisable findings.", "source": "arksey2005", "where": "Framework Stage 5"}
+      ]
+    },
+    {
+      "id": "consult",
+      "title": "Consult",
+      "text": "Show the map to practitioners and other stakeholders: they add sources, test the findings and say which gaps matter.",
+      "picture": "consult",
+      "quotes": [
+        {"text": "Consultation should be an essential component of scoping study methodology.", "source": "levac2010", "where": "Table 3, stage #6 Consultation, recommendation 1"}
+      ]
+    }
+  ],
+  "limits": [
+    "The reporting checklist PRISMA-ScR (Tricco et al. 2018, Annals of Internal Medicine) was not read: it is not open in Europe PMC. Its items are not quoted here.",
+    "Arksey & O'Malley called consultation optional; Levac et al. (2010) argue it should be required. The page follows Levac.",
+    "Quotes from Arksey & O'Malley come from the deposited manuscript; wording was not compared with the journal pages.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

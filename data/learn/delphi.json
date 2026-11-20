@@ -1,0 +1,82 @@
+{
+  "method": "delphi",
+  "question": "What do experts agree on where evidence is thin?",
+  "sources": {
+    "nasa2021": {
+      "cite": "Nasa, Jain & Juneja (2021). Delphi methodology in healthcare research: How to decide its appropriateness. World Journal of Methodology 11(4): 116 ff.",
+      "short": "Nasa et al. (2021)",
+      "url": "https://doi.org/10.5662/wjm.v11.i4.116",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC8299905) on 20 Nov 2026; the full text has no page numbers, so places are section headings; in-text reference numbers are left out of the quotes; the last page was not checked"
+    }
+  },
+  "steps": [
+    {
+      "id": "panel",
+      "title": "Choose the panel",
+      "text": "Decide in advance who counts as an expert for this question, then invite people who meet those criteria.",
+      "picture": "panel",
+      "quotes": [
+        {"text": "The panel member selection is undoubtedly the most crucial aspect of Delphi research studies", "source": "nasa2021", "where": "“Panel members”"},
+        {"text": "The selection of a panel or voting members in a Delphi study should be based on objective and predefined criteria and related to the problem under study.", "source": "nasa2021", "where": "“Panel members”, evaluation point"}
+      ]
+    },
+    {
+      "id": "anonymous",
+      "title": "Rate anonymously",
+      "text": "Each expert rates every statement alone, usually on a numbered scale. Nobody knows who gave which rating, so no one can dominate.",
+      "picture": "anonymous",
+      "quotes": [
+        {"text": "The anonymity of individual members in a Delphi study removes the inherent bias like dominance and group conformity (defined as groupthink) observed with face-to-face group meetings.", "source": "nasa2021", "where": "“Introduction”"}
+      ]
+    },
+    {
+      "id": "feedback",
+      "title": "Feed back",
+      "text": "After each round, send everyone the group's results (median, spread, anonymous comments) and let them reconsider.",
+      "picture": "feedback",
+      "quotes": [
+        {"text": "After each of the survey rounds, obtained data are analyzed and presented in an easily interpretable format to all the panel experts.", "source": "nasa2021", "where": "“Delphi rounds”"},
+        {"text": "Controlled feedback gives insight to the individual member about the trend and one can change its response if needed.", "source": "nasa2021", "where": "“Delphi rounds”"}
+      ]
+    },
+    {
+      "id": "rounds",
+      "title": "Repeat the rounds",
+      "text": "Rate again, round after round. Consensus is judged by a rule fixed beforehand, such as a share of experts agreeing.",
+      "picture": "rounds",
+      "quotes": [
+        {"text": "The consensus definition used commonly is the percentage of agreement based on a predefined cut-off, central tendency, or a combination of both. However, percentage agreement varies widely from 50%-97% and is selected arbitrarily", "source": "nasa2021", "where": "“Closing criteria”, “Consensus”"}
+      ]
+    },
+    {
+      "id": "stop",
+      "title": "Stop when stable",
+      "text": "Stop when the answers no longer change from one round to the next, by a stopping rule written down before the first round.",
+      "picture": "stop",
+      "quotes": [
+        {"text": "Stability is defined as the consistency of responses between successive rounds of a study", "source": "nasa2021", "where": "“Closing criteria”, “Stability”"},
+        {"text": "The criteria for stopping the Delphi rounds based on consensus or stability should be identified a priori.", "source": "nasa2021", "where": "“Closing criteria”, evaluation point"}
+      ]
+    }
+  ],
+  "exercise": {
+    "kind": "rounds",
+    "title": "Watch the rounds converge",
+    "intro": "Fifteen experts rate one statement from 1 (disagree) to 9 (agree). Each row is a round; the green line is the median that everyone sees before the next round. Run rounds until the answers settle.",
+    "quote": {"text": "consensus can be there in unstable responses, and stability can be there without consensus", "source": "nasa2021", "where": "“Closing criteria”, “Stability”"},
+    "data_label": "Example data, made up for this exercise.",
+    "model_note": "The simulated experts: in each round 20% keep their rating; the others move between 30% and 80% of the way towards the median, rounded to a whole number. Stable means the share rating 7–9 changed by 5 points or less and the interquartile range did not change.",
+    "panel": 15,
+    "stubborn": 0.2,
+    "stable_points": 5,
+    "max_rounds": 6,
+    "cutoff": 70,
+    "cutoffs": [50, 70, 80, 90]
+  },
+  "limits": [
+    "The card's reference, Dalkey & Helmer (1963), was not read; the page follows Nasa et al. (2021), a review of how Delphi studies are run and judged in healthcare. The ACCORD reporting guideline (Gattrell et al. 2024) was found but not read.",
+    "The exercise's experts follow a made-up rule; real panels can also drift apart, drop out, or move away from the median.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

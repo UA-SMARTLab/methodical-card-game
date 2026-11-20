@@ -275,6 +275,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import art  # noqa: E402  (needs the tools/ folder on sys.path)
 import cards  # noqa: E402
 import i18n  # noqa: E402
+import learn  # noqa: E402
 
 e = html.escape
 DATA_ALL = {"meta": meta, "designs": designs, "questions": questions, "threats": threats,
@@ -492,7 +493,8 @@ def build_app(g, langs, artifact=None):
         "twists": {x["id"]: cards.twist_card(cx, x) for x in d["twists"]},
         "programs": {p["id"]: cards.program_mat(cx, p) for p in d["programs"]},
     }
-    bundle = {**d, "cards": rendered}
+    # Methods with a learn page (English only so far): the card viewer shows "How it works" for these.
+    bundle = {**d, "cards": rendered, "learn": learn.learn_ids(ROOT)}
 
     def href(x, absolute):
         if absolute:
@@ -545,7 +547,9 @@ if __name__ == "__main__":
         if (ROOT / "app" / "template.html").exists():
             build_app(g, langs, artifact if info["code"] == "en" else None)
         if info["code"] == "en":
-            print(f"ok: {len(questions)} questions, {len(designs)} designs, {len(threats)} threats, "
+            for mid in learn.learn_ids(ROOT):
+                print("  learn page:", learn.build(DATA_ALL, mid, ROOT / "app").relative_to(ROOT).as_posix())
+            print(f"ok:{len(questions)} questions, {len(designs)} designs, {len(threats)} threats, "
                   f"{len(safeguards)} safeguards, {len(twists)} twists, {len(programs)} programmes ({n} printable cards)")
             reach = sum(any((q["suit"], b) in tree_paths for b in q["best"]) for q in questions)
             print(f"  method tree: {len(tree_leaves)} branch ends reach {len({m for _, _, m in tree_leaves})}/{len(designs)} designs; "

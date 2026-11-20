@@ -1,0 +1,78 @@
+{
+  "method": "grounded-theory",
+  "question": "What process explains what is going on here, built from the data up?",
+  "sources": {
+    "chuntie2019": {
+      "cite": "Chun Tie, Birks & Francis (2019). Grounded theory research: A design framework for novice researchers. SAGE Open Medicine 7: 2050312118822927.",
+      "short": "Chun Tie et al. (2019)",
+      "url": "https://doi.org/10.1177/2050312118822927",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC6318722) on 20 Nov 2026; the article is online-only, so places are its section headings; in-text reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "sample",
+      "title": "Start small",
+      "text": "Begin with a few people chosen because they can speak to the question, and start analysing the first interview before doing the next.",
+      "picture": "sample",
+      "quotes": [
+        {"text": "Concurrent data generation and/or data collection and analysis is fundamental to GT research design.", "source": "chuntie2019", "where": "“Purposive sampling”"}
+      ]
+    },
+    {
+      "id": "code",
+      "title": "Code",
+      "text": "Break the data into small pieces and give each a short label that says what is happening in it.",
+      "picture": "code",
+      "quotes": [
+        {"text": "The purpose of initial coding is to start the process of fracturing the data to compare incident to incident and to look for similarities and differences in beginning patterns in the data.", "source": "chuntie2019", "where": "“Initial coding”"}
+      ]
+    },
+    {
+      "id": "compare",
+      "title": "Compare constantly",
+      "text": "Compare every new piece with the earlier ones, codes with codes, and gather them into categories that grow more abstract.",
+      "picture": "compare",
+      "quotes": [
+        {"text": "The initial stage of analysis compares incident to incident in each code. Initial codes are then compared to other codes. Codes are then collapsed into categories.", "source": "chuntie2019", "where": "“Constant comparative analysis”"}
+      ]
+    },
+    {
+      "id": "theoretical",
+      "title": "Sample for theory",
+      "text": "Choose whom to see next by what the emerging categories still lack, not by who would make the sample representative.",
+      "picture": "theoretical",
+      "quotes": [
+        {"text": "Theoretical sampling in GT is for the development of a theoretical category, as opposed to sampling for population representation.", "source": "chuntie2019", "where": "“Theoretical sampling”"}
+      ]
+    },
+    {
+      "id": "memo",
+      "title": "Write memos",
+      "text": "Write down, as you go, why you split, joined or renamed codes. The memos are the trail from data to theory.",
+      "picture": "memo",
+      "quotes": [
+        {"text": "Memos are the storehouse of ideas generated and documented through interacting with data.", "source": "chuntie2019", "where": "“Memoing”"}
+      ]
+    },
+    {
+      "id": "saturate",
+      "title": "Saturate and integrate",
+      "text": "Stop when new data no longer add to the categories. Then tie the categories together around a core into one theory.",
+      "picture": "saturate",
+      "quotes": [
+        {"text": "Theoretical saturation ensues when new data analysis does not provide additional material to existing theoretical categories, and the categories are sufficiently explained.", "source": "chuntie2019", "where": "“Intermediate coding”"},
+        {"text": "The results of a GT study are communicated as a set of concepts, related to each other in an interrelated whole, and expressed in the production of a substantive theory.", "source": "chuntie2019", "where": "“The grounded theory”"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "thin-data": {"text": "During this process, additional information is sought to saturate categories under development.", "source": "chuntie2019", "where": "“Theoretical sampling”"}
+  },
+  "limits": [
+    "The card's reference, Glaser & Strauss (1967), is a book that was not read; the page quotes Chun Tie et al. (2019), a design framework that draws on it and on later authors (Birks and Mills, Charmaz).",
+    "Grounded theory has several schools (traditional, evolved, constructivist) with different coding terms; the page uses Chun Tie et al.'s general steps and does not separate them.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

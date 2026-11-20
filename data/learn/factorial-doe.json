@@ -1,0 +1,96 @@
+{
+  "method": "factorial-doe",
+  "question": "What does each of several factors do, and do they work together?",
+  "sources": {
+    "kahan2025": {
+      "cite": "Kahan et al. (2025). Guidance for protocol content and reporting of factorial randomised trials: explanation and elaboration of the CONSORT 2010 and SPIRIT 2013 extensions. BMJ 388: e080785.",
+      "short": "Kahan et al. (2025)",
+      "url": "https://doi.org/10.1136/bmj-2024-080785",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC11791685) on 20 Nov 2026; the article is online-only (e080785), so places are given as its boxes and checklist items; in-text reference numbers are left out of the quotes"
+    },
+    "collins2009": {
+      "cite": "Collins et al. (2009). Design of experiments with multiple independent variables: a resource management perspective on complete and reduced factorial designs. Psychological Methods 14: 202-224.",
+      "short": "Collins et al. (2009)",
+      "url": "https://doi.org/10.1037/a0015826",
+      "checked": "only the abstract was read, on its Europe PMC page (PMC2796056) on 20 Nov 2026; Europe PMC's full-text service returned an error for this author manuscript"
+    }
+  },
+  "steps": [
+    {
+      "id": "factors",
+      "title": "Pick factors",
+      "text": "Name the things you can set (factors), and the settings of each (levels), such as on and off.",
+      "picture": "factors",
+      "quotes": [
+        {"text": "Each intervention and its comparator(s) together comprise a factor.", "source": "kahan2025", "where": "box 3, glossary: factor"},
+        {"text": "These levels are specific interventions and comparators within a factor.", "source": "kahan2025", "where": "box 3, glossary: level within factors"}
+      ]
+    },
+    {
+      "id": "combine",
+      "title": "Cross them",
+      "text": "Cross every level of every factor: two factors with two levels give four combinations.",
+      "picture": "combine",
+      "quotes": [
+        {"text": "All factors and levels are combined so that the design comprises all possible combinations of factor levels, and all participants are eligible to be randomised for each factor.", "source": "kahan2025", "where": "box 3, glossary: full factorial design"}
+      ]
+    },
+    {
+      "id": "randomise",
+      "title": "Randomise",
+      "text": "Chance assigns each unit (a person, a plot, a batch) to one combination, so every unit tests every factor at once.",
+      "picture": "randomise",
+      "quotes": [
+        {"text": "A trial in which two or more interventions are assessed in the same participants.", "source": "kahan2025", "where": "box 3, glossary: factorial trial"}
+      ]
+    },
+    {
+      "id": "margins",
+      "title": "Main effects",
+      "text": "For factor A, compare everyone with A on against everyone with A off, whatever B was; then do the same for B. Each unit is used twice, which is where the economy comes from.",
+      "picture": "margins",
+      "quotes": [
+        {"text": "All participants allocated to active A are compared against all those allocated to control A, and similarly for the factor B comparison.", "source": "kahan2025", "where": "box 3, glossary: factorial analysis"},
+        {"text": "Complete and fractional factorial designs and single-factor designs are generally more economical than conducting individual experiments on each factor.", "source": "collins2009", "where": "abstract"}
+      ]
+    },
+    {
+      "id": "interaction",
+      "title": "Interaction",
+      "text": "If A's effect changes when B is on, the factors interact, and A's average effect describes neither case. Check for it.",
+      "picture": "interaction",
+      "quotes": [
+        {"text": "Occurs when the effect of one intervention depends on whether participants also receive the other intervention.", "source": "kahan2025", "where": "box 3, glossary: interaction"},
+        {"text": "If treatments interact, then the assumptions underpinning the 2-in-1 trial motivation are no longer valid.", "source": "kahan2025", "where": "CONSORT 2010 item 2a, rationale"}
+      ]
+    },
+    {
+      "id": "fraction",
+      "title": "Fewer runs",
+      "text": "With many factors, run a chosen fraction of the combinations; you give up some interactions to keep the main effects.",
+      "picture": "fraction",
+      "quotes": [
+        {"text": "Some combinations of factors are omitted.", "source": "kahan2025", "where": "box 3, glossary: fractional factorial design"},
+        {"text": "fractional factorial designs merit serious consideration because of their economy and versatility.", "source": "collins2009", "where": "abstract"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "forking-paths": {"text": "evaluating multiple interactions increases the risk of false-positive findings, which can affect interpretation.", "source": "kahan2025", "where": "box 5"}
+  },
+  "exercise": {
+    "title": "What the margins estimate",
+    "intro": "A 2 × 2 experiment. Set what A and B really do, and how much extra you get when both are on. Then read what each comparison of the four cells tells you about A.",
+    "quote": {"text": "Trials in which the factorial design has been chosen for efficiency (2-in-1 trials) rely on the assumption that treatments work independently, meaning that the effect of one intervention is assumed to be consistent in the presence or absence of other intervention(s).", "source": "kahan2025", "where": "CONSORT 2010 item 2a, rationale"},
+    "data_label": "Example data, made up for this exercise.",
+    "base": 20,
+    "start": [4, 3, 0]
+  },
+  "limits": [
+    "Collins et al. (2009), the card's defining paper, was read only in its abstract; its full text could not be fetched. The step quotes come mainly from the CONSORT and SPIRIT extension for factorial trials (Kahan et al. 2025), written for randomised trials in people; the same logic holds for plots, batches or machines.",
+    "Which half of a 2 × 2 × 2 the fraction picture runs (the corners with an odd number of factors on) is our illustration, not taken from a source.",
+    "The card's examples (Fisher's experiments at Rothamsted; screening designs in engineering) are not quoted: no source on them was read for this page.",
+    "No defining quotes are given for measurement error or limited generalizability on this page.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

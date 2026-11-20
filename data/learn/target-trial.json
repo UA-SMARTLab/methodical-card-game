@@ -1,0 +1,74 @@
+{
+  "method": "target-trial",
+  "question": "What would a randomized trial have found, using data we already have?",
+  "sources": {
+    "hernan2016": {
+      "cite": "Hernán & Robins (2016). Using Big Data to Emulate a Target Trial When a Randomized Trial Is Not Available. American Journal of Epidemiology 183(8): 758–764.",
+      "short": "Hernán & Robins (2016)",
+      "url": "https://doi.org/10.1093/aje/kwv254",
+      "checked": "every quote read word for word in the PMC full text (PMC4832051), in Chrome, on 20 Nov 2026; places are its sections and Table 1; in-text reference numbers are left out"
+    },
+    "hansford2025": {
+      "cite": "Hansford, McAuley & Cashin (2025). Improving reporting of observational studies of interventions: The TARGET guideline. PLoS Medicine 22(10): e1004787.",
+      "short": "Hansford et al. (2025)",
+      "url": "https://doi.org/10.1371/journal.pmed.1004787",
+      "checked": "quote read word for word in the Europe PMC full text (PMC12543274) on 20 Nov 2026; in-text reference numbers are left out"
+    }
+  },
+  "steps": [
+    {
+      "id": "question",
+      "title": "Ask as a trial",
+      "text": "Imagine the randomized trial that would answer your question. The observational analysis tries to copy it.",
+      "picture": "question",
+      "quotes": [
+        {"text": "Causal inference from large observational databases (big data) can be viewed as an attempt to emulate a randomized experiment—the target experiment or target trial—that would answer the question of interest.", "source": "hernan2016", "where": "Abstract"}
+      ]
+    },
+    {
+      "id": "protocol",
+      "title": "Write the protocol",
+      "text": "Write that trial's protocol: eligibility, treatment strategies, assignment, follow-up, outcome, causal contrast and analysis plan.",
+      "picture": "protocol",
+      "quotes": [
+        {"text": "Specification of the target trial involves outlining all relevant protocol components of the hypothetical randomized trial (the target trial) that would be conducted to answer the clinical question; this is the causal estimand.", "source": "hansford2025", "where": "section The target trial framework"}
+      ]
+    },
+    {
+      "id": "time-zero",
+      "title": "Set time zero",
+      "text": "Make eligibility, the start of the strategy and the start of follow-up fall at the same moment, as they do in a trial.",
+      "picture": "time_zero",
+      "quotes": [
+        {"text": "Eligibility criteria need to be met at that point but not later; study outcomes begin to be counted after that point but not earlier.", "source": "hernan2016", "where": "section Defining time zero"}
+      ]
+    },
+    {
+      "id": "assign",
+      "title": "Emulate assignment",
+      "text": "Nobody tossed a coin, so adjust for every baseline confounder to make the groups comparable.",
+      "picture": "assign",
+      "quotes": [
+        {"text": "To emulate the random assignment of strategies at baseline, we need to adjust for all confounding factors required to ensure comparability (exchangeability) of the groups defined by initiation of the treatment strategies", "source": "hernan2016", "where": "section Assignment procedures"}
+      ]
+    },
+    {
+      "id": "compare",
+      "title": "Compare",
+      "text": "Estimate the effect the trial would have estimated. It is right only if the emulation, including the adjustment, is right.",
+      "picture": "compare",
+      "quotes": [
+        {"text": "If the emulation is successful, the analysis of the observational data yields the same effect estimates (except for random variability) as the target trial would have yielded had the latter been conducted.", "source": "hernan2016", "where": "introduction"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "confounding": {"text": "However, analyses of observational data are often subject to biases, some inadvertently introduced by the investigators (e.g., selection bias due to immortal time) and some that are inherent in the non-randomized nature of the data (e.g., confounding).", "source": "hansford2025", "where": "Introduction"}
+  },
+  "limits": [
+    "Hernán & Robins (2016) was read on the PMC article page; the quotes from it were not checked against the journal's typeset PDF, so no page numbers are given.",
+    "The protocol components in step 2 follow the rows of Hernán & Robins (2016), Table 1 (eligibility criteria, treatment strategies, assignment procedures, follow-up period, outcome, causal contrasts of interest, analysis plan).",
+    "The emulated statin and vaccine trials named on the card were not read in this task.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

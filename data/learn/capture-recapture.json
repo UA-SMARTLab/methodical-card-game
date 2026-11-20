@@ -1,0 +1,86 @@
+{
+  "method": "capture-recapture",
+  "question": "How many cases are there in all, counting those no list caught?",
+  "sources": {
+    "mony2015": {
+      "cite": "Mony, Varghese & Thomas (2015). Estimation of perinatal mortality rate for institutional births in Rajasthan state, India, using capture–recapture technique. BMJ Open 5: e005966.",
+      "short": "Mony et al. (2015)",
+      "url": "https://doi.org/10.1136/bmjopen-2014-005966",
+      "checked": "every quote and the counts read word for word in the Europe PMC full text (PMC4369003) on 20 Nov 2026; the article is online-only, so places are given as its sections; in-text reference numbers are left out"
+    },
+    "braeye2016": {
+      "cite": "Braeye et al. (2016). Capture-recapture estimators in epidemiology with applications to pertussis and pneumococcal invasive disease surveillance. PLoS ONE 11: e0159832.",
+      "short": "Braeye et al. (2016)",
+      "url": "https://doi.org/10.1371/journal.pone.0159832",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC4987016) on 20 Nov 2026; the article is online-only, so places are given as its sections; in-text reference numbers are left out"
+    }
+  },
+  "steps": [
+    {
+      "id": "lists",
+      "title": "Two lists",
+      "text": "Take two (or more) sources that each record some of the cases, such as hospital registers and a community follow-up. Neither needs to be complete.",
+      "picture": "lists",
+      "quotes": [
+        {"text": "This method is based on matching two or more independent samples to arrive at an estimate of the total number of diseases/events when both of the lists are potentially incomplete but with a definite overlap.", "source": "mony2015", "where": "Introduction"}
+      ]
+    },
+    {
+      "id": "match",
+      "title": "Match",
+      "text": "Find the cases that appear on both lists. With no shared ID number, match on several details at once. In ecology the tag on an animal does this job.",
+      "picture": "match",
+      "quotes": [
+        {"text": "In its most classical form an estimate of the size of a species’ population is calculated after capturing, tagging and recapturing animals.", "source": "braeye2016", "where": "Introduction"},
+        {"text": "If an identifying variable can be recorded on a list at every capture occasion, tagging is unnecessary. The capture-recapture histories become apparent by merging the lists.", "source": "braeye2016", "where": "Introduction"}
+      ]
+    },
+    {
+      "id": "overlap",
+      "title": "Count the overlap",
+      "text": "Sort every case into: list A only, list B only, both. In the Rajasthan study, 12, 20 and 21 early neonatal deaths, 53 in all.",
+      "picture": "overlap",
+      "quotes": [
+        {"text": "Using both methods yielded 53 (N=NAB+a+b=21+12+20) deaths.", "source": "mony2015", "where": "Results, estimation of PNMR"}
+      ]
+    },
+    {
+      "id": "estimate",
+      "title": "Estimate the total",
+      "text": "If the lists are independent, the share of list B that list A also found estimates how much of everything list A found. The paper's form: N = (A+1)(B+1)/(both+1) − 1.",
+      "picture": "estimate",
+      "quotes": [
+        {"text": "The Lincoln-Petersen unbiased formula was used to estimate the true number of perinatal deaths", "source": "mony2015", "where": "Methods, analysis"},
+        {"text": "The total number of estimated early neonatal deaths worked out to a total of 64 by the CR method (with 11 being missed by both).", "source": "mony2015", "where": "Results, estimation of PNMR"}
+      ]
+    },
+    {
+      "id": "assume",
+      "title": "Check the assumptions",
+      "text": "The estimate rests on a closed population, reliable matching, independent lists and equal chances of being caught. Lists that catch the same people push the estimate down.",
+      "picture": "assume",
+      "quotes": [
+        {"text": "The validity of the estimates relies on four key assumptions: (1) the population being studied must be ‘closed’, (2) individuals must be matched reliably, (3) sources should be independent and (4) the chance of being ‘captured’ by a source must be equal.", "source": "mony2015", "where": "Introduction"},
+        {"text": "As the dependence between sources increases, the bias of the Lincoln-Petersen estimator and the Chapman estimator, will increase", "source": "braeye2016", "where": "Introduction"}
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Count what no list saw",
+    "intro": "First the published counts from Rajasthan, then a population whose true size you know, caught by two lists.",
+    "quote": {"text": "Capture–recapture methods allow for the estimation of an unknown population size by using two or more samples from that population.", "source": "braeye2016", "where": "Introduction"},
+    "real": {"label": "Early neonatal deaths, Rajasthan (Mony et al. 2015, Results)", "a": 33, "b": 41, "both": 21},
+    "data_label": "The first part uses the published counts. The population in the second part is example data, made up and drawn with a fixed seed; each dot is a person: amber caught by list A only, blue by list B only, filled by both, empty by neither.",
+    "population": 400,
+    "pA": 0.4,
+    "pB": 0.35,
+    "pB_if_A": 0.6,
+    "pB_if_not_A": 0.18
+  },
+  "limits": [
+    "The card's defining reference (International Working Group for Disease Monitoring and Forecasting, 1995) was not read; its account of the method's history is not quoted here.",
+    "The formula on the page is the one Mony et al. (2015) write out; Braeye et al. (2016) compare it with other estimators that relax the independence assumption, which this page does not show.",
+    "The card's example (Petersen's tagged plaice) was not read for this page.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

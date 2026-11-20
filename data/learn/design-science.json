@@ -1,0 +1,64 @@
+{
+  "method": "design-science",
+  "question": "Does the thing we built solve the problem it was built for?",
+  "sources": {
+    "hevner2004": {
+      "cite": "Hevner et al. (2004). Design science in information systems research. MIS Quarterly 28(1): 75–105.",
+      "short": "Hevner et al. (2004)",
+      "url": "https://doi.org/10.2307/25148625",
+      "checked": "every quote read word for word in the vault's text copy of the JSTOR PDF (library No. 289) on 20 Nov 2026; page numbers are the journal's, printed on the copy; words broken across lines in the scan are joined; author–year citations inside quotes are left out"
+    }
+  },
+  "steps": [
+    {
+      "id": "problem",
+      "title": "Pick a real problem",
+      "text": "Start from a problem people actually have and that has no good solution yet.",
+      "picture": "problem",
+      "quotes": [
+        {"text": "The objective of research in information systems is to acquire knowledge and understanding that enable the development and implementation of technology-based solutions to heretofore unsolved and important business problems.", "source": "hevner2004", "where": "p. 84, guideline 2"}
+      ]
+    },
+    {
+      "id": "build",
+      "title": "Build an artifact",
+      "text": "Design something that addresses it: a device, a piece of software, a method or a model.",
+      "picture": "build",
+      "quotes": [
+        {"text": "design-science research requires the creation of an innovative, purposeful artifact (Guideline 1) for a specified problem domain (Guideline 2).", "source": "hevner2004", "where": "p. 82"}
+      ]
+    },
+    {
+      "id": "evaluate",
+      "title": "Evaluate in context",
+      "text": "Test it with its users where it will be used, with methods suited to the claim: observation, experiments, analysis or tests.",
+      "picture": "evaluate",
+      "quotes": [
+        {"text": "The utility, quality, and efficacy of a design artifact must be rigorously demonstrated via well executed evaluation methods.", "source": "hevner2004", "where": "p. 85, guideline 3"}
+      ]
+    },
+    {
+      "id": "iterate",
+      "title": "Build again",
+      "text": "Use what the evaluation showed to improve the design, and repeat until it works well enough.",
+      "picture": "iterate",
+      "quotes": [
+        {"text": "This build-and-evaluate loop is typically iterated a number of times before the final design artifact is generated", "source": "hevner2004", "where": "p. 78"}
+      ]
+    },
+    {
+      "id": "communicate",
+      "title": "Report to both",
+      "text": "Write it up for those who will build on it or implement it, and for those who will decide whether to adopt it.",
+      "picture": "communicate",
+      "quotes": [
+        {"text": "the results of the design-science research must be communicated effectively (Guideline 7) both to a technical audience (researchers who will extend them and practitioners who will implement them) and to a managerial audience", "source": "hevner2004", "where": "p. 82"}
+      ]
+    }
+  ],
+  "limits": [
+    "The card's examples (IEC 62366 usability engineering, research software built with its users) are not worked through here; IEC 62366 has not been read.",
+    "Hevner et al. (2004) write for information systems; the page applies their guidelines to artifacts in general, as the card does.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

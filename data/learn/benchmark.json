@@ -1,0 +1,75 @@
+{
+  "method": "benchmark",
+  "question": "Which method performs best on the same tasks, under the same rules?",
+  "sources": {
+    "sim2003": {
+      "cite": "Sim, Easterbrook & Holt (2003). Using benchmarking to advance research: a challenge to software engineering. Proceedings of the 25th International Conference on Software Engineering (ICSE 2003).",
+      "short": "Sim, Easterbrook & Holt (2003)",
+      "url": "https://doi.org/10.1109/ICSE.2003.1201189",
+      "checked": "every quote read word for word in the vault's text copy (library No. 293) on 20 Nov 2026; the copy has no printed page numbers, so places are its numbered sections"
+    },
+    "weber2019": {
+      "cite": "Weber et al. (2019). Essential guidelines for computational method benchmarking. Genome Biology 20: 125.",
+      "short": "Weber et al. (2019)",
+      "url": "https://doi.org/10.1186/s13059-019-1738-8",
+      "checked": "quotes read word for word in the open-access full text from Europe PMC (PMC6584985, full-text XML) on 20 Nov 2026; places are the article's sections; reference numbers are left out"
+    }
+  },
+  "steps": [
+    {
+      "id": "compare",
+      "title": "Fix the comparison",
+      "text": "Say what is being compared and why it matters, and whether you are a neutral party or the author of one of the methods.",
+      "picture": "compare",
+      "quotes": [
+        {"text": "The purpose of a benchmark is to compare, so the comparison that is at the heart of a benchmark must be clearly defined.", "source": "sim2003", "where": "section 3.2, “Motivating Comparison”"},
+        {"text": "The purpose and scope of a benchmark should be clearly defined at the beginning of the study, and will fundamentally guide the design and implementation.", "source": "weber2019", "where": "section “Defining the purpose and scope”"}
+      ]
+    },
+    {
+      "id": "tasks",
+      "title": "Choose the tasks",
+      "text": "Pick datasets and tasks that represent real use, including some where the right answer is known.",
+      "picture": "tasks",
+      "quotes": [
+        {"text": "The tests in the benchmark should be a representative sample of the tasks that the tool or technique is expected to solve in actual practice.", "source": "sim2003", "where": "section 3.2, “Task Sample”"},
+        {"text": "Simulated data have the advantage that a known true signal (or ‘ground truth’) can easily be introduced", "source": "weber2019", "where": "section “Selection (or design) of datasets”"}
+      ]
+    },
+    {
+      "id": "methods",
+      "title": "Include fairly",
+      "text": "Include the methods by stated criteria, baselines among them, and give each the same care in setting its parameters.",
+      "picture": "methods",
+      "quotes": [
+        {"text": "certain methods should not be favored over others through more extensive parameter tuning.", "source": "weber2019", "where": "section “Parameters and software versions”"}
+      ]
+    },
+    {
+      "id": "metrics",
+      "title": "Measure",
+      "text": "Score every method with the same metrics, chosen for what users need, and repeat runs where results vary.",
+      "picture": "metrics",
+      "quotes": [
+        {"text": "Performance is not an innate characteristic of the technology, but is the relationship between the technology and how it is used. As such, performance is a measure of fitness for purpose.", "source": "sim2003", "where": "section 3.2, “Performance Measures”"}
+      ]
+    },
+    {
+      "id": "evolve",
+      "title": "Renew the benchmark",
+      "text": "Keep changing the benchmark, or methods end up tuned to its particular tests rather than to the problem.",
+      "picture": "evolve",
+      "quotes": [
+        {"text": "Continued evolution of the benchmark is necessary to prevent researchers from making changes to optimise the performance of their contributions on a particular set of tests.", "source": "sim2003", "where": "section 4.1"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "overfitting-leakage": {"text": "In practice, it is necessary to evolve benchmarks to prevent overfitting", "source": "sim2003", "where": "section 4.1, quoting Tichy"}
+  },
+  "limits": [
+    "Ablations and repeated runs, named on the card, are not spelled out by the sources read; the step text mentions repeats in our words only.",
+    "The ImageNet and YCB examples on the card are not worked through here.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

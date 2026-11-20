@@ -1,0 +1,66 @@
+{
+  "method": "mixed-sequential",
+  "question": "What do the numbers show, and why do people behave that way?",
+  "sources": {
+    "fetters2013": {
+      "cite": "Fetters, Curry & Creswell (2013). Achieving integration in mixed methods designs—principles and practices. Health Services Research 48(6 Pt 2): 2134 ff.",
+      "short": "Fetters et al. (2013)",
+      "url": "https://doi.org/10.1111/1475-6773.12117",
+      "checked": "every quote read word for word in the PMC article page (PMC4097839) on 20 Nov 2026; the PMC page has no page numbers, so places are section headings; in-text citations (author, year) are left out where marked"
+    }
+  },
+  "steps": [
+    {
+      "id": "order",
+      "title": "Choose the order",
+      "text": "Decide which phase comes first. Numbers first, then interviews to explain them; or interviews first, then a survey to test what they found.",
+      "picture": "order",
+      "quotes": [
+        {"text": "In sequential designs, the intent is to have one phase of the mixed methods study build on the other", "source": "fetters2013", "where": "“Integration at the Study Design Level”"}
+      ]
+    },
+    {
+      "id": "phase1",
+      "title": "Numbers first",
+      "text": "In the explanatory order, run and analyse the survey first. Its results, such as an unexpected gap, set the questions for the next phase.",
+      "picture": "phase1",
+      "quotes": [
+        {"text": "In an explanatory sequential design, the researcher first collects and analyzes quantitative data, then the findings inform qualitative data collection and analysis", "source": "fetters2013", "where": "“Integration at the Study Design Level” (citation to Ivankova, Creswell and Stick 2006 left out)"}
+      ]
+    },
+    {
+      "id": "connect",
+      "title": "Connect the samples",
+      "text": "Choose the interviewees from the survey respondents, by what the survey found: for example, people from both sides of the gap.",
+      "picture": "connect",
+      "quotes": [
+        {"text": "if the baseline survey data are analyzed, and then the participants sampled based on findings from the analysis, then the design is explanatory sequential.", "source": "fetters2013", "where": "“Integration at the Methods Level”, on connecting"}
+      ]
+    },
+    {
+      "id": "build",
+      "title": "Or build a survey",
+      "text": "In the exploratory order, the interviews come first and supply the topics and the very words of the survey items.",
+      "picture": "build",
+      "quotes": [
+        {"text": "Items for inclusion in a survey are built upon previously collected qualitative data that generate hypotheses or identify constructs or language used by research participants.", "source": "fetters2013", "where": "“Integration at the Methods Level”, on building"}
+      ]
+    },
+    {
+      "id": "integrate",
+      "title": "Integrate and check fit",
+      "text": "Bring both results together, for instance in one joint table, and say whether they confirm each other, add to each other, or disagree.",
+      "picture": "integrate",
+      "quotes": [
+        {"text": "The “fit” of data integration refers to coherence of the quantitative and qualitative findings.", "source": "fetters2013", "where": "“‘Fit’ of Data Integration”"},
+        {"text": "Discordance occurs if the qualitative and quantitative findings are inconsistent, incongruous, contradict, conflict, or disagree with each other.", "source": "fetters2013", "where": "same section"}
+      ]
+    }
+  ],
+  "limits": [
+    "The card's reference, Johnson & Onwuegbuzie (2004), was not read; the page follows Fetters et al. (2013), a principles-and-practice paper on integration in health services research. Its last page number was not checked.",
+    "The PMC page carries no page numbers, so quotes are placed by section only.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

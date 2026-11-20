@@ -1,0 +1,80 @@
+{
+  "method": "bibliographic-coupling",
+  "question": "Which current papers work on the same problem?",
+  "sources": {
+    "frandsen2017": {
+      "cite": "Frandsen (2017). Evolution of modularity literature: a 25-year bibliometric analysis. International Journal of Operations & Production Management.",
+      "short": "Frandsen (2017)",
+      "url": "https://doi.org/10.1108/IJOPM-06-2015-0366",
+      "checked": "every quote read word for word in the vault's copy of the accepted author manuscript (library No. 227) on 20 Nov 2026; places are given as the manuscript's sections, since its page numbers differ from the journal's; in-text references inside quotes are kept as printed; the defining paper, Kessler (1963), is behind a paywall and was not read"
+    }
+  },
+  "steps": [
+    {
+      "id": "gather",
+      "title": "Gather references",
+      "text": "Take the papers you want to map and list each one's references.",
+      "picture": "gather",
+      "after": {"source": "frandsen2017", "where": "section 3.4"}
+    },
+    {
+      "id": "shared",
+      "title": "Count shared",
+      "text": "For every pair of papers, count the references they have in common. The more they share, the closer their topics.",
+      "picture": "shared",
+      "quotes": [
+        {"text": "Bibliographic coupling of a directed network indicates the proximity of two vertices based on the number of other vertices to which the two vertices point toward.", "source": "frandsen2017", "where": "section 3.4"},
+        {"text": "Bibliographic coupling is based on the premise that similarity in referencing patterns can be an indication of topical proximity between source articles", "source": "frandsen2017", "where": "section 4.2"}
+      ]
+    },
+    {
+      "id": "measure",
+      "title": "Choose a measure",
+      "text": "Use the raw number of shared references, or correlate the two reference lists. Say which, because the map changes with it.",
+      "picture": "measure",
+      "quotes": [
+        {"text": "The metrics for bibliographic coupling can be calculated as either the number of identical references (Newman, 2010) or the Pearson correlation coefficients of the cited references (Pilkington and Meredith, 2009).", "source": "frandsen2017", "where": "section 3.4"}
+      ]
+    },
+    {
+      "id": "fronts",
+      "title": "Map the fronts",
+      "text": "Draw the papers as a network with the coupling as links, and find the groups. Each group is a research front.",
+      "picture": "fronts",
+      "quotes": [
+        {"text": "Nodes in the network represent citing articles, while edges represent bibliographic coupling, i.e. the number of references shared by two nodes.", "source": "frandsen2017", "where": "section 4.2"}
+      ]
+    },
+    {
+      "id": "now",
+      "title": "Works today",
+      "text": "A paper's references are fixed the day it appears, so new papers join the map at once. References everyone cites, such as a textbook, link everything and blur it.",
+      "picture": "now",
+      "quotes": [
+        {"text": "A benefit of bibliometric coupling analysis is, that it allows for the inclusion of recent articles.", "source": "frandsen2017", "where": "section 4.2"}
+      ]
+    }
+  ],
+  "exercise": {
+    "kind": "citation-graph",
+    "mode": "bc",
+    "title": "Count the links yourself",
+    "intro": "Four later papers (bottom) cite four older works (top). Pick two papers and count the references they share: that is bibliographic coupling. Switch to co-citation to count the papers that cite two works together. Then publish a paper today and look for it on both maps.",
+    "data_label": "Example data, made up for this exercise.",
+    "works": [{"id": "A"}, {"id": "B"}, {"id": "C"}, {"id": "D"}],
+    "papers": [
+      {"id": "P1", "year": 2015, "refs": ["A", "B"]},
+      {"id": "P2", "year": 2017, "refs": ["A", "B", "C"]},
+      {"id": "P3", "year": 2019, "refs": ["B", "D"]},
+      {"id": "P4", "year": 2021, "refs": ["C", "D"]}
+    ],
+    "new_paper": {"id": "NEW", "year": 2026, "refs": ["B", "C", "D"]}
+  },
+  "limits": [
+    "The defining paper, Kessler (1963), was not read: it is behind a paywall. The definition quoted is Frandsen's (2017), a modularity study that uses bibliographic coupling.",
+    "Gathering references has no quote: Frandsen's sentence on the citation matrix lost its symbols in the text copy, so it is not quoted.",
+    "The blurring by generic references (the card's point) is our own reasoning from how the count works; no source read here states it.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "method": "iv",
+  "question": "What is the effect of an exposure when unmeasured confounders cannot be adjusted away?",
+  "sources": {
+    "lousdal2018": {
+      "cite": "Lousdal (2018). An introduction to instrumental variable assumptions, validation and estimation. Emerging Themes in Epidemiology 15: 1.",
+      "short": "Lousdal (2018)",
+      "url": "https://doi.org/10.1186/s12982-018-0069-7",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC5776781) on 20 Nov 2026; places are its section headings; in-text reference numbers are left out"
+    }
+  },
+  "steps": [
+    {
+      "id": "instrument",
+      "title": "Find an instrument",
+      "text": "Look for something that pushes people towards the exposure but has no other route to the outcome, like a coin toss in a trial.",
+      "picture": "instrument",
+      "quotes": [
+        {"text": "An instrument is defined as a variable that predicts the exposure, but conditional on exposure shows no independent association with the outcome. The instrument affects the outcome solely through the effect on exposure.", "source": "lousdal2018", "where": "section Three basic assumptions"}
+      ]
+    },
+    {
+      "id": "relevance",
+      "title": "Relevance",
+      "text": "The instrument must really change the exposure. This one can be checked in the data.",
+      "picture": "relevance",
+      "quotes": [
+        {"text": "The relevance assumption: The instrument Z has a causal effect on X.", "source": "lousdal2018", "where": "section Three basic assumptions"}
+      ]
+    },
+    {
+      "id": "exclusion",
+      "title": "Exclusion",
+      "text": "The instrument may reach the outcome only through the exposure. This has to be argued, not tested.",
+      "picture": "exclusion",
+      "quotes": [
+        {"text": "The exclusion restriction: Z affects the outcome Y only through X.", "source": "lousdal2018", "where": "section Three basic assumptions"}
+      ]
+    },
+    {
+      "id": "exchangeable",
+      "title": "No shared causes",
+      "text": "Nothing that causes the outcome may also cause the instrument. A real coin toss guarantees it; a natural one has to be defended.",
+      "picture": "exchangeable",
+      "quotes": [
+        {"text": "The exchangeability assumption: Z does not share common causes with the outcome Y", "source": "lousdal2018", "where": "section Three basic assumptions"}
+      ]
+    },
+    {
+      "id": "ratio",
+      "title": "Divide",
+      "text": "Divide the instrument's effect on the outcome by its effect on the exposure. A fourth assumption (homogeneity or monotonicity) says whose effect this is.",
+      "picture": "ratio",
+      "quotes": [
+        {"text": "Intuitively, the numerator corresponds to the intention-to-treat effect of the causal effect of assignment on outcome", "source": "lousdal2018", "where": "section Three basic assumptions"},
+        {"text": "The denominator is a measure of compliance with the assigned exposure.", "source": "lousdal2018", "where": "section Three basic assumptions"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "confounding": {"text": "If a suitable instrument can be identified, the causal average effect among compliers may be estimated even in the presence of unmeasured confounding.", "source": "lousdal2018", "where": "Background"},
+    "model-assumptions": {"text": "The three basic assumptions allow for identification of an upper and lower bound of the causal effect", "source": "lousdal2018", "where": "section Three basic assumptions"},
+    "low-power": {"text": "Often natural variation only gives rise to a weak association between instrument and exposure.", "source": "lousdal2018", "where": "section Three basic assumptions"}
+  },
+  "exercise": {
+    "title": "Why not just compare the exposed?",
+    "intro": "Each simulated person has a hidden trait U that makes them both more likely to take the exposure X and better off on the outcome Y. A coin Z nudges some people towards X. Compare the naive estimate with the instrument's ratio.",
+    "quote": {"text": "When non-compliance increases, the denominator shrinks and inflates the diluted intention-to-treat estimate in order to estimate the causal effect had everyone complied.", "source": "lousdal2018", "where": "section Three basic assumptions"},
+    "data_label": "Example data, simulated for this exercise with a seeded random generator.",
+    "model": "Model: X = 1 when 1.2·U + nudge·Z + noise > 1; Y = 1·X + 2·U + noise; U and noise are standard normal; Z is a fair coin. The nudge is 2 (strong) or 0.25 (weak).",
+    "sizes": [200, 1000, 10000],
+    "nudge": {"strong": 2.0, "weak": 0.25},
+    "u_on_x": 1.2,
+    "u_on_y": 2.0,
+    "effect": 1.0,
+    "threshold": 1.0
+  },
+  "limits": [
+    "Angrist, Imbens & Rubin (1996), the card's reference, was not read in this task; the steps follow Lousdal (2018).",
+    "Angrist & Krueger (1991), the card's example, was not read in this task.",
+    "The exercise's effect is the same for everyone, so the ratio targets that single effect; with varying effects it estimates the average effect among compliers (Lousdal 2018, Background).",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

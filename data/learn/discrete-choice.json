@@ -1,0 +1,69 @@
+{
+  "method": "discrete-choice",
+  "question": "What do people trade off when they choose, and how much is each feature worth to them?",
+  "sources": {
+    "soekhai2019": {
+      "cite": "Soekhai et al. (2019). Discrete choice experiments in health economics: past, present and future. PharmacoEconomics 37(2): 201–226.",
+      "short": "Soekhai et al. (2019)",
+      "url": "https://doi.org/10.1007/s40273-018-0734-2",
+      "checked": "every quote read word for word in the open-access full text from Europe PMC (PMC6386055, full-text XML) on 20 Nov 2026; places are the article's sections; reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "attributes",
+      "title": "Choose attributes",
+      "text": "Describe the options by a few attributes (waiting time, cost, risk) and give each a handful of levels, found by talking to the people who will choose.",
+      "picture": "attributes",
+      "quotes": [
+        {"text": "DCEs are grounded in theories which assume that (1) alternatives can be described by their attributes, (2) an individual’s valuation depends upon the levels of these attributes, and (3) choices are based on a latent utility function", "source": "soekhai2019", "where": "introduction"},
+        {"text": "Qualitative research methods continued to be a popular approach for identifying attributes and levels.", "source": "soekhai2019", "where": "abstract, results"}
+      ]
+    },
+    {
+      "id": "design",
+      "title": "Design the choice sets",
+      "text": "Combine the levels into pairs of hypothetical options by an experimental design, so each attribute's effect can be told apart from the others.",
+      "picture": "design",
+      "quotes": [
+        {"text": "The theoretical foundations have implications for the experimental design (principles to construct alternatives and choice sets) and the probabilistic models used to analyse the choice data", "source": "soekhai2019", "where": "introduction"}
+      ]
+    },
+    {
+      "id": "choose",
+      "title": "Respondents choose",
+      "text": "Each respondent sees a series of choice sets and picks the option they prefer in each.",
+      "picture": "choose",
+      "quotes": [
+        {"text": "In a DCE individuals are asked to select their preferred (and/or least preferred) alternative from a set of alternatives.", "source": "soekhai2019", "where": "introduction"}
+      ]
+    },
+    {
+      "id": "model",
+      "title": "Model the trade-offs",
+      "text": "A choice model, most often a multinomial or mixed logit, estimates how much each attribute weighs in the choices. The weights are reported as such, or turned into willingness to pay or probabilities.",
+      "picture": "model",
+      "quotes": [
+        {"text": "DCEs often presented their outcomes in terms of willingness to pay (WTP), a monetary welfare measure or a utility score", "source": "soekhai2019", "where": "section “Outcome Measures”"}
+      ]
+    },
+    {
+      "id": "check",
+      "title": "Check validity",
+      "text": "Because the choices are hypothetical, build in checks, and compare with real choices where you can.",
+      "picture": "check",
+      "quotes": [
+        {"text": "DCEs are based on responses to hypothetical choices (stated preferences), so internal and external validity checks provide a crucial opportunity to assess data quality or to compare stated preferences from DCEs with revealed preferences.", "source": "soekhai2019", "where": "section “Validity Checks and Qualitative Methods”"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "external-validity": {"text": "DCEs are based on responses to hypothetical choices (stated preferences)", "source": "soekhai2019", "where": "section “Validity Checks and Qualitative Methods”"}
+  },
+  "limits": [
+    "The card's defining reference, de Bekker-Grob, Ryan & Gerard (2010), and McFadden's random-utility papers have not been read for this page; the page follows the later review by Soekhai et al. (2019), which de Bekker-Grob co-wrote.",
+    "How willingness to pay is computed from the model's weights is not shown: the review read here reports that it is used, not how.",
+    "The most-used models in step 4 (multinomial and mixed logit) are read off the review's table 4 for 2013–2017.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

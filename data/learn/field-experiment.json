@@ -1,0 +1,76 @@
+{
+  "method": "field-experiment",
+  "question": "What happens in the real world when we change one thing?",
+  "sources": {
+    "aguilera2018": {
+      "cite": "Aguilera et al. (2018). Heterogeneity of ecological patterns, processes, and funding of marine manipulative field experiments conducted in Southeastern Pacific coastal ecosystems. Ecology and Evolution 8: 8627-8638.",
+      "short": "Aguilera et al. (2018)",
+      "url": "https://doi.org/10.1002/ece3.4371",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC6145005) on 20 Nov 2026; places are given as numbered sections; in-text citations are left out of the quotes"
+    },
+    "lazic2010": {
+      "cite": "Lazic (2010). The problem of pseudoreplication in neuroscientific studies: is it affecting your analysis? BMC Neuroscience 11: 5.",
+      "short": "Lazic (2010)",
+      "url": "https://doi.org/10.1186/1471-2202-11-5",
+      "checked": "the definition of an experimental unit read word for word in the Europe PMC full text (PMC2817684) on 20 Nov 2026; the in-text reference number is left out"
+    }
+  },
+  "steps": [
+    {
+      "id": "place",
+      "title": "Go outside",
+      "text": "Work where the thing happens (a shore, a field, a village, a market), with its real weather, neighbours and noise.",
+      "picture": "place",
+      "quotes": [
+        {"text": "manipulative experiments have experienced a strong increase during the last 40 years, being considered the most rigorous and persuasive tool of hypothesis testing in ecology", "source": "aguilera2018", "where": "section 1, introduction"}
+      ]
+    },
+    {
+      "id": "replicate",
+      "title": "Replicate, at random",
+      "text": "Mark out many plots, the units you will treat. Chance decides which plot gets which treatment.",
+      "picture": "replicate",
+      "quotes": [
+        {"text": "An experimental unit is defined as the smallest entity that can be randomly assigned to a different treatment condition", "source": "lazic2010", "where": "Background"}
+      ]
+    },
+    {
+      "id": "manipulate",
+      "title": "Manipulate",
+      "text": "Change one factor on purpose in the treated plots, such as keeping a consumer out with a cage.",
+      "picture": "manipulate",
+      "quotes": [
+        {"text": "Herbivory experiments commonly included two to three treatments, in which herbivores are “excluded” (i.e., removed from parcels or plots) and/or “enclosed” in different experimental arenas", "source": "aguilera2018", "where": "section 4.3, biotic interactions and experimental design"}
+      ]
+    },
+    {
+      "id": "controls",
+      "title": "Control the method",
+      "text": "Leave some plots untouched, and give others the fence without the exclusion, so the cage's own side effects are not mistaken for the effect.",
+      "picture": "controls",
+      "quotes": [
+        {"text": "followed by “procedural control” (i.e., partial fences or partial antifouling paint", "source": "aguilera2018", "where": "section 4.3, biotic interactions and experimental design"}
+      ]
+    },
+    {
+      "id": "compare",
+      "title": "Follow and compare",
+      "text": "Return over weeks or months and compare the plots, treatment against both controls.",
+      "picture": "compare",
+      "quotes": [
+        {"text": "Manipulative field experiments in particular have provided important insight on the complexity and spatial scale of species interactions", "source": "aguilera2018", "where": "section 1, introduction"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "external-validity": {"text": "we found that most studies considered a short time (25–200 days), and small spatial extent (~20 m2) in their design", "source": "aguilera2018", "where": "section 4.2, spatial–temporal complexity of experimental research"}
+  },
+  "limits": [
+    "The card's defining paper and example, Paine (1966, The American Naturalist), was not read: it is not open access, and no file was downloaded. Its starfish removal is therefore not described here; the steps follow a review of marine field experiments, Aguilera et al. (2018), and Lazic (2010) for the experimental unit.",
+    "The shore, plots and results in the pictures are made up to show the idea; they are not Paine's or any study's data.",
+    "Lazic (2010) writes about laboratory neuroscience; the definition of an experimental unit is general, but the field setting is our application of it.",
+    "No exercise: the pictures carry the idea.",
+    "No defining quotes are given for contamination, history or low power on this page.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

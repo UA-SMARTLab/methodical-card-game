@@ -1,0 +1,94 @@
+{
+  "method": "systematic-review",
+  "question": "What do all the studies on this question show, taken together?",
+  "sources": {
+    "page2021": {
+      "cite": "Page et al. (2021). The PRISMA 2020 statement: an updated guideline for reporting systematic reviews. BMJ 372: n71.",
+      "short": "Page et al. (2021)",
+      "url": "https://doi.org/10.1136/bmj.n71",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC8005924) on 20 Nov 2026; the article is online-only (n71), so places are given as its boxes and the numbered items of its Table 1 checklist; in-text reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "protocol",
+      "title": "Register a protocol",
+      "text": "Write the question, eligibility criteria and planned analysis down first, and register them, so later choices can be checked against the plan.",
+      "picture": "protocol",
+      "quotes": [
+        {"text": "A review that uses explicit, systematic methods to collate and synthesise findings of studies that address a clearly formulated question", "source": "page2021", "where": "Box 1, definition of systematic review"},
+        {"text": "Provide registration information for the review, including register name and registration number, or state that the review was not registered.", "source": "page2021", "where": "Table 1, item 24a"}
+      ]
+    },
+    {
+      "id": "search",
+      "title": "Search everything",
+      "text": "Search every relevant database and register, plus reference lists and other sources, and record when each was searched.",
+      "picture": "search",
+      "quotes": [
+        {"text": "Specify all databases, registers, websites, organisations, reference lists and other sources searched or consulted to identify studies. Specify the date when each source was last searched or consulted.", "source": "page2021", "where": "Table 1, item 6"}
+      ]
+    },
+    {
+      "id": "screen",
+      "title": "Screen",
+      "text": "Check every record against the criteria, ideally two reviewers working independently, and count what is excluded at each stage.",
+      "picture": "screen",
+      "quotes": [
+        {"text": "Specify the methods used to decide whether a study met the inclusion criteria of the review, including how many reviewers screened each record and each report retrieved, whether they worked independently", "source": "page2021", "where": "Table 1, item 8"}
+      ]
+    },
+    {
+      "id": "appraise",
+      "title": "Appraise",
+      "text": "Judge each included study's risk of bias with a named tool, domain by domain.",
+      "picture": "appraise",
+      "quotes": [
+        {"text": "Specify the methods used to assess risk of bias in the included studies, including details of the tool(s) used, how many reviewers assessed each study and whether they worked independently", "source": "page2021", "where": "Table 1, item 11"}
+      ]
+    },
+    {
+      "id": "pool",
+      "title": "Pool",
+      "text": "Where the studies are similar enough, combine their effect estimates, weighting the precise ones more, and measure how much they disagree.",
+      "picture": "pool",
+      "quotes": [
+        {"text": "A statistical technique used to synthesise results when study effect estimates and their variances are available, yielding a quantitative summary of results", "source": "page2021", "where": "Box 1, definition of meta-analysis of effect estimates"},
+        {"text": "If meta-analysis was performed, describe the model(s), method(s) to identify the presence and extent of statistical heterogeneity, and software package(s) used.", "source": "page2021", "where": "Table 1, item 13d"}
+      ]
+    },
+    {
+      "id": "certainty",
+      "title": "Rate certainty",
+      "text": "Ask what may be missing, such as unpublished null results, and how sure the body of evidence lets you be.",
+      "picture": "certainty",
+      "quotes": [
+        {"text": "Describe any methods used to assess risk of bias due to missing results in a synthesis (arising from reporting biases).", "source": "page2021", "where": "Table 1, item 14"},
+        {"text": "Describe any methods used to assess certainty (or confidence) in the body of evidence for an outcome.", "source": "page2021", "where": "Table 1, item 15"}
+      ]
+    }
+  ],
+  "exercise": {
+    "kind": "forest",
+    "title": "Pool a forest plot",
+    "intro": "Seven trials of the same treatment report a risk ratio with its 95% interval; below 1 favours the treatment. Pool them with a fixed-effect or a random-effects model, then leave the trials that found nothing 'significant' unpublished and watch the pooled effect move.",
+    "quote": {"text": "Present results of all statistical syntheses conducted. If meta-analysis was done, present for each the summary estimate and its precision (e.g. confidence/credible interval) and measures of statistical heterogeneity.", "source": "page2021", "where": "Table 1, item 20b"},
+    "data_label": "Example data, made up for this exercise.",
+    "method_note": "Pooling is inverse-variance on the log risk ratio; the random-effects model adds a between-study variance estimated by the DerSimonian–Laird method. Box size shows each trial's weight.",
+    "studies": [
+      {"name": "Trial 1", "y": -0.50, "se": 0.20},
+      {"name": "Trial 2", "y": -0.30, "se": 0.15},
+      {"name": "Trial 3", "y": -0.10, "se": 0.10},
+      {"name": "Trial 4", "y": 0.05, "se": 0.12},
+      {"name": "Trial 5", "y": -0.60, "se": 0.30},
+      {"name": "Trial 6", "y": 0.10, "se": 0.25},
+      {"name": "Trial 7", "y": -0.40, "se": 0.35}
+    ]
+  },
+  "limits": [
+    "PRISMA 2020 is a reporting guideline: it says what a review must report, not how to do each step. How to do them is in the Cochrane Handbook, which was not read for this page.",
+    "The Cochrane-logo example on the card (antenatal steroids) is not shown with its numbers here.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

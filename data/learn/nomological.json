@@ -1,0 +1,64 @@
+{
+  "method": "nomological",
+  "question": "Does the measure behave the way the theory says it should?",
+  "sources": {
+    "cronbach1955": {
+      "cite": "Cronbach & Meehl (1955). Construct validity in psychological tests. Psychological Bulletin 52: 281–302.",
+      "short": "Cronbach & Meehl (1955)",
+      "url": "https://doi.org/10.1037/h0040957",
+      "checked": "every quote read word for word on 20 Nov 2026 in the full text at Classics in the History of Psychology (psychclassics.yorku.ca/Cronbach/construct.htm), which marks the journal's page breaks; page numbers are those marks; reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "theory",
+      "title": "Write the laws",
+      "text": "Spell out the theory around the construct as a set of linked claims: what it causes, what causes it, what it goes with.",
+      "picture": "theory",
+      "quotes": [
+        {"text": "Scientifically speaking, to \"make clear what something is \" means to set forth the laws in which it occurs. We shall refer to the interlocking system of laws which constitute a theory as a nomological network .", "source": "cronbach1955", "where": "p. 290, “The Nomological Net”"}
+      ]
+    },
+    {
+      "id": "converge",
+      "title": "Predict what tracks",
+      "text": "From the network, say in advance which other measures yours should correlate with, and which it should not.",
+      "picture": "converge",
+      "quotes": [
+        {"text": "If two tests are presumed to measure the same construct, a correlation between them is predicted.", "source": "cronbach1955", "where": "p. 287, “Correlation matrices and factor analysis”"}
+      ]
+    },
+    {
+      "id": "groups",
+      "title": "Predict who differs",
+      "text": "Say which groups should score differently, and in which direction, before you look.",
+      "picture": "groups",
+      "quotes": [
+        {"text": "If our understanding of a construct leads us to expect two groups to differ on the test, this expectation may be tested directly.", "source": "cronbach1955", "where": "p. 287, “Group differences”"}
+      ]
+    },
+    {
+      "id": "test",
+      "title": "Test the pattern",
+      "text": "Collect the data and check the whole set of predictions at once. Many varied hits count for more than a few similar ones.",
+      "picture": "test",
+      "quotes": [
+        {"text": "Numerous successful predictions dealing with phenotypically diverse \"criteria\" give greater weight to the claim of construct validity than do fewer predictions, or predictions involving very similar behaviors.", "source": "cronbach1955", "where": "p. 295"}
+      ]
+    },
+    {
+      "id": "miss",
+      "title": "Read the misses",
+      "text": "A failed prediction does not say where the fault lies: the measure, the theory or the other measures. Find out which.",
+      "picture": "miss",
+      "quotes": [
+        {"text": "If the prediction is not confirmed, any link in the chain may be wrong.", "source": "cronbach1955", "where": "p. 294"}
+      ]
+    }
+  ],
+  "limits": [
+    "Campbell & Fiske's (1959) multitrait–multimethod matrix, named on the card, has not been read for this page and is not shown.",
+    "The quotes keep the 1955 wording and the web copy's spacing around quotation marks.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

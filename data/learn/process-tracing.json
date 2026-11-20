@@ -1,0 +1,85 @@
+{
+  "method": "process-tracing",
+  "question": "Which explanation of this one case survives the evidence?",
+  "sources": {
+    "collier2011": {
+      "cite": "Collier (2011). Understanding Process Tracing. PS: Political Science & Politics, October 2011: 823 ff.",
+      "short": "Collier (2011)",
+      "url": "https://doi.org/10.1017/S1049096511001429",
+      "checked": "every quote read word for word in the text copy of the published PDF in the user's research library (No. 284) on 20 Nov 2026; pages are the journal's (823–827 used); the volume, issue and last page were not on the pages read; words split by line-end hyphens are rejoined"
+    }
+  },
+  "steps": [
+    {
+      "id": "rivals",
+      "title": "Pose rival hypotheses",
+      "text": "Write down every explanation that could have produced the outcome, each as a chain of steps, before looking for evidence.",
+      "picture": "rivals",
+      "quotes": [
+        {"text": "the systematic examination of diagnostic evidence selected and analyzed in light of research questions and hypotheses posed by the investigator.", "source": "collier2011", "where": "p. 823, the definition"},
+        {"text": "Careful, analytically informed specification of hypotheses is essential both in selecting and interpreting pieces of evidence, and in weighing them against one another.", "source": "collier2011", "where": "p. 825"}
+      ]
+    },
+    {
+      "id": "describe",
+      "title": "Describe each step",
+      "text": "Establish what happened at each moment of the sequence. A chain can only be traced if each link is well described.",
+      "picture": "describe",
+      "quotes": [
+        {"text": "the descriptive component of process tracing begins not with observing change or sequence, but rather with taking good snapshots at a series of specific moments.", "source": "collier2011", "where": "p. 824"}
+      ]
+    },
+    {
+      "id": "hoop",
+      "title": "Hoop tests",
+      "text": "Look for evidence a hypothesis cannot do without. If it is missing, the hypothesis is out; if present, it merely stays in the running.",
+      "picture": "hoop",
+      "quotes": [
+        {"text": "Hoop tests do not confirm a hypothesis, but they can eliminate it.", "source": "collier2011", "where": "p. 826"}
+      ]
+    },
+    {
+      "id": "smoking",
+      "title": "Smoking-gun tests",
+      "text": "Look for evidence that only one hypothesis would produce. Finding it strongly supports that hypothesis; not finding it clears nobody.",
+      "picture": "smoking",
+      "quotes": [
+        {"text": "this provides a sufficient but not necessary criterion for accepting the causal inference. It can strongly support a given hypothesis, but failure to pass does not reject it.", "source": "collier2011", "where": "p. 827"}
+      ]
+    },
+    {
+      "id": "combine",
+      "title": "Combine and eliminate",
+      "text": "Single decisive tests are rare. Combine several: rule rivals out with hoop tests and back the survivor with the rest.",
+      "picture": "combine",
+      "quotes": [
+        {"text": "single tests that accomplish this are rare in social science, but this leverage may be achieved by combining multiple tests, which together support one explanation and eliminate all others.", "source": "collier2011", "where": "p. 827, on doubly decisive tests"}
+      ]
+    }
+  ],
+  "exercise": {
+    "kind": "tests",
+    "title": "Who killed John Straker?",
+    "intro": "Collier teaches process tracing with the Sherlock Holmes story “Silver Blaze”. The trainer John Straker is found dead. Three suspects: the visitor Simpson, Straker himself, and the racehorse. Reveal the clues in any order and watch which suspects survive.",
+    "quote": {"text": "when the investigator has eliminated all plausible alternatives, the remaining scenario must be the correct one.", "source": "collier2011", "where": "p. 827"},
+    "data_label": "The clues and how each is classified are Collier's (2011, tables 4–6), from a work of fiction.",
+    "weights_note": "The bar lengths are only illustrative: a straw in the wind multiplies a suspect's weight by 1.5, a passed hoop test by 1.2, a smoking gun by 4, and a failed hoop test removes the suspect. Collier gives no numbers.",
+    "suspects": ["Simpson killed Straker", "Straker killed himself", "The horse killed Straker"],
+    "factor": {"straw": 1.5, "hoop-pass": 1.2, "smoking": 4, "hoop-fail": 0},
+    "clues": [
+      {"label": "Simpson's weapon", "target": 0, "test": "hoop-pass", "says": "Simpson carried a potential murder weapon. He passes this hoop test, so he stays a suspect, but it proves nothing (table 4)."},
+      {"label": "Curried mutton", "target": 0, "test": "hoop-fail", "says": "The opium that drugged the stable boy was hidden in curry that only someone in Straker's household could have added. Simpson fails this hoop test and is eliminated (table 6)."},
+      {"label": "Savage blow", "target": 1, "test": "hoop-fail", "says": "Straker's head was shattered by a heavy blow he could not have dealt himself. He fails this hoop test and is eliminated (table 6)."},
+      {"label": "Bill in his pocket", "target": 2, "test": "straw", "says": "A bill for an expensive dress his wife knew nothing about suggests money trouble and a motive to fix the race: a straw in the wind (tables 3 and 6)."},
+      {"label": "Surgical knife", "target": 2, "test": "straw", "alt": "smoking", "says": "An unusual surgical knife was found with Straker. Read as exceptionally unusual it is a smoking gun for a plan to harm the horse; read as only somewhat unusual, a straw in the wind (table 5)."},
+      {"label": "Matches and candle", "target": 2, "test": "straw", "says": "Matches and a candle, and a horse gone at night, fit an attempt on the horse that frightened it into a fatal kick: a straw in the wind (table 6)."},
+      {"label": "Form of death", "target": 2, "test": "straw", "says": "So unusual a death points to an unusual cause, the horse's kick: a straw in the wind (table 6)."}
+    ]
+  },
+  "limits": [
+    "The exercise's bar lengths are not from Collier, who classifies the tests but gives no numbers; they only show the direction of each test.",
+    "Van Evera's (1997) and Bennett's (2010) original formulations of the tests, on which Collier builds, were not read.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

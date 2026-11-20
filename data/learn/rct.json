@@ -1,0 +1,86 @@
+{
+  "method": "rct",
+  "question": "Does the intervention cause the outcome?",
+  "sources": {
+    "moher2010": {
+      "cite": "Moher et al. (2010). CONSORT 2010 Explanation and Elaboration: updated guidelines for reporting parallel group randomised trials. BMJ 340: c869.",
+      "short": "Moher et al. (2010)",
+      "url": "https://doi.org/10.1136/bmj.c869",
+      "checked": "every quote read word for word in the PMC full text (PMC2844943) on 20 Nov 2026; the article is online-only (c869), so places are given as its CONSORT items and boxes; in-text reference numbers are left out of the quotes"
+    },
+    "eldridge2016": {
+      "cite": "Eldridge et al. (2016). CONSORT 2010 statement: extension to randomised pilot and feasibility trials. BMJ 355: i5239.",
+      "short": "Eldridge et al. (2016)",
+      "url": "https://doi.org/10.1136/bmj.i5239",
+      "checked": "Fig 5 caption read in the vault's copy (library No. 287) on 20 Nov 2026"
+    }
+  },
+  "steps": [
+    {
+      "id": "enrol",
+      "title": "Enrol",
+      "text": "Screen people against the eligibility criteria. Those who fit and agree are enrolled; the rest are counted, not dropped from view.",
+      "picture": "enrol",
+      "quotes": [
+        {"text": "a clear understanding of these criteria is one of several elements required to judge to whom the results of a trial apply", "source": "moher2010", "where": "item 4a"}
+      ]
+    },
+    {
+      "id": "allocate",
+      "title": "Allocate by chance",
+      "text": "A random sequence, not a person, decides who gets the intervention, and nobody enrolling patients can see the next assignment.",
+      "picture": "allocate",
+      "quotes": [
+        {"text": "With random allocation, each participant has a known probability of receiving each intervention before one is assigned, but the assigned intervention is determined by a chance process and cannot be predicted.", "source": "moher2010", "where": "item 8a"},
+        {"text": "when properly implemented, it eliminates selection bias, balancing both known and unknown prognostic factors, in the assignment of treatments.", "source": "moher2010", "where": "box 1"},
+        {"text": "allocation concealment, a critical mechanism that prevents foreknowledge of treatment assignment", "source": "moher2010", "where": "item 9"}
+      ]
+    },
+    {
+      "id": "treat",
+      "title": "Treat",
+      "text": "One arm gets the intervention, the other the control. Where possible the control looks the same, so nobody knows who got what.",
+      "picture": "treat",
+      "quotes": [
+        {"text": "The term “blinding” or “masking” refers to withholding information about the assigned interventions from people involved in the trial who may potentially be influenced by this knowledge.", "source": "moher2010", "where": "item 11a"}
+      ]
+    },
+    {
+      "id": "follow",
+      "title": "Follow up",
+      "text": "Follow both arms for the same time and measure the same outcome. Count everyone who drops out, and why.",
+      "picture": "follow",
+      "quotes": [
+        {"text": "it may be difficult for readers to discern whether and why some participants did not receive the treatment as allocated, were lost to follow-up, or were excluded from the analysis.", "source": "moher2010", "where": "item 13a"},
+        {"text": "screening, enrolment, intervention allocation, follow-up, and assessment", "source": "eldridge2016", "where": "Fig 5, the phases of the flow diagram"}
+      ]
+    },
+    {
+      "id": "compare",
+      "title": "Compare",
+      "text": "Compare the outcome between the arms, analysing everyone in the arm they were allocated to. Because chance made the arms alike, the difference estimates the effect.",
+      "picture": "compare",
+      "quotes": [
+        {"text": "analyse all participants according to their original group assignment, regardless of what subsequently occurred", "source": "moher2010", "where": "item 16, the “intention-to-treat” strategy"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "external-validity": {"text": "External validity, also called generalisability or applicability, is the extent to which the results of a study can be generalised to other circumstances.", "source": "moher2010", "where": "item 21"}
+  },
+  "exercise": {
+    "kind": "randomise",
+    "title": "Why chance and not a doctor?",
+    "intro": "Each dot is a patient. Some are severely ill (red), which nobody records. Let a doctor choose who gets the new treatment, or let chance choose, and see how many severe patients each arm starts with.",
+    "quote": {"text": "Without randomisation, treatment comparisons may be prejudiced, whether consciously or not, by selection of participants of a particular kind to receive a particular treatment.", "source": "moher2010", "where": "box 1"},
+    "data_label": "Example data, made up for this exercise.",
+    "severe_share": 0.35,
+    "sizes": [20, 40, 100, 400],
+    "doctor_rule": "The simulated doctor gives the new treatment to the patients who look more likely to recover; severity shows only partly, so the doctor's impression is severity plus noise."
+  },
+  "limits": [
+    "The streptomycin trial's own numbers (group sizes, deaths, how allocation was concealed) are not shown yet: PMC serves the 1948 paper only as page scans, which have not been read. Add them, with pages, after reading the PDF.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

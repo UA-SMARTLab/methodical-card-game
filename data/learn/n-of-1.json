@@ -1,0 +1,78 @@
+{
+  "method": "n-of-1",
+  "question": "Which treatment works best for this one patient?",
+  "sources": {
+    "hawksworth2024": {
+      "cite": "Hawksworth et al. (2024). A methodological review of randomised n-of-1 trials. Trials 25: 263.",
+      "short": "Hawksworth et al. (2024)",
+      "url": "https://doi.org/10.1186/s13063-024-08100-1",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC11020886) on 20 Nov 2026; places are given as sections; in-text reference numbers are left out of the quotes"
+    },
+    "dwan2019": {
+      "cite": "Dwan et al. (2019). CONSORT 2010 statement: extension to randomised crossover trials. BMJ 366: l4378.",
+      "short": "Dwan et al. (2019)",
+      "url": "https://doi.org/10.1136/bmj.l4378",
+      "checked": "the carry-over definition read word for word in the Europe PMC full text (PMC6667942) on 20 Nov 2026"
+    }
+  },
+  "steps": [
+    {
+      "id": "one",
+      "title": "One patient",
+      "text": "The question is about one person, not the average patient: of two treatments, which helps them?",
+      "picture": "one",
+      "quotes": [
+        {"text": "n-of-1 trials are within-patient, multi-period crossover trials designed to optimise the evaluation of health technologies in individual patients", "source": "hawksworth2024", "where": "Background"}
+      ]
+    },
+    {
+      "id": "randomise",
+      "title": "Randomise periods",
+      "text": "Treatment periods come in pairs, one of each treatment; chance decides the order inside each pair.",
+      "picture": "randomise",
+      "quotes": [
+        {"text": "In these trials, a single patient receives one treatment for a period of time and then switches to receive another.", "source": "hawksworth2024", "where": "Background"},
+        {"text": "Usually, the order in which the patient receives the treatments is randomised.", "source": "hawksworth2024", "where": "Background"}
+      ]
+    },
+    {
+      "id": "blind",
+      "title": "Blind",
+      "text": "Where possible, the treatments look the same, so the patient's hopes cannot colour the score.",
+      "picture": "blind",
+      "quotes": [
+        {"text": "The majority of studies blinded participants to treatment allocation (n = 57, 77.0%).", "source": "hawksworth2024", "where": "Results, design characteristics"}
+      ]
+    },
+    {
+      "id": "repeat",
+      "title": "Repeat",
+      "text": "Switch back and forth several times and measure in every period. One good week can be luck; the same winner pair after pair is not.",
+      "picture": "repeat",
+      "quotes": [
+        {"text": "This “switching” is repeated, such that multiple measurements are obtained for each treatment.", "source": "hawksworth2024", "where": "Background"},
+        {"text": "The median (Q1, Q3) number of periods was six (4, 8). The median (Q1, Q3) period length was 14 days (5, 28).", "source": "hawksworth2024", "where": "Results, design characteristics"}
+      ]
+    },
+    {
+      "id": "decide",
+      "title": "Decide",
+      "text": "The result answers the question for this patient: keep the treatment that won.",
+      "picture": "decide",
+      "quotes": [
+        {"text": "Such n-of-1 trials combine methodological rigour with the investigation of treatment effects in an individual patient to enable the determination of the optimal treatment for a particular patient, enabling individualised patient care", "source": "hawksworth2024", "where": "Background"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "carryover": {"text": "the effect of the first intervention persists into the second period so that the observed difference between the treatments depends on the order in which they were received", "source": "dwan2019", "where": "Methodological features of randomised crossover trials"}
+  },
+  "limits": [
+    "The card's defining paper, Guyatt et al. (1986, NEJM), and the CONSORT extension for N-of-1 trials (CENT 2015, BMJ h1738 and h1793) were not read: neither is in Europe PMC's open full text, and bmj.com showed a bot check, which was not passed. The quotes come from Hawksworth et al. (2024) instead.",
+    "The order of periods and the symptom scores in the pictures are made up to show the idea; they are not from a real trial.",
+    "No exercise: the pictures carry the idea.",
+    "No defining quote is given for expectation effects; none was read in these sources.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

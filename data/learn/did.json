@@ -1,0 +1,85 @@
+{
+  "method": "did",
+  "question": "How much did the outcome change because of the intervention, beyond what changed anyway?",
+  "sources": {
+    "wing2018": {
+      "cite": "Wing et al. (2018). Designing difference in difference studies: best practices for public health policy research. Annual Review of Public Health 39.",
+      "short": "Wing et al. (2018)",
+      "url": "https://doi.org/10.1146/annurev-publhealth-040617-013507",
+      "checked": "every quote read word for word in the full text on the Annual Reviews article page (in Chrome, 20 Nov 2026); the web text has no page numbers, so places are given as its section headings; in-text reference numbers are left out. Page numbers were not read and are not given"
+    },
+    "bouttell2018": {
+      "cite": "Bouttell et al. (2018). Synthetic control methodology as a tool for evaluating population-level health interventions. Journal of Epidemiology and Community Health 72: 673–678.",
+      "short": "Bouttell et al. (2018)",
+      "url": "https://doi.org/10.1136/jech-2017-210106",
+      "checked": "quote read word for word in the Europe PMC full text (PMC6204967) on 20 Nov 2026; places are given as its sections"
+    }
+  },
+  "steps": [
+    {
+      "id": "groups",
+      "title": "Two groups",
+      "text": "Find a group that got the intervention and a similar one that did not. Unlike a trial, chance did not decide which was which.",
+      "picture": "groups",
+      "quotes": [
+        {"text": "The most important distinction is that treatment conditions are randomly assigned across units in an RCT but not in a DID design.", "source": "wing2018", "where": "Potential outcomes notation"}
+      ]
+    },
+    {
+      "id": "periods",
+      "title": "Two periods",
+      "text": "Measure both groups before and after. Before, neither has the intervention; after, only one does.",
+      "picture": "periods",
+      "quotes": [
+        {"text": "In the first period, both groups are exposed to the control condition. In the second period, the treatment rolls out in group 2 but not in group 1.", "source": "wing2018", "where": "Two groups in two periods"}
+      ]
+    },
+    {
+      "id": "change",
+      "title": "Change in each",
+      "text": "Take each group's change from before to after. The control group's change shows what time alone did.",
+      "picture": "change",
+      "quotes": [
+        {"text": "RCT and DID share some characteristics: Both involve a well-defined study population and set of treatment conditions, where it is easy to distinguish between a treatment group and a control group and between pretreatment and post-treatment time periods.", "source": "wing2018", "where": "Potential outcomes notation"}
+      ]
+    },
+    {
+      "id": "subtract",
+      "title": "Subtract",
+      "text": "Subtract the control group's change from the treated group's change. What is left is the estimated effect.",
+      "picture": "subtract",
+      "quotes": [
+        {"text": "DiD estimates the treatment effect by taking the difference between the change in the treated unit and the change in the control units in the periods before and after the intervention.", "source": "bouttell2018", "where": "Background and introduction"}
+      ]
+    },
+    {
+      "id": "trends",
+      "title": "Check the trends",
+      "text": "The method assumes both groups would have moved in parallel without the intervention. Plot several periods before it and see whether they did.",
+      "picture": "trends",
+      "quotes": [
+        {"text": "the time series of outcomes in each group should differ by a fixed amount in every period and should exhibit a common set of period-specific changes. Loosely speaking, a graph of the time series should look like a set of parallel lines.", "source": "wing2018", "where": "The common trends assumption"},
+        {"text": "researchers often plot the mean outcomes by group and time period and then ask whether the lines appear to be approximately parallel", "source": "wing2018", "where": "Graphical evidence"}
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Two subtractions, not one",
+    "intro": "Ten years of an outcome in a treated and a control group; the policy starts in year 6. Compare a plain before-and-after reading with the difference in differences, then let the treated group drift upwards before the policy.",
+    "data_label": "Example data, made up for this exercise with a fixed seed; the true effect is built in, so you can check each estimate against it.",
+    "seed": 5,
+    "years": 10,
+    "policy_year": 5,
+    "control_level": 40,
+    "treated_level": 48,
+    "common_slope": 1.5,
+    "diverging_slope": 1.2,
+    "true_effect": 6,
+    "noise": 2
+  },
+  "limits": [
+    "The card's example (Card & Krueger 1994, New Jersey and Pennsylvania) was not read for this page; no numbers from it are shown.",
+    "Wing et al. also cover many groups and periods, staggered timing, and statistical inference (clustered errors); this page shows only the two-group logic.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

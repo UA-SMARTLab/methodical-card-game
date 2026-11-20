@@ -1,0 +1,85 @@
+{
+  "method": "think-aloud",
+  "question": "Where and why do real users struggle with this design?",
+  "sources": {
+    "nielsen1993": {
+      "cite": "Nielsen & Landauer (1993). A mathematical model of the finding of usability problems. Proceedings of INTERCHI '93: 206–213.",
+      "short": "Nielsen & Landauer (1993)",
+      "url": "https://doi.org/10.1145/169059.169166",
+      "checked": "quotes read word for word in the vault's text copy (library No. 832) on 20 Nov 2026; page numbers are those printed on the copy (206 onwards); the model's symbols are garbled in the scan, so the formula is given in our words, with the average values from p. 211 and table 1; DOI and pages 206–213 checked against Crossref on 20 Nov 2026"
+    },
+    "guss2018": {
+      "cite": "Güss (2018). What is going through your mind? Thinking aloud as a method in cross-cultural psychology. Frontiers in Psychology 9: 1292.",
+      "short": "Güss (2018)",
+      "url": "https://doi.org/10.3389/fpsyg.2018.01292",
+      "checked": "quotes read word for word in the open-access full text from Europe PMC (PMC6099082, full-text XML) on 20 Nov 2026; places are the article's sections; reference citations are left out"
+    }
+  },
+  "steps": [
+    {
+      "id": "users",
+      "title": "Recruit real users",
+      "text": "Invite people like those who will use the product, not colleagues who built it.",
+      "picture": "users",
+      "quotes": [
+        {"text": "whether test users are representative of the actual user population.", "source": "nielsen1993", "where": "p. 209, factors that change how many problems are found"}
+      ]
+    },
+    {
+      "id": "tasks",
+      "title": "Give real tasks",
+      "text": "Ask each user to do realistic tasks with the prototype while you watch.",
+      "picture": "tasks",
+      "quotes": [
+        {"text": "user testing is based on bringing real users in and observing them as they interact with the system in order to perform a given set of tasks", "source": "nielsen1993", "where": "p. 206"}
+      ]
+    },
+    {
+      "id": "aloud",
+      "title": "Think aloud",
+      "text": "The user says what goes through their mind as they work, without explaining or analysing it.",
+      "picture": "aloud",
+      "quotes": [
+        {"text": "Thinking aloud is the concurrent verbalization of thoughts while performing a task", "source": "guss2018", "where": "introduction"},
+        {"text": "participants are asked to spontaneously report everything that goes through their minds while doing a task, and they are instructed not to interpret or analyze their thinking.", "source": "guss2018", "where": "introduction"}
+      ]
+    },
+    {
+      "id": "prompt",
+      "title": "Only say “keep talking”",
+      "text": "When the user falls silent, prompt them to keep talking. Do not ask why: that changes how they think.",
+      "picture": "prompt",
+      "quotes": [
+        {"text": "An instruction from a facilitator to “keep talking” while the participant performed a task probably would not disrupt the thought process, though an instruction requiring explanation from the participant, like “Tell me why you did this,” would intervene in the cognitive process", "source": "guss2018", "where": "section “Reliability and Validity of Thinking-Aloud Protocols”"}
+      ]
+    },
+    {
+      "id": "log",
+      "title": "Log the problems",
+      "text": "Note each place a user stumbles and what they said there. Each new user finds fewer new problems; stop, fix, and test again.",
+      "picture": "log",
+      "quotes": [
+        {"text": "we can expect a Poisson model to describe the finding of usability problems.", "source": "nielsen1993", "where": "p. 208"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "expectation": {"text": "Does the act of thinking aloud interfere with and change a person’ cognitive processes while performing the task?", "source": "guss2018", "where": "section “Reliability and Validity of Thinking-Aloud Protocols”"}
+  },
+  "exercise": {
+    "kind": "problems",
+    "title": "How many users are enough?",
+    "intro": "Each user finds each problem with some chance λ. Nielsen & Landauer's model gives the share of problems found after n users as 1 − (1 − λ)ⁿ. Move the number of users and λ.",
+    "data_label": "Model and values from Nielsen & Landauer (1993): λ averaged 0.31 over their eleven studies (p. 211), and the studies' values in table 1 range from about 0.12 to 0.58. The individual dots are an illustration, drawn with a fixed seed.",
+    "lambda": 0.31,
+    "lambda_min": 0.12,
+    "lambda_max": 0.58,
+    "problems": 41
+  },
+  "limits": [
+    "The card's defining reference, Ericsson & Simon (1980), has not been read for this page; it is reached through Güss (2018), who reviews it.",
+    "Nielsen & Landauer (1993) model both user tests and heuristic evaluations; the exercise applies their average values to user tests, which is a simplification.",
+    "The threat quote keeps the source's “person’” as read in the Europe PMC text.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

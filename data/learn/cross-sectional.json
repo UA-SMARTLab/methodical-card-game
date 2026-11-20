@@ -1,0 +1,68 @@
+{
+  "method": "cross-sectional",
+  "question": "How common is it, right now, and in whom?",
+  "sources": {
+    "vandenbroucke2007": {
+      "cite": "Vandenbroucke et al. (2007). Strengthening the Reporting of Observational Studies in Epidemiology (STROBE): explanation and elaboration. PLoS Medicine 4: e297.",
+      "short": "Vandenbroucke et al. (2007)",
+      "url": "https://doi.org/10.1371/journal.pmed.0040297",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC2020496) on 20 Nov 2026; the article is online-only, so places are given as its STROBE items and boxes; in-text reference numbers are left out. The card's own reference (Wang & Cheng 2020, Chest) is not open access and was not read"
+    }
+  },
+  "steps": [
+    {
+      "id": "sample",
+      "title": "Draw a sample",
+      "text": "Define the population you want to describe and draw a sample from it by a plan written in advance: simple random, or in stages and strata.",
+      "picture": "sample",
+      "quotes": [
+        {"text": "Most cross-sectional studies use a pre-specified sampling strategy to select participants from a source population.", "source": "vandenbroucke2007", "where": "item 12(d)"}
+      ]
+    },
+    {
+      "id": "snapshot",
+      "title": "Measure once",
+      "text": "Measure everyone in the sample at the same time, exposure and outcome together. There is no follow-up.",
+      "picture": "snapshot",
+      "quotes": [
+        {"text": "In cross-sectional studies, investigators assess all individuals in a sample at the same point in time, often to examine the prevalence of exposures, risk factors or disease.", "source": "vandenbroucke2007", "where": "box 1"}
+      ]
+    },
+    {
+      "id": "respond",
+      "title": "Count who answered",
+      "text": "Count how many were invited, eligible and measured. If those who answer differ from those who don't, the estimate drifts away from the population.",
+      "picture": "respond",
+      "quotes": [
+        {"text": "Those included in a study often differ in relevant ways from the target population to which results are applied. This may result in estimates of prevalence or incidence that do not reflect the experience of the target population.", "source": "vandenbroucke2007", "where": "item 13(a)"}
+      ]
+    },
+    {
+      "id": "prevalence",
+      "title": "Estimate prevalence",
+      "text": "Divide the number who have the condition by the number measured. Correct the precision for the sampling design, not just the sample size.",
+      "picture": "prevalence",
+      "quotes": [
+        {"text": "They may examine the number of people who have a disease at a particular time (prevalence), or that develop a disease over a defined period (incidence).", "source": "vandenbroucke2007", "where": "box 7"}
+      ]
+    },
+    {
+      "id": "compare",
+      "title": "Compare groups",
+      "text": "An analytical survey compares prevalence between exposed and unexposed people. It shows an association, but not which came first.",
+      "picture": "compare",
+      "quotes": [
+        {"text": "Such studies may be analysed like a cohort study by comparing disease prevalence between exposure groups.", "source": "vandenbroucke2007", "where": "box 1"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "reverse-causation": {"text": "A difficulty that can occur in any design but is particularly clear in cross-sectional studies is to establish that an exposure preceded the disease", "source": "vandenbroucke2007", "where": "box 1"}
+  },
+  "limits": [
+    "The page follows the STROBE explanation and elaboration, not the card's reference (Wang & Cheng 2020), which was not read.",
+    "No national survey's own numbers are shown; the pictures use made-up counts.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

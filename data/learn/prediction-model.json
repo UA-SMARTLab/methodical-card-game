@@ -1,0 +1,79 @@
+{
+  "method": "prediction-model",
+  "question": "How well can we forecast this outcome for a new individual?",
+  "sources": {
+    "collins2015": {
+      "cite": "Collins et al. (2015). Transparent reporting of a multivariable prediction model for individual prognosis or diagnosis (TRIPOD): the TRIPOD statement. BMJ 350: g7594.",
+      "short": "Collins et al. (2015)",
+      "url": "https://doi.org/10.1136/bmj.g7594",
+      "checked": "every quote read word for word in the vault's text copy of the article (library No. 285) on 20 Nov 2026; the article is online-only (g7594), so places are given as the introduction and TRIPOD items; in-text reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "define",
+      "title": "Define outcome",
+      "text": "Say exactly what is predicted, when and how it is measured, and which candidate predictors may go in.",
+      "picture": "define",
+      "quotes": [
+        {"text": "Clearly define the outcome that is predicted by the prediction model, including how and when assessed", "source": "collins2015", "where": "item 6a"}
+      ]
+    },
+    {
+      "id": "develop",
+      "title": "Develop the model",
+      "text": "Combine the predictors, each with its weight, into one formula that gives a risk or probability.",
+      "picture": "develop",
+      "quotes": [
+        {"text": "Prediction models (also commonly called “prognostic models,” “risk scores,” or “prediction rules”) are tools that combine multiple predictors by assigning relative weights to each predictor to obtain a risk or probability.", "source": "collins2015", "where": "introduction"}
+      ]
+    },
+    {
+      "id": "internal",
+      "title": "Correct for optimism",
+      "text": "A model always looks better on the data that built it. Resample those data (bootstrap, cross-validation) to estimate how much better.",
+      "picture": "internal",
+      "quotes": [
+        {"text": "Quantifying the predictive ability of a model on the same data from which the model was developed (often referred to as apparent performance) will tend to give an optimistic estimate of performance, owing to overfitting", "source": "collins2015", "where": "introduction"},
+        {"text": "Internal validation techniques use only the original study sample and include such methods as bootstrapping or cross-validation.", "source": "collins2015", "where": "introduction"}
+      ]
+    },
+    {
+      "id": "measure",
+      "title": "Discrimination, calibration",
+      "text": "Report how well the model ranks people (discrimination) and whether its predicted risks match the observed ones (calibration).",
+      "picture": "measure",
+      "quotes": [
+        {"text": "to quantify any optimism in the predictive performance (for example, calibration and discrimination) of the developed model.", "source": "collins2015", "where": "introduction"}
+      ]
+    },
+    {
+      "id": "external",
+      "title": "Validate elsewhere",
+      "text": "Apply the unchanged formula to new people, later or elsewhere, and compare its predictions with what happened.",
+      "picture": "external",
+      "quotes": [
+        {"text": "Such external validation requires that for each individual in the new data set, outcome predictions are made using the original model (that is, the published regression formula) and compared with the observed outcomes.", "source": "collins2015", "where": "introduction"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "overfitting-leakage": {"text": "owing to overfitting (too few outcome events relative to the number of candidate predictors) and the use of predictor selection strategies.", "source": "collins2015", "where": "introduction"}
+  },
+  "exercise": {
+    "kind": "overfit",
+    "title": "Add predictors, watch the gap",
+    "intro": "A model is fitted to 60 people. Two predictors really matter; the rest are noise. Add noise predictors and compare how well the model explains the people it was built on with how well it predicts 1000 new people.",
+    "quote": {"text": "Quantifying the predictive ability of a model on the same data from which the model was developed (often referred to as apparent performance) will tend to give an optimistic estimate of performance", "source": "collins2015", "where": "introduction"},
+    "data_label": "Example data, made up for this exercise: a continuous outcome, two real predictors, the rest pure noise, fixed seed. Performance is R² (share of variance explained), fitted by least squares.",
+    "n_dev": 60,
+    "n_new": 1000,
+    "max_noise": 40
+  },
+  "limits": [
+    "The exercise uses a linear model and R² for simplicity; clinical prediction models usually predict a risk and are judged by the c statistic and calibration plots, which are not shown.",
+    "The Framingham risk score example on the card is not worked through here.",
+    "TRIPOD is a reporting guideline; the steps follow its introduction and items rather than a how-to text.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

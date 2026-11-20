@@ -1,0 +1,69 @@
+{
+  "method": "case-study",
+  "question": "How and why did this happen here, in its real setting?",
+  "sources": {
+    "crowe2011": {
+      "cite": "Crowe et al. (2011). The case study approach. BMC Medical Research Methodology 11: 100.",
+      "short": "Crowe et al. (2011)",
+      "url": "https://doi.org/10.1186/1471-2288-11-100",
+      "checked": "every quote read word for word in the text copy of the published PDF in the user's research library (No. 286) on 20 Nov 2026; places are the article's page numbers (p. N of 9) and section headings; in-text reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "define",
+      "title": "Define the case",
+      "text": "Say what the case is and where it stops: which organisation or group, which period, which evidence. The boundary decides what counts as data.",
+      "picture": "define",
+      "quotes": [
+        {"text": "each case should have a pre-defined boundary which clarifies the nature and time period covered by the case study", "source": "crowe2011", "where": "p. 5, “Defining the case”"}
+      ]
+    },
+    {
+      "id": "select",
+      "title": "Select the case",
+      "text": "Pick the case for what it can teach: a unique case for its own sake, or typical cases that let you test a theory again in a second or third case.",
+      "picture": "select",
+      "quotes": [
+        {"text": "The case is selected not because it is representative of other cases, but because of its uniqueness, which is of genuine interest to the researchers.", "source": "crowe2011", "where": "p. 5, “Selecting the case(s)”, on intrinsic case studies"},
+        {"text": "to test theory by replicating the findings in a second or even a third case (i.e. replication logic)", "source": "crowe2011", "where": "p. 6, “Selecting the case(s)”"}
+      ]
+    },
+    {
+      "id": "collect",
+      "title": "Collect many sources",
+      "text": "Gather several kinds of evidence about the same case (documents, interviews, observation, routine numbers) and see whether they agree.",
+      "picture": "collect",
+      "quotes": [
+        {"text": "The use of multiple sources of data (data triangulation) has been advocated as a way of increasing the internal validity of a study", "source": "crowe2011", "where": "p. 6, “Collecting the data”"}
+      ]
+    },
+    {
+      "id": "analyse",
+      "title": "Within, then across",
+      "text": "Describe and code each case on its own first. Only then set the cases side by side to see what they share and where they differ.",
+      "picture": "analyse",
+      "quotes": [
+        {"text": "In collective case studies, it is helpful to analyse data relating to the individual component cases first, before making comparisons across cases.", "source": "crowe2011", "where": "p. 7, “Analysing, interpreting and reporting case studies”"}
+      ]
+    },
+    {
+      "id": "generalise",
+      "title": "Generalise to theory",
+      "text": "A case speaks to a theory, not to a population. Use theory to explain the case, without bending the case to fit it.",
+      "picture": "generalise",
+      "quotes": [
+        {"text": "allow theoretical (as opposed to statistical) generalisation beyond the particular cases studied", "source": "crowe2011", "where": "p. 7, “Analysing, interpreting and reporting case studies”"},
+        {"text": "the cases should not be “forced to fit” the particular theoretical framework that is being employed.", "source": "crowe2011", "where": "p. 7, same section"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "external-validity": {"text": "Case study research has sometimes been criticised for lacking scientific rigour and providing little basis for generalisation", "source": "crowe2011", "where": "p. 7"}
+  },
+  "limits": [
+    "One source only: Crowe et al. (2011), the card's own reference. Yin's and Stake's textbooks, which Crowe et al. build on, were not read.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

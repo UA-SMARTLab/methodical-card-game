@@ -1,0 +1,77 @@
+{
+  "method": "ecological",
+  "question": "Do groups with more of the exposure have more of the outcome?",
+  "sources": {
+    "morgenstern1995": {
+      "cite": "Morgenstern (1995). Ecologic studies in epidemiology: concepts, principles, and methods. Annual Review of Public Health 16.",
+      "short": "Morgenstern (1995)",
+      "url": "https://doi.org/10.1146/annurev.pu.16.050195.000425",
+      "checked": "only the abstract could be read, on the Annual Reviews article page (in Chrome, 20 Nov 2026); the full text is a PDF that was not opened, so every quote is from the abstract; the volume is from the DOI and the page range was not read"
+    }
+  },
+  "steps": [
+    {
+      "id": "groups",
+      "title": "Pick groups",
+      "text": "The units of the study are groups such as countries, regions or years, not the people in them.",
+      "picture": "groups",
+      "quotes": [
+        {"text": "An ecologic study focuses on the comparison of groups, rather than individuals", "source": "morgenstern1995", "where": "abstract"}
+      ]
+    },
+    {
+      "id": "aggregate",
+      "title": "Use group numbers",
+      "text": "Each group gets one number per variable: an average or rate summarised from its members, a feature of its environment, or a property only a group can have, such as a law.",
+      "picture": "aggregate",
+      "quotes": [
+        {"text": "Variables in an ecologic analysis may be aggregate measures, environmental measures, or global measures.", "source": "morgenstern1995", "where": "abstract"}
+      ]
+    },
+    {
+      "id": "place_time",
+      "title": "By place or time",
+      "text": "Compare groups side by side in one period, follow one population's rates over time, or do both.",
+      "picture": "place_time",
+      "quotes": [
+        {"text": "whether subjects grouped by place (multiple-group study), by time (time-trend study), or place and time (mixed study)", "source": "morgenstern1995", "where": "abstract"}
+      ]
+    },
+    {
+      "id": "correlate",
+      "title": "Relate the rates",
+      "text": "Plot or regress the groups' outcome rates on their exposure levels. Be clear whether the claim is about groups or about the people in them.",
+      "picture": "correlate",
+      "quotes": [
+        {"text": "The purpose of an ecologic analysis may be to make biologic inferences about effects on individual risks or to make ecologic inferences about effects on group rates.", "source": "morgenstern1995", "where": "abstract"}
+      ]
+    },
+    {
+      "id": "leap",
+      "title": "Mind the leap",
+      "text": "Group data do not show which people within a group were exposed and also fell ill, so a pattern across groups need not hold for individuals.",
+      "picture": "leap",
+      "quotes": [
+        {"text": "individual-level data are missing on the joint distribution, of variables within groups", "source": "morgenstern1995", "where": "abstract"},
+        {"text": "there are many methodologic problems that severely limit causal inference, including ecologic and cross-level bias", "source": "morgenstern1995", "where": "abstract"}
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Regions or people?",
+    "intro": "Five regions, each a circle at its average exposure and average outcome. Look at the regions first, then show the people inside them.",
+    "data_label": "Example data, made up for this exercise; the same seed draws the same people on every visit.",
+    "seed": 11,
+    "regions": [[20, 22], [35, 36], [50, 50], [65, 63], [80, 78]],
+    "per_region": 30,
+    "spread": 12,
+    "within_slope": -0.6,
+    "noise": 10
+  },
+  "limits": [
+    "Only Morgenstern's abstract was read; the full paper's discussion of each bias, with its pages, is not quoted.",
+    "The card's example (Messerli 2012, chocolate and Nobel laureates) was not read for this page; no numbers from it are shown.",
+    "The exercise shows one way group and individual patterns can disagree; it is made-up data, not a real study.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

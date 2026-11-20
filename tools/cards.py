@@ -259,7 +259,7 @@ def _strengths(cx, d):
 def design_card(cx, d):
     f = cx.FAM[d["family"]]
     # The card number sits in the bottom border, so the picture keeps its full height and the text box has no footer.
-    return f'''<div class="tcg tcg-d" style="--c:{f["color"]}">
+    return f'''<div class="tcg tcg-d" data-id="{d["id"]}" style="--c:{f["color"]}">
   <div class="nm">{_name(d["name"])}<span class="attr">{art.SUIT_ICONS[d["serves"][0]]}</span></div>
   {_round_row(cx, d)}
   {_art(art.DESIGN_ART.get(d["id"]), "d-" + d["id"], f["color"], "design")}

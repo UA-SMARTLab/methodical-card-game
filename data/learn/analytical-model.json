@@ -1,0 +1,68 @@
+{
+  "method": "analytical-model",
+  "question": "What must follow if these assumptions are true?",
+  "sources": {
+    "servedio2014": {
+      "cite": "Servedio et al. (2014). Not just a theory—the utility of mathematical models in evolutionary biology. PLoS Biology 12(12): e1002017.",
+      "short": "Servedio et al. (2014)",
+      "url": "https://doi.org/10.1371/journal.pbio.1002017",
+      "checked": "every quote read word for word in the open-access full text from Europe PMC (PMC4260780, full-text XML) on 20 Nov 2026; places are the article's sections and boxes; reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "claim",
+      "title": "Start from a claim",
+      "text": "Begin with an explanation stated in words: this happens because of that.",
+      "picture": "claim",
+      "quotes": [
+        {"text": "Progress in science often begins with verbal hypotheses meant to explain why certain biological phenomena exist.", "source": "servedio2014", "where": "summary"}
+      ]
+    },
+    {
+      "id": "assume",
+      "title": "Write the assumptions",
+      "text": "Turn each ingredient of the claim into a precise mathematical assumption, and say which ones carry the hypothesis.",
+      "picture": "assume",
+      "quotes": [
+        {"text": "Proof-of-concept models, used in many fields, test the validity of verbal chains of logic by laying out the specific assumptions mathematically.", "source": "servedio2014", "where": "section “Proof-of-Concept Models: Testing Verbal Logic in Evolutionary Biology”"}
+      ]
+    },
+    {
+      "id": "derive",
+      "title": "Derive",
+      "text": "Work out with proofs or closed-form solutions what the assumptions imply. Mathematics, not intuition, does this step.",
+      "picture": "derive",
+      "quotes": [
+        {"text": "The results that follow from these assumptions emerge through the principles of mathematics, which reduces the possibility of logical errors at this step of the process.", "source": "servedio2014", "where": "section “Proof-of-Concept Models: Testing Verbal Logic in Evolutionary Biology”"}
+      ]
+    },
+    {
+      "id": "compare",
+      "title": "Compare with the claim",
+      "text": "Set the derived result beside what the words predicted. Where they differ, the verbal argument had a gap.",
+      "picture": "compare",
+      "quotes": [
+        {"text": "to test the validity of a verbal model, precise predictions from a mathematical analysis of the assumptions are compared against verbal predictions.", "source": "servedio2014", "where": "section “Proof-of-Concept Models: Testing Verbal Logic in Evolutionary Biology”"}
+      ]
+    },
+    {
+      "id": "reality",
+      "title": "Check against nature",
+      "text": "The derivation is right by construction; whether it applies is an empirical question about the assumptions.",
+      "picture": "reality",
+      "quotes": [
+        {"text": "These tests are not “tests of the model”; the model is correct in that its predictions follow mathematically from its assumptions.", "source": "servedio2014", "where": "box 2"},
+        {"text": "empirical support is essential to ensure that key assumptions of mathematical models are biologically realistic.", "source": "servedio2014", "where": "box 1"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "model-assumptions": {"text": "if they do not match the intent of the verbal hypothesis, then the mathematical model is not a true test of the verbal one.", "source": "servedio2014", "where": "box 1, on critical assumptions"}
+  },
+  "limits": [
+    "The card's defining reference, May (2004) in Science, has not been read for this page; the steps follow Servedio et al. (2014), written for evolutionary biology but, in their words, about models used in many fields.",
+    "The card's examples (Carnot's limit, Nash equilibrium) are not worked through here.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

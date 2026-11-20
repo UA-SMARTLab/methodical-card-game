@@ -1,0 +1,59 @@
+{
+  "method": "umbrella-review",
+  "question": "What do all the reviews on this condition say, side by side?",
+  "sources": {
+    "ioannidis2009": {
+      "cite": "Ioannidis (2009). Integration of evidence from multiple meta-analyses: a primer on umbrella reviews, treatment networks and multiple treatments meta-analyses. CMAJ 181(8): 488–493.",
+      "short": "Ioannidis (2009)",
+      "url": "https://doi.org/10.1503/cmaj.081086",
+      "checked": "every quote read word for word on the PMC article page (PMC2761440) in Chrome on 20 Nov 2026; volume and pages as printed there; places are given as the article's section headings; in-text reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "frame",
+      "title": "Frame it wide",
+      "text": "Name the condition and, up front, every treatment and outcome the umbrella will cover.",
+      "picture": "frame",
+      "quotes": [
+        {"text": "Umbrella reviews (Figure 1) are systematic reviews that consider many treatment comparisons for the management of the same disease or condition.", "source": "ioannidis2009", "where": "Simple umbrella reviews"},
+        {"text": "Umbrella reviews may be better to perform prospectively, defining upfront the range of interventions and outcomes that are to be addressed.", "source": "ioannidis2009", "where": "Simple umbrella reviews"}
+      ]
+    },
+    {
+      "id": "gather",
+      "title": "Gather the reviews",
+      "text": "Find the systematic reviews and meta-analyses for each comparison, and keep those of good enough quality.",
+      "picture": "gather",
+      "quotes": [
+        {"text": "Umbrella reviews are clusters that encompass many reviews.", "source": "ioannidis2009", "where": "Simple umbrella reviews"}
+      ]
+    },
+    {
+      "id": "compare",
+      "title": "Line them up",
+      "text": "Treat each comparison separately, and set benefits and harms side by side across all of them.",
+      "picture": "compare",
+      "quotes": [
+        {"text": "Each comparison is considered separately, and meta-analyses are performed as deemed appropriate.", "source": "ioannidis2009", "where": "Simple umbrella reviews"},
+        {"text": "Compared with a systematic review or meta-analysis limited to 1 treatment comparison or even 1 outcome, an umbrella review can provide a wider picture on many treatments.", "source": "ioannidis2009", "where": "Simple umbrella reviews"}
+      ]
+    },
+    {
+      "id": "limits",
+      "title": "Mind the seams",
+      "text": "The reviews used different criteria and were updated at different times, and some options were never reviewed. Say so.",
+      "picture": "seams",
+      "quotes": [
+        {"text": "Patching together pre-existing reviews is limited by different eligibility criteria, evaluation methods and thoroughness of updating information across the merged reviews.", "source": "ioannidis2009", "where": "Simple umbrella reviews"},
+        {"text": "Finally, qualitative juxtaposition of data from separate meta-analyses is subjective and suboptimal.", "source": "ioannidis2009", "where": "Simple umbrella reviews"}
+      ]
+    }
+  ],
+  "limits": [
+    "Grading the credibility of each meta-analysis (as in Theodoratou et al. 2014, the card's example) is not covered: that paper was not read.",
+    "Ioannidis (2009) defines umbrella reviews over treatments for one condition; later umbrella reviews also cover risk factors, as the vitamin D example does.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

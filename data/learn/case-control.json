@@ -1,0 +1,78 @@
+{
+  "method": "case-control",
+  "question": "Were people with the disease more often exposed than people without it?",
+  "sources": {
+    "vandenbroucke2007": {
+      "cite": "Vandenbroucke et al. (2007). Strengthening the Reporting of Observational Studies in Epidemiology (STROBE): explanation and elaboration. PLoS Medicine 4(10): e297.",
+      "short": "Vandenbroucke et al. (2007)",
+      "url": "https://doi.org/10.1371/journal.pmed.0040297",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC2020496) on 20 Nov 2026; the article is online-only (e297), so places are given as its STROBE items and boxes; in-text reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "cases",
+      "title": "Find the cases",
+      "text": "Start from people who already have the disease, ideally all of them or most of them in a defined population.",
+      "picture": "cases",
+      "quotes": [
+        {"text": "The case sample may be 100% or a large fraction of available cases, while the control sample usually is only a small fraction of the people who do not have the pertinent outcome.", "source": "vandenbroucke2007", "where": "box 1"}
+      ]
+    },
+    {
+      "id": "controls",
+      "title": "Choose controls",
+      "text": "Sample people without the disease from the same population the cases came from, so they show how common the exposure is there.",
+      "picture": "controls",
+      "quotes": [
+        {"text": "In general, controls should reflect the population from which the cases arose.", "source": "vandenbroucke2007", "where": "item 6(a), explanation"}
+      ]
+    },
+    {
+      "id": "ask",
+      "title": "Look back",
+      "text": "Measure past exposure in cases and controls in the same way: records, samples or interviews.",
+      "picture": "ask_past",
+      "quotes": [
+        {"text": "In case-control studies, investigators compare exposures between people with a particular disease outcome (cases) and people without that outcome (controls).", "source": "vandenbroucke2007", "where": "box 1"}
+      ]
+    },
+    {
+      "id": "odds",
+      "title": "Odds ratio",
+      "text": "Divide the odds of exposure among cases by the odds among controls. With suitable sampling it estimates the risk or rate ratio.",
+      "picture": "odds",
+      "quotes": [
+        {"text": "Results are expressed as the ratio of the odds of exposure among cases and controls. This odds ratio provides an estimate of the risk or rate ratio depending on the sampling of cases and controls", "source": "vandenbroucke2007", "where": "box 7"}
+      ]
+    },
+    {
+      "id": "match",
+      "title": "Match with care",
+      "text": "Matching controls to cases on age or sex can help, but it must be kept in the analysis and can bring its own bias.",
+      "picture": "matching",
+      "quotes": [
+        {"text": "Matching is intuitively appealing, but the complexities involved have led methodologists to advise against routine matching in case-control studies.", "source": "vandenbroucke2007", "where": "box 2"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "recall-bias": {"text": "In case-control studies information bias occurs if cases recall past exposures more or less accurately than controls without that disease, or if they are more or less willing to report them", "source": "vandenbroucke2007", "where": "box 3"},
+    "selection-bias": {"text": "Selection bias may be introduced in case-control studies if the probability of including cases or controls is associated with exposure.", "source": "vandenbroucke2007", "where": "box 3"},
+    "confounding": {"text": "The other factor is called the confounding factor or confounder.", "source": "vandenbroucke2007", "where": "box 5"}
+  },
+  "exercise": {
+    "title": "Work out an odds ratio",
+    "intro": "Type counts into the table. The odds of exposure is exposed divided by not exposed, in each row; the odds ratio divides the cases' odds by the controls' odds.",
+    "quote": {"text": "Investigators calculate the ratio of the odds of exposures to putative causes of the disease among cases and controls", "source": "vandenbroucke2007", "where": "box 1"},
+    "data_label": "Example data, made up for this exercise: 200 cases and 200 controls.",
+    "table": [120, 80, 60, 140],
+    "cells": ["Cases, exposed", "Cases, not exposed", "Controls, exposed", "Controls, not exposed"]
+  },
+  "limits": [
+    "Doll and Hill's own 1950 counts are not shown: the paper was not read in this task. Add them, with page numbers, after reading it.",
+    "The exercise gives a point estimate only, with no confidence interval, and ignores matching.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

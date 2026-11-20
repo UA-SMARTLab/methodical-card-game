@@ -1,0 +1,71 @@
+{
+  "method": "ethnography",
+  "question": "How do these people see and do things, from the inside?",
+  "sources": {
+    "goodson2011": {
+      "cite": "Goodson & Vassar (2011). An overview of ethnography in healthcare and medical education research. Journal of Educational Evaluation for Health Professions 8: 4.",
+      "short": "Goodson & Vassar (2011)",
+      "url": "https://doi.org/10.3352/jeehp.2011.8.4",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC3100516) on 20 Nov 2026; the article is short and online, so places are its section headings; in-text reference numbers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "enter",
+      "title": "Get in",
+      "text": "Prepare, then win access to the group. A trusted member, a key informant, opens doors an outsider cannot.",
+      "picture": "enter",
+      "quotes": [
+        {"text": "they must be accepted temporarily within the culture in order to gather accurate information.", "source": "goodson2011", "where": "“Limitations of ethnography”"},
+        {"text": "Additionally, the development of key informants is essential.", "source": "goodson2011", "where": "“Limitations of ethnography”"}
+      ]
+    },
+    {
+      "id": "take-part",
+      "title": "Observe and take part",
+      "text": "Live and work alongside the people you study, in their own setting, and write field notes on what you see and hear. Interviews add their own words.",
+      "picture": "take_part",
+      "quotes": [
+        {"text": "Ethnographies are normally conducted in a single setting, and data collection is largely dependent upon participant observation and interviews.", "source": "goodson2011", "where": "“Introduction”"}
+      ]
+    },
+    {
+      "id": "stay",
+      "title": "Stay long",
+      "text": "Stay for months, not days. Only long exposure lets you describe the setting richly and see past the show put on for a visitor.",
+      "picture": "stay",
+      "quotes": [
+        {"text": "ethnography is a research method characterized by long-term fieldwork since thick description of the participants and setting may only be acquired from sufficient exposure to them.", "source": "goodson2011", "where": "“Introduction”"}
+      ]
+    },
+    {
+      "id": "follow",
+      "title": "Follow the leads",
+      "text": "Let the field change the plan. A conversation raises a question you did not expect, and you go after it.",
+      "picture": "follow",
+      "quotes": [
+        {"text": "In ethnography, data collection can sometimes change along the course of the study. A conversation with one study participant may lead to generation of further questions.", "source": "goodson2011", "where": "“Uses of ethnography”, the Perry et al. example"}
+      ]
+    },
+    {
+      "id": "interpret",
+      "title": "Interpret through culture",
+      "text": "Read your notes through the group's own culture and history, and write an account that its members would recognise.",
+      "picture": "interpret",
+      "quotes": [
+        {"text": "presenting an accurate reflection of participant perspectives and behaviors", "source": "goodson2011", "where": "“Introduction”, characteristic 3 of LeCompte and Schensul's seven"},
+        {"text": "using the concept of culture as a lens through which to interpret study results", "source": "goodson2011", "where": "“Introduction”, characteristic 7"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "researcher-lens": {"text": "Subjectivity is certainly a limitation of ethnography. The interpretation of the cultural experience will vary among researchers.", "source": "goodson2011", "where": "“Limitations of ethnography”"},
+    "external-validity": {"text": "It is difficult to generalize with the ethnography method.", "source": "goodson2011", "where": "“Limitations of ethnography”"}
+  },
+  "limits": [
+    "The card's reference, Reeves et al. (2008) in the BMJ, is not open access and was not read; the page quotes Goodson & Vassar (2011), an introductory overview that itself synthesises other authors (Leung, Savage, LeCompte and Schensul, Pope, Atkinson and Pugsley).",
+    "Whyte's and Latour & Woolgar's books, the card's examples, were not read for this page.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

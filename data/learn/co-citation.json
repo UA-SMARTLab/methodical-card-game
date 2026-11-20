@@ -1,0 +1,80 @@
+{
+  "method": "co-citation",
+  "question": "Which earlier works does this field build on, and in which schools?",
+  "sources": {
+    "frandsen2017": {
+      "cite": "Frandsen (2017). Evolution of modularity literature: a 25-year bibliometric analysis. International Journal of Operations & Production Management.",
+      "short": "Frandsen (2017)",
+      "url": "https://doi.org/10.1108/IJOPM-06-2015-0366",
+      "checked": "every quote read word for word in the vault's copy of the accepted author manuscript (library No. 227) on 20 Nov 2026; places are given as the manuscript's sections, since its page numbers differ from the journal's; the defining paper, Small (1973), is behind a paywall and was not read"
+    }
+  },
+  "steps": [
+    {
+      "id": "collect",
+      "title": "Collect citations",
+      "text": "Gather a field's papers and their reference lists: which later paper cites which earlier work.",
+      "picture": "collect",
+      "after": {"source": "frandsen2017", "where": "section 3.4"}
+    },
+    {
+      "id": "count",
+      "title": "Count pairs",
+      "text": "For every pair of earlier works, count how many later papers cite both. That count is their co-citation strength.",
+      "picture": "count",
+      "quotes": [
+        {"text": "co-citation, which measures the number of vertices that point toward both vertices i and j.", "source": "frandsen2017", "where": "section 3.4"},
+        {"text": "In citation analysis, two articles that are similar to other articles typically cite both", "source": "frandsen2017", "where": "section 3.4"}
+      ]
+    },
+    {
+      "id": "cluster",
+      "title": "Cluster",
+      "text": "Link works by their co-citation strength and look for groups: works often cited together pull into a cluster.",
+      "picture": "cluster",
+      "quotes": [
+        {"text": "a high number of co-occurrences among cited references indicates proximity in the ideas of the articles.", "source": "frandsen2017", "where": "section 3.4, Figure 1 discussion"}
+      ]
+    },
+    {
+      "id": "base",
+      "title": "Read the base",
+      "text": "Read the works in each cluster to name the idea they share. Together the clusters map the field's intellectual base.",
+      "picture": "base",
+      "quotes": [
+        {"text": "Kauffman (1993) and Levinthal (1997) are related as an element in the intellectual structure underpinning the modularity literature.", "source": "frandsen2017", "where": "section 3.4, Figure 1 discussion"}
+      ]
+    },
+    {
+      "id": "lag",
+      "title": "Mind the lag",
+      "text": "A work joins the map only once later papers cite it, so this year's papers are invisible. Bibliographic coupling sees them at once.",
+      "picture": "lag",
+      "quotes": [
+        {"text": "A benefit of bibliometric coupling analysis is, that it allows for the inclusion of recent articles.", "source": "frandsen2017", "where": "section 4.2"}
+      ]
+    }
+  ],
+  "exercise": {
+    "kind": "citation-graph",
+    "mode": "co",
+    "title": "Count the links yourself",
+    "intro": "Four older works (top) are cited by four later papers (bottom). Pick two works and count how many papers cite both: that is co-citation. Switch to coupling to count the references two papers share. Then publish a paper today and look for it on both maps.",
+    "data_label": "Example data, made up for this exercise.",
+    "works": [{"id": "A"}, {"id": "B"}, {"id": "C"}, {"id": "D"}],
+    "papers": [
+      {"id": "P1", "year": 2015, "refs": ["A", "B"]},
+      {"id": "P2", "year": 2017, "refs": ["A", "B", "C"]},
+      {"id": "P3", "year": 2019, "refs": ["B", "D"]},
+      {"id": "P4", "year": 2021, "refs": ["C", "D"]}
+    ],
+    "new_paper": {"id": "NEW", "year": 2026, "refs": ["B", "C", "D"]}
+  },
+  "limits": [
+    "The defining paper, Small (1973), was not read: it is behind a paywall. The definition quoted is Frandsen's (2017), a modularity study that uses both co-citation and bibliographic coupling.",
+    "Collecting citations has no quote: Frandsen's sentence on the citation matrix lost its symbols in the text copy, so it is not quoted.",
+    "Author co-citation (White & Griffith 1981) and normalisations such as Salton's cosine are not shown.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

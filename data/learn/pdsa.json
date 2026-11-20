@@ -1,0 +1,74 @@
+{
+  "method": "pdsa",
+  "question": "Does this change improve our service, here, and how should we adapt it?",
+  "sources": {
+    "taylor2013": {
+      "cite": "Taylor et al. (2013). Systematic review of the application of the plan–do–study–act method to improve quality in healthcare. BMJ Quality & Safety 23(4): 290–298.",
+      "short": "Taylor et al. (2013)",
+      "url": "https://doi.org/10.1136/bmjqs-2013-001862",
+      "checked": "every quote read word for word in the open-access full text from Europe PMC (PMC3963536, full-text XML) on 20 Nov 2026; places are the article's sections and tables; reference citations are left out.; year, volume, issue and pages as the XML gives them"
+    },
+    "ogrinc2016": {
+      "cite": "Ogrinc et al. (2016). SQUIRE 2.0 (Standards for QUality Improvement Reporting Excellence): revised publication guidelines from a detailed consensus process. BMJ Quality & Safety 25(12): 986–992.",
+      "short": "Ogrinc et al. (2016)",
+      "url": "https://doi.org/10.1136/bmjqs-2015-004411",
+      "checked": "quotes read word for word in the open-access full text from Europe PMC (PMC5256233, full-text XML) on 20 Nov 2026; places are SQUIRE 2.0 items"
+    }
+  },
+  "steps": [
+    {
+      "id": "plan",
+      "title": "Plan",
+      "text": "Choose one change, say what you predict it will do, and plan who tests it, where and when.",
+      "picture": "plan",
+      "quotes": [
+        {"text": "A prediction of the outcome of a change is developed in the ‘plan’ stage of a cycle.", "source": "taylor2013", "where": "table 2, prediction-based test of change"}
+      ]
+    },
+    {
+      "id": "do",
+      "title": "Do, small",
+      "text": "Try the change on a small scale first: one clinic, one shift, a few patients. Note what goes wrong.",
+      "picture": "do",
+      "quotes": [
+        {"text": "As certainty of success of a test of change is not guaranteed, PDSAs start small in scale and build in scale as confidence grows.", "source": "taylor2013", "where": "table 2, small-scale testing"}
+      ]
+    },
+    {
+      "id": "study",
+      "title": "Study over time",
+      "text": "Plot the measure at regular intervals before and after the change, on a run chart, and compare it with the prediction.",
+      "picture": "study",
+      "quotes": [
+        {"text": "measurement of data over time helps understand natural variation in a system, increase awareness of other factors influencing processes or outcomes, and understand the impact of an intervention.", "source": "taylor2013", "where": "section “The origins and theory of PDSA cycles”"},
+        {"text": "Methods for understanding variation within the data, including the effects of time as a variable.", "source": "ogrinc2016", "where": "item 11"}
+      ]
+    },
+    {
+      "id": "act",
+      "title": "Act",
+      "text": "Adopt the change, adapt it, or drop it, and use what you learned to plan the next cycle.",
+      "picture": "act",
+      "quotes": [
+        {"text": "the ‘act’ stage identifies adaptations and next steps to inform a new cycle.", "source": "taylor2013", "where": "section “The origins and theory of PDSA cycles”"}
+      ]
+    },
+    {
+      "id": "iterate",
+      "title": "Cycle again",
+      "text": "Link the cycles: each one builds on the last, at a larger scale as confidence grows.",
+      "picture": "iterate",
+      "quotes": [
+        {"text": "two or more cycles with lessons learned from one cycle linking and informing a subsequent cycle", "source": "taylor2013", "where": "section “Iterative cycles”, its definition of a sequence of iterative cycles"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "history-trend": {"text": "Approach used to establish whether the observed outcomes were due to the intervention(s).", "source": "ogrinc2016", "where": "item 9"}
+  },
+  "limits": [
+    "Taylor et al. review how PDSA was applied, not how it should be done; the steps follow the method's key features as their framework (table 2) sets them out.",
+    "Run-chart rules for telling a real shift from noise are not given: no source for them was read for this page.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "method": "rapid-review",
+  "question": "What does the evidence say, in time for this decision?",
+  "sources": {
+    "tricco2015": {
+      "cite": "Tricco et al. (2015). A scoping review of rapid review methods. BMC Medicine 13: 224.",
+      "short": "Tricco et al. (2015)",
+      "url": "https://doi.org/10.1186/s12916-015-0465-6",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC4574114) on 20 Nov 2026; the article is online-only, so places are given as its sections; in-text reference numbers and figure pointers are left out of the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "scope",
+      "title": "Agree the scope",
+      "text": "Work with the people who must decide: agree a narrow question and the deadline, and which steps of a full systematic review will be cut.",
+      "picture": "scope",
+      "quotes": [
+        {"text": "Rapid reviews are a form of knowledge synthesis in which components of the systematic review process are simplified or omitted to produce information in a timely manner", "source": "tricco2015", "where": "Background"},
+        {"text": "four papers suggested using integrated knowledge translation, in which researchers work closely with the knowledge users to complete the rapid review", "source": "tricco2015", "where": "Results, Development papers on rapid reviews"}
+      ]
+    },
+    {
+      "id": "search",
+      "title": "Narrow the search",
+      "text": "Search fewer sources and limit by date or language, knowing that each limit can miss studies.",
+      "picture": "search",
+      "quotes": [
+        {"text": "limiting the literature search to published literature (24 %) or one database (2 %), limiting inclusion criteria by date (68 %) or language (49 %)", "source": "tricco2015", "where": "Results, streamlined methods in the 82 rapid reviews"}
+      ]
+    },
+    {
+      "id": "screen",
+      "title": "One screens, one checks",
+      "text": "Instead of two reviewers screening independently, one screens and a second checks a part of the work.",
+      "picture": "screen",
+      "quotes": [
+        {"text": "According to the Cochrane Collaboration, all procedures including screening citations (titles and abstracts), screening full-text articles, data abstraction, and risk of bias appraisal, should be conducted by two individuals, independently", "source": "tricco2015", "where": "Background"},
+        {"text": "having one person screen and another verify or screen excluded studies (6 %), having one person abstract data and another verify (23 %)", "source": "tricco2015", "where": "Results, streamlined methods in the 82 rapid reviews"}
+      ]
+    },
+    {
+      "id": "summarise",
+      "title": "Summarise",
+      "text": "Most rapid reviews describe the findings in words rather than pooling them.",
+      "picture": "summarise",
+      "quotes": [
+        {"text": "presenting results as a narrative summary (78 %)", "source": "tricco2015", "where": "Results, streamlined methods in the 82 rapid reviews"},
+        {"text": "none suggested conducting a meta-analysis as part of the rapid review.", "source": "tricco2015", "where": "Results, Development papers on rapid reviews"}
+      ]
+    },
+    {
+      "id": "report",
+      "title": "Report the shortcuts",
+      "text": "Say exactly which steps were cut, so readers can judge what the speed may have cost.",
+      "picture": "report",
+      "quotes": [
+        {"text": "Thorough reporting of the methods is important because it is difficult to judge the bias of these reports without fully understanding what shortcuts were taken.", "source": "tricco2015", "where": "Discussion"}
+      ]
+    }
+  ],
+  "limits": [
+    "Tricco et al. (2015) describe what rapid reviews did, not a standard for doing them; the Cochrane Rapid Reviews Methods Group's guidance (Garritty et al. 2021) was not read for this page.",
+    "The percentages in the quotes are shares of the 82 rapid reviews Tricco et al. found that reported the step, not recommendations.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "method": "case-crossover",
+  "question": "Does a brief exposure trigger a sudden event soon afterwards?",
+  "sources": {
+    "lewer2022": {
+      "cite": "Lewer, Petersen & Maclure (2022). The case-crossover design for studying sudden events. BMJ Medicine 1(1): e000214.",
+      "short": "Lewer et al. (2022)",
+      "url": "https://doi.org/10.1136/bmjmed-2022-000214",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC9978680) on 20 Nov 2026; places are its section headings; in-text reference numbers are left out. Maclure, who introduced the design, is a co-author"
+    },
+    "vandenbroucke2007": {
+      "cite": "Vandenbroucke et al. (2007). Strengthening the Reporting of Observational Studies in Epidemiology (STROBE): explanation and elaboration. PLoS Medicine 4(10): e297.",
+      "short": "Vandenbroucke et al. (2007)",
+      "url": "https://doi.org/10.1371/journal.pmed.0040297",
+      "checked": "quotes read word for word in the Europe PMC full text (PMC2020496) on 20 Nov 2026; the item 4 example is STROBE quoting McEvoy et al. (2005), a case-crossover study of mobile phones and car crashes"
+    }
+  },
+  "steps": [
+    {
+      "id": "cases",
+      "title": "Cases only",
+      "text": "Take only people who had the event. Nobody without the event is needed.",
+      "picture": "cases_only",
+      "quotes": [
+        {"text": "A case-crossover study only includes individuals who experience an event (known as cases).", "source": "lewer2022", "where": "Introduction"}
+      ]
+    },
+    {
+      "id": "hazard",
+      "title": "Hazard window",
+      "text": "Mark the short window just before the event, as long as the exposure could plausibly act.",
+      "picture": "hazard",
+      "quotes": [
+        {"text": "we compared phone activity during the hazard interval (time immediately before the crash) with phone activity during control intervals (equivalent times during which participants were driving but did not crash) in the previous week", "source": "vandenbroucke2007", "where": "item 4, example"}
+      ]
+    },
+    {
+      "id": "referent",
+      "title": "Control windows",
+      "text": "Pick earlier windows in the same person: far enough from the event not to be affected by it, near enough to be comparable.",
+      "picture": "referent",
+      "quotes": [
+        {"text": "The referent windows should be far enough from the event so that exposure is not affected by the event. Simultaneously, referent windows should be sufficiently recent that the underlying rate of exposure is comparable, or exchangeable.", "source": "lewer2022", "where": "section Choosing the right control"}
+      ]
+    },
+    {
+      "id": "within",
+      "title": "Compare within",
+      "text": "For each person, compare exposure in the hazard window with exposure in the control windows. Only people whose exposure differs between windows carry information.",
+      "picture": "within",
+      "quotes": [
+        {"text": "Each participant serves as their own control, and the analysis tests whether exposure times are associated with outcome times within individuals.", "source": "lewer2022", "where": "Introduction"},
+        {"text": "Case-crossover studies use information from cases only if the exposure status varies over time.", "source": "lewer2022", "where": "section Positives and pitfalls"}
+      ]
+    },
+    {
+      "id": "removes",
+      "title": "What cancels",
+      "text": "Anything about the person that does not change between windows cancels out, measured or not. Things that change from hour to hour do not.",
+      "picture": "removes",
+      "quotes": [
+        {"text": "a strength of the case-crossover design is that it eliminates time invariant confounders, even when unmeasured.", "source": "lewer2022", "where": "section Positives and pitfalls"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "history-trend": {"text": "If the event does not affect subsequent exposure, such as in studies of air pollution, then referent windows both before and after the event can reduce the risk of bias owing to time trends in the exposure.", "source": "lewer2022", "where": "section Choosing the right control"}
+  },
+  "limits": [
+    "Maclure (1991), the card's reference, was not read in this task; the steps follow Lewer et al. (2022), on which Maclure is a co-author.",
+    "Mittleman et al. (1993), the card's example, was not read in this task.",
+    "No exercise: the matched-pairs arithmetic is not shown; the analysis (conditional logistic regression) is named in Lewer et al. (2022), Table 1, but not worked through here.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

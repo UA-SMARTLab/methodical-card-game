@@ -1,0 +1,73 @@
+{
+  "method": "economic-evaluation",
+  "question": "Is the extra health worth the extra cost?",
+  "sources": {
+    "sanders2016": {
+      "cite": "Sanders et al. (2016). Recommendations for conduct, methodological practices, and reporting of cost-effectiveness analyses: Second Panel on Cost-Effectiveness in Health and Medicine. JAMA 316(10): 1093–1103.",
+      "short": "Sanders et al. (2016)",
+      "url": "https://doi.org/10.1001/jama.2016.12195",
+      "checked": "every quote read word for word in the vault's text copy of the published version deposited in White Rose Research Online (library No. 291) on 20 Nov 2026; definitions are from the article's glossary of key terms and are cited by term, recommendations by number; in-text reference numbers are left out"
+    }
+  },
+  "steps": [
+    {
+      "id": "alternatives",
+      "title": "Pick the comparison",
+      "text": "Name the intervention, what it is compared with, for whom, and from whose point of view costs are counted.",
+      "picture": "alternatives",
+      "quotes": [
+        {"text": "All cost-effectiveness analyses should report 2 reference case analyses: one based on a health care sector perspective and another based on a societal perspective.", "source": "sanders2016", "where": "abstract, findings"}
+      ]
+    },
+    {
+      "id": "costs",
+      "title": "Count the costs",
+      "text": "Add up the costs of each alternative over the time horizon, bringing future costs and health back to present values.",
+      "picture": "costs",
+      "quotes": [
+        {"text": "The process of converting future dollars and future health outcomes to their present values.", "source": "sanders2016", "where": "glossary, “Discounting”"}
+      ]
+    },
+    {
+      "id": "qalys",
+      "title": "Count the health",
+      "text": "Measure health gained in quality-adjusted life years: each year weighted by its quality of life, from 0 (as bad as death) to 1 (full health).",
+      "picture": "qalys",
+      "quotes": [
+        {"text": "A measure of health outcome that assigns a weight to each period (ranging from 0 to 1), corresponding to the health-related quality of life during that period", "source": "sanders2016", "where": "glossary, “Quality-adjusted life-year”"}
+      ]
+    },
+    {
+      "id": "icer",
+      "title": "Divide the differences",
+      "text": "The extra cost divided by the extra health is the incremental cost-effectiveness ratio: the price of one more QALY.",
+      "picture": "icer",
+      "quotes": [
+        {"text": "The ratio of the difference in costs between 2 alternatives to the difference in effectiveness between the same 2 alternatives.", "source": "sanders2016", "where": "glossary, “Incremental cost-effectiveness ratio”"}
+      ]
+    },
+    {
+      "id": "sensitivity",
+      "title": "Shake the assumptions",
+      "text": "Vary the uncertain inputs and show how the answer moves. A ratio that flips with one price is not a firm answer.",
+      "picture": "sensitivity",
+      "quotes": [
+        {"text": "Analysts should be transparent about how they have conducted the analyses, and convey how the results change with alternative assumptions.", "source": "sanders2016", "where": "recommendation 4C"}
+      ]
+    }
+  ],
+  "exercise": {
+    "kind": "icer",
+    "title": "Find the price of a QALY",
+    "intro": "A new treatment costs more than usual care and gives more health. Move its price and the health gain, then set what a decision maker is willing to pay per QALY, and see whether it passes.",
+    "quote": {"text": "The ratio of the difference in costs between 2 alternatives to the difference in effectiveness between the same 2 alternatives.", "source": "sanders2016", "where": "glossary, “Incremental cost-effectiveness ratio”"},
+    "data_label": "Example data, made up for this exercise: usual care costs 10 000 and gives 5.0 QALYs per patient; the willingness to pay is yours to choose, not any agency's threshold.",
+    "usual_cost": 10000,
+    "usual_qaly": 5.0
+  },
+  "limits": [
+    "Sanders et al. (2016) write for the United States (costs in dollars); the NICE example on the card is not checked here and no real threshold is given.",
+    "Decision models (decision trees, Markov models) and probabilistic sensitivity analysis are not shown.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

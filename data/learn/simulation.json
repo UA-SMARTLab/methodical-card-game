@@ -1,0 +1,75 @@
+{
+  "method": "simulation",
+  "question": "What would happen in a system we cannot experiment on directly?",
+  "sources": {
+    "sargent1987": {
+      "cite": "Sargent (1987). An overview of verification and validation of simulation models. Proceedings of the 1987 Winter Simulation Conference: 33–39.",
+      "short": "Sargent (1987)",
+      "url": "https://doi.org/10.1145/318371.318379",
+      "checked": "every quote read word for word in the vault's text copy of the paper (library No. 888) on 20 Nov 2026; page numbers are those printed on the copy (33 to 38); words garbled by the scan are avoided; DOI and pages 33–39 checked against Crossref on 20 Nov 2026"
+    },
+    "morris2019": {
+      "cite": "Morris, White & Crowther (2019). Using simulation studies to evaluate statistical methods. Statistics in Medicine 38(11): 2074.",
+      "short": "Morris, White & Crowther (2019)",
+      "url": "https://doi.org/10.1002/sim.8086",
+      "checked": "quotes read word for word in the open-access full text from Europe PMC (PMC6492164, full-text XML) on 20 Nov 2026"
+    }
+  },
+  "steps": [
+    {
+      "id": "concept",
+      "title": "Model the system",
+      "text": "Describe the real system as a conceptual model (equations, rules, agents), then implement it as a program.",
+      "picture": "concept",
+      "quotes": [
+        {"text": "the computerized model is the conceptual model implemented on a computer.", "source": "sargent1987", "where": "p. 33"}
+      ]
+    },
+    {
+      "id": "data",
+      "title": "Get the data right",
+      "text": "Check the data that feed the model: inputs, parameters and the measurements you will test it against.",
+      "picture": "data",
+      "quotes": [
+        {"text": "Data validity is defined as ensuring that the data necessary for model building, model evaluation and testing, and conducting the model experiments to solve the problem are adequate and correct.", "source": "sargent1987", "where": "p. 33"}
+      ]
+    },
+    {
+      "id": "verify",
+      "title": "Verify the code",
+      "text": "Make sure the program does what the conceptual model says, with tests and known cases.",
+      "picture": "verify",
+      "quotes": [
+        {"text": "Model verification is frequently defined as ensuring that the computer program of the computerized model (i.e., the simulator) and its implementation is correct", "source": "sargent1987", "where": "p. 33"}
+      ]
+    },
+    {
+      "id": "validate",
+      "title": "Validate against reality",
+      "text": "Compare the model's output with the real system's behaviour, for the purpose and range you will use it for.",
+      "picture": "validate",
+      "quotes": [
+        {"text": "determining that the model’s output behavior has sufficient accuracy for its intended purpose or use over the domain of the model’s intended application.", "source": "sargent1987", "where": "p. 33, operational validity"}
+      ]
+    },
+    {
+      "id": "experiment",
+      "title": "Run the experiments",
+      "text": "Run the scenarios many times with seeded random numbers, vary the inputs to see what drives the result, and report the simulation's own uncertainty.",
+      "picture": "experiment",
+      "quotes": [
+        {"text": "This validation technique consists of changing the values of the input and internal parameters of a model to determine the effect upon the model and its output.", "source": "sargent1987", "where": "p. 34, sensitivity analysis"},
+        {"text": "the Monte Carlo standard error (SE) as a measure of uncertainty due to using a finite number of simulation repetitions.", "source": "morris2019", "where": "section 1 (introduction)"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "model-assumptions": {"text": "Model validation is usually defined to mean “substantiation that a computerized model within its domain of applicability possesses a satisfactory range of accuracy consistent with the intended application of the model”", "source": "sargent1987", "where": "p. 33"}
+  },
+  "limits": [
+    "The card's defining reference, Sargent (2013) in the Journal of Simulation, has not been read; the page follows Sargent's 1987 overview of the same framework, which is in the user's library.",
+    "Morris, White & Crowther (2019) is about simulation studies of statistical methods; it is quoted only for the Monte Carlo standard error.",
+    "The black-hole waveform example on the card is not worked through here.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

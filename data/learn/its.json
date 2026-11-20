@@ -1,0 +1,90 @@
+{
+  "method": "its",
+  "question": "Did the trend change when the intervention began, beyond where it was already heading?",
+  "sources": {
+    "lopezbernal2017": {
+      "cite": "Lopez Bernal, Cummins & Gasparrini (2017). Interrupted time series regression for the evaluation of public health interventions: a tutorial. International Journal of Epidemiology 46: 348–355.",
+      "short": "Lopez Bernal et al. (2017)",
+      "url": "https://doi.org/10.1093/ije/dyw098",
+      "checked": "every quote and Table 1 read word for word in the Europe PMC full text (PMC5407170) on 20 Nov 2026; the web text has no page numbers, so places are given as the tutorial's steps and sections; in-text reference numbers are left out. Published online in 2016 (the card's year), in the 2017 issue"
+    }
+  },
+  "steps": [
+    {
+      "id": "series",
+      "title": "A long series",
+      "text": "Collect the outcome at regular intervals, for many points before the intervention and many after. Routine data often serve.",
+      "picture": "series",
+      "quotes": [
+        {"text": "A time series is a continuous sequence of observations on a population, taken repeatedly (normally at equal intervals) over time.", "source": "lopezbernal2017", "where": "The interrupted time series design"}
+      ]
+    },
+    {
+      "id": "date",
+      "title": "A clear date",
+      "text": "The intervention must start at a known time, such as Italy's ban on smoking in public places from 10 January 2005.",
+      "picture": "date",
+      "quotes": [
+        {"text": "ITS requires a clear differentiation of the pre-intervention period and the post-intervention period.", "source": "lopezbernal2017", "where": "Step 1, the intervention"}
+      ]
+    },
+    {
+      "id": "model",
+      "title": "Choose the shape first",
+      "text": "Before looking at the data after the intervention, say what an effect would look like: a drop in level, a change in slope, or both, with or without a lag.",
+      "picture": "model",
+      "quotes": [
+        {"text": "It is important that this decision is made a priori based on existing literature and knowledge of the intervention and the mechanism by which it is expected to act on the outcome.", "source": "lopezbernal2017", "where": "Step 2, proposing the impact model"}
+      ]
+    },
+    {
+      "id": "counterfactual",
+      "title": "Project the trend",
+      "text": "Extend the trend from before the intervention into the period after. That line is what would have happened without it.",
+      "picture": "counterfactual",
+      "quotes": [
+        {"text": "In an ITS study, a time series of a particular outcome of interest is used to establish an underlying trend, which is ‘interrupted’ by an intervention at a known point in time.", "source": "lopezbernal2017", "where": "The interrupted time series design"}
+      ]
+    },
+    {
+      "id": "segments",
+      "title": "Fit the segments",
+      "text": "Segmented regression fits the trend before, then estimates the jump in level and the change in slope after. In the worked example, admissions for acute coronary events fell by 11%.",
+      "picture": "segments",
+      "quotes": [
+        {"text": "β2 is the level change following the intervention and β3 indicates the slope change following the intervention", "source": "lopezbernal2017", "where": "Step 4, regression analysis"},
+        {"text": "with a decrease of 11% [relative risk (RR) 0.894; 95% confidence interval (CI) 0.864-0.925; P < 0.001)", "source": "lopezbernal2017", "where": "Step 4, regression analysis"}
+      ]
+    },
+    {
+      "id": "checks",
+      "title": "Check the threats",
+      "text": "Adjust for seasons, and ask what else changed at the same time. Slow-moving confounders sit in the trend; sudden ones do not.",
+      "picture": "checks",
+      "quotes": [
+        {"text": "Nevertheless, ITS can be affected by time-varying confounders that change more rapidly. Seasonality can be considered a time-varying confounder", "source": "lopezbernal2017", "where": "Step 5, time-varying confounders"}
+      ]
+    }
+  ],
+  "exercise": {
+    "title": "Fit the break",
+    "intro": "Monthly hospital admissions for acute coronary events in the tutorial's worked example, 2004–2005, as a rate per 100,000; Italy's smoking ban began in January 2005. Compare a plain before-and-after with segmented regression, then move the break to a month when nothing happened.",
+    "quote": {"text": "The hypothetical scenario under which the intervention had not taken place and the trend continues unchanged (that is: the ‘expected’ trend, in the absence of the intervention, given the pre-existing trend) is referred to as the ‘counterfactual’.", "source": "lopezbernal2017", "where": "The interrupted time series design"},
+    "data_label": "Real data: the 24 months printed in Table 1 of Lopez Bernal et al. (2017), an excerpt of the 59-month series. Fitted here by ordinary least squares on the rate, without seasonal adjustment, so the numbers differ from the paper's Poisson model on the full series.",
+    "ban_index": 12,
+    "rows": [
+      [2004, 1, 914, 381656.3], [2004, 2, 808, 383680], [2004, 3, 937, 383504.2], [2004, 4, 840, 386462.9],
+      [2004, 5, 916, 383783.1], [2004, 6, 828, 380836.8], [2004, 7, 845, 383483], [2004, 8, 818, 380906.2],
+      [2004, 9, 860, 382926.8], [2004, 10, 839, 384052.4], [2004, 11, 887, 384449.6], [2004, 12, 886, 383428.4],
+      [2005, 1, 831, 388153.2], [2005, 2, 796, 388373.2], [2005, 3, 833, 386470.1], [2005, 4, 820, 386033.2],
+      [2005, 5, 877, 383686.4], [2005, 6, 758, 385509.3], [2005, 7, 767, 385901.9], [2005, 8, 738, 386516.6],
+      [2005, 9, 781, 388436.5], [2005, 10, 843, 383255.2], [2005, 11, 850, 390148.7], [2005, 12, 908, 385874.9]
+    ]
+  },
+  "limits": [
+    "The exercise uses only the 24 months printed in the paper's Table 1; the full 59-month series is in the supplementary data, which was not read.",
+    "The exercise's straight-line least-squares fit leaves out the paper's Poisson model, population offset, seasonality and autocorrelation checks.",
+    "The card's example names heart-attack admissions after a smoking ban; the page uses the tutorial's worked example (data from Barone-Adesi et al.), read only as reproduced in the tutorial. Which region the excerpt covers was not stated in the text read, so none is named.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

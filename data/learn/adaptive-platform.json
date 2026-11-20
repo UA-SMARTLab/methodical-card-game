@@ -1,0 +1,89 @@
+{
+  "method": "adaptive-platform",
+  "question": "Which of many treatments work, found out as fast as the data allow?",
+  "sources": {
+    "dimairo2020": {
+      "cite": "Dimairo et al. (2020). The Adaptive designs CONSORT Extension (ACE) statement: a checklist with explanation and elaboration guideline for reporting randomised trials that use an adaptive design. BMJ 369: m115.",
+      "short": "Dimairo et al. (2020)",
+      "url": "https://doi.org/10.1136/bmj.m115",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC7298567) on 20 Nov 2026; the article is online-only (m115), so places are given as its boxes"
+    },
+    "park2019": {
+      "cite": "Park et al. (2019). Systematic review of basket trials, umbrella trials, and platform trials: a landscape analysis of master protocols. Trials 20: 572.",
+      "short": "Park et al. (2019)",
+      "url": "https://doi.org/10.1186/s13063-019-3664-1",
+      "checked": "the definition read word for word in the Europe PMC full text (PMC6751792) on 20 Nov 2026"
+    },
+    "lu2021": {
+      "cite": "Lu et al. (2021). Practical considerations and recommendations for master protocol framework: basket, umbrella and platform trials. Therapeutic Innovation & Regulatory Science 55: 1145-1154.",
+      "short": "Lu et al. (2021)",
+      "url": "https://doi.org/10.1007/s43441-021-00315-7",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC8220876) on 20 Nov 2026; places are given as sections"
+    },
+    "recovery2021": {
+      "cite": "RECOVERY Collaborative Group (2021). Dexamethasone in hospitalized patients with Covid-19. New England Journal of Medicine 384: 693-704.",
+      "short": "RECOVERY Collaborative Group (2021)",
+      "url": "https://doi.org/10.1056/NEJMoa2021436",
+      "checked": "quotes read word for word in the Europe PMC full text (PMC7383595, the preliminary report as deposited) on 20 Nov 2026"
+    }
+  },
+  "steps": [
+    {
+      "id": "protocol",
+      "title": "One protocol",
+      "text": "One master protocol runs several treatment arms side by side, all compared with one shared control arm.",
+      "picture": "protocol",
+      "quotes": [
+        {"text": "a common control for multiple experimental arms can increase the efficiency of the platform trial and make it more appealing to participants and sponsors.", "source": "lu2021", "where": "Consideration of control"}
+      ]
+    },
+    {
+      "id": "rules",
+      "title": "Write the rules",
+      "text": "Before any data come in, write down what may change and the rules that will trigger each change.",
+      "picture": "rules",
+      "quotes": [
+        {"text": "A clinical trial design that offers pre-planned opportunities to use accumulating trial data to modify aspects of an ongoing trial while preserving the validity and integrity of that trial.", "source": "dimairo2020", "where": "box 1, definition of an adaptive design"}
+      ]
+    },
+    {
+      "id": "interim",
+      "title": "Look in between",
+      "text": "At planned moments, analyse the data gathered so far.",
+      "picture": "interim",
+      "quotes": [
+        {"text": "A statistical analysis or review of accumulating data from an ongoing trial (interim data) to inform trial adaptations (before the final analysis), which may or may not involve treatment group comparisons.", "source": "dimairo2020", "where": "box 2, interim analysis"}
+      ]
+    },
+    {
+      "id": "adapt",
+      "title": "Drop and add",
+      "text": "Following the rules, stop arms that have their answer and open new ones, without starting a new trial.",
+      "picture": "adapt",
+      "quotes": [
+        {"text": "‘Platform trials’ were defined as any clinical trials that allowed the intervention arm(s) to be dropped and the flexibility of introducing new intervention(s) during the trial.", "source": "park2019", "where": "table 1, study designs"},
+        {"text": "Although the randomization of patients to receive dexamethasone, hydroxychloroquine, or lopinavir–ritonavir has now been stopped, the trial continues randomization to groups receiving azithromycin, tocilizumab, or convalescent plasma.", "source": "recovery2021", "where": "Methods, trial design and oversight"}
+      ]
+    },
+    {
+      "id": "concurrent",
+      "title": "Compare like with like",
+      "text": "Compare a new arm with control patients randomised at the same time; patients from before it opened may differ.",
+      "picture": "concurrent",
+      "quotes": [
+        {"text": "A general consensus is to only include the concurrent randomized control data in the comparison with the corresponding experimental arm for confirmatory trials with registrations purposes", "source": "lu2021", "where": "Consideration of control"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "history-trend": {"text": "It is also possible that due to potential changes in medical practice, there may be drift in population that results in better or worse outcomes for the control arm over time.", "source": "lu2021", "where": "Consideration of control"},
+    "forking-paths": {"text": "It involves pre-specifying a set of actions guiding how decisions about implementing the trial adaptations are made given interim observed data (decision rules).", "source": "dimairo2020", "where": "box 2, adaptive decision-making criteria"}
+  },
+  "limits": [
+    "The card's defining paper, Woodcock & LaVange (2017, NEJM), was not read: it is not in Europe PMC's open full text. The quotes come from the ACE reporting guideline (Dimairo et al. 2020), a systematic review (Park et al. 2019) and Lu et al. (2021).",
+    "The card's \"within about 100 days of launch\" for RECOVERY is not checked here; the RECOVERY quote shows only that arms were stopped while others continued.",
+    "Arm names in the pictures (drug 1 to drug 4) are placeholders, not RECOVERY's arms.",
+    "No exercise: the pictures carry the idea; the statistics of interim decisions (error rates, stopping boundaries) are left out.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

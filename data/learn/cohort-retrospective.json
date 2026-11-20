@@ -1,0 +1,81 @@
+{
+  "method": "cohort-retrospective",
+  "question": "Did people exposed in the past get the outcome more often, judging by existing records?",
+  "sources": {
+    "vandenbroucke2007": {
+      "cite": "Vandenbroucke et al. (2007). Strengthening the Reporting of Observational Studies in Epidemiology (STROBE): explanation and elaboration. PLoS Medicine 4(10): e297.",
+      "short": "Vandenbroucke et al. (2007)",
+      "url": "https://doi.org/10.1371/journal.pmed.0040297",
+      "checked": "every quote read word for word in the Europe PMC full text (PMC2020496) on 20 Nov 2026; the article is online-only (e297), so places are given as its STROBE items and boxes; in-text reference numbers are left out of the quotes"
+    },
+    "hernan2016": {
+      "cite": "Hernán & Robins (2016). Using Big Data to Emulate a Target Trial When a Randomized Trial Is Not Available. American Journal of Epidemiology 183(8): 758–764.",
+      "short": "Hernán & Robins (2016)",
+      "url": "https://doi.org/10.1093/aje/kwv254",
+      "checked": "quote read word for word in the PMC full text (PMC4832051), in Chrome, on 20 Nov 2026"
+    },
+    "lousdal2018": {
+      "cite": "Lousdal (2018). An introduction to instrumental variable assumptions, validation and estimation. Emerging Themes in Epidemiology 15: 1.",
+      "short": "Lousdal (2018)",
+      "url": "https://doi.org/10.1186/s12982-018-0069-7",
+      "checked": "quote read word for word in the Europe PMC full text (PMC5776781) on 20 Nov 2026; in-text reference numbers are left out"
+    }
+  },
+  "steps": [
+    {
+      "id": "records",
+      "title": "Find records",
+      "text": "Look for records that already hold exposure and identity for a whole group, such as employment rolls or health databases.",
+      "picture": "records",
+      "quotes": [
+        {"text": "Researchers often use data for purposes for which they were not originally intended, including, for example, official vital statistics that were collected primarily for administrative purposes", "source": "vandenbroucke2007", "where": "item 4, explanation"}
+      ]
+    },
+    {
+      "id": "rewind",
+      "title": "Start in the past",
+      "text": "The cohort's starting line lies in the past; the study idea came after the data were collected.",
+      "picture": "rewind",
+      "quotes": [
+        {"text": "A second usage distinguishes prospective and retrospective cohort studies according to the timing of data collection relative to when the idea for the study was developed", "source": "vandenbroucke2007", "where": "item 4, explanation"}
+      ]
+    },
+    {
+      "id": "trace",
+      "title": "Trace outcomes",
+      "text": "Follow each person forward in the records, from the starting line to the outcome, death, leaving or the end date.",
+      "picture": "trace",
+      "quotes": [
+        {"text": "In cohort studies, the investigators follow people over time.", "source": "vandenbroucke2007", "where": "box 1"}
+      ]
+    },
+    {
+      "id": "compare",
+      "title": "Compare rates",
+      "text": "Compare outcome rates between the exposed and the unexposed, as in any cohort.",
+      "picture": "compare",
+      "quotes": [
+        {"text": "Investigators commonly make contrasts between individuals who are exposed and not exposed or among groups of individuals with different categories of exposure.", "source": "vandenbroucke2007", "where": "box 1"}
+      ]
+    },
+    {
+      "id": "gaps",
+      "title": "Mind the gaps",
+      "text": "You get only what someone happened to record; a missing confounder cannot be asked about now. Say what the data were first collected for.",
+      "picture": "gaps",
+      "quotes": [
+        {"text": "briefly restating the original aims might help readers understand the context of the research and possible limitations in the data.", "source": "vandenbroucke2007", "where": "item 4, explanation"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "confounding-indication": {"text": "Confounding by indication occurs when physicians or other health professionals select patients for a specific exposure", "source": "lousdal2018", "where": "Background"},
+    "measurement-error": {"text": "Information bias occurs when systematic differences in the completeness or the accuracy of data lead to differential misclassification of individuals regarding exposures or outcomes.", "source": "vandenbroucke2007", "where": "box 3"},
+    "immortal-time": {"text": "Eligibility criteria need to be met at that point but not later; study outcomes begin to be counted after that point but not earlier.", "source": "hernan2016", "where": "section Defining time zero"}
+  },
+  "limits": [
+    "Euser et al. (2009), the card's reference, was not read in this task; the steps follow the STROBE explanation instead.",
+    "STROBE notes that prospective and retrospective are used in several ways (item 4); this page uses the second, timing-of-data-collection meaning.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

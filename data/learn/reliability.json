@@ -1,0 +1,89 @@
+{
+  "method": "reliability",
+  "question": "Do two measurements of the same thing agree well enough to use either?",
+  "sources": {
+    "bland1986": {
+      "cite": "Bland & Altman (1986). Statistical methods for assessing agreement between two methods of clinical measurement. The Lancet: 307–310.",
+      "short": "Bland & Altman (1986)",
+      "url": "https://doi.org/10.1016/S0140-6736(86)90837-8",
+      "checked": "every quote read word for word in the vault's text copy of the article (library No. 281) on 20 Nov 2026; page numbers are the journal's, printed on the copy (307 to 310); symbols lost in the scan (the mean difference, ±) are avoided in the quotes"
+    }
+  },
+  "steps": [
+    {
+      "id": "measure",
+      "title": "Measure twice",
+      "text": "Measure the same people with both methods (or both raters), in random order, over the whole range you will meet in use.",
+      "picture": "measure",
+      "quotes": [
+        {"text": "Two measurements were made with a Wright peak flow meter and two with a mini Wright meter, in random order.", "source": "bland1986", "where": "p. 307"}
+      ]
+    },
+    {
+      "id": "equality",
+      "title": "Plot against equality",
+      "text": "Plot one method against the other with the line on which every point would lie if they agreed perfectly.",
+      "picture": "equality",
+      "quotes": [
+        {"text": "The first step is to plot the data and draw the line of equality on which all points would lie if the two meters gave exactly the same reading every time", "source": "bland1986", "where": "p. 307"}
+      ]
+    },
+    {
+      "id": "not-r",
+      "title": "Not correlation",
+      "text": "A high correlation only says the two rise together. One method can read twice the other and still correlate perfectly.",
+      "picture": "not_r",
+      "quotes": [
+        {"text": "Many studies give the product-moment correlation coefficient (r) between the results of the two measurement methods as an indicator of agreement. It is no such thing.", "source": "bland1986", "where": "p. 307"}
+      ]
+    },
+    {
+      "id": "difference",
+      "title": "Difference vs mean",
+      "text": "Plot each pair's difference against its mean. The average difference is the bias; the spread of differences sets the limits of agreement.",
+      "picture": "difference",
+      "quotes": [
+        {"text": "We do not know the true value, and the mean of the two measurements is the best estimate we have.", "source": "bland1986", "where": "p. 308"},
+        {"text": "we can summarise the lack of agreement by calculating the bias, estimated by the mean difference", "source": "bland1986", "where": "p. 308"}
+      ]
+    },
+    {
+      "id": "judge",
+      "title": "Judge clinically",
+      "text": "Decide whether differences as wide as the limits would matter in practice. That is a clinical judgement, not a statistical one.",
+      "picture": "judge",
+      "quotes": [
+        {"text": "We shall refer to these as the \"limits of agreement\".", "source": "bland1986", "where": "p. 308"}
+      ]
+    },
+    {
+      "id": "repeat",
+      "title": "Check repeatability",
+      "text": "Repeat each method on the same people. A method that disagrees with itself cannot agree well with another.",
+      "picture": "repeat",
+      "quotes": [
+        {"text": "Repeatability is relevant to the study of method comparison because the repeatabilities of two methods of measurement limit the amount of agreement which is possible.", "source": "bland1986", "where": "p. 309"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "spectrum-bias": {"text": "Correlation depends on the range of the true quantity in the sample. If this is wide, the correlation will be greater than if it is narrow.", "source": "bland1986", "where": "p. 308"}
+  },
+  "exercise": {
+    "kind": "agreement",
+    "title": "Why correlation fools you",
+    "intro": "Two meters measure the same people. The new one reads a little high and scatters around the old one. Widen the range of people measured and watch the correlation climb while the limits of agreement stay where they are.",
+    "quote": {"text": "Correlation depends on the range of the true quantity in the sample. If this is wide, the correlation will be greater than if it is narrow.", "source": "bland1986", "where": "p. 308"},
+    "data_label": "Example data, made up for this exercise: 40 people, a true value spread over the chosen range, the new meter reading 10 units high with a scatter of 20 units, fixed seed. The limits are the mean difference plus and minus two standard deviations of the differences.",
+    "n": 40,
+    "bias": 10,
+    "sd": 20,
+    "centre": 400,
+    "ranges": [40, 150, 400]
+  },
+  "limits": [
+    "The card also names kappa and the intraclass correlation (ICC) for raters; this page follows Bland & Altman (1986) for continuous measurements only. Their defining sources (for example the GRRAS guideline, Kottner et al. 2011) have not been read for this page.",
+    "The peak-flow data of Bland & Altman (1986) are not reproduced; the exercise uses made-up data.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

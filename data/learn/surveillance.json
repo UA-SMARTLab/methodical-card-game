@@ -1,0 +1,68 @@
+{
+  "method": "surveillance",
+  "question": "Is it changing, where, and is something unusual happening?",
+  "sources": {
+    "cdc2001": {
+      "cite": "Centers for Disease Control and Prevention (2001). Updated guidelines for evaluating public health surveillance systems. Morbidity and Mortality Weekly Report, Recommendations and Reports.",
+      "short": "CDC (2001)",
+      "url": "https://www.cdc.gov/mmwr/preview/mmwrhtml/rr5013a1.htm",
+      "checked": "every quote read word for word on the CDC MMWR web page (in Chrome, 20 Nov 2026); the web page has no page numbers, so places are given as its sections and task labels (e.g. D.2.h); in-text reference numbers are left out. The volume and issue were not read on the page and are not given. The card's own reference (Thacker & Berkelman 1988) is not open access and was not read"
+    }
+  },
+  "steps": [
+    {
+      "id": "define",
+      "title": "Define a case",
+      "text": "Write down exactly what counts as a case: symptoms, test results, place and time, and how certain each level is.",
+      "picture": "define",
+      "quotes": [
+        {"text": "A public health surveillance system is dependent on a clear case definition for the health-related event under surveillance", "source": "cdc2001", "where": "Task B, describing the system"}
+      ]
+    },
+    {
+      "id": "collect",
+      "title": "Collect, always",
+      "text": "Gather the same data the same way, week after week and place by place, for as long as the system runs.",
+      "picture": "collect",
+      "quotes": [
+        {"text": "Public health surveillance is the ongoing, systematic collection, analysis, interpretation, and dissemination of data regarding a health-related event for use in public health action to reduce morbidity and mortality and to improve health", "source": "cdc2001", "where": "Background"}
+      ]
+    },
+    {
+      "id": "report",
+      "title": "Report fast",
+      "text": "Data flow from the people who see cases to those who can act. Every step between them takes time, and the delays can be measured.",
+      "picture": "report",
+      "quotes": [
+        {"text": "Timeliness reflects the speed between steps in a public health surveillance system.", "source": "cdc2001", "where": "D.2.h, Timeliness"}
+      ]
+    },
+    {
+      "id": "signal",
+      "title": "Spot the signal",
+      "text": "Compare the latest counts with the usual level for that place and season. A rise beyond it is a signal to investigate, not yet a cause.",
+      "picture": "signal",
+      "quotes": [
+        {"text": "detect trends that signal changes in the occurrence of disease, injury, or adverse or protective exposure, including detection of epidemics (or outbreaks)", "source": "cdc2001", "where": "D.1, level of usefulness"}
+      ]
+    },
+    {
+      "id": "missed",
+      "title": "Know what's missed",
+      "text": "No system catches every case. A trend can still be trusted if the share caught stays the same; a change in reporting can look like a change in disease.",
+      "picture": "missed",
+      "quotes": [
+        {"text": "A public health surveillance system that does not have high sensitivity can still be useful in monitoring trends as long as the sensitivity remains reasonably constant over time.", "source": "cdc2001", "where": "D.2.e, Sensitivity"}
+      ]
+    }
+  ],
+  "threat_quotes": {
+    "selection-bias": {"text": "A public health surveillance system that is representative accurately describes the occurrence of a health-related event over time and its distribution in the population by place and person.", "source": "cdc2001", "where": "D.2.g, Representativeness"}
+  },
+  "limits": [
+    "The page follows the CDC's 2001 evaluation guidelines, not the card's reference (Thacker & Berkelman 1988), which was not read.",
+    "The card's examples (the Mauna Loa CO₂ record, pharmacovigilance) were not read for this page; no data from them are shown.",
+    "The step texts in our own words are summaries of the quotes beside them; the quotes are the authority.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}

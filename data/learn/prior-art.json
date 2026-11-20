@@ -1,0 +1,65 @@
+{
+  "method": "prior-art",
+  "question": "Has this already been made, published or claimed?",
+  "sources": {
+    "usc102": {
+      "cite": "35 U.S.C. § 102: Conditions for patentability; novelty. United States Code.",
+      "short": "35 U.S.C. § 102",
+      "url": "https://www.law.cornell.edu/uscode/text/35/102",
+      "checked": "subsections (a) and (b)(1) read word for word on the Cornell Legal Information Institute page on 20 Nov 2026"
+    },
+    "epc": {
+      "cite": "European Patent Convention, Articles 54 (Novelty) and 56 (Inventive step). European Patent Office, 2020 text.",
+      "short": "EPC Art. 54 and 56",
+      "url": "https://www.epo.org/en/legal/epc/2020/a54.html",
+      "checked": "Articles 54 and 56 read word for word on the EPO's pages (a54.html, a56.html) on 20 Nov 2026"
+    }
+  },
+  "steps": [
+    {
+      "id": "search",
+      "title": "Search everywhere",
+      "text": "Prior art is anything the public could get at, not only papers. Search patents, standards, products, catalogues, theses and talks.",
+      "picture": "search",
+      "quotes": [
+        {"text": "The state of the art shall be held to comprise everything made available to the public by means of a written or oral description, by use, or in any other way", "source": "epc", "where": "Art. 54(2)"},
+        {"text": "patented, described in a printed publication, or in public use, on sale, or otherwise available to the public", "source": "usc102", "where": "§ 102(a)(1)"}
+      ]
+    },
+    {
+      "id": "date",
+      "title": "Check the date",
+      "text": "Only what was public before your filing date counts. US law excuses some of the inventor's own disclosures made up to a year before.",
+      "picture": "date",
+      "quotes": [
+        {"text": "before the effective filing date of the claimed invention", "source": "usc102", "where": "§ 102(a)(1)"},
+        {"text": "A disclosure made 1 year or less before the effective filing date of a claimed invention shall not be prior art to the claimed invention under subsection (a)(1) if", "source": "usc102", "where": "§ 102(b)(1)"}
+      ]
+    },
+    {
+      "id": "new",
+      "title": "Is it new?",
+      "text": "Compare your idea with each earlier source, feature by feature. If one source already shows it, it is not new.",
+      "picture": "new",
+      "quotes": [
+        {"text": "An invention shall be considered to be new if it does not form part of the state of the art.", "source": "epc", "where": "Art. 54(1)"}
+      ]
+    },
+    {
+      "id": "obvious",
+      "title": "Is it obvious?",
+      "text": "Even if no single source shows it, ask whether a skilled person would have combined what was known to get there.",
+      "picture": "obvious",
+      "quotes": [
+        {"text": "An invention shall be considered as involving an inventive step if, having regard to the state of the art, it is not obvious to a person skilled in the art.", "source": "epc", "where": "Art. 56"}
+      ]
+    }
+  ],
+  "limits": [
+    "The page quotes the law, not a search guideline: how patent offices actually search (classification codes, EPO Guidelines for Examination) is not covered here.",
+    "\"Feature by feature\" in step 3 is our summary of how novelty is judged; the statutes quoted do not spell it out.",
+    "In re Hall (1986), the card's example, was not read for this page.",
+    "Outside patent law, a prior art review for a paper or a design uses the same idea of what was public first, without the legal tests.",
+    "English only for now; the learn pages are not in the i18n pipeline yet."
+  ]
+}
