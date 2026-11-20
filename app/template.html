@@ -150,6 +150,11 @@ select, .btn { background: var(--surface); border: 1px solid var(--line); border
 .cards figure { margin: 0; display: flex; flex-direction: column; gap: 6px; align-items: center; }
 .cards details { width: calc(var(--card-u) * 63); font-size: 13px; color: var(--muted); }
 .cards details p { margin: 4px 0 0; }
+/* Each Method's learn page, in plain sight under its card rather than folded into "More". */
+.d-learn { display: inline-flex; align-items: center; min-height: 36px; padding: 0 16px; border-radius: 99px; background: var(--accent); color: var(--accent-ink);
+  font-weight: 700; font-size: 14px; text-decoration: none; }
+.d-learn:hover { filter: brightness(1.1); }
+.d-learn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 
 /* guide */
 .guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
@@ -1123,7 +1128,7 @@ document.addEventListener("pointerdown", e => {
 function cardHTML(kind, x) {
   const card = DATA.cards[kind][x.id];
   if (kind === "questions") return `<figure>${card}<details><summary>${tr("decks.answer")}</summary><p>🥇 ${x.best.map(i => esc(D[i].name)).join(", ")}<br>🥈 ${x.ok.map(i => esc(D[i].name)).join(", ") || "–"}</p><p>${esc(x.why)}</p></details></figure>`;
-  if (kind === "designs") return `<figure><div class="pick-slot">${card}${refLink(x.id)}</div><details><summary>${tr("decks.more")}</summary><p>${esc(x.gist)}</p><p><i>${esc(x.example)}</i></p><p>📄 ${refLine(x.id)}</p></details></figure>`;
+  if (kind === "designs") return `<figure><div class="pick-slot">${card}${refLink(x.id)}</div>${DATA.learn.includes(x.id) ? `<a class="d-learn" href="${DATA.learn_base}${x.id}/">▶ ${tr("viewer.learn")}</a>` : ""}<details><summary>${tr("decks.more")}</summary><p>${esc(x.gist)}</p><p><i>${esc(x.example)}</i></p><p>📄 ${refLine(x.id)}</p></details></figure>`;
   if (kind === "threats") return `<figure><div class="pick-slot">${card}${refLink(x)}</div><details><summary>${tr("decks.example")}</summary><p>${esc(x.text)}</p><p><i>${esc(x.example)}</i></p><p>📄 ${refLine(x)}</p></details></figure>`;
   if (kind === "safeguards") return `<figure><div class="pick-slot">${card}${refLink(x)}</div><details><summary>${tr("decks.more")}</summary><p>${esc(x.text)}</p><p>📄 ${refLine(x)}</p></details></figure>`;
   return `<figure>${card}</figure>`;
