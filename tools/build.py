@@ -507,7 +507,9 @@ def build_app(g, langs, artifact=None):
     def page_for(absolute):
         lang = {"code": g.code, "dir": "rtl" if g.rtl else "ltr",
                 "langs": [{"code": x["code"], "name": x["name"], "href": href(x, absolute), "current": x["code"] == g.code} for x in langs]}
-        return (tpl.replace("/*__DATA__*/null", js(bundle))
+        # The hosted copy has no learn pages beside it, so it links to the ones on the public site.
+        learn_base = PAGES_URL + "learn/" if absolute else ("" if g.code == "en" else "../") + "learn/"
+        return (tpl.replace("/*__DATA__*/null", js({**bundle, "learn_base": learn_base}))
                 .replace("/*__CARD_CSS__*/", cards.CARD_CSS + g.lang_css())
                 .replace("/*__UI__*/{}", js(g.ui))
                 .replace("/*__LANG__*/{}", js(lang))

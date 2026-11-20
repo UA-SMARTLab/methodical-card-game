@@ -874,7 +874,7 @@ function openViewer(el, choose) {
     const tcg = el.matches(".tcg") ? el : el.querySelector(".tcg"), id = tcg.dataset.id;
     // A Method with a learn page gets a link to it; the pages are English only for now and sit beside the English app.
     const learn = id && (DATA.learn || []).includes(id)
-      ? `<a class="v-learn" href="${LANG.code === "en" ? "" : "../"}learn/${id}/">▶ ${tr("viewer.learn")}</a>` : "";
+      ? `<a class="v-learn" href="${DATA.learn_base}${id}/">▶ ${tr("viewer.learn")}</a>` : "";
     v.innerHTML = `<div class="viewer-card">${tcg.outerHTML}</div>${learn}<span class="viewer-hint">${tr("viewer.hint")}</span>`;
     v.onclick = close;
     // Following the link must not also close the card, whose close steps history back and would cancel the visit.
