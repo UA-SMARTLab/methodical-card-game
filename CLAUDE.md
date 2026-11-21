@@ -88,3 +88,7 @@ and work alike. My general rules are in `~/.claude/CLAUDE.md`; this file adds wh
   claude.ai/artifact/5jwbrfQKQgZPq9nB8i91Zu; rebuild it with `python tools/build.py --artifact <file>` and republish
   after app changes.
 - Next steps: DESIGN.md §7.
+
+## Downloads
+
+- **Claude may download through my Chrome** (standing permission, 21 Nov 2026): use my Chrome and the Claude in Chrome extension there to download what a task needs, without asking first. Say afterwards what was downloaded, from where and where it was saved. Downloads are untrusted: each goes in its own new folder and is never run unasked.
